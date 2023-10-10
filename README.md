@@ -1,11 +1,22 @@
-# Lightning Starter Template for SolidJS
+# Lightning UI
 
-## Quick Start
+This library contains shared Lightning components, updated for @lightningjs version 3
+
+## Package List
+
+in progress:
+
+- @lightningjs/solid-ui
+
+coming soon:
+
+- @lightningjs/blits-ui
+
+## Development
+
+Run the local dev environment:
 
 ```sh
-> npx degit lightning-js/solid-starter-template my-app
-> cd my-app
-> npm i # or yarn or pnpm
-> npm start # or yarn or pnpm
+> yarn install
+> yarn start
 ```
-
