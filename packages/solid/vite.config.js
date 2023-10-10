@@ -13,6 +13,9 @@ export default defineConfig({
     })
   ],
   resolve: {
+    alias: {
+      theme: '@lightningjs/ui-components-theme-base'
+    },
     dedupe: ['solid-js', '@lightningjs/solid']
   },
   optimizeDeps: {

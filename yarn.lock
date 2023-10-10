@@ -1392,6 +1392,11 @@
   resolved "https://registry.yarnpkg.com/@lightningjs/threadx/-/threadx-0.3.3.tgz#b4f08c48bb1e7250cd98d22e7890c8cb204c1a67"
   integrity sha512-cctepz1aYBjfT0y0vx4KknT89DowbYyu158IxPszuzVXB4J0FfuBoBNx923FKiNXBGcVc7CnyWEJ9sNMatUhCQ==
 
+"@lightningjs/ui-components-theme-base@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@lightningjs/ui-components-theme-base/-/ui-components-theme-base-1.0.3.tgz#a97f8b14a53c7ca5d182c6d408bedc82e02f9946"
+  integrity sha512-bQL7cWrrAb0VFG9XYcrCU6KoGDxo5i0DVCyOwhSJ29QYewEJmzxBpNQZEt0cLBRUEkDo8Bwq7N8PYNxMITF1vw==
+
 "@lightningjs/vite-plugin-import-chunk-url@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@lightningjs/vite-plugin-import-chunk-url/-/vite-plugin-import-chunk-url-0.3.0.tgz#b09b7492876922200d9795f0941d9077e723b3a8"

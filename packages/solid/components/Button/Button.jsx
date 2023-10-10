@@ -1,4 +1,5 @@
 import { View, Text } from '@lightningjs/solid';
+import theme from 'theme';
 
 /**
  * Primary UI component for user interaction
@@ -8,8 +9,8 @@ const styles = {
   container: {
     width: 386,
     height: 136,
-    color: '#000000',
-    alpha: 0.3,
+    color: theme.color.black[0],
+    alpha: theme.alpha.alpha3,
     borderRadius: 30,
     border: { width: 5, color: '#ee6d04' },
     scale: 1,
