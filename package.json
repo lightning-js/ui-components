@@ -13,7 +13,8 @@
   "scripts": {
     "start": "yarn run start:solid",
     "start:solid": "yarn workspace @lightningjs/solid-ui start",
-    "clean": "yarn exec rm -rf node_modules && find ./packages -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
+    "lint": "yarn eslint . --ext .js,.ts,.jsx,.tsx",
+    "lint:fix": "yarn eslint . --ext .js,.ts,.jsx,.tsx --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -23,6 +24,12 @@
     "@lightningjs/solid": "^0.5.6",
     "@lightningjs/solid-primitives": "^0.3.6",
     "@solidjs/router": "^0.8.2",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-jest": "^27.4.2",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-solid": "^0.13.0",
+    "prettier": "^3.0.3",
     "solid-js": "^1.7.8"
   },
   "devDependencies": {

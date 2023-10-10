@@ -20,13 +20,13 @@
 import {
   CoreExtension,
   WebTrFontFace,
-  SdfTrFontFace,
+  SdfTrFontFace
 } from '@lightningjs/renderer/core';
 
 export default class AppCoreExtension extends CoreExtension {
   async run(stage) {
     stage.fontManager.addFontFace(
-      new WebTrFontFace('NotoSans', {}, '/fonts/NotoSans-Regular.ttf'),
+      new WebTrFontFace('NotoSans', {}, '/fonts/NotoSans-Regular.ttf')
     );
     stage.fontManager.addFontFace(
       new SdfTrFontFace(
@@ -35,8 +35,8 @@ export default class AppCoreExtension extends CoreExtension {
         'msdf',
         stage,
         '/fonts/Ubuntu-Bold.msdf.png',
-        '/fonts/Ubuntu-Bold.msdf.json',
-      ),
+        '/fonts/Ubuntu-Bold.msdf.json'
+      )
     );
   }
 }

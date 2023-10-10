@@ -6,8 +6,8 @@ const meta = {
   component: Button,
   tags: ['autodocs'],
   argTypes: {
-    backgroundColor: { control: 'color' },
-  },
+    backgroundColor: { control: 'color' }
+  }
 };
 
 export default meta;
@@ -16,26 +16,26 @@ export default meta;
 export const Primary = {
   args: {
     primary: true,
-    children: 'Button',
-  },
+    children: 'Button'
+  }
 };
 
 export const Secondary = {
   args: {
-    children: 'Button',
-  },
+    children: 'Button'
+  }
 };
 
 export const Large = {
   args: {
     size: 'large',
-    children: 'Button',
-  },
+    children: 'Button'
+  }
 };
 
 export const Small = {
   args: {
     size: 'small',
-    children: 'Button',
-  },
+    children: 'Button'
+  }
 };

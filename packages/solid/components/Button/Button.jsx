@@ -14,16 +14,16 @@ const styles = {
     border: { width: 5, color: '#ee6d04' },
     scale: 1,
     focus: {
-      color: ['#58807d', {duration: 2000}],
+      color: ['#58807d', { duration: 2000 }],
       scale: 1.2,
       border: { width: 5, color: '#ff0000' },
-      alpha: [1, {duration: 1500, delay: 200, timing: "easy-in"}]
+      alpha: [1, { duration: 1500, delay: 200, timing: 'easy-in' }]
     },
     active: {
       color: '#33ff55'
     },
     disabled: {
-      alpha: 1,
+      alpha: 1
     }
   }
 };
@@ -40,12 +40,11 @@ styles.text = {
   focus: {
     fontSize: 64
   }
-}
+};
 
 export default function Button(props) {
   return (
-    <View {...props} forwardStates animate
-      style={styles.container}>
+    <View {...props} forwardStates animate style={styles.container}>
       <Text style={styles.text}>{props.children}</Text>
     </View>
   );

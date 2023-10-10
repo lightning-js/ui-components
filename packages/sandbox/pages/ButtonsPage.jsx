@@ -2,7 +2,7 @@ import Button from '../components/Button';
 import { Row } from '@lightningjs/solid-primitives';
 
 const ButtonsPage = () => {
-  function onEnter(event, elm) {
+  function onEnter() {
     this.states.toggle('disabled');
   }
 
@@ -15,13 +15,15 @@ const ButtonsPage = () => {
     gap: 26,
     y: 400,
     x: 100
-  }
+  };
 
   return (
     <Row style={RowStyles}>
-      <Button autofocus onEnter={onEnter}>Focused</Button>
+      <Button autofocus onEnter={onEnter}>
+        Focused
+      </Button>
       <Button states={{ active: true, disabled: false }}>Normal</Button>
-      <Button states='disabled'>Disabled</Button>
+      <Button states="disabled">Disabled</Button>
     </Row>
   );
 };
