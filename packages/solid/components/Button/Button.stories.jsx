@@ -1,4 +1,4 @@
-import Button from '../components/Button';
+import Button from './Button';
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/solid/writing-stories/introduction
 const meta = {

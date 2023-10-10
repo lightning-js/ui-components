@@ -1,8 +1,8 @@
 import { render, Canvas, Config } from '@lightningjs/solid';
 import { Router } from "@solidjs/router";
 import App from './pages/App';
-import coreExtensionModuleUrl from './AppCoreExtensions.js?importChunkUrl';
-import coreWorkerUrl from './threadx-core-worker.js?importChunkUrl';
+import coreExtensionModuleUrl from '../core/AppCoreExtensions.js?importChunkUrl';
+import coreWorkerUrl from '../core/threadx-core-worker.js?importChunkUrl';
 
 Config.debug = true;
 Config.fontSettings.fontFamily = 'Ubuntu';

@@ -1,5 +1,5 @@
 import { Canvas } from '@lightningjs/solid';
-import coreExtensionModuleUrl from '../src/AppCoreExtensions.js?importChunkUrl';
+import coreExtensionModuleUrl from '../../shared/AppCoreExtensions.js?importChunkUrl';
 
 const RenderOptions = {
   coreExtensionModule: coreExtensionModuleUrl,

@@ -1,19 +1,14 @@
 {
-  "name": "ui-components",
-  "version": "0.3.0",
+  "name": "@lightningjs/solid-ui",
+  "version": "0.1.0",
   "description": "",
-  "packageManager": "yarn@3.2.3",
-  "private": true,
-  "workspaces": [
-    "packages/solid",
-    "packages/blits"
-  ],
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "yarn run start:solid",
-    "start:solid": "yarn workspace @lightningjs/solid-ui start",
-    "clean": "yarn exec rm -rf node_modules && find ./packages -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
+    "start": "yarn run storybook",
+    "build": "yarn run build-storybook",
+    "build:storybook": "storybook build",
+    "storybook": "storybook dev -p 6006",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
