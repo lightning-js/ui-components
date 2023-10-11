@@ -9,8 +9,8 @@
     "*.jsx"
   ],
   "scripts": {
-    "start": "yarn run storybook",
-    "build": "yarn run build-storybook",
+    "start": "npm run storybook",
+    "build": "npm run build-storybook",
     "build:storybook": "storybook build",
     "storybook": "storybook dev -p 6006",
     "test": "echo \"Error: no test specified\" && exit 1"

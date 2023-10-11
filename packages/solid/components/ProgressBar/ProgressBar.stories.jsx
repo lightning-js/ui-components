@@ -10,7 +10,7 @@ const meta = {
       description: 'color of bar representing the total progress',
       control: 'color'
     },
-    overlayColor: {
+    progressColor: {
       description: 'color of bar representing the current progress',
       control: 'color'
     },
@@ -29,6 +29,6 @@ export const Basic = {
     progress: 0.5,
     // TODO make it so we don't need to do this
     backdropColor: theme.color.fillNeutralSecondary[0],
-    overlayColor: theme.color.fillBrand[0]
+    progressColor: theme.color.fillBrand[0]
   }
 };

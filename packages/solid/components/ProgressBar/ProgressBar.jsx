@@ -1,5 +1,4 @@
 import { View } from '@lightningjs/solid';
-import { useStyles } from '../../utils';
 import styles from './ProgressBar.styles';
 
 // TODO TypeScript?
@@ -18,20 +17,19 @@ import styles from './ProgressBar.styles';
  * @returns Component
  */
 const ProgressBar = props => {
-  const [mergedProps, dimensions] = useStyles(props, styles);
   return (
-    <View {...mergedProps}>
+    <View
+      {...props}
+      height={props.height || styles.height}
+      color={props.backdropColor || styles.backdropColor}
+      borderRadius={props.borderRadius || styles.borderRadius}
+    >
       <View
-        width={dimensions.width}
-        effects={mergedProps.effects}
-        color={mergedProps.backdropColor}
-        height={dimensions.height}
-      />
-      <View
-        width={dimensions.width * mergedProps.progress}
-        effects={mergedProps.effects}
-        height={mergedProps.height}
-        color={mergedProps.overlayColor}
+        animate
+        animationSettings={props.animationSettings}
+        width={props.width * props.progress}
+        borderRadius={props.borderRadius || styles.borderRadius}
+        color={props.progressColor || styles.progressColor}
       />
     </View>
   );
