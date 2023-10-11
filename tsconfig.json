@@ -10,5 +10,6 @@
     "types": ["vite/client"],
     "noEmit": true,
     "isolatedModules": true
-  }
+  },
+  "include": ["./packages/solid/types/*"]
 }

@@ -1,7 +1,19 @@
 import theme from 'theme';
 import { getHexColor } from '../../utils';
 
-export default {
+type ProgressBarStyle = {
+  container: {
+    height: number;
+    color: number;
+    borderRadius: number;
+  };
+  progressBar: {
+    color: number;
+    borderRadius: number;
+  };
+};
+
+const styles: ProgressBarStyle = {
   container: {
     height: theme.spacer.md,
     color: getHexColor(...theme.color.fillNeutralSecondary),
@@ -12,3 +24,5 @@ export default {
     color: getHexColor(...theme.color.fillBrand)
   }
 };
+
+export default styles;
