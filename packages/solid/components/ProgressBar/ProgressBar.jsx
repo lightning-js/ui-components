@@ -19,17 +19,16 @@ import styles from './ProgressBar.styles';
 const ProgressBar = props => {
   return (
     <View
+      style={styles.container}
       {...props}
-      height={props.height || styles.height}
-      color={props.backdropColor || styles.backdropColor}
-      borderRadius={props.borderRadius || styles.borderRadius}
     >
       <View
+        style={styles.progressBar}
         animate
         animationSettings={props.animationSettings}
         width={props.width * props.progress}
-        borderRadius={props.borderRadius || styles.borderRadius}
-        color={props.progressColor || styles.progressColor}
+        borderRadius={props.borderRadius}
+        color={props.progressColor}
       />
     </View>
   );
