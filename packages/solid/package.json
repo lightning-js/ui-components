@@ -9,8 +9,8 @@
     "*.jsx"
   ],
   "scripts": {
-    "start": "yarn run storybook",
-    "build": "yarn run build-storybook",
+    "start": "npm run storybook",
+    "build": "npm run build-storybook",
     "build:storybook": "storybook build",
     "storybook": "storybook dev -p 6006",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,7 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@lightningjs/renderer": "^0.3.6",
-    "@lightningjs/solid": "^0.5.6",
+    "@lightningjs/solid": "^0.5.7",
     "@lightningjs/solid-primitives": "^0.3.6",
     "@lightningjs/ui-components-theme-base": "^1.0.3",
     "@solidjs/router": "^0.8.2",

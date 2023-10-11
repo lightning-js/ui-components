@@ -2,26 +2,21 @@
   "name": "ui-components",
   "version": "0.3.0",
   "description": "",
-  "packageManager": "yarn@3.2.3",
   "private": true,
-  "workspaces": [
-    "packages/solid",
-    "packages/blits"
-  ],
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "yarn run start:solid",
-    "start:solid": "yarn workspace @lightningjs/solid-ui start",
-    "lint": "yarn eslint . --ext .js,.ts,.jsx,.tsx",
-    "lint:fix": "yarn eslint . --ext .js,.ts,.jsx,.tsx --fix",
+    "start": "npm run start:solid",
+    "start:solid": "pnpm --filter @lightningjs/solid-ui start",
+    "lint": "npm eslint . --ext .js,.ts,.jsx,.tsx",
+    "lint:fix": "npm eslint . --ext .js,.ts,.jsx,.tsx --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@lightningjs/renderer": "^0.3.6",
-    "@lightningjs/solid": "^0.5.6",
+    "@lightningjs/solid": "^0.5.7",
     "@lightningjs/solid-primitives": "^0.3.6",
     "@solidjs/router": "^0.8.2",
     "eslint": "^7.22.0",

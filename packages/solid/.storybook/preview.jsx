@@ -4,7 +4,9 @@ import coreExtensionModuleUrl from '../../shared/AppCoreExtensions.js?importChun
 const RenderOptions = {
   coreExtensionModule: coreExtensionModuleUrl,
   threadXCoreWorkerUrl: undefined,
-  rootId: 'storybook-root'
+  rootId: 'storybook-root',
+  appWidth: 800,
+  appHeight: 600
   // deviceLogicalPixelRatio: 1
 };
 

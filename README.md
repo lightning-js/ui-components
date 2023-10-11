@@ -17,6 +17,11 @@ coming soon:
 Run the local dev environment:
 
 ```sh
-> yarn install
-> yarn start
+> pnpm install
+> pnpm start
+```
+
+If you don't have pnpm
+```sh
+> npm install -g pnpm
 ```
