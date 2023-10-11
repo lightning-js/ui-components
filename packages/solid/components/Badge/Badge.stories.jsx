@@ -11,7 +11,7 @@ export default meta;
 
 export const Basic = {
   args: {
-    width: 100,
+    width: 200,
     color: theme.color.fillBrand[0],
     children: 'Badge text'
   }
