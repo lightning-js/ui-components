@@ -10,8 +10,7 @@ export default {
     paddingX: theme.spacer.md + theme.spacer.xxs,
     paddingY: theme.spacer.xs,
     radius: theme.radius.sm,
-    strokeWidth: theme.stroke.sm,
-    strokeColor: theme.color.strokeInverse,
+    border: { width: theme.stroke.sm, color: getHexColor(...theme.color.strokeInverse) },
     color: getHexColor(...theme.color.fillBrand)
   },
   textStyle: {
