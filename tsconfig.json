@@ -11,5 +11,5 @@
     "noEmit": true,
     "isolatedModules": true
   },
-  "include": ["./packages/solid/types/*"]
+  "include": ["src/packages/solid/types/*"]
 }

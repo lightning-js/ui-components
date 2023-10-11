@@ -1,22 +1,20 @@
 import { View } from '@lightningjs/solid';
 import styles from './ProgressBar.styles';
 
-// TODO TypeScript?
-/**
- * @typedef {Object} Props
- * @property {object} animation
- * @property {number} progress a numeric value of the current progress represented as a decimal between 0 and 1
- * @property {string|number} barColor
- * @property {string|number} progressColor
- * @property {number} radius
- */
+type ProgressBarProps = {
+  animationSettings: object,
+  borderRadius: number
+  /**
+   * a numeric value of the current progress represented as a decimal between 0 and 1
+   */
+  progress: number,
+  barColor: number,
+  progressColor: number,
+  width: number;
+  
+}
 
-/**
- *
- * @param {Props} props
- * @returns Component
- */
-const ProgressBar = props => {
+const ProgressBar = (props: ProgressBarProps) => {
   return (
     <View
       style={styles.container}

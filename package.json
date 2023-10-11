@@ -8,6 +8,7 @@
   "scripts": {
     "start": "npm run start:solid",
     "start:solid": "pnpm --filter @lightningjs/solid-ui start",
+    "solid:sandbox": "pnpm --filter solid-js-sandbox start",
     "lint": "npm eslint . --ext .js,.ts,.jsx,.tsx",
     "lint:fix": "npm eslint . --ext .js,.ts,.jsx,.tsx --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
