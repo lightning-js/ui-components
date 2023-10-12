@@ -6,6 +6,7 @@ export default {
     width: 200, //TODO: calculate depending on content (text and/or icon)?
     height: theme.typography.tag1.lineHeight, //TODO: calculate according to text and/or icon?
     borderRadius: theme.radius.sm,
+
     border: { width: theme.stroke.sm, color: getHexColor(...theme.color.strokeInverse) },
     color: getHexColor(...theme.color.fillBrand)
   },

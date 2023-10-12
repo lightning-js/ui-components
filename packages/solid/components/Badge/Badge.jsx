@@ -2,7 +2,11 @@ import { View, Text } from '@lightningjs/solid';
 import styles from './Badge.styles';
 //import { withPadding } from '@lightningjs/solid-primitives';
 
-// TODO: Add Icon component & padding
+// TODO: Add Icon component
+
+// paddingX and paddingY should use withPadding
+
+// mountY, iconAlign, offsetY
 
 const Badge = props => {
   return (
