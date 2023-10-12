@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
     "strict": true,
     "target": "ESNext",
-    "module": "ESNext",
+    "module": "CommonJS",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "jsx": "preserve",
-    "jsxImportSource": "solid-js",
+    "allowJs": true,
     "types": ["vite/client"],
     "noEmit": true,
-    "isolatedModules": true
-  },
-  "include": ["src/packages/solid/types/*"]
+    "isolatedModules": true,
+    "paths": {
+      "utils": ["src/shared/utils/index.ts"]
+    }
+  }
 }

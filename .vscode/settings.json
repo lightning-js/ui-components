@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["autodocs"]
+  "cSpell.words": ["autodocs"],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

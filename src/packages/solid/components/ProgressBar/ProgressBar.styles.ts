@@ -1,5 +1,5 @@
 import theme from 'theme';
-import { getHexColor } from '../../utils';
+import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
 
 type ProgressBarStyle = {
   container: {
@@ -16,12 +16,12 @@ type ProgressBarStyle = {
 const styles: ProgressBarStyle = {
   container: {
     height: theme.spacer.md,
-    color: getHexColor(...theme.color.fillNeutralSecondary),
+    color: getHexColor(...(theme.color.fillNeutralSecondary as [string, number])),
     borderRadius: theme.radius.xs
   },
   progressBar: {
     borderRadius: theme.radius.xs,
-    color: getHexColor(...theme.color.fillBrand)
+    color: getHexColor(...(theme.color.fillBrand as [string, number]))
   }
 };
 
