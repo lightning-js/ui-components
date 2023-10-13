@@ -1,4 +1,4 @@
-export function getHexColor(hex, alpha = 1) {
+export function getHexColor(hex: number | string, alpha = 1) {
   if (!hex) {
     return 0x00;
   }

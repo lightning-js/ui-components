@@ -1,0 +1,12 @@
+{
+  "extends": "../../../tsconfig.json",
+  "include": ["./components/**/*", "../../shared/types/solid.d.ts", "*.ts", "*.tsx"],
+  "compilerOptions": {
+    "outDir": "./dist",
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "paths": {
+      "utils": ["../../shared/utils/index.ts"]
+    }
+  }
+}

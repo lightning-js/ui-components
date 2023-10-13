@@ -10,7 +10,7 @@ export const themeColumnWidth = 1920 - theme.layout.marginX * 2;
  * @param {number} itemLayout.ratioY
  * @return {number}
  */
-export const getRowHeight = itemLayout =>
+export const getRowHeight = (itemLayout: any) =>
   ((themeColumnWidth - (itemLayout.upCount - 1 * theme.layout.gutterX)) /
     itemLayout.upCount /
     itemLayout.ratioX) *

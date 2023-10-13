@@ -13,11 +13,10 @@ import theme from 'theme';
  * @param {number} itemLayout.ratioY
  * @return {Dimensions}
  */
-export const useItemLayout = itemLayout => {
+export const useItemLayout = (itemLayout: any) => {
   if (itemLayout) {
     const width =
-      (theme.layout.screenW - theme.layout.marginX * 2) / itemLayout.upCount -
-      theme.layout.gutterX;
+      (theme.layout.screenW - theme.layout.marginX * 2) / itemLayout.upCount - theme.layout.gutterX;
 
     const height = (width / itemLayout.ratioX) * itemLayout.ratioY;
 

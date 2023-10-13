@@ -14,14 +14,21 @@ coming soon:
 
 ## Development
 
-Run the local dev environment:
+If you don't have pnpm
+
+```sh
+> npm install -g pnpm
+```
+
+Run the solid storybook dev environment:
 
 ```sh
 > pnpm install
 > pnpm start
 ```
 
-If you don't have pnpm
+Run the solid sandbox environment:
+
 ```sh
-> npm install -g pnpm
+> pnpm run solid:sandbox
 ```

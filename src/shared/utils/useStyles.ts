@@ -1,20 +1,8 @@
+// @ts-expect-error TODO why aren't we seeing solid-js's types
 import { mergeProps, splitProps } from 'solid-js';
 import { useItemLayout } from './useItemLayout';
 
-/**
- * @typedef {Object} Properties
- * @property {Object} props
- * @property {Object} styles
- * @property {{width: number, height: number}} dimensions
- */
-
-/**
- *
- * @param {Object} props
- * @param {Object} styles
- * @returns {Properties}
- */
-export function useStyles(componentProps, componentStyles) {
+export function useStyles(componentProps: any, componentStyles: any) {
   const layoutSize = useItemLayout(componentProps.itemLayout);
   const [dimensionProps] = splitProps(componentProps, ['width', 'height']);
 
