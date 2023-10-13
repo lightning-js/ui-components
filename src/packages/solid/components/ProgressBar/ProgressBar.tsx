@@ -1,4 +1,3 @@
-/** @jsxImportSource solid-js */
 import type { Component } from 'solid-js';
 import { View } from '@lightningjs/solid';
 import styles from './ProgressBar.styles';
@@ -7,13 +6,13 @@ type ProgressBarProps = {
   animationSettings: object;
   borderRadius: number;
   /**
-   * a numeric value of the current progress represented as a decimal between 0 and 1
-   */
-  progress: number;
-  /**
    * color of the backdrop bar, representing the total progress
    */
   color: number;
+  /**
+   * a numeric value of the current progress represented as a decimal between 0 and 1
+   */
+  progress: number;
   /**
    * color of the overlay bar, representing the current progress
    */
@@ -22,7 +21,6 @@ type ProgressBarProps = {
    * total width of the component
    */
   width: number;
-  
 }
 
 const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
