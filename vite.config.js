@@ -3,6 +3,15 @@ import solidPlugin from 'vite-plugin-solid';
 import { importChunkUrl } from '@lightningjs/vite-plugin-import-chunk-url';
 
 export default defineConfig({
+  optimizeDeps: {
+    include: [],
+    exclude: [
+      '@lightningjs/solid',
+      '@lightningjs/solid-primitives',
+      '@lightningjs/renderer/core',
+      '@lightningjs/renderer/workers/renderer'
+    ]
+  },
   plugins: [
     importChunkUrl(),
     solidPlugin({
@@ -17,15 +26,6 @@ export default defineConfig({
       theme: '@lightningjs/ui-components-theme-base'
     },
     dedupe: ['solid-js', '@lightningjs/solid']
-  },
-  optimizeDeps: {
-    include: [],
-    exclude: [
-      '@lightningjs/solid',
-      '@lightningjs/solid-primitives',
-      '@lightningjs/renderer/core',
-      '@lightningjs/renderer/workers/renderer'
-    ]
   },
   server: {
     hmr: false,
