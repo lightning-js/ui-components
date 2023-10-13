@@ -10,7 +10,7 @@ const meta = {
       description: 'color of badge background',
       control: 'color'
     },
-    children: {
+    title: {
       description: 'text inside of badge'
     }
   }
@@ -20,7 +20,7 @@ export default meta;
 
 export const Basic = {
   args: {
-    children: 'Badge Text',
+    title: 'Badge Text',
     width: 200,
     color: theme.color.fillBrand[0]
   }

@@ -1,24 +1,22 @@
-import { View, Text } from '@lightningjs/solid';
+import { Text } from '@lightningjs/solid';
+import { useStyles } from '../../utils/useStyles';
 import styles from './Badge.styles';
 import { withPadding } from '@lightningjs/solid-primitives';
 
 // TODO: Add Icon component
 
-// paddingX and paddingY should use withPadding
-
-// mountY, iconAlign, offsetY
-
 const Badge = props => {
+  const padding = [styles.container.paddingY, styles.container.paddingX];
   return (
-    <View
-      use:withPadding={[7, 15, 13, 15]} // how it's implemented with <node> in demo and docs but not working with <View>
+    <node
+      use:withPadding={padding} // how it's implemented with <node> in demo and docs but not working with <View>
       {...props}
       style={styles.container}
       color={props.color}
       width={props.width}
     >
-      <Text style={styles.textStyle}>{props.children}</Text>
-    </View>
+      <Text style={styles.textStyle}>{props.title}</Text>
+    </node>
   );
 };
 
