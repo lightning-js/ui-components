@@ -24,14 +24,7 @@
     "node": true,
     "jest": true
   },
-  "ignorePatterns": [
-    "node_modules",
-    "dist",
-    "coverage",
-    "build",
-    "storybook-static",
-    "**/*.json"
-  ],
+  "ignorePatterns": ["node_modules", "dist", "storybook-static"],
   "plugins": ["jest", "prettier"],
   "extends": [
     "plugin:solid/recommended",
