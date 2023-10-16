@@ -26,7 +26,7 @@ const styles: BadgeStyle = {
     width: 200, //TODO: calculate depending on content (text and/or icon)?
     height: theme.typography.tag1.lineHeight, //TODO: calculate according to text and/or icon?
     borderRadius: theme.radius.sm,
-    paddingX: theme.spacer.md + theme.spacer.xxs,
+    paddingX: theme.spacer.md + theme.spacer.xxs, // TODO: how do we want to handle padding in themes since paddingY and X do not exisit in Solid?
     paddingY: theme.spacer.xs,
     border: {
       width: theme.stroke.sm,
@@ -34,6 +34,7 @@ const styles: BadgeStyle = {
     },
     color: getHexColor(...(theme.color.fillBrand as [string, number]))
   },
+  //TODO: assuming we want to keep textStyle as part of the styles object for themes
   textStyle: {
     ...theme.typography.tag1,
     width: 200,
