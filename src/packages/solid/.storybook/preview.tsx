@@ -31,6 +31,13 @@ const preview = {
       }
     }
   },
+  globalTypes: {
+    LUITheme: {
+      name: 'Theme',
+      description: 'Theme select',
+      defaultValue: 'base'
+    }
+  },
   decorators: [
     Story => (
       <Canvas options={RenderOptions}>
