@@ -1,4 +1,3 @@
-// @ts-expect-error TODO why aren't we seeing solid-js's types
 import { mergeProps, splitProps } from 'solid-js';
 import { useItemLayout } from './useItemLayout';
 
