@@ -8,9 +8,10 @@
   "types": "dist/types.d.ts",
   "scripts": {
     "start": "npm run solid:storybook",
-    "lint": "npm eslint . --ext .js,.ts,.jsx,.tsx",
-    "lint:fix": "npm eslint . --ext .js,.ts,.jsx,.tsx --fix",
+    "lint": "pnpm eslint . --ext .js,.ts,.jsx,.tsx",
+    "lint:fix": "pnpm eslint . --ext .js,.ts,.jsx,.tsx --fix",
     "reset": "rm -rf node_modules && rm -rf src/packages/solid/node_modules && rm -rf src/sandbox/node_modules && pnpm store prune",
+    "solid:build-storybook": "pnpm --filter @lightningjs/solid-ui build",
     "solid:sandbox": "pnpm --filter solid-js-sandbox start",
     "solid:storybook": "pnpm --filter @lightningjs/solid-ui start",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,7 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "@lightningjs/renderer": "^0.3.6",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-jest": "^27.4.2",
     "eslint-plugin-prettier": "^5.0.1",
@@ -27,6 +28,10 @@
     "prettier": "^3.0.3"
   },
   "devDependencies": {
+    "@lightningjs/ui-components-theme-base": "^1.0.3",
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "@typescript-eslint/parser": "^6.8.0",
+    "storybook-solidjs-vite": "^1.0.0-beta.2",
     "typescript": "^4.9.5",
     "vite": "^4.4.11",
     "vite-bundle-visualizer": "^0.10.0",

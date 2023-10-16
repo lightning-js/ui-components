@@ -2,7 +2,9 @@
 import { mergeProps, splitProps } from 'solid-js';
 import { useItemLayout } from './useItemLayout';
 
+// eslint-disable-next-line solid/reactivity, @typescript-eslint/no-explicit-any
 export function useStyles(componentProps: any, componentStyles: any) {
+  // TODO add types
   const layoutSize = useItemLayout(componentProps.itemLayout);
   const [dimensionProps] = splitProps(componentProps, ['width', 'height']);
 
