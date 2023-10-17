@@ -31,7 +31,6 @@
     "@lightningjs/ui-components-theme-base": "^1.0.3",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
-    "storybook-solidjs-vite": "^1.0.0-beta.2",
     "typescript": "^4.9.5",
     "vite": "^4.4.11",
     "vite-bundle-visualizer": "^0.10.0",
