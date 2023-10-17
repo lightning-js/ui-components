@@ -40,7 +40,7 @@ type ProgressBarProps = {
   width: number;
 };
 
-const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
+const ProgressBar: Component<ProgressBarProps> = (props) => {
   return (
     <View style={styles.container} {...props} color={hexColor(props.color)}>
       <View
