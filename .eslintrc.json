@@ -24,19 +24,13 @@
     "node": true,
     "jest": true
   },
-  "ignorePatterns": [
-    "node_modules",
-    "dist",
-    "coverage",
-    "build",
-    "storybook-static",
-    "**/*.json"
-  ],
+  "ignorePatterns": ["node_modules", "dist", "storybook-static"],
   "plugins": ["jest", "prettier"],
   "extends": [
-    "eslint:recommended",
     "plugin:solid/recommended",
     "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
   "rules": {

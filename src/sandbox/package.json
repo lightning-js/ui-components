@@ -2,7 +2,6 @@
   "name": "solid-js-sandbox",
   "version": "0.3.0",
   "description": "a sandbox dev environment for Lightning + SolidJS",
-  "packageManager": "yarn@3.2.3",
   "private": true,
   "main": "index.jsx",
   "type": "module",

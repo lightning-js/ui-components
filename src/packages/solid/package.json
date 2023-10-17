@@ -11,9 +11,9 @@
     "*.tsx"
   ],
   "scripts": {
-    "start": "npm run storybook",
-    "build": "npm run build-storybook",
-    "build:storybook": "storybook build",
+    "start": "pnpm run storybook",
+    "build": "pnpm run build-storybook",
+    "build-storybook": "storybook build",
     "storybook": "storybook dev -p 6006",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
