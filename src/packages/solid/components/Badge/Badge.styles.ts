@@ -1,18 +1,28 @@
 import theme from 'theme';
 import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
 
+// styles in LUI for Badge
+//  contentSpacing: theme.spacer.sm,
+//  offsetY: theme.spacer.xs,
+//  paddingX: theme.spacer.md + theme.spacer.xxs,
+//  paddingY: theme.spacer.xs,
+//  radius: theme.radius.sm,
+//  strokeWidth: theme.stroke.sm,
+//   textStyle: {
+//     ...theme.typography.tag1,
+//     textAlign: 'center'
+//    }
+
 type BadgeStyle = {
   container: {
     width: number;
     height: number;
+    color: number;
     borderRadius: number;
-    paddingX: number;
-    paddingY: number;
     border: {
       width: number;
       color: number;
     };
-    color: number;
   };
   textStyle: {
     width: number;
@@ -23,23 +33,18 @@ type BadgeStyle = {
 
 const styles: BadgeStyle = {
   container: {
-    width: 200, //TODO: calculate depending on content (text and/or icon)?
-    height: theme.typography.tag1.lineHeight, //TODO: calculate according to text and/or icon?
+    width: 200,
+    height: theme.typography.tag1.lineHeight,
+    color: getHexColor(...(theme.color.fillBrand as [string, number])),
     borderRadius: theme.radius.sm,
-    paddingX: theme.spacer.md + theme.spacer.xxs, // TODO: how do we want to handle padding in themes since paddingY and X do not exisit in Solid?
-    paddingY: theme.spacer.xs,
     border: {
       width: theme.stroke.sm,
       color: getHexColor(...(theme.color.strokeInverse as [string, number]))
-    },
-    color: getHexColor(...(theme.color.fillBrand as [string, number]))
+    }
   },
-  //TODO: assuming we want to keep textStyle as part of the styles object for themes
   textStyle: {
     ...theme.typography.tag1,
-    width: 200,
-    textAlign: 'center',
-    color: getHexColor(...(theme.color.textNeutral as [string, number]))
+    textAlign: 'center'
   }
 };
 
