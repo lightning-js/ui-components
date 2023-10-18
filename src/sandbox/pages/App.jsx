@@ -17,7 +17,6 @@
 
 import { View } from '@lightningjs/solid';
 import { ProgressBar } from '@lightningjs/solid-ui';
-
 const App = () => {
   return (
     // eslint-disable-next-line solid/style-prop

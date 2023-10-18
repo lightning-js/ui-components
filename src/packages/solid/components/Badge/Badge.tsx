@@ -17,13 +17,9 @@ type BadgeProps = {
 
 const Badge: Component<BadgeProps> = (props: BadgeProps) => {
   return (
-    <View
-      //use:withPadding={[10, 12]}
-      {...props}
-      style={styles.container}
-    >
+    <node {...props} use:withPadding={[20, 30]} style={styles.container}>
       <Text style={styles.textStyle}>{props.title}</Text>
-    </View>
+    </node>
   );
 };
 

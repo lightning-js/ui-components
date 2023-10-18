@@ -1,5 +1,4 @@
 import Badge from './Badge';
-import theme from 'theme';
 
 const meta = {
   title: 'Components/Badge',

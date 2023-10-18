@@ -43,6 +43,7 @@ const styles: BadgeStyle = {
     }
   },
   textStyle: {
+    width: 200,
     ...theme.typography.tag1,
     textAlign: 'center'
   }
