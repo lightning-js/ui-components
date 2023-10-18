@@ -2,14 +2,11 @@ import type { Component } from 'solid-js';
 import { View } from '@lightningjs/solid';
 import styles from './Icon.styles';
 
-export type Color = number;
-
 type IconProps = {
-  /**
+    /**
    * icon color (can only be applied on png icons)
    */
-  color: Color;
-
+  color: number;
   /**
    * when `true`, icon width and height will not dynamically resize to the final texture's `finalW` and `finalH` properties
    */
@@ -21,18 +18,21 @@ type IconProps = {
   icon?: string;
 }
 
-const Icon: Component<IconProps> = (props:IconProps) => {
-
+const Icon: Component<IconProps> = (props: IconProps) => {
+  debugger
   return (
-      <View
-      style={styles.container}
-      {...props}
-      >
-        {props.icon}
-    </View>
+    <View
+      {...props} 
+      // TODO, format height and width based on fixed value
+      src={props.icon}
+      y={10}
+      x={10}
+      style={styles.container} 
+    ></View>
   );
 
 }
 
-export default Icon
+export default Icon;
+
 
