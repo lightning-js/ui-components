@@ -10,10 +10,10 @@ const meta = {
       description: 'color of icon',
       control: 'color'
     },
-    fixed: {
+    /* fixed: {
       description: "when `true`, icon width and height will not dynamically resize",
       control: {type: 'boolean'}
-    },
+    }, */
     icon: {
       description: "path to image or inline SVG XML",
     }
@@ -28,7 +28,7 @@ export const PNG = {
     width: 100,
     height: 100,
     icon: lightning,
-    fixed: true,
+    //fixed: true,
   }
 };
 

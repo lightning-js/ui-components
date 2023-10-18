@@ -7,10 +7,9 @@ type IconProps = {
    * icon color (can only be applied on png icons)
    */
   color: number;
-  /**
+  /* 
    * when `true`, icon width and height will not dynamically resize to the final texture's `finalW` and `finalH` properties
-   */
-  fixed?: boolean;
+  fixed?: boolean; */
 
   /**
    * path to image or inline SVG XML
@@ -19,11 +18,10 @@ type IconProps = {
 }
 
 const Icon: Component<IconProps> = (props: IconProps) => {
-  debugger
   return (
     <View
       {...props} 
-      // TODO, format height and width based on fixed value
+      // TODO, wait to see if fixed is needed
       src={props.icon}
       y={10}
       x={10}
