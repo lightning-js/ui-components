@@ -1,19 +1,6 @@
 import theme from 'theme';
 
-/**
- * @typedef {Object} Dimensions
- * @property {number} width
- * @property {number} height
- */
-
-/**
- * @param {Object} itemLayout
- * @param {number} itemLayout.upCount
- * @param {number} itemLayout.ratioX
- * @param {number} itemLayout.ratioY
- * @return {Dimensions}
- */
-export const useItemLayout = (itemLayout: any) => {
+export const useItemLayout = (itemLayout: { upCount: number; ratioX: number; ratioY: number }) => {
   if (itemLayout) {
     const width =
       (theme.layout.screenW - theme.layout.marginX * 2) / itemLayout.upCount - theme.layout.gutterX;
