@@ -16,7 +16,11 @@
  */
 
 import { defineConfig } from 'vite';
+<<<<<<< HEAD
 import config from '../../vite.config.js';
+=======
+import config from '../../vite.config';
+>>>>>>> 63fc7ca (fix(Badge): updates withPadding preserve import and changes order props)
 
 export default defineConfig({
   ...config,
