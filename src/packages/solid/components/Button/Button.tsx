@@ -1,27 +1,52 @@
-import { Show } from 'solid-js';
+import { Show, createEffect } from 'solid-js';
 import type { Component } from 'solid-js';
 import { View, Text, IntrinsicCommonProps } from '@lightningjs/solid';
 import styles from './Button.styles';
+import { withPadding } from '@lightningjs/solid-primitives';
+withPadding;
 
 /**
  * Primary UI component for user interaction
  */
+type ButtonProps = IntrinsicCommonProps & {
+  title?: string;
+  suffix?: Component;
+  prefix?: Component;
+  width: number;
+  height: number;
+};
 
-const Button: Component<IntrinsicCommonProps> = (props) => {
+const Button: Component<ButtonProps> = (props) => {
+  let SuffixRef, PrefixRef;
+
   return (
-    <View
+    <node
+      use:withPadding={styles.Container.padding}
       {...props}
-      style={styles.container}
+      style={styles.Container}
       animate
       forwardStates
     >
-      <Show when={props.children}>
-        <Text style={styles.Text}>
-          {props.children}
-        </Text>
-      </Show>
-    </View>
+      <View forwardStates style={styles.FlexContainer}>
+        <Show when={!!props.prefix}>
+          <View ref={PrefixRef} x={props.prefix.width} style={styles.Prefix}>
+            {props.prefix}
+          </View>
+        </Show>
+        <View forwardStates width={props.width} style={styles.FlexContainer}>
+          <Show when={!!props.children}>{props.children}</Show>
+          <Show when={!props.children}>
+            <Text style={styles.Text}>{props.title}</Text>
+          </Show>
+        </View>
+        <Show when={!!props.suffix}>
+          <View ref={SuffixRef} x={props.width - props.suffix.width} style={styles.Suffix}>
+            {props.suffix}
+          </View>
+        </Show>
+      </View>
+    </node>
   );
-}
+};
 
 export default Button;

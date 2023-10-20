@@ -21,7 +21,7 @@ import App from './pages/App';
 import coreExtensionModuleUrl from '../shared/AppCoreExtensions.js?importChunkUrl';
 import coreWorkerUrl from '../shared/threadx-core-worker.js?importChunkUrl';
 
-Config.debug = true;
+// Config.debug = true;
 Config.fontSettings.fontFamily = 'Ubuntu';
 Config.fontSettings.color = 0xffffffff;
 
