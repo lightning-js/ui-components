@@ -146,7 +146,7 @@ importers:
         specifier: ^0.3.6
         version: 0.3.6
       '@lightningjs/solid':
-        specifier: ^0.6.0
+        specifier: ^0.6.10
         version: 0.6.10(solid-js@1.8.1)
       '@lightningjs/solid-primitives':
         specifier: ^0.3.6
@@ -3112,6 +3112,44 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
+
+  /@storybook/builder-vite@7.6.0-alpha.3(typescript@4.9.5)(vite@4.4.11):
+    resolution: {integrity: sha512-0Rj4Myfq9nbIyDifyM1WYIszKDsfYrKKoNaEdUfukG0kZQHo/d+RebgIh4/TgSo321/pQ5rYrFFBj05U7/YjrA==}
+    peerDependencies:
+      '@preact/preset-vite': '*'
+      typescript: '>= 4.3.x'
+      vite: ^3.0.0 || ^4.0.0 || ^5.0.0
+      vite-plugin-glimmerx: '*'
+    peerDependenciesMeta:
+      '@preact/preset-vite':
+        optional: true
+      typescript:
+        optional: true
+      vite-plugin-glimmerx:
+        optional: true
+    dependencies:
+      '@storybook/channels': 7.6.0-alpha.3
+      '@storybook/client-logger': 7.6.0-alpha.3
+      '@storybook/core-common': 7.6.0-alpha.3
+      '@storybook/csf-plugin': 7.6.0-alpha.3
+      '@storybook/node-logger': 7.6.0-alpha.3
+      '@storybook/preview': 7.6.0-alpha.3
+      '@storybook/preview-api': 7.6.0-alpha.3
+      '@storybook/types': 7.6.0-alpha.3
+      '@types/find-cache-dir': 3.2.1
+      browser-assert: 1.2.1
+      es-module-lexer: 0.9.3
+      express: 4.18.2
+      find-cache-dir: 3.3.2
+      fs-extra: 11.1.1
+      magic-string: 0.30.5
+      rollup: 3.29.4
+      typescript: 4.9.5
+      vite: 4.4.11
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: true
 
   /@storybook/builder-vite@7.6.0-alpha.3(typescript@4.9.5)(vite@4.5.0):
     resolution: {integrity: sha512-0Rj4Myfq9nbIyDifyM1WYIszKDsfYrKKoNaEdUfukG0kZQHo/d+RebgIh4/TgSo321/pQ5rYrFFBj05U7/YjrA==}
@@ -7877,6 +7915,20 @@ packages:
 
   /store2@2.14.2:
     resolution: {integrity: sha512-siT1RiqlfQnGqgT/YzXVUNsom9S0H1OX+dpdGN1xkyYATo4I6sep5NmsRD/40s3IIOvlCq6akxkqG82urIZW1w==}
+
+  /storybook-solidjs-vite@1.0.0-beta.2(typescript@4.9.5)(vite@4.4.11):
+    resolution: {integrity: sha512-dD+VMYC5fBBQNesVb+mjB0LOkZIf100SQFbjAt9/sDstNUvc5ce3yZwLYXzgcOc7jcSMkrBu/cZNRzEM4YIAyw==}
+    engines: {node: ^14.18 || >=16}
+    dependencies:
+      '@storybook/builder-vite': 7.6.0-alpha.3(typescript@4.9.5)(vite@4.4.11)
+    transitivePeerDependencies:
+      - '@preact/preset-vite'
+      - encoding
+      - supports-color
+      - typescript
+      - vite
+      - vite-plugin-glimmerx
+    dev: true
 
   /storybook-solidjs-vite@1.0.0-beta.2(typescript@4.9.5)(vite@4.5.0):
     resolution: {integrity: sha512-dD+VMYC5fBBQNesVb+mjB0LOkZIf100SQFbjAt9/sDstNUvc5ce3yZwLYXzgcOc7jcSMkrBu/cZNRzEM4YIAyw==}

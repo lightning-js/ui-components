@@ -48,6 +48,7 @@ const Button: Component<ButtonProps> = props => {
   const suffixIcon = props.suffix?.icon ? true : false;
   //const suffixCheckbox = props.suffix?.checked? true : false;
 
+const Button: Component<ButtonProps> = props => {
   return (
     <node
       {...props}
