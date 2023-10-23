@@ -22,11 +22,11 @@
     "prettier/prettier": [
       "error",
       {
+        "arrowParens": "avoid",
         "printWidth": 110,
         "singleQuote": true,
-        "trailingComma": "none",
-        "arrowParens": "avoid",
-        "tabWidth": 2
+        "tabWidth": 2,
+        "trailingComma": "none"
       }
     ],
     "space-before-function-paren": [
