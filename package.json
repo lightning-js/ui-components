@@ -1,7 +1,8 @@
 {
   "name": "ui-components",
   "version": "0.3.0",
-  "description": "",
+  "author": "",
+  "license": "Apache-2.0",
   "private": true,
   "main": "index.js",
   "type": "module",
@@ -16,8 +17,6 @@
     "solid:storybook": "pnpm --filter @lightningjs/solid-ui start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@lightningjs/renderer": "^0.3.6",
     "eslint": "^8.0.0",
