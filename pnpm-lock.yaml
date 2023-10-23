@@ -103,6 +103,9 @@ importers:
       '@storybook/testing-library':
         specifier: ^0.2.2
         version: 0.2.2
+      '@storybook/theming':
+        specifier: ^7.5.1
+        version: 7.5.1(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -140,11 +143,11 @@ importers:
         specifier: ^0.3.6
         version: 0.3.6
       '@lightningjs/solid':
-        specifier: ^0.6.0
-        version: 0.6.1(solid-js@1.8.1)
+        specifier: ^0.6.10
+        version: 0.6.10(solid-js@1.8.1)
       '@lightningjs/solid-primitives':
         specifier: ^0.3.6
-        version: 0.3.6(@lightningjs/solid@0.6.1)(solid-js@1.8.1)
+        version: 0.3.6(@lightningjs/solid@0.6.10)(solid-js@1.8.1)
       '@solidjs/router':
         specifier: ^0.8.2
         version: 0.8.3(solid-js@1.8.1)
@@ -1865,16 +1868,40 @@ packages:
       '@protobufjs/eventemitter': 1.1.0
     dev: false
 
-  /@lightningjs/solid-primitives@0.3.6(@lightningjs/solid@0.6.1)(solid-js@1.8.1):
+  /@lightningjs/solid-primitives@0.3.6(@lightningjs/solid@0.6.10)(solid-js@1.8.1):
     resolution: {integrity: sha512-qNPZL9MFFemf7IJpvOvu3G0l8KqGPDKfcRob59XItnkTtmO8N5Uq0TkJdR+5CYfLzPt5u6ywloIge4yfZGrNbg==}
     peerDependencies:
       '@lightningjs/solid': '*'
       solid-js: '*'
     dependencies:
-      '@lightningjs/solid': 0.6.1(solid-js@1.8.1)
+      '@lightningjs/solid': 0.6.10(solid-js@1.8.1)
       '@solid-primitives/keyboard': 1.2.5(solid-js@1.8.1)
       '@solid-primitives/scheduled': 1.4.1(solid-js@1.8.1)
       solid-js: 1.8.1
+    dev: false
+
+  /@lightningjs/solid-primitives@0.3.6(@lightningjs/solid@0.6.10)(solid-js@1.8.4):
+    resolution: {integrity: sha512-qNPZL9MFFemf7IJpvOvu3G0l8KqGPDKfcRob59XItnkTtmO8N5Uq0TkJdR+5CYfLzPt5u6ywloIge4yfZGrNbg==}
+    peerDependencies:
+      '@lightningjs/solid': '*'
+      solid-js: '*'
+    dependencies:
+      '@lightningjs/solid': 0.6.10(solid-js@1.8.4)
+      '@solid-primitives/keyboard': 1.2.5(solid-js@1.8.4)
+      '@solid-primitives/scheduled': 1.4.1(solid-js@1.8.4)
+      solid-js: 1.8.4
+    dev: false
+
+  /@lightningjs/solid-primitives@0.3.6(solid-js-sandbox@0.3.0)(solid-js@1.8.4):
+    resolution: {integrity: sha512-qNPZL9MFFemf7IJpvOvu3G0l8KqGPDKfcRob59XItnkTtmO8N5Uq0TkJdR+5CYfLzPt5u6ywloIge4yfZGrNbg==}
+    peerDependencies:
+      '@lightningjs/solid': '*'
+      solid-js: '*'
+    dependencies:
+      '@lightningjs/solid': file:src/sandbox(solid-js-sandbox@0.3.0)
+      '@solid-primitives/keyboard': 1.2.5(solid-js@1.8.4)
+      '@solid-primitives/scheduled': 1.4.1(solid-js@1.8.4)
+      solid-js: 1.8.4
     dev: false
 
   /@lightningjs/solid-primitives@0.4.3(@lightningjs/renderer@0.4.1)(@lightningjs/solid@0.7.3)(solid-js@1.8.4):
@@ -1891,13 +1918,24 @@ packages:
       solid-js: 1.8.4
     dev: false
 
-  /@lightningjs/solid@0.6.1(solid-js@1.8.1):
-    resolution: {integrity: sha512-J0XemPrxrKdEzDhxMdJ4KIi+Nu6H6SLPLqnSe2LpOX/QTDzsmrETUWPE8gYIZ9tk5rjIFZE6WlO7B/+DOLcBPQ==}
+  /@lightningjs/solid@0.6.10(solid-js@1.8.1):
+    resolution: {integrity: sha512-KwakkK+UHz2ZN8svdiYYEgKFyAt9IKiRcL8e7z8gUoVboNyIh56SKleCRgdVfLPU7KaSdJt8Jtb6R5HV/4P4pA==}
     peerDependencies:
-      solid-js: ^1.8.1
+      solid-js: '*'
     dependencies:
       '@lightningjs/renderer': 0.3.6
+      '@lightningjs/solid': file:src/sandbox
       solid-js: 1.8.1
+    dev: false
+
+  /@lightningjs/solid@0.6.10(solid-js@1.8.4):
+    resolution: {integrity: sha512-KwakkK+UHz2ZN8svdiYYEgKFyAt9IKiRcL8e7z8gUoVboNyIh56SKleCRgdVfLPU7KaSdJt8Jtb6R5HV/4P4pA==}
+    peerDependencies:
+      solid-js: '*'
+    dependencies:
+      '@lightningjs/renderer': 0.3.6
+      '@lightningjs/solid': file:src/sandbox(solid-js-sandbox@0.3.0)
+      solid-js: 1.8.4
     dev: false
 
   /@lightningjs/solid@0.7.3(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)(solid-js@1.8.4)(typescript@4.9.5)(vite@4.5.0):
@@ -8771,4 +8809,29 @@ packages:
       - utf-8-validate
       - vite
       - vite-plugin-glimmerx
+    dev: false
+
+  file:src/sandbox:
+    resolution: {directory: src/sandbox, type: directory}
+    name: solid-js-sandbox
+    dependencies:
+      '@lightningjs/renderer': 0.3.6
+      '@lightningjs/solid': 0.6.10(solid-js@1.8.4)
+      '@lightningjs/solid-primitives': 0.3.6(@lightningjs/solid@0.6.10)(solid-js@1.8.4)
+      '@solidjs/router': 0.8.3(solid-js@1.8.4)
+      solid-js: 1.8.4
+    dev: false
+
+  file:src/sandbox(solid-js-sandbox@0.3.0):
+    resolution: {directory: src/sandbox, type: directory}
+    id: file:src/sandbox
+    name: solid-js-sandbox
+    dependencies:
+      '@lightningjs/renderer': 0.3.6
+      '@lightningjs/solid': 0.6.10(solid-js@1.8.4)
+      '@lightningjs/solid-primitives': 0.3.6(solid-js-sandbox@0.3.0)(solid-js@1.8.4)
+      '@solidjs/router': 0.8.3(solid-js@1.8.4)
+      solid-js: 1.8.4
+    transitivePeerDependencies:
+      - '@lightningjs/solid'
     dev: false

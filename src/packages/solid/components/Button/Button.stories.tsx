@@ -16,43 +16,38 @@
  */
 
 import Button from './Button';
+// import ProgressBar from '../ProgressBar/ProgressBar';
+import theme from 'theme';
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/solid/writing-stories/introduction
 const meta = {
   title: 'Components/Button',
   component: Button,
-  tags: ['autodocs'],
-  argTypes: {
-    backgroundColor: { control: 'color' }
-  }
+  tags: ['autodocs']
+  // argTypes: {
+  //   backgroundColor: { control: 'color' }
+  // }
 };
 
 export default meta;
 
 // More on writing stories with args: https://storybook.js.org/docs/7.0/solid/writing-stories/args
-export const Primary = {
+export const Basic = {
   args: {
-    primary: true,
-    children: 'Button'
+    width: 400,
+    height: 100,
+    children: 'button'
   }
 };
 
-export const Secondary = {
-  args: {
-    children: 'Button'
-  }
-};
-
-export const Large = {
-  args: {
-    size: 'large',
-    children: 'Button'
-  }
-};
-
-export const Small = {
-  args: {
-    size: 'small',
-    children: 'Button'
-  }
-};
+// export const Basic = {
+//   args: {
+//     width: 500,
+//     height: theme.spacer.md,
+//     progress: 0.5,
+//     // TODO make it so we don't need to do this
+//     color: theme.color.fillNeutralSecondary[0],
+//     progressColor: theme.color.fillBrand[0],
+//     borderRadius: theme.radius.xs
+//   }
+// };

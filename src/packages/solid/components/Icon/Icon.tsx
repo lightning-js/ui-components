@@ -28,6 +28,8 @@ export type IconProps = {
    * when `true`, icon width and height will not dynamically resize to the final texture's `finalW` and `finalH` properties
   fixed?: boolean; */
 
+  width: number;
+
   /**
    * path to image or inline SVG XML
    */
@@ -43,7 +45,7 @@ const Icon: Component<IconProps> = (props: IconProps) => {
       y={10}
       x={10}
       style={styles.container}
-    ></View>
+    />
   );
 };
 

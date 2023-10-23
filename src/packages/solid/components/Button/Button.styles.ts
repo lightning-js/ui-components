@@ -88,28 +88,16 @@ type ButtonStyle = {
   };
 };
 
-const styles: ButtonStyle = {
-  Container: {
-    // display: 'flex',
-    // flexDirection: 'column',
-    // justifyContent: 'center',
-    padding: [40, 10],
-    // width: 386,
-    // height: 136,
-    color: getHexColor(...(theme.color.fillNeutralTertiary as [string, number])),
-    alpha: theme.alpha.alpha3,
-    borderRadius: 30,
-    focus: {
-      color: [getHexColor(...(theme.color.interactiveNeutralFocus as [string, number])), { duration: 200 }],
-      alpha: [1, { duration: 200, delay: 200, timing: 'easy-in' }]
-    },
-    active: {
-      color: '#33ff55'
-    },
-    disabled: {
-      alpha: 1
-    }
-  }
+const styles: any = {
+  height: theme.spacer.md * 10,
+  // paddingX: theme.spacer.xxxl,
+  // paddingXNoTitle: theme.spacer.xl,
+  // titlePadding: theme.spacer.md,
+  padding: [40, 10],
+  backgroundColor: theme.color.fillNeutralTertiary[0],
+  display: 'flex',
+  justifyContent: 'center',
+  borderRadius: 30
 };
 
 type ButtonTextStyle = {
@@ -133,6 +121,7 @@ const Text: ButtonTextStyle = {
   // mountY: -0.35,
   textAlign: 'center',
   color: getHexColor(...(theme.color.textNeutral as [string, number])),
+  // color: '#000000',
   // height: styles.Container.height,
   // width: styles.Container.width,
   focus: {
@@ -149,6 +138,7 @@ styles.FlexContainer = {
 };
 
 styles.Prefix = {
+  color: theme.color.fillNeutral,
   focus: {
     color: getHexColor(...(theme.color.textInverse as [string, number]))
   }
@@ -156,6 +146,7 @@ styles.Prefix = {
 
 styles.Suffix = {
   mountX: 1,
+  color: theme.color.fillNeutral,
   focus: {
     color: getHexColor(...(theme.color.textInverse as [string, number]))
   }
