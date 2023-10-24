@@ -2,13 +2,13 @@ import type { Component } from 'solid-js';
 import { View } from '@lightningjs/solid';
 import styles from './ProgressBar.styles';
 
-type ProgressBarProps = {
-  animationSettings: object;
-  borderRadius: number;
+export type ProgressBarProps = {
+  animationSettings?: object;
+  borderRadius?: number;
   /**
    * color of the backdrop bar, representing the total progress
    */
-  color: number;
+  color?: number;
   /**
    * a numeric value of the current progress represented as a decimal between 0 and 1
    */
@@ -16,7 +16,7 @@ type ProgressBarProps = {
   /**
    * color of the overlay bar, representing the current progress
    */
-  progressColor: number;
+  progressColor?: number;
   /**
    * total width of the component
    */
@@ -30,10 +30,10 @@ const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
         style={styles.progressBar}
         // @ts-expect-error remove when animate is added to View
         animate
-        animationSettings={props.animationSettings}
+        animationSettings={props.animationSettings || styles.animationSettings}
         width={props.width * props.progress}
-        borderRadius={props.borderRadius}
-        color={props.progressColor}
+        borderRadius={props.borderRadius || styles.borderRadius}
+        color={props.progressColor || styles.progressBar.color}
       />
     </View>
   );
