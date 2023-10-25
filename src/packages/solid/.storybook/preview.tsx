@@ -17,7 +17,7 @@
 
 import { Canvas } from '@lightningjs/solid';
 // @ts-expect-error we don't have declarations for this module
-import coreExtensionModuleUrl from '../../../shared/AppCoreExtensions.js?importChunkUrl'; // TODO import aliasing
+import coreExtensionModuleUrl from './AppCoreExtensions.js?importChunkUrl'; // TODO import aliasing
 
 const RenderOptions = {
   coreExtensionModule: coreExtensionModuleUrl,

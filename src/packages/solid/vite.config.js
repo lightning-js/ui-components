@@ -53,18 +53,9 @@ const config = {
   }
 };
 
-export default ({ mode }) => {
-  /**
-   * mode
-   * development - storybook dev server
-   * production - storybook static site build
-   */
-
-  if (mode === 'development') {
-    // TODO font loading only works in dev because the static site builder doesn't work with the `importChunkUrl` plugin
-    config.plugins = [...config.plugins, importChunkUrl()];
-    config.publicDir = '../../shared/public';
-  }
+export default () => {
+  config.plugins = [...config.plugins, importChunkUrl()];
+  config.publicDir = '../../shared/public';
 
   return defineConfig(config);
 };
