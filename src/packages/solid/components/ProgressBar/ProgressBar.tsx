@@ -16,7 +16,7 @@
  */
 
 import type { Component } from 'solid-js';
-import { View } from '@lightningjs/solid';
+import { View, hexColor } from '@lightningjs/solid';
 import styles from './ProgressBar.styles';
 
 type ProgressBarProps = {
@@ -42,15 +42,14 @@ type ProgressBarProps = {
 
 const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
   return (
-    <View style={styles.container} {...props}>
+    <View style={styles.container} {...props} color={hexColor(props.color)}>
       <View
         style={styles.progressBar}
-        // @ts-expect-error remove when animate is added to View
         animate
         animationSettings={props.animationSettings}
         width={props.width * props.progress}
         borderRadius={props.borderRadius}
-        color={props.progressColor}
+        color={hexColor(props.progressColor)}
       />
     </View>
   );

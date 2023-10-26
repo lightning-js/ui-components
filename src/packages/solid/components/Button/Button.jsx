@@ -19,26 +19,26 @@
  * Primary UI component for user interaction
  */
 
-import { View, Text } from '@lightningjs/solid';
+import { View, Text, hexColor } from '@lightningjs/solid';
 import theme from 'theme';
 
 const styles = {
   container: {
     width: 386,
     height: 136,
-    color: theme.color.black[0],
+    color: hexColor(theme.color.black[0]),
     alpha: theme.alpha.alpha3,
     borderRadius: 30,
-    border: { width: 5, color: '#ee6d04' },
+    border: { width: 5, color: 0xee6d04ff },
     scale: 1,
     focus: {
-      color: ['#58807d', { duration: 2000 }],
+      color: [0x58807dff, { duration: 2000 }],
       scale: 1.2,
-      border: { width: 5, color: '#ff0000' },
+      border: { width: 5, color: 0xff0000ff },
       alpha: [1, { duration: 1500, delay: 200, timing: 'easy-in' }]
     },
     active: {
-      color: '#33ff55'
+      color: 0x33ff55ff
     },
     disabled: {
       alpha: 1
@@ -52,7 +52,7 @@ styles.text = {
   contain: 'width',
   textAlign: 'center',
   mountY: -0.35,
-  color: '#F6F6F9',
+  color: 0xf6f6f9ff,
   height: styles.container.height,
   width: styles.container.width,
   focus: {

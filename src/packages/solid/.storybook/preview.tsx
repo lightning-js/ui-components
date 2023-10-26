@@ -14,15 +14,15 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-
-import { Canvas } from '@lightningjs/solid';
+/* @refresh reload */
+import {render, Canvas } from '@lightningjs/solid';
 // @ts-expect-error we don't have declarations for this module
 import coreExtensionModuleUrl from './AppCoreExtensions.js?importChunkUrl'; // TODO import aliasing
 
 const RenderOptions = {
   coreExtensionModule: coreExtensionModuleUrl,
   threadXCoreWorkerUrl: undefined,
-  rootId: 'storybook-root',
+  rootId: 'storybook-root' as any,
   appWidth: 800,
   appHeight: 600
   // deviceLogicalPixelRatio: 1
@@ -49,11 +49,15 @@ const preview = {
     }
   },
   decorators: [
-    (Story) => (
-      <Canvas options={RenderOptions}>
+    (Story) => {
+      const solidRoot = document.createElement("div");
+      RenderOptions.rootId = solidRoot;
+      render(() => <Canvas options={RenderOptions}>
         <Story />
-      </Canvas>
-    )
+      </Canvas>)
+      return solidRoot;
+    }
+      
   ]
 };
 
