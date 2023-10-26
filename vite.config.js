@@ -42,7 +42,7 @@ export default defineConfig({
     alias: {
       theme: '@lightningjs/ui-components-theme-base'
     },
-    dedupe: ['solid-js', '@lightningjs/solid']
+    dedupe: ['solid-js', '@lightningjs/solid', '@lightningjs/renderer']
   },
   server: {
     hmr: false,
