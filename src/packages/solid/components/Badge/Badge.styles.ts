@@ -52,9 +52,9 @@ type BadgeStyle = {
 const styles: BadgeStyle = {
   width: 300,
   height: theme.typography.tag1.lineHeight,
-  paddingX: theme.spacer.md + theme.spacer.xxs,
+  paddingX: theme.spacer.md,
   paddingY: theme.spacer.xs,
-  padding: [theme.spacer.md + theme.spacer.xxs, theme.spacer.xs],
+  padding: [theme.spacer.md, theme.spacer.xs],
   color: getHexColor(...(theme.color.fillBrand as [string, number])),
   borderRadius: theme.radius.sm,
   border: {

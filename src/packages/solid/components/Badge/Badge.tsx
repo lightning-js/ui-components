@@ -64,29 +64,36 @@ const Badge: Component<BadgeProps> = (props: BadgeProps) => {
 
   // NOTE: directive needs to be before props
   return (
-    <node use:withPadding={[10, 10]} {...props} style={styles}>
+    <node
+      use:withPadding={styles.padding}
+      {...props}
+      color={styles.color}
+      borderRadius={styles.borderRadius}
+      border={styles.border}
+      width={styles.width}
+      height={styles.height}
+    >
       <Show when={props.iconAlign === 'left'}>
         <Icon
+          x={styles.paddingX}
           color={props.icon.color}
           icon={props.icon.icon}
           width={props.iconWidth}
           height={props.iconHeight}
         />
       </Show>
-      <Text x={props.iconWidth + 10} y={styles.paddingY + 10} style={styles.textStyle}>
+      <Text x={props.iconWidth + 10} y={styles.paddingY} style={styles.textStyle}>
         {props.title}
       </Text>
       <Show when={props.iconAlign === 'right'}>
         <Icon
+          x={styles.textStyle.width + 10}
           color={props.icon.color}
           icon={props.icon.icon}
           width={props.iconWidth}
           height={props.iconHeight}
         />
       </Show>
-      <Text x={styles.paddingX + 50} style={styles.textStyle}>
-        {props.title}
-      </Text>
     </node>
   );
 };
