@@ -19,7 +19,6 @@ import { Text, Show } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
 import Icon, { type IconProps } from '../Icon/Icon';
 import styles from './Badge.styles';
-
 withPadding; // Preserve the import.
 
 // props in LUI: title, icon, iconAlign, iconWidth, iconHeight
@@ -35,64 +34,21 @@ type BadgeProps = {
    */
   iconAlign: string;
   /**
-   * width of icon
-   */
-  iconWidth: number;
-  /**
-   * height of icon
-   */
-  iconHeight: number;
-  /**
    * Object containing all properties supported in the [Icon component](?path=/docs/components-icon--icon)
    */
   icon: Partial<IconProps>;
 };
 
+const padding = styles.padding;
 const Badge: Component<BadgeProps> = (props: BadgeProps) => {
-  // not implemented, thinking about which option would be best
-  const iconAlignStyles = (props) => {
-    if (props.iconAlign) {
-      if (props.iconAlign === 'left') {
-        return {
-          // return styles to align icon on left of text
-        };
-      } else {
-        // return styles to align icon on the right of text
-      }
-    }
-  };
-
-  // NOTE: directive needs to be before props
   return (
-    <node
-      use:withPadding={styles.padding}
-      {...props}
-      color={styles.color}
-      borderRadius={styles.borderRadius}
-      border={styles.border}
-      width={styles.width}
-      height={styles.height}
-    >
+    <node use:withPadding={padding} style={styles.container} {...props}>
       <Show when={props.iconAlign === 'left'}>
-        <Icon
-          x={styles.paddingX}
-          color={props.icon.color}
-          icon={props.icon.icon}
-          width={props.iconWidth}
-          height={props.iconHeight}
-        />
+        <Icon {...props.icon} />
       </Show>
-      <Text x={props.iconWidth + 10} y={styles.paddingY} style={styles.textStyle}>
-        {props.title}
-      </Text>
+      <Text style={styles.textStyle}>{props.title}</Text>
       <Show when={props.iconAlign === 'right'}>
-        <Icon
-          x={styles.textStyle.width + 10}
-          color={props.icon.color}
-          icon={props.icon.icon}
-          width={props.iconWidth}
-          height={props.iconHeight}
-        />
+        <Icon {...props.icon} />
       </Show>
     </node>
   );

@@ -21,13 +21,13 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@lightningjs/renderer": "^0.4.1",
-    "@lightningjs/solid": "^0.7.0",
+    "@lightningjs/solid": "^0.7.2",
     "@lightningjs/solid-primitives": "^0.4.2",
     "@lightningjs/ui-components-theme-base": "^1.0.3",
     "@solidjs/router": "^0.8.2",
     "@storybook/html": "^7.5.1",
     "@storybook/html-vite": "^7.5.1",
-    "solid-js": "^1.7.8"
+    "solid-js": "^1.8.4"
   },
   "devDependencies": {
     "@lightningjs/vite-plugin-import-chunk-url": "^0.3.0",

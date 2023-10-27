@@ -48,11 +48,11 @@ export default meta;
 export const Basic = {
   args: {
     title: 'Badge Text',
-    width: 300,
+    width: 250,
     iconAlign: 'left',
-    iconWidth: 20,
-    iconHeight: 20,
     icon: {
+      width: 20,
+      height: 20,
       color: theme.color.fillNeutralSecondary[0],
       icon: lightning
     }
