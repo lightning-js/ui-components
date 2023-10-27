@@ -15,5 +15,5 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export { default as default } from './Icon';
+export { default as default, type IconProps } from './Icon';
 export { default as IconStyles } from './Icon.styles';

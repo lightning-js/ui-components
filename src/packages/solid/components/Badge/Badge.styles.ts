@@ -15,16 +15,23 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { View } from '@lightningjs/solid';
-import { ProgressBar } from '@lightningjs/solid-ui';
-const App = () => {
-  return (
-    // eslint-disable-next-line solid/style-prop
-    <View ref={window.APP} style={{ width: 1920, height: 1080 }}>
-      <View color="#071423" />
-      <ProgressBar x={200} y={400} width={500} progress={0.6} zIndex={1} />
-    </View>
-  );
+import theme from 'theme';
+import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
+
+const styles = {
+  container: {
+    display: 'flex',
+    justifyContent: 'spaceEvenly',
+    height: theme.typography.tag1.lineHeight,
+    color: getHexColor(...(theme.color.fillBrand as [string, number])),
+    borderRadius: theme.radius.sm,
+    border: {
+      width: theme.stroke.sm,
+      color: getHexColor(...(theme.color.strokeInverse as [string, number]))
+    }
+  },
+  padding: [theme.spacer.md, theme.spacer.xs] as [number, number],
+  textStyle: theme.typography.tag1
 };
 
-export default App;
+export default styles;

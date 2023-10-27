@@ -19,7 +19,7 @@ import type { Component } from 'solid-js';
 import { View } from '@lightningjs/solid';
 import styles from './Icon.styles';
 
-type IconProps = {
+export type IconProps = {
   /**
    * icon color (can only be applied on png icons)
    */
