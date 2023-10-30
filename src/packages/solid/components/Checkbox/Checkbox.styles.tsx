@@ -18,7 +18,7 @@ import theme from 'theme';
 import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
 
 // taken from LUI
-// probably used to taken into account if strokeWidth changes
+// probably used to take into account if strokeWidth changes
 const strokeWidth = theme.stroke.sm;
 const size = theme.spacer.xxl - strokeWidth * 2;
 
