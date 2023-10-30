@@ -27,10 +27,17 @@ const size = theme.spacer.xxl - strokeWidth * 2;
 
 type CheckboxStyle = {
   container: {
+    /**
+     * width of checkbox
+     */
     width: number;
+    /**
+     * height of checkbox
+     */
     height: number;
-    checkWidth: number;
-    checkHeight: number;
+    /**
+     * color of checkbox background
+     */
     color: number;
     borderRadius: number;
     border: object;
@@ -42,8 +49,6 @@ const styles: CheckboxStyle = {
     width: size,
     height: size,
     color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number])),
-    checkWidth: theme.spacer.lg,
-    checkHeight: theme.spacer.md + theme.spacer.xs,
     borderRadius: size / 2,
     border: {
       width: strokeWidth,
