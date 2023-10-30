@@ -22,9 +22,6 @@ import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path al
 const strokeWidth = theme.stroke.sm;
 const size = theme.spacer.xxl - strokeWidth * 2;
 
-// background color on checked changes to: theme.color.fillNeutral
-// same color as not checked but with different alpha
-
 type CheckboxStyle = {
   container: {
     /**
@@ -48,7 +45,7 @@ const styles: CheckboxStyle = {
   container: {
     width: size,
     height: size,
-    color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number])),
+    color: getHexColor(...(theme.color.fillNeutral as [string, number])),
     borderRadius: size / 2,
     border: {
       width: strokeWidth,
