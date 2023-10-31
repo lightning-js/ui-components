@@ -15,8 +15,20 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import type { Component } from 'solid-js';
-import { View, Text, Show } from '@lightningjs/solid';
+import { View, Text, Show, For } from '@lightningjs/solid';
+import Icon from '../Icon/Icon';
 import styles from './Metadata.styles';
+
+type Rating = {
+  icon: string;
+  title: string;
+};
+
+type Details = {
+  badges?: Record<string, unknown>[]; // TODO: how to access BadgeProps
+  ratings?: Rating[]; // TODO TS def for ratings
+  title?: string;
+};
 
 type MetadataProps = {
   /**
@@ -30,10 +42,22 @@ type MetadataProps = {
   /**
    * TODO: LUI uses Details component here
    */
-  // details: Record<string, any>;
+  details: Details;
 };
 
 const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
+  const formatRatingTitle = (title: string | number) => {
+    if ((typeof title !== 'string' && typeof title !== 'number') || !String(title).trim().length) {
+      return;
+    }
+
+    let formatted = title;
+    if (!Number.isNaN(title) && Number(title) >= 0 && Number(title) <= 100) {
+      formatted += '%';
+    }
+    return formatted;
+  };
+
   return (
     <View style={styles.container}>
       <Show when={props.title}>
@@ -42,8 +66,24 @@ const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
       <Show when={props.description}>
         <Text style={styles.descriptionTextStyle}>{props.description}</Text>
       </Show>
+
+      <For each={props.details.ratings}>
+        {(rating: Rating) => (
+          <View style={styles.rating.container}>
+            <Show when={rating.icon}>
+              <Icon icon={rating.icon} {...styles.rating.icon} />
+            </Show>
+            <Show when={formatRatingTitle(rating.title)}>
+              <Text style={styles.rating.text}>{formatRatingTitle(rating.title)}</Text>
+            </Show>
+          </View>
+        )}
+      </For>
     </View>
   );
 };
 
 export default Metadata;
+
+// add details befor Rating
+// TODO: description text doesn't wrap and gets cut off

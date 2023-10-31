@@ -16,6 +16,7 @@
  */
 
 import theme from 'theme';
+import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
 
 const styles = {
   container: {
@@ -32,6 +33,20 @@ const styles = {
     ...theme.typography.body2,
     wordWrap: true,
     maxLines: 3
+  },
+  // TODO: flatten this
+  rating: {
+    container: {
+      display: 'flex',
+      justifyContent: 'flexStart',
+      alignItems: 'center'
+    },
+    icon: {
+      color: getHexColor(...(theme.color.fillNeutral as [string, number])),
+      height: theme.typography.body2.lineHeight,
+      width: theme.typography.body2.lineHeight
+    },
+    text: theme.typography.body2
   }
 };
 
