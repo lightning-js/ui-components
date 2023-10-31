@@ -34,11 +34,16 @@ export type CheckboxProps = {
 
 const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
   return (
-    <View {...props} style={styles.container}>
-      <Show when={props.checked}>
-        <Icon {...props.icon} />
+    <>
+      <Show when={!props.checked}>
+        <View {...props} style={styles.container} />
       </Show>
-    </View>
+      <Show when={props.checked}>
+        <View {...props} style={styles.container} color={styles.container.backgroundColorChecked}>
+          <Icon {...props.icon} />
+        </View>
+      </Show>
+    </>
   );
 };
 

@@ -19,8 +19,16 @@ import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path al
 
 // taken from LUI
 // probably used to take into account if strokeWidth changes
+// is this necessary?
 const strokeWidth = theme.stroke.sm;
 const size = theme.spacer.xxl - strokeWidth * 2;
+
+// focus and unfocus no style changes
+// disabled: {
+//   alpha: theme.alpha.inactive;
+// }
+// checked: backgroundColor: theme.color.fillNeutralDisabled,
+// unchecked: backgroundColorChecked: theme.color.fillNeutral
 
 type CheckboxStyle = {
   container: {
@@ -36,8 +44,13 @@ type CheckboxStyle = {
      * color of checkbox background
      */
     color: number;
+    /**
+     * color of checkbox background when checked
+     */
+    backgroundColorChecked: number;
     borderRadius: number;
     border: object;
+    disabled: object;
   };
 };
 
@@ -45,11 +58,15 @@ const styles: CheckboxStyle = {
   container: {
     width: size,
     height: size,
-    color: getHexColor(...(theme.color.fillNeutral as [string, number])),
+    color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number])),
+    backgroundColorChecked: getHexColor(...(theme.color.fillNeutral as [string, number])),
     borderRadius: size / 2,
     border: {
       width: strokeWidth,
       color: getHexColor(...(theme.color.strokeInverse as [string, number]))
+    },
+    disabled: {
+      alpha: theme.alpha.inactive
     }
   }
 };
