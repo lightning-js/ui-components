@@ -17,6 +17,8 @@
 
 import { Show, type Component } from 'solid-js';
 import { View, Text, IntrinsicCommonProps } from '@lightningjs/solid';
+import Icon, { type IconProps } from '../Icon/Icon';
+//import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox';
 import styles from './Button.styles';
 import { withPadding } from '@lightningjs/solid-primitives';
 withPadding;
@@ -25,45 +27,58 @@ withPadding;
  * Primary UI component for user interaction
  */
 export interface ButtonProps extends IntrinsicCommonProps, ButtonStyleProps {
-  suffix?: Component<IntrinsicCommonProps>;
-  prefix?: Component<IntrinsicCommonProps>;
+  title: string;
+  suffix?: Partial<IconProps>; //& Partial<CheckboxProps>; // null, icon, checkbox, combo
+  prefix?: Partial<IconProps>; //Component<IntrinsicCommonProps>  & Partial<CheckboxProps>; // null, icon, checkbox, combo
   width: number;
   height: number;
 }
 
 export interface ButtonStyleProps {
-  backgroundColor?: number;
+  color?: number;
   borderRadius?: number;
 }
 
 const Button: Component<ButtonProps> = props => {
+  debugger;
+
+  const prefixIcon = props.prefix?.icon ? true : false;
+  //const prefixCheckbox = props.prefix?.checked? true : false;
+
+  const suffixIcon = props.suffix?.icon ? true : false;
+  //const suffixCheckbox = props.suffix?.checked? true : false;
+
   return (
     <node
-      // {...props}
-      use:withPadding={styles.padding}
+      {...props}
+      use:withPadding={styles.Container?.padding}
       style={{
         ...styles.Container,
-        color: props.backgroundColor || styles.backgroundColor
+        color: props.color || styles.Container?.color
       }}
       animate
       forwardStates
     >
-      <View forwardStates style={styles.FlexContainer}>
-        <Show when={!!props.prefix}>
-          <View x={props.prefix.width} style={styles.Prefix}>
-            {props.prefix}
-          </View>
+      <View forwardStates style={{ ...styles.FlexContainer }} width={props.width}>
+        <Show when={prefixIcon}>
+          <Icon {...props.prefix} />
         </Show>
-        <View forwardStates width={props.width} style={styles.FlexContainer}>
-          <Show when={!!props.children}>
-            <Text style={styles.Text}>{props.children}</Text>
-          </Show>
-        </View>
-        <Show when={!!props.suffix}>
-          <View x={props.width - props.suffix.width} style={styles.Suffix}>
-            {props.suffix}
-          </View>
+        {/* 
+         <Show when={prefixCheckbox}>
+            <Checkbox {...props.prefix} />
+        </Show>  */}
+
+        <Show when={props.title}>
+          <Text style={{ ...styles.Text }}>{props.title}</Text>
         </Show>
+
+        <Show when={suffixIcon}>
+          <Icon {...props.suffix} />
+        </Show>
+
+        {/*          <Show when={prefixCheckbox}>
+            <Checkbox {...props.suffix} />
+        </Show>  */}
       </View>
     </node>
   );

@@ -15,26 +15,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { IntrinsicCommonProps } from '@lightningjs/solid';
 import theme from 'theme';
-import { getHexColor } from '../../../../shared/utils/getHexColor';
-
-interface CommonStyleProps {
-  display: string;
-  flexDirection: string;
-  justifyContent: string;
-  width: number;
-  height: number;
-  color: Color;
-  alpha: number;
-  borderRadius: number;
-  border: { width: number; color: Color };
-  scale: number;
-}
 
 type Color = number | string;
 type AnimationSettings = { duration?: number; delay?: number; timing?: string };
-type TextContain = 'width' | 'height' | 'both';
 type TextAlign = 'left' | 'center' | 'right';
 type States = 'active' | 'focus' | 'disabled';
 
@@ -45,110 +29,93 @@ type States = 'active' | 'focus' | 'disabled';
 type Animatable<Type> = Type | [Type, AnimationSettings];
 
 /**
- * for each key in the supplied type, make the type for that key Animatable
- */
-type ComponentStyle<Type> = {
-  // TODO see if we can specifically type capital keys
-  [key in keyof Type]: Animatable<Type[key]>;
-};
-
-/**
  * states can contain any of the style object's properties, except other states
  */
 type StateStyle<Type> = Partial<Omit<Type, States>>;
 
 type ButtonStyle = {
-  Container: ComponentStyle<{
+  Container?: {
+    height: number;
     display: string;
-    flexDirection: string;
-    justifyContent: string;
+    justifyContent: TextAlign;
     padding: number[];
-    // width: number;
-    // height: number;
     color: Animatable<Color>;
-    alpha: Animatable<number>;
+    contentColor: Animatable<Color>;
     borderRadius: number;
     focus?: StateStyle<ButtonStyle['Container']>;
     active?: StateStyle<ButtonStyle['Container']>;
     disabled?: StateStyle<ButtonStyle['Container']>;
-  }>;
-  Text?: ButtonTextStyle;
-  Prefix?: {
-    focus?: StateStyle<ButtonTextStyle>;
-  };
-  Suffix?: {
-    mountX: number;
-    focus?: StateStyle<ButtonTextStyle>;
   };
   FlexContainer?: {
     display: string;
     flexDirection: string;
-    justifyContent: string;
+    justifyContent: TextAlign;
     mountY: number;
+    focus?: StateStyle<ButtonStyle['FlexContainer']>;
+    active?: StateStyle<ButtonStyle['FlexContainer']>;
+    disabled?: StateStyle<ButtonStyle['FlexContainer']>;
+  };
+  Text: {
+    fontSize: number;
+    textAlign: TextAlign;
+    color: Animatable<Color>;
+    focus?: StateStyle<ButtonStyle['Text']>;
+    active?: StateStyle<ButtonStyle['Text']>;
+    disabled?: StateStyle<ButtonStyle['Text']>;
   };
 };
 
-const styles: any = {
-  height: theme.spacer.md * 10,
-  // paddingX: theme.spacer.xxxl,
-  // paddingXNoTitle: theme.spacer.xl,
-  // titlePadding: theme.spacer.md,
-  padding: [40, 10],
-  backgroundColor: theme.color.fillNeutralTertiary[0],
-  display: 'flex',
-  justifyContent: 'center',
-  borderRadius: 30
-};
-
-type ButtonTextStyle = {
-  fontSize: number;
-  // lineHeight: number;
-  // contain: TextContain;
-  // mountY: number;
-  textAlign: TextAlign;
-  color: Animatable<Color>;
-  // height: number;
-  // width: number;
-  focus?: StateStyle<ButtonTextStyle>;
-  active?: StateStyle<ButtonTextStyle>;
-  disabled?: StateStyle<ButtonTextStyle>;
-};
-
-const Text: ButtonTextStyle = {
-  fontSize: 32,
-  // lineHeight: styles.Container.height,
-  // contain: 'width',
-  // mountY: -0.35,
-  textAlign: 'center',
-  color: getHexColor(...(theme.color.textNeutral as [string, number])),
-  // color: '#000000',
-  // height: styles.Container.height,
-  // width: styles.Container.width,
-  focus: {
-    color: getHexColor(...(theme.color.textInverse as [string, number]))
-  }
-};
-
-styles.Text = Text;
-styles.FlexContainer = {
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'center',
-  mountY: -0.2
-};
-
-styles.Prefix = {
-  color: theme.color.fillNeutral,
-  focus: {
-    color: getHexColor(...(theme.color.textInverse as [string, number]))
-  }
-};
-
-styles.Suffix = {
-  mountX: 1,
-  color: theme.color.fillNeutral,
-  focus: {
-    color: getHexColor(...(theme.color.textInverse as [string, number]))
+const styles: ButtonStyle = {
+  Container: {
+    height: theme.spacer.md * 10,
+    padding: [40, 10],
+    color: theme.color.fillNeutral,
+    contentColor: theme.color.fillInverse,
+    display: 'flex',
+    justifyContent: 'center',
+    borderRadius: 30,
+    focus: {
+      color: theme.color.interactiveNeutralFocus,
+      contentColor: theme.color.fillInverse,
+      tone: {
+        inverse: {
+          color: theme.color.interactiveInverseFocus,
+          contentColor: theme.color.fillNeutral
+        },
+        brand: {
+          contentColor: theme.color.fillNeutral
+        }
+      }
+    },
+    disabled: {
+      color: theme.color.fillNeutralDisabled,
+      contentColor: theme.color.fillNeutralDisabled
+    }
+  },
+  FlexContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    mountY: -0.2
+  },
+  Text: {
+    textAlign: 'center',
+    color: theme.color.textInverse,
+    ...theme.typography.button1,
+    focus: {
+      color: theme.color.textInverse,
+      tone: {
+        inverse: {
+          color: theme.color.textNeutral
+        },
+        brand: {
+          color: theme.color.textBrand
+        }
+      }
+    },
+    disabled: {
+      color: theme.color.textNeutralDisabled
+    }
   }
 };
 

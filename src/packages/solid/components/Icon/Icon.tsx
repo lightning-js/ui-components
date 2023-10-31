@@ -23,17 +23,21 @@ export type IconProps = {
   /**
    * icon color (can only be applied on png icons)
    */
-  color: number;
+  color?: number;
   /* 
    * when `true`, icon width and height will not dynamically resize to the final texture's `finalW` and `finalH` properties
   fixed?: boolean; */
 
-  width: number;
+  width?: number;
+
+  height?: number;
 
   /**
    * path to image or inline SVG XML
    */
   icon?: string;
+
+  x?: number;
 };
 
 const Icon: Component<IconProps> = (props: IconProps) => {
@@ -42,9 +46,7 @@ const Icon: Component<IconProps> = (props: IconProps) => {
       {...props}
       // TODO, wait to see if fixed is needed
       src={props.icon}
-      y={10}
-      x={10}
-      style={styles.container}
+      style={styles.Container}
     />
   );
 };

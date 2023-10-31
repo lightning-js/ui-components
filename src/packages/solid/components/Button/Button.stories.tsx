@@ -14,40 +14,104 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-
+import type { Meta, StoryObj } from 'storybook-solidjs';
 import Button from './Button';
-// import ProgressBar from '../ProgressBar/ProgressBar';
-import theme from 'theme';
+import lightning from '../../assets/images/ic_lightning_white_32.png';
+
+type Story = StoryObj<typeof Button>;
+
+function getComponentArray(comps: any) {
+  let arr = {};
+  switch (comps) {
+    case 'icon':
+      arr = { icon: lightning, width: 50, height: 50 };
+      break;
+    case 'checkbox':
+      //arr = [{ checked: true }];
+      break;
+    case 'combo':
+      arr = { icon: lightning, width: 50, height: 50 };
+      //{ checked: true }
+      break;
+  }
+  return arr;
+}
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/solid/writing-stories/introduction
-const meta = {
-  title: 'Components/Button',
+
+const meta: Meta<typeof Button> = {
   component: Button,
-  tags: ['autodocs']
-  // argTypes: {
-  //   backgroundColor: { control: 'color' }
-  // }
+  argTypes: {
+    /*     mode: {
+      control: { type: 'radio' },
+      options: ['focused', 'unfocused', 'disabled'],
+      description: 'Sets the visual mode for the component',
+      table: {
+        defaultValue: { summary: 'focused' }
+      }
+    }, */
+    title: {
+      control: 'text',
+      description: 'Title text',
+      table: {
+        defaultValue: { summary: 'undefined' }
+      }
+    },
+    width: {
+      control: { type: 'number', min: 400, max: 1200, step: 50 },
+      description: 'When the fixed property is true, this will set the width of the component',
+      table: {
+        defaultValue: { summary: 400 }
+      }
+    },
+    height: {
+      control: { type: 'number', min: 400, max: 1200, step: 50 },
+      description: 'When the fixed property is true, this will set the height of the component',
+      table: {
+        defaultValue: { summary: 100 }
+      }
+    },
+    justifyContent: {
+      control: 'radio',
+      options: ['left', 'center', 'right'],
+      description: 'Justification of button content',
+      table: {
+        defaultValue: { summary: 'center' }
+      }
+    },
+    prefix: {
+      control: 'radio',
+      options: [null, 'icon', 'checkbox', 'combo'],
+      description: 'Lightning components to be placed to the left of the title',
+      table: {
+        defaultValue: { summary: 'undefined' }
+      }
+    },
+    suffix: {
+      control: 'radio',
+      options: [null, 'icon', 'checkbox', 'combo'],
+      description: 'Lightning components to be placed to the right of the title',
+      table: {
+        defaultValue: { summary: 'undefined' }
+      }
+    }
+  }
+};
+
+export const Basic: Story = {
+  render: args => {
+    return (
+      <Button {...args} prefix={getComponentArray(args.prefix)} suffix={getComponentArray(args.suffix)} />
+    );
+  },
+  args: {
+    title: 'button',
+    width: 400,
+    height: 100,
+    justifyContent: 'center'
+  }
 };
 
 export default meta;
 
 // More on writing stories with args: https://storybook.js.org/docs/7.0/solid/writing-stories/args
-export const Basic = {
-  args: {
-    width: 400,
-    height: 100,
-    children: 'button'
-  }
-};
-
-// export const Basic = {
-//   args: {
-//     width: 500,
-//     height: theme.spacer.md,
-//     progress: 0.5,
-//     // TODO make it so we don't need to do this
-//     color: theme.color.fillNeutralSecondary[0],
-//     progressColor: theme.color.fillBrand[0],
-//     borderRadius: theme.radius.xs
-//   }
-// };
