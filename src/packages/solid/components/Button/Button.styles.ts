@@ -16,20 +16,6 @@
  */
 
 import theme from 'theme';
-import { getHexColor } from '../../../../shared/utils/getHexColor';
-
-interface CommonStyleProps {
-  display: string;
-  flexDirection: string;
-  justifyContent: string;
-  width: number;
-  height: number;
-  color: Color;
-  alpha: number;
-  borderRadius: number;
-  border: { width: number; color: Color };
-  scale: number;
-}
 
 type Color = number | string;
 type AnimationSettings = { duration?: number; delay?: number; timing?: string };

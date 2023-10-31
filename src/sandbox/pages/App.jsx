@@ -15,38 +15,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { View, Text } from '@lightningjs/solid';
+import { View } from '@lightningjs/solid';
 import { ProgressBar } from '@lightningjs/solid-ui';
 const App = () => {
-  useFocusManager({
-    m: 'Menu',
-    t: 'Text',
-    b: 'Buttons'
-  });
   return (
+    // eslint-disable-next-line solid/style-prop
     <View ref={window.APP} style={{ width: 1920, height: 1080 }}>
       <View color="#071423" />
-      <Column>
-        <Button
-          autofocus
-          x={200}
-          y={400}
-          height={100}
-          width={800}
-          // prefix={
-          //   <Text width={10} style={fixStyles}>
-          //     #
-          //   </Text>
-          // }
-          // suffix={
-          //   <Text width={10} style={fixStyles}>
-          //     @
-          //   </Text>
-          // }
-        >
-          A Button!
-        </Button>
-      </Column>
+      <ProgressBar x={200} y={400} width={500} progress={0.6} zIndex={1} />
     </View>
   );
 };
