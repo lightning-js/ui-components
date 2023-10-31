@@ -22,16 +22,17 @@ import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path al
 // is this necessary?
 const strokeWidth = theme.stroke.sm;
 const size = theme.spacer.xxl - strokeWidth * 2;
-
+type States = 'active' | 'focus' | 'disabled';
 // focus and unfocus no style changes
 // disabled: {
 //   alpha: theme.alpha.inactive;
 // }
 // checked: backgroundColor: theme.color.fillNeutralDisabled,
 // unchecked: backgroundColorChecked: theme.color.fillNeutral
+type StateStyle<Type> = Partial<Omit<Type, States>>;
 
 type CheckboxStyle = {
-  container: {
+  Container: {
     /**
      * width of checkbox
      */
@@ -50,12 +51,13 @@ type CheckboxStyle = {
     backgroundColorChecked: number;
     borderRadius: number;
     border: object;
-    disabled: object;
+    disabled?: StateStyle<CheckboxStyle['Container']>;
+    focus?: StateStyle<CheckboxStyle['Container']>;
   };
 };
 
 const styles: CheckboxStyle = {
-  container: {
+  Container: {
     width: size,
     height: size,
     color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number])),
@@ -67,6 +69,13 @@ const styles: CheckboxStyle = {
     },
     disabled: {
       alpha: theme.alpha.inactive
+    },
+    focus: {
+      color: getHexColor(...(theme.color.fillBrand as [string, number])),
+      border: {
+        width: strokeWidth,
+        color: getHexColor(...(theme.color.fillBrand as [string, number]))
+      }
     }
   }
 };
