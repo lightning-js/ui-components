@@ -17,18 +17,22 @@
 import theme from 'theme';
 import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
 
-// taken from LUI
-// probably used to take into account if strokeWidth changes
-// is this necessary?
-const strokeWidth = theme.stroke.sm;
-const size = theme.spacer.xxl - strokeWidth * 2;
-type States = 'active' | 'focus' | 'disabled';
+// TODO: LUI styles remove before merge
 // focus and unfocus no style changes
 // disabled: {
 //   alpha: theme.alpha.inactive;
 // }
 // checked: backgroundColor: theme.color.fillNeutralDisabled,
 // unchecked: backgroundColorChecked: theme.color.fillNeutral
+
+// taken from LUI
+// probably used to take into account if strokeWidth changes
+// is this necessary?
+const strokeWidth = theme.stroke.sm;
+const size = theme.spacer.xxl - strokeWidth * 2;
+
+// only using disabled
+type States = 'active' | 'focus' | 'disabled';
 type StateStyle<Type> = Partial<Omit<Type, States>>;
 
 type CheckboxStyle = {
@@ -52,7 +56,6 @@ type CheckboxStyle = {
     borderRadius: number;
     border: object;
     disabled?: StateStyle<CheckboxStyle['Container']>;
-    focus?: StateStyle<CheckboxStyle['Container']>;
   };
 };
 
@@ -69,13 +72,6 @@ const styles: CheckboxStyle = {
     },
     disabled: {
       alpha: theme.alpha.inactive
-    },
-    focus: {
-      color: getHexColor(...(theme.color.fillBrand as [string, number])),
-      border: {
-        width: strokeWidth,
-        color: getHexColor(...(theme.color.fillBrand as [string, number]))
-      }
     }
   }
 };

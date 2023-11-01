@@ -32,19 +32,16 @@ export type CheckboxProps = {
   icon: Partial<IconProps>;
 };
 
-//const [checked, setChecked] = createSignal(false);
-
 const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
-  console.log(props);
   return (
     <>
       <Show when={!props.checked}>
-        <View forwardStates {...props} style={styles.Container} />
+        <View {...props} forwardStates style={styles.Container} />
       </Show>
       <Show when={props.checked}>
         <View
-          forwardStates
           {...props}
+          forwardStates
           style={styles.Container}
           color={styles.Container.backgroundColorChecked}
         >

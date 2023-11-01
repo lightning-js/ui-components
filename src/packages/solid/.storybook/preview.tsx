@@ -40,7 +40,7 @@ export const args = {
 
 const preview = {
   parameters: {
-    backgrounds: { default: 'black' },
+    backgrounds: { default: 'black' }, // sets background dark
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
