@@ -16,7 +16,7 @@
  */
 
 import { Show, type Component } from 'solid-js';
-import { View, Text, IntrinsicCommonProps } from '@lightningjs/solid';
+import { View, Text } from '@lightningjs/solid';
 import Icon, { type IconProps } from '../Icon/Icon';
 //import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox';
 import styles from './Button.styles';
@@ -26,7 +26,7 @@ withPadding;
 /**
  * Primary UI component for user interaction
  */
-export interface ButtonProps extends IntrinsicCommonProps, ButtonStyleProps {
+export interface ButtonProps extends ButtonStyleProps {
   title: string;
   suffix?: Partial<IconProps>; //& Partial<CheckboxProps>; // null, icon, checkbox, combo
   prefix?: Partial<IconProps>; //Component<IntrinsicCommonProps>  & Partial<CheckboxProps>; // null, icon, checkbox, combo

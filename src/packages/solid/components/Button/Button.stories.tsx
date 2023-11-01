@@ -40,6 +40,8 @@ function getComponentArray(comps: any) {
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/solid/writing-stories/introduction
 
 const meta: Meta<typeof Button> = {
+  title: 'Components/Button',
+  tags: ['autodocs'],
   component: Button,
   argTypes: {
     /*     mode: {
@@ -71,14 +73,14 @@ const meta: Meta<typeof Button> = {
         defaultValue: { summary: 100 }
       }
     },
-    justifyContent: {
+    /* justifyContent: {
       control: 'radio',
-      options: ['left', 'center', 'right'],
+      options: ['center' , 'flexStart' , 'flexEnd' , 'spaceBetween' , 'spaceEvenly'],
       description: 'Justification of button content',
       table: {
         defaultValue: { summary: 'center' }
       }
-    },
+    }, */
     prefix: {
       control: 'radio',
       options: [null, 'icon', 'checkbox', 'combo'],
@@ -107,8 +109,8 @@ export const Basic: Story = {
   args: {
     title: 'button',
     width: 400,
-    height: 100,
-    justifyContent: 'center'
+    height: 100
+    //justifyContent: 'center'
   }
 };
 

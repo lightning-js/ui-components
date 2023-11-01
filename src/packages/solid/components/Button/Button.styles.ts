@@ -16,10 +16,12 @@
  */
 
 import theme from 'theme';
+import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
 
 type Color = number | string;
 type AnimationSettings = { duration?: number; delay?: number; timing?: string };
 type TextAlign = 'left' | 'center' | 'right';
+type ContentAlign = 'center' | 'flexStart' | 'flexEnd' | 'spaceBetween' | 'spaceEvenly';
 type States = 'active' | 'focus' | 'disabled';
 
 /**
@@ -36,8 +38,8 @@ type StateStyle<Type> = Partial<Omit<Type, States>>;
 type ButtonStyle = {
   Container?: {
     height: number;
-    display: string;
-    justifyContent: TextAlign;
+    display: 'flex';
+    justifyContent: ContentAlign;
     padding: number[];
     color: Animatable<Color>;
     contentColor: Animatable<Color>;
@@ -47,9 +49,9 @@ type ButtonStyle = {
     disabled?: StateStyle<ButtonStyle['Container']>;
   };
   FlexContainer?: {
-    display: string;
-    flexDirection: string;
-    justifyContent: TextAlign;
+    display: 'flex';
+    flexDirection: 'row' | 'column';
+    justifyContent: ContentAlign;
     mountY: number;
     focus?: StateStyle<ButtonStyle['FlexContainer']>;
     active?: StateStyle<ButtonStyle['FlexContainer']>;
@@ -69,27 +71,27 @@ const styles: ButtonStyle = {
   Container: {
     height: theme.spacer.md * 10,
     padding: [40, 10],
-    color: theme.color.fillNeutral,
-    contentColor: theme.color.fillInverse,
+    color: getHexColor(...(theme.color.fillNeutral as [string, number])),
+    contentColor: getHexColor(...(theme.color.fillInverse as [string, number])),
     display: 'flex',
     justifyContent: 'center',
     borderRadius: 30,
     focus: {
-      color: theme.color.interactiveNeutralFocus,
-      contentColor: theme.color.fillInverse,
+      color: getHexColor(...(theme.color.interactiveNeutralFocus as [string, number])),
+      contentColor: getHexColor(...(theme.color.fillNeutral as [string, number])),
       tone: {
         inverse: {
-          color: theme.color.interactiveInverseFocus,
-          contentColor: theme.color.fillNeutral
+          color: getHexColor(...(theme.color.interactiveNeutralFocus as [string, number])),
+          contentColor: getHexColor(...(theme.color.fillNeutral as [string, number]))
         },
         brand: {
-          contentColor: theme.color.fillNeutral
+          contentColor: getHexColor(...(theme.color.fillNeutral as [string, number]))
         }
       }
     },
     disabled: {
-      color: theme.color.fillNeutralDisabled,
-      contentColor: theme.color.fillNeutralDisabled
+      color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number])),
+      contentColor: getHexColor(...(theme.color.fillNeutralDisabled as [string, number]))
     }
   },
   FlexContainer: {
@@ -100,21 +102,21 @@ const styles: ButtonStyle = {
   },
   Text: {
     textAlign: 'center',
-    color: theme.color.textInverse,
+    color: getHexColor(...(theme.color.textInverse as [string, number])),
     ...theme.typography.button1,
     focus: {
-      color: theme.color.textInverse,
+      color: getHexColor(...(theme.color.fillInverse as [string, number])),
       tone: {
         inverse: {
-          color: theme.color.textNeutral
+          color: getHexColor(...(theme.color.fillNeutral as [string, number]))
         },
         brand: {
-          color: theme.color.textBrand
+          color: getHexColor(...(theme.color.fillBrand as [string, number]))
         }
       }
     },
     disabled: {
-      color: theme.color.textNeutralDisabled
+      color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number]))
     }
   }
 };

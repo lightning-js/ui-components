@@ -27,6 +27,14 @@ const meta = {
       description: 'color of icon',
       control: 'color'
     },
+    height: {
+      description: 'height of icon',
+      control: 'number'
+    },
+    width: {
+      description: 'width of icon',
+      control: 'number'
+    },
     /* fixed: {
       description: "when `true`, icon width and height will not dynamically resize",
       control: {type: 'boolean'}

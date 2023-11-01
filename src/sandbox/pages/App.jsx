@@ -16,13 +16,15 @@
  */
 
 import { View } from '@lightningjs/solid';
-import { ProgressBar } from '@lightningjs/solid-ui';
+import Icon from '@lightningjs/solid-ui';
+import lightning from '../../packages/solid/assets/images/ic_lightning_white_32.png';
+
 const App = () => {
   return (
     // eslint-disable-next-line solid/style-prop
     <View ref={window.APP} style={{ width: 1920, height: 1080 }}>
       <View color="#071423" />
-      <ProgressBar x={200} y={400} width={500} progress={0.6} zIndex={1} />
+      <Icon icon={lightning} height={100} width={100} />
     </View>
   );
 };

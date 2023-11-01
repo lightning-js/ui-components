@@ -16,6 +16,7 @@
  */
 
 import theme from 'theme';
+import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
 
 type States = 'active' | 'focus' | 'disabled';
 /**
@@ -24,34 +25,34 @@ type States = 'active' | 'focus' | 'disabled';
 type StateStyle<Type> = Partial<Omit<Type, States>>;
 
 type IconStyle = {
-  Container?: {
+  container?: {
     width: number;
     height: number;
     color: number;
-    focus?: StateStyle<IconStyle['Container']>;
-    disabled?: StateStyle<IconStyle['Container']>;
+    focus?: StateStyle<IconStyle['container']>;
+    disabled?: StateStyle<IconStyle['container']>;
     //fixed: boolean
   };
 };
 
 const styles: IconStyle = {
-  Container: {
+  container: {
     width: 100,
     height: 100,
-    color: theme.color.textInverse,
+    color: getHexColor(...(theme.color.fillInverse as [string, number])),
     focus: {
-      color: theme.color.fillNeutral,
+      color: getHexColor(...(theme.color.fillNeutral as [string, number])),
       tone: {
         inverse: {
-          color: theme.color.fillInverse
+          color: getHexColor(...(theme.color.fillInverse as [string, number]))
         },
         brand: {
-          color: theme.color.fillBrand
+          color: getHexColor(...(theme.color.fillBrand as [string, number]))
         }
       }
     },
     disabled: {
-      color: theme.color.fillNeutralDisabled
+      color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number]))
     }
     //fixed: true
   }
