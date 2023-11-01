@@ -54,6 +54,6 @@ export const Basic = {
         }
       ]
     },
-    width: 500
+    width: 770
   }
 };
