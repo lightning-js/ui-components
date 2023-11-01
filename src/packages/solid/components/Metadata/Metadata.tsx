@@ -16,21 +16,39 @@
  */
 import type { Component } from 'solid-js';
 import { View, Text, Show, For } from '@lightningjs/solid';
+import type { IntrinsicNodeProps } from '@lightningjs/solid';
 import Icon from '../Icon/Icon';
+import Badge from '../Badge/Badge';
+import type { BadgeProps } from '../Badge/Badge';
 import styles from './Metadata.styles';
 
-type Rating = {
+export interface RatingProps extends IntrinsicNodeProps {
+  /**
+   * path to the rating's icon
+   */
   icon: string;
-  title: string;
-};
+  /**
+   * Text or number to display. Numbers from 0 to 100 will display as percentages.
+   */
+  title: string | number;
+}
 
-type Details = {
-  badges?: Record<string, unknown>[]; // TODO: how to access BadgeProps
-  ratings?: Rating[]; // TODO TS def for ratings
+export interface DetailsProps extends IntrinsicNodeProps {
+  /**
+   * an array of BadgeProps to render [Badges](?path=/docs/components-badge--docs)
+   */
+  badges?: BadgeProps[];
+  /**
+   * an array of RatingProps to render ratings
+   */
+  ratings?: RatingProps[];
+  /**
+   * text to display as details title
+   */
   title?: string;
-};
+}
 
-type MetadataProps = {
+export interface MetadataProps extends IntrinsicNodeProps {
   /**
    * title text
    */
@@ -40,12 +58,12 @@ type MetadataProps = {
    */
   description?: string;
   /**
-   * TODO: LUI uses Details component here
+   * Text, Badges, and Icons to be displayed below the title and description
    */
-  details: Details;
-};
+  details: DetailsProps;
+}
 
-const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
+const Rating: Component<RatingProps> = (props: RatingProps) => {
   const formatRatingTitle = (title: string | number) => {
     if ((typeof title !== 'string' && typeof title !== 'number') || !String(title).trim().length) {
       return;
@@ -57,33 +75,45 @@ const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
     }
     return formatted;
   };
-
   return (
-    <View style={styles.container}>
-      <Show when={props.title}>
-        <Text style={styles.titleTextStyle}>{props.title}</Text>
+    <>
+      <Show when={props.icon}>
+        <Icon icon={props.icon} {...styles.rating.icon} />
       </Show>
-      <Show when={props.description}>
-        <Text style={styles.descriptionTextStyle}>{props.description}</Text>
+      <Show when={formatRatingTitle(props.title)}>
+        <Text style={styles.rating.text}>{formatRatingTitle(props.title)}</Text>
       </Show>
+    </>
+  );
+};
 
-      <For each={props.details.ratings}>
-        {(rating: Rating) => (
-          <View style={styles.rating.container}>
-            <Show when={rating.icon}>
-              <Icon icon={rating.icon} {...styles.rating.icon} />
-            </Show>
-            <Show when={formatRatingTitle(rating.title)}>
-              <Text style={styles.rating.text}>{formatRatingTitle(rating.title)}</Text>
-            </Show>
-          </View>
-        )}
-      </For>
+// TODO: vertically center everything
+const Details: Component<DetailsProps> = (props: DetailsProps) => {
+  return (
+    <View style={styles.details.container} {...props}>
+      <Show when={props.title}>
+        <Text style={styles.details.titleTextStyle}>{props.title}</Text>
+      </Show>
+      <For each={props.badges}>{(badge: BadgeProps) => <Badge {...badge} />}</For>
+      <For each={props.ratings}>{(rating: RatingProps) => <Rating {...rating} />}</For>
+    </View>
+  );
+};
+
+// TODO: title marquee support: is this built in to L3?
+// TODO: description truncation after 3 lines
+const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
+  return (
+    <View style={styles.container} {...props}>
+      <Text style={styles.titleTextStyle}>{props.title}</Text>
+      <Show when={props.description}>
+        <Text width={props.width} style={styles.descriptionTextStyle}>
+          {props.description}
+        </Text>
+      </Show>
+      <Details width={props.width} {...props.details} />
     </View>
   );
 };
 
 export default Metadata;
-
-// add details befor Rating
-// TODO: description text doesn't wrap and gets cut off

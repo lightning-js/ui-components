@@ -32,15 +32,22 @@ const styles = {
   descriptionTextStyle: {
     ...theme.typography.body2,
     wordWrap: true,
+    contain: 'width',
     maxLines: 3
   },
-  // TODO: flatten this
-  rating: {
+  details: {
     container: {
       display: 'flex',
-      justifyContent: 'flexStart',
-      alignItems: 'center'
+      flexDirection: 'row'
     },
+    titleTextStyle: {
+      ...theme.typography.body2,
+      contentSpacing: theme.spacer.sm,
+      wordWrap: true,
+      maxLines: 1
+    }
+  },
+  rating: {
     icon: {
       color: getHexColor(...(theme.color.fillNeutral as [string, number])),
       height: theme.typography.body2.lineHeight,

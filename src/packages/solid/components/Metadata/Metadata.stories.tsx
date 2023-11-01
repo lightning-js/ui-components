@@ -53,6 +53,7 @@ export const Basic = {
           title: 96
         }
       ]
-    }
+    },
+    width: 500
   }
 };
