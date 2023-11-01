@@ -45,17 +45,17 @@ type CheckboxStyle = {
      * height of checkbox
      */
     height: number;
+    padding: number[];
     /**
      * color of checkbox background
      */
     color: number;
-    /**
-     * color of checkbox background when checked
-     */
-    backgroundColorChecked: number;
     borderRadius: number;
     border: object;
     disabled?: StateStyle<CheckboxStyle['Container']>;
+  };
+  Background: {
+    color: number;
   };
 };
 
@@ -63,8 +63,8 @@ const styles: CheckboxStyle = {
   Container: {
     width: size,
     height: size,
+    padding: [10, 10],
     color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number])),
-    backgroundColorChecked: getHexColor(...(theme.color.fillNeutral as [string, number])),
     borderRadius: size / 2,
     border: {
       width: strokeWidth,
@@ -73,6 +73,9 @@ const styles: CheckboxStyle = {
     disabled: {
       alpha: theme.alpha.inactive
     }
+  },
+  Background: {
+    color: getHexColor(...(theme.color.fillNeutral as [string, number]))
   }
 };
 
