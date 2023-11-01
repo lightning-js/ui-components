@@ -57,13 +57,13 @@ type CheckboxStyle = {
   Background: {
     color: number;
   };
+  padding: [number, number];
 };
 
 const styles: CheckboxStyle = {
   Container: {
     width: size,
     height: size,
-    padding: [10, 10],
     color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number])),
     borderRadius: size / 2,
     border: {

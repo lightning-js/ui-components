@@ -34,14 +34,17 @@ export type CheckboxProps = {
 
 const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
   return (
-    <>
-      <View {...props} forwardStates style={styles.Container} />
+    <View {...props} forwardStates style={styles.Container}>
       <Show when={props.checked}>
         <View {...props} forwardStates style={styles.Container} color={styles.Background.color}>
-          <Icon {...props.icon} />
+          <Icon
+            {...props.icon}
+            x={(props.width - props.icon.width) / 2}
+            y={(props.height - props.icon.height) / 2}
+          />
         </View>
       </Show>
-    </>
+    </View>
   );
 };
 
