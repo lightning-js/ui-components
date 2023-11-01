@@ -105,7 +105,9 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
 const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
   return (
     <View style={styles.container} {...props}>
-      <Text style={styles.titleTextStyle}>{props.title}</Text>
+      <Text width={props.width} style={styles.titleTextStyle}>
+        {props.title}
+      </Text>
       <Show when={props.description}>
         <Text width={props.width} style={styles.descriptionTextStyle}>
           {props.description}
