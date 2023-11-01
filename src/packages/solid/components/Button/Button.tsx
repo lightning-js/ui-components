@@ -40,7 +40,6 @@ export interface ButtonStyleProps {
 }
 
 const Button: Component<ButtonProps> = props => {
-  debugger;
 
   const prefixIcon = props.prefix?.icon ? true : false;
   //const prefixCheckbox = props.prefix?.checked? true : false;
