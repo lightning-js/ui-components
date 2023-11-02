@@ -18,4 +18,4 @@
 export { default as Button } from './components/Button/Button';
 export { default as Badge, badgeStyles } from './components/Badge';
 export { default as ProgressBar, progressBarStyles } from './components/ProgressBar';
-export { default as Icon } from './components/Icon/Icon';
+export { default as Icon, iconStyles } from './components/Icon';
