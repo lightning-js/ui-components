@@ -50,6 +50,25 @@ const config = {
       'Cross-Origin-Opener-Policy': 'same-origin',
       'Cross-Origin-Embedder-Policy': 'require-corp'
     }
+  },
+  test: {
+    browser: {
+      enabled: true,
+      headless: false,
+      provider: 'playwright',
+      name: 'chromium',
+      slowHijackESM: false
+    },
+    deps: {
+      // >= 0.34
+      optimizer: {
+        web: {
+          include: ['@lightningjs/ui-components-theme-base']
+        }
+      }
+    },
+    testTransformMode: { web: ['/.[jt]sx?$/'] },
+    globals: true
   }
 };
 

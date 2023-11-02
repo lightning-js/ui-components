@@ -15,7 +15,7 @@
     "build": "pnpm run build-storybook",
     "build-storybook": "storybook build",
     "storybook": "storybook dev -p 6006",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest"
   },
   "author": "",
   "license": "Apache-2.0",
@@ -37,6 +37,9 @@
     "@storybook/blocks": "^7.5.1",
     "@storybook/builder-vite": "^7.5.1",
     "@storybook/testing-library": "^0.2.2",
+    "@vitest/browser": "^0.34.6",
+    "jsdom": "^22.1.0",
+    "playwright": "^1.39.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^7.5.1",
@@ -46,6 +49,7 @@
     "vite": "^4.5.0",
     "vite-bundle-visualizer": "^0.10.0",
     "vite-plugin-cross-origin-isolation": "^0.1.6",
-    "vite-plugin-solid": "^2.7.2"
+    "vite-plugin-solid": "^2.7.2",
+    "vitest": "^0.34.6"
   }
 }
