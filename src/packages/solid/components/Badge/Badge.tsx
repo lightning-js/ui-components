@@ -32,11 +32,11 @@ type BadgeProps = {
   /**
    * side of the text where icon will appear on
    */
-  iconAlign: string;
+  iconAlign?: string;
   /**
    * Object containing all properties supported in the [Icon component](?path=/docs/components-icon--icon)
    */
-  icon: Partial<IconProps>;
+  icon?: Partial<IconProps>;
 };
 
 const padding = styles.padding;

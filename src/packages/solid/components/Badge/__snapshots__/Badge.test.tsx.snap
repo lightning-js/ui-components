@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Badge > renders 1`] = `
+{
+  "alpha": 1,
+  "children": Children [
+    "",
+    {
+      "alpha": 1,
+      "color": "#FFFFFFFF",
+      "fontSize": 20,
+      "pivot": 0.5,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "scale": 1,
+      "text": "Hello",
+      "x": 960,
+      "zIndex": 0.1112,
+    },
+    "",
+  ],
+  "color": "#93A9FDFF",
+  "height": 24,
+  "pivot": 0.5,
+  "pivotX": 0.5,
+  "pivotY": 0.5,
+  "scale": 1,
+  "width": 1920,
+  "zIndex": 0.111,
+}
+`;
