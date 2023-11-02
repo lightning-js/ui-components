@@ -55,7 +55,7 @@ export const PNG = {
     height: 100,
     icon: lightning,
     color: theme.color.fillInverse[0]
-    //fixed: true,
+    //fixed: true,    TODO: see if fixed is supported
   }
 };
 
