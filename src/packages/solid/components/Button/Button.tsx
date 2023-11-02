@@ -48,8 +48,8 @@ const Button: Component<ButtonProps> = props => {
   //const suffixCheckbox = props.suffix?.checked? true : false;
   return (
     <node
-      {...props}
       use:withPadding={styles.Container?.padding}
+      {...props}
       style={{
         ...styles.Container,
         color: props.color || styles.Container?.color
