@@ -26,13 +26,13 @@ const styles = {
   },
   titleTextStyle: {
     ...theme.typography.headline3,
-    wordWrap: true,
+    contain: 'both',
     maxLines: 1
   },
   descriptionTextStyle: {
     ...theme.typography.body2,
+    contain: 'both',
     wordWrap: true,
-    contain: 'width',
     maxLines: 3
   },
   details: {
