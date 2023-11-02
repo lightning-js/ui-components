@@ -16,24 +16,9 @@
  */
 
 import theme from 'theme';
+import { Color, TextAlign, ContentAlign, Animatable, StateStyle } from '../../../../shared/types/solid';
 import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
 
-type Color = number | string;
-type AnimationSettings = { duration?: number; delay?: number; timing?: string };
-type TextAlign = 'left' | 'center' | 'right';
-type ContentAlign = 'center' | 'flexStart' | 'flexEnd' | 'spaceBetween' | 'spaceEvenly';
-type States = 'active' | 'focus' | 'disabled';
-
-/**
- * allows the property to either be the supplied type,
- * or an array containing that type and an animationSettings object
- */
-type Animatable<Type> = Type | [Type, AnimationSettings];
-
-/**
- * states can contain any of the style object's properties, except other states
- */
-type StateStyle<Type> = Partial<Omit<Type, States>>;
 
 type ButtonStyle = {
   Container?: {
