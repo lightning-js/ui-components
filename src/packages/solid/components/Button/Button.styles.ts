@@ -45,6 +45,7 @@ type ButtonStyle = {
   Text: {
     fontSize: number;
     textAlign: TextAlign;
+    mount: number;
     color: Animatable<Color>;
     focus?: StateStyle<ButtonStyle['Text']>;
     active?: StateStyle<ButtonStyle['Text']>;
@@ -83,7 +84,7 @@ const styles: ButtonStyle = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    mountY: -0.2
+    mountY: -0.3
   },
   Text: {
     textAlign: 'center',

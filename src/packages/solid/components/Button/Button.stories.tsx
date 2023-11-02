@@ -24,13 +24,13 @@ function getComponentArray(comps: any) {
   let arr = {};
   switch (comps) {
     case 'icon':
-      arr = { icon: lightning, width: 50, height: 50 };
+      arr = { icon: lightning, width: 35, height: 35 };
       break;
     case 'checkbox':
       //arr = [{ checked: true }];
       break;
     case 'combo':
-      arr = { icon: lightning, width: 50, height: 50 };
+      arr = { icon: lightning, width: 35, height: 35 };
       //{ checked: true }
       break;
   }
@@ -44,7 +44,7 @@ const meta: Meta<typeof Button> = {
   tags: ['autodocs'],
   component: Button,
   argTypes: {
-    /*     mode: {
+/*     mode: {
       control: { type: 'radio' },
       options: ['focused', 'unfocused', 'disabled'],
       description: 'Sets the visual mode for the component',
@@ -97,6 +97,7 @@ const meta: Meta<typeof Button> = {
         defaultValue: { summary: 'undefined' }
       }
     }
+
   }
 };
 
