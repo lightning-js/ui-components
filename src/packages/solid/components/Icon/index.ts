@@ -16,4 +16,4 @@
  */
 
 export { default as default, type IconProps } from './Icon';
-export { default as IconStyles } from './Icon.styles';
+export { default as iconStyles } from './Icon.styles';

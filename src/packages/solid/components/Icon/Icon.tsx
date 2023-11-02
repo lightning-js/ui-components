@@ -16,17 +16,23 @@
  */
 
 import type { Component } from 'solid-js';
-import { View } from '@lightningjs/solid';
+import { View, hexColor } from '@lightningjs/solid';
 import styles from './Icon.styles';
 
 export type IconProps = {
   /**
    * icon color (can only be applied on png icons)
    */
-  color: number;
-  /* 
-   * when `true`, icon width and height will not dynamically resize to the final texture's `finalW` and `finalH` properties
-  fixed?: boolean; */
+  color?: number;
+  /**
+   * icon width
+   */
+  width?: number;
+
+  /**
+   * icon height
+   */
+  height?: number;
 
   /**
    * path to image or inline SVG XML
@@ -34,16 +40,15 @@ export type IconProps = {
   icon?: string;
 };
 
-const Icon: Component<IconProps> = (props: IconProps) => {
+const Icon: Component<IconProps> = props => {
   return (
     <View
       {...props}
       // TODO, wait to see if fixed is needed
       src={props.icon}
-      y={10}
-      x={10}
       style={styles.container}
-    ></View>
+      color={hexColor(props.color)}
+    />
   );
 };
 
