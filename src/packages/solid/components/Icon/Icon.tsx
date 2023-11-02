@@ -40,8 +40,6 @@ const Icon: Component<IconProps> = (props: IconProps) => {
       {...props}
       // TODO, wait to see if fixed is needed
       src={props.icon}
-      // y={10}
-      // x={10}
       style={styles.container}
     ></View>
   );

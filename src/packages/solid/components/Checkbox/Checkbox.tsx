@@ -37,11 +37,7 @@ const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
     <View {...props} forwardStates style={styles.Container}>
       <Show when={props.checked}>
         <View {...props} forwardStates style={styles.Container} color={styles.Background.color}>
-          <Icon
-            {...props.icon}
-            x={(props.width - props.icon.width) / 2}
-            y={(props.height - props.icon.height) / 2}
-          />
+          <Icon {...props.icon} x={props.width / 2} y={props.height / 2} mount={0.5} />
         </View>
       </Show>
     </View>
