@@ -47,7 +47,7 @@ const Icon: Component<IconProps> = props => {
       // TODO, wait to see if fixed is needed
       src={props.icon}
       style={styles.container}
-      color={hexColor(props.color)}
+      color={hexColor(props.color) || styles.container?.color}
     />
   );
 };
