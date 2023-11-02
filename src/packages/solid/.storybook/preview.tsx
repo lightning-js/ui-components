@@ -36,7 +36,7 @@ export const argTypes = {
   }
 };
 export const args = {
-  width: 300
+  //width: 300
 };
 
 const preview = {
