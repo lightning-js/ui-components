@@ -30,7 +30,7 @@ export interface RatingProps extends IntrinsicNodeProps {
   /**
    * Text or number to display. Numbers from 0 to 100 will display as percentages.
    */
-  title: string | number;
+  title: string;
 }
 
 export interface DetailsProps extends IntrinsicNodeProps {
