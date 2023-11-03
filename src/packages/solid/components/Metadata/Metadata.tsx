@@ -64,7 +64,7 @@ export interface MetadataProps extends IntrinsicNodeProps {
 }
 
 const Rating: Component<RatingProps> = (props: RatingProps) => {
-  const formatRatingTitle = (title: string | number) => {
+  const formatTitle = (title: string | number) => {
     if ((typeof title !== 'string' && typeof title !== 'number') || !String(title).trim().length) {
       return;
     }
@@ -80,8 +80,8 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
       <Show when={props.icon}>
         <Icon icon={props.icon} {...styles.rating.icon} />
       </Show>
-      <Show when={formatRatingTitle(props.title)}>
-        <Text style={styles.rating.text}>{formatRatingTitle(props.title)}</Text>
+      <Show when={formatTitle(props.title)}>
+        <Text style={styles.rating.text}>{formatTitle(props.title)}</Text>
       </Show>
     </>
   );
