@@ -31,14 +31,13 @@ const styles = {
   },
   descriptionTextStyle: {
     ...theme.typography.body2,
-    contain: 'both',
-    wordWrap: true,
-    maxLines: 3
+    contain: 'both'
   },
   details: {
     container: {
       display: 'flex',
-      flexDirection: 'row'
+      flexDirection: 'row',
+      alignItems: 'center'
     },
     titleTextStyle: {
       ...theme.typography.body2,

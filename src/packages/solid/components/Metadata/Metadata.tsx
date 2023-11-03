@@ -15,6 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import type { Component } from 'solid-js';
+import { createSignal } from 'solid-js';
 import { View, Text, Show, For } from '@lightningjs/solid';
 import type { IntrinsicNodeProps } from '@lightningjs/solid';
 import Icon from '../Icon/Icon';
@@ -46,6 +47,8 @@ export interface DetailsProps extends IntrinsicNodeProps {
    * text to display as details title
    */
   title?: string;
+
+  onDimensionsChange?: (dimensions: { width: number; height: number }) => unknown;
 }
 
 export interface MetadataProps extends IntrinsicNodeProps {
@@ -90,7 +93,17 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
 // TODO: vertically center everything
 const Details: Component<DetailsProps> = (props: DetailsProps) => {
   return (
-    <View style={styles.details.container} {...props}>
+    <View
+      onBeforeLayout={(_, dimensions) => {
+        const width = dimensions?.width;
+        const height = dimensions?.height;
+        if (width !== undefined && height !== undefined && props.onDimensionsChange) {
+          props.onDimensionsChange({ width, height });
+        }
+      }}
+      style={styles.details.container}
+      {...props}
+    >
       <Show when={props.title}>
         <Text style={styles.details.titleTextStyle}>{props.title}</Text>
       </Show>
@@ -103,17 +116,22 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
 // TODO: title marquee support: is this built in to L3?
 // TODO: description truncation after 3 lines
 const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
+  const [detailsHeight, setDetailsHeight] = createSignal(0);
+
   return (
     <View style={styles.container} {...props}>
       <Text width={props.width} style={styles.titleTextStyle}>
         {props.title}
       </Text>
       <Show when={props.description}>
-        <Text width={props.width} style={styles.descriptionTextStyle}>
-          {props.description}
-        </Text>
+        <Text style={styles.descriptionTextStyle}>{props.description}</Text>
       </Show>
-      <Details width={props.width} {...props.details} />
+      <Details
+        width={props.width}
+        height={detailsHeight()}
+        {...props.details}
+        onDimensionsChange={({ height }) => setDetailsHeight(height * 2)}
+      />
     </View>
   );
 };
