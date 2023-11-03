@@ -26,12 +26,12 @@ const styles = {
   },
   titleTextStyle: {
     ...theme.typography.headline3,
-    contain: 'both',
-    maxLines: 1
+    contain: 'both'
   },
   descriptionTextStyle: {
     ...theme.typography.body2,
-    contain: 'both'
+    contain: 'both',
+    maxLines: 3
   },
   details: {
     container: {
@@ -39,12 +39,7 @@ const styles = {
       flexDirection: 'row',
       alignItems: 'center'
     },
-    titleTextStyle: {
-      ...theme.typography.body2,
-      contentSpacing: theme.spacer.sm,
-      wordWrap: true,
-      maxLines: 1
-    }
+    titleTextStyle: theme.typography.body2
   },
   rating: {
     icon: {

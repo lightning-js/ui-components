@@ -90,7 +90,6 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
   );
 };
 
-// TODO: vertically center everything
 const Details: Component<DetailsProps> = (props: DetailsProps) => {
   return (
     <View
@@ -124,13 +123,15 @@ const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
         {props.title}
       </Text>
       <Show when={props.description}>
-        <Text style={styles.descriptionTextStyle}>{props.description}</Text>
+        <View height={styles.descriptionTextStyle.lineHeight * styles.descriptionTextStyle.maxLines}>
+          <Text style={styles.descriptionTextStyle}>{props.description}</Text>
+        </View>
       </Show>
       <Details
         width={props.width}
         height={detailsHeight()}
         {...props.details}
-        onDimensionsChange={({ height }) => setDetailsHeight(height * 2)}
+        onDimensionsChange={({ height }) => setDetailsHeight(height / 2)}
       />
     </View>
   );
