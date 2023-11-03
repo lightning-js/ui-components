@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components/Checkbox Basic smoke-test 1`] = `
+<div>
+  <canvas width="533"
+          height="400"
+          style="width: 533.333px; height: 400px;"
+  >
+  </canvas>
+</div>
+`;
+
+exports[`Components/Checkbox Basic smoke-test 2`] = `
+<div>
+  <canvas width="533"
+          height="400"
+          style="width: 533.333px; height: 400px;"
+  >
+  </canvas>
+</div>
+`;
