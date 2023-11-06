@@ -16,7 +16,7 @@
  */
 
 import { Show, type Component } from 'solid-js';
-import { View, Text } from '@lightningjs/solid';
+import { View, Text, type IntrinsicNodeProps } from '@lightningjs/solid';
 import Icon, { type IconProps } from '../Icon/Icon';
 //import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox';
 import styles from './Button.styles';
@@ -26,7 +26,7 @@ withPadding;
 /**
  * Primary UI component for user interaction
  */
-export interface ButtonProps extends ButtonStyleProps {
+export interface ButtonProps extends ButtonStyleProps, IntrinsicNodeProps {
   title: string;
   suffix?: Partial<IconProps>; //& Partial<CheckboxProps>; // null, icon, checkbox, combo
   prefix?: Partial<IconProps>; //Component<IntrinsicCommonProps>  & Partial<CheckboxProps>; // null, icon, checkbox, combo
@@ -40,12 +40,6 @@ export interface ButtonStyleProps {
 }
 
 const Button: Component<ButtonProps> = props => {
-
-  const prefixIcon = props.prefix?.icon ? true : false;
-  //const prefixCheckbox = props.prefix?.checked? true : false;
-
-  const suffixIcon = props.suffix?.icon ? true : false;
-  //const suffixCheckbox = props.suffix?.checked? true : false;
   return (
     <node
       use:withPadding={styles.Container?.padding}
@@ -57,8 +51,8 @@ const Button: Component<ButtonProps> = props => {
       animate
       forwardStates
     >
-      <View forwardStates style={{ ...styles.FlexContainer }} width={props.width}>
-        <Show when={prefixIcon}>
+      <View forwardStates style={styles.FlexContainer} width={props.width}>
+        <Show when={props.prefix?.icon}>
           <Icon {...props.prefix} />
         </Show>
         {/* 
@@ -67,10 +61,10 @@ const Button: Component<ButtonProps> = props => {
         </Show>  */}
 
         <Show when={props.title}>
-          <Text style={{ ...styles.Text }}>{props.title}</Text>
+          <Text style={styles.Text}>{props.title}</Text>
         </Show>
 
-        <Show when={suffixIcon}>
+        <Show when={props.suffix?.icon}>
           <Icon {...props.suffix} />
         </Show>
 

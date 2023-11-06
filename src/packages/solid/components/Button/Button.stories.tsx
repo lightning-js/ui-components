@@ -44,14 +44,14 @@ const meta: Meta<typeof Button> = {
   tags: ['autodocs'],
   component: Button,
   argTypes: {
-/*     mode: {
+    states: {
       control: { type: 'radio' },
-      options: ['focused', 'unfocused', 'disabled'],
+      options: ['focus', 'unfocused', 'disabled'],
       description: 'Sets the visual mode for the component',
       table: {
-        defaultValue: { summary: 'focused' }
+        defaultValue: { summary: 'focus' }
       }
-    }, */
+    },
     title: {
       control: 'text',
       description: 'Title text',
