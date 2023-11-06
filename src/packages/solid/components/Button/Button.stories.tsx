@@ -19,12 +19,14 @@ import Button from './Button';
 import lightning from '../../assets/images/ic_lightning_white_32.png';
 import check from '../../assets/images/check-icon.png';
 
+
 type Story = StoryObj<typeof Button>;
 
 function getComponentArray(comps: any) {
   let arr = {};
   switch (comps) {
     case 'icon':
+
       arr = { src: lightning, width: 35, height: 35 };
       break;
     case 'checkbox':
@@ -97,6 +99,7 @@ const meta: Meta<typeof Button> = {
         defaultValue: { summary: 'undefined' }
       }
     }
+
   }
 };
 

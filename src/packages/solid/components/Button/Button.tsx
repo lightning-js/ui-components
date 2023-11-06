@@ -15,6 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 import { Show, splitProps, type Component } from 'solid-js';
 import { View, Text, type IntrinsicNodeProps } from '@lightningjs/solid';
 import Icon, { type IconProps } from '../Icon/Icon';
@@ -40,6 +41,7 @@ export interface ButtonStyleProps {
 }
 
 const Button: Component<ButtonProps> = props => {
+  
   const [prefixCheckbox, prefixIcon] = splitProps(props.prefix, ['icon', 'checked']);
   const [suffixCheckbox, suffixIcon] = splitProps(props.suffix, ['icon', 'checked']);
 
@@ -55,6 +57,7 @@ const Button: Component<ButtonProps> = props => {
       forwardStates
     >
       <View forwardStates style={styles.FlexContainer} width={props.width}>
+
         <Show when={props.prefix?.src}>
           <Icon {...prefixIcon} />
         </Show>
@@ -74,6 +77,7 @@ const Button: Component<ButtonProps> = props => {
         <Show when={props.suffix?.icon}>
           <Checkbox {...suffixCheckbox} />
         </Show>
+
       </View>
     </node>
   );

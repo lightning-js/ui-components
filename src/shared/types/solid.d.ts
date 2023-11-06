@@ -19,6 +19,7 @@ declare module 'theme' {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const theme: any;
   export default theme;
+
 }
 
 export type Color = number | string;
@@ -36,4 +37,5 @@ type Animatable<Type> = Type | [Type, AnimationSettings];
 /**
  * states can contain any of the style object's properties, except other states
  */
+
 type StateStyle<Type> = Partial<Omit<Type, States>>;
