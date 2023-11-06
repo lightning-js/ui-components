@@ -40,7 +40,7 @@ const meta = {
       description: "when `true`, icon width and height will not dynamically resize",
       control: {type: 'boolean'}
     }, */
-    iconSrc: {
+    src: {
       description: 'path to image or inline SVG XML'
     }
   }
@@ -52,7 +52,7 @@ export const PNG = {
   args: {
     width: 100,
     height: 100,
-    iconSrc: lightning,
+    src: lightning,
     color: theme.color.fillInverse[0]
     //fixed: true,
   }
