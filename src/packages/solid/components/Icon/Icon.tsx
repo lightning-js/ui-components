@@ -41,13 +41,12 @@ export type IconProps = {
 };
 
 const Icon: Component<IconProps> = props => {
+
   return (
     <View
-      {...props}
+      {...props }
       // TODO, wait to see if fixed is needed
-      src={props.src}
       style={styles.container}
-      color={hexColor(props.color) || styles.container?.color}
     />
   );
 };

@@ -16,10 +16,14 @@
  */
 
 import Icon from './Icon';
+import type { Meta, StoryObj } from 'storybook-solidjs';
 import lightning from '../../assets/images/ic_lightning_white_32.png';
 import theme from 'theme';
+import { hexColor } from '@lightningjs/solid';
 
-const meta = {
+type Story = StoryObj<typeof Icon>;
+
+const meta: Meta<typeof Icon>= {
   title: 'Components/Icon',
   component: Icon,
   tags: ['autodocs'],
@@ -48,12 +52,17 @@ const meta = {
 
 export default meta;
 
-export const PNG = {
+export const PNG: Story = {
+  render: args => {
+    return (
+      <Icon {...args} color={hexColor(args.color)||undefined} />
+    );
+  },
   args: {
     width: 100,
     height: 100,
     src: lightning,
-    color: theme.color.fillInverse[0]
+    //color: theme.color.fillInverse[0]
     //fixed: true,
   }
 };
