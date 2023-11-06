@@ -17,6 +17,7 @@
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import Button from './Button';
 import lightning from '../../assets/images/ic_lightning_white_32.png';
+import check from '../../assets/images/check-icon.png';
 
 type Story = StoryObj<typeof Button>;
 
@@ -24,14 +25,13 @@ function getComponentArray(comps: any) {
   let arr = {};
   switch (comps) {
     case 'icon':
-      arr = { icon: lightning, width: 35, height: 35 };
+      arr = { src: lightning, width: 35, height: 35 };
       break;
     case 'checkbox':
-      //arr = [{ checked: true }];
+      arr = { icon: check, checked: true };
       break;
     case 'combo':
-      arr = { icon: lightning, width: 35, height: 35 };
-      //{ checked: true }
+      arr = { src: lightning, width: 35, height: 35, icon: check, checked: true };
       break;
   }
   return arr;
@@ -97,7 +97,6 @@ const meta: Meta<typeof Button> = {
         defaultValue: { summary: 'undefined' }
       }
     }
-
   }
 };
 

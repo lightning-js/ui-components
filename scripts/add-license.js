@@ -229,7 +229,7 @@ const getAllFiles = function (inComingDirPath, arrayOfFiles) {
 };
 const allFiles = getAllFiles('');
 // filter all .js and .jsx files
-const jsFiles = allFiles.filter((file) => {
+const jsFiles = allFiles.filter(file => {
   // ignore json files
   if (file.includes('.json') || file.includes('config')) {
     return false;
@@ -237,7 +237,7 @@ const jsFiles = allFiles.filter((file) => {
   return file.includes('.js') || file.includes('.jsx') || file.includes('.ts') || file.includes('.tsx');
 });
 // replace Copyright line in all files that have the header
-jsFiles.forEach((file) => {
+jsFiles.forEach(file => {
   console.log('Processing... ' + file);
   fs.readFile(file, 'utf8', function (err, data) {
     if (err) {

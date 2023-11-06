@@ -37,7 +37,7 @@ export type IconProps = {
   /**
    * path to image or inline SVG XML
    */
-  icon?: string;
+  src?: string;
 };
 
 const Icon: Component<IconProps> = props => {
@@ -45,7 +45,7 @@ const Icon: Component<IconProps> = props => {
     <View
       {...props}
       // TODO, wait to see if fixed is needed
-      src={props.icon}
+      src={props.src}
       style={styles.container}
       color={hexColor(props.color) || styles.container?.color}
     />

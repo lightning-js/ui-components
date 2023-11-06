@@ -19,7 +19,6 @@ import Icon from './Icon';
 import lightning from '../../assets/images/ic_lightning_white_32.png';
 import theme from 'theme';
 
-
 const meta = {
   title: 'Components/Icon',
   component: Icon,
@@ -41,7 +40,7 @@ const meta = {
       description: "when `true`, icon width and height will not dynamically resize",
       control: {type: 'boolean'}
     }, */
-    icon: {
+    iconSrc: {
       description: 'path to image or inline SVG XML'
     }
   }
@@ -53,7 +52,7 @@ export const PNG = {
   args: {
     width: 100,
     height: 100,
-    icon: lightning,
+    iconSrc: lightning,
     color: theme.color.fillInverse[0]
     //fixed: true,
   }

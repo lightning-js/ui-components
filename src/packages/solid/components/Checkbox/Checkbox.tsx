@@ -29,7 +29,7 @@ export type CheckboxProps = {
   /**
    * Object containing all properties supported in the [Icon component](?path=/docs/components-icon--icon)
    */
-  icon: Partial<IconProps>;
+  icon?: Partial<IconProps> | undefined;
 };
 
 const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {

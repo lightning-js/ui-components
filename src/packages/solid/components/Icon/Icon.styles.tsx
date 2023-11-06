@@ -39,12 +39,12 @@ const styles: IconStyle = {
   container: {
     width: 100,
     height: 100,
-    color: getHexColor(...(theme.color.fillInverse as [string, number])),
+    color: getHexColor(...(theme.color.fillNeutral as [string, number])),
     focus: {
-      color: getHexColor(...(theme.color.fillNeutral as [string, number])),
+      color: getHexColor(...(theme.color.fillInverse as [string, number])),
       tone: {
         inverse: {
-          color: getHexColor(...(theme.color.fillInverse as [string, number]))
+          color: getHexColor(...(theme.color.fillNeutral as [string, number]))
         },
         brand: {
           color: getHexColor(...(theme.color.fillBrand as [string, number]))

@@ -15,10 +15,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Show, type Component } from 'solid-js';
+import { Show, splitProps, type Component } from 'solid-js';
 import { View, Text, type IntrinsicNodeProps } from '@lightningjs/solid';
 import Icon, { type IconProps } from '../Icon/Icon';
-//import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox';
+import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox';
 import styles from './Button.styles';
 import { withPadding } from '@lightningjs/solid-primitives';
 withPadding;
@@ -28,8 +28,8 @@ withPadding;
  */
 export interface ButtonProps extends ButtonStyleProps, IntrinsicNodeProps {
   title: string;
-  suffix?: Partial<IconProps>; //& Partial<CheckboxProps>; // null, icon, checkbox, combo
-  prefix?: Partial<IconProps>; //Component<IntrinsicCommonProps>  & Partial<CheckboxProps>; // null, icon, checkbox, combo
+  suffix: Partial<IconProps> & Partial<CheckboxProps>; // null, icon, checkbox, combo
+  prefix: Partial<IconProps> & Partial<CheckboxProps>; // null, icon, checkbox, combo
   width: number;
   height: number;
 }
@@ -40,6 +40,9 @@ export interface ButtonStyleProps {
 }
 
 const Button: Component<ButtonProps> = props => {
+  const [prefixCheckbox, prefixIcon] = splitProps(props.prefix, ['icon', 'checked']);
+  const [suffixCheckbox, suffixIcon] = splitProps(props.suffix, ['icon', 'checked']);
+
   return (
     <node
       use:withPadding={styles.Container?.padding}
@@ -52,25 +55,25 @@ const Button: Component<ButtonProps> = props => {
       forwardStates
     >
       <View forwardStates style={styles.FlexContainer} width={props.width}>
-        <Show when={props.prefix?.icon}>
-          <Icon {...props.prefix} />
+        <Show when={props.prefix?.src}>
+          <Icon {...prefixIcon} />
         </Show>
-        {/* 
-         <Show when={prefixCheckbox}>
-            <Checkbox {...props.prefix} />
-        </Show>  */}
+
+        <Show when={props.prefix?.icon}>
+          <Checkbox {...prefixCheckbox} />
+        </Show>
 
         <Show when={props.title}>
           <Text style={styles.Text}>{props.title}</Text>
         </Show>
 
-        <Show when={props.suffix?.icon}>
-          <Icon {...props.suffix} />
+        <Show when={props.suffix?.src}>
+          <Icon {...suffixIcon} />
         </Show>
 
-        {/*          <Show when={prefixCheckbox}>
-            <Checkbox {...props.suffix} />
-        </Show>  */}
+        <Show when={props.suffix?.icon}>
+          <Checkbox {...suffixCheckbox} />
+        </Show>
       </View>
     </node>
   );
