@@ -14,6 +14,32 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
+import Checkbox from './Checkbox';
+import check from '../../assets/images/check-icon.png';
 
-export { default as default, type ButtonProps } from './Button';
-export { default as buttonStyles } from './Button.styles';
+const meta = {
+  title: 'Components/Checkbox',
+  component: Checkbox,
+  tags: ['autodocs'],
+  argTypes: {
+    checked: {
+      description: 'Toggles checked between on and off',
+      control: 'boolean'
+    }
+  }
+};
+
+export default meta;
+
+export const Basic = {
+  args: {
+    checked: true,
+    width: 40,
+    height: 40,
+    icon: {
+      width: 20,
+      height: 20,
+      icon: check
+    }
+  }
+};

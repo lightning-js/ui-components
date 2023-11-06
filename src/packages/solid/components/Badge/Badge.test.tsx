@@ -1,5 +1,6 @@
-/*
+﻿/**
  * Copyright 2023 Comcast Cable Communications Management, LLC
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,5 +16,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export { default as default, type ButtonProps } from './Button';
-export { default as buttonStyles } from './Button.styles';
+import Badge from '.';
+import { render } from '../../test-utils';
+import { describe, expect, it } from 'vitest';
+
+describe('Badge', () => {
+  it('renders', async () => {
+    const tree = await render(() => <Badge title="Hello" />);
+    expect(tree).toMatchSnapshot();
+  });
+});

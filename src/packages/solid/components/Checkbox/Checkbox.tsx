@@ -14,44 +14,34 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
+
 import type { Component } from 'solid-js';
-import { Text, Show } from '@lightningjs/solid';
-import { withPadding } from '@lightningjs/solid-primitives';
+import { View, Show } from '@lightningjs/solid';
 import Icon, { type IconProps } from '../Icon/Icon';
-import styles from './Badge.styles';
-withPadding; // Preserve the import.
+import styles from './Checkbox.styles';
 
-// props in LUI: title, icon, iconAlign, iconWidth, iconHeight
-// NOTE: Badge can have an icon on left or right or no Icon
-
-type BadgeProps = {
+export type CheckboxProps = {
   /**
-   * Badge text
+   * Indicates whether the checkbox is checked or unchecked.
+   * Setting this to `true` will check the checkbox, and setting it to `false` will uncheck it.
    */
-  title: string;
-  /**
-   * side of the text where icon will appear on
-   */
-  iconAlign?: string;
+  checked?: boolean;
   /**
    * Object containing all properties supported in the [Icon component](?path=/docs/components-icon--icon)
    */
-  icon?: Partial<IconProps>;
+  icon: Partial<IconProps>;
 };
 
-const padding = styles.padding;
-const Badge: Component<BadgeProps> = (props: BadgeProps) => {
+const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
   return (
-    <node use:withPadding={padding} style={styles.container} {...props}>
-      <Show when={props.iconAlign === 'left'}>
-        <Icon {...props.icon} />
+    <View {...props} forwardStates style={styles.Container}>
+      <Show when={props.checked}>
+        <View {...props} forwardStates style={styles.Container} color={styles.Background.color}>
+          <Icon {...props.icon} x={props.width / 2} y={props.height / 2} mount={0.5} />
+        </View>
       </Show>
-      <Text style={styles.textStyle}>{props.title}</Text>
-      <Show when={props.iconAlign === 'right'}>
-        <Icon {...props.icon} />
-      </Show>
-    </node>
+    </View>
   );
 };
 
-export default Badge;
+export default Checkbox;
