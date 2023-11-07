@@ -16,16 +16,10 @@
  */
 
 import type { Component } from 'solid-js';
-import { View, hexColor } from '@lightningjs/solid';
+import { View, type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles from './ProgressBar.styles';
 
-type ProgressBarProps = {
-  animationSettings: object;
-  borderRadius: number;
-  /**
-   * color of the backdrop bar, representing the total progress
-   */
-  color: number;
+export interface ProgressBarProps extends ButtonStyleProps, IntrinsicNodeProps {
   /**
    * a numeric value of the current progress represented as a decimal between 0 and 1
    */
@@ -33,23 +27,33 @@ type ProgressBarProps = {
   /**
    * color of the overlay bar, representing the current progress
    */
-  progressColor: number;
+  progressColor?: number;
   /**
    * total width of the component
    */
   width: number;
-};
+  /**
+   * total height of the component
+   */
+  height: number;
+}
+
+export interface ButtonStyleProps {
+  color?: number;
+  animationSettings: object;
+  borderRadius?: number;
+}
 
 const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
   return (
-    <View style={styles.container} {...props} color={hexColor(props.color)}>
+    <View {...props} style={styles.container}>
       <View
         style={styles.progressBar}
         animate
         animationSettings={props.animationSettings}
         width={props.width * props.progress}
         borderRadius={props.borderRadius}
-        color={hexColor(props.progressColor)}
+        color={props.progressColor}
       />
     </View>
   );

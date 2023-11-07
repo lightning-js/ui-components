@@ -16,9 +16,13 @@
  */
 
 import ProgressBar from './ProgressBar';
+import type { Meta, StoryObj } from 'storybook-solidjs';
 import theme from 'theme';
+import { hexColor } from '@lightningjs/solid';
 
-const meta = {
+type Story = StoryObj<typeof ProgressBar>;
+
+const meta: Meta<typeof ProgressBar> = {
   title: 'Components/Progress Bar',
   component: ProgressBar,
   tags: ['autodocs'],
@@ -44,14 +48,17 @@ const meta = {
 
 export default meta;
 
-export const Basic = {
+export const Basic: Story = {
+  render: args => {
+    return <ProgressBar {...args} progressColor={hexColor(args.progressColor) || undefined} color={hexColor(args.color) || undefined} />;
+  },
   args: {
     width: 500,
     height: theme.spacer.md,
     progress: 0.5,
     // TODO make it so we don't need to do this
-    color: theme.color.fillNeutralSecondary[0],
-    progressColor: theme.color.fillBrand[0],
+    //color: theme.color.fillNeutralSecondary[0],
+    //progressColor: theme.color.fillBrand[0],
     borderRadius: theme.radius.xs
   }
 };

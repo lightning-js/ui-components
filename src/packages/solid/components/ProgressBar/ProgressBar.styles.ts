@@ -16,16 +16,17 @@
  */
 
 import theme from 'theme';
+import { Color, Animatable } from '../../../../shared/types/solid';
 import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
 
 type ProgressBarStyle = {
   container: {
     height: number;
-    color: number;
+    color: Animatable<Color>;
     borderRadius: number;
   };
   progressBar: {
-    color: number;
+    color: Animatable<Color>;
     borderRadius: number;
   };
 };
@@ -38,7 +39,7 @@ const styles: ProgressBarStyle = {
   },
   progressBar: {
     borderRadius: theme.radius.xs,
-    color: getHexColor(...(theme.color.fillBrand as [string, number]))
+    color: getHexColor(...(theme.color.fillBrand as [string, number])),
   }
 };
 
