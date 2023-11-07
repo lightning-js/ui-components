@@ -25,10 +25,6 @@ export interface ProgressBarProps extends ProgressBarStyleProps, IntrinsicNodePr
    */
   progress: number;
   /**
-   * color of the overlay bar, representing the current progress
-   */
-  progressColor?: number;
-  /**
    * total width of the component
    */
   width: number;
@@ -39,6 +35,7 @@ export interface ProgressBarProps extends ProgressBarStyleProps, IntrinsicNodePr
 }
 
 export interface ProgressBarStyleProps {
+  progressColor?: number;
   color?: number;
   animationSettings: object;
   borderRadius?: number;

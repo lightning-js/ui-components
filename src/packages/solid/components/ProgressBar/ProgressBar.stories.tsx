@@ -50,7 +50,13 @@ export default meta;
 
 export const Basic: Story = {
   render: args => {
-    return <ProgressBar {...args} progressColor={hexColor(args.progressColor) || undefined} color={hexColor(args.color) || undefined} />;
+    return (
+      <ProgressBar
+        {...args}
+        progressColor={hexColor(args.progressColor) || undefined}
+        color={hexColor(args.color) || undefined}
+      />
+    );
   },
   args: {
     width: 500,
