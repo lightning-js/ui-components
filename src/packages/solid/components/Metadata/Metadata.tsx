@@ -14,7 +14,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import type { Component } from 'solid-js';
+import type { Component, Accessor } from 'solid-js';
 import { createSignal } from 'solid-js';
 import { View, Text, Show, For } from '@lightningjs/solid';
 import type { IntrinsicNodeProps } from '@lightningjs/solid';
@@ -81,10 +81,16 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
   return (
     <>
       <Show when={props.icon}>
-        <Icon icon={props.icon} {...styles.rating.icon} />
+        <Icon
+          icon={props.icon}
+          marginRight={formatTitle(props.title) ? styles.rating.iconMarginRight : props.marginRight}
+          {...styles.rating.icon}
+        />
       </Show>
       <Show when={formatTitle(props.title)}>
-        <Text style={styles.rating.text}>{formatTitle(props.title)}</Text>
+        <Text style={styles.rating.text} marginRight={props.marginRight}>
+          {formatTitle(props.title)}
+        </Text>
       </Show>
     </>
   );
@@ -93,6 +99,7 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
 const Details: Component<DetailsProps> = (props: DetailsProps) => {
   return (
     <View
+      style={styles.details.container}
       onBeforeLayout={(_, dimensions) => {
         const width = dimensions?.width;
         const height = dimensions?.height;
@@ -100,20 +107,39 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
           props.onDimensionsChange({ width, height });
         }
       }}
-      style={styles.details.container}
       {...props}
     >
       <Show when={props.title}>
-        <Text style={styles.details.titleTextStyle}>{props.title}</Text>
+        <Text style={styles.details.titleTextStyle} marginRight={styles.details.contentSpacing}>
+          {props.title}
+        </Text>
       </Show>
-      <For each={props.badges}>{(badge: BadgeProps) => <Badge {...badge} />}</For>
-      <For each={props.ratings}>{(rating: RatingProps) => <Rating {...rating} />}</For>
+      <For each={props.badges}>
+        {(badge: BadgeProps, idx: Accessor<number>) => (
+          <Badge
+            {...badge}
+            marginRight={
+              props.badges?.length && idx() === props.badges.length - 1
+                ? styles.details.contentSpacing
+                : styles.badge.contentSpacing
+            }
+          />
+        )}
+      </For>
+      <For each={props.ratings}>
+        {(rating: RatingProps, idx: Accessor<number>) => (
+          <Rating
+            {...rating}
+            marginRight={
+              props.ratings?.length && idx() === props.ratings.length - 1 ? 0 : styles.rating.contentSpacing
+            }
+          />
+        )}
+      </For>
     </View>
   );
 };
 
-// TODO: title marquee support: is this built in to L3?
-// TODO: description truncation after 3 lines
 const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
   const [detailsHeight, setDetailsHeight] = createSignal(0);
 
@@ -131,7 +157,7 @@ const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
         width={props.width}
         height={detailsHeight()}
         {...props.details}
-        onDimensionsChange={({ height }) => setDetailsHeight(height / 2)}
+        onDimensionsChange={({ height }) => setDetailsHeight(height)}
       />
     </View>
   );

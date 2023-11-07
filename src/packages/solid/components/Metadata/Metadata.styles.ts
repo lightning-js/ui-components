@@ -39,7 +39,11 @@ const styles = {
       flexDirection: 'row',
       alignItems: 'center'
     },
-    titleTextStyle: theme.typography.body2
+    titleTextStyle: theme.typography.body2,
+    contentSpacing: theme.spacer.lg
+  },
+  badge: {
+    contentSpacing: theme.spacer.sm
   },
   rating: {
     icon: {
@@ -47,7 +51,9 @@ const styles = {
       height: theme.typography.body2.lineHeight,
       width: theme.typography.body2.lineHeight
     },
-    text: theme.typography.body2
+    text: theme.typography.body2,
+    iconMarginRight: theme.spacer.sm,
+    contentSpacing: theme.spacer.ratingsContentSpacing
   }
 };
 
