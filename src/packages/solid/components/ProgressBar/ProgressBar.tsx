@@ -19,7 +19,7 @@ import type { Component } from 'solid-js';
 import { View, type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles from './ProgressBar.styles';
 
-export interface ProgressBarProps extends ButtonStyleProps, IntrinsicNodeProps {
+export interface ProgressBarProps extends ProgressBarStyleProps, IntrinsicNodeProps {
   /**
    * a numeric value of the current progress represented as a decimal between 0 and 1
    */
@@ -38,7 +38,7 @@ export interface ProgressBarProps extends ButtonStyleProps, IntrinsicNodeProps {
   height: number;
 }
 
-export interface ButtonStyleProps {
+export interface ProgressBarStyleProps {
   color?: number;
   animationSettings: object;
   borderRadius?: number;
