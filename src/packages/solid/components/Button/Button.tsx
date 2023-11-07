@@ -28,11 +28,11 @@ withPadding;
  */
 export interface ButtonProps extends ButtonStyleProps, IntrinsicNodeProps {
   title: string;
-  suffix: {
+  suffix?: {
     checkbox?: Partial<CheckboxProps>;
     icon?: Partial<IconProps>;
   }; // null, icon, checkbox, combo
-  prefix: {
+  prefix?: {
     checkbox?: Partial<CheckboxProps>;
     icon?: Partial<IconProps>;
   }; // null, icon, checkbox, combo
@@ -58,11 +58,11 @@ const Button: Component<ButtonProps> = props => {
     >
       <View forwardStates style={styles.FlexContainer} width={props.width}>
         <Show when={props.prefix?.icon}>
-          <Icon {...props.prefix.icon} />
+          <Icon {...props.prefix?.icon} />
         </Show>
 
         <Show when={props.prefix?.checkbox}>
-          <Checkbox {...props.prefix.checkbox} />
+          <Checkbox {...props.prefix?.checkbox} />
         </Show>
 
         <Show when={props.title}>
@@ -70,11 +70,11 @@ const Button: Component<ButtonProps> = props => {
         </Show>
 
         <Show when={props.suffix?.icon}>
-          <Icon {...props.suffix.icon} />
+          <Icon {...props.suffix?.icon} />
         </Show>
 
         <Show when={props.suffix?.checkbox}>
-          <Checkbox {...props.suffix.checkbox} />
+          <Checkbox {...props.suffix?.checkbox} />
         </Show>
       </View>
     </node>
