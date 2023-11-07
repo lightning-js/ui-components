@@ -20,7 +20,7 @@ import { Color, TextAlign, ContentAlign, Animatable, StateStyle } from '../../..
 import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
 
 type ButtonStyle = {
-  Container?: {
+  Container: {
     height: number;
     display: 'flex';
     justifyContent: ContentAlign;
@@ -63,8 +63,8 @@ const styles: ButtonStyle = {
     borderRadius: 30,
     focus: {
       color: getHexColor(...(theme.color.interactiveNeutralFocus as [string, number])),
-      contentColor: getHexColor(...(theme.color.fillNeutral as [string, number])),
-      tone: {
+      contentColor: getHexColor(...(theme.color.fillNeutral as [string, number]))
+      /*       tone: {
         inverse: {
           color: getHexColor(...(theme.color.interactiveNeutralFocus as [string, number])),
           contentColor: getHexColor(...(theme.color.fillNeutral as [string, number]))
@@ -72,7 +72,7 @@ const styles: ButtonStyle = {
         brand: {
           contentColor: getHexColor(...(theme.color.fillNeutral as [string, number]))
         }
-      }
+      } */
     },
     disabled: {
       color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number])),

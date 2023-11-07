@@ -19,21 +19,19 @@ import Button from './Button';
 import lightning from '../../assets/images/ic_lightning_white_32.png';
 import check from '../../assets/images/check-icon.png';
 
-
 type Story = StoryObj<typeof Button>;
 
 function getComponentArray(comps: any) {
   let arr = {};
   switch (comps) {
     case 'icon':
-
-      arr = { src: lightning, width: 35, height: 35 };
+      arr = { icon: { src: lightning, width: 35, height: 35 } };
       break;
     case 'checkbox':
-      arr = { icon: check, checked: true };
+      arr = { checkbox: { icon: check, checked: true } };
       break;
     case 'combo':
-      arr = { src: lightning, width: 35, height: 35, icon: check, checked: true };
+      arr = { icon: { src: lightning, width: 35, height: 35 }, checkbox: { icon: check, checked: true } };
       break;
   }
   return arr;
@@ -88,7 +86,7 @@ const meta: Meta<typeof Button> = {
       options: [null, 'icon', 'checkbox', 'combo'],
       description: 'Lightning components to be placed to the left of the title',
       table: {
-        defaultValue: { summary: 'undefined' }
+        defaultValue: { summary: null }
       }
     },
     suffix: {
@@ -96,10 +94,9 @@ const meta: Meta<typeof Button> = {
       options: [null, 'icon', 'checkbox', 'combo'],
       description: 'Lightning components to be placed to the right of the title',
       table: {
-        defaultValue: { summary: 'undefined' }
+        defaultValue: { summary: null }
       }
     }
-
   }
 };
 
