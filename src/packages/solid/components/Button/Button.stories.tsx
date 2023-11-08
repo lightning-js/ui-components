@@ -52,13 +52,6 @@ const meta: Meta<typeof Button> = {
         defaultValue: { summary: 'focus' }
       }
     },
-    title: {
-      control: 'text',
-      description: 'Title text',
-      table: {
-        defaultValue: { summary: 'undefined' }
-      }
-    },
     width: {
       control: { type: 'number', min: 400, max: 1200, step: 50 },
       description: 'When the fixed property is true, this will set the width of the component',
@@ -103,11 +96,12 @@ const meta: Meta<typeof Button> = {
 export const Basic: Story = {
   render: args => {
     return (
-      <Button {...args} prefix={getComponentArray(args.prefix)} suffix={getComponentArray(args.suffix)} />
+      <Button {...args} prefix={getComponentArray(args.prefix)} suffix={getComponentArray(args.suffix)}>
+        Button
+      </Button>
     );
   },
   args: {
-    title: 'button',
     width: 400,
     height: 100
     //justifyContent: 'center'

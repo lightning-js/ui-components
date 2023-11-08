@@ -22,6 +22,7 @@ import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path al
 type ButtonStyle = {
   Container: {
     height: number;
+    width: number;
     display: 'flex';
     justifyContent: ContentAlign;
     padding: number[];
@@ -54,7 +55,8 @@ type ButtonStyle = {
 
 const styles: ButtonStyle = {
   Container: {
-    height: theme.spacer.md * 10,
+    height: 100,
+    width: 400,
     padding: [40, 10],
     color: getHexColor(...(theme.color.interactiveNeutralFocusSoft as [string, number])),
     contentColor: getHexColor(...(theme.color.fillInverse as [string, number])),
