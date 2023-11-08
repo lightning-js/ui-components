@@ -31,7 +31,10 @@ const styles = {
   descriptionTextStyle: {
     ...theme.typography.body2,
     contain: 'both',
-    maxLines: 3
+    textOverflow: 'ellipsis',
+    wordWrap: false,
+    maxLines: 3,
+    maxLinesSuffix: '...'
   },
   details: {
     container: {
