@@ -36,8 +36,8 @@ export interface ButtonProps extends ButtonStyleProps, IntrinsicNodeProps {
     checkbox?: Partial<CheckboxProps>;
     icon?: Partial<IconProps>;
   }; // null, icon, checkbox, combo
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
 }
 
 export interface ButtonStyleProps {
