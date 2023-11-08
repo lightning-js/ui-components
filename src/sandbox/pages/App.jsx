@@ -16,6 +16,7 @@
  */
 
 import { View } from '@lightningjs/solid';
+import { Button } from '../../packages/solid';
 // import {} from '@lightningjs/solid-ui';
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
     // eslint-disable-next-line solid/style-prop
     <View ref={window.APP} style={{ width: 1920, height: 1080 }}>
       <View color="#071423" />
+      <Button width={100} height={100} title="ShaynaText" />
     </View>
   );
 };
