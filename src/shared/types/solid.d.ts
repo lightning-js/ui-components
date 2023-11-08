@@ -37,4 +37,5 @@ type Animatable<Type> = Type | [Type, AnimationSettings];
 /**
  * states can contain any of the style object's properties, except other states
  */
+
 type StateStyle<Type> = Partial<Omit<Type, States>>;

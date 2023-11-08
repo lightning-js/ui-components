@@ -16,7 +16,7 @@
  */
 
 import type { Component } from 'solid-js';
-import { View, hexColor } from '@lightningjs/solid';
+import { View } from '@lightningjs/solid';
 import styles from './Icon.styles';
 
 export type IconProps = {
@@ -37,7 +37,7 @@ export type IconProps = {
   /**
    * path to image or inline SVG XML
    */
-  icon?: string;
+  src?: string;
 };
 
 const Icon: Component<IconProps> = props => {
@@ -45,9 +45,7 @@ const Icon: Component<IconProps> = props => {
     <View
       {...props}
       // TODO, wait to see if fixed is needed
-      src={props.icon}
       style={styles.container}
-      color={hexColor(props.color) || styles.container?.color}
     />
   );
 };

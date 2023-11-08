@@ -16,11 +16,13 @@
  */
 
 import Icon from './Icon';
+import type { Meta, StoryObj } from 'storybook-solidjs';
 import lightning from '../../assets/images/ic_lightning_white_32.png';
-import theme from 'theme';
+import { hexColor } from '@lightningjs/solid';
 
+type Story = StoryObj<typeof Icon>;
 
-const meta = {
+const meta: Meta<typeof Icon> = {
   title: 'Components/Icon',
   component: Icon,
   tags: ['autodocs'],
@@ -41,7 +43,7 @@ const meta = {
       description: "when `true`, icon width and height will not dynamically resize",
       control: {type: 'boolean'}
     }, */
-    icon: {
+    src: {
       description: 'path to image or inline SVG XML'
     }
   }
@@ -49,12 +51,14 @@ const meta = {
 
 export default meta;
 
-export const PNG = {
+export const PNG: Story = {
+  render: args => {
+    return <Icon {...args} color={hexColor(args.color) || undefined} />;
+  },
   args: {
     width: 100,
     height: 100,
-    icon: lightning,
-    color: theme.color.fillInverse[0]
+    src: lightning
     //fixed: true,
   }
 };
