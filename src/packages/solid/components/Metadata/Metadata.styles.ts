@@ -30,10 +30,13 @@ const styles = {
   descriptionTextStyle: {
     ...theme.typography.body2,
     contain: 'both',
-    textOverflow: 'ellipsis',
-    wordWrap: false,
     maxLines: 3,
-    maxLinesSuffix: '...'
+    /*
+    TODO: The fontFamily on the current theme is not an open sourced font,
+    and is not loaded as a font face to the application. This overwrites that
+    font to one that is loaded so that we can utilize the SdfTextRenderer.
+    */
+    fontFamily: 'Ubuntu'
   }
 };
 

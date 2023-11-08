@@ -46,12 +46,13 @@ const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
         {props.title}
       </Text>
       <Show when={props.description}>
-        <View
+        <Text
           width={props.width}
           height={styles.descriptionTextStyle.lineHeight * styles.descriptionTextStyle.maxLines}
+          style={styles.descriptionTextStyle}
         >
-          <Text style={styles.descriptionTextStyle}>{props.description}</Text>
-        </View>
+          {props.description}
+        </Text>
       </Show>
       <Details
         width={props.width}
