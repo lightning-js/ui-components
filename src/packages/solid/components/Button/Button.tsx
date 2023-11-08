@@ -27,6 +27,7 @@ withPadding;
  * Primary UI component for user interaction
  */
 export interface ButtonProps extends ButtonStyleProps, IntrinsicNodeProps {
+  children?: string;
   suffix?: {
     checkbox?: Partial<CheckboxProps>;
     icon?: Partial<IconProps>;
