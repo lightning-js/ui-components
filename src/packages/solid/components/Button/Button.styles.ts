@@ -58,7 +58,7 @@ const styles: ButtonStyle = {
     height: 100,
     width: 400,
     padding: [40, 10],
-    color: getHexColor(...(theme.color.interactiveNeutralFocusSoft as [string, number])),
+    color: getHexColor(...(theme.color.interactiveNeutralFocusSoft as [string, number])), //interactiveNeutralFocus undefined
     contentColor: getHexColor(...(theme.color.fillInverse as [string, number])),
     display: 'flex',
     justifyContent: 'center',
