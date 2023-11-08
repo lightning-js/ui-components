@@ -62,9 +62,6 @@ export const Basic: Story = {
     width: 500,
     height: theme.spacer.md,
     progress: 0.5,
-    // TODO make it so we don't need to do this
-    //color: theme.color.fillNeutralSecondary[0],
-    //progressColor: theme.color.fillBrand[0],
     borderRadius: theme.radius.xs
   }
 };
