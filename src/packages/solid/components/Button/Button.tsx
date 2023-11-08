@@ -27,7 +27,6 @@ withPadding;
  * Primary UI component for user interaction
  */
 export interface ButtonProps extends ButtonStyleProps, IntrinsicNodeProps {
-  title: string;
   suffix?: {
     checkbox?: Partial<CheckboxProps>;
     icon?: Partial<IconProps>;
@@ -65,8 +64,8 @@ const Button: Component<ButtonProps> = props => {
           <Checkbox {...props.prefix?.checkbox} />
         </Show>
 
-        <Show when={props.title}>
-          <Text style={styles.Text}>{props.title}</Text>
+        <Show when={props.children}>
+          <Text style={styles.Text}>{props.children}</Text>
         </Show>
 
         <Show when={props.suffix?.icon}>
