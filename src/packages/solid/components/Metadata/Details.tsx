@@ -16,7 +16,7 @@
  */
 import type { Component, Accessor } from 'solid-js';
 import { View, Text, Show, For } from '@lightningjs/solid';
-import type { IntrinsicNodeProps } from '@lightningjs/solid';
+import type { IntrinsicNodeProps, ElementNode } from '@lightningjs/solid';
 import Badge from '../Badge/Badge';
 import type { BadgeProps } from '../Badge/Badge';
 import Rating from './Rating';
@@ -36,19 +36,16 @@ export interface DetailsProps extends IntrinsicNodeProps {
    * text to display as details title
    */
   title?: string;
-
-  onDimensionsChange?: (dimensions: { width: number; height: number }) => unknown;
 }
 
 const Details: Component<DetailsProps> = (props: DetailsProps) => {
   return (
     <View
       style={styles.container}
-      onBeforeLayout={(_, dimensions) => {
-        const width = dimensions?.width;
-        const height = dimensions?.height;
-        if (width !== undefined && height !== undefined && props.onDimensionsChange) {
-          props.onDimensionsChange({ width, height });
+      onBeforeLayout={(node: ElementNode, dimensions) => {
+        if (dimensions?.height) {
+          node.parent.height = dimensions.height;
+          node.parent.updateLayout();
         }
       }}
       {...props}
