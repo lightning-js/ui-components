@@ -16,7 +16,7 @@
  */
 import type { Component } from 'solid-js';
 import { View, Text, Show } from '@lightningjs/solid';
-import type { ElementNode, IntrinsicNodeProps } from '@lightningjs/solid';
+import type { IntrinsicNodeProps } from '@lightningjs/solid';
 import Details from './Details';
 import type { DetailsProps } from './Details';
 import styles from './Metadata.styles';
