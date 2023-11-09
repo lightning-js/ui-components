@@ -54,7 +54,7 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
         />
       </Show>
       <Show when={formatTitle(props.title)}>
-        <Text style={styles.textStyle} marginRight={props.marginRight}>
+        <Text style={styles.text} marginRight={props.marginRight}>
           {formatTitle(props.title)}
         </Text>
       </Show>

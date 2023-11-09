@@ -51,7 +51,7 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
       {...props}
     >
       <Show when={props.title}>
-        <Text style={styles.titleTextStyle} marginRight={styles.contentSpacing}>
+        <Text style={styles.titleText} marginRight={styles.contentSpacing}>
           {props.title}
         </Text>
       </Show>

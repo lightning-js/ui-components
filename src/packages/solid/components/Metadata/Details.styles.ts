@@ -23,7 +23,7 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center'
   },
-  titleTextStyle: theme.typography.body2,
+  titleText: theme.typography.body2,
   contentSpacing: theme.spacer.lg,
   badgeContentSpacing: theme.spacer.sm,
   ratingContentSpacing: theme.spacer.lg

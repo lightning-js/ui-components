@@ -23,11 +23,11 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'flexStart'
   },
-  titleTextStyle: {
+  titleText: {
     ...theme.typography.headline3,
     contain: 'both'
   },
-  descriptionTextStyle: {
+  descriptionText: {
     ...theme.typography.body2,
     contain: 'both',
     maxLines: 3,

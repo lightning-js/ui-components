@@ -39,14 +39,14 @@ export interface MetadataProps extends IntrinsicNodeProps {
 const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
   return (
     <View style={styles.container} {...props}>
-      <Text width={props.width} style={styles.titleTextStyle}>
+      <Text width={props.width} style={styles.titleText}>
         {props.title}
       </Text>
       <Show when={props.description}>
         <Text
           width={props.width}
-          height={styles.descriptionTextStyle.lineHeight * styles.descriptionTextStyle.maxLines}
-          style={styles.descriptionTextStyle}
+          height={styles.descriptionText.lineHeight * styles.descriptionText.maxLines}
+          style={styles.descriptionText}
         >
           {props.description}
         </Text>

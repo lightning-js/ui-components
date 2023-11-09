@@ -24,7 +24,7 @@ const styles = {
     height: theme.typography.body2.lineHeight,
     width: theme.typography.body2.lineHeight
   },
-  textStyle: theme.typography.body2,
+  text: theme.typography.body2,
   iconMarginRight: theme.spacer.sm
 };
 
