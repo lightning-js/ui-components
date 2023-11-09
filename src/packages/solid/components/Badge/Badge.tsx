@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import type { Component } from 'solid-js';
-import { Text, Show } from '@lightningjs/solid';
+import { Text, Show, type IntrinsicNodeProps } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
 import Icon, { type IconProps } from '../Icon/Icon';
 import styles from './Badge.styles';
@@ -24,7 +24,7 @@ withPadding; // Preserve the import.
 // props in LUI: title, icon, iconAlign, iconWidth, iconHeight
 // NOTE: Badge can have an icon on left or right or no Icon
 
-export type BadgeProps = {
+export interface BadgeProps extends IntrinsicNodeProps {
   /**
    * Badge text
    */
