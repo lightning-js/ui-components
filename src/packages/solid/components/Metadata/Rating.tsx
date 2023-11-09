@@ -18,13 +18,14 @@ import type { Component } from 'solid-js';
 import { Text, Show } from '@lightningjs/solid';
 import type { IntrinsicNodeProps } from '@lightningjs/solid';
 import Icon from '../Icon/Icon';
+import type { IconProps } from '../Icon/Icon';
 import styles from './Rating.styles';
 
 export interface RatingProps extends IntrinsicNodeProps {
   /**
    * path to the rating's icon
    */
-  icon: string;
+  src: NonNullable<IconProps['src']>;
   /**
    * Text or number to display. Numbers from 0 to 100 will display as percentages.
    */
@@ -45,9 +46,9 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
   };
   return (
     <>
-      <Show when={props.icon}>
+      <Show when={props.src}>
         <Icon
-          icon={props.icon}
+          src={props.src}
           marginRight={formatTitle(props.title) ? styles.iconMarginRight : props.marginRight}
           {...styles.icon}
         />

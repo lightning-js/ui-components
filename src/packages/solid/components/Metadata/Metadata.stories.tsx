@@ -45,11 +45,11 @@ export const Basic = {
       badges: [{ title: 'TV-14' }, { title: 'HD' }, { title: 'CC' }],
       ratings: [
         {
-          icon: lightning,
+          src: lightning,
           title: 76
         },
         {
-          icon: lightning,
+          src: lightning,
           title: 96
         }
       ]
