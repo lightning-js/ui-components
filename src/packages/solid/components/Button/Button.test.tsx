@@ -23,6 +23,31 @@ import { describe, expect, it } from 'vitest';
 describe('Button', () => {
   it('renders', async () => {
     const tree = await render(() => <Button>Hello</Button>);
+    console.log(tree.props);
     expect(tree).toMatchSnapshot();
+  });
+
+  describe('focus', () => {
+    it('has a default unfocus text color', () => {});
+
+    it('has a focus text color', () => {});
+
+    it('should reset text color on unfocus', () => {});
+  });
+
+  describe('prefix', () => {
+    it('should have a prefix if prefix array is passed to the button', () => {});
+
+    it('should have items populated on Prefix row if prefix is passed', () => {});
+  });
+
+  describe('suffix', () => {
+    it('should have a Suffix if suffix array is passed to the button', () => {});
+
+    it('should have items populated on Prefix row if suffix is passed', () => {});
+
+    it('Suffix should be positioned based on the title and prefix position', () => {});
+
+    it('Suffix should be positioned horizontally at zero if title is empty', () => {});
   });
 });
