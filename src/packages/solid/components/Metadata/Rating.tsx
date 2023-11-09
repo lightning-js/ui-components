@@ -14,7 +14,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import type { Component } from 'solid-js';
+import { Component, createMemo } from 'solid-js';
 import { Text, Show } from '@lightningjs/solid';
 import type { IntrinsicNodeProps } from '@lightningjs/solid';
 import Icon from '../Icon/Icon';
@@ -44,18 +44,19 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
     }
     return formatted;
   };
+  const formattedTitle = createMemo(() => formatTitle(props.title));
   return (
     <>
       <Show when={props.src}>
         <Icon
           src={props.src}
-          marginRight={formatTitle(props.title) ? styles.iconMarginRight : props.marginRight}
+          marginRight={formattedTitle() ? styles.iconMarginRight : props.marginRight}
           {...styles.icon}
         />
       </Show>
-      <Show when={formatTitle(props.title)}>
+      <Show when={formattedTitle()}>
         <Text style={styles.text} marginRight={props.marginRight}>
-          {formatTitle(props.title)}
+          {formattedTitle()}
         </Text>
       </Show>
     </>
