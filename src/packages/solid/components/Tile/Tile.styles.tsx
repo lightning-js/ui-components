@@ -12,7 +12,11 @@ type TileStyle = {
   FlexContainer: {
     width: number;
     height: number;
-  }
+  };
+  LogoContainer: {
+    width: number;
+    height: number;
+  };
 };
 
 const styles: TileStyle = {
@@ -23,6 +27,10 @@ const styles: TileStyle = {
     paddingYProgress: theme.spacer.xl,
     paddingYBetweenContent: theme.spacer.md,
     borderRadius: theme.radius.md
+  },
+  LogoContainer: {
+    width: theme.spacer.lg * 5,
+    height: theme.spacer.xxl + theme.spacer.md
   }
 };
 

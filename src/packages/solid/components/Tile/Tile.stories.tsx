@@ -24,8 +24,8 @@ const meta: Meta<typeof Tile> = {
       control: { type: 'string' }
     },
     label: {
-        description: 'Text to display in the foreground of the label',
-        control: { type: 'string' }
+      description: 'Text to display in the foreground of the label',
+      control: { type: 'string' }
     },
     badge: {
       description: 'object containing all the properties supported in the Badge component',
@@ -47,6 +47,22 @@ const meta: Meta<typeof Tile> = {
         }
       }
     },
+    logo: {
+      description: 'icon source',
+      control: 'select',
+      options: [undefined, '../../assets/images/Xfinity-Provider-Logo-2x1.png'],
+      table: {
+        defaultValue: { summary: undefined }
+      }
+    },
+    metadataLocation: {
+      description: 'Controls where metadata is positioned in relationship to the Tile',
+      control: ['standard', 'inset'],
+      table: {
+        defaultValue: { summary: 'standard' }
+      }
+    },
+
     /*
     checkbox: {
       description: 'Object containing all properties supported in the Checkbox component',
@@ -55,10 +71,6 @@ const meta: Meta<typeof Tile> = {
     circle: {
       description: 'Boolean changing format to circle if true',
       control: { type: 'boolean' }
-    },
-    metadataLocation: {
-      description: 'Controls where metadata is positioned in relationship to the Tile',
-      control: ['standard', 'inset']
     },
     // TODO change when metadata gets merged in
     metadata: {
@@ -70,7 +82,7 @@ const meta: Meta<typeof Tile> = {
       control: { type: 'boolean' }
     },*/
 
-    ProgressBar: {
+    progressBar: {
       description: 'object containing all the properties supported in the ProgressBar component',
       color: {
         description: 'color of bar representing the total progress',
@@ -111,7 +123,9 @@ export const Basic: Story = {
     },
     label: {
       title: 'Label'
-    }
+    },
+    logo: '../../assets/images/Xfinity-Provider-Logo-2x1.png',
+    metadataLocation: 'standard'
   }
 };
 
