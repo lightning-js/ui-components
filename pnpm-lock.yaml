@@ -1888,9 +1888,9 @@ packages:
       '@protobufjs/eventemitter': 1.1.0
     dev: false
 
-  /@lightningjs/renderer@0.6.0:
-    resolution: {integrity: sha512-CGMs47vDN1Rd4t130NBuPmAMQ4FGzssFLPlaP541jSlD0TcvHCOFPnfOG/mnCOFqLIm0farUGIaXhqRAKvJUjQ==}
-    engines: {node: '>= 20.9.0', npm: please-use-pnpm, pnpm: '>= 8.9.2'}
+  /@lightningjs/renderer@0.5.0:
+    resolution: {integrity: sha512-xlsdDibc3ftBdcWvS4PWCoLjZ/uXp4Jl0I7+7wfQuoRGHst9kQ31+clB+kpJSpCIR+CxtYxMpYUVIjC5QC2eOA==}
+    engines: {npm: please-use-pnpm, pnpm: '>= 8.9.2'}
     dependencies:
       '@lightningjs/threadx': 0.3.4
       '@protobufjs/eventemitter': 1.1.0
