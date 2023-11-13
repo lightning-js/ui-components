@@ -1,7 +1,7 @@
-import { addons, types } from '@storybook/manager-api';
+import { addons } from '@storybook/manager-api';
 import customTheme from './customTheme';
 
 addons.setConfig({
-  theme: customTheme, // setting Storybook theme
+  theme: customTheme, // setting Storybook custom theme
   enableShortcuts: false
 });

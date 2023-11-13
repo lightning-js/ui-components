@@ -41,7 +41,7 @@ export const args = {
 
 const preview = {
   parameters: {
-    backgrounds: { default: 'dark' },
+    backgrounds: { disable: true },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
