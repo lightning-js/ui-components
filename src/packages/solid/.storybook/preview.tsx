@@ -15,11 +15,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 /* @refresh reload */
-import { render, Canvas } from '@lightningjs/solid';
-import { useFocusManager } from '@lightningjs/solid-primitives';
+import { render, Canvas, Config } from '@lightningjs/solid';
 // @ts-expect-error we don't have declarations for this module
 import coreExtensionModuleUrl from './AppCoreExtensions.js?importChunkUrl'; // TODO import aliasing
 import { themes } from '@storybook/theming';
+
+Config.stateMapperHook = (node, states) => {
+  const tone = node.tone || '';
+  const nextStates = states.map((state) => state + tone);
+  console.log('STATEMAPPER', nextStates);
+  return nextStates;
+};
 
 const RenderOptions = {
   coreExtensionModule: coreExtensionModuleUrl,
