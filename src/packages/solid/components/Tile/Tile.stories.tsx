@@ -122,7 +122,8 @@ export const Basic: Story = {
       title: 'HD'
     },
     label: {
-      title: 'Label'
+      title: 'Label',
+      width: 75
     },
     logo: '../../assets/images/Xfinity-Provider-Logo-2x1.png',
     metadataLocation: 'standard'
