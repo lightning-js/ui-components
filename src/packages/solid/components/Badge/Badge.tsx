@@ -24,7 +24,7 @@ withPadding; // Preserve the import.
 // props in LUI: title, icon, iconAlign, iconWidth, iconHeight
 // NOTE: Badge can have an icon on left or right or no Icon
 
-type BadgeProps = {
+export type BadgeProps = {
   /**
    * Badge text
    */

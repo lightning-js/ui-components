@@ -14,6 +14,19 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-export type { BadgeProps } from './Badge';
-export { default as default } from './Badge';
-export { default as badgeStyles } from './Badge.styles';
+
+import theme from 'theme';
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  titleText: theme.typography.body2,
+  contentSpacing: theme.spacer.lg,
+  badgeContentSpacing: theme.spacer.sm,
+  ratingContentSpacing: theme.spacer.lg
+};
+
+export default styles;

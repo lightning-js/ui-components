@@ -14,6 +14,18 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-export type { BadgeProps } from './Badge';
-export { default as default } from './Badge';
-export { default as badgeStyles } from './Badge.styles';
+
+import theme from 'theme';
+import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
+
+const styles = {
+  icon: {
+    color: getHexColor(...(theme.color.fillNeutral as [string, number])),
+    height: theme.typography.body2.lineHeight,
+    width: theme.typography.body2.lineHeight
+  },
+  text: theme.typography.body2,
+  iconMarginRight: theme.spacer.sm
+};
+
+export default styles;

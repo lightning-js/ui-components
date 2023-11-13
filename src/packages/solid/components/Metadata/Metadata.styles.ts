@@ -14,6 +14,30 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-export type { BadgeProps } from './Badge';
-export { default as default } from './Badge';
-export { default as badgeStyles } from './Badge.styles';
+
+import theme from 'theme';
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flexStart'
+  },
+  titleText: {
+    ...theme.typography.headline3,
+    contain: 'both'
+  },
+  descriptionText: {
+    ...theme.typography.body2,
+    contain: 'both',
+    maxLines: 3,
+    /*
+    TODO: The fontFamily on the current theme is not an open sourced font,
+    and is not loaded as a font face to the application. This overwrites that
+    font to one that is loaded so that we can utilize the SdfTextRenderer.
+    */
+    fontFamily: 'Ubuntu'
+  }
+};
+
+export default styles;
