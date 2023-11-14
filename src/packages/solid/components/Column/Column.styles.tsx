@@ -14,6 +14,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
+import theme from 'theme';
 
 // LUI Column Style Props
 // itemSpacing
@@ -29,6 +30,7 @@ type ColumnStyle = {
     justifyContent: string;
     flexDirection: string;
     gap: number;
+    x: number;
   };
 };
 
@@ -37,7 +39,8 @@ const styles: ColumnStyle = {
     display: 'flex',
     justifyContent: 'flexStart',
     flexDirection: 'column',
-    gap: 10
+    gap: 30,
+    x: theme.layout.marginX
   }
 };
 

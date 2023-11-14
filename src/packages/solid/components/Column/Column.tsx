@@ -18,6 +18,8 @@ import styles from './Column.styles';
 
 type ColumnProps = {
   children: object;
+  width: number;
+  height: number;
 };
 
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
@@ -41,13 +43,12 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
   let hideTimeout; // taken from demo app
 
   // taken from demo app
-  // assess which is relevant and keep
+  // assess which is relevant to keep
   createEffect(
     on(
       activeElement,
       (elm) => {
         if (ContainerRef === elm) {
-          console.log('ContainerRef is elm', ColumnRef);
           ColumnRef.children[ColumnRef.selected].states.add('focus'); // tried setFocus()
         }
         if (ColumnRef.selected === prevIndex) {
@@ -58,15 +59,9 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
         clearTimeout(hideTimeout);
 
         const nextRow = ColumnRef.children[ColumnRef.selected];
-        let nextY = -nextRow.y; // what's the math here?
+        let nextY = -nextRow.y;
 
-        // in the demo columnScrollHeight is a prop from the row
-        if (typeof nextRow.columnScrollHeight !== 'undefined') {
-          nextY -= ContainerRef.y - nextRow.columnScrollHeight;
-        } else if (nextRow.title) {
-          nextY -= 60;
-        }
-        // prevent repeat y updates
+        //prevent repeat y updates
         if (ColumnRef.y !== nextY) {
           ColumnRef.y = nextY;
         }
@@ -81,7 +76,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
 
   return (
     <View autofocus {...props} ref={ContainerRef}>
-      <SolidColumn {...props} style={styles.Column} ref={ColumnRef}>
+      <SolidColumn {...props} style={styles.Column} width={400} height={500} ref={ColumnRef}>
         {props.children}
       </SolidColumn>
     </View>
