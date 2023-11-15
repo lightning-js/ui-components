@@ -6,7 +6,8 @@
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "paths": {
-      "utils": ["../../shared/utils/index.ts"]
+      "utils": ["../../shared/utils/index.ts"],
+      "theme": ["../../shared/theme.ts"],
     }
   }
 }

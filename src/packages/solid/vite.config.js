@@ -18,6 +18,7 @@
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
 import { importChunkUrl } from '@lightningjs/vite-plugin-import-chunk-url';
+import path from 'path';
 
 const config = {
   optimizeDeps: {
@@ -37,10 +38,11 @@ const config = {
       }
     })
   ],
-  base: '',
+  base: './',
   resolve: {
     alias: {
-      theme: '@lightningjs/ui-components-theme-base'
+      theme: '@lightningjs/ui-components-theme-base',
+      utils: path.resolve(__dirname, '../../shared/utils/index.ts')
     },
     dedupe: ['solid-js', '@lightningjs/solid', '@lightningjs/renderer']
   },

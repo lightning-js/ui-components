@@ -16,7 +16,7 @@
  */
 
 import theme from 'theme';
-import { getHexColor } from 'utils'; // TODO ts path aliasing
+import { getHexColor } from 'utils';
 
 type States = 'active' | 'focus' | 'disabled';
 /**

@@ -16,7 +16,7 @@
  */
 import theme from 'theme';
 import { type BorderStyle } from '@lightningjs/solid';
-import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
+import { getHexColor } from 'utils';
 
 // TODO: LUI styles remove before merge
 // focus and unfocus no style changes

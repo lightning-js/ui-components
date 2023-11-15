@@ -17,7 +17,7 @@
 
 import theme from 'theme';
 import { Color, TextAlign, ContentAlign, Animatable, StateStyle } from '../../../../shared/types/solid';
-import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
+import { getHexColor } from 'utils';
 
 type ButtonStyle = {
   Container: {
