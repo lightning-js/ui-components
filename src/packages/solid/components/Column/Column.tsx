@@ -25,38 +25,18 @@ export interface ColumnProps extends IntrinsicNodeProps {
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
   let ColumnRef, ContainerRef, prevIndex;
 
-  // taken from demo app may not need for LUI
-  // handle whether children are visible
-  const handleShow = () => {
-    ColumnRef.children.map((child, i) => {
-      child.alpha = 1;
-    });
-  };
-
-  const handleHide = () => {
-    ColumnRef.children.map((child, i) => {
-      if (i < ColumnRef.selected) {
-        child.alpha = 0;
-      }
-    });
-  };
-  let hideTimeout;
-
   // taken from demo app
   createEffect(
     on(
       activeElement,
       (elm) => {
         if (ContainerRef === elm) {
-          ColumnRef.children[ColumnRef.selected].setFocus(); // sets activeElement on selected index
-          ColumnRef.children[ColumnRef.selected].states.add('focus'); // sets state to focus
+          ColumnRef.children[ColumnRef.selected].setFocus();
         }
         if (ColumnRef.selected === prevIndex) {
           return;
         }
         prevIndex = ColumnRef.selected;
-        //handleShow();
-        clearTimeout(hideTimeout);
 
         const nextRow = ColumnRef.children[ColumnRef.selected];
         let nextY = -nextRow.y;
@@ -64,14 +44,8 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
 
         //prevent repeat y updates
         if (ColumnRef.y !== nextY) {
-          ColumnRef.y = nextY + 130;
+          ColumnRef.y = nextY;
         }
-
-        console.log(ColumnRef);
-        // used to create timed hide of prev children
-        hideTimeout = setTimeout(() => {
-          handleHide();
-        }, 2000);
       },
       { defer: true }
     )
@@ -79,7 +53,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
 
   return (
     <View autofocus {...props} ref={ContainerRef}>
-      <SolidColumn {...props} selected={1} style={styles.Column} width={400} height={500} ref={ColumnRef}>
+      <SolidColumn {...props} style={styles.Column} width={400} height={500} ref={ColumnRef}>
         {props.children}
       </SolidColumn>
     </View>
