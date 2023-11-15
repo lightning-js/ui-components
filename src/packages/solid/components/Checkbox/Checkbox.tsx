@@ -16,11 +16,11 @@
  */
 
 import type { Component } from 'solid-js';
-import { View, Show } from '@lightningjs/solid';
+import { View, Show, type IntrinsicNodeProps } from '@lightningjs/solid';
 import Icon, { type IconProps } from '../Icon/Icon';
 import styles from './Checkbox.styles';
 
-export type CheckboxProps = {
+export interface CheckboxProps extends IntrinsicNodeProps {
   /**
    * Indicates whether the checkbox is checked or unchecked.
    * Setting this to `true` will check the checkbox, and setting it to `false` will uncheck it.
@@ -30,7 +30,7 @@ export type CheckboxProps = {
    * Object containing all properties supported in the [Icon component](?path=/docs/components-icon--icon)
    */
   icon?: Partial<IconProps> | undefined;
-};
+}
 
 const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
   return (
