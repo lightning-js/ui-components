@@ -31,6 +31,7 @@ type ColumnStyle = {
     flexDirection: string;
     gap: number;
     x: number;
+    y: number;
   };
 };
 
@@ -40,7 +41,8 @@ const styles: ColumnStyle = {
     justifyContent: 'flexStart',
     flexDirection: 'column',
     gap: 30,
-    x: theme.layout.marginX
+    x: theme.layout.marginX,
+    y: 200
   }
 };
 

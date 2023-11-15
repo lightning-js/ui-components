@@ -1,10 +1,9 @@
 import { Component, createEffect, on } from 'solid-js';
-import { View, activeElement } from '@lightningjs/solid';
+import { View, activeElement, setActiveElement, type IntrinsicNodeProps } from '@lightningjs/solid';
 import { Column as SolidColumn } from '@lightningjs/solid-primitives';
 import styles from './Column.styles';
 
 // LUI Column props:
-// items (children) - components to be listed in the column
 // onScreenItems - list of items currently on the screen
 // plinko - boolean
 // selected - component that is currently in focus
@@ -16,15 +15,17 @@ import styles from './Column.styles';
 // removeItem
 // columnChanged - probably not needed
 
-type ColumnProps = {
+export interface ColumnProps extends IntrinsicNodeProps {
+  /**
+   * components to be listed in the column
+   */
   children: object;
-  width: number;
-  height: number;
-};
+}
 
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
   let ColumnRef, ContainerRef, prevIndex;
 
+  // taken from demo app may not need for LUI
   // handle whether children are visible
   const handleShow = () => {
     ColumnRef.children.map((child, i) => {
@@ -32,7 +33,6 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
     });
   };
 
-  // handle whether children are visible
   const handleHide = () => {
     ColumnRef.children.map((child, i) => {
       if (i < ColumnRef.selected) {
@@ -40,35 +40,38 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
       }
     });
   };
-  let hideTimeout; // taken from demo app
+  let hideTimeout;
 
   // taken from demo app
-  // assess which is relevant to keep
   createEffect(
     on(
       activeElement,
       (elm) => {
         if (ContainerRef === elm) {
-          ColumnRef.children[ColumnRef.selected].states.add('focus'); // tried setFocus()
+          ColumnRef.children[ColumnRef.selected].setFocus(); // sets activeElement on selected index
+          ColumnRef.children[ColumnRef.selected].states.add('focus'); // sets state to focus
         }
         if (ColumnRef.selected === prevIndex) {
           return;
         }
         prevIndex = ColumnRef.selected;
-        handleShow();
+        //handleShow();
         clearTimeout(hideTimeout);
 
         const nextRow = ColumnRef.children[ColumnRef.selected];
         let nextY = -nextRow.y;
+        console.log(ColumnRef.children);
 
         //prevent repeat y updates
         if (ColumnRef.y !== nextY) {
-          ColumnRef.y = nextY;
+          ColumnRef.y = nextY + 130;
         }
+
+        console.log(ColumnRef);
         // used to create timed hide of prev children
         hideTimeout = setTimeout(() => {
           handleHide();
-        }, 650);
+        }, 2000);
       },
       { defer: true }
     )
@@ -76,7 +79,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
 
   return (
     <View autofocus {...props} ref={ContainerRef}>
-      <SolidColumn {...props} style={styles.Column} width={400} height={500} ref={ColumnRef}>
+      <SolidColumn {...props} selected={1} style={styles.Column} width={400} height={500} ref={ColumnRef}>
         {props.children}
       </SolidColumn>
     </View>
