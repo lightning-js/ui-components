@@ -16,14 +16,6 @@
  */
 import theme from 'theme';
 
-// LUI Column Style Props
-// itemSpacing
-// scrollIndex
-// itemTransition: {
-//   ...theme.animation.standardEntrance,
-//   duration: theme.animation.duration.fast
-// }
-
 type ColumnStyle = {
   Column: {
     display: string;

@@ -35,6 +35,7 @@ const meta = {
 
 export default meta;
 
+// create an array of buttons to use in column
 const createItems = (length) => {
   return Array.from({ length }).map((_, i) => {
     const button = (

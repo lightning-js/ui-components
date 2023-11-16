@@ -2,12 +2,6 @@ import { Component, createEffect, on } from 'solid-js';
 import { View, activeElement, type IntrinsicNodeProps } from '@lightningjs/solid';
 import { Column as SolidColumn } from '@lightningjs/solid-primitives';
 import styles from './Column.styles';
-
-// LUI methods:
-// shouldScroll
-// checkSkipPlinko
-// removeItem
-
 export interface ColumnProps extends IntrinsicNodeProps {
   /**
    * components to be listed in the column
@@ -18,7 +12,6 @@ export interface ColumnProps extends IntrinsicNodeProps {
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
   let ColumnRef, ContainerRef, prevIndex;
 
-  // taken from demo app
   createEffect(
     on(
       activeElement,
