@@ -36,9 +36,6 @@ export const argTypes = {
     description: 'the width of the component'
   }
 };
-export const args = {
-  width: 300
-};
 
 const preview = {
   parameters: {
