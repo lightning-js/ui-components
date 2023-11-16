@@ -28,6 +28,7 @@ withPadding;
  */
 export interface ButtonProps extends ButtonStyleProps, IntrinsicNodeProps {
   children?: string;
+  /** Testing which overrides what */
   suffix?: {
     checkbox?: Partial<CheckboxProps>;
     icon?: Partial<IconProps>;
@@ -45,7 +46,7 @@ export interface ButtonStyleProps {
   borderRadius?: number;
 }
 
-const Button: Component<ButtonProps> = props => {
+const Button: Component<ButtonProps> = (props) => {
   return (
     <node
       use:withPadding={styles.Container.padding}
