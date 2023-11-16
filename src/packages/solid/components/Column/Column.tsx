@@ -1,19 +1,12 @@
 import { Component, createEffect, on } from 'solid-js';
-import { View, activeElement, setActiveElement, type IntrinsicNodeProps } from '@lightningjs/solid';
+import { View, activeElement, type IntrinsicNodeProps } from '@lightningjs/solid';
 import { Column as SolidColumn } from '@lightningjs/solid-primitives';
 import styles from './Column.styles';
-
-// LUI Column props:
-// onScreenItems - list of items currently on the screen
-// plinko - boolean
-// selected - component that is currently in focus
-// selectedIndex - index of current selected item
 
 // LUI methods:
 // shouldScroll
 // checkSkipPlinko
 // removeItem
-// columnChanged - probably not needed
 
 export interface ColumnProps extends IntrinsicNodeProps {
   /**
@@ -40,8 +33,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
 
         const nextRow = ColumnRef.children[ColumnRef.selected];
         let nextY = -nextRow.y;
-        console.log(ColumnRef.children);
-
+        console.log(ColumnRef);
         //prevent repeat y updates
         if (ColumnRef.y !== nextY) {
           ColumnRef.y = nextY;
@@ -53,7 +45,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
 
   return (
     <View autofocus {...props} ref={ContainerRef}>
-      <SolidColumn {...props} style={styles.Column} width={400} height={500} ref={ColumnRef}>
+      <SolidColumn {...props} animate style={styles.Column} width={400} height={500} ref={ColumnRef}>
         {props.children}
       </SolidColumn>
     </View>

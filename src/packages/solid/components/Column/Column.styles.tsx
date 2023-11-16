@@ -42,7 +42,7 @@ const styles: ColumnStyle = {
     flexDirection: 'column',
     gap: 30,
     x: theme.layout.marginX,
-    y: 200
+    y: [200, { ...theme.animation.standard, duration: theme.animation.duration.fast }] as any
   }
 };
 
