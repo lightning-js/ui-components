@@ -16,10 +16,10 @@
  */
 
 import type { Component } from 'solid-js';
-import { View } from '@lightningjs/solid';
+import { View, type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles from './Icon.styles';
 
-export type IconProps = {
+export interface IconProps extends IntrinsicNodeProps {
   /**
    * icon color (can only be applied on png icons)
    */
@@ -38,7 +38,7 @@ export type IconProps = {
    * path to image or inline SVG XML
    */
   src?: string;
-};
+}
 
 const Icon: Component<IconProps> = props => {
   return (

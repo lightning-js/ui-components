@@ -15,7 +15,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import theme from 'theme';
-import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
+import { type BorderStyle } from '@lightningjs/solid';
+import { getHexColor } from 'utils';
 
 // TODO: LUI styles remove before merge
 // focus and unfocus no style changes
@@ -51,7 +52,7 @@ type CheckboxStyle = {
      */
     color: number;
     borderRadius: number;
-    border: object;
+    border: BorderStyle;
     disabled?: StateStyle<CheckboxStyle['Container']>;
   };
   Background: {

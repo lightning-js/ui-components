@@ -50,9 +50,7 @@ const Button: Component<ButtonProps> = props => {
     <node
       use:withPadding={styles.Container.padding}
       {...props}
-      style={{
-        ...styles.Container
-      }}
+      style={styles.Container}
       animate
       forwardStates
     >
