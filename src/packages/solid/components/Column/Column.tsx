@@ -33,7 +33,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
 
         const nextRow = ColumnRef.children[ColumnRef.selected];
         let nextY = -nextRow.y;
-        console.log(ColumnRef);
+
         //prevent repeat y updates
         if (ColumnRef.y !== nextY) {
           ColumnRef.y = nextY;
