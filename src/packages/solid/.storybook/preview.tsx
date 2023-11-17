@@ -53,11 +53,7 @@ const preview = {
   },
   decorators: [
     (Story) => {
-      useFocusManager({
-        Menu: 'm',
-        Text: 't',
-        Buttons: 'b'
-      });
+      useFocusManager();
       const solidRoot = document.createElement('div');
       RenderOptions.rootId = solidRoot;
       render(() => (

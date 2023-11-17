@@ -29,6 +29,13 @@ const meta = {
       table: {
         defaultValue: { summary: '[]' }
       }
+    },
+    wrap: {
+      control: { type: 'boolean' },
+      description: 'the focus will loop back to the beginning of the list after reaching the last item',
+      table: {
+        defaultValue: { summary: false }
+      }
     }
   }
 };
@@ -51,6 +58,7 @@ const buttons = () => <>{createItems(7)}</>;
 
 export const Basic = {
   args: {
-    children: buttons
+    children: buttons,
+    wrap: false
   }
 };

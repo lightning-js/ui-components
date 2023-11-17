@@ -7,6 +7,10 @@ export interface ColumnProps extends IntrinsicNodeProps {
    * components to be listed in the column
    */
   children: object;
+  /** Scroll to selected index */
+  scroll: number;
+  /** Item index at which scrolling begins */
+  scrollIndex: number;
 }
 
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
@@ -23,10 +27,8 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
           return;
         }
         prevIndex = ColumnRef.selected;
-
         const nextRow = ColumnRef.children[ColumnRef.selected];
         let nextY = -nextRow.y;
-
         //prevent repeat y updates
         if (ColumnRef.y !== nextY) {
           ColumnRef.y = nextY;
