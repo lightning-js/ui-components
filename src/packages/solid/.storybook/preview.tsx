@@ -41,10 +41,10 @@ export const args = {
 
 const preview = {
   parameters: {
-    backgrounds: { disable: true },
+    backgrounds: { default: 'dark' },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
-     expanded: true
+      expanded: true
     },
     docs: {
       theme: themes.dark
