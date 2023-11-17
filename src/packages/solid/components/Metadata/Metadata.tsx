@@ -34,6 +34,7 @@ export interface MetadataProps extends IntrinsicNodeProps {
    * Text, Badges, and Icons to be displayed below the title and description
    */
   details: DetailsProps;
+  maxLines: number;
 }
 
 const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
@@ -45,7 +46,7 @@ const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
       <Show when={props.description}>
         <Text
           width={props.width}
-          height={styles.descriptionText.lineHeight * styles.descriptionText.maxLines}
+          height={styles.descriptionText.lineHeight * props.maxLines}
           style={styles.descriptionText}
         >
           {props.description}

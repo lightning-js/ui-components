@@ -3,7 +3,7 @@ import { Show, type IntrinsicNodeProps } from '@lightningjs/solid';
 import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar';
 import Badge, { type BadgeProps } from '../Badge/Badge';
 import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox';
-//import Metadata, { type MetadataProps } from '../Metadata/Metadata';
+import Metadata, { type MetadataProps } from '../Metadata/Metadata';
 import styles from './Tile.styles';
 import { withPadding } from '@lightningjs/solid-primitives';
 import Label, { type LabelProps } from './Label';
@@ -41,7 +41,7 @@ export interface TileProps extends TileStyleProps, IntrinsicNodeProps {
   /**
    * Object containing all properties supported in the [MetadataTile component](?path=/docs/components-metadatatile--metadata-tile)<br /> Can use a different Metadata component by passing in a 'type' and then that component's properties
    */
-  metadata?: object;
+  metadata?: Partial<MetadataProps>;
   /**
    * Metadata will be shown at all times if set to true, otherwise it will only show when the Tile has focusMetadata will be shown at all times if set to true, otherwise it will only show when the Tile has focus
    */
@@ -59,7 +59,11 @@ export interface TileProps extends TileStyleProps, IntrinsicNodeProps {
 export interface TileStyleProps {}
 
 const Tile: Component<TileProps> = (props: TileProps) => {
-  //const showProg = () => (props.progressBar?.progress ? props.progressBar.progress > 0 : false);
+  
+
+
+
+
 
   return (
     <node
@@ -84,8 +88,10 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         />
       </Show>
 
-      <Show when={props.logo}>
-        <Show when={props.metadataLocation == 'inset'}>
+      <Show when={props.metadataLocation == 'inset'}>
+        <Show when={props.metadata} />
+
+        <Show when={props.logo}>
           <img
             src={props.logo}
             style={styles.LogoContainer}
@@ -93,8 +99,20 @@ const Tile: Component<TileProps> = (props: TileProps) => {
             y={50} //this._metadataY - (this._Metadata ? this._Metadata.h : 0);
           />
         </Show>
+      </Show>
 
-        <Show when={props.metadataLocation == 'standard'}>
+      <Show when={props.metadataLocation == 'standard'}>
+        <Show when={props.metadata}>
+          <Metadata
+            {...props.metadata}
+            x={styles.Container.padding[0]}
+            y={props.height || styles.Container.height}
+            width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
+            /* x={styles.Container.padding[0]} y={styles.Container.padding[1]} */
+          />
+        </Show>
+
+        <Show when={props.logo}>
           <img
             src={props.logo}
             style={styles.LogoContainer}

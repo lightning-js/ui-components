@@ -40,6 +40,7 @@ export const Basic = {
   args: {
     title: 'Title',
     description: lorum,
+    maxLines: 3,
     details: {
       title: 'Support text',
       badges: [{ title: 'TV-14' }, { title: 'HD' }, { title: 'CC' }],
