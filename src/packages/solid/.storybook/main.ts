@@ -21,7 +21,10 @@ const config = {
     {
       name: '@storybook/addon-essentials',
       options: {
-        backgrounds: false
+        backgrounds: false,
+        outline: false, // disable outline addon
+        measure: false, // disable measure addon
+        viewport: false // disable viewport addon
       }
     },
     '@storybook/addon-links',
