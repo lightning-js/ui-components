@@ -2,6 +2,7 @@ import { Component, createEffect, on } from 'solid-js';
 import { View, activeElement, type IntrinsicNodeProps } from '@lightningjs/solid';
 import { Column as SolidColumn } from '@lightningjs/solid-primitives';
 import styles from './Column.styles';
+
 export interface ColumnProps extends IntrinsicNodeProps {
   /**
    * components to be listed in the column
@@ -29,7 +30,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
         prevIndex = ColumnRef.selected;
         const nextRow = ColumnRef.children[ColumnRef.selected];
         let nextY = -nextRow.y;
-        //prevent repeat y updates
+        // prevent repeat y updates
         if (ColumnRef.y !== nextY) {
           ColumnRef.y = nextY;
         }
