@@ -1,5 +1,5 @@
-import type { Component } from 'solid-js';
-import { Show, type IntrinsicNodeProps } from '@lightningjs/solid';
+import { Component, createMemo, createSignal, Setter } from 'solid-js';
+import { Show, type IntrinsicNodeProps, View, Text } from '@lightningjs/solid';
 import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar';
 import Badge, { type BadgeProps } from '../Badge/Badge';
 import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox';
@@ -41,7 +41,7 @@ export interface TileProps extends TileStyleProps, IntrinsicNodeProps {
   /**
    * Object containing all properties supported in the [MetadataTile component](?path=/docs/components-metadatatile--metadata-tile)<br /> Can use a different Metadata component by passing in a 'type' and then that component's properties
    */
-  metadata?: Partial<MetadataProps>;
+  metadata?: Partial<MetadataProps> | undefined;
   /**
    * Metadata will be shown at all times if set to true, otherwise it will only show when the Tile has focusMetadata will be shown at all times if set to true, otherwise it will only show when the Tile has focus
    */
@@ -59,11 +59,6 @@ export interface TileProps extends TileStyleProps, IntrinsicNodeProps {
 export interface TileStyleProps {}
 
 const Tile: Component<TileProps> = (props: TileProps) => {
-  
-
-
-
-
 
   return (
     <node
@@ -88,52 +83,41 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         />
       </Show>
 
-      <Show when={props.metadataLocation == 'inset'}>
-        <Show when={props.metadata} />
-
+      <View
+        style={styles.metaContainer}
+        x={styles.Container.padding[0]}
+        y={(props.height || styles.Container.height) - styles.Container.padding[1]}
+      >
         <Show when={props.logo}>
-          <img
-            src={props.logo}
-            style={styles.LogoContainer}
-            x={styles.Container.padding[0]}
-            y={50} //this._metadataY - (this._Metadata ? this._Metadata.h : 0);
+          <img src={props.logo} style={styles.LogoContainer} />
+        </Show>
+
+        <Show when={props.metadataLocation == 'inset'}>
+          <Show when={props.metadata}>
+            <Metadata
+              {...props.metadata}
+              width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
+            />
+          </Show>
+        </Show>
+
+        <Show when={props.progressBar?.progress ? props.progressBar.progress > 0 : 0}>
+          <ProgressBar
+            {...props.progressBar}
+            width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
           />
         </Show>
-      </Show>
+      </View>
 
       <Show when={props.metadataLocation == 'standard'}>
         <Show when={props.metadata}>
           <Metadata
             {...props.metadata}
             x={styles.Container.padding[0]}
-            y={props.height || styles.Container.height}
+            y={(props.height || styles.Container.height) + styles.Container.padding[1]}
             width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
-            /* x={styles.Container.padding[0]} y={styles.Container.padding[1]} */
           />
         </Show>
-
-        <Show when={props.logo}>
-          <img
-            src={props.logo}
-            style={styles.LogoContainer}
-            x={styles.Container.padding[0]}
-            y={
-              (props.height || styles.Container.height) -
-              styles.Container.paddingYProgress -
-              styles.Container.paddingYBetweenContent
-            }
-            mountY={1}
-          />
-        </Show>
-      </Show>
-
-      <Show when={props.progressBar?.progress ? props.progressBar.progress > 0 : 0}>
-        <ProgressBar
-          {...props.progressBar}
-          width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
-          x={styles.Container.padding[0]}
-          y={(props.height || styles.Container.height) - styles.Container.paddingYProgress}
-        />
       </Show>
     </node>
   );

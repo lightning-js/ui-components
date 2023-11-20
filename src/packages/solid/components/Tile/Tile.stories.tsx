@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import Tile from './Tile';
-import Checkbox from '../Checkbox/Checkbox';
-import Badge from '../Badge/Badge';
 import theme from 'theme';
-import lightning from '../../assets/images/ic_lightning_white_32.png';
 
 type Story = StoryObj<typeof Tile>;
 const lorum =
@@ -60,9 +57,10 @@ const meta: Meta<typeof Tile> = {
     },
     metadataLocation: {
       description: 'Controls where metadata is positioned in relationship to the Tile',
-      control: ['standard', 'inset'],
+      control: { type: 'radio' },
+      options: ['standard', 'inset'],
       table: {
-        defaultValue: { summary: 'standard' }
+        defaultValue: { summary: 'inset' }
       }
     },
 
@@ -129,25 +127,12 @@ export const Basic: Story = {
       width: 75
     },
     logo: '../../assets/images/Xfinity-Provider-Logo-2x1.png',
-    metadataLocation: 'standard',
+    metadataLocation: 'inset',
     metadata: {
       title: 'Title',
       description: lorum,
-      details: {
-        title: 'Support text',
-         badges: [{ title: 'TV-14' }, { title: 'HD' }, { title: 'CC' }],
-         ratings: [
-          {
-            src: lightning,
-            title: 76
-          },
-          {
-            src: lightning,
-            title: 96
-          }
-        ]
+      maxLines: 1
     }
-  }
   }
 };
 

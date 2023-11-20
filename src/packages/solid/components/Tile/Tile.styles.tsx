@@ -1,4 +1,5 @@
 import theme from 'theme';
+import { ContentAlign } from '../../../../shared/types/solid';
 
 type TileStyle = {
   Container: {
@@ -9,9 +10,11 @@ type TileStyle = {
     paddingYBetweenContent: number;
     borderRadius: number;
   };
-  FlexContainer: {
-    width: number;
-    height: number;
+  metaContainer: {
+    display: 'flex';
+    mountY: number;
+    flexDirection: 'column' | 'row';
+    justifyContent: ContentAlign;
   };
   LogoContainer: {
     width: number;
@@ -27,6 +30,12 @@ const styles: TileStyle = {
     paddingYProgress: theme.spacer.xl,
     paddingYBetweenContent: theme.spacer.md,
     borderRadius: theme.radius.md
+  },
+  metaContainer: {
+    display: 'flex',
+    mountY: 1,
+    flexDirection: 'column',
+    justifyContent: 'flexEnd'
   },
   LogoContainer: {
     width: theme.spacer.lg * 5,

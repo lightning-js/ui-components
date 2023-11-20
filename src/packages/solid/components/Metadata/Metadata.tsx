@@ -14,7 +14,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import type { Component } from 'solid-js';
+import { Component, createSignal } from 'solid-js';
 import { View, Text, Show } from '@lightningjs/solid';
 import type { IntrinsicNodeProps } from '@lightningjs/solid';
 import Details from './Details';
@@ -38,8 +38,21 @@ export interface MetadataProps extends IntrinsicNodeProps {
 }
 
 const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
+  const [getMetadataHeight, setMetadataHeight] = createSignal();
+
+  setMetadataHeight(() => {
+    let height = 0;
+    //title
+    height += styles.titleText.lineHeight;
+    //description
+    height += styles.descriptionText.lineHeight * props.maxLines;
+    //details
+    height += props.details?.titleText.lineHeight || 0;
+    return height;
+  });
+
   return (
-    <View style={styles.container} {...props}>
+    <View style={styles.container} {...props} height={getMetadataHeight()}>
       <Text width={props.width} style={styles.titleText}>
         {props.title}
       </Text>
