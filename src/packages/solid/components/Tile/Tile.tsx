@@ -1,4 +1,4 @@
-import { Component, createMemo, createSignal, Setter } from 'solid-js';
+import { Component, createSignal } from 'solid-js';
 import { Show, type IntrinsicNodeProps, View, Text } from '@lightningjs/solid';
 import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar';
 import Badge, { type BadgeProps } from '../Badge/Badge';
@@ -7,13 +7,14 @@ import Metadata, { type MetadataProps } from '../Metadata/Metadata';
 import styles from './Tile.styles';
 import { withPadding } from '@lightningjs/solid-primitives';
 import Label, { type LabelProps } from './Label';
+import Artwork, { type ArtworkProps } from './Artwork';
 withPadding;
 
 export interface TileProps extends TileStyleProps, IntrinsicNodeProps {
   /**
    * String to img source for artwork
    */
-  artwork: string; //TODO: right now artwork is a path, do we want it to be its own thing?
+  artwork: Partial<ArtworkProps>;
   /**
    * Object containing all properties supported in the [Badge component](?path=/docs/components-badge--text)
    */
@@ -59,6 +60,7 @@ export interface TileProps extends TileStyleProps, IntrinsicNodeProps {
 export interface TileStyleProps {}
 
 const Tile: Component<TileProps> = (props: TileProps) => {
+  const [isFocused, setIsFocused] = createSignal(false);
 
   return (
     <node
@@ -67,14 +69,16 @@ const Tile: Component<TileProps> = (props: TileProps) => {
       style={styles.Container}
       animate
       forwardStates
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
     >
-      <img src={props.artwork} style={styles.Container} alt="Solid logo" />
+      <Artwork {...props.artwork} width={props.width} height={props.height} alt="Solid logo" />
 
-      <Show when={props.badge?.title}>
+      <Show when={props.badge?.title && (isFocused() || props.persistentMetadata)}>
         <Badge {...props.badge} x={styles.Container.padding[0]} y={styles.Container.padding[1]} />
       </Show>
 
-      <Show when={props.label?.title}>
+      <Show when={props.label?.title && (isFocused() || props.persistentMetadata)}>
         <Label
           {...props.label}
           x={(props.width || styles.Container.width) - styles.Container.padding[0]}
@@ -84,33 +88,44 @@ const Tile: Component<TileProps> = (props: TileProps) => {
       </Show>
 
       <View
+        forwardStates
         style={styles.metaContainer}
         x={styles.Container.padding[0]}
-        y={(props.height || styles.Container.height) - styles.Container.padding[1]}
+        y={
+          (props.height || styles.Container.height) -
+          styles.Container.paddingYBetweenContent -
+          (props.progressBar ? styles.Container.paddingYProgress : 0)
+        }
       >
-        <Show when={props.logo}>
+        <Show when={props.logo && (isFocused() || props.persistentMetadata)}>
           <img src={props.logo} style={styles.LogoContainer} />
         </Show>
 
         <Show when={props.metadataLocation == 'inset'}>
-          <Show when={props.metadata}>
+          <Show when={props.metadata && (isFocused() || props.persistentMetadata)}>
             <Metadata
               {...props.metadata}
               width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
             />
           </Show>
         </Show>
-
-        <Show when={props.progressBar?.progress ? props.progressBar.progress > 0 : 0}>
-          <ProgressBar
-            {...props.progressBar}
-            width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
-          />
-        </Show>
       </View>
 
+      <Show when={props.progressBar?.progress ? props.progressBar.progress > 0 : 0}>
+        <ProgressBar
+          {...props.progressBar}
+          width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
+          x={styles.Container.padding[0]}
+          y={
+            (props.height || styles.Container.height) -
+            styles.Container.paddingYProgress -
+            (props.progressBar.height || 0)
+          }
+        />
+      </Show>
+
       <Show when={props.metadataLocation == 'standard'}>
-        <Show when={props.metadata}>
+        <Show when={props.metadata && (isFocused() || props.persistentMetadata)}>
           <Metadata
             {...props.metadata}
             x={styles.Container.padding[0]}
@@ -118,6 +133,15 @@ const Tile: Component<TileProps> = (props: TileProps) => {
             width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
           />
         </Show>
+      </Show>
+
+      <Show when={props.checkbox && props.checkbox.checked}>
+        <Checkbox
+          {...props.checkbox}
+          x={(props.width || styles.Container.width) - styles.Container.padding[0]}
+          y={(props.height || styles.Container.height) - styles.Container.padding[1]}
+          mount={1}
+        />
       </Show>
     </node>
   );

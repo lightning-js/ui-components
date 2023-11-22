@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import Tile from './Tile';
 import theme from 'theme';
+import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
 
 type Story = StoryObj<typeof Tile>;
 const lorum =
@@ -21,7 +22,7 @@ const meta: Meta<typeof Tile> = {
     },
     artwork: {
       description: 'object containing all properties of the artwork background',
-      control: { type: 'string' }
+      control: { type: 'object' }
     },
     label: {
       description: 'Text to display in the foreground of the label',
@@ -77,12 +78,12 @@ const meta: Meta<typeof Tile> = {
     metadata: {
       description: 'Object containing all properties supported in the [MetadataTile component]',
       control: { type: 'string' }
-    },
+    },*/
     persistentMetadata: {
       description: 'Show metadata if exists regardless of focusState',
-      control: { type: 'boolean' }
-    },*/
-
+      control: { type: 'radio' },
+      options: [true, false]
+    },
     progressBar: {
       description: 'object containing all the properties supported in the ProgressBar component',
       color: {
@@ -110,9 +111,19 @@ export const Basic: Story = {
     return <Tile {...args} />;
   },
   args: {
-    width: 400,
-    height: 240,
-    artwork: 'https://image.tmdb.org/t/p/w500/zHdQ6yaqDf3OQO5uhr0auAgwK6O.jpg',
+    states: 'focus',
+    width: 480,
+    height: 270,
+    artwork: {
+      src: 'https://image.tmdb.org/t/p/w500/zHdQ6yaqDf3OQO5uhr0auAgwK6O.jpg',
+      effects: {
+        linearGradient: {
+          angle: 3.14,
+          stops: [0, 0.5],
+          colors: [getHexColor(...(theme.color.black as [string, number])), 0x00000000]
+        }
+      }
+    },
     progressBar: {
       width: 300,
       height: theme.spacer.md,
@@ -126,12 +137,16 @@ export const Basic: Story = {
       title: 'Label',
       width: 75
     },
+    persistentMetadata: true,
     logo: '../../assets/images/Xfinity-Provider-Logo-2x1.png',
     metadataLocation: 'inset',
     metadata: {
       title: 'Title',
       description: lorum,
       maxLines: 1
+    },
+    checkbox: {
+      checked: false
     }
   }
 };

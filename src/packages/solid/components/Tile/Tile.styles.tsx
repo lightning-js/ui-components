@@ -1,5 +1,6 @@
 import theme from 'theme';
-import { ContentAlign } from '../../../../shared/types/solid';
+import { ContentAlign, StateStyle } from '../../../../shared/types/solid';
+import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
 
 type TileStyle = {
   Container: {
@@ -9,6 +10,11 @@ type TileStyle = {
     paddingYProgress: number;
     paddingYBetweenContent: number;
     borderRadius: number;
+    alpha: number;
+    color: number;
+    focus?: StateStyle<TileStyle['Container']>;
+    active?: StateStyle<TileStyle['Container']>;
+    disabled?: StateStyle<TileStyle['Container']>;
   };
   metaContainer: {
     display: 'flex';
@@ -29,7 +35,23 @@ const styles: TileStyle = {
     padding: [40, 10],
     paddingYProgress: theme.spacer.xl,
     paddingYBetweenContent: theme.spacer.md,
-    borderRadius: theme.radius.md
+    borderRadius: theme.radius.md,
+    alpha: theme.alpha.primary,
+    //color: getHexColor(...(theme.color.interactiveNeutralFocusSoft as [string, number])),
+    focus: {
+      //color: getHexColor(...(theme.color.interactiveNeutralFocusSoft as [string, number]))
+/*       tone: {
+        inverse: {
+          color: getHexColor(...theme.color.interactiveInverseFocusSoft as [string, number])),
+        },
+        brand: {
+          contentColor: getHexColor(...(theme.color.interactiveBrandFocusSoft as [string, number]))
+        }
+      } */
+    },
+    disabled: {
+      alpha: theme.alpha.inactive
+    }
   },
   metaContainer: {
     display: 'flex',
