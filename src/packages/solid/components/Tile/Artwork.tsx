@@ -1,12 +1,7 @@
 import { Component, createMemo } from 'solid-js';
-import { Text } from '@lightningjs/solid';
 import { View, type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles from './Artwork.styles';
 import { withPadding } from '@lightningjs/solid-primitives';
-import theme from 'theme';
-import { hexColor } from '@lightningjs/solid';
-import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
-
 withPadding;
 
 export interface ArtworkProps extends ArtworkStyleProps, IntrinsicNodeProps {

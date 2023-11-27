@@ -57,8 +57,6 @@ export interface TileProps extends TileStyleProps, IntrinsicNodeProps {
   width: number;
 }
 
-export interface TileStyleProps {}
-
 const Tile: Component<TileProps> = (props: TileProps) => {
   const [isFocused, setIsFocused] = createSignal(false);
 

@@ -1,6 +1,6 @@
 import theme from 'theme';
 import { Color, StateStyle } from '../../../../shared/types/solid';
-import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
+import { getHexColor } from 'utils';
 
 type LabelStyle = {
   Container: {

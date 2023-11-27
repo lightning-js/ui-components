@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import Tile from './Tile';
 import theme from 'theme';
-import { getHexColor } from '../../../../shared/utils/index'; // TODO ts path aliasing
+import { getHexColor } from 'utils';
 
 type Story = StoryObj<typeof Tile>;
 const lorum =
@@ -64,21 +64,14 @@ const meta: Meta<typeof Tile> = {
         defaultValue: { summary: 'inset' }
       }
     },
-
-    /*
     checkbox: {
       description: 'Object containing all properties supported in the Checkbox component',
-      control: { type: 'string' }
+      control: { type: 'object' }
     },
-    circle: {
-      description: 'Boolean changing format to circle if true',
-      control: { type: 'boolean' }
-    },
-    // TODO change when metadata gets merged in
     metadata: {
       description: 'Object containing all properties supported in the [MetadataTile component]',
-      control: { type: 'string' }
-    },*/
+      control: { type: 'object' }
+    },
     persistentMetadata: {
       description: 'Show metadata if exists regardless of focusState',
       control: { type: 'radio' },
