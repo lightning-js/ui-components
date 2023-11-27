@@ -30,6 +30,7 @@ const styles = {
   descriptionText: {
     ...theme.typography.body2,
     contain: 'both',
+    maxLines: 3,
     /*
     TODO: The fontFamily on the current theme is not an open sourced font,
     and is not loaded as a font face to the application. This overwrites that
