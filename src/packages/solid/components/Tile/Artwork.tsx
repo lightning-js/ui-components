@@ -54,7 +54,7 @@ const Artwork: Component<ArtworkProps> = props => {
 
   const formattedArtwork = createMemo(() => formatArtwork(props));
 
-  return <View {...props} styles={styles.Container} src={formattedArtwork()} />;
+  return <View {...props} style={styles.Container} src={formattedArtwork()} />;
 };
 
 export default Artwork;
