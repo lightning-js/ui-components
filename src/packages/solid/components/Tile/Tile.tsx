@@ -94,8 +94,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         x={styles.Container.padding[0]}
         y={
           (props.height || styles.Container.height) -
-          styles.Container.padding[1] -
-          styles.Container.paddingYBetweenContent
+          (props.progressBar ? styles.Container.paddingYProgress : 0)
         }
       >
         {/** Logo */}
