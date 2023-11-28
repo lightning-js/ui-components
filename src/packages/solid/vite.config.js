@@ -39,6 +39,19 @@ const config = {
     })
   ],
   base: './',
+  build: {
+    lib: {
+      fileName: 'index',
+      entry: './index.ts',
+      formats: ['es']
+    },
+    rollupOptions: {
+      external: ['theme', '@lightningjs/solid', '@lightningjs/solid-primitives', '@lightningjs/renderer']
+    },
+    minify: false,
+    sourcemap: false,
+    outDir: './dist'
+  },
   resolve: {
     alias: {
       theme: '@lightningjs/ui-components-theme-base',
