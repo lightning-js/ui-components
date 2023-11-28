@@ -72,10 +72,12 @@ const Tile: Component<TileProps> = (props: TileProps) => {
     >
       <Artwork {...props.artwork} width={props.width} height={props.height} alt="Solid logo" />
 
+      {/** Badge */}
       <Show when={props.badge?.title && (isFocused() || props.persistentMetadata)}>
         <Badge {...props.badge} x={styles.Container.padding[0]} y={styles.Container.padding[1]} />
       </Show>
 
+      {/** Title */}
       <Show when={props.label?.title && (isFocused() || props.persistentMetadata)}>
         <Label
           {...props.label}
@@ -85,30 +87,36 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         />
       </Show>
 
+      {/** inside tile */}
       <View
         forwardStates
         style={styles.metaContainer}
         x={styles.Container.padding[0]}
         y={
           (props.height || styles.Container.height) -
-          styles.Container.paddingYBetweenContent -
-          (props.progressBar ? styles.Container.paddingYProgress : 0)
+          styles.Container.padding[1] -
+          styles.Container.paddingYBetweenContent
         }
       >
+        {/** Logo */}
         <Show when={props.logo && (isFocused() || props.persistentMetadata)}>
           <img src={props.logo} style={styles.LogoContainer} />
         </Show>
 
-        <Show when={props.metadataLocation == 'inset'}>
-          <Show when={props.metadata && (isFocused() || props.persistentMetadata)}>
-            <Metadata
-              {...props.metadata}
-              width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
-            />
-          </Show>
+        {/** Metadata inset */}
+        <Show
+          when={
+            props.metadataLocation == 'inset' && props.metadata && (isFocused() || props.persistentMetadata)
+          }
+        >
+          <Metadata
+            {...props.metadata}
+            width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
+          />
         </Show>
       </View>
 
+      {/** Progress Bar*/}
       <Show when={props.progressBar?.progress ? props.progressBar.progress > 0 : 0}>
         <ProgressBar
           {...props.progressBar}
@@ -122,6 +130,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         />
       </Show>
 
+      {/** Metadata standard */}
       <Show when={props.metadataLocation == 'standard'}>
         <Show when={props.metadata && (isFocused() || props.persistentMetadata)}>
           <Metadata
@@ -133,6 +142,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         </Show>
       </Show>
 
+      {/** Checkbox */}
       <Show when={props.checkbox && props.checkbox.checked}>
         <Checkbox
           {...props.checkbox}

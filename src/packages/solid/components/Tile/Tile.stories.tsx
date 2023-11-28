@@ -118,8 +118,6 @@ export const Basic: Story = {
       }
     },
     progressBar: {
-      width: 300,
-      height: theme.spacer.md,
       progress: 0.5,
       borderRadius: theme.radius.xs
     },
