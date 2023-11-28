@@ -19,7 +19,7 @@ import { Show, type Component } from 'solid-js';
 import { View, Text, type NodeProps } from '@lightningjs/solid';
 import Icon, { type IconProps } from '../Icon/Icon.jsx';
 import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox.jsx';
-import styles from './Button.styles.js';
+import styles, { type Tone } from './Button.styles.js';
 import { withPadding } from '@lightningjs/solid-primitives';
 withPadding;
 
@@ -30,13 +30,14 @@ export interface ButtonProps extends ButtonStyleProps, NodeProps {
   suffix?: {
     checkbox?: Partial<CheckboxProps>;
     icon?: Partial<IconProps>;
-  }; // null, icon, checkbox, combo
+  };
   prefix?: {
     checkbox?: Partial<CheckboxProps>;
     icon?: Partial<IconProps>;
-  }; // null, icon, checkbox, combo
+  };
   width?: number;
   height?: number;
+  tone?: Tone;
 }
 
 export interface ButtonStyleProps {
@@ -46,31 +47,56 @@ export interface ButtonStyleProps {
 const Button: Component<ButtonProps> = props => {
   return (
     <node
-      use:withPadding={styles.Container.padding}
+      use:withPadding={styles.Container?.padding}
       {...props}
-      style={styles.Container}
       animate
       forwardStates
+      tone={props.tone || styles.tone}
+      style={{
+        ...styles.Container,
+        ...styles.Container[props.tone || styles.tone],
+        ...props?.style?.Container
+      }}
     >
-      <View forwardStates style={styles.FlexContainer} width={props.width}>
+      <View
+        forwardStates
+        width={props.width}
+        tone={props.tone || styles.tone}
+        style={{
+          ...styles.FlexContainer,
+          ...styles.FlexContainer[props.tone || styles.tone],
+          ...props?.style?.FlexContainer
+        }}
+      >
         <Show when={props.prefix?.icon}>
-          <Icon {...props.prefix?.icon} />
+          <Icon {...props.prefix?.icon} tone={props.tone || styles.tone} />
         </Show>
 
         <Show when={props.prefix?.checkbox}>
-          <Checkbox {...props.prefix?.checkbox} />
+          <Checkbox {...props.prefix?.checkbox} tone={props.tone || styles.tone} />
         </Show>
 
-        <Show when={props.children}>
-          <Text style={styles.Text}>{props.children}</Text>
+        <Show when={props.children} keyed>
+          {children => (
+            <Text
+              tone={props.tone || styles.tone}
+              style={{
+                ...styles.Text,
+                ...styles.Text[props.tone || styles.tone],
+                ...props?.style?.Text
+              }}
+            >
+              {children}
+            </Text>
+          )}
         </Show>
 
         <Show when={props.suffix?.icon}>
-          <Icon {...props.suffix?.icon} />
+          <Icon {...props.suffix?.icon} tone={props.tone || styles.tone} />
         </Show>
 
         <Show when={props.suffix?.checkbox}>
-          <Checkbox {...props.suffix?.checkbox} />
+          <Checkbox {...props.suffix?.checkbox} tone={props.tone || styles.tone} />
         </Show>
       </View>
     </node>
