@@ -8,6 +8,7 @@ type RowStyle = {
     gap: number;
     x: number;
     y: number;
+    width: number;
   };
 };
 
@@ -18,7 +19,8 @@ const styles: RowStyle = {
     flexDirection: 'row',
     gap: 30,
     x: theme.layout.marginX,
-    y: [200, { ...theme.animation.standard, duration: theme.animation.duration.fast }] as any
+    y: [200, { ...theme.animation.standard, duration: theme.animation.duration.fast }] as any,
+    width: theme.layout.screenW
   }
 };
 
