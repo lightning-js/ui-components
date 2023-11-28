@@ -16,9 +16,18 @@
  */
 
 import { defineConfig } from 'vite';
+import path from 'path';
 import config from '../../vite.config';
 
 export default defineConfig({
   ...config,
+  resolve: {
+    alias: {
+      theme: './theme.js',
+      utils: path.resolve(__dirname, '../shared/utils/index.ts')
+    },
+    // breaks without this for some reason
+    dedupe: ['solid-js', '@lightningjs/solid', '@lightningjs/renderer']
+  },
   publicDir: '../shared/public'
 });
