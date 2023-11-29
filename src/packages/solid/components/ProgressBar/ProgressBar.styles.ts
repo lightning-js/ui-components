@@ -16,7 +16,7 @@
  */
 
 import theme from 'theme';
-import { Color, Animatable } from '../../../../shared/types/solid';
+import type { Color, Animatable } from '../../../../shared/types/solid.js';
 import { getHexColor } from 'utils';
 
 type ProgressBarStyle = {
@@ -39,7 +39,7 @@ const styles: ProgressBarStyle = {
   },
   progressBar: {
     borderRadius: theme.radius.xs,
-    color: getHexColor(...(theme.color.fillNeutral as [string, number])),
+    color: getHexColor(...(theme.color.fillNeutral as [string, number]))
   }
 };
 

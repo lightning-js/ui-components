@@ -14,7 +14,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import Checkbox from './Checkbox';
+import Checkbox from './Checkbox.jsx';
 import check from '../../assets/images/check-icon.png';
 
 const meta = {

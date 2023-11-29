@@ -18,7 +18,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@lightningjs/renderer": "^0.4.1",
+    "@lightningjs/renderer": "^0.5.0",
     "eslint": "^8.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-jest": "^27.4.2",
@@ -30,7 +30,7 @@
     "@lightningjs/ui-components-theme-base": "^1.0.3",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
-    "typescript": "^4.9.5",
+    "typescript": "^5.2.2",
     "vite": "^4.4.11",
     "vite-bundle-visualizer": "^0.10.0",
     "vite-plugin-cross-origin-isolation": "^0.1.6",

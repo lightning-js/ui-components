@@ -16,18 +16,17 @@
  */
 
 import { Show, type Component } from 'solid-js';
-import { View, Text, type IntrinsicNodeProps } from '@lightningjs/solid';
-import Icon, { type IconProps } from '../Icon/Icon';
-import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox';
-import styles from './Button.styles';
+import { View, Text, type NodeProps } from '@lightningjs/solid';
+import Icon, { type IconProps } from '../Icon/Icon.jsx';
+import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox.jsx';
+import styles from './Button.styles.js';
 import { withPadding } from '@lightningjs/solid-primitives';
 withPadding;
 
 /**
  * Primary UI component for user interaction
  */
-export interface ButtonProps extends ButtonStyleProps, IntrinsicNodeProps {
-  children?: string;
+export interface ButtonProps extends ButtonStyleProps, NodeProps {
   suffix?: {
     checkbox?: Partial<CheckboxProps>;
     icon?: Partial<IconProps>;
@@ -41,7 +40,6 @@ export interface ButtonProps extends ButtonStyleProps, IntrinsicNodeProps {
 }
 
 export interface ButtonStyleProps {
-  color?: number;
   borderRadius?: number;
 }
 

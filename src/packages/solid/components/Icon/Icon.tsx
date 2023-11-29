@@ -17,7 +17,7 @@
 
 import type { Component } from 'solid-js';
 import { View, type IntrinsicNodeProps } from '@lightningjs/solid';
-import styles from './Icon.styles';
+import styles from './Icon.styles.js';
 
 export interface IconProps extends IntrinsicNodeProps {
   /**

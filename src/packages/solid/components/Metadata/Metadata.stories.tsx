@@ -14,7 +14,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import Metadata from './Metadata';
+import Metadata from './Metadata.jsx';
 import lightning from '../../assets/images/ic_lightning_white_32.png';
 
 const lorum =
@@ -40,6 +40,7 @@ export const Basic = {
   args: {
     title: 'Title',
     description: lorum,
+    maxLines: 3,
     details: {
       title: 'Support text',
       badges: [{ title: 'TV-14' }, { title: 'HD' }, { title: 'CC' }],

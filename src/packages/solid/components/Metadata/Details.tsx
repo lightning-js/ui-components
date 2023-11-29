@@ -17,11 +17,11 @@
 import type { Component, Accessor } from 'solid-js';
 import { View, Text, Show, For } from '@lightningjs/solid';
 import type { IntrinsicNodeProps, ElementNode } from '@lightningjs/solid';
-import Badge from '../Badge/Badge';
-import type { BadgeProps } from '../Badge/Badge';
-import Rating from './Rating';
-import type { RatingProps } from './Rating';
-import styles from './Details.styles';
+import Badge from '../Badge/Badge.jsx';
+import type { BadgeProps } from '../Badge/Badge.jsx';
+import Rating from './Rating.jsx';
+import type { RatingProps } from './Rating.jsx';
+import styles from './Details.styles.js';
 
 export interface DetailsProps extends IntrinsicNodeProps {
   /**

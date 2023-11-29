@@ -14,9 +14,8 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import Badge from './Badge';
+import Badge from './Badge.jsx';
 import lightning from '../../assets/images/ic_lightning_white_32.png';
-import theme from 'theme';
 
 const meta = {
   title: 'Components/Badge',
@@ -32,7 +31,7 @@ const meta = {
       description: 'Side of the text the icon will appear on'
     },
     icon: {
-      icon: {
+      src: {
         description: 'path to image or inline SVG XML'
       },
       color: {
@@ -53,8 +52,7 @@ export const Basic = {
     icon: {
       width: 20,
       height: 20,
-      color: theme.color.fillNeutralSecondary[0],
-      icon: lightning
+      src: lightning
     }
   }
 };
