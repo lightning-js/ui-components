@@ -10,5 +10,6 @@ export default (node: ElementNode, states: ElementNode['States']) => {
         }
       })
     : states;
+  console.log(nextState);
   return nextState;
 };
