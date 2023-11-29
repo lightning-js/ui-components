@@ -19,7 +19,7 @@ import { type Component } from 'solid-js';
 import { View, Text, type NodeProps } from '@lightningjs/solid';
 import Icon, { type IconProps } from '../Icon/Icon.jsx';
 import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox.jsx';
-import styles, { type Tone } from './Button.styles.js';
+import styles, { type Tone, type ButtonStyle } from './Button.styles.js';
 import { withPadding } from '@lightningjs/solid-primitives';
 withPadding;
 
@@ -38,31 +38,25 @@ export interface ButtonProps extends ButtonStyleProps, NodeProps {
   width?: number;
   height?: number;
   tone?: Tone;
+  style?: ButtonStyle;
 }
 
 const Button: Component<CoreButton> = props => {
   return (
     <node
       use:withPadding={styles.Container?.padding}
-      {...props}
       animate
       forwardStates
       tone={props.tone || styles.tone}
-      style={{
-        ...styles.Container,
-        ...styles.Container[props.tone || styles.tone],
-        ...props?.style?.Container
-      }}
+      {...{ ...styles.Container[props.tone || styles.tone], ...props?.style?.Container, ...props }}
+      style={styles.Container}
     >
       <View
         forwardStates
         width={props.width}
         tone={props.tone || styles.tone}
-        style={{
-          ...styles.FlexContainer,
-          ...styles.FlexContainer[props.tone || styles.tone],
-          ...props?.style?.FlexContainer
-        }}
+        {...{ ...styles.FlexContainer[props.tone || styles.tone], ...props?.style?.FlexContainer }}
+        style={styles.FlexContainer}
       >
         <Show when={props.prefix?.icon}>
           <Icon {...props.prefix?.icon} tone={props.tone || styles.tone} />
@@ -76,11 +70,8 @@ const Button: Component<CoreButton> = props => {
           {children => (
             <Text
               tone={props.tone || styles.tone}
-              style={{
-                ...styles.Text,
-                ...styles.Text[props.tone || styles.tone],
-                ...props?.style?.Text
-              }}
+              {...{ ...styles.Text[props.tone || styles.tone], ...props?.style?.Text }}
+              style={styles.Text}
             >
               {children}
             </Text>
