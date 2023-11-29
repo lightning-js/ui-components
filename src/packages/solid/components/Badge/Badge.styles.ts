@@ -31,7 +31,12 @@ const styles = {
       color: getHexColor(...(theme.color.strokeInverse as [string, number]))
     }
   } satisfies NodeStyles,
-  padding: [theme.spacer.md, theme.spacer.xs] as [number, number],
+  padding: [
+    theme.spacer.md - theme.stroke.sm,
+    theme.spacer.xs + theme.stroke.sm,
+    theme.spacer.md + theme.stroke.sm,
+    theme.spacer.md + theme.stroke.sm
+  ] as [number, number, number, number],
   textStyle: theme.typography.tag1
 };
 
