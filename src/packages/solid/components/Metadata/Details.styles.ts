@@ -26,7 +26,10 @@ const styles = {
   titleText: theme.typography.body2,
   contentSpacing: theme.spacer.lg,
   badgeContentSpacing: theme.spacer.sm,
-  ratingContentSpacing: theme.spacer.lg
+  ratingContentSpacing: theme.spacer.lg,
+  disabled: {
+    titleText: { textColor: theme.color.textNeutralDisabled }
+  }
 };
 
 export default styles;
