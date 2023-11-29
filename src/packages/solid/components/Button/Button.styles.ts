@@ -16,67 +16,15 @@
  */
 
 import theme from 'theme';
-import type {
-  Color,
-  TextAlign,
-  ContentAlign,
-  Animatable,
-  StateStyle
-} from '../../../../shared/types/solid.js';
-import { type IntrinsicNodeStyleProps, type IntrinsicTextNodeStyleProps } from '@lightningjs/solid';
+import type { WithTonesModes, Tone } from '../../../../shared/types/solid.js';
+import { type TextStyles, type NodeStyles } from '@lightningjs/solid';
 import { getHexColor } from 'utils';
-
-export interface ButtonContainerStyle
-  extends Pick<
-    IntrinsicNodeStyleProps,
-    'height' | 'width' | 'display' | 'justifyContent' | 'color' | 'borderRadius' | 'focus'
-  > {
-  borderRadius: number;
-  contentColor: Animatable<Color>;
-  padding: number[];
-  focus?: StateStyle<ButtonContainerStyle>;
-  active?: StateStyle<ButtonContainerStyle>;
-  disabled?: StateStyle<ButtonContainerStyle>;
-}
-
-export interface FlexContainerStyle
-  extends Pick<IntrinsicNodeStyleProps, 'display' | 'flexDirection' | 'justifyContent' | 'mountY'> {
-  focus?: StateStyle<FlexContainerStyle>;
-  active?: StateStyle<FlexContainerStyle>;
-  disabled?: StateStyle<FlexContainerStyle>;
-}
-
-export interface TextStyle extends Pick<IntrinsicTextNodeStyleProps, 'mount' | 'color'> {
-  fontSize: number;
-  textAlign: TextAlign;
-  focus?: StateStyle<FlexContainerStyle>;
-  active?: StateStyle<FlexContainerStyle>;
-  disabled?: StateStyle<FlexContainerStyle>;
-}
-
-export type Tone = keyof {
-  neutral: object;
-  inverse: object;
-  brand: object;
-};
-
-export interface WithTones<T> {
-  neutral?: {
-    [K in keyof T]: T[K];
-  };
-  inverse?: {
-    [K in keyof T]: T[K];
-  };
-  brand?: {
-    [K in keyof T]: T[K];
-  };
-}
 
 export interface ButtonStyle {
   tone: Tone;
-  Container: ButtonContainerStyle & WithTones<ButtonContainerStyle>;
-  FlexContainer: FlexContainerStyle & WithTones<FlexContainerStyle>;
-  Text: TextStyle & WithTones<TextStyle>;
+  Container: (NodeStyles & { padding: number[] }) & WithTonesModes<NodeStyles & { padding: number[] }>;
+  FlexContainer: NodeStyles & WithTonesModes<NodeStyles>;
+  Text: TextStyles & WithTonesModes<TextStyles>;
 }
 
 const configList = ['Surface', 'Button'];

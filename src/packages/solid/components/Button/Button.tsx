@@ -19,7 +19,8 @@ import { type Component } from 'solid-js';
 import { View, Text, type NodeProps } from '@lightningjs/solid';
 import Icon, { type IconProps } from '../Icon/Icon.jsx';
 import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox.jsx';
-import styles, { type Tone, type ButtonStyle } from './Button.styles.js';
+import styles, { type ButtonStyle } from './Button.styles.js';
+import type { Tone } from '../../../../shared/types/solid.js';
 import { withPadding } from '@lightningjs/solid-primitives';
 withPadding;
 
