@@ -16,8 +16,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import Button from '.';
-import { render } from '../../test-utils';
+import Button from './Button.jsx';
+import { render } from '../../test-utils.jsx';
 import { describe, expect, it } from 'vitest';
 
 describe('Button', () => {

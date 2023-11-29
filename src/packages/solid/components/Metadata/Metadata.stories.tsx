@@ -14,7 +14,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import Metadata from './Metadata';
+import Metadata from './Metadata.jsx';
 import lightning from '../../assets/images/ic_lightning_white_32.png';
 
 const lorum =

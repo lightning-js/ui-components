@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import Icon from './Icon.js';
+import Icon from './Icon.jsx';
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import lightning from '../../assets/images/ic_lightning_white_32.png';
 import { hexColor } from '@lightningjs/solid';

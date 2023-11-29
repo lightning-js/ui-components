@@ -16,8 +16,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import Badge from '.';
-import { render } from '../../test-utils';
+import Badge from './Badge.jsx';
+import { render } from '../../test-utils.jsx';
 import { describe, expect, it } from 'vitest';
 
 describe('Badge', () => {

@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import type { Meta, StoryObj } from 'storybook-solidjs';
-import Button from './Button';
+import Button from './Button.jsx';
 import lightning from '../../assets/images/ic_lightning_white_32.png';
 import check from '../../assets/images/check-icon.png';
 

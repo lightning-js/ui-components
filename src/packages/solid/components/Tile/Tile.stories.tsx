@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from 'storybook-solidjs';
-import Tile from './Tile';
+import Tile from './Tile.jsx';
 import theme from 'theme';
 import { getHexColor } from 'utils';
 

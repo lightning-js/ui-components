@@ -1,13 +1,13 @@
-import { Component, createSignal } from 'solid-js';
-import { Show, type IntrinsicNodeProps, View, Text } from '@lightningjs/solid';
-import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar';
-import Badge, { type BadgeProps } from '../Badge/Badge';
-import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox';
-import Metadata, { type MetadataProps } from '../Metadata/Metadata';
-import styles from './Tile.styles';
+import { type Component, createSignal } from 'solid-js';
+import { Show, type IntrinsicNodeProps, View } from '@lightningjs/solid';
+import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
+import Badge, { type BadgeProps } from '../Badge/Badge.jsx';
+import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox.jsx';
+import Metadata, { type MetadataProps } from '../Metadata/Metadata.jsx';
+import styles from './Tile.styles.js';
 import { withPadding } from '@lightningjs/solid-primitives';
-import Label, { type LabelProps } from './Label';
-import Artwork, { type ArtworkProps } from './Artwork';
+import Label, { type LabelProps } from './Label.jsx';
+import Artwork, { type ArtworkProps } from './Artwork.jsx';
 withPadding;
 
 export interface TileProps extends TileStyleProps, IntrinsicNodeProps {

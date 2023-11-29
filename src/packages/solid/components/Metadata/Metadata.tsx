@@ -14,12 +14,12 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import { Component, createSignal } from 'solid-js';
+import { type Component, createSignal } from 'solid-js';
 import { View, Text, Show } from '@lightningjs/solid';
 import type { NodeStyles } from '@lightningjs/solid';
-import Details from './Details';
-import type { DetailsProps } from './Details';
-import styles from './Metadata.styles';
+import Details from './Details.jsx';
+import type { DetailsProps } from './Details.jsx';
+import styles from './Metadata.styles.js';
 
 export interface MetadataProps extends NodeStyles {
   /**

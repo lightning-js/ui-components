@@ -1,5 +1,5 @@
 import theme from 'theme';
-import { ContentAlign, StateStyle } from '../../../../shared/types/solid';
+import type { ContentAlign, StateStyle } from '../../../../shared/types/solid.js';
 import { getHexColor } from 'utils';
 
 type TileStyle = {

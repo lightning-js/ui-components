@@ -17,8 +17,8 @@
 
 import type { Component } from 'solid-js';
 import { View, Show, type IntrinsicNodeProps } from '@lightningjs/solid';
-import Icon, { type IconProps } from '../Icon/Icon';
-import styles from './Checkbox.styles';
+import Icon, { type IconProps } from '../Icon/Icon.jsx';
+import styles from './Checkbox.styles.js';
 
 export interface CheckboxProps extends IntrinsicNodeProps {
   /**

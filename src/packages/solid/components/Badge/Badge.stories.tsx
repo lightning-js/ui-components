@@ -14,10 +14,8 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import Badge from './Badge';
+import Badge from './Badge.jsx';
 import lightning from '../../assets/images/ic_lightning_white_32.png';
-import theme from 'theme';
-import { getHexColor } from 'utils';
 
 const meta = {
   title: 'Components/Badge',
