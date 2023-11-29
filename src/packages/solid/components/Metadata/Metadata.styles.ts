@@ -16,6 +16,7 @@
  */
 
 import theme from 'theme';
+import { getHexColor } from 'utils';
 
 const styles = {
   container: {
@@ -37,6 +38,12 @@ const styles = {
     font to one that is loaded so that we can utilize the SdfTextRenderer.
     */
     fontFamily: 'Ubuntu'
+  },
+  disabled: {
+    titleText: { textColor: getHexColor(...(theme.color.textNeutralDisabled as [string, number])) },
+    descriptionText: {
+      textColor: getHexColor(...(theme.color.textNeutralDisabled as [string, number]))
+    }
   }
 };
 
