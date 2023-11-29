@@ -16,12 +16,12 @@
  */
 import { Component, createSignal } from 'solid-js';
 import { View, Text, Show } from '@lightningjs/solid';
-import type { IntrinsicNodeProps } from '@lightningjs/solid';
+import type { NodeStyles } from '@lightningjs/solid';
 import Details from './Details';
 import type { DetailsProps } from './Details';
 import styles from './Metadata.styles';
 
-export interface MetadataProps extends IntrinsicNodeProps {
+export interface MetadataProps extends NodeStyles {
   /**
    * title text
    */
@@ -38,7 +38,7 @@ export interface MetadataProps extends IntrinsicNodeProps {
 }
 
 const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
-  const [getMetadataHeight, setMetadataHeight] = createSignal();
+  const [getMetadataHeight, setMetadataHeight] = createSignal<number>();
 
   setMetadataHeight(() => {
     let height = 0;
@@ -47,7 +47,7 @@ const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
     //description
     height += styles.descriptionText.lineHeight * props.maxLines;
     //details
-    height += props.details?.titleText.lineHeight || 0;
+    height += props.details?.titleText?.lineHeight || 0;
     return height;
   });
 

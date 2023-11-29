@@ -16,7 +16,13 @@
  */
 
 import theme from 'theme';
-import { Color, TextAlign, ContentAlign, Animatable, StateStyle } from '../../../../shared/types/solid';
+import type {
+  Color,
+  TextAlign,
+  ContentAlign,
+  Animatable,
+  StateStyle
+} from '../../../../shared/types/solid.js';
 import { getHexColor } from 'utils';
 
 type ButtonStyle = {

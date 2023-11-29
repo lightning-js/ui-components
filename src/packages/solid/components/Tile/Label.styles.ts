@@ -1,5 +1,5 @@
 import theme from 'theme';
-import { Color, StateStyle } from '../../../../shared/types/solid';
+import type { Color } from '../../../../shared/types/solid.js';
 import { getHexColor } from 'utils';
 
 type LabelStyle = {

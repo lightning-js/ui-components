@@ -1,5 +1,4 @@
 import theme from 'theme';
-import { Color, StateStyle } from '../../../../shared/types/solid';
 import { getHexColor } from 'utils';
 
 type ArtworkStyle = {

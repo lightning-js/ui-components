@@ -5,6 +5,7 @@
     "outDir": "./dist",
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
+    "types": ["solid-js"],
     "paths": {
       "utils": ["../../shared/utils/index.ts"],
       "theme": ["../../shared/theme.ts"],

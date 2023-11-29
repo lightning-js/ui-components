@@ -1,7 +1,7 @@
-import { Component } from 'solid-js';
+import { type Component } from 'solid-js';
 import { Text } from '@lightningjs/solid';
 import type { IntrinsicNodeProps } from '@lightningjs/solid';
-import styles from './Label.styles';
+import styles from './Label.styles.js';
 import { withPadding } from '@lightningjs/solid-primitives';
 withPadding;
 
@@ -13,7 +13,6 @@ export interface LabelProps extends LabelStyleProps, IntrinsicNodeProps {
 }
 
 export interface LabelStyleProps {
-  color?: number;
   borderRadius?: number;
 }
 

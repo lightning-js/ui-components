@@ -1,6 +1,6 @@
-import { Component, createMemo } from 'solid-js';
+import { type Component, createMemo } from 'solid-js';
 import { View, type IntrinsicNodeProps } from '@lightningjs/solid';
-import styles from './Artwork.styles';
+import styles from './Artwork.styles.js';
 import { withPadding } from '@lightningjs/solid-primitives';
 withPadding;
 
@@ -24,8 +24,8 @@ export interface ArtworkProps extends ArtworkStyleProps, IntrinsicNodeProps {
     closestAspectRatio: string | undefined;
     aspectRatio: string | undefined;
     src: string;
-    w: number;
-    h: number;
+    width: number;
+    height: number;
   }) => string;
 }
 
@@ -40,8 +40,8 @@ const Artwork: Component<ArtworkProps> = props => {
         closestAspectRatio: undefined,
         aspectRatio: undefined,
         src: src,
-        w: props.width,
-        h: props.height
+        width: props.width,
+        height: props.height
       });
     }
     return src;
