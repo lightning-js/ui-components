@@ -52,6 +52,14 @@ const meta: Meta<typeof Button> = {
         defaultValue: { summary: 'focus' }
       }
     },
+    tone: {
+      control: { type: 'radio' },
+      options: ['neutral', 'inverse', 'brand'],
+      description: 'Sets the tone for the component',
+      table: {
+        defaultValue: { summary: 'neutral' }
+      }
+    },
     width: {
       control: { type: 'number', min: 400, max: 1200, step: 50 },
       description: 'When the fixed property is true, this will set the width of the component',
@@ -94,7 +102,7 @@ const meta: Meta<typeof Button> = {
 };
 
 export const Basic: Story = {
-  render: args => {
+  render: (args) => {
     return (
       <Button {...args} prefix={getComponentArray(args.prefix)} suffix={getComponentArray(args.suffix)}>
         Button
