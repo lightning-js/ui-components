@@ -26,7 +26,7 @@ withPadding;
 /**
  * Primary UI component for user interaction
  */
-export interface ButtonProps extends ButtonStyleProps, NodeProps {
+export interface ButtonProps extends ButtonStyleProps, Omit<NodeProps, 'style'> {
   suffix?: {
     checkbox?: Partial<CheckboxProps>;
     icon?: Partial<IconProps>;
@@ -45,21 +45,28 @@ export interface ButtonStyleProps {
   borderRadius?: number;
 }
 
-const Button: Component<ButtonProps> = props => {
+const Button: Component<ButtonProps & { children: string | string[] }> = props => {
   return (
     <node
       use:withPadding={styles.Container?.padding}
       animate
       forwardStates
       tone={props.tone || styles.tone}
-      {...{ ...styles.Container[props.tone || styles.tone], ...props?.style?.Container, ...props }}
+      {...{
+        ...styles.Container[props.tone || styles.tone],
+        ...props?.style?.Container,
+        ...props
+      }}
       style={styles.Container}
     >
       <View
         forwardStates
         width={props.width}
         tone={props.tone || styles.tone}
-        {...{ ...styles.FlexContainer[props.tone || styles.tone], ...props?.style?.FlexContainer }}
+        {...{
+          ...styles.FlexContainer[props.tone || styles.tone],
+          ...props?.style?.FlexContainer
+        }}
         style={styles.FlexContainer}
       >
         <Show when={props.prefix?.icon}>
@@ -74,7 +81,10 @@ const Button: Component<ButtonProps> = props => {
           {children => (
             <Text
               tone={props.tone || styles.tone}
-              {...{ ...styles.Text[props.tone || styles.tone], ...props?.style?.Text }}
+              {...{
+                ...styles.Text[props.tone || styles.tone],
+                ...props?.style?.Text
+              }}
               style={styles.Text}
             >
               {children}
