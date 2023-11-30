@@ -15,60 +15,23 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Show, type Component } from 'solid-js';
+import { type Component } from 'solid-js';
 import { View, Text, type NodeProps } from '@lightningjs/solid';
-import Icon, { type IconProps } from '../Icon/Icon.jsx';
-import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox.jsx';
 import styles from './Button.styles.js';
 import { withPadding } from '@lightningjs/solid-primitives';
 withPadding;
 
-/**
- * Primary UI component for user interaction
- */
-export interface ButtonProps extends NodeProps {
-  suffix?: {
-    checkbox?: Partial<CheckboxProps>;
-    icon?: Partial<IconProps>;
-  }; // null, icon, checkbox, combo
-  prefix?: {
-    checkbox?: Partial<CheckboxProps>;
-    icon?: Partial<IconProps>;
-  }; // null, icon, checkbox, combo
-}
-
-const Button: Component<ButtonProps> = props => {
+const Button: Component<NodeProps> = props => {
   return (
-    <node
-      use:withPadding={styles.Container.padding}
-      {...props}
-      style={styles.Container}
-      animate
-      forwardStates
-    >
-      <View forwardStates style={styles.FlexContainer} width={props.width}>
-        <Show when={props.prefix?.icon}>
-          <Icon {...props.prefix?.icon} />
-        </Show>
-
-        <Show when={props.prefix?.checkbox}>
-          <Checkbox {...props.prefix?.checkbox} />
-        </Show>
-
-        <Show when={props.children}>
-          <Text style={styles.Text}>{props.children}</Text>
-        </Show>
-
-        <Show when={props.suffix?.icon}>
-          <Icon {...props.suffix?.icon} />
-        </Show>
-
-        <Show when={props.suffix?.checkbox}>
-          <Checkbox {...props.suffix?.checkbox} />
-        </Show>
-      </View>
-    </node>
+    <View {...props} style={styles.Container} forwardStates>
+      <Text style={styles.Text}>{props.children}</Text>
+    </View>
   );
 };
 
+export const ButtonContainer: Component<NodeProps> = props => {
+  return <View {...props} style={styles.Container} forwardStates />;
+};
+
 export default Button;
+export const ButtonStyles = styles;

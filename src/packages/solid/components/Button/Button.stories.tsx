@@ -15,27 +15,15 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import type { Meta, StoryObj } from 'storybook-solidjs';
-import Button from './Button.jsx';
-import lightning from '../../assets/images/ic_lightning_white_32.png';
-import check from '../../assets/images/check-icon.png';
+import Button, { ButtonContainer, ButtonStyles } from './Button.jsx';
+import { Text } from '@lightningjs/solid';
+import Icon from '../Icon/Icon.jsx';
+import Checkbox from '../Checkbox/Checkbox.jsx';
+
+const lightning = '/assets/images/ic_lightning_white_32.png';
+const check = '/assets/images/check-icon.png';
 
 type Story = StoryObj<typeof Button>;
-
-function getComponentArray(comps: any) {
-  let arr = {};
-  switch (comps) {
-    case 'icon':
-      arr = { icon: { src: lightning, width: 35, height: 35 } };
-      break;
-    case 'checkbox':
-      arr = { checkbox: { icon: check, checked: true } };
-      break;
-    case 'combo':
-      arr = { icon: { src: lightning, width: 35, height: 35 }, checkbox: { icon: check, checked: true } };
-      break;
-  }
-  return arr;
-}
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/solid/writing-stories/introduction
 
@@ -66,28 +54,12 @@ const meta: Meta<typeof Button> = {
         defaultValue: { summary: 100 }
       }
     },
-    /* justifyContent: {
+    justifyContent: {
       control: 'radio',
-      options: ['center' , 'flexStart' , 'flexEnd' , 'spaceBetween' , 'spaceEvenly'],
+      options: ['center', 'flexStart', 'flexEnd', 'spaceBetween', 'spaceEvenly'],
       description: 'Justification of button content',
       table: {
         defaultValue: { summary: 'center' }
-      }
-    }, */
-    prefix: {
-      control: 'radio',
-      options: [null, 'icon', 'checkbox', 'combo'],
-      description: 'Lightning components to be placed to the left of the title',
-      table: {
-        defaultValue: { summary: null }
-      }
-    },
-    suffix: {
-      control: 'radio',
-      options: [null, 'icon', 'checkbox', 'combo'],
-      description: 'Lightning components to be placed to the right of the title',
-      table: {
-        defaultValue: { summary: null }
       }
     }
   }
@@ -95,16 +67,60 @@ const meta: Meta<typeof Button> = {
 
 export const Basic: Story = {
   render: args => {
+    return <Button {...args}>Button</Button>;
+  },
+  args: {
+    width: 400,
+    height: 100
+  }
+};
+
+export const WithIcon: Story = {
+  render: args => {
     return (
-      <Button {...args} prefix={getComponentArray(args.prefix)} suffix={getComponentArray(args.suffix)}>
-        Button
-      </Button>
+      <ButtonContainer {...args}>
+        <Icon width={22} height={28} src={lightning} />
+        <Text style={ButtonStyles.Text}>Button</Text>
+      </ButtonContainer>
     );
   },
   args: {
     width: 400,
     height: 100
-    //justifyContent: 'center'
+  }
+};
+
+export const WithCheckbox: Story = {
+  render: args => {
+    return (
+      <ButtonContainer {...args}>
+        <Checkbox checked>
+          <Icon width={18} height={14} src={check} />
+        </Checkbox>
+        <Text style={ButtonStyles.Text}>Button</Text>
+      </ButtonContainer>
+    );
+  },
+  args: {
+    width: 400,
+    height: 100
+  }
+};
+
+export const WithCheckboxRight: Story = {
+  render: args => {
+    return (
+      <ButtonContainer {...args}>
+        <Text style={ButtonStyles.Text}>Button</Text>
+        <Checkbox checked>
+          <Icon width={18} height={14} src={check} />
+        </Checkbox>
+      </ButtonContainer>
+    );
+  },
+  args: {
+    width: 400,
+    height: 100
   }
 };
 

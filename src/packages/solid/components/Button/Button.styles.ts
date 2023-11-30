@@ -26,7 +26,10 @@ const styles = {
     color: getHexColor(...(theme.color.interactiveNeutralFocusSoft as [string, number])), //interactiveNeutralFocus undefined
     contentColor: getHexColor(...(theme.color.fillInverse as [string, number])),
     display: 'flex',
+    flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
+    gap: 20,
     borderRadius: 30,
     focus: {
       color: getHexColor(...(theme.color.interactiveNeutralFocus as [string, number])),
@@ -46,14 +49,7 @@ const styles = {
       contentColor: getHexColor(...(theme.color.fillNeutralDisabled as [string, number]))
     }
   },
-  FlexContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   Text: {
-    textAlign: 'center',
     color: getHexColor(...(theme.color.textNeutral as [string, number])),
     ...theme.typography.button1,
     focus: {
