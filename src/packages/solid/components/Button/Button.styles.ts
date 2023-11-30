@@ -16,50 +16,9 @@
  */
 
 import theme from 'theme';
-import type {
-  Color,
-  TextAlign,
-  ContentAlign,
-  Animatable,
-  StateStyle
-} from '../../../../shared/types/solid.js';
 import { getHexColor } from 'utils';
 
-type ButtonStyle = {
-  Container: {
-    height: number;
-    width: number;
-    display: 'flex';
-    justifyContent: ContentAlign;
-    padding: number[];
-    color: Animatable<Color>;
-    contentColor: Animatable<Color>;
-    borderRadius: number;
-    focus?: StateStyle<ButtonStyle['Container']>;
-    active?: StateStyle<ButtonStyle['Container']>;
-    disabled?: StateStyle<ButtonStyle['Container']>;
-  };
-  FlexContainer?: {
-    display: 'flex';
-    flexDirection: 'row' | 'column';
-    justifyContent: ContentAlign;
-    mountY: number;
-    focus?: StateStyle<ButtonStyle['FlexContainer']>;
-    active?: StateStyle<ButtonStyle['FlexContainer']>;
-    disabled?: StateStyle<ButtonStyle['FlexContainer']>;
-  };
-  Text: {
-    fontSize: number;
-    textAlign: TextAlign;
-    mount: number;
-    color: Animatable<Color>;
-    focus?: StateStyle<ButtonStyle['Text']>;
-    active?: StateStyle<ButtonStyle['Text']>;
-    disabled?: StateStyle<ButtonStyle['Text']>;
-  };
-};
-
-const styles: ButtonStyle = {
+const styles = {
   Container: {
     height: 100,
     width: 400,
@@ -91,7 +50,7 @@ const styles: ButtonStyle = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    mountY: -0.3
+    alignItems: 'center'
   },
   Text: {
     textAlign: 'center',
@@ -112,6 +71,6 @@ const styles: ButtonStyle = {
       color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number]))
     }
   }
-};
+} as const;
 
 export default styles;

@@ -26,7 +26,7 @@ withPadding;
 /**
  * Primary UI component for user interaction
  */
-export interface ButtonProps extends ButtonStyleProps, NodeProps {
+export interface ButtonProps extends NodeProps {
   suffix?: {
     checkbox?: Partial<CheckboxProps>;
     icon?: Partial<IconProps>;
@@ -35,12 +35,6 @@ export interface ButtonProps extends ButtonStyleProps, NodeProps {
     checkbox?: Partial<CheckboxProps>;
     icon?: Partial<IconProps>;
   }; // null, icon, checkbox, combo
-  width?: number;
-  height?: number;
-}
-
-export interface ButtonStyleProps {
-  borderRadius?: number;
 }
 
 const Button: Component<ButtonProps> = props => {
