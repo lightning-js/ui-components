@@ -13,6 +13,14 @@ const meta = {
         defaultValue: { summary: '[]' }
       }
     },
+    lazyScroll: {
+      control: { type: 'boolean' },
+      description:
+        'if true, will only scroll the row if the item is off screen and `alwaysScroll` and `neverScroll` are both false.',
+      table: {
+        defaultValue: { summary: false }
+      }
+    },
     wrap: {
       control: { type: 'boolean' },
       description: 'the focus will loop back to the beginning of the list after reaching the last item',

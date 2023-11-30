@@ -25,7 +25,7 @@ const Row: Component<RowProps> = (props: RowProps) => {
   createEffect(
     on(
       activeElement,
-      elm => {
+      (elm) => {
         if (ContainerRef === elm) {
           RowRef.children[RowRef.selected].setFocus();
         }
@@ -52,7 +52,7 @@ const Row: Component<RowProps> = (props: RowProps) => {
             Math.abs(RowRef.x) > RowRef.children[RowRef.selected].x
           ) {
             nextRow = RowRef.children[RowRef.selected];
-            nextX = -nextRow.x ;
+            nextX = -nextRow.x;
           }
           // if not lazy scroll
         } else {
@@ -71,7 +71,7 @@ const Row: Component<RowProps> = (props: RowProps) => {
 
   return (
     <View autofocus {...props} ref={ContainerRef}>
-      <SolidRow {...props} animate style={styles.Row} width= {800} height={500} ref={RowRef}>
+      <SolidRow {...props} animate style={styles.Row} width={800} height={500} ref={RowRef}>
         {props.children}
       </SolidRow>
     </View>
