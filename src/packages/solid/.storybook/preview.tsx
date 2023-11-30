@@ -30,16 +30,6 @@ const RenderOptions = {
   devicePhysicalPixelRatio: 1,
 };
 
-// global args
-export const argTypes = {
-  width: {
-    description: 'the width of the component'
-  }
-};
-export const args = {
-  width: 300
-};
-
 const preview = {
   parameters: {
     backgrounds: { default: 'dark' },

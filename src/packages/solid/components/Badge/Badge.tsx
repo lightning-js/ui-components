@@ -42,7 +42,7 @@ export interface BadgeProps extends NodeProps {
 const padding = styles.padding;
 const Badge: Component<BadgeProps> = (props: BadgeProps) => {
   return (
-    <node use:withPadding={padding} style={styles.container} {...props}>
+    <node use:withPadding={padding} style={styles.Container} {...props}>
       <Show when={props.iconAlign === 'left'}>
         <Icon {...props.icon} />
       </Show>
