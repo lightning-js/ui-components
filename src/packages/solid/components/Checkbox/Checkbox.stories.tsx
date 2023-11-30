@@ -44,7 +44,7 @@ export const Basic = {
 export const WithIcon = {
   render: args => (
     <Checkbox {...args}>
-      <Icon width={18} height={14} mount={0.5} x={20} y={20} src={check} />
+      <Icon width={18} height={14} src={check} />
     </Checkbox>
   ),
   args: {

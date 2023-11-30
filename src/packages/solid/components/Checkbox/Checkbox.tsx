@@ -28,7 +28,14 @@ export interface CheckboxProps extends NodeProps {
 }
 
 const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
-  return <View {...props} style={styles.Container} states={{ checked: props.checked }} />;
+  return (
+    <View
+      {...props}
+      children={props.checked ? props.children : ''}
+      style={styles.Container}
+      states={{ checked: props.checked }}
+    />
+  );
 };
 
 export default Checkbox;

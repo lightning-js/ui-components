@@ -33,6 +33,9 @@ const size = theme.spacer.xxl - strokeWidth * 2;
 
 const styles = {
   Container: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     width: size,
     height: size,
     color: getHexColor(...(theme.color.fillNeutral as [string, number])),
