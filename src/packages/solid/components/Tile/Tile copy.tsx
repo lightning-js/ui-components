@@ -72,41 +72,50 @@ const Tile: Component<TileProps> = (props: TileProps) => {
     >
       <Artwork {...props.artwork} width={props.width} height={props.height} alt="Solid logo" />
 
-      <slot forwardStates x={styles.Container.padding[0]} y={styles.Container.padding[1]}>
-        {props.children[0]}
-      </slot>
+      {/** Badge */}
+      <Show when={props.badge?.title && (isFocused() || props.persistentMetadata)}>
+        <Badge {...props.badge} x={styles.Container.padding[0]} y={styles.Container.padding[1]} />
+      </Show>
 
-      <slot
-        forwardStates
-        x={(props.width || styles.Container.width) - styles.Container.padding[0]}
-        y={styles.Container.padding[1]}
-        mountX={1}
-      >
-        {props.children[1]}
-      </slot>
+      {/** Title */}
+      <Show when={props.label?.title && (isFocused() || props.persistentMetadata)}>
+        <Label
+          {...props.label}
+          x={(props.width || styles.Container.width) - styles.Container.padding[0]}
+          y={styles.Container.padding[1]}
+          mountX={1}
+        />
+      </Show>
 
-      <slot
+      {/** inside tile */}
+      <View
         forwardStates
-        mountY={1}
-        styles={styles.insetBottomSlot}
-        width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
+        style={styles.metaContainer}
         x={styles.Container.padding[0]}
-        y={(props.height || styles.Container.height) - styles.Container.padding[1]}
+        y={
+          (props.height || styles.Container.height) -
+          (props.progressBar ? styles.Container.paddingYProgress : 0)
+        }
       >
-        {props.children[2]}
-      </slot>
-      
-      <slot
-        forwardStates
-        x={styles.Container.padding[0]}
-        y={(props.height || styles.Container.height) + styles.Container.padding[1]}
-        width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
-      >
-        {props.children[3]}
-      </slot>
+        {/** Logo */}
+        <Show when={props.logo && (isFocused() || props.persistentMetadata)}>
+          <img src={props.logo} style={styles.LogoContainer} />
+        </Show>
+
+        {/** Metadata inset */}
+        <Show
+          when={
+            props.metadataLocation == 'inset' && props.metadata && (isFocused() || props.persistentMetadata)
+          }
+        >
+          <Metadata
+            {...props.metadata}
+            width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
+          />
+        </Show>
+      </View>
 
       {/** Progress Bar*/}
-      {/** scoped slots??
       <Show when={props.progressBar?.progress ? props.progressBar.progress > 0 : 0}>
         <ProgressBar
           {...props.progressBar}
@@ -118,7 +127,30 @@ const Tile: Component<TileProps> = (props: TileProps) => {
             (props.progressBar.height || 0)
           }
         />
-      </Show>*/}
+      </Show>
+
+      {/** Metadata standard */}
+      <Show when={props.metadataLocation == 'standard'}>
+        <Show when={props.metadata && (isFocused() || props.persistentMetadata)}>
+          <Metadata
+            {...props.metadata}
+            x={styles.Container.padding[0]}
+            y={(props.height || styles.Container.height) + styles.Container.padding[1]}
+            width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
+          />
+        </Show>
+      </Show>
+
+      {/** Checkbox */}
+      <Show when={props.checkbox && props.checkbox.checked}>
+        <Checkbox
+          {...props.checkbox}
+          x={(props.width || styles.Container.width) - styles.Container.padding[0]}
+          y={(props.height || styles.Container.height) - styles.Container.padding[1]}
+          mount={1}
+        />
+      </Show> 
+
     </node>
   );
 };

@@ -33,8 +33,6 @@ const styles: TileStyle = {
     width: 400,
     height: 240,
     padding: [40, 10],
-    paddingYProgress: theme.spacer.xl,
-    paddingYBetweenContent: theme.spacer.md,
     borderRadius: theme.radius.md,
     alpha: theme.alpha.primary,
     //color: getHexColor(...(theme.color.interactiveNeutralFocusSoft as [string, number])),
@@ -53,11 +51,19 @@ const styles: TileStyle = {
       alpha: theme.alpha.inactive
     }
   },
-  metaContainer: {
+  topLeftSlot:{
+  },
+  topRightSlot:{
+
+  },
+  insetBottomSlot:{
     display: 'flex',
     mountY: 1,
     flexDirection: 'column',
-    justifyContent: 'flexEnd'
+    justifyContent: 'flexEnd',
+  },
+  standardBottomSlot:{
+
   },
   LogoContainer: {
     width: theme.spacer.lg * 5,

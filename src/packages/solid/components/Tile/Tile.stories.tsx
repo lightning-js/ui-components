@@ -2,6 +2,11 @@ import type { Meta, StoryObj } from 'storybook-solidjs';
 import Tile from './Tile';
 import theme from 'theme';
 import { getHexColor } from 'utils';
+import Badge from '../Badge/Badge';
+import ProgressBar from '../ProgressBar/ProgressBar';
+import styles from './Tile.styles';
+import { View } from '@lightningjs/solid';
+import Label from './Label';
 
 type Story = StoryObj<typeof Tile>;
 const lorum =
@@ -101,7 +106,14 @@ const meta: Meta<typeof Tile> = {
 
 export const Basic: Story = {
   render: args => {
-    return <Tile {...args} />;
+    return <Tile {...args}>
+      <Badge title="HD"></Badge>
+      <Label width={75} title="Label"></Label>
+      <View>
+        <img src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'} style={styles.LogoContainer} />
+        <ProgressBar progress={0.5} borderRadius={theme.radius.xs}></ProgressBar>
+      </View>
+    </Tile>;
   },
   args: {
     states: 'focus',
@@ -117,27 +129,11 @@ export const Basic: Story = {
         }
       }
     },
-    progressBar: {
-      progress: 0.5,
-      borderRadius: theme.radius.xs
-    },
-    badge: {
-      title: 'HD'
-    },
-    label: {
-      title: 'Label',
-      width: 75
-    },
     persistentMetadata: true,
-    logo: '../../assets/images/Xfinity-Provider-Logo-2x1.png',
-    metadataLocation: 'inset',
     metadata: {
       title: 'Title',
       description: lorum,
       maxLines: 1
-    },
-    checkbox: {
-      checked: false
     }
   }
 };
