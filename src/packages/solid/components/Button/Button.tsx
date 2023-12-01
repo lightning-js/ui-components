@@ -18,10 +18,12 @@
 import { type Component } from 'solid-js';
 import { View, Text, type NodeProps } from '@lightningjs/solid';
 import styles from './Button.styles.js';
-import { withPadding } from '@lightningjs/solid-primitives';
-withPadding;
 
-const Button: Component<NodeProps> = props => {
+export interface CoreButton extends NodeProps {
+  children: string | string[];
+}
+
+const Button: Component<CoreButton> = props => {
   return (
     <View {...props} style={styles.Container} forwardStates>
       <Text style={styles.Text}>{props.children}</Text>
