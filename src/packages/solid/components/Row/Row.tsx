@@ -2,6 +2,7 @@ import { Component, createEffect, on } from 'solid-js';
 import { View, activeElement, type IntrinsicNodeProps } from '@lightningjs/solid';
 import { Row as SolidRow } from '@lightningjs/solid-primitives';
 import styles from './Row.styles';
+import { getScrollValue } from 'utils';
 import theme from 'theme';
 
 export interface RowProps extends IntrinsicNodeProps {
@@ -20,12 +21,12 @@ export interface RowProps extends IntrinsicNodeProps {
 }
 
 const Row: Component<RowProps> = (props: RowProps) => {
-  let RowRef, ContainerRef, prevIndex, nextRow, nextX;
+  let RowRef, ContainerRef, prevIndex, nextRow, nextX, direction;
 
   createEffect(
     on(
       activeElement,
-      (elm) => {
+      elm => {
         if (ContainerRef === elm) {
           RowRef.children[RowRef.selected].setFocus();
         }
@@ -35,30 +36,21 @@ const Row: Component<RowProps> = (props: RowProps) => {
 
         prevIndex = RowRef.selected;
 
-        //if lazy scroll
-        if (props.lazyScroll) {
-          // scrolling right
-          if (
-            RowRef.children[RowRef.selected].x > Math.abs(RowRef.x) &&
-            Math.abs(RowRef.x) + RowRef.width <
-              RowRef.children[RowRef.selected].x + RowRef.children[RowRef.selected].width
-          ) {
-            nextRow = RowRef.children[RowRef.selected];
-            nextX = RowRef.x - nextRow.width - (props.gap || styles.Row.gap);
-
-            // scrolling left
-          } else if (
-            RowRef.children[RowRef.selected].x < Math.abs(RowRef.x) &&
-            Math.abs(RowRef.x) > RowRef.children[RowRef.selected].x
-          ) {
-            nextRow = RowRef.children[RowRef.selected];
-            nextX = -nextRow.x;
-          }
-          // if not lazy scroll
+        if (RowRef.children[RowRef.selected].x > Math.abs(RowRef.x)) {
+          direction = 'positive';
         } else {
-          nextRow = RowRef.children[RowRef.selected];
-          nextX = -nextRow.x;
+          direction = 'negative';
         }
+
+        nextX = getScrollValue(
+          'row',
+          direction,
+          RowRef.x,
+          RowRef.children[RowRef.selected],
+          RowRef.width,
+          props.lazyScroll,
+          props.gap || styles.Row.gap
+        );
 
         //prevent repeat x updates
         if (RowRef.x !== nextX) {
