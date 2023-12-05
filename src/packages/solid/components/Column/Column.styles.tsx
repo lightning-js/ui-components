@@ -14,9 +14,28 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
+import theme from 'theme';
 
-export { default as Badge, badgeStyles } from './components/Badge';
-export { default as ProgressBar, progressBarStyles } from './components/ProgressBar';
-export { default as Icon, iconStyles } from './components/Icon';
-export { default as Button, buttonStyles } from './components/Button';
-export { default as Column, columnStyles } from './components/Column';
+type ColumnStyle = {
+  Column: {
+    display: string;
+    justifyContent: string;
+    flexDirection: string;
+    gap: number;
+    x: number;
+    y: number;
+  };
+};
+
+const styles: ColumnStyle = {
+  Column: {
+    display: 'flex',
+    justifyContent: 'flexStart',
+    flexDirection: 'column',
+    gap: 30,
+    x: theme.layout.marginX,
+    y: [200, { ...theme.animation.standard, duration: theme.animation.duration.fast }] as any
+  }
+};
+
+export default styles;

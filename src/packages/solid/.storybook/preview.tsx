@@ -16,6 +16,7 @@
  */
 /* @refresh reload */
 import { render, Canvas } from '@lightningjs/solid';
+import { useFocusManager } from '@lightningjs/solid-primitives';
 // @ts-expect-error we don't have declarations for this module
 import coreExtensionModuleUrl from './AppCoreExtensions.js?importChunkUrl'; // TODO import aliasing
 import { themes } from '@storybook/theming';
@@ -43,6 +44,7 @@ const preview = {
   },
   decorators: [
     (Story) => {
+      useFocusManager();
       const solidRoot = document.createElement('div');
       RenderOptions.rootId = solidRoot;
       render(() => (
