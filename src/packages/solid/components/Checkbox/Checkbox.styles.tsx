@@ -15,7 +15,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import theme from 'theme';
-import { type BorderStyle } from '@lightningjs/solid';
 import { getHexColor } from 'utils';
 
 // TODO: LUI styles remove before merge
@@ -32,52 +31,26 @@ import { getHexColor } from 'utils';
 const strokeWidth = theme.stroke.sm;
 const size = theme.spacer.xxl - strokeWidth * 2;
 
-// only using disabled
-type States = 'active' | 'focus' | 'disabled';
-type StateStyle<Type> = Partial<Omit<Type, States>>;
-
-type CheckboxStyle = {
+const styles = {
   Container: {
-    /**
-     * width of checkbox
-     */
-    width: number;
-    /**
-     * height of checkbox
-     */
-    height: number;
-    padding: number[];
-    /**
-     * color of checkbox background
-     */
-    color: number;
-    borderRadius: number;
-    border: BorderStyle;
-    disabled?: StateStyle<CheckboxStyle['Container']>;
-  };
-  Background: {
-    color: number;
-  };
-  padding: [number, number];
-};
-
-const styles: CheckboxStyle = {
-  Container: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     width: size,
     height: size,
-    color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number])),
-    borderRadius: size / 2,
+    color: getHexColor(...(theme.color.fillNeutral as [string, number])),
+    borderRadius: size / 4,
     border: {
       width: strokeWidth,
       color: getHexColor(...(theme.color.strokeInverse as [string, number]))
     },
     disabled: {
       alpha: theme.alpha.inactive
+    },
+    checked: {
+      color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number]))
     }
-  },
-  Background: {
-    color: getHexColor(...(theme.color.fillNeutral as [string, number]))
   }
-};
+} as const;
 
 export default styles;

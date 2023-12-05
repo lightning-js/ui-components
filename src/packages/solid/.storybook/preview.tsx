@@ -26,15 +26,9 @@ const RenderOptions = {
   threadXCoreWorkerUrl: undefined,
   rootId: 'storybook-root' as any,
   appWidth: 800,
-  appHeight: 600
-  // deviceLogicalPixelRatio: 1
-};
-
-// global args
-export const argTypes = {
-  width: {
-    description: 'the width of the component'
-  }
+  appHeight: 600,
+  deviceLogicalPixelRatio: 1,
+  devicePhysicalPixelRatio: 1,
 };
 
 const preview = {
@@ -42,10 +36,7 @@ const preview = {
     backgrounds: { default: 'dark' },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/
-      }
+      expanded: true
     },
     docs: {
       theme: themes.dark

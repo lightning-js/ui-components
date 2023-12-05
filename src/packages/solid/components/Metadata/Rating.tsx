@@ -14,12 +14,12 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import { Component, createMemo } from 'solid-js';
+import { type Component, createMemo } from 'solid-js';
 import { Text, Show } from '@lightningjs/solid';
 import type { IntrinsicNodeProps } from '@lightningjs/solid';
-import Icon from '../Icon/Icon';
-import type { IconProps } from '../Icon/Icon';
-import styles from './Rating.styles';
+import Icon from '../Icon/Icon.jsx';
+import type { IconProps } from '../Icon/Icon.jsx';
+import styles from './Rating.styles.js';
 
 export interface RatingProps extends IntrinsicNodeProps {
   /**

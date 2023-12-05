@@ -16,31 +16,25 @@
  */
 
 import type { Component } from 'solid-js';
-import { View, Show, type IntrinsicNodeProps } from '@lightningjs/solid';
-import Icon, { type IconProps } from '../Icon/Icon';
-import styles from './Checkbox.styles';
+import { View, type NodeProps } from '@lightningjs/solid';
+import styles from './Checkbox.styles.js';
 
-export interface CheckboxProps extends IntrinsicNodeProps {
+export interface CheckboxProps extends NodeProps {
   /**
    * Indicates whether the checkbox is checked or unchecked.
    * Setting this to `true` will check the checkbox, and setting it to `false` will uncheck it.
    */
   checked?: boolean;
-  /**
-   * Object containing all properties supported in the [Icon component](?path=/docs/components-icon--icon)
-   */
-  icon?: Partial<IconProps> | undefined;
 }
 
 const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
   return (
-    <View {...props} forwardStates style={styles.Container}>
-      <Show when={props.checked}>
-        <View {...props} forwardStates style={styles.Container} color={styles.Background.color}>
-          <Icon {...props.icon} x={props.width / 2} y={props.height / 2} mount={0.5} />
-        </View>
-      </Show>
-    </View>
+    <View
+      {...props}
+      children={props.checked ? props.children : ''}
+      style={styles.Container}
+      states={{ checked: props.checked }}
+    />
   );
 };
 

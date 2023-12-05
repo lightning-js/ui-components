@@ -16,44 +16,9 @@
  */
 
 import theme from 'theme';
-import { Color, TextAlign, ContentAlign, Animatable, StateStyle } from '../../../../shared/types/solid';
 import { getHexColor } from 'utils';
 
-type ButtonStyle = {
-  Container: {
-    height: number;
-    width: number;
-    display: 'flex';
-    justifyContent: ContentAlign;
-    padding: number[];
-    color: Animatable<Color>;
-    contentColor: Animatable<Color>;
-    borderRadius: number;
-    focus?: StateStyle<ButtonStyle['Container']>;
-    active?: StateStyle<ButtonStyle['Container']>;
-    disabled?: StateStyle<ButtonStyle['Container']>;
-  };
-  FlexContainer?: {
-    display: 'flex';
-    flexDirection: 'row' | 'column';
-    justifyContent: ContentAlign;
-    mountY: number;
-    focus?: StateStyle<ButtonStyle['FlexContainer']>;
-    active?: StateStyle<ButtonStyle['FlexContainer']>;
-    disabled?: StateStyle<ButtonStyle['FlexContainer']>;
-  };
-  Text: {
-    fontSize: number;
-    textAlign: TextAlign;
-    mount: number;
-    color: Animatable<Color>;
-    focus?: StateStyle<ButtonStyle['Text']>;
-    active?: StateStyle<ButtonStyle['Text']>;
-    disabled?: StateStyle<ButtonStyle['Text']>;
-  };
-};
-
-const styles: ButtonStyle = {
+const styles = {
   Container: {
     height: 100,
     width: 400,
@@ -61,7 +26,10 @@ const styles: ButtonStyle = {
     color: getHexColor(...(theme.color.interactiveNeutralFocusSoft as [string, number])), //interactiveNeutralFocus undefined
     contentColor: getHexColor(...(theme.color.fillInverse as [string, number])),
     display: 'flex',
+    flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
+    gap: 20,
     borderRadius: 30,
     focus: {
       color: getHexColor(...(theme.color.interactiveNeutralFocus as [string, number])),
@@ -81,14 +49,7 @@ const styles: ButtonStyle = {
       contentColor: getHexColor(...(theme.color.fillNeutralDisabled as [string, number]))
     }
   },
-  FlexContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    mountY: -0.3
-  },
   Text: {
-    textAlign: 'center',
     color: getHexColor(...(theme.color.textNeutral as [string, number])),
     ...theme.typography.button1,
     focus: {
@@ -106,6 +67,6 @@ const styles: ButtonStyle = {
       color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number]))
     }
   }
-};
+} as const;
 
 export default styles;

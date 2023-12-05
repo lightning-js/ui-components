@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
+    "lib": ["ESNext", "DOM", "ES5"],
     "strict": true,
     "target": "ESNext",
-    "module": "CommonJS",
+    "module": "NodeNext",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "allowJs": true,
+    "verbatimModuleSyntax": true,
+    "composite": true,
     "types": ["vite/client"],
     "noEmit": true,
     "isolatedModules": true,

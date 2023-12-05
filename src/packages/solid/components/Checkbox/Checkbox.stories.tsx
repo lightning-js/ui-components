@@ -14,8 +14,10 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import Checkbox from './Checkbox';
-import check from '../../assets/images/check-icon.png';
+import Checkbox from './Checkbox.jsx';
+import Icon from '../Icon/Icon.jsx';
+
+const check = '/assets/images/check-icon.png';
 
 const meta = {
   title: 'Components/Checkbox',
@@ -35,11 +37,19 @@ export const Basic = {
   args: {
     checked: true,
     width: 40,
-    height: 40,
-    icon: {
-      width: 20,
-      height: 20,
-      icon: check
-    }
+    height: 40
+  }
+};
+
+export const WithIcon = {
+  render: args => (
+    <Checkbox {...args}>
+      <Icon width={18} height={14} src={check} />
+    </Checkbox>
+  ),
+  args: {
+    checked: true,
+    width: 40,
+    height: 40
   }
 };

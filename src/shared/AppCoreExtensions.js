@@ -24,7 +24,7 @@ export default class AppCoreExtension extends CoreExtension {
     stage.fontManager.addFontFace(new WebTrFontFace('NotoSans', {}, '/fonts/notoSans/NotoSans-Regular.ttf'));
     stage.fontManager.addFontFace(
       new SdfTrFontFace(
-        'Ubuntu',
+        'Arial',
         {},
         'msdf',
         stage,

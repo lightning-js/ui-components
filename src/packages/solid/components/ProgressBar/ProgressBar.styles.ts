@@ -16,31 +16,18 @@
  */
 
 import theme from 'theme';
-import { Color, Animatable } from '../../../../shared/types/solid';
 import { getHexColor } from 'utils';
 
-type ProgressBarStyle = {
-  container: {
-    height: number;
-    color: Animatable<Color>;
-    borderRadius: number;
-  };
-  progressBar: {
-    color: Animatable<Color>;
-    borderRadius: number;
-  };
-};
-
-const styles: ProgressBarStyle = {
+const styles = {
   container: {
     height: theme.spacer.md,
-    color: getHexColor(...(theme.color.fillNeutralSecondary as [string, number])),
+    color: getHexColor(...(theme.color.fillNeutralTertiary as [string, number])),
     borderRadius: theme.radius.xs
   },
   progressBar: {
     borderRadius: theme.radius.xs,
-    color: getHexColor(...(theme.color.fillBrand as [string, number])),
+    color: getHexColor(...(theme.color.fillNeutral as [string, number]))
   }
-};
+} as const;
 
 export default styles;

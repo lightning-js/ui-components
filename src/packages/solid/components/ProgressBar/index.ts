@@ -15,5 +15,5 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export { default as default } from './ProgressBar';
-export { default as progressBarStyles } from './ProgressBar.styles';
+export { default as default } from './ProgressBar.jsx';
+export { default as progressBarStyles } from './ProgressBar.styles.js';

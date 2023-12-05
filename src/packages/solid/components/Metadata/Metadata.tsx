@@ -14,14 +14,14 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import type { Component } from 'solid-js';
+import { type Component, createSignal } from 'solid-js';
 import { View, Text, Show } from '@lightningjs/solid';
-import type { IntrinsicNodeProps } from '@lightningjs/solid';
-import Details from './Details';
-import type { DetailsProps } from './Details';
-import styles from './Metadata.styles';
+import type { NodeStyles } from '@lightningjs/solid';
+import Details from './Details.jsx';
+import type { DetailsProps } from './Details.jsx';
+import styles from './Metadata.styles.js';
 
-export interface MetadataProps extends IntrinsicNodeProps {
+export interface MetadataProps extends NodeStyles {
   /**
    * title text
    */
@@ -34,18 +34,32 @@ export interface MetadataProps extends IntrinsicNodeProps {
    * Text, Badges, and Icons to be displayed below the title and description
    */
   details: DetailsProps;
+  maxLines: number;
 }
 
 const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
+  const [getMetadataHeight, setMetadataHeight] = createSignal<number>();
+
+  setMetadataHeight(() => {
+    let height = 0;
+    //title
+    height += styles.titleText.lineHeight;
+    //description
+    height += styles.descriptionText.lineHeight * props.maxLines;
+    //details
+    height += props.details?.titleText?.lineHeight || 0;
+    return height;
+  });
+
   return (
-    <View style={styles.container} {...props}>
+    <View style={styles.container} {...props} height={getMetadataHeight()}>
       <Text width={props.width} style={styles.titleText}>
         {props.title}
       </Text>
       <Show when={props.description}>
         <Text
           width={props.width}
-          height={styles.descriptionText.lineHeight * styles.descriptionText.maxLines}
+          height={styles.descriptionText.lineHeight * props.maxLines}
           style={styles.descriptionText}
         >
           {props.description}
