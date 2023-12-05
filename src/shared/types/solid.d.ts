@@ -38,3 +38,42 @@ type Animatable<Type> = Type | [Type, AnimationSettings];
  */
 
 type StateStyle<Type> = Partial<Omit<Type, States>>;
+
+export type Tone = keyof WithTonesModes<object>;
+
+export interface WithTonesModes<T> {
+  /**
+   * base styles are `neutral`
+   */
+  neutral?: never;
+  inverse?: {
+    [K in keyof T]?: T[K];
+  };
+  brand?: {
+    [K in keyof T]?: T[K];
+  };
+  focus?: {
+    [K in keyof T]?: T[K];
+  };
+  disabled?: {
+    [K in keyof T]?: T[K];
+  };
+  'neutral-focus'?: {
+    [K in keyof T]?: T[K];
+  };
+  'inverse-focus'?: {
+    [K in keyof T]?: T[K];
+  };
+  'brand-focus'?: {
+    [K in keyof T]?: T[K];
+  };
+  'neutral-disabled'?: {
+    [K in keyof T]?: T[K];
+  };
+  'inverse-disabled'?: {
+    [K in keyof T]?: T[K];
+  };
+  'brand-disabled'?: {
+    [K in keyof T]?: T[K];
+  };
+}
