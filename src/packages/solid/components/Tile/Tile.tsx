@@ -1,4 +1,4 @@
-import { Component, createSignal } from 'solid-js';
+import { Component, createEffect, createSignal } from 'solid-js';
 import { Show, type IntrinsicNodeProps, View, Text } from '@lightningjs/solid';
 import styles from './Tile.styles';
 import { withPadding } from '@lightningjs/solid-primitives';
@@ -53,6 +53,10 @@ export interface TileProps extends IntrinsicNodeProps {
 
 const Tile: Component<TileProps> = (props: TileProps) => {
   const [isFocused, setIsFocused] = createSignal(false);
+
+  createEffect(() => {
+    metadataRef.width = (props.width || styles.Container.width) - styles.Container.padding[0] * 2
+  });
 
   console.log(props)
   return (
