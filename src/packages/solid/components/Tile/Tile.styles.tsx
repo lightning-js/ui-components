@@ -31,7 +31,8 @@ const styles = {
     display: 'flex',
     mountY: 1,
     flexDirection: 'column',
-    alignItems: ''
+    alignItems: 'flex-end',
+    alignContent: 'space-between'
   },
   LogoContainer: {
     width: theme.spacer.lg * 5,

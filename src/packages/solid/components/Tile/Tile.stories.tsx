@@ -3,10 +3,9 @@ import Tile from './Tile';
 import theme from 'theme';
 import { getHexColor } from 'utils';
 import Badge from '../Badge/Badge';
-import ProgressBar from '../ProgressBar/ProgressBar';
-import styles from './Tile.styles';
 import { View } from '@lightningjs/solid';
 import Label from './Label';
+import Metadata from '../Metadata/Metadata';
 
 type Story = StoryObj<typeof Tile>;
 const lorum =
@@ -106,14 +105,19 @@ const meta: Meta<typeof Tile> = {
 
 export const Basic: Story = {
   render: args => {
-    return <Tile {...args}>
-      <Badge title="HD"></Badge>
-      <Label width={75} title="Label"></Label>
-      <View>
-        <img src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'} style={styles.LogoContainer} />
-        <ProgressBar progress={0.5}></ProgressBar>
-      </View>
-    </Tile>;
+    return <Tile {...args} 
+    topLeft={<Badge title="HD"/>} 
+    topRight={<Label width={75} title="Label"/>} 
+    inset={
+    <img src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'} width={theme.spacer.lg * 5} height={theme.spacer.xxl + theme.spacer.md}/>
+    //<Metadata title='Title' description={lorum} maxLines={1} />]
+    } 
+    bottom={
+      [<img src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'} width={theme.spacer.lg * 5} height={theme.spacer.xxl + theme.spacer.md}/>,
+      <Metadata title='Title' description={lorum} maxLines={1} />]
+    }
+
+    />
   },
   args: {
     states: 'focus',
@@ -135,9 +139,9 @@ export const Basic: Story = {
       description: lorum,
       maxLines: 1
     },
-    // progressBar: {
-    //   progress: 0.5
-    // }
+    progressBar: {
+      progress: 0.5
+    }
   }
 };
 

@@ -1,40 +1,21 @@
 import { Component, createSignal } from 'solid-js';
 import { Show, type IntrinsicNodeProps, View, Text } from '@lightningjs/solid';
-import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar';
-import Badge, { type BadgeProps } from '../Badge/Badge';
-import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox';
-import Metadata, { type MetadataProps } from '../Metadata/Metadata';
 import styles from './Tile.styles';
 import { withPadding } from '@lightningjs/solid-primitives';
 import Label, { type LabelProps } from './Label';
-import Artwork, { type ArtworkProps } from './Artwork';
+import Artwork, { type ArtworkProps } from './Artwork.jsx';
+import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar';
 withPadding;
 
-export interface TileProps extends TileStyleProps, IntrinsicNodeProps {
+export interface TileProps extends IntrinsicNodeProps {
   /**
    * String to img source for artwork
    */
   artwork: Partial<ArtworkProps>;
   /**
-   * Object containing all properties supported in the [Badge component](?path=/docs/components-badge--text)
-   */
-  badge?: Partial<BadgeProps>;
-  /**
-   * Source of logo
-   */
-  logo?: string;
-  /**
-   * Object containing all properties supported in the [Checkbox component](?path=/docs/components-checkbox--checkbox)
-   */
-  checkbox?: Partial<CheckboxProps>;
-  /**
    * If true, changes format of itemLayout to circle
    */
   circle?: boolean;
-  /**
-   * Conveys the status of a program ex. "Live" or "On Now"
-   */
-  label?: Partial<LabelProps>;
   /**
    * Controls where there metadata is displayed in relation to the Tile. Available values are 'standard' and 'inset'
    */
@@ -48,18 +29,32 @@ export interface TileProps extends TileStyleProps, IntrinsicNodeProps {
    */
   persistentMetadata?: boolean;
   /**
-   * Object containing all properties supported in the [ProgressBar component](?path=/docs/components-progressbar--progress-bar)
+   * property that holds the components to be put in topLeft View of tile
    */
-  progressBar: Partial<ProgressBarProps>;
+  topLeft?: any;
   /**
-   * total width of the component
+   * property that holds the components to be put in topRight View of tile
    */
-  width: number;
+  topRight?: any;
+  /**
+   * property that holds the components to be put in inset View of tile
+   */
+  inset?: any;
+  /**
+   * property that holds the components to be put in bottom View of tile
+   */
+  bottom?: any;
+
+  progressBar?: Partial<ProgressBarProps> | undefined;
+  
+  
+
 }
 
 const Tile: Component<TileProps> = (props: TileProps) => {
   const [isFocused, setIsFocused] = createSignal(false);
 
+  console.log(props)
   return (
     <node
       use:withPadding={styles.Container.padding}
@@ -70,22 +65,22 @@ const Tile: Component<TileProps> = (props: TileProps) => {
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
     >
-      <Artwork {...props.artwork} width={props.width} height={props.height} alt="Solid logo" />
+      <Artwork {...props.artwork} width={props.width||styles.Container.width} height={props.height|| styles.Container.width} alt="Solid logo" />
 
-      <slot forwardStates x={styles.Container.padding[0]} y={styles.Container.padding[1]}>
-        {props.children[0]}
-      </slot>
+      <View forwardStates x={styles.Container.padding[0]} y={styles.Container.padding[1]}>
+        {props.topLeft}
+      </View>
 
-      <slot
+      <View
         forwardStates
         x={(props.width || styles.Container.width) - styles.Container.padding[0]}
         y={styles.Container.padding[1]}
         mountX={2}
       >
-        {props.children[1]}
-      </slot>
+        {props.topRight}
+      </View>
 
-      <slot
+      <View
         mountY={1}
         forwardStates
         styles={styles.insetBottom}
@@ -94,22 +89,22 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         y={(props.height || styles.Container.height) - styles.Container.padding[1] -
           (props.progressBar ? styles.Container.paddingYProgress : 0)}
       >
-        {props.children[2]}
-      </slot>
+        {...props.inset}
+      </View>
       
       
-      <slot
+      <View
         forwardStates
         x={styles.Container.padding[0]}
         y={(props.height || styles.Container.height) + styles.Container.padding[1]}
         width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
       >
-        {props.children[3]}
-      </slot>
+        {props.bottom}
+      </View>
 
       {/** Progress Bar*/}
-      {/** scoped slots?? */}
-      {/* <Show when={props.progressBar?.progress ? props.progressBar.progress > 0 : 0}>
+      {/** scoped Views?? */}
+      <Show when={props.progressBar?.progress ? props.progressBar.progress > 0 : 0}>
         <ProgressBar
           {...props.progressBar}
           width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
@@ -120,7 +115,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
             (props.progressBar.height || 0)
           }
         />
-      </Show> */}
+      </Show>
     </node>
   );
 };
