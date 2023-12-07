@@ -16,8 +16,8 @@
  */
 
 import theme from 'theme';
-import type { WithTonesModes, Tone } from 'types';
-import { type TextStyles, type NodeStyles } from '@lightningjs/solid';
+import type { WithTonesModes, Tone, ComponentConfig } from 'types';
+import type { TextStyles, NodeStyles } from '@lightningjs/solid';
 import { makeComponentStyles, type LookupObject } from '../../utils.js';
 
 export interface ButtonStyle {
@@ -27,12 +27,22 @@ export interface ButtonStyle {
   Text: TextStyles & WithTonesModes<TextStyles>;
 }
 
-const { styles: themeStyles, tone }: { styles: WithTonesModes; tone: string } = theme.componentConfig.Button;
+interface ButtonConfig
+  extends ComponentConfig<{
+    backgroundColor: NodeStyles['color'];
+    borderRadius: NodeStyles['borderRadius'];
+    contentColor: NodeStyles['color'];
+    justifyContent: NodeStyles['justifyContent'];
+    textAlign: TextStyles['textAlign'];
+    textColor: TextStyles['color'];
+  }> {}
 
-const containerDefaults: Partial<NodeStyles> = {
+const { styles: themeStyles, tone } = theme.componentConfig.Button as ButtonConfig;
+
+const containerDefaults: NodeStyles & { padding: [number, number] } = {
   width: 400,
   height: 100,
-  display: 'flex' as const,
+  display: 'flex',
   padding: [theme.spacer.xxxl, theme.spacer.xl],
   color: themeStyles?.base?.backgroundColor || theme.color.interactiveNeutral,
   justifyContent: themeStyles?.base?.justifyContent || 'center',
