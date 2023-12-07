@@ -16,116 +16,168 @@
  */
 
 import theme from 'theme';
-import type { WithTonesModes, Tone } from '../../../../shared/types/solid.js';
+import type { WithTonesModes, Tone } from 'types';
 import { type TextStyles, type NodeStyles } from '@lightningjs/solid';
-import { getHexColor } from 'utils';
 
 export interface ButtonStyle {
   tone: Tone;
-  Container: (NodeStyles & { padding: number[] }) & WithTonesModes<NodeStyles & { padding: number[] }>;
-  FlexContainer: NodeStyles & WithTonesModes<NodeStyles>;
+  Container: (NodeStyles & { padding: number[] }) &
+    WithTonesModes<NodeStyles & { padding: [number, number] }>;
   Text: TextStyles & WithTonesModes<TextStyles>;
 }
 
-const configList = ['Surface', 'Button'];
+const { styles: themeStyles, tone: themeTone } = theme.componentConfig.Button;
 
-const inheritedConfigs = configList.reduce((acc, item) => {
-  if (theme.componentConfig[item]) {
-    acc = {
-      ...acc,
-      ...theme.componentConfig[item]
-    };
-  }
-  return acc;
-}, {});
-
-const { base, defaultTone, ...states } = inheritedConfigs;
-
-const propertyResolver = (prop, theme) => {
-  /**
-   * if property is the same value throughout the components styles
-   * ensure we're returning the same value each time
-   * ie. textColor would need to map to Text and Icons?
-   *    ^ maybe - this might get handled through subComponent configs
-   */
+const containerBase = {
+  width: 400,
+  height: 100,
+  display: 'flex' as const,
+  padding: [theme.spacer.xxxl, theme.spacer.xl],
+  color: themeStyles?.base?.backgroundColor || theme.color.interactiveNeutral,
+  justifyContent: themeStyles?.base?.justifyContent || 'center',
+  alignItems: themeStyles?.base?.justifyContent || 'center',
+  borderRadius: themeStyles?.base?.borderRadius || theme.radius.sm
 };
 
-/**
- * TODO how does contentColor work
- * it should be applied to the prefix/suffix/text
- */
+const containerFocus = {
+  color: themeStyles?.focus?.backgroundColor || theme.color.interactiveNeutralFocus,
+  justifyContent: themeStyles?.focus?.justifyContent || containerBase.justifyContent,
+  borderRadius: themeStyles?.focus?.borderRadius || containerBase.borderRadius
+};
 
-const buttonContainerStyles: ButtonStyle['Container'] = {
-  height: 100,
-  width: 400,
-  padding: [40, 10],
-  color: getHexColor(...(theme.color.interactiveNeutralFocusSoft as [string, number])), //interactiveNeutralFocus undefined
-  contentColor: getHexColor(...(theme.color.fillInverse as [string, number])),
-  display: 'flex',
-  justifyContent: 'center',
-  borderRadius: 30,
-  ...base,
-  'neutral-focus': {
-    // color: getHexColor(...(theme.color.interactiveNeutralFocus as [string, number])),
-    // contentColor: getHexColor(...(theme.color.fillNeutral as [string, number]))
-    color: getHexColor(...(theme.color.green as [string, number])),
-    contentColor: getHexColor(...(theme.color.fillNeutral as [string, number]))
-  },
-  'neutral-disabled': {
-    color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number])),
-    contentColor: getHexColor(...(theme.color.fillNeutralDisabled as [string, number]))
-  },
+const containerDisabled = {
+  color: themeStyles?.disabled?.backgroundColor || theme.color.fillNeutralDisabled,
+  justifyContent: themeStyles?.disabled?.justifyContent || containerBase.justifyContent,
+  borderRadius: themeStyles?.disabled?.borderRadius || containerBase.borderRadius
+};
+
+const containerStyles: ButtonStyle['Container'] = {
+  ...containerBase,
+  /**
+   * tones
+   */
   inverse: {
-    color: getHexColor(...(theme.color.interactiveNeutralFocusSoft as [string, number])), //interactiveNeutralFocus undefined
-    contentColor: getHexColor(...(theme.color.fillInverse as [string, number]))
+    color: themeStyles?.inverse?.backgroundColor || theme.color.interactiveInverse,
+    justifyContent: themeStyles?.inverse?.justifyContent || containerBase.justifyContent,
+    borderRadius: themeStyles?.inverse?.borderRadius || containerBase.borderRadius
   },
   brand: {
-    // color: getHexColor(...(theme.color.interactiveNeutralFocusSoft as [string, number])), //interactiveNeutralFocus undefined
-    color: getHexColor(...(theme.color.blue as [string, number])),
-    contentColor: getHexColor(...(theme.color.fillInverse as [string, number]))
+    color: themeStyles?.brand?.backgroundColor || theme.color.interactiveNeutralFocusSoft,
+    justifyContent: themeStyles?.brand?.justifyContent || containerBase.justifyContent,
+    borderRadius: themeStyles?.brand?.borderRadius || containerBase.borderRadius
+  },
+  /**
+   * modes
+   */
+  focus: containerFocus,
+  disabled: containerDisabled,
+  /**
+   * tone modes
+   */
+  'neutral-focus': {
+    color: themeStyles?.['neutral-focus']?.backgroundColor || containerFocus.color,
+    justifyContent: themeStyles?.['neutral-focus']?.justifyContent || containerFocus.justifyContent,
+    borderRadius: themeStyles?.['neutral-focus']?.borderRadius || containerFocus.borderRadius
+  },
+  'neutral-disabled': {
+    color: themeStyles?.['neutral-disabled']?.backgroundColor || containerDisabled.color,
+    justifyContent: themeStyles?.['neutral-disabled']?.justifyContent || containerDisabled.justifyContent,
+    borderRadius: themeStyles?.['neutral-disabled']?.borderRadius || containerDisabled.borderRadius
+  },
+  'inverse-focus': {
+    color: themeStyles?.['inverse-focus']?.backgroundColor || containerFocus.color,
+    justifyContent: themeStyles?.['inverse-focus']?.justifyContent || containerFocus.justifyContent,
+    borderRadius: themeStyles?.['inverse-focus']?.borderRadius || containerFocus.borderRadius
+  },
+  'inverse-disabled': {
+    color: themeStyles?.['inverse-disabled']?.backgroundColor || containerDisabled.color,
+    justifyContent: themeStyles?.['inverse-disabled']?.justifyContent || containerDisabled.justifyContent,
+    borderRadius: themeStyles?.['inverse-disabled']?.borderRadius || containerDisabled.borderRadius
   },
   'brand-focus': {
-    color: getHexColor(...(theme.color.green as [string, number]))
+    color: themeStyles?.['brand-focus']?.backgroundColor || containerFocus.color,
+    justifyContent: themeStyles?.['brand-focus']?.justifyContent || containerBase.justifyContent,
+    borderRadius: themeStyles?.['brand-focus']?.borderRadius || containerBase.borderRadius
+  },
+  'brand-disabled': {
+    color: themeStyles?.['brand-disabled']?.backgroundColor || containerDisabled.color,
+    justifyContent: themeStyles?.['brand-disabled']?.justifyContent || containerDisabled.justifyContent,
+    borderRadius: themeStyles?.['brand-disabled']?.borderRadius || containerDisabled.borderRadius
   }
 } as const;
 
-const buttonFlexContainerStyles: ButtonStyle['FlexContainer'] = {
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'center',
-  mountY: -0.3
+const textBase = {
+  textAlign: themeStyles?.base?.textAlign || 'left',
+  color: themeStyles?.base?.textColor || theme.color.textNeutral,
+  contentColor: themeStyles?.base?.contentColor || theme.color.fillInverse,
+  ...theme.typography.button1
 };
 
-const buttonTextStyles: ButtonStyle['Text'] = {
-  textAlign: 'left',
-  color: getHexColor(...(theme.color.textNeutral as [string, number])),
-  ...theme.typography.button1,
-  'neutral-focus': {
-    // color: getHexColor(...(theme.color.fillInverse as [string, number]))
-    color: getHexColor(...(theme.color.white as [string, number]))
-  },
-  'neutral-disabled': {
-    // color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number]))
-  },
+const textFocus = {
+  textAlign: themeStyles?.focus?.textAlign || textBase.textAlign,
+  color: themeStyles?.focus?.textColor || theme.color.textInverse,
+  contentColor: themeStyles?.focus?.contentColor || theme.color.textInverse
+};
+
+const textDisabled = {
+  textAlign: themeStyles?.disabled?.textAlign || textBase.textAlign,
+  color: themeStyles?.disabled?.textColor || theme.color.textNeutralDisabled,
+  contentColor: themeStyles?.disabled?.contentColor || theme.color.textNeutralDisabled
+};
+
+const textStyles: ButtonStyle['Text'] = {
+  ...textBase,
+  // tones
   inverse: {
-    color: getHexColor(...(theme.color.fillNeutral as [string, number]))
+    textAlign: themeStyles?.inverse?.textAlign || textBase.textAlign,
+    color: themeStyles?.inverse?.textColor || theme.color.fillNeutral,
+    contentColor: themeStyles?.inverse?.contentColor || theme.color.fillNeutral
   },
   brand: {
-    // color: getHexColor(...(theme.color.fillBrand as [string, number]))
-    // color: getHexColor(...(theme.color.red as [string, number]))
-    color: getHexColor(...(theme.color.green as [string, number]))
+    textAlign: themeStyles?.brand?.textAlign || textBase.textAlign,
+    color: themeStyles?.brand?.textColor || theme.color.fillBrand,
+    contentColor: themeStyles?.brand?.contentColor || theme.color.fillBrand
+  },
+  // modes
+  focus: textFocus,
+  disabled: textDisabled,
+  // tone modes
+  'neutral-focus': {
+    textAlign: themeStyles?.['neutral-focus']?.textAlign || textFocus.textAlign,
+    color: themeStyles?.['neutral-focus']?.textColor || textFocus.color,
+    contentColor: themeStyles?.['neutral-focus']?.contentColor || textFocus.contentColor
+  },
+  'neutral-disabled': {
+    textAlign: themeStyles?.['neutral-disabled']?.textAlign || textDisabled.textAlign,
+    color: themeStyles?.['neutral-disabled']?.textColor || textDisabled.color,
+    contentColor: themeStyles?.['neutral-disabled']?.contentColor || textDisabled.contentColor
+  },
+  'inverse-focus': {
+    textAlign: themeStyles?.['inverse-focus']?.textAlign || textFocus.textAlign,
+    color: themeStyles?.['inverse-focus']?.textColor || textFocus.color,
+    contentColor: themeStyles?.['inverse-focus']?.contentColor || textFocus.contentColor
+  },
+  'inverse-disabled': {
+    textAlign: themeStyles?.['inverse-disabled']?.textAlign || textDisabled.textAlign,
+    color: themeStyles?.['inverse-disabled']?.textColor || textDisabled.color,
+    contentColor: themeStyles?.['inverse-disabled']?.contentColor || textDisabled.contentColor
   },
   'brand-focus': {
-    // color: getHexColor(...(theme.color.fillBrand as [string, number]))
-    color: getHexColor(...(theme.color.red as [string, number]))
+    textAlign: themeStyles?.['brand-focus']?.textAlign || textFocus.textAlign,
+    color: themeStyles?.['brand-focus']?.textColor || theme.color.fillBrand,
+    contentColor: themeStyles?.['brand-focus']?.contentColor || theme.color.fillBrand
+  },
+  'brand-disabled': {
+    textAlign: themeStyles?.['brand-disabled']?.textAlign || textDisabled.textAlign,
+    color: themeStyles?.['brand-disabled']?.textColor || theme.color.fillBrand,
+    contentColor: themeStyles?.['brand-disabled']?.contentColor || theme.color.fillBrand
   }
 };
+
 const styles: ButtonStyle = {
-  tone: 'neutral',
-  Container: buttonContainerStyles,
-  FlexContainer: buttonFlexContainerStyles,
-  Text: buttonTextStyles,
-  ...states
+  tone: themeTone || 'neutral',
+  Container: containerStyles,
+  Text: textStyles
 };
 
 export default styles;
