@@ -42,15 +42,15 @@ const Row: Component<RowProps> = (props: RowProps) => {
           direction = 'negative';
         }
 
-        nextX = getScrollValue(
-          'row',
-          direction,
-          RowRef.x,
-          RowRef.children[RowRef.selected],
-          RowRef.width,
-          props.lazyScroll,
-          props.gap || styles.Row.gap
-        );
+        nextX = getScrollValue({
+          direction: direction,
+          previousVal: RowRef.x,
+          newValue: RowRef.children[RowRef.selected].x,
+          componentSize: RowRef.children[RowRef.selected].width,
+          windowVal: RowRef.width,
+          lazyScroll: props.lazyScroll,
+          gap: props.gap || styles.Row.gap
+        });
 
         //prevent repeat x updates
         if (RowRef.x !== nextX) {

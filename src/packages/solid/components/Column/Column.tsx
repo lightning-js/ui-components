@@ -2,6 +2,7 @@ import { Component, createEffect, on } from 'solid-js';
 import { View, activeElement, type IntrinsicNodeProps } from '@lightningjs/solid';
 import { Column as SolidColumn } from '@lightningjs/solid-primitives';
 import styles from './Column.styles';
+import { getScrollValue } from 'utils';
 
 export interface ColumnProps extends IntrinsicNodeProps {
   /**
@@ -15,7 +16,7 @@ export interface ColumnProps extends IntrinsicNodeProps {
 }
 
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
-  let ColumnRef, ContainerRef, prevIndex;
+  let ColumnRef, ContainerRef, prevIndex, nextY, direction;
 
   createEffect(
     on(

@@ -1,30 +1,22 @@
 import theme from 'theme';
 
-export function getScrollValue(orientation, direction, previousVal, selected, windowVal, lazyScroll, gap) {
-  let newValue, componentSize;
-
-  if (orientation == 'row') {
-    newValue = selected.x;
-    componentSize = selected.width;
-  } else {
-    newValue = selected.y;
-    componentSize = selected.height;
-  }
+export function getScrollValue(obj) {
+  debugger
 
   //if lazy scroll
-  if (lazyScroll) {
+  if (obj?.lazyScroll) {
     // scroll positively
-    if (direction == 'positive' && Math.abs(previousVal) + windowVal < newValue + componentSize) {
-      return previousVal - componentSize - gap;
+    if (obj.direction == 'positive' && Math.abs(obj.previousVal) + obj.windowVal < obj.newValue + obj.componentSize) {
+      return obj.previousVal - obj.componentSize - obj.gap;
 
       // scrolling negatively
-    } else if (direction == 'negative' && Math.abs(previousVal) > newValue) {
-      return -newValue;
+    } else if (obj.direction == 'negative' && Math.abs(obj.previousVal) > obj.newValue) {
+      return -obj.newValue;
     }
     // if not lazy scroll
   } else {
-    return -newValue;
+    return -obj.newValue;
   }
 
-  return previousVal;
+  return obj.previousVal;
 }
