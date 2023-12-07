@@ -109,13 +109,13 @@ export const Basic: Story = {
     topLeft={<Badge title="HD"/>} 
     topRight={<Label width={75} title="Label"/>} 
     inset={
-    <img src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'} width={theme.spacer.lg * 5} height={theme.spacer.xxl + theme.spacer.md}/>
-    //<Metadata title='Title' description={lorum} maxLines={1} />]
+    [<img src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'} width={theme.spacer.lg * 5} height={theme.spacer.xxl + theme.spacer.md}/>,
+    <Metadata title='Title' description={lorum} maxLines={1} />]
     } 
-    bottom={
-      [<img src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'} width={theme.spacer.lg * 5} height={theme.spacer.xxl + theme.spacer.md}/>,
-      <Metadata title='Title' description={lorum} maxLines={1} />]
-    }
+    // bottom={
+    //   [<img src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'} width={theme.spacer.lg * 5} height={theme.spacer.xxl + theme.spacer.md}/>,
+    //   <Metadata title='Title' description={lorum} maxLines={1} />]
+    // }
 
     />
   },

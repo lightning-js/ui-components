@@ -38,22 +38,9 @@ export interface MetadataProps extends NodeStyles {
 }
 
 const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
-  const [getMetadataHeight, setMetadataHeight] = createSignal<number>();
-  let metadataRef;
-
-  setMetadataHeight(() => {
-    let height = 0;
-    //title
-    height += styles.titleText.lineHeight;
-    //description
-    height += styles.descriptionText.lineHeight * props.maxLines;
-    //details
-    height += props.details?.titleText?.lineHeight || 0;
-    return height;
-  });
 
   return (
-    <View style={styles.container} {...props} height={getMetadataHeight()} ref={metadataRef}>
+    <View style={styles.container} {...props}>
       <Text width={props.width} style={styles.titleText}>
         {props.title}
       </Text>

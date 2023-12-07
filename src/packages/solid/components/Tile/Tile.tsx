@@ -1,11 +1,18 @@
-import { Component, createEffect, createSignal } from 'solid-js';
+import { Component, createEffect, createSignal, For, children } from 'solid-js';
 import { Show, type IntrinsicNodeProps, View, Text } from '@lightningjs/solid';
 import styles from './Tile.styles';
 import { withPadding } from '@lightningjs/solid-primitives';
 import Label, { type LabelProps } from './Label';
+import Metadata from '../Metadata/Metadata.jsx';
 import Artwork, { type ArtworkProps } from './Artwork.jsx';
 import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar';
+import theme from 'theme';
 withPadding;
+import UpdateWidth from './updateWidth.jsx';
+
+const lorum =
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales est eu eleifend interdum. Vivamus egestas maximus elementum. Sed condimentum ligula justo, non sollicitudin lectus rutrum vel. Integer iaculis vitae nisl quis tincidunt. Sed quis dui vehicula, vehicula felis a, tempor leo. Fusce tincidunt, ante eget pretium efficitur, libero elit volutpat quam, sit amet porta tortor odio non ligula. Ut sed dolor eleifend massa auctor porttitor eget ut lectus. Vivamus elementum lorem mauris, eu luctus tortor posuere sit amet. Nunc a interdum metus.';
+
 
 export interface TileProps extends IntrinsicNodeProps {
   /**
@@ -51,14 +58,13 @@ export interface TileProps extends IntrinsicNodeProps {
 
 }
 
+
 const Tile: Component<TileProps> = (props: TileProps) => {
+
   const [isFocused, setIsFocused] = createSignal(false);
 
-  createEffect(() => {
-    metadataRef.width = (props.width || styles.Container.width) - styles.Container.padding[0] * 2
-  });
 
-  console.log(props)
+
   return (
     <node
       use:withPadding={styles.Container.padding}
@@ -93,7 +99,10 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         y={(props.height || styles.Container.height) - styles.Container.padding[1] -
           (props.progressBar ? styles.Container.paddingYProgress : 0)}
       >
-        {...props.inset}
+        <img src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'} width={theme.spacer.lg * 5} height={theme.spacer.xxl + theme.spacer.md}/>
+        <Metadata title='Title' description={lorum} maxLines={1} />
+        {/* {props.inset} */}
+         {/* <For each={props.inset}>{item => <>{item}</>}</For> */}
       </View>
       
       
