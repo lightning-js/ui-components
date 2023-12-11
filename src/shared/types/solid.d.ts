@@ -39,13 +39,24 @@ type Animatable<Type> = Type | [Type, AnimationSettings];
 
 type StateStyle<Type> = Partial<Omit<Type, States>>;
 
+export interface ComponentConfig<T> {
+  styles?: WithTonesModes<{
+    [K in keyof T]?: T[K];
+  }>;
+  tone: keyof WithTonesModes;
+}
+
 export type Tone = keyof WithTonesModes<object>;
 
-export interface WithTonesModes<T> {
+export interface WithTonesModes<T = object> {
   /**
    * base styles are `neutral`
    */
   neutral?: never;
+  // TODO `base` is required in theme, but not valid to be passed to component
+  base?: {
+    [K in keyof T]?: T[K];
+  };
   inverse?: {
     [K in keyof T]?: T[K];
   };
