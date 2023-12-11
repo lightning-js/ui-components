@@ -15,9 +15,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export { default as Badge, badgeStyles } from './components/Badge';
-export { default as ProgressBar, progressBarStyles } from './components/ProgressBar';
-export { default as Icon, iconStyles } from './components/Icon';
-export { default as Button, buttonStyles } from './components/Button';
+export { default as Badge, badgeStyles } from './components/Badge/index.js';
+export { default as ProgressBar, progressBarStyles } from './components/ProgressBar/index.js';
+export { default as Icon, iconStyles } from './components/Icon/index.js';
+export { default as Button, buttonStyles } from './components/Button/index.js';
 
-export * from './utils';
+export * from './utils/index.js';
