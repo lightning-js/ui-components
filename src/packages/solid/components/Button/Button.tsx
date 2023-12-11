@@ -29,14 +29,30 @@ export interface ButtonProps extends NodeProps {
 const Button: Component<ButtonProps> = props => {
   console.log(styles);
   return (
-    <View {...props} style={styles.Container} tone={props.tone || styles.tone} forwardStates>
-      <Text style={styles.Text}>{props.children}</Text>
+    <View
+      {...props}
+      style={styles.Container}
+      tone={props.tone || styles.tone}
+      {...styles.Container[props.tone || styles.tone]}
+      forwardStates
+    >
+      <Text style={styles.Text} tone={props.tone || styles.tone} {...styles.Text[props.tone || styles.tone]}>
+        {props.children}
+      </Text>
     </View>
   );
 };
 
 export const ButtonContainer: Component<ButtonProps> = props => {
-  return <View {...props} style={styles.Container} tone={props.tone || styles.tone} forwardStates />;
+  return (
+    <View
+      {...props}
+      style={styles.Container}
+      tone={props.tone || styles.tone}
+      {...styles.Container[props.tone || styles.tone]}
+      forwardStates
+    />
+  );
 };
 
 export default Button;
