@@ -18,7 +18,7 @@
 import theme from 'theme';
 import type { WithTonesModes, Tone, ComponentConfig } from 'types';
 import type { TextStyles, NodeStyles } from '@lightningjs/solid';
-import { makeComponentStyles, type LookupObject } from '../../utils.js';
+import { makeComponentStyles, type LookupObject } from '../../utils/index.js';
 
 export interface ButtonStyle {
   tone: Tone;
@@ -27,17 +27,18 @@ export interface ButtonStyle {
   Text: TextStyles & WithTonesModes<TextStyles>;
 }
 
-interface ButtonConfig
-  extends ComponentConfig<{
-    backgroundColor: NodeStyles['color'];
-    borderRadius: NodeStyles['borderRadius'];
-    contentColor: NodeStyles['color'];
-    justifyContent: NodeStyles['justifyContent'];
-    textAlign: TextStyles['textAlign'];
-    textColor: TextStyles['color'];
-  }> {}
+type ButtonConfig = ComponentConfig<ButtonStyleProperties>;
 
-const { styles: themeStyles, tone } = theme.componentConfig.Button as ButtonConfig;
+type ButtonStyleProperties = {
+  backgroundColor?: NodeStyles['color'];
+  borderRadius?: NodeStyles['borderRadius'];
+  contentColor?: NodeStyles['color'];
+  justifyContent?: NodeStyles['justifyContent'];
+  textAlign?: TextStyles['textAlign'];
+  textColor?: TextStyles['color'];
+};
+
+const { Button: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
 
 const containerDefaults: NodeStyles & { padding: [number, number] } = {
   width: 400,
@@ -49,7 +50,7 @@ const containerDefaults: NodeStyles & { padding: [number, number] } = {
   borderRadius: themeStyles?.base?.borderRadius || theme.radius.sm
 };
 
-const containerModes: LookupObject = {
+const containerModes: LookupObject<ButtonStyleProperties> = {
   focus: {
     color: {
       themeKey: 'backgroundColor',
@@ -95,7 +96,7 @@ const containerModes: LookupObject = {
   brand: {
     color: {
       themeKey: 'backgroundColor',
-      fallback: theme.color.interactiveNeutralFocusSoft
+      fallback: theme.color.interactiveBrand
     },
     justifyContent: {
       themeKey: 'justifyContent',
@@ -108,7 +109,7 @@ const containerModes: LookupObject = {
   }
 };
 
-const containerToneModes: LookupObject = {
+const containerToneModes: LookupObject<ButtonStyleProperties> = {
   'neutral-focus': {
     color: {
       themeKey: 'backgroundColor',
