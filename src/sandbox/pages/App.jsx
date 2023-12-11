@@ -16,13 +16,34 @@
  */
 
 import { View } from '@lightningjs/solid';
-import { ProgressBar } from '@lightningjs/solid-ui';
+import { Button } from '@lightningjs/solid-ui';
+import { getHexColor } from 'utils';
+import { useFocusManager, Column } from '@lightningjs/solid-primitives';
+
 const App = () => {
+  let ColumnRef;
+
+  useFocusManager({
+    Menu: 'm',
+    Text: 't',
+    Buttons: 'b'
+  });
+
   return (
     // eslint-disable-next-line solid/style-prop
     <View ref={window.APP} style={{ width: 1920, height: 1080 }}>
-      <View color="#071423" />
-      <ProgressBar x={200} y={400} width={500} progress={0.6} zIndex={1} />
+      <View color={getHexColor('#071423')} />
+      <Column ref={ColumnRef}>
+        <Button autofocus y="200" x="300">
+          Title
+        </Button>
+        <Button tone="brand" y="400" x="300">
+          Title Two
+        </Button>
+        <Button y="600" x="300">
+          Title Three
+        </Button>
+      </Column>
     </View>
   );
 };
