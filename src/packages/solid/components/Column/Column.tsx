@@ -9,10 +9,11 @@ export interface ColumnProps extends IntrinsicNodeProps {
    * components to be listed in the column
    */
   children: object;
-  /** Scroll to selected index */
-  scroll: number;
+
   /** Item index at which scrolling begins */
   scrollIndex: number;
+
+  scrollStyle?: 'alwaysScroll' | 'neverScroll' | 'lazyScroll' | undefined;
 }
 
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
@@ -21,7 +22,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
   createEffect(
     on(
       activeElement,
-      (elm) => {
+      elm => {
         if (ContainerRef === elm) {
           ColumnRef.children[ColumnRef.selected].setFocus();
         }

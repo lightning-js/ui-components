@@ -10,18 +10,14 @@ export interface RowProps extends IntrinsicNodeProps {
    * components to be listed in the Row
    */
   children: object;
-  /** Scroll to selected index */
-  scroll: number;
   /** Item index at which scrolling begins */
-  scrollIndex: number;
-  /**
-   * If true, will only scroll the row if the item is off screen and `alwaysScroll` and `neverScroll` are both false.
-   */
-  lazyScroll?: boolean;
+  scrollIndex?: number;
+
+  scrollStyle?: 'alwaysScroll' | 'neverScroll' | 'lazyScroll' | undefined;
 }
 
 const Row: Component<RowProps> = (props: RowProps) => {
-  let RowRef, ContainerRef, prevIndex, nextRow, nextX, direction;
+  let RowRef, ContainerRef, prevIndex, nextX;
 
   createEffect(
     on(
@@ -34,23 +30,20 @@ const Row: Component<RowProps> = (props: RowProps) => {
           return;
         }
 
-        prevIndex = RowRef.selected;
-
-        if (RowRef.children[RowRef.selected].x > Math.abs(RowRef.x)) {
-          direction = 'positive';
-        } else {
-          direction = 'negative';
-        }
-
         nextX = getScrollValue({
-          direction: direction,
+          children: RowRef.children,
+          selectedIndex: RowRef.selected,
+          direction: RowRef.selected > prevIndex ? 'positive' : 'negative',
           previousVal: RowRef.x,
           newValue: RowRef.children[RowRef.selected].x,
           componentSize: RowRef.children[RowRef.selected].width,
           windowVal: RowRef.width,
-          lazyScroll: props.lazyScroll,
+          scrollStyle: props.scrollStyle ? props.scrollStyle : '',
+          scrollIndex: props.scrollIndex ? props.scrollIndex : undefined,
           gap: props.gap || styles.Row.gap
         });
+
+        prevIndex = RowRef.selected;
 
         //prevent repeat x updates
         if (RowRef.x !== nextX) {
