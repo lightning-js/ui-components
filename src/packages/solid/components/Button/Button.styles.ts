@@ -26,7 +26,8 @@ export interface ButtonStyle {
   Text: TextStyles & WithTonesModes<TextStyles>;
 }
 
-const { styles: themeStyles, tone: themeTone } = theme.componentConfig.Button;
+const themeStyles = theme.componentConfig?.Button?.styles || {};
+const themeTone = theme.componentConfig?.Button?.tone || 'neutral';
 
 const containerBase = {
   width: 400,
