@@ -15,8 +15,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export * from './getHexColor';
-export * from './getRowHeight';
-export * from './useItemLayout';
-export * from './useStyles';
-export * from './getScrollValue';
+export * from './getHexColor.js';
+export * from './getRowHeight.js';
+export * from './useItemLayout.js';
+export * from './useStyles.js';
+export * from './getScrollValue.js';

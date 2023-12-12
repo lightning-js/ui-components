@@ -13,7 +13,7 @@ export interface RowProps extends IntrinsicNodeProps {
   /** Item index at which scrolling begins */
   scrollIndex?: number;
 
-  scrollStyle?: 'alwaysScroll' | 'neverScroll' | 'lazyScroll' | undefined;
+  scrollType?: 'alwaysScroll' | 'neverScroll' | 'lazyScroll' | undefined;
 }
 
 const Row: Component<RowProps> = (props: RowProps) => {
@@ -38,7 +38,7 @@ const Row: Component<RowProps> = (props: RowProps) => {
           newValue: RowRef.children[RowRef.selected].x,
           componentSize: RowRef.children[RowRef.selected].width,
           windowVal: RowRef.width,
-          scrollStyle: props.scrollStyle ? props.scrollStyle : '',
+          scrollType: props.scrollType ? props.scrollType : '',
           scrollIndex: props.scrollIndex ? props.scrollIndex : undefined,
           gap: props.gap || styles.Row.gap
         });

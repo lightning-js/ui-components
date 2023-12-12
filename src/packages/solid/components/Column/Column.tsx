@@ -13,7 +13,7 @@ export interface ColumnProps extends IntrinsicNodeProps {
   /** Item index at which scrolling begins */
   scrollIndex: number;
 
-  scrollStyle?: 'alwaysScroll' | 'neverScroll' | 'lazyScroll' | undefined;
+  scrollType?: 'alwaysScroll' | 'neverScroll' | 'lazyScroll' | undefined;
 }
 
 const Column: Component<ColumnProps> = (props: ColumnProps) => {

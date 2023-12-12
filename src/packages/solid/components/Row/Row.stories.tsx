@@ -13,10 +13,10 @@ const meta = {
         defaultValue: { summary: '[]' }
       }
     },
-    lazyScroll: {
-      control: { type: 'boolean' },
-      description:
-        'if true, will only scroll the row if the item is off screen and `alwaysScroll` and `neverScroll` are both false.',
+    scrollType: {
+      control: { type: 'radio' },
+      options: ['lazyScroll', 'alwaysScroll', 'neverScroll'],
+      description: 'determines when to scroll',
       table: {
         defaultValue: { summary: false }
       }
@@ -53,7 +53,7 @@ export const LazyScroll = {
   },
   args: {
     children: buttons,
-    scrollStyle: 'lazyScroll',
+    scrollType: 'lazyScroll',
     wrap: false
   }
 };
@@ -64,7 +64,7 @@ export const AlwaysScroll = {
   },
   args: {
     children: buttons,
-    scrollStyle: 'alwaysScroll',
+    scrollType: 'alwaysScroll',
     wrap: false
   }
 };
@@ -75,7 +75,7 @@ export const NeverScroll = {
   },
   args: {
     children: buttons,
-    scrollStyle: 'neverScroll',
+    scrollType: 'neverScroll',
     wrap: false
   }
 };
