@@ -18,7 +18,7 @@
 import { type Component } from 'solid-js';
 import { View, Text, type NodeProps } from '@lightningjs/solid';
 // import styles from './Button.styles.js';
-import styles from './Button.styleLookups.js';
+import styles from './Button.styles.js';
 import type { Tone } from 'types';
 
 export interface ButtonProps extends NodeProps {
@@ -27,7 +27,6 @@ export interface ButtonProps extends NodeProps {
 }
 
 const Button: Component<ButtonProps> = props => {
-  console.log(styles);
   return (
     <View
       {...props}
