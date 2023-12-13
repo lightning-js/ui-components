@@ -1,6 +1,6 @@
 {
   "extends": "../../../tsconfig.json",
-  "include": ["./components/**/*", "../../shared/types/solid.d.ts", "*.ts", "*.tsx"],
+  "include": ["./components/**/*", "./utils/**/*", "../../shared/types/solid.d.ts", "*.ts", "*.tsx"],
   "rootDir": "../../",
   "compilerOptions": {
     "outDir": "./dist",
@@ -8,8 +8,9 @@
     "jsxImportSource": "solid-js",
     "types": ["solid-js"],
     "paths": {
-      "utils": ["../../shared/utils/index.ts"],
       "theme": ["../../shared/theme.ts"],
+      "types": ["../../shared/types/solid.d.ts"],
+      "utils": ["../../shared/utils/index.ts"]
     }
   }
 }

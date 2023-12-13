@@ -24,7 +24,8 @@ export default defineConfig({
   resolve: {
     alias: {
       theme: './theme.js',
-      utils: path.resolve(__dirname, '../shared/utils/index.ts')
+      utils: path.resolve(__dirname, '../shared/utils/index.ts'),
+      '@lightningjs/solid-ui': path.resolve(__dirname, '../packages/solid/index.ts')
     },
     // breaks without this for some reason
     dedupe: ['solid-js', '@lightningjs/solid', '@lightningjs/renderer']
