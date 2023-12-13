@@ -16,7 +16,7 @@
  */
 
 import { render, Canvas, Config } from '@lightningjs/solid';
-import { mapToneToStateHook } from '@lightningjs/solid-ui/index.ts';
+import { mapToneToStateHook } from '@lightningjs/solid-ui';
 import { Router } from '@solidjs/router';
 import App from './pages/App';
 import coreExtensionModuleUrl from '../shared/AppCoreExtensions.js?importChunkUrl';
