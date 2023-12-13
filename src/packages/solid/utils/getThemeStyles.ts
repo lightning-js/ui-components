@@ -15,7 +15,7 @@ export type LookupObjectStyleConfig<T = object> = {
 };
 
 // TODO how do we ensure a parameter is of a generic<T>, is it just ComponentConfig<any>?
-type LooseComponentConfig = ComponentConfig<WithTonesModes>;
+type LooseComponentConfig = ComponentConfig<WithTonesModes<LookupObjectStyleConfig>>;
 
 export function makeComponentStyles(lookupObject: LookupObject, themeStyles: LooseComponentConfig) {
   /**

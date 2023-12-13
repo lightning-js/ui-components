@@ -15,18 +15,308 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { type NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import { getHexColor } from 'utils';
+import type { Color, Animatable, Tone } from 'types';
+import { makeComponentStyles, type LookupObject } from '../../utils/index.js';
 
-const styles = {
-  container: {
-    height: theme.spacer.md,
-    color: getHexColor(...(theme.color.fillNeutralTertiary as [string, number])),
-    borderRadius: theme.radius.xs
+export interface ProgressBarStyle {
+  tone: Tone;
+  Container: NodeStyles;
+  ProgressBar: NodeStyles;
+}
+
+export type ProgressBarStyleProperties = {
+  height: number;
+  color: Animatable<Color>;
+  borderRadius: number;
+};
+
+const { ProgressBar: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } =
+  theme?.componentConfig;
+
+const containerDefaults: NodeStyles = {
+  height: theme.spacer.md,
+  color: themeStyles?.base?.barColor || theme.color.fillNeutralTertiary,
+  borderRadius: theme.radius.xs
+};
+
+const containerModes: LookupObject<ProgressBarStyleProperties> = {
+  inverse: {
+    color: {
+      themeKey: 'barColor',
+      fallback: theme.color.fillInverseTertiary
+    },
+    height: {
+      themeKey: 'height',
+      fallback: containerDefaults.height
+    },
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: containerDefaults.borderRadius
+    }
   },
-  progressBar: {
-    borderRadius: theme.radius.xs,
-    color: getHexColor(...(theme.color.fillNeutral as [string, number]))
+  brand: {
+    color: {
+      themeKey: 'barColor',
+      fallback: containerDefaults.color
+    },
+    height: {
+      themeKey: 'height',
+      fallback: containerDefaults.height
+    },
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: containerDefaults.borderRadius
+    }
+  },
+  focus: {
+    color: {
+      themeKey: 'barColor',
+      fallback: containerDefaults.color
+    },
+    height: {
+      themeKey: 'height',
+      fallback: containerDefaults.height
+    },
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: containerDefaults.borderRadius
+    }
+  },
+  disabled: {
+    color: {
+      themeKey: 'barColor',
+      fallback: containerDefaults.color
+    },
+    height: {
+      themeKey: 'height',
+      fallback: containerDefaults.height
+    },
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: containerDefaults.borderRadius
+    }
+  }
+};
+
+// tone-mode > mode > tone > default
+
+const containerToneModes: LookupObject<ProgressBarStyleProperties> = {
+  'neutral-focus': {
+    // ...containerModes.focus
+    color: {
+      themeKey: 'barColor',
+      fallback: containerDefaults.color
+    },
+    height: {
+      themeKey: 'height',
+      fallback: containerDefaults.height
+    },
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: containerDefaults.borderRadius
+    }
+  },
+  'neutral-disabled': {
+    // ...containerModes.disabled
+    color: {
+      themeKey: 'barColor',
+      fallback: containerDefaults.color
+    },
+    height: {
+      themeKey: 'height',
+      fallback: containerDefaults.height
+    },
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: containerDefaults.borderRadius
+    }
+  },
+  'inverse-focus': {
+    // ...containerModes.focus
+    color: {
+      themeKey: 'barColor',
+      fallback: theme.color.fillInverseTertiary
+    },
+    height: {
+      themeKey: 'height',
+      fallback: containerDefaults.height
+    },
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: containerDefaults.borderRadius
+    }
+  },
+  'inverse-disabled': {
+    // ...containerModes.disabled
+    color: {
+      themeKey: 'barColor',
+      fallback: theme.color.fillInverseTertiary
+    },
+    height: {
+      themeKey: 'height',
+      fallback: containerDefaults.height
+    },
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: containerDefaults.borderRadius
+    }
+  },
+  'brand-focus': {
+    // ...containerModes.focus
+    color: {
+      themeKey: 'barColor',
+      fallback: containerDefaults.color
+    },
+    height: {
+      themeKey: 'height',
+      fallback: containerDefaults.height
+    },
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: containerDefaults.borderRadius
+    }
+  },
+  'brand-disabled': {
+    // ...containerModes.disabled
+    color: {
+      themeKey: 'barColor',
+      fallback: containerDefaults.color
+    },
+    height: {
+      themeKey: 'height',
+      fallback: containerDefaults.height
+    },
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: containerDefaults.borderRadius
+    }
+  }
+};
+
+const progressDefaults: NodeStyles = {
+  borderRadius: themeStyles?.base?.borderRadius || theme.radius.xs,
+  color: themeStyles?.base?.progressColor || theme.color.fillNeutral
+};
+
+const progressBarModes: LookupObject<ProgressBarStyleProperties> = {
+  inverse: {
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: progressDefaults.borderRadius
+    },
+    color: {
+      themeKey: 'progressColor',
+      fallback: theme.color.fillInverse
+    }
+  },
+  brand: {
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: progressDefaults.borderRadius
+    },
+    color: {
+      themeKey: 'progressColor',
+      fallback: theme.color.fillBrand
+    }
+  },
+  focus: {
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: progressDefaults.borderRadius
+    },
+    color: {
+      themeKey: 'progressColor',
+      fallback: progressDefaults.color
+    }
+  },
+  disabled: {
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: progressDefaults.borderRadius
+    },
+    color: {
+      themeKey: 'progressColor',
+      fallback: progressDefaults.color
+    }
+  }
+};
+
+const progressBarToneModes: LookupObject<ProgressBarStyleProperties> = {
+  'neutral-focus': {
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: progressDefaults.borderRadius
+    },
+    color: {
+      themeKey: 'progressColor',
+      fallback: progressDefaults.color
+    }
+  },
+  'neutral-disabled': {
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: progressDefaults.borderRadius
+    },
+    color: {
+      themeKey: 'progressColor',
+      fallback: progressDefaults.color
+    }
+  },
+  'inverse-focus': {
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: progressDefaults.borderRadius
+    },
+    color: {
+      themeKey: 'progressColor',
+      fallback: progressDefaults.color
+    }
+  },
+  'inverse-disabled': {
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: progressDefaults.borderRadius
+    },
+    color: {
+      themeKey: 'progressColor',
+      fallback: progressDefaults.color
+    }
+  },
+  'brand-focus': {
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: progressDefaults.borderRadius
+    },
+    color: {
+      themeKey: 'progressColor',
+      fallback: progressDefaults.color
+    }
+  },
+  'brand-disabled': {
+    borderRadius: {
+      themeKey: 'radius',
+      fallback: progressDefaults.borderRadius
+    },
+    color: {
+      themeKey: 'progressColor',
+      fallback: progressDefaults.color
+    }
+  }
+};
+
+const styles: ProgressBarStyle = {
+  tone: tone || 'neutral',
+  Container: {
+    ...containerDefaults,
+    ...makeComponentStyles(containerModes, themeStyles),
+    ...makeComponentStyles(containerToneModes, themeStyles)
+  },
+  ProgressBar: {
+    ...progressDefaults,
+    ...makeComponentStyles(progressBarModes, themeStyles),
+    ...makeComponentStyles(progressBarToneModes, themeStyles)
   }
 } as const;
 
