@@ -58,35 +58,35 @@ export const LazyScroll = {
   }
 };
 
-export const AlwaysScroll = {
-  render: args => {
-    return <SolidRow {...args}>{buttons}</SolidRow>;
-  },
-  args: {
-    children: buttons,
-    scrollType: 'alwaysScroll',
-    wrap: false
-  }
-};
+// export const AlwaysScroll = {
+//   render: args => {
+//     return <SolidRow {...args}>{buttons}</SolidRow>;
+//   },
+//   args: {
+//     children: buttons,
+//     scrollType: 'alwaysScroll',
+//     wrap: false
+//   }
+// };
 
-export const NeverScroll = {
-  render: args => {
-    return <SolidRow {...args}>{buttons}</SolidRow>;
-  },
-  args: {
-    children: buttons,
-    scrollType: 'neverScroll',
-    wrap: false
-  }
-};
+// export const NeverScroll = {
+//   render: args => {
+//     return <SolidRow {...args}>{buttons}</SolidRow>;
+//   },
+//   args: {
+//     children: buttons,
+//     scrollType: 'neverScroll',
+//     wrap: false
+//   }
+// };
 
-export const ScrollIndex = {
-  render: args => {
-    return <SolidRow {...args}>{buttons}</SolidRow>;
-  },
-  args: {
-    children: buttons,
-    scrollIndex: 4,
-    wrap: false
-  }
-};
+// export const ScrollIndex = {
+//   render: args => {
+//     return <SolidRow {...args}>{buttons}</SolidRow>;
+//   },
+//   args: {
+//     children: buttons,
+//     scrollIndex: 4,
+//     wrap: false
+//   }
+// };

@@ -3,6 +3,7 @@ import { View, activeElement, type IntrinsicNodeProps } from '@lightningjs/solid
 import { Row as SolidRow } from '@lightningjs/solid-primitives';
 import styles from './Row.styles';
 import { getScrollValue } from 'utils';
+import { withScrolling } from 'utils';
 import theme from 'theme';
 
 export interface RowProps extends IntrinsicNodeProps {
@@ -17,49 +18,22 @@ export interface RowProps extends IntrinsicNodeProps {
 }
 
 const Row: Component<RowProps> = (props: RowProps) => {
-  let RowRef, ContainerRef, prevIndex, nextX;
-
-  createEffect(
-    on(
-      activeElement,
-      elm => {
-        if (ContainerRef === elm) {
-          RowRef.children[RowRef.selected].setFocus();
-        }
-        if (RowRef.selected === prevIndex) {
-          return;
-        }
-
-        nextX = getScrollValue({
-          children: RowRef.children,
-          selectedIndex: RowRef.selected,
-          direction: RowRef.selected > prevIndex ? 'positive' : 'negative',
-          previousVal: RowRef.x,
-          newValue: RowRef.children[RowRef.selected].x,
-          componentSize: RowRef.children[RowRef.selected].width,
-          windowVal: RowRef.width,
-          scrollType: props.scrollType ? props.scrollType : '',
-          scrollIndex: props.scrollIndex ? props.scrollIndex : undefined,
-          gap: props.gap || styles.Row.gap
-        });
-
-        prevIndex = RowRef.selected;
-
-        //prevent repeat x updates
-        if (RowRef.x !== nextX) {
-          RowRef.x = nextX;
-        }
-      },
-      { defer: true }
-    )
-  );
+  let RowRef, ContainerRef;
+  const gap = styles.gap;
 
   return (
-    <View autofocus {...props} ref={ContainerRef}>
-      <SolidRow {...props} animate style={styles.Row} width={800} height={500} ref={RowRef}>
+    <node autofocus use:withScrolling={['row', props, gap]} {...props} ref={ContainerRef}>
+      <SolidRow
+        {...props}
+        animate
+        style={styles.Row}
+        width={800}
+        height={500}
+        ref={RowRef}
+      >
         {props.children}
       </SolidRow>
-    </View>
+    </node>
   );
 };
 
