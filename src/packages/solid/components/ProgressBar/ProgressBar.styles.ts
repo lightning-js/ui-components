@@ -41,7 +41,7 @@ const containerDefaults: NodeStyles = {
   borderRadius: theme.radius.xs
 };
 
-const containerModes: LookupObject<ProgressBarStyleProperties> = {
+const containerTonesModes: LookupObject<ProgressBarStyleProperties> = {
   inverse: {
     color: {
       themeKey: 'barColor',
@@ -97,12 +97,7 @@ const containerModes: LookupObject<ProgressBarStyleProperties> = {
       themeKey: 'radius',
       fallback: containerDefaults.borderRadius
     }
-  }
-};
-
-// tone-mode > mode > tone > default
-
-const containerToneModes: LookupObject<ProgressBarStyleProperties> = {
+  },
   'neutral-focus': {
     // ...containerModes.focus
     color: {
@@ -200,7 +195,7 @@ const progressDefaults: NodeStyles = {
   color: themeStyles?.base?.progressColor || theme.color.fillNeutral
 };
 
-const progressBarModes: LookupObject<ProgressBarStyleProperties> = {
+const progressBarTonesModes: LookupObject<ProgressBarStyleProperties> = {
   inverse: {
     borderRadius: {
       themeKey: 'radius',
@@ -240,10 +235,7 @@ const progressBarModes: LookupObject<ProgressBarStyleProperties> = {
       themeKey: 'progressColor',
       fallback: progressDefaults.color
     }
-  }
-};
-
-const progressBarToneModes: LookupObject<ProgressBarStyleProperties> = {
+  },
   'neutral-focus': {
     borderRadius: {
       themeKey: 'radius',
@@ -283,40 +275,36 @@ const progressBarToneModes: LookupObject<ProgressBarStyleProperties> = {
       themeKey: 'progressColor',
       fallback: progressDefaults.color
     }
-  },
-  'brand-focus': {
-    borderRadius: {
-      themeKey: 'radius',
-      fallback: progressDefaults.borderRadius
-    },
-    color: {
-      themeKey: 'progressColor',
-      fallback: progressDefaults.color
-    }
-  },
-  'brand-disabled': {
-    borderRadius: {
-      themeKey: 'radius',
-      fallback: progressDefaults.borderRadius
-    },
-    color: {
-      themeKey: 'progressColor',
-      fallback: progressDefaults.color
-    }
   }
+  // 'brand-focus': {
+  //   borderRadius: {
+  //     themeKey: 'radius',
+  //     fallback: progressDefaults.borderRadius
+  //   },
+  //   color: {
+  //     themeKey: 'progressColor',
+  //     fallback: progressDefaults.color
+  //   }
+  // },
+  // 'brand-disabled': {
+  //   borderRadius: {
+  //     themeKey: 'radius',
+  //     fallback: progressDefaults.borderRadius
+  //   },
+  //   color: {
+  //     themeKey: 'progressColor',
+  //     fallback: progressDefaults.color
+  //   }
+  // }
 };
 
 const styles: ProgressBarStyle = {
   tone: tone || 'neutral',
   Container: {
-    ...containerDefaults,
-    ...makeComponentStyles(containerModes, themeStyles),
-    ...makeComponentStyles(containerToneModes, themeStyles)
+    ...makeComponentStyles(containerDefaults, containerTonesModes, themeStyles)
   },
   ProgressBar: {
-    ...progressDefaults,
-    ...makeComponentStyles(progressBarModes, themeStyles),
-    ...makeComponentStyles(progressBarToneModes, themeStyles)
+    ...makeComponentStyles(progressDefaults, progressBarTonesModes, themeStyles)
   }
 } as const;
 
