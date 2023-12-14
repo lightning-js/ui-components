@@ -29,10 +29,9 @@ const styles = {
   },
   insetBottom: {
     display: 'flex',
-    mountY: 1,
     flexDirection: 'column',
-    alignItems: 'flex-end',
-    alignContent: 'space-between'
+    justifyContent: 'flexStart',
+    mountY: 1
   },
   LogoContainer: {
     width: theme.spacer.lg * 5,

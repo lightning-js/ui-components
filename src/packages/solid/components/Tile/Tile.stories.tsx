@@ -110,14 +110,16 @@ export const Basic: Story = {
         {...args}
         topLeft={<Badge title="HD" />}
         topRight={<Label width={75} title="Label" />}
-        inset={[
-          <View
-            src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
-            width={theme.spacer.lg * 5}
-            height={theme.spacer.xxl + theme.spacer.md}
-          />,
-          <Metadata title="Title" description={lorum} maxLines={1} />
-        ]}
+        inset={
+          <>
+            <View
+              src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
+              width={theme.spacer.lg * 5}
+              height={theme.spacer.xxl + theme.spacer.md}
+            />
+            <Metadata title="Title" description={lorum} maxLines={1} />
+          </>
+        }
         // bottom={
         //   [<img src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'} width={theme.spacer.lg * 5} height={theme.spacer.xxl + theme.spacer.md}/>,
         //   <Metadata title='Title' description={lorum} maxLines={1} />]

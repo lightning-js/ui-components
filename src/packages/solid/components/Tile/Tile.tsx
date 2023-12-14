@@ -89,8 +89,9 @@ const Tile: Component<TileProps> = (props: TileProps) => {
 
       <View
         mountY={1}
+        debug
         forwardStates
-        styles={styles.insetBottom}
+        style={styles.insetBottom}
         width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
         x={styles.Container.padding[0]}
         y={
@@ -101,10 +102,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
       >
         {/* <img src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'} width={theme.spacer.lg * 5} height={theme.spacer.xxl + theme.spacer.md}/>
         <Metadata title='Title' description={lorum} maxLines={1} /> */}
-        {/* {props.inset} */}
-        <For each={props.inset}>
-          {Item => <Item width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2} />}
-        </For>
+        {props.inset}
       </View>
 
       {/* <View
