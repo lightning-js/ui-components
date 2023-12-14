@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import type { WithTonesModes, ComponentConfig } from 'types';
 import { type NodeStyles } from '@lightningjs/solid';
 
@@ -17,7 +19,25 @@ export type LookupObjectStyleConfig<T = object> = {
 // TODO how do we ensure a parameter is of a generic<T>, is it just ComponentConfig<any>?
 type LooseComponentConfig = ComponentConfig<WithTonesModes<LookupObjectStyleConfig>>;
 
-export function makeComponentStyles(lookupObject: LookupObject, themeStyles: LooseComponentConfig) {
+// required style keys
+const toneModeSet = {
+  inverse: 'base',
+  brand: 'base',
+  focus: 'base',
+  disabled: 'base',
+  'neutral-focus': 'focus',
+  'neutral-disabled': 'disabled',
+  'inverse-focus': 'focus',
+  'inverse-disabled': 'disabled',
+  'brand-focus': 'focus',
+  'brand-disabled': 'disabled'
+};
+
+export function makeComponentStyles(
+  defaultStyles,
+  lookupObject: LookupObject,
+  themeStyles: LooseComponentConfig
+) {
   /**
    *
    * takes an object of name/StyleConfig pairs, and assign each style in the config
@@ -32,7 +52,6 @@ export function makeComponentStyles(lookupObject: LookupObject, themeStyles: Loo
         ...toneModeStyle,
         // themeStyles is destructured out of the componentConfig
         // TODO keys have typeof string, need to ensure they have the correct type
-        // @ts-expect-error see above
         [solidStyleKey]: themeStyles?.[toneModeName]?.[solidStyleObject.themeKey] || solidStyleObject.fallback
       }),
       {}
@@ -41,8 +60,8 @@ export function makeComponentStyles(lookupObject: LookupObject, themeStyles: Loo
   /**
    * for each key in the root of the lookup object, pass its object to mapThemeStylesToSolidStyles for formatting
    */
-  const generateSolidStylesFromLookupObject = (lookupObject: LookupObject) => {
-    return Object.entries(lookupObject).reduce(
+  const generateSolidStylesFromLookupObject = (defaultStyles, lookupObject: LookupObject) => {
+    const styleObject = Object.entries(lookupObject).reduce(
       (
         /* final set of solid-formatted styles */
         styleObject,
@@ -52,8 +71,24 @@ export function makeComponentStyles(lookupObject: LookupObject, themeStyles: Loo
         ...styleObject,
         [toneModeName]: mapThemeStylesToSolidStyles(toneModeName as keyof LookupObject, toneModeStyle)
       }),
-      {}
+      defaultStyles
     );
+
+    /* find which toneModes are missing from the final object */
+    const missingToneModes = Object.keys(toneModeSet).filter(
+      toneMode => !Object.keys(styleObject).includes(toneMode)
+    );
+
+    /* create missing toneModes using fallback values */
+    missingToneModes.forEach(toneMode => {
+      /* merge fallback object with theme.componentConfig values to create missing toneModes */
+      styleObject[toneMode] = {
+        ...styleObject[toneModeSet[toneMode as keyof typeof toneModeSet]],
+        ...themeStyles?.[toneMode]
+      };
+    });
+
+    return styleObject;
   };
-  return generateSolidStylesFromLookupObject(lookupObject);
+  return generateSolidStylesFromLookupObject(defaultStyles, lookupObject);
 }
