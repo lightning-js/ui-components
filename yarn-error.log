@@ -1,0 +1,64 @@
+Arguments: 
+  /Users/shay806/.nvm/versions/node/v16.17.0/bin/node /Users/shay806/.node/corepack/yarn/1.22.19/bin/yarn.js install
+
+PATH: 
+  /Users/shay806/Library/pnpm:/Users/shay806/.nvm/versions/node/v16.17.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/shay806/Library/pnpm:/Users/shay806/.nvm/versions/node/v16.17.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.17.0
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  Error: ENOENT: no such file or directory, copyfile '/Users/shay806/Library/Caches/Yarn/v6/npm-estraverse-4.3.0-398ad3f3c5a24948be7725e83d11a7de28cdbd1d-integrity/node_modules/estraverse/.jshintrc' -> '/Users/shay806/repos/external/ui-components/node_modules/eslint-plugin-jest/node_modules/estraverse/.jshintrc'
+
+npm manifest: 
+  {
+    "name": "ui-components",
+    "version": "0.3.0",
+    "author": "",
+    "license": "Apache-2.0",
+    "private": true,
+    "main": "index.js",
+    "type": "module",
+    "types": "dist/types.d.ts",
+    "scripts": {
+      "start": "npm run solid:storybook",
+      "lint": "pnpm eslint . --ext .js,.ts,.jsx,.tsx",
+      "lint:fix": "pnpm eslint . --ext .js,.ts,.jsx,.tsx --fix",
+      "reset": "rm -rf node_modules && rm -rf src/packages/solid/node_modules && rm -rf src/sandbox/node_modules && pnpm store prune",
+      "solid:build-storybook": "pnpm --filter @lightningjs/solid-ui build",
+      "solid:sandbox": "pnpm --filter solid-js-sandbox start",
+      "solid:storybook": "pnpm --filter @lightningjs/solid-ui start",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+      "@lightningjs/renderer": "^0.5.0",
+      "eslint": "^8.0.0",
+      "eslint-config-prettier": "^9.0.0",
+      "eslint-plugin-jest": "^27.4.2",
+      "eslint-plugin-prettier": "^5.0.1",
+      "eslint-plugin-solid": "^0.13.0",
+      "prettier": "^3.0.3"
+    },
+    "devDependencies": {
+      "@lightningjs/ui-components-theme-base": "^1.0.3",
+      "@typescript-eslint/eslint-plugin": "^6.8.0",
+      "@typescript-eslint/parser": "^6.8.0",
+      "typescript": "^5.2.2",
+      "vite": "^4.4.11",
+      "vite-bundle-visualizer": "^0.10.0",
+      "vite-plugin-cross-origin-isolation": "^0.1.6",
+      "vite-plugin-solid": "^2.7.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

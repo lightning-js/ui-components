@@ -105,19 +105,25 @@ const meta: Meta<typeof Tile> = {
 
 export const Basic: Story = {
   render: args => {
-    return <Tile {...args} 
-    topLeft={<Badge title="HD"/>} 
-    topRight={<Label width={75} title="Label"/>} 
-    inset={
-    [<img src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'} width={theme.spacer.lg * 5} height={theme.spacer.xxl + theme.spacer.md}/>,
-    <Metadata title='Title' description={lorum} maxLines={1} />]
-    } 
-    // bottom={
-    //   [<img src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'} width={theme.spacer.lg * 5} height={theme.spacer.xxl + theme.spacer.md}/>,
-    //   <Metadata title='Title' description={lorum} maxLines={1} />]
-    // }
-
-    />
+    return (
+      <Tile
+        {...args}
+        topLeft={<Badge title="HD" />}
+        topRight={<Label width={75} title="Label" />}
+        inset={[
+          <View
+            src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
+            width={theme.spacer.lg * 5}
+            height={theme.spacer.xxl + theme.spacer.md}
+          />,
+          <Metadata title="Title" description={lorum} maxLines={1} />
+        ]}
+        // bottom={
+        //   [<img src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'} width={theme.spacer.lg * 5} height={theme.spacer.xxl + theme.spacer.md}/>,
+        //   <Metadata title='Title' description={lorum} maxLines={1} />]
+        // }
+      />
+    );
   },
   args: {
     states: 'focus',
