@@ -20,7 +20,7 @@ export type LookupObjectStyleConfig<T = object> = {
 type LooseComponentConfig = ComponentConfig<WithTonesModes<LookupObjectStyleConfig>>;
 
 // required style keys
-const toneModeSet = {
+const defaultToneModeFallbackMap = {
   inverse: 'base',
   brand: 'base',
   focus: 'base',
@@ -34,9 +34,10 @@ const toneModeSet = {
 };
 
 export function makeComponentStyles(
-  defaultStyles,
+  baseStyles,
   lookupObject: LookupObject,
-  themeStyles: LooseComponentConfig
+  themeStyles: LooseComponentConfig,
+  toneModeFallbackMap = defaultToneModeFallbackMap
 ) {
   /**
    * takes an object of name/StyleConfig pairs, and assign each style in the config
@@ -57,8 +58,8 @@ export function makeComponentStyles(
    * for each key in the root of the lookup object,
    * pass its object to mapThemeStylesToSolidStyles for formatting
    */
-  const makeStyleObject = (defaultStyles, lookupObject) => ({
-    ...defaultStyles,
+  const makeStyleObject = (baseStyles, lookupObject) => ({
+    ...baseStyles,
     ...Object.fromEntries(
       Object.entries(lookupObject).map(([toneModeName, toneModeStyle]) => [
         toneModeName,
@@ -69,7 +70,7 @@ export function makeComponentStyles(
 
   const addMissingToneModes = styleObject => {
     /* find which toneModes are missing from the final object */
-    const missingToneModes = Object.keys(toneModeSet).filter(
+    const missingToneModes = Object.keys(toneModeFallbackMap).filter(
       toneMode => !Object.keys(styleObject).includes(toneMode)
     );
 
@@ -77,7 +78,7 @@ export function makeComponentStyles(
     missingToneModes.forEach(toneMode => {
       /* merge fallback object with theme.componentConfig values to create missing toneModes */
       styleObject[toneMode] = {
-        ...styleObject[toneModeSet[toneMode as keyof typeof toneModeSet]],
+        ...styleObject[toneModeFallbackMap[toneMode as keyof typeof toneModeFallbackMap]],
         ...themeStyles?.[toneMode]
       };
     });
@@ -85,12 +86,12 @@ export function makeComponentStyles(
     return styleObject;
   };
 
-  const generateSolidStylesFromLookupObject = (defaultStyles, lookupObject: LookupObject) => {
-    const styleObject = makeStyleObject(defaultStyles, lookupObject);
+  const generateSolidStylesFromLookupObject = (baseStyles, lookupObject: LookupObject) => {
+    const styleObject = makeStyleObject(baseStyles, lookupObject);
 
     const updatedStyleObject = addMissingToneModes(styleObject);
 
     return updatedStyleObject;
   };
-  return generateSolidStylesFromLookupObject(defaultStyles, lookupObject);
+  return generateSolidStylesFromLookupObject(baseStyles, lookupObject);
 }
