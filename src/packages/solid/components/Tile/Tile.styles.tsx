@@ -1,6 +1,4 @@
 import theme from 'theme';
-import type { ContentAlign, StateStyle } from '../../../../shared/types/solid.js';
-import { getHexColor } from 'utils';
 
 const styles = {
   Container: {
