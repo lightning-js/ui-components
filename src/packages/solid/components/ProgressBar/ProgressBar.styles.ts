@@ -49,7 +49,8 @@ const container = {
     inverse: {
       color: theme.color.fillInverseTertiary
     }
-  }
+  },
+  themeStyles
 };
 
 const progress = {
@@ -68,19 +69,17 @@ const progress = {
     brand: {
       color: theme.color.fillBrand
     }
-  }
+  },
+  themeStyles
 };
 
-const progressBarTonesModes: LookupObject<ProgressBarStyleProperties> = {};
+const Container = makeComponentStyles(container);
+const ProgressBar = makeComponentStyles(progress);
 
 const styles: ProgressBarStyle = {
   tone: tone || 'neutral',
-  Container: {
-    ...makeComponentStyles({ ...container, themeStyles })
-  },
-  ProgressBar: {
-    ...makeComponentStyles({ ...progress, themeStyles })
-  }
-} as const;
+  Container,
+  ProgressBar
+};
 
 export default styles;
