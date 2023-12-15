@@ -16,26 +16,42 @@
  */
 
 import { type Component } from 'solid-js';
-import { View, Text, type NodeProps } from '@lightningjs/solid';
-// import styles from './Button.styles.js';
-import styles from './Button.styles.js';
+import { View, Text, type NodeProps, type NodeStyles, type TextStyles } from '@lightningjs/solid';
 import type { Tone } from 'types';
+import styles from './Button.styles.js';
+import slimStyles from './Button.styles.slim.js';
 
 export interface ButtonProps extends NodeProps {
   children: string | string[];
   tone?: Tone;
+  style?: {
+    Container?: NodeStyles;
+    Text?: TextStyles;
+  };
 }
 
 const Button: Component<ButtonProps> = props => {
+  console.log('styles', styles);
+  console.log('slimStyles', slimStyles);
   return (
     <View
       {...props}
-      style={styles.Container}
-      tone={props.tone || styles.tone}
-      {...styles.Container[props.tone || styles.tone]}
+      style={slimStyles.Container}
+      tone={props.tone || slimStyles.tone}
+      {...{
+        ...slimStyles.Container[props.tone || slimStyles.tone],
+        ...props?.style?.Container
+      }}
       forwardStates
     >
-      <Text style={styles.Text} tone={props.tone || styles.tone} {...styles.Text[props.tone || styles.tone]}>
+      <Text
+        style={slimStyles.Text}
+        tone={props.tone || slimStyles.tone}
+        {...{
+          ...slimStyles.Text[props.tone || slimStyles.tone],
+          ...props?.style?.Text
+        }}
+      >
         {props.children}
       </Text>
     </View>
@@ -46,9 +62,9 @@ export const ButtonContainer: Component<ButtonProps> = props => {
   return (
     <View
       {...props}
-      style={styles.Container}
-      tone={props.tone || styles.tone}
-      {...styles.Container[props.tone || styles.tone]}
+      style={slimStyles.Container}
+      tone={props.tone || slimStyles.tone}
+      {...slimStyles.Container[props.tone || slimStyles.tone]}
       forwardStates
     />
   );
