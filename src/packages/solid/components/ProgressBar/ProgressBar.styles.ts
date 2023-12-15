@@ -35,49 +35,51 @@ export type ProgressBarStyleProperties = {
 const { ProgressBar: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } =
   theme?.componentConfig;
 
-const containerThemeKeys = {
-  color: 'barColor',
-  borderRadius: 'borderRadius'
-};
-
-const containerDefaults: NodeStyles = {
-  height: theme.spacer.md,
-  color: theme.color.fillNeutralTertiary,
-  borderRadius: theme.radius.xs
-};
-
-const containerTonesModes: LookupObject<ProgressBarStyleProperties> = {
-  inverse: {
-    color: theme.color.fillInverseTertiary
-  }
-};
-
-const progressThemeKeys = {
-  color: 'progressColor',
-  borderRadius: 'borderRadius'
-};
-
-const progressDefaults: NodeStyles = {
-  borderRadius: theme.radius.xs,
-  color: theme.color.fillNeutral
-};
-
-const progressBarTonesModes: LookupObject<ProgressBarStyleProperties> = {
-  inverse: {
-    color: theme.color.fillInverse
+const container = {
+  themeKeys: {
+    color: 'barColor',
+    borderRadius: 'borderRadius'
   },
-  brand: {
-    color: theme.color.fillBrand
+  base: {
+    height: theme.spacer.md,
+    color: theme.color.fillNeutralTertiary,
+    borderRadius: theme.radius.xs
+  },
+  toneModes: {
+    inverse: {
+      color: theme.color.fillInverseTertiary
+    }
   }
 };
+
+const progress = {
+  themeKeys: {
+    color: 'progressColor',
+    borderRadius: 'borderRadius'
+  },
+  base: {
+    borderRadius: theme.radius.xs,
+    color: theme.color.fillNeutral
+  },
+  toneModes: {
+    inverse: {
+      color: theme.color.fillInverse
+    },
+    brand: {
+      color: theme.color.fillBrand
+    }
+  }
+};
+
+const progressBarTonesModes: LookupObject<ProgressBarStyleProperties> = {};
 
 const styles: ProgressBarStyle = {
   tone: tone || 'neutral',
   Container: {
-    ...makeComponentStyles(containerThemeKeys, containerDefaults, containerTonesModes, themeStyles)
+    ...makeComponentStyles(container.themeKeys, container.base, container.toneModes, themeStyles)
   },
   ProgressBar: {
-    ...makeComponentStyles(progressThemeKeys, progressDefaults, progressBarTonesModes, themeStyles)
+    ...makeComponentStyles(progress.themeKeys, progress.base, progress.toneModes, themeStyles)
   }
 } as const;
 

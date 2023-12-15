@@ -40,84 +40,84 @@ type ButtonStyleProperties = {
 
 const { Button: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
 
-const containerThemeKeys = {
-  color: 'backgroundColor',
-  borderRadius: 'borderRadius',
-  justifyContent: 'justifyContent'
-};
-
-const containerDefaults: NodeStyles & { padding: [number, number] } = {
-  width: 400,
-  height: 100,
-  display: 'flex',
-  padding: [theme.spacer.xxxl, theme.spacer.xl],
-  color: theme.color.interactiveNeutral,
-  justifyContent: 'center',
-  borderRadius: theme.radius.sm
-};
-
-const containerModes: LookupObject<ButtonStyleProperties> = {
-  focus: {
-    color: theme.color.interactiveNeutralFocus
+const container = {
+  themeKeys: {
+    color: 'backgroundColor',
+    borderRadius: 'borderRadius',
+    justifyContent: 'justifyContent'
   },
-  disabled: {
-    color: theme.color.fillNeutralDisabled
+  base: {
+    width: 400,
+    height: 100,
+    display: 'flex',
+    padding: [theme.spacer.xxxl, theme.spacer.xl],
+    color: theme.color.interactiveNeutral,
+    justifyContent: 'center',
+    borderRadius: theme.radius.sm
   },
-  inverse: {
-    color: theme.color.interactiveInverse
-  },
-  brand: {
-    color: theme.color.interactiveBrand
-  },
-  'brand-focus': {
-    color: theme.color.green
+  toneModes: {
+    focus: {
+      color: theme.color.interactiveNeutralFocus
+    },
+    disabled: {
+      color: theme.color.fillNeutralDisabled
+    },
+    inverse: {
+      color: theme.color.interactiveInverse
+    },
+    brand: {
+      color: theme.color.interactiveBrand
+    },
+    'brand-focus': {
+      color: theme.color.green
+    }
   }
 };
 
-const textThemeKeys = {
-  color: 'textColor',
-  contentColor: 'contentColor',
-  borderRadius: 'borderRadius',
-  textAlign: 'textAlign'
-};
-
-const textDefaults = {
-  textAlign: 'left',
-  color: theme.color.textNeutral,
-  contentColor: theme.color.fillInverse,
-  ...theme.typography.button1
-};
-
-const textModes = {
-  focus: {
-    color: theme.color.textInverse,
-    contentColor: theme.color.textInverse
+const text = {
+  themeKeys: {
+    color: 'textColor',
+    contentColor: 'contentColor',
+    borderRadius: 'borderRadius',
+    textAlign: 'textAlign'
   },
-  disabled: {
-    color: theme.color.textNeutralDisabled,
-    contentColor: theme.color.textNeutralDisabled
+  base: {
+    textAlign: 'left',
+    color: theme.color.textNeutral,
+    contentColor: theme.color.fillInverse,
+    ...theme.typography.button1
   },
-  inverse: {
-    color: theme.color.fillNeutral,
-    contentColor: theme.color.fillNeutral
-  },
-  brand: {
-    color: theme.color.fillBrand,
-    contentColor: theme.color.fillBrand
-  },
-  'brand-focus': {
-    color: theme.color.fillBrand,
-    contentColor: theme.color.fillBrand
+  toneModes: {
+    focus: {
+      color: theme.color.textInverse,
+      contentColor: theme.color.textInverse
+    },
+    disabled: {
+      color: theme.color.textNeutralDisabled,
+      contentColor: theme.color.textNeutralDisabled
+    },
+    inverse: {
+      color: theme.color.fillNeutral,
+      contentColor: theme.color.fillNeutral
+    },
+    brand: {
+      color: theme.color.fillBrand,
+      contentColor: theme.color.fillBrand
+    },
+    'brand-focus': {
+      color: theme.color.fillBrand,
+      contentColor: theme.color.fillBrand
+    }
   }
 };
 
 const styles: ButtonStyle = {
   tone: tone || 'neutral',
   Container: {
-    ...makeComponentStyles(containerThemeKeys, containerDefaults, containerModes, themeStyles)
+    ...makeComponentStyles(container.themeKeys, container.base, container.toneModes, themeStyles)
   },
   Text: {
-    ...makeComponentStyles(textThemeKeys, textDefaults, textModes, themeStyles)
+    ...makeComponentStyles(text.themeKeys, text.base, text.toneModes, themeStyles)
   }
 };
 
