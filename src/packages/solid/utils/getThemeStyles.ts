@@ -81,7 +81,7 @@ export function makeComponentStyles({
     Object.fromEntries(
       Object.entries(toneModeStyle).map(([solidStyleKey, solidStyleValue]) => [
         solidStyleKey,
-        themeStyleLookup(toneModeName, themeKeys[solidStyleKey]) || solidStyleValue
+        themeStyleLookup(toneModeName, themeKeys[solidStyleKey]) ?? solidStyleValue
       ])
     );
 
@@ -110,7 +110,7 @@ export function makeComponentStyles({
     Object.fromEntries(
       Object.entries(baseStyles).map(([styleKey, styleValue]) => {
         const baseStyleValue = themeKeys?.[styleKey]
-          ? themeStyleLookup('base', themeKeys[styleKey]) || styleValue
+          ? themeStyleLookup('base', themeKeys[styleKey]) ?? styleValue
           : styleValue;
         return [styleKey, baseStyleValue];
       })
