@@ -19,18 +19,6 @@ export interface TileProps extends IntrinsicNodeProps {
    */
   artwork: Partial<ArtworkProps>;
   /**
-   * If true, changes format of itemLayout to circle
-   */
-  circle?: boolean;
-  /**
-   * Controls where there metadata is displayed in relation to the Tile. Available values are 'standard' and 'inset'
-   */
-  metadataLocation: 'standard' | 'inset';
-  /**
-   * Object containing all properties supported in the [MetadataTile component](?path=/docs/components-metadatatile--metadata-tile)<br /> Can use a different Metadata component by passing in a 'type' and then that component's properties
-   */
-  metadata?: Partial<MetadataProps> | undefined;
-  /**
    * Metadata will be shown at all times if set to true, otherwise it will only show when the Tile has focusMetadata will be shown at all times if set to true, otherwise it will only show when the Tile has focus
    */
   persistentMetadata?: boolean;
@@ -73,41 +61,44 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         alt="Solid logo"
       />
 
-      <View forwardStates x={styles.Container.padding[0]} y={styles.Container.padding[1]}>
-        {props.topLeft}
-      </View>
+      <Show when={props.persistentMetadata || isFocused()}>
+        <View forwardStates x={styles.Container.padding[0]} y={styles.Container.padding[1]}>
+          {props.topLeft}
+        </View>
 
-      <View
-        forwardStates
-        x={(props.width || styles.Container.width) - styles.Container.padding[0]}
-        y={styles.Container.padding[1]}
-        mountX={2}
-      >
-        {props.topRight}
-      </View>
+        <View
+          forwardStates
+          x={(props.width || styles.Container.width) - styles.Container.padding[0]}
+          y={styles.Container.padding[1]}
+          mountX={2}
+        >
+          {props.topRight}
+        </View>
 
-      <View
-        forwardStates
-        style={styles.insetBottom}
-        width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
-        x={styles.Container.padding[0]}
-        y={
-          (props.height || styles.Container.height) -
-          styles.Container.padding[1] -
-          (props.progressBar ? styles.Container.paddingYProgress : 0)
-        }
-      >
-        {props.inset}
-      </View>
+        <View
+          forwardStates
+          style={styles.insetBottom}
+          width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
+          x={styles.Container.padding[0]}
+          y={
+            (props.height || styles.Container.height) -
+            styles.Container.padding[1] -
+            (props.progressBar?.progress > 0 ? styles.Container.paddingYProgress : 0)
+          }
+        >
+          {props.inset}
+        </View>
 
-      {/* <View
-        forwardStates
-        x={styles.Container.padding[0]}
-        y={(props.height || styles.Container.height) + styles.Container.padding[1]}
-        width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
-      >
-        {props.bottom}
-      </View> */}
+        <View
+          forwardStates
+          style={styles.standardBottom}
+          x={styles.Container.padding[0]}
+          y={(props.height || styles.Container.height) + styles.Container.padding[1]}
+          width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
+        >
+          {props.bottom}
+        </View>
+      </Show>
 
       <Show when={props.progressBar?.progress ? props.progressBar.progress > 0 : 0}>
         <ProgressBar

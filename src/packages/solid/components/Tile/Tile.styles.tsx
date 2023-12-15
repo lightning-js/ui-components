@@ -11,18 +11,6 @@ const styles = {
     paddingYBetweenContent: theme.spacer.md,
     borderRadius: theme.radius.md,
     alpha: theme.alpha.primary,
-    //color: getHexColor(...(theme.color.interactiveNeutralFocusSoft as [string, number])),
-    focus: {
-      //color: getHexColor(...(theme.color.interactiveNeutralFocusSoft as [string, number]))
-/*       tone: {
-        inverse: {
-          color: getHexColor(...theme.color.interactiveInverseFocusSoft as [string, number])),
-        },
-        brand: {
-          contentColor: getHexColor(...(theme.color.interactiveBrandFocusSoft as [string, number]))
-        }
-      } */
-    },
     disabled: {
       alpha: theme.alpha.inactive
     }
@@ -33,6 +21,11 @@ const styles = {
     justifyContent: 'flexStart',
     mountY: 1
   },
+  standardBottom: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flexStart'
+  },
   LogoContainer: {
     width: theme.spacer.lg * 5,
     height: theme.spacer.xxl + theme.spacer.md
@@ -40,5 +33,3 @@ const styles = {
 } as const;
 
 export default styles;
-
-
