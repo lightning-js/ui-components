@@ -114,10 +114,10 @@ const text = {
 const styles: ButtonStyle = {
   tone: tone || 'neutral',
   Container: {
-    ...makeComponentStyles(container.themeKeys, container.base, container.toneModes, themeStyles)
+    ...makeComponentStyles({ ...container, themeStyles })
   },
   Text: {
-    ...makeComponentStyles(text.themeKeys, text.base, text.toneModes, themeStyles)
+    ...makeComponentStyles({ ...text, themeStyles })
   }
 };
 
