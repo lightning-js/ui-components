@@ -33,13 +33,19 @@ const defaultToneModeFallbackMap = {
   'brand-disabled': 'disabled'
 };
 
-export function makeComponentStyles(
+export function makeComponentStyles({
   themeKeys,
-  baseStyles,
-  lookupObject: LookupObject,
-  themeStyles: LooseComponentConfig,
+  base,
+  toneModes,
+  themeStyles,
   toneModeFallbackMap = defaultToneModeFallbackMap
-) {
+}: {
+  themeKeys;
+  baseStyles;
+  lookupObject: LookupObject;
+  themeStyles: LooseComponentConfig;
+  toneModeFallbackMap;
+}) {
   /**
    * helper function to access theme.componentConfig values
    */
@@ -119,5 +125,5 @@ export function makeComponentStyles(
 
     return updatedStyleObject;
   };
-  return generateSolidStylesFromLookupObject(baseStyles, lookupObject, themeKeys);
+  return generateSolidStylesFromLookupObject(base, toneModes, themeKeys);
 }

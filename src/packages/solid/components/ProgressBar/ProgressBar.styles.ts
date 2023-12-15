@@ -76,10 +76,10 @@ const progressBarTonesModes: LookupObject<ProgressBarStyleProperties> = {};
 const styles: ProgressBarStyle = {
   tone: tone || 'neutral',
   Container: {
-    ...makeComponentStyles(container.themeKeys, container.base, container.toneModes, themeStyles)
+    ...makeComponentStyles({ ...container, themeStyles })
   },
   ProgressBar: {
-    ...makeComponentStyles(progress.themeKeys, progress.base, progress.toneModes, themeStyles)
+    ...makeComponentStyles({ ...progress, themeStyles })
   }
 } as const;
 
