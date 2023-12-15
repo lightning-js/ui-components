@@ -42,8 +42,9 @@ const { Button: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } 
 
 const container = {
   themeKeys: {
-    color: 'backgroundColor',
+    textAlign: 'textAlign',
     borderRadius: 'borderRadius',
+    color: 'backgroundColor',
     justifyContent: 'justifyContent'
   },
   base: {
@@ -53,6 +54,7 @@ const container = {
     padding: [theme.spacer.xxxl, theme.spacer.xl],
     color: theme.color.interactiveNeutral,
     justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: theme.radius.sm
   },
   toneModes: {
@@ -71,15 +73,14 @@ const container = {
     'brand-focus': {
       color: theme.color.green
     }
-  }
+  },
+  themeStyles
 };
 
 const text = {
   themeKeys: {
     color: 'textColor',
-    contentColor: 'contentColor',
-    borderRadius: 'borderRadius',
-    textAlign: 'textAlign'
+    contentColor: 'contentColor'
   },
   base: {
     textAlign: 'left',
@@ -108,17 +109,17 @@ const text = {
       color: theme.color.fillBrand,
       contentColor: theme.color.fillBrand
     }
-  }
+  },
+  themeStyles
 };
+
+const Container = makeComponentStyles(container);
+const Text = makeComponentStyles(text);
 
 const styles: ButtonStyle = {
   tone: tone || 'neutral',
-  Container: {
-    ...makeComponentStyles({ ...container, themeStyles })
-  },
-  Text: {
-    ...makeComponentStyles({ ...text, themeStyles })
-  }
+  Container,
+  Text
 };
 
 export default styles;
