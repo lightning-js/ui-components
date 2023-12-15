@@ -31,13 +31,7 @@ const styles = {
   descriptionText: {
     ...theme.typography.body2,
     contain: 'both',
-    maxLines: 3,
-    /*
-    TODO: The fontFamily on the current theme is not an open sourced font,
-    and is not loaded as a font face to the application. This overwrites that
-    font to one that is loaded so that we can utilize the SdfTextRenderer.
-    */
-    fontFamily: 'Ubuntu'
+    maxLines: 3
   },
   disabled: {
     titleText: { textColor: getHexColor(...(theme.color.textNeutralDisabled as [string, number])) },

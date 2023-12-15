@@ -117,7 +117,7 @@ export const Basic: Story = {
               width={theme.spacer.lg * 5}
               height={theme.spacer.xxl + theme.spacer.md}
             />
-            <Metadata title="Title" description={lorum} maxLines={1} />
+            <Metadata debug title="Title" description={lorum} maxLines={1} />
           </>
         }
         // bottom={

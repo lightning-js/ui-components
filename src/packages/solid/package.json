@@ -21,7 +21,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@lightningjs/renderer": "^0.6.0",
-    "@lightningjs/solid": "^0.10.1",
+    "@lightningjs/solid": "^0.10.3",
     "@lightningjs/solid-primitives": "^0.4.4",
     "@lightningjs/ui-components-theme-base": "^1.0.3",
     "@solidjs/router": "^0.8.3",

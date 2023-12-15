@@ -62,7 +62,6 @@ const Tile: Component<TileProps> = (props: TileProps) => {
       use:withPadding={styles.Container.padding}
       {...props}
       style={styles.Container}
-      animate
       forwardStates
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
@@ -88,8 +87,6 @@ const Tile: Component<TileProps> = (props: TileProps) => {
       </View>
 
       <View
-        mountY={1}
-        debug
         forwardStates
         style={styles.insetBottom}
         width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
@@ -100,8 +97,6 @@ const Tile: Component<TileProps> = (props: TileProps) => {
           (props.progressBar ? styles.Container.paddingYProgress : 0)
         }
       >
-        {/* <img src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'} width={theme.spacer.lg * 5} height={theme.spacer.xxl + theme.spacer.md}/>
-        <Metadata title='Title' description={lorum} maxLines={1} /> */}
         {props.inset}
       </View>
 
@@ -114,9 +109,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         {props.bottom}
       </View> */}
 
-      {/** Progress Bar*/}
-      {/** scoped Views?? */}
-      {/* <Show when={props.progressBar?.progress ? props.progressBar.progress > 0 : 0}>
+      <Show when={props.progressBar?.progress ? props.progressBar.progress > 0 : 0}>
         <ProgressBar
           {...props.progressBar}
           width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
@@ -127,7 +120,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
             (props.progressBar.height || 0)
           }
         />
-      </Show> */}
+      </Show>
     </node>
   );
 };

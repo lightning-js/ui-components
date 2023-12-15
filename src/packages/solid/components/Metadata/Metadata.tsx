@@ -47,7 +47,7 @@ const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
       <Show when={props.description}>
         <Text
           width={props.width}
-          height={styles.descriptionText.lineHeight * props.maxLines}
+          height={styles.descriptionText.lineHeight * (props.maxLines || styles.descriptionText.maxLines)}
           style={styles.descriptionText}
         >
           {props.description}
