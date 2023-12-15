@@ -1,15 +1,8 @@
 import { createEffect, on } from 'solid-js';
 import { activeElement, ElementNode } from '@lightningjs/solid';
 
-declare module 'solid-js' {
-  namespace JSX {
-    interface Directives {
-      withScroling: [() => any, (props: any) => any];
-    }
-  }
-}
 
-export function withScrolling(el: ElementNode, props) {
+export default function withScrolling(el: ElementNode, props) {
   const [direction, prop, gap] = props();
   const scrollType = prop.scrollType ? prop.scrollType : '';
   let lastItemPosition, lastItemSize, windowVal, prevIndex;

@@ -3,7 +3,7 @@ import { View, activeElement, type IntrinsicNodeProps } from '@lightningjs/solid
 import { Row as SolidRow } from '@lightningjs/solid-primitives';
 import styles from './Row.styles';
 import { getScrollValue } from 'utils';
-import { withScrolling } from 'utils';
+import { withScrolling } from '../../../../shared/utils/withScrolling';
 import theme from 'theme';
 
 export interface RowProps extends IntrinsicNodeProps {
@@ -22,18 +22,11 @@ const Row: Component<RowProps> = (props: RowProps) => {
   const gap = styles.gap;
 
   return (
-    <node autofocus use:withScrolling={['row', props, gap]} {...props} ref={ContainerRef}>
-      <SolidRow
-        {...props}
-        animate
-        style={styles.Row}
-        width={800}
-        height={500}
-        ref={RowRef}
-      >
+    <View autofocus use:withScrolling={['row', props, gap]} {...props} ref={ContainerRef}>
+      <SolidRow {...props} animate style={styles.Row} width={800} height={500} ref={RowRef}>
         {props.children}
       </SolidRow>
-    </node>
+    </View>
   );
 };
 
