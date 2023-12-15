@@ -40,302 +40,84 @@ type ButtonStyleProperties = {
 
 const { Button: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
 
+const containerThemeKeys = {
+  color: 'backgroundColor',
+  borderRadius: 'borderRadius',
+  justifyContent: 'justifyContent'
+};
+
 const containerDefaults: NodeStyles & { padding: [number, number] } = {
   width: 400,
   height: 100,
   display: 'flex',
   padding: [theme.spacer.xxxl, theme.spacer.xl],
-  color: themeStyles?.base?.backgroundColor || theme.color.interactiveNeutral,
-  justifyContent: themeStyles?.base?.justifyContent || 'center',
-  borderRadius: themeStyles?.base?.borderRadius || theme.radius.sm
+  color: theme.color.interactiveNeutral,
+  justifyContent: 'center',
+  borderRadius: theme.radius.sm
 };
 
 const containerModes: LookupObject<ButtonStyleProperties> = {
   focus: {
-    color: {
-      themeKey: 'backgroundColor',
-      fallback: theme.color.interactiveNeutralFocus
-    },
-    justifyContent: {
-      themeKey: 'justifyContent',
-      fallback: containerDefaults.justifyContent
-    },
-    borderRadius: {
-      themeKey: 'borderRadius',
-      fallback: containerDefaults.borderRadius
-    }
+    color: theme.color.interactiveNeutralFocus
   },
   disabled: {
-    color: {
-      themeKey: 'backgroundColor',
-      fallback: theme.color.fillNeutralDisabled
-    },
-    justifyContent: {
-      themeKey: 'justifyContent',
-      fallback: containerDefaults.justifyContent
-    },
-    borderRadius: {
-      themeKey: 'borderRadius',
-      fallback: containerDefaults.borderRadius
-    }
+    color: theme.color.fillNeutralDisabled
   },
   inverse: {
-    color: {
-      themeKey: 'backgroundColor',
-      fallback: theme.color.interactiveInverse
-    },
-    justifyContent: {
-      themeKey: 'justifyContent',
-      fallback: containerDefaults.justifyContent
-    },
-    borderRadius: {
-      themeKey: 'borderRadius',
-      fallback: containerDefaults.borderRadius
-    }
+    color: theme.color.interactiveInverse
   },
   brand: {
-    color: {
-      themeKey: 'backgroundColor',
-      fallback: theme.color.interactiveBrand
-    },
-    justifyContent: {
-      themeKey: 'justifyContent',
-      fallback: containerDefaults.justifyContent
-    },
-    borderRadius: {
-      themeKey: 'borderRadius',
-      fallback: containerDefaults.borderRadius
-    }
-  },
-  'neutral-focus': {
-    color: {
-      themeKey: 'backgroundColor',
-      fallback: theme.color.interactiveNeutralFocus
-    },
-    justifyContent: {
-      themeKey: 'justifyContent',
-      fallback: containerDefaults.justifyContent
-    },
-    borderRadius: {
-      themeKey: 'borderRadius',
-      fallback: containerDefaults.borderRadius
-    }
-  },
-  'neutral-disabled': {
-    color: {
-      themeKey: 'backgroundColor',
-      fallback: theme.color.fillNeutralDisabled
-    },
-    justifyContent: {
-      themeKey: 'justifyContent',
-      fallback: containerDefaults.justifyContent
-    },
-    borderRadius: {
-      themeKey: 'borderRadius',
-      fallback: containerDefaults.borderRadius
-    }
-  },
-  'inverse-focus': {
-    color: {
-      themeKey: 'backgroundColor',
-      fallback: theme.color.interactiveNeutralFocus
-    },
-    justifyContent: {
-      themeKey: 'justifyContent',
-      fallback: containerDefaults.justifyContent
-    },
-    borderRadius: {
-      themeKey: 'borderRadius',
-      fallback: containerDefaults.borderRadius
-    }
-  },
-  'inverse-disabled': {
-    color: {
-      themeKey: 'backgroundColor',
-      fallback: theme.color.fillNeutralDisabled
-    },
-    justifyContent: {
-      themeKey: 'justifyContent',
-      fallback: containerDefaults.justifyContent
-    },
-    borderRadius: {
-      themeKey: 'borderRadius',
-      fallback: containerDefaults.borderRadius
-    }
+    color: theme.color.interactiveBrand
   },
   'brand-focus': {
-    color: {
-      themeKey: 'backgroundColor',
-      fallback: theme.color.interactiveNeutralFocus
-    },
-    justifyContent: {
-      themeKey: 'justifyContent',
-      fallback: containerDefaults.justifyContent
-    },
-    borderRadius: {
-      themeKey: 'borderRadius',
-      fallback: containerDefaults.borderRadius
-    }
-  },
-  'brand-disabled': {
-    color: {
-      themeKey: 'backgroundColor',
-      fallback: theme.color.fillNeutralDisabled
-    },
-    justifyContent: {
-      themeKey: 'justifyContent',
-      fallback: containerDefaults.justifyContent
-    },
-    borderRadius: {
-      themeKey: 'borderRadius',
-      fallback: containerDefaults.borderRadius
-    }
+    color: theme.color.green
   }
 };
 
+const textThemeKeys = {
+  color: 'textColor',
+  contentColor: 'contentColor',
+  borderRadius: 'borderRadius',
+  textAlign: 'textAlign'
+};
+
 const textDefaults = {
-  textAlign: themeStyles?.base?.textAlign || 'left',
-  color: themeStyles?.base?.textColor || theme.color.textNeutral,
-  contentColor: themeStyles?.base?.contentColor || theme.color.fillInverse,
+  textAlign: 'left',
+  color: theme.color.textNeutral,
+  contentColor: theme.color.fillInverse,
   ...theme.typography.button1
 };
 
 const textModes = {
   focus: {
-    textAlign: {
-      themeKey: 'textAlign',
-      fallback: textDefaults.textAlign
-    },
-    color: {
-      themeKey: 'textColor',
-      fallback: theme.color.textInverse
-    },
-    contentColor: {
-      themeKey: 'contentColor',
-      fallback: theme.color.textInverse
-    }
+    color: theme.color.textInverse,
+    contentColor: theme.color.textInverse
   },
   disabled: {
-    textAlign: {
-      themeKey: 'textAlign',
-      fallback: textDefaults.textAlign
-    },
-    color: {
-      themeKey: 'textColor',
-      fallback: theme.color.textNeutralDisabled
-    },
-    contentColor: {
-      themeKey: 'contentColor',
-      fallback: theme.color.textNeutralDisabled
-    }
+    color: theme.color.textNeutralDisabled,
+    contentColor: theme.color.textNeutralDisabled
   },
   inverse: {
-    textAlign: {
-      themeKey: 'textAlign',
-      fallback: textDefaults.textAlign
-    },
-    color: {
-      themeKey: 'textColor',
-      fallback: theme.color.fillNeutral
-    },
-    contentColor: {
-      themeKey: 'contentColor',
-      fallback: theme.color.fillNeutral
-    }
+    color: theme.color.fillNeutral,
+    contentColor: theme.color.fillNeutral
   },
   brand: {
-    textAlign: {
-      themeKey: 'textAlign',
-      fallback: textDefaults.textAlign
-    },
-    color: {
-      themeKey: 'textColor',
-      fallback: theme.color.fillBrand
-    },
-    contentColor: {
-      themeKey: 'contentColor',
-      fallback: theme.color.fillBrand
-    }
-  },
-  'neutral-focus': {
-    textAlign: {
-      themeKey: 'textAlign',
-      fallback: textDefaults.textAlign
-    },
-    color: {
-      themeKey: 'textColor',
-      fallback: theme.color.textInverse
-    },
-    contentColor: {
-      themeKey: 'contentColor',
-      fallback: theme.color.textInverse
-    }
-  },
-  'neutral-disabled': {
-    textAlign: {
-      themeKey: 'textAlign',
-      fallback: textDefaults.textAlign
-    },
-    color: {
-      themeKey: 'textColor',
-      fallback: theme.color.textNeutralDisabled
-    },
-    contentColor: {
-      themeKey: 'contentColor',
-      fallback: theme.color.textNeutralDisabled
-    }
-  },
-  'inverse-focus': {
-    textAlign: {
-      themeKey: 'textAlign',
-      fallback: textDefaults.textAlign
-    },
-    color: {
-      themeKey: 'textColor',
-      fallback: theme.color.textInverse
-    },
-    contentColor: {
-      themeKey: 'contentColor',
-      fallback: theme.color.textInverse
-    }
-  },
-  'inverse-disabled': {
-    textAlign: {
-      themeKey: 'textAlign',
-      fallback: textDefaults.textAlign
-    },
-    color: {
-      themeKey: 'textColor',
-      fallback: theme.color.textNeutralDisabled
-    },
-    contentColor: {
-      themeKey: 'contentColor',
-      fallback: theme.color.textNeutralDisabled
-    }
+    color: theme.color.fillBrand,
+    contentColor: theme.color.fillBrand
   },
   'brand-focus': {
-    textAlign: {
-      themeKey: 'textAlign',
-      fallback: textDefaults.textAlign
-    },
-    color: {
-      themeKey: 'textColor',
-      fallback: theme.color.fillBrand
-    },
-    contentColor: {
-      themeKey: 'contentColor',
-      fallback: theme.color.fillBrand
-    }
+    color: theme.color.fillBrand,
+    contentColor: theme.color.fillBrand
   }
 };
 
 const styles: ButtonStyle = {
   tone: tone || 'neutral',
   Container: {
-    ...makeComponentStyles(containerDefaults, containerModes, themeStyles)
+    ...makeComponentStyles(containerThemeKeys, containerDefaults, containerModes, themeStyles)
   },
   Text: {
-    ...makeComponentStyles(textDefaults, textModes, themeStyles)
+    ...makeComponentStyles(textThemeKeys, textDefaults, textModes, themeStyles)
   }
 };
 
