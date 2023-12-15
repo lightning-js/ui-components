@@ -17,7 +17,7 @@
 
 import type { Component } from 'solid-js';
 import { View, type NodeProps, type NodeStyles } from '@lightningjs/solid';
-import styles from './ProgressBar.styles.slim.js';
+import styles from './ProgressBar.styles.js';
 import type { Tone } from 'types';
 
 export interface ProgressBarProps extends ProgressBarStyleProps, NodeProps {
