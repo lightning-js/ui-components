@@ -29,7 +29,8 @@ const styles = {
     border: {
       width: theme.stroke.sm,
       color: getHexColor(...(theme.color.strokeInverse as [string, number]))
-    }
+    },
+    width: 100
   } satisfies NodeStyles,
   padding: [
     theme.spacer.md - theme.stroke.sm,
