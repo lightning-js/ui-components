@@ -20,4 +20,3 @@ export * from './getRowHeight.js';
 export * from './useItemLayout.js';
 export * from './useStyles.js';
 export * from './getScrollValue.js';
-export * from './withScrolling.js';

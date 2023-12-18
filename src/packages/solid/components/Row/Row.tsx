@@ -1,10 +1,9 @@
-import { Component, createEffect, on } from 'solid-js';
-import { View, activeElement, type IntrinsicNodeProps } from '@lightningjs/solid';
+import { Component } from 'solid-js';
+import { type IntrinsicNodeProps } from '@lightningjs/solid';
 import { Row as SolidRow } from '@lightningjs/solid-primitives';
 import styles from './Row.styles';
-import { getScrollValue } from 'utils';
-import { withScrolling } from '../../../../shared/utils/withScrolling';
-import theme from 'theme';
+import { withScrolling } from '../../withScrolling';
+withScrolling;
 
 export interface RowProps extends IntrinsicNodeProps {
   /**
@@ -19,14 +18,14 @@ export interface RowProps extends IntrinsicNodeProps {
 
 const Row: Component<RowProps> = (props: RowProps) => {
   let RowRef, ContainerRef;
-  const gap = styles.gap;
+  const gap = styles.Row.gap;
 
   return (
-    <View autofocus use:withScrolling={['row', props, gap]} {...props} ref={ContainerRef}>
+    <node autofocus use:withScrolling={['row', props, gap]} {...props} ref={ContainerRef}>
       <SolidRow {...props} animate style={styles.Row} width={800} height={500} ref={RowRef}>
         {props.children}
       </SolidRow>
-    </View>
+    </node>
   );
 };
 

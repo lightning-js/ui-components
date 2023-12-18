@@ -1,8 +1,9 @@
-import { Component, createEffect, on } from 'solid-js';
-import { View, activeElement, type IntrinsicNodeProps } from '@lightningjs/solid';
+import { Component } from 'solid-js';
+import { type IntrinsicNodeProps } from '@lightningjs/solid';
 import { Column as SolidColumn } from '@lightningjs/solid-primitives';
 import styles from './Column.styles';
-import { getScrollValue } from 'utils';
+import { withScrolling } from '../../withScrolling';
+withScrolling;
 
 export interface ColumnProps extends IntrinsicNodeProps {
   /**
@@ -17,36 +18,16 @@ export interface ColumnProps extends IntrinsicNodeProps {
 }
 
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
-  let ColumnRef, ContainerRef, prevIndex, nextY, direction;
+  let ColumnRef, ContainerRef;
+  const gap = styles.Column.gap;
 
-  createEffect(
-    on(
-      activeElement,
-      elm => {
-        if (ContainerRef === elm) {
-          ColumnRef.children[ColumnRef.selected].setFocus();
-        }
-        if (ColumnRef.selected === prevIndex) {
-          return;
-        }
-        prevIndex = ColumnRef.selected;
-        const nextRow = ColumnRef.children[ColumnRef.selected];
-        const nextY = -nextRow.y;
-        // prevent repeat y updates
-        if (ColumnRef.y !== nextY) {
-          ColumnRef.y = nextY;
-        }
-      },
-      { defer: true }
-    )
-  );
 
   return (
-    <View autofocus {...props} ref={ContainerRef}>
+    <node autofocus use:withScrolling={['column', props, gap]} {...props} ref={ContainerRef}>
       <SolidColumn {...props} animate style={styles.Column} width={400} height={500} ref={ColumnRef}>
         {props.children}
       </SolidColumn>
-    </View>
+    </node>
   );
 };
 

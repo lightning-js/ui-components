@@ -63,10 +63,13 @@ const createItems = (length) => {
 
 const buttons = () => <>{createItems(7)}</>;
 
-export const Basic = {
+export const AlwaysScroll = {
+  render: args => {
+    return <SolidColumn {...args}>{buttons}</SolidColumn>;
+  },
   args: {
     children: buttons,
-    wrap: false,
-    lazyScroll: true
+    scrollType: 'alwaysScroll',
+    wrap: false
   }
 };
