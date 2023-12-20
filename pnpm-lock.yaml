@@ -58,14 +58,14 @@ importers:
   src/packages/solid:
     dependencies:
       '@lightningjs/renderer':
-        specifier: ^0.5.0
-        version: 0.5.0
+        specifier: ^0.6.0
+        version: 0.6.0
       '@lightningjs/solid':
-        specifier: ^0.9.0
-        version: 0.9.0(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)(solid-js@1.8.4)(typescript@5.3.2)(vite@4.5.0)
+        specifier: ^0.10.3
+        version: 0.10.3(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)(solid-js@1.8.4)(typescript@5.3.2)(vite@4.5.0)
       '@lightningjs/solid-primitives':
         specifier: ^0.4.4
-        version: 0.4.4(@lightningjs/renderer@0.5.0)(@lightningjs/solid@0.9.0)(solid-js@1.8.4)
+        version: 0.4.4(@lightningjs/renderer@0.6.0)(@lightningjs/solid@0.10.3)(solid-js@1.8.4)
       '@lightningjs/ui-components-theme-base':
         specifier: ^1.0.3
         version: 1.0.3
@@ -1888,6 +1888,14 @@ packages:
       '@protobufjs/eventemitter': 1.1.0
     dev: false
 
+  /@lightningjs/renderer@0.6.0:
+    resolution: {integrity: sha512-CGMs47vDN1Rd4t130NBuPmAMQ4FGzssFLPlaP541jSlD0TcvHCOFPnfOG/mnCOFqLIm0farUGIaXhqRAKvJUjQ==}
+    engines: {node: '>= 20.9.0', npm: please-use-pnpm, pnpm: '>= 8.9.2'}
+    dependencies:
+      '@lightningjs/threadx': 0.3.4
+      '@protobufjs/eventemitter': 1.1.0
+    dev: false
+
   /@lightningjs/solid-primitives@0.3.6(@lightningjs/solid@0.6.1)(solid-js@1.8.1):
     resolution: {integrity: sha512-qNPZL9MFFemf7IJpvOvu3G0l8KqGPDKfcRob59XItnkTtmO8N5Uq0TkJdR+5CYfLzPt5u6ywloIge4yfZGrNbg==}
     peerDependencies:
@@ -1900,35 +1908,26 @@ packages:
       solid-js: 1.8.1
     dev: false
 
-  /@lightningjs/solid-primitives@0.4.4(@lightningjs/renderer@0.5.0)(@lightningjs/solid@0.9.0)(solid-js@1.8.4):
+  /@lightningjs/solid-primitives@0.4.4(@lightningjs/renderer@0.6.0)(@lightningjs/solid@0.10.3)(solid-js@1.8.4):
     resolution: {integrity: sha512-l0bbSpWvA7zjGnNPK4Npni0bPVanIeKGOppYTvVgizqvtR8t3a0+xipOYrV6S3ZocCr+Gh+psZZ7+L0mzSm0fg==}
     peerDependencies:
       '@lightningjs/renderer': '*'
       '@lightningjs/solid': '*'
       solid-js: '*'
     dependencies:
-      '@lightningjs/renderer': 0.5.0
-      '@lightningjs/solid': 0.9.0(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)(solid-js@1.8.4)(typescript@5.3.2)(vite@4.5.0)
+      '@lightningjs/renderer': 0.6.0
+      '@lightningjs/solid': 0.10.3(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)(solid-js@1.8.4)(typescript@5.3.2)(vite@4.5.0)
       '@solid-primitives/keyboard': 1.2.5(solid-js@1.8.4)
       '@solid-primitives/scheduled': 1.4.1(solid-js@1.8.4)
       solid-js: 1.8.4
     dev: false
 
-  /@lightningjs/solid@0.6.1(solid-js@1.8.1):
-    resolution: {integrity: sha512-J0XemPrxrKdEzDhxMdJ4KIi+Nu6H6SLPLqnSe2LpOX/QTDzsmrETUWPE8gYIZ9tk5rjIFZE6WlO7B/+DOLcBPQ==}
-    peerDependencies:
-      solid-js: ^1.8.1
-    dependencies:
-      '@lightningjs/renderer': 0.3.6
-      solid-js: 1.8.1
-    dev: false
-
-  /@lightningjs/solid@0.9.0(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)(solid-js@1.8.4)(typescript@5.3.2)(vite@4.5.0):
-    resolution: {integrity: sha512-7C0bjWhm7Y2O6PQTRkagQZSHdbRUkBH5TyuZmt7ne+pm1CrC3E+aPY+7XQsBKOEL1mTRDN0qASt3p//IVJLEZQ==}
+  /@lightningjs/solid@0.10.3(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)(solid-js@1.8.4)(typescript@5.3.2)(vite@4.5.0):
+    resolution: {integrity: sha512-ryLBInHpDVLk5gJpybAdBPxGqClA2ZPVe/UvLKbrrJe7EbDSqJVLK95iQ4s0vxHBUlBUIjefRq0Uj14BaRqCkA==}
     peerDependencies:
       solid-js: '*'
     dependencies:
-      '@lightningjs/renderer': 0.5.0
+      '@lightningjs/renderer': 0.6.0
       '@lightningjs/solid': file:src/packages/solid(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.2)(vite@4.5.0)
       solid-js: 1.8.4
     transitivePeerDependencies:
@@ -1943,6 +1942,15 @@ packages:
       - utf-8-validate
       - vite
       - vite-plugin-glimmerx
+    dev: false
+
+  /@lightningjs/solid@0.6.1(solid-js@1.8.1):
+    resolution: {integrity: sha512-J0XemPrxrKdEzDhxMdJ4KIi+Nu6H6SLPLqnSe2LpOX/QTDzsmrETUWPE8gYIZ9tk5rjIFZE6WlO7B/+DOLcBPQ==}
+    peerDependencies:
+      solid-js: ^1.8.1
+    dependencies:
+      '@lightningjs/renderer': 0.3.6
+      solid-js: 1.8.1
     dev: false
 
   /@lightningjs/threadx@0.3.3:
@@ -3113,8 +3121,8 @@ packages:
       - encoding
       - supports-color
 
-  /@storybook/builder-vite@8.0.0-alpha.0(typescript@5.3.2)(vite@4.5.0):
-    resolution: {integrity: sha512-/mUzkdykVdDkB6ZDYsxPBbWqS7s5uA7uvs2NzjnuK7dbrTGZyCyC8pnHDymKQqy6Rnesa2KQtFfqymhHSkvanQ==}
+  /@storybook/builder-vite@8.0.0-alpha.3(typescript@5.3.2)(vite@4.5.0):
+    resolution: {integrity: sha512-3EZcvCsrky7npnULYm88m4RRfkWBEirRYIlLWf8jgcJ1bDbzLSemh3dfzbPGwSO1d1I0AF0NkoajtX7+ZfgaqA==}
     peerDependencies:
       '@preact/preset-vite': '*'
       typescript: '>= 4.3.x'
@@ -3128,14 +3136,14 @@ packages:
       vite-plugin-glimmerx:
         optional: true
     dependencies:
-      '@storybook/channels': 8.0.0-alpha.0
-      '@storybook/client-logger': 8.0.0-alpha.0
-      '@storybook/core-common': 8.0.0-alpha.0
-      '@storybook/csf-plugin': 8.0.0-alpha.0
-      '@storybook/node-logger': 8.0.0-alpha.0
-      '@storybook/preview': 8.0.0-alpha.0
-      '@storybook/preview-api': 8.0.0-alpha.0
-      '@storybook/types': 8.0.0-alpha.0
+      '@storybook/channels': 8.0.0-alpha.3
+      '@storybook/client-logger': 8.0.0-alpha.3
+      '@storybook/core-common': 8.0.0-alpha.3
+      '@storybook/csf-plugin': 8.0.0-alpha.3
+      '@storybook/node-logger': 8.0.0-alpha.3
+      '@storybook/preview': 8.0.0-alpha.3
+      '@storybook/preview-api': 8.0.0-alpha.3
+      '@storybook/types': 8.0.0-alpha.3
       '@types/find-cache-dir': 3.2.1
       browser-assert: 1.2.1
       es-module-lexer: 0.9.3
@@ -3172,11 +3180,11 @@ packages:
       tiny-invariant: 1.3.1
     dev: true
 
-  /@storybook/channels@8.0.0-alpha.0:
-    resolution: {integrity: sha512-QMDocSVZwyG8EnN4j6N8atejFPbfHTqge+fNDVWUVN1UpNOxAIMOrwrNWcieWB6IpM70k2+HYjcn1cGoAbWT2g==}
+  /@storybook/channels@8.0.0-alpha.3:
+    resolution: {integrity: sha512-0x1W+d2HE/j4yI7t5WsMVlmIbCTzGu+dCfbQhRQ/dxEW1hPYtodCuU1pKgQa4xLtl8m7zAMlCdWJkMTfqXw1Qw==}
     dependencies:
-      '@storybook/client-logger': 8.0.0-alpha.0
-      '@storybook/core-events': 8.0.0-alpha.0
+      '@storybook/client-logger': 8.0.0-alpha.3
+      '@storybook/core-events': 8.0.0-alpha.3
       '@storybook/global': 5.0.0
       qs: 6.11.2
       telejson: 7.2.0
@@ -3253,8 +3261,8 @@ packages:
       '@storybook/global': 5.0.0
     dev: true
 
-  /@storybook/client-logger@8.0.0-alpha.0:
-    resolution: {integrity: sha512-ppQal8eH1YVOiEf9Wg8hKksAf2pF++uSOJcRygkX3KZNCtW6YsSQOZbYsHtNmgzq0wi0ugAg9K8XC0WZUfz2vA==}
+  /@storybook/client-logger@8.0.0-alpha.3:
+    resolution: {integrity: sha512-48OdwGMACWySC9IfRHdCNjB0G8Qfb/cwIbcaMRSRVJCo2RndQhG8tLatFj3bdoIzipiJzn4H1px6li5AQtjTEQ==}
     dependencies:
       '@storybook/global': 5.0.0
     dev: true
@@ -3340,12 +3348,12 @@ packages:
       - encoding
       - supports-color
 
-  /@storybook/core-common@8.0.0-alpha.0:
-    resolution: {integrity: sha512-F/AmO7oE36F3MKHfHpjPJEiencS8c+UbGOEqr8reXKduL/x3p5L8JKPCSpKgtGFsFcNUezyy4ciY9kw3uin91A==}
+  /@storybook/core-common@8.0.0-alpha.3:
+    resolution: {integrity: sha512-SfvuxZp4RQUkjJYCvW5/raTyyNi0vre4O0e2PGjCnQzLJFqWmVwc74+2cf2cZ/aTBsHKNY4Zp/XczAFSb0UCUQ==}
     dependencies:
-      '@storybook/core-events': 8.0.0-alpha.0
-      '@storybook/node-logger': 8.0.0-alpha.0
-      '@storybook/types': 8.0.0-alpha.0
+      '@storybook/core-events': 8.0.0-alpha.3
+      '@storybook/node-logger': 8.0.0-alpha.3
+      '@storybook/types': 8.0.0-alpha.3
       '@types/find-cache-dir': 3.2.1
       '@types/node': 18.18.7
       '@types/node-fetch': 2.6.7
@@ -3382,8 +3390,8 @@ packages:
       ts-dedent: 2.2.0
     dev: true
 
-  /@storybook/core-events@8.0.0-alpha.0:
-    resolution: {integrity: sha512-9LEyuEL9Bufni7T5FGSlz1tVJu+zyJZmnAF8YCD8QdG61F+HEPiWHypzOUVvLC1+rJRZ5nfe7GVkRr9/FS+TSQ==}
+  /@storybook/core-events@8.0.0-alpha.3:
+    resolution: {integrity: sha512-KT7CwVR/guZ0JA3G048lJZ9JDKnDQ9+fxjw0Grl47yQXEkAYE41jMiKHNCAI3TvaUyufaIOm0QWFHQsLKK3ykA==}
     dependencies:
       ts-dedent: 2.2.0
     dev: true
@@ -3446,10 +3454,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@storybook/csf-plugin@8.0.0-alpha.0:
-    resolution: {integrity: sha512-Ys2sgVd8yX02GDUq7eCsUEdg0mWcpezCF3n/sQz6dMv1u3RFDts7wZGuQ8jaxZe2lVCidIDkGL5tVjvQBLBcJw==}
+  /@storybook/csf-plugin@8.0.0-alpha.3:
+    resolution: {integrity: sha512-2gZ4owQvU8/YL9eNFbzMiU4Bo5IQlHs6W10oPOn8ZbyU0RU5WUgIzpgyNpNbpgYpYwrghRIln2WI+NLQeljNKw==}
     dependencies:
-      '@storybook/csf-tools': 8.0.0-alpha.0
+      '@storybook/csf-tools': 8.0.0-alpha.3
       unplugin: 1.5.0
     transitivePeerDependencies:
       - supports-color
@@ -3470,15 +3478,15 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@storybook/csf-tools@8.0.0-alpha.0:
-    resolution: {integrity: sha512-x+ye6L8QCZFj6qlPEu6mYFduAElOQ67kHrXtOv5/pGKJ9ao+oR5W/3VkRNLQKeiboEJRqKQzNhR7gPO31+uePg==}
+  /@storybook/csf-tools@8.0.0-alpha.3:
+    resolution: {integrity: sha512-fFNArgziEw6TIREiGgtYIj3ftlXoZQRDEdro4b569Ti0+mRciCFv5+Iv0qAZOforqBQhJuNxeMXqaze3lSj5og==}
     dependencies:
       '@babel/generator': 7.23.0
       '@babel/parser': 7.23.0
       '@babel/traverse': 7.23.2
       '@babel/types': 7.23.0
       '@storybook/csf': 0.1.2
-      '@storybook/types': 8.0.0-alpha.0
+      '@storybook/types': 8.0.0-alpha.3
       fs-extra: 11.1.1
       recast: 0.23.4
       ts-dedent: 2.2.0
@@ -3629,8 +3637,8 @@ packages:
   /@storybook/node-logger@7.5.1:
     resolution: {integrity: sha512-xRMdL5YPe8C9sgJ1R0QD3YbiLjDGrfQk91+GplRD8N9FVCT5dki55Bv5Kp0FpemLYYg6uxAZL5nHmsZHKDKQoA==}
 
-  /@storybook/node-logger@8.0.0-alpha.0:
-    resolution: {integrity: sha512-mQ2kgR3zXdVfINdYgg2y29d8F0uH2ETOz9t5jxMmcLlgNFw7fS6ZR6jpuoOtPcRFIlRHTAs+xUSkaMmEtN/FBA==}
+  /@storybook/node-logger@8.0.0-alpha.3:
+    resolution: {integrity: sha512-n7A/p95086y/MWidMSaeeitWgTKckQ94L3kKId+5h0/VgFyCwksixFxPZRJ2Z5C/GxI4PQiBmuCDIxDp3wb1zw==}
     dev: true
 
   /@storybook/postinstall@7.5.1:
@@ -3655,15 +3663,15 @@ packages:
       ts-dedent: 2.2.0
       util-deprecate: 1.0.2
 
-  /@storybook/preview-api@8.0.0-alpha.0:
-    resolution: {integrity: sha512-4Yjh7Eu/5NhBN50ysEEIHuyR/FrQY8g1xFejLMlKdhoVGFRUtuI+qi1KxgxtXfiSxY58xPM8vdKq6EtyKamPrA==}
+  /@storybook/preview-api@8.0.0-alpha.3:
+    resolution: {integrity: sha512-qo97iVb1JydQankk8ml5OMOi0fLa7jSGGSXGpwxZo8qsjUpAU+iKpUprgE1RTn8LcF5zztWpf46CatpQEjKLEA==}
     dependencies:
-      '@storybook/channels': 8.0.0-alpha.0
-      '@storybook/client-logger': 8.0.0-alpha.0
-      '@storybook/core-events': 8.0.0-alpha.0
+      '@storybook/channels': 8.0.0-alpha.3
+      '@storybook/client-logger': 8.0.0-alpha.3
+      '@storybook/core-events': 8.0.0-alpha.3
       '@storybook/csf': 0.1.2
       '@storybook/global': 5.0.0
-      '@storybook/types': 8.0.0-alpha.0
+      '@storybook/types': 8.0.0-alpha.3
       '@types/qs': 6.9.9
       dequal: 2.0.3
       lodash: 4.17.21
@@ -3684,8 +3692,8 @@ packages:
   /@storybook/preview@7.5.1:
     resolution: {integrity: sha512-nfZC103z9Cy27FrJKUr2IjDuVt8Mvn1Z5gZ0TtJihoK7sfLTv29nd/XU9zzrb/epM3o8UEzc63xZZsMaToDbAw==}
 
-  /@storybook/preview@8.0.0-alpha.0:
-    resolution: {integrity: sha512-1hawr0bJo0sgx0ft4a8UImsXB4eapcLdpP3fvhqg7e/hAZFJ2aDv48fcWaLfyzeHJOpV05jRp3s+4qLfaLzRww==}
+  /@storybook/preview@8.0.0-alpha.3:
+    resolution: {integrity: sha512-PKA8jnxYI07agAvLywxFHsOJ1eVzAXXmL8rsTMnv8yqGsBn4Ic17i6E8hoLDji8RcPgAv20NuMJGlHEkhy2v2g==}
     dev: true
 
   /@storybook/react-dom-shim@7.5.1(react-dom@18.2.0)(react@18.2.0):
@@ -3790,10 +3798,10 @@ packages:
       file-system-cache: 2.3.0
     dev: true
 
-  /@storybook/types@8.0.0-alpha.0:
-    resolution: {integrity: sha512-BEowwnvOINs27DRorIoKzKzXMqcgG1m0O6/v5XL/pHT8F9rB+GkD2jYEPlPg5+AdtVZT6aDbOzBlRpAkq/bu9Q==}
+  /@storybook/types@8.0.0-alpha.3:
+    resolution: {integrity: sha512-2tFPgtARfQZzI+TuozjCL56pPY4RbLgbvtCCINzm08/c7sSGN0G4JdqRnr5F6AaoGmEgqy4wTUBt41jQHk8zDw==}
     dependencies:
-      '@storybook/channels': 8.0.0-alpha.0
+      '@storybook/channels': 8.0.0-alpha.3
       '@types/babel__core': 7.20.3
       '@types/express': 4.17.20
       file-system-cache: 2.3.0
@@ -8357,7 +8365,7 @@ packages:
     resolution: {integrity: sha512-dD+VMYC5fBBQNesVb+mjB0LOkZIf100SQFbjAt9/sDstNUvc5ce3yZwLYXzgcOc7jcSMkrBu/cZNRzEM4YIAyw==}
     engines: {node: ^14.18 || >=16}
     dependencies:
-      '@storybook/builder-vite': 8.0.0-alpha.0(typescript@5.3.2)(vite@4.5.0)
+      '@storybook/builder-vite': 8.0.0-alpha.3(typescript@5.3.2)(vite@4.5.0)
     transitivePeerDependencies:
       - '@preact/preset-vite'
       - encoding
@@ -9470,9 +9478,9 @@ packages:
     id: file:src/packages/solid
     name: '@lightningjs/solid-ui'
     dependencies:
-      '@lightningjs/renderer': 0.5.0
-      '@lightningjs/solid': 0.9.0(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)(solid-js@1.8.4)(typescript@5.3.2)(vite@4.5.0)
-      '@lightningjs/solid-primitives': 0.4.4(@lightningjs/renderer@0.5.0)(@lightningjs/solid@0.9.0)(solid-js@1.8.4)
+      '@lightningjs/renderer': 0.6.0
+      '@lightningjs/solid': 0.10.3(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)(solid-js@1.8.4)(typescript@5.3.2)(vite@4.5.0)
+      '@lightningjs/solid-primitives': 0.4.4(@lightningjs/renderer@0.6.0)(@lightningjs/solid@0.10.3)(solid-js@1.8.4)
       '@lightningjs/ui-components-theme-base': 1.0.3
       '@solidjs/router': 0.8.3(solid-js@1.8.4)
       '@storybook/html': 7.5.1(@babel/core@7.23.2)

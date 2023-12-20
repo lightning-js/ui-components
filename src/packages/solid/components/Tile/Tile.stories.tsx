@@ -1,7 +1,11 @@
 import type { Meta, StoryObj } from 'storybook-solidjs';
-import Tile from './Tile.jsx';
+import Tile from './Tile';
 import theme from 'theme';
 import { getHexColor } from 'utils';
+import Badge from '../Badge/Badge';
+import { View } from '@lightningjs/solid';
+import Label from './Label';
+import Metadata from '../Metadata/Metadata';
 
 type Story = StoryObj<typeof Tile>;
 const lorum =
@@ -22,54 +26,6 @@ const meta: Meta<typeof Tile> = {
     },
     artwork: {
       description: 'object containing all properties of the artwork background',
-      control: { type: 'object' }
-    },
-    label: {
-      description: 'Text to display in the foreground of the label',
-      control: { type: 'string' }
-    },
-    badge: {
-      description: 'object containing all the properties supported in the Badge component',
-      title: {
-        description: 'text inside of badge'
-      },
-      iconAlign: {
-        control: 'select',
-        options: ['none', 'left', 'right'],
-        description: 'Side of the text the icon will appear on'
-      },
-      icon: {
-        icon: {
-          description: 'path to image or inline SVG XML'
-        },
-        color: {
-          description: 'color of icon',
-          control: 'color'
-        }
-      }
-    },
-    logo: {
-      description: 'icon source',
-      control: 'select',
-      options: [undefined, '../../assets/images/Xfinity-Provider-Logo-2x1.png'],
-      table: {
-        defaultValue: { summary: undefined }
-      }
-    },
-    metadataLocation: {
-      description: 'Controls where metadata is positioned in relationship to the Tile',
-      control: { type: 'radio' },
-      options: ['standard', 'inset'],
-      table: {
-        defaultValue: { summary: 'inset' }
-      }
-    },
-    checkbox: {
-      description: 'Object containing all properties supported in the Checkbox component',
-      control: { type: 'object' }
-    },
-    metadata: {
-      description: 'Object containing all properties supported in the [MetadataTile component]',
       control: { type: 'object' }
     },
     persistentMetadata: {
@@ -101,7 +57,23 @@ const meta: Meta<typeof Tile> = {
 
 export const Basic: Story = {
   render: args => {
-    return <Tile {...args} />;
+    return (
+      <Tile
+        {...args}
+        topLeft={<Badge title="HD" />}
+        topRight={<Label width={75} title="Label" />}
+        inset={
+          <>
+            <View
+              src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
+              width={theme.spacer.lg * 5}
+              height={theme.spacer.xxl + theme.spacer.md}
+            />
+            <Metadata debug title="Title" description={lorum} maxLines={1} />
+          </>
+        }
+      />
+    );
   },
   args: {
     states: 'focus',
@@ -117,27 +89,51 @@ export const Basic: Story = {
         }
       }
     },
-    progressBar: {
-      progress: 0.5,
-      borderRadius: theme.radius.xs
-    },
-    badge: {
-      title: 'HD'
-    },
-    label: {
-      title: 'Label',
-      width: 75
-    },
     persistentMetadata: true,
-    logo: '../../assets/images/Xfinity-Provider-Logo-2x1.png',
-    metadataLocation: 'inset',
     metadata: {
       title: 'Title',
       description: lorum,
       maxLines: 1
     },
-    checkbox: {
-      checked: false
+    progressBar: {
+      progress: 0.5
+    }
+  }
+};
+
+export const MetadataStandard: Story = {
+  render: args => {
+    return (
+      <Tile
+        {...args}
+        topLeft={<Badge title="HD" />}
+        topRight={<Label width={75} title="Label" />}
+        inset={
+          <View
+            src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
+            width={theme.spacer.lg * 5}
+            height={theme.spacer.xxl + theme.spacer.md}
+          />
+        }
+        bottom={<Metadata debug title="Title" description={lorum} maxLines={1} />}
+      />
+    );
+  },
+  args: {
+    states: 'focus',
+    width: 480,
+    height: 270,
+    artwork: {
+      src: 'https://image.tmdb.org/t/p/w500/zHdQ6yaqDf3OQO5uhr0auAgwK6O.jpg'
+    },
+    persistentMetadata: true,
+    metadata: {
+      title: 'Title',
+      description: lorum,
+      maxLines: 1
+    },
+    progressBar: {
+      progress: 0.5
     }
   }
 };

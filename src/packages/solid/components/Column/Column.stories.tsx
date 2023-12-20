@@ -15,12 +15,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import SolidColumn from './Column';
+import Column from './Column';
 import Button from '../Button';
 
 const meta = {
   title: 'Components/Column',
-  component: SolidColumn,
+  component: Column,
   tags: ['autodocs'],
   argTypes: {
     children: {

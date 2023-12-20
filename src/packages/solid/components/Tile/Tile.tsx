@@ -1,60 +1,41 @@
-import { type Component, createSignal } from 'solid-js';
+import { Component, createSignal } from 'solid-js';
 import { Show, type IntrinsicNodeProps, View } from '@lightningjs/solid';
-import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
-import Badge, { type BadgeProps } from '../Badge/Badge.jsx';
-import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox.jsx';
-import Metadata, { type MetadataProps } from '../Metadata/Metadata.jsx';
-import styles from './Tile.styles.js';
+import styles from './Tile.styles';
 import { withPadding } from '@lightningjs/solid-primitives';
-import Label, { type LabelProps } from './Label.jsx';
 import Artwork, { type ArtworkProps } from './Artwork.jsx';
+import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar';
 withPadding;
 
-export interface TileProps extends TileStyleProps, IntrinsicNodeProps {
+const lorum =
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales est eu eleifend interdum. Vivamus egestas maximus elementum. Sed condimentum ligula justo, non sollicitudin lectus rutrum vel. Integer iaculis vitae nisl quis tincidunt. Sed quis dui vehicula, vehicula felis a, tempor leo. Fusce tincidunt, ante eget pretium efficitur, libero elit volutpat quam, sit amet porta tortor odio non ligula. Ut sed dolor eleifend massa auctor porttitor eget ut lectus. Vivamus elementum lorem mauris, eu luctus tortor posuere sit amet. Nunc a interdum metus.';
+
+export interface TileProps extends IntrinsicNodeProps {
   /**
    * String to img source for artwork
    */
   artwork: Partial<ArtworkProps>;
   /**
-   * Object containing all properties supported in the [Badge component](?path=/docs/components-badge--text)
-   */
-  badge?: Partial<BadgeProps>;
-  /**
-   * Source of logo
-   */
-  logo?: string;
-  /**
-   * Object containing all properties supported in the [Checkbox component](?path=/docs/components-checkbox--checkbox)
-   */
-  checkbox?: Partial<CheckboxProps>;
-  /**
-   * If true, changes format of itemLayout to circle
-   */
-  circle?: boolean;
-  /**
-   * Conveys the status of a program ex. "Live" or "On Now"
-   */
-  label?: Partial<LabelProps>;
-  /**
-   * Controls where there metadata is displayed in relation to the Tile. Available values are 'standard' and 'inset'
-   */
-  metadataLocation: 'standard' | 'inset';
-  /**
-   * Object containing all properties supported in the [MetadataTile component](?path=/docs/components-metadatatile--metadata-tile)<br /> Can use a different Metadata component by passing in a 'type' and then that component's properties
-   */
-  metadata?: Partial<MetadataProps> | undefined;
-  /**
    * Metadata will be shown at all times if set to true, otherwise it will only show when the Tile has focusMetadata will be shown at all times if set to true, otherwise it will only show when the Tile has focus
    */
   persistentMetadata?: boolean;
   /**
-   * Object containing all properties supported in the [ProgressBar component](?path=/docs/components-progressbar--progress-bar)
+   * property that holds the components to be put in topLeft View of tile
    */
-  progressBar: Partial<ProgressBarProps>;
+  topLeft?: any;
   /**
-   * total width of the component
+   * property that holds the components to be put in topRight View of tile
    */
-  width: number;
+  topRight?: any;
+  /**
+   * property that holds the components to be put in inset View of tile
+   */
+  inset?: any;
+  /**
+   * property that holds the components to be put in bottom View of tile
+   */
+  bottom?: any;
+
+  progressBar?: Partial<ProgressBarProps> | undefined;
 }
 
 const Tile: Component<TileProps> = (props: TileProps) => {
@@ -65,57 +46,56 @@ const Tile: Component<TileProps> = (props: TileProps) => {
       use:withPadding={styles.Container.padding}
       {...props}
       style={styles.Container}
-      animate
       forwardStates
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
     >
-      <Artwork {...props.artwork} width={props.width} height={props.height} alt="Solid logo" />
+      <Artwork
+        {...props.artwork}
+        width={props.width || styles.Container.width}
+        height={props.height || styles.Container.width}
+        alt="Solid logo"
+      />
 
-      {/** Badge */}
-      <Show when={props.badge?.title && (isFocused() || props.persistentMetadata)}>
-        <Badge {...props.badge} x={styles.Container.padding[0]} y={styles.Container.padding[1]} />
-      </Show>
+      <Show when={props.persistentMetadata || isFocused()}>
+        <View forwardStates x={styles.Container.padding[0]} y={styles.Container.padding[1]}>
+          {props.topLeft}
+        </View>
 
-      {/** Title */}
-      <Show when={props.label?.title && (isFocused() || props.persistentMetadata)}>
-        <Label
-          {...props.label}
+        <View
+          forwardStates
           x={(props.width || styles.Container.width) - styles.Container.padding[0]}
           y={styles.Container.padding[1]}
-          mountX={1}
-        />
-      </Show>
+          mountX={2}
+        >
+          {props.topRight}
+        </View>
 
-      {/** inside tile */}
-      <View
-        forwardStates
-        style={styles.metaContainer}
-        x={styles.Container.padding[0]}
-        y={
-          (props.height || styles.Container.height) -
-          (props.progressBar ? styles.Container.paddingYProgress : 0)
-        }
-      >
-        {/** Logo */}
-        <Show when={props.logo && (isFocused() || props.persistentMetadata)}>
-          <img src={props.logo} style={styles.LogoContainer} />
-        </Show>
-
-        {/** Metadata inset */}
-        <Show
-          when={
-            props.metadataLocation == 'inset' && props.metadata && (isFocused() || props.persistentMetadata)
+        <View
+          forwardStates
+          style={styles.insetBottom}
+          width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
+          x={styles.Container.padding[0]}
+          y={
+            (props.height || styles.Container.height) -
+            styles.Container.padding[1] -
+            (props.progressBar?.progress > 0 ? styles.Container.paddingYProgress : 0)
           }
         >
-          <Metadata
-            {...props.metadata}
-            width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
-          />
-        </Show>
-      </View>
+          {props.inset}
+        </View>
 
-      {/** Progress Bar*/}
+        <View
+          forwardStates
+          style={styles.standardBottom}
+          x={styles.Container.padding[0]}
+          y={(props.height || styles.Container.height) + styles.Container.padding[1]}
+          width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
+        >
+          {props.bottom}
+        </View>
+      </Show>
+
       <Show when={props.progressBar?.progress ? props.progressBar.progress > 0 : 0}>
         <ProgressBar
           {...props.progressBar}
@@ -126,28 +106,6 @@ const Tile: Component<TileProps> = (props: TileProps) => {
             styles.Container.paddingYProgress -
             (props.progressBar.height || 0)
           }
-        />
-      </Show>
-
-      {/** Metadata standard */}
-      <Show when={props.metadataLocation == 'standard'}>
-        <Show when={props.metadata && (isFocused() || props.persistentMetadata)}>
-          <Metadata
-            {...props.metadata}
-            x={styles.Container.padding[0]}
-            y={(props.height || styles.Container.height) + styles.Container.padding[1]}
-            width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
-          />
-        </Show>
-      </Show>
-
-      {/** Checkbox */}
-      <Show when={props.checkbox && props.checkbox.checked}>
-        <Checkbox
-          {...props.checkbox}
-          x={(props.width || styles.Container.width) - styles.Container.padding[0]}
-          y={(props.height || styles.Container.height) - styles.Container.padding[1]}
-          mount={1}
         />
       </Show>
     </node>

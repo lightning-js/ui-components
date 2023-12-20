@@ -16,18 +16,7 @@
  */
 import theme from 'theme';
 
-type ColumnStyle = {
-  Column: {
-    display: string;
-    justifyContent: string;
-    flexDirection: string;
-    gap: number;
-    x: number;
-    y: number;
-  };
-};
-
-const styles: ColumnStyle = {
+const styles = {
   Column: {
     display: 'flex',
     justifyContent: 'flexStart',
@@ -36,6 +25,6 @@ const styles: ColumnStyle = {
     x: theme.layout.marginX,
     y: [200, { ...theme.animation.standard, duration: theme.animation.duration.fast }] as any
   }
-};
+} as const;
 
 export default styles;
