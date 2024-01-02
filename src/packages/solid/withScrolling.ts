@@ -2,8 +2,7 @@ import { createEffect, on } from 'solid-js';
 import { activeElement, ElementNode } from '@lightningjs/solid';
 
 export function withScrolling(containerRef: ElementNode, props) {
-  let lastItemPosition,
-    lastItemSize,
+  let lastItem,
     windowVal,
     prevIndex = 0,
     componentRef,
@@ -21,7 +20,7 @@ export function withScrolling(containerRef: ElementNode, props) {
         // only update values if the row has changed
         if (updateIndex || containerRef.children[0] != componentRef) {
           componentRef = containerRef.children[0];
-          [lastItemPosition, lastItemSize, windowVal] = updateLastIndex(componentRef, direction);
+          [lastItem, windowVal] = updateLastIndex(componentRef, direction);
           updateIndex = false;
         }
 
@@ -67,9 +66,10 @@ export function withScrolling(containerRef: ElementNode, props) {
           /** want to scroll based on type */
         } else {
           //default scrolling
+          debugger;
           if (
             scrollType === 'default' &&
-            (Math.abs(previousVal) + windowVal < lastItemPosition + lastItemSize ||
+            (Math.abs(previousVal) + windowVal < lastItem.position + lastItem.size ||
               newVal < Math.abs(previousVal))
           ) {
             next = -newVal;
@@ -105,25 +105,27 @@ export function withScrolling(containerRef: ElementNode, props) {
 }
 
 function updateLastIndex(items, direction) {
-  debugger;
-  let lastItemPosition, lastItemSize, windowVal;
+  let lastItem, windowVal;
   if (direction === 'row') {
-    lastItemPosition = items.children[items.children.length - 1].x;
-    lastItemSize = items.children[items.children.length - 1].width;
+    lastItem = {
+      position: items.children[items.children.length - 1].x,
+      size: items.children[items.children.length - 1].width
+    };
     windowVal = items.width;
   } else {
-    lastItemPosition = items.children[items.children.length - 1].y;
-    lastItemSize = items.children[items.children.length - 1].height;
+    lastItem = {
+      position: items.children[items.children.length - 1].y,
+      size: items.children[items.children.length - 1].height
+    };
     windowVal = items.height;
   }
 
-  return [lastItemPosition, lastItemSize, windowVal];
+  return [lastItem, windowVal];
 }
 
 function formatScrollType(scrollType) {
-  debugger;
   if (
-    scrollType == undefined ||
+    scrollType === undefined ||
     (scrollType != 'alwaysScroll' && scrollType != 'neverScroll' && scrollType != 'lazyScroll')
   ) {
     scrollType = 'default';
