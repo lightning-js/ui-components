@@ -1,107 +1,112 @@
 import { createEffect, on } from 'solid-js';
 import { activeElement, ElementNode } from '@lightningjs/solid';
 
-export function withScrolling(containerRef: ElementNode, props) {
-  let lastItem,
-    windowVal,
-    prevIndex = 0,
-    componentRef,
-    updateIndex = false;
+export function withScrolling(componentRef: ElementNode, props) {
+  // debugger;
+  // if (componentRef.selected) {
+  //   componentRef.children[componentRef.selected].setFocus();
+  // } else if (componentRef.children.length > 0) {
+  //   componentRef.children[0].setFocus();
+  // }
+//   let lastItem,
+//     windowVal,
+//     prevIndex = 0,
+//     updateIndex = false;
 
-  const [direction, prop, gap] = props();
-  const scrollType = formatScrollType(prop.scrollType);
+//   const componentRef = containerRef.children[0];
+//   const [direction, prop, gap] = props;
+//   const scrollType = formatScrollType(prop.scrollType);
 
-  createEffect(
-    on(
-      activeElement,
-      elm => {
-        let previousVal, newVal, next, size;
+//   // createEffect(
+//   //   on(
+//   //     selectedChange,
+//   //     elm => {
+//   let previousVal, newVal, next, size;
 
-        // only update values if the row has changed
-        if (updateIndex || containerRef.children[0] != componentRef) {
-          componentRef = containerRef.children[0];
-          [lastItem, windowVal] = updateLastIndex(componentRef, direction);
-          updateIndex = false;
-        }
+//   // only update values if the row has changed
+//   if (updateIndex || containerRef.children[0] != componentRef) {
+//     [lastItem, windowVal] = updateLastIndex(componentRef, direction);
+//     updateIndex = false;
+//   }
 
-        // set row to focus if not already
-        if (elm == containerRef) {
-          updateIndex = true;
-          componentRef.children[componentRef.selected].setFocus();
-        }
+//   //set row to focus if not already
+//   // if (elm == containerRef) {
+//   //   updateIndex = true;
+//   //   componentRef.children[componentRef.selected].setFocus();
+//   // }
 
-        // do nothing if selected change
-        if (componentRef.selected === prevIndex) {
-          return;
-        }
+//   // do nothing if selected change
+//   if (componentRef.selected != undefined && componentRef.selected === prevIndex) {
+//     return;
+//   }
 
-        // values based on row or column
-        if (direction === 'row') {
-          previousVal = componentRef.x;
-          newVal = componentRef.children[componentRef.selected].x;
-          size = componentRef.children[componentRef.selected].width;
-        } else {
-          previousVal = componentRef.y;
-          newVal = componentRef.children[componentRef.selected].y;
-          size = componentRef.children[componentRef.selected].height;
-        }
+//   // values based on row or column
+//   if (direction === 'row') {
+//     previousVal = componentRef.x;
+//     newVal = componentRef.children[componentRef.selected].x;
+//     size = componentRef.children[componentRef.selected].width;
+//   } else {
+//     previousVal = componentRef.y;
+//     newVal = componentRef.children[componentRef.selected].y;
+//     size = componentRef.children[componentRef.selected].height;
+//   }
 
-        // TODO, find better name
-        const direct = componentRef.selected > prevIndex ? 'positive' : 'negative';
+//   // TODO, find better name
+//   const direct = componentRef.selected > prevIndex ? 'positive' : 'negative';
 
-        prevIndex = componentRef.selected;
-        next = previousVal;
+//   prevIndex = componentRef.selected;
+//   next = previousVal;
 
-        /** scrollIndex takes precedence */
-        if (prop.scrollIndex != undefined && prop.scrollIndex >= 0) {
+//   /** scrollIndex takes precedence */
+//   if (prop.scrollIndex != undefined && prop.scrollIndex >= 0) {
+//     if (componentRef.selected >= prop.scrollIndex) {
+//       if (direct === 'positive') {
+//         next = previousVal - size - gap;
+//       } else {
+//         next = previousVal + size + gap;
+//       }
+//     }
 
-          if (componentRef.selected >= prop.scrollIndex) {
-            if (direct === 'positive') {
-              next = previousVal - size - gap;
-            } else {
-              next = previousVal + size + gap;
-            }
-          }
+//     /** want to scroll based on type */
+//   } else {
+//     //default scrolling
+//     if (
+//       scrollType === 'default' &&
+//       (Math.abs(previousVal) + windowVal < lastItem.position + lastItem.size ||
+//         newVal < Math.abs(previousVal))
+//     ) {
+//       next = -newVal;
+//     }
 
-          /** want to scroll based on type */
-        } else {
-          //default scrolling
-          debugger;
-          if (
-            scrollType === 'default' &&
-            (Math.abs(previousVal) + windowVal < lastItem.position + lastItem.size ||
-              newVal < Math.abs(previousVal))
-          ) {
-            next = -newVal;
-          }
+//     // always scroll or lazyscroll forward
+//     else if (
+//       scrollType === 'alwaysScroll' ||
+//       (scrollType === 'lazyScroll' && direct === 'negative' && Math.abs(previousVal) > newVal)
+//     ) {
+//       next = -newVal;
 
-          // always scroll or lazyscroll forward
-          else if (
-            scrollType === 'alwaysScroll' ||
-            (scrollType === 'lazyScroll' && direct === 'negative' && Math.abs(previousVal) > newVal)
-          ) {
-            next = -newVal;
+//       // lazy scroll backward
+//     } else if (
+//       scrollType === 'lazyScroll' &&
+//       direct === 'positive' &&
+//       Math.abs(previousVal) + windowVal < newVal + size
+//     ) {
+//       next = previousVal - size - gap;
+//     }
+//   }
 
-            // lazy scroll backward
-          } else if (
-            scrollType === 'lazyScroll' &&
-            direct === 'positive' &&
-            Math.abs(previousVal) + windowVal < newVal + size
-          ) {
-            next = previousVal - size - gap;
-          }
-        }
-
-        // updating value
-        if (direction === 'row' && componentRef.x !== next) {
-          componentRef.x = next;
-        } else if (direction === 'column' && componentRef.y !== next) {
-          componentRef.y = next;
-        }
-      },
-      { defer: true }
-    )
-  );
+//   // updating value
+//   if (direction === 'row' && componentRef.x !== next) {
+//     componentRef.x = next;
+//   } else if (direction === 'column' && componentRef.y !== next) {
+//     componentRef.y = next;
+//   }
+// }
+// //       },
+// //       { defer: true }
+// //     )
+// //   );
+// // }
 }
 
 function updateLastIndex(items, direction) {

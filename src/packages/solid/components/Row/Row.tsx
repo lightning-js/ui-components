@@ -17,15 +17,22 @@ export interface RowProps extends IntrinsicNodeProps {
 }
 
 const Row: Component<RowProps> = (props: RowProps) => {
-  let RowRef, ContainerRef;
+  let RowRef;
   const gap = styles.Row.gap;
 
   return (
-    <node autofocus use:withScrolling={['row', props, gap]} {...props} ref={ContainerRef}>
-      <SolidRow {...props} animate style={styles.Row} width={800} height={500} ref={RowRef}>
-        {props.children}
-      </SolidRow>
-    </node>
+    <SolidRow
+      {...props}
+      animate
+      autofocus
+      clipping
+      style={styles.Row}
+      height={500}
+      ref={RowRef}
+      onSelectedChanged={withScrolling(RowRef, ['row', props, gap])}
+    >
+      {props.children}
+    </SolidRow>
   );
 };
 
