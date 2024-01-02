@@ -46,7 +46,11 @@ const buttons = () => createItems(7);
 
 export const Basic = {
   render: args => {
-    return <SolidRow {...args}>{buttons}</SolidRow>;
+    return (
+      <SolidRow autofocus {...args}>
+        {buttons}
+      </SolidRow>
+    );
   },
   args: {
     children: buttons,

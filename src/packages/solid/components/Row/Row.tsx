@@ -24,7 +24,6 @@ const Row: Component<RowProps> = (props: RowProps) => {
     <SolidRow
       {...props}
       animate
-      autofocus
       clipping
       style={styles.Row}
       height={500}
