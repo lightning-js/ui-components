@@ -30,9 +30,7 @@ const Row: Component<RowProps> = (props: RowProps) => {
       height={500}
       ref={RowRef}
       onSelectedChanged={withScrolling(RowRef, ['row', props, gap])}
-    >
-      {props.children}
-    </SolidRow>
+    />
   );
 };
 

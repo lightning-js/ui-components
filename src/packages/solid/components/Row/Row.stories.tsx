@@ -34,18 +34,15 @@ const meta = {
 export default meta;
 
 // create an array of buttons to use in Row
-const createItems = length => {
-  return Array.from({ length }).map((_, i) => {
-    const button = (
-      <Button width={300} height={100}>
-        Button {i + 1}
-      </Button>
-    );
-    return button;
-  });
+const createItems = (length: number) => {
+  return Array.from({ length }).map((_, i) => (
+    <Button width={300} height={100}>
+      Button {i + 1}
+    </Button>
+  ));
 };
 
-const buttons = () => <>{createItems(7)}</>;
+const buttons = () => createItems(7);
 
 export const Basic = {
   render: args => {
