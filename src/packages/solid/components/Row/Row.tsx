@@ -24,11 +24,10 @@ const Row: Component<RowProps> = (props: RowProps) => {
     <SolidRow
       {...props}
       animate
-      clipping
       style={styles.Row}
-      height={500}
+      clipping
       ref={RowRef}
-      onSelectedChanged={withScrolling(RowRef, ['row', props, gap])}
+      onSelectedChanged ={withScrolling(['row', props, gap])}
     />
   );
 };

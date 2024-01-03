@@ -18,16 +18,18 @@ export interface ColumnProps extends IntrinsicNodeProps {
 }
 
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
-  let ColumnRef, ContainerRef;
+  let ColumnRef;
   const gap = styles.Column.gap;
 
-
   return (
-    <node autofocus use:withScrolling={['column', props, gap]} {...props} ref={ContainerRef}>
-      <SolidColumn {...props} animate style={styles.Column} width={400} height={500} ref={ColumnRef}>
-        {props.children}
-      </SolidColumn>
-    </node>
+    <SolidColumn
+      {...props}
+      animate
+      style={styles.Column}
+      clipping
+      ref={ColumnRef}
+      onSelectedChanged={withScrolling(['column', props, gap])}
+    />
   );
 };
 

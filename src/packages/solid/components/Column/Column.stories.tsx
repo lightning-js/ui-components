@@ -15,12 +15,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import Column from './Column';
+import SolidColumn from './Column';
 import Button from '../Button';
 
 const meta = {
   title: 'Components/Column',
-  component: Column,
+  component: SolidColumn,
   tags: ['autodocs'],
   argTypes: {
     children: {
@@ -39,7 +39,8 @@ const meta = {
     },
     lazyScroll: {
       control: { type: 'boolean' },
-      description: 'if true, will only scroll the row if the item is off screen and `alwaysScroll` and `neverScroll` are both false.',
+      description:
+        'if true, will only scroll the row if the item is off screen and `alwaysScroll` and `neverScroll` are both false.',
       table: {
         defaultValue: { summary: false }
       }
@@ -50,7 +51,7 @@ const meta = {
 export default meta;
 
 // create an array of buttons to use in column
-const createItems = (length) => {
+const createItems = length => {
   return Array.from({ length }).map((_, i) => {
     const button = (
       <Button width={300} height={100}>
@@ -65,11 +66,18 @@ const buttons = () => <>{createItems(7)}</>;
 
 export const AlwaysScroll = {
   render: args => {
-    return <SolidColumn {...args}>{buttons}</SolidColumn>;
+    return (
+      <SolidColumn autofocus {...args}>
+        {buttons}
+      </SolidColumn>
+    );
   },
   args: {
     children: buttons,
     scrollType: 'alwaysScroll',
-    wrap: false
+    wrap: false,
+    width: 400,
+    height: 500,
+    y: 0
   }
 };

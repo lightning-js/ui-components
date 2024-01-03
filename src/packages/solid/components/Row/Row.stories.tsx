@@ -54,50 +54,81 @@ export const Basic = {
   },
   args: {
     children: buttons,
-    wrap: false
+    wrap: false,
+    height: 500,
+    width: 800,
+    x: 0
   }
 };
 
 export const LazyScroll = {
   render: args => {
-    return <SolidRow {...args}>{buttons}</SolidRow>;
+    return (
+      <SolidRow autofocus {...args}>
+        {buttons}
+      </SolidRow>
+    );
   },
   args: {
     children: buttons,
     scrollType: 'lazyScroll',
-    wrap: false
+    wrap: false,
+    height: 500,
+    width: 800,
+    x: 0
   }
 };
 
 export const AlwaysScroll = {
   render: args => {
-    return <SolidRow {...args}>{buttons}</SolidRow>;
+    return (
+      <SolidRow autofocus {...args}>
+        {buttons}
+      </SolidRow>
+    );
   },
   args: {
     children: buttons,
     scrollType: 'alwaysScroll',
-    wrap: false
+    wrap: false,
+    height: 500,
+    width: 800,
+    x: 0
   }
 };
 
 export const NeverScroll = {
   render: args => {
-    return <SolidRow {...args}>{buttons}</SolidRow>;
+    return (
+      <SolidRow autofocus {...args}>
+        {buttons}
+      </SolidRow>
+    );
   },
   args: {
     children: buttons,
     scrollType: 'neverScroll',
-    wrap: false
+    wrap: false,
+    height: 500,
+    width: 800,
+    x: 0
   }
 };
 
 export const ScrollIndex = {
   render: args => {
-    return <SolidRow {...args}>{buttons}</SolidRow>;
+    return (
+      <SolidRow autofocus {...args}>
+        {buttons}
+      </SolidRow>
+    );
   },
   args: {
     children: buttons,
     scrollIndex: 4,
-    wrap: false
+    wrap: false,
+    height: 500,
+    width: 800,
+    x: 0
   }
 };
