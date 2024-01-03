@@ -20,6 +20,7 @@ export interface ColumnProps extends IntrinsicNodeProps {
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
   let ColumnRef;
   const gap = styles.Column.gap;
+  const adjustment = props.y === undefined ? styles.Row.y : props.y;
 
   return (
     <SolidColumn
@@ -28,7 +29,11 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
       style={styles.Column}
       clipping
       ref={ColumnRef}
-      onSelectedChanged={withScrolling(['column', props, gap])}
+      onSelectedChanged={withScrolling([
+        'column',
+        { ...props, adjustment: adjustment },
+        gap
+      ])}
     />
   );
 };

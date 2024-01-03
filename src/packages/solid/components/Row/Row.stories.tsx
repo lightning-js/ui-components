@@ -57,7 +57,7 @@ export const Basic = {
     wrap: false,
     height: 500,
     width: 800,
-    x: 0
+    x: 20
   }
 };
 

@@ -19,6 +19,7 @@ export interface RowProps extends IntrinsicNodeProps {
 const Row: Component<RowProps> = (props: RowProps) => {
   let RowRef;
   const gap = styles.Row.gap;
+  const adjustment = props.x === undefined ? styles.Row.x : props.x;
 
   return (
     <SolidRow
@@ -27,7 +28,7 @@ const Row: Component<RowProps> = (props: RowProps) => {
       style={styles.Row}
       clipping
       ref={RowRef}
-      onSelectedChanged ={withScrolling(['row', props, gap])}
+      onSelectedChanged={withScrolling(['row', { ...props, adjustment: adjustment }, gap])}
     />
   );
 };
