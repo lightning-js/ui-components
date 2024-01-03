@@ -1,10 +1,5 @@
-import { createEffect, on } from 'solid-js';
-import { activeElement, ElementNode } from '@lightningjs/solid';
-
 export function withScrolling(props) {
   return (componentRef, elms, selected, lastSelected) => {
-    debugger;
-
     let previousVal, newVal, next, size;
 
     const [direction, prop, gap] = props;
@@ -20,12 +15,12 @@ export function withScrolling(props) {
     // values based on row or column
     if (direction === 'row') {
       previousVal = componentRef.x;
-      newVal = componentRef.children[selected].x;
-      size = componentRef.children[selected].width;
+      newVal = elms.x;
+      size = elms.width;
     } else {
       previousVal = componentRef.y;
-      newVal = componentRef.children[selected].y;
-      size = componentRef.children[selected].height;
+      newVal = elms.y;
+      size = elms.height;
     }
 
     // TODO, find better name
@@ -45,7 +40,8 @@ export function withScrolling(props) {
 
       /** want to scroll based on type */
     } else {
-      //default scrolling
+
+      // default and need to scroll
       if (
         scrollType === 'default' &&
         (Math.abs(previousVal) + windowVal < lastItem.position + lastItem.size ||
@@ -77,12 +73,6 @@ export function withScrolling(props) {
     } else if (direction === 'column' && componentRef.y !== next) {
       componentRef.y = next;
     }
-    // }
-    // //       },
-    // //       { defer: true }
-    // //     )
-    // //   );
-    // // }
   };
 }
 
