@@ -1,27 +1,23 @@
-export function withScrolling(props) {
-  return (componentRef, elms, selected, lastSelected) => {
-    let previousVal, newVal, next, size, adjustment;
-
-    const [direction, prop, gap] = props;
-    const scrollType = formatScrollType(prop.scrollType);
+export function withScrolling(direction: 'column' | 'row', adjustment: number = 0) {
+  return (componentRef, selectedElement, selected, lastSelected) => {
+    let previousVal, newVal, next, size;
+    const gap = componentRef.gap || 0;
+    const scrollType = componentRef.scrollType;
     const [lastItem, windowVal] = updateLastIndex(componentRef, direction);
 
     if (componentRef.children.length === 0) {
       return;
     }
-    componentRef.selected = selected;
 
     // values based on row or column
     if (direction === 'row') {
       previousVal = componentRef.x;
-      adjustment = prop.x;
-      newVal = elms.x;
-      size = elms.width;
+      newVal = selectedElement.x;
+      size = selectedElement.width;
     } else {
       previousVal = componentRef.y;
-      adjustment = prop.y;
-      newVal = elms.y;
-      size = elms.height;
+      newVal = selectedElement.y;
+      size = selectedElement.height;
     }
 
     // TODO, find better name
@@ -30,8 +26,8 @@ export function withScrolling(props) {
     next = previousVal;
 
     /** scrollIndex takes precedence */
-    if (prop.scrollIndex != undefined && prop.scrollIndex >= 0) {
-      if (componentRef.selected >= prop.scrollIndex) {
+    if (componentRef.scrollIndex != undefined && componentRef.scrollIndex >= 0) {
+      if (componentRef.selected >= componentRef.scrollIndex) {
         if (direct === 'positive') {
           next = previousVal - size - gap;
         } else {
@@ -41,21 +37,12 @@ export function withScrolling(props) {
 
       /** want to scroll based on type */
     } else {
-      // default and need to scroll
-      if (
-        scrollType === 'default' &&
-        (Math.abs(previousVal) + windowVal < lastItem.position + lastItem.size ||
-          newVal < Math.abs(previousVal))
-      ) {
-        next = -newVal + prop.adjustment;
-      }
-
       // always scroll or lazyscroll forward
-      else if (
+      if (
         scrollType === 'alwaysScroll' ||
         (scrollType === 'lazyScroll' && direct === 'negative' && Math.abs(previousVal) > newVal)
       ) {
-        next = -newVal + prop.adjustment;
+        next = -newVal + adjustment;
 
         // lazy scroll backward
       } else if (
@@ -64,6 +51,11 @@ export function withScrolling(props) {
         Math.abs(previousVal) + windowVal < newVal + size
       ) {
         next = previousVal - size - gap;
+      } else if (
+        Math.abs(previousVal) + windowVal < lastItem.position + lastItem.size ||
+        newVal < Math.abs(previousVal)
+      ) {
+        next = -newVal + adjustment;
       }
     }
 
@@ -76,7 +68,7 @@ export function withScrolling(props) {
   };
 }
 
-function updateLastIndex(items, direction) {
+function updateLastIndex(items, direction: 'column' | 'row') {
   let lastItem, windowVal;
   if (direction === 'row') {
     lastItem = {
@@ -93,14 +85,4 @@ function updateLastIndex(items, direction) {
   }
 
   return [lastItem, windowVal];
-}
-
-function formatScrollType(scrollType) {
-  if (
-    scrollType === undefined ||
-    (scrollType != 'alwaysScroll' && scrollType != 'neverScroll' && scrollType != 'lazyScroll')
-  ) {
-    scrollType = 'default';
-  }
-  return scrollType;
 }

@@ -1,34 +1,23 @@
-import { Component } from 'solid-js';
+import { type Component } from 'solid-js';
 import { type IntrinsicNodeProps } from '@lightningjs/solid';
 import { Row as SolidRow } from '@lightningjs/solid-primitives';
-import styles from './Row.styles';
-import { withScrolling } from '../../withScrolling';
+import styles from './Row.styles.js';
+import { withScrolling } from '../../withScrolling.js';
 withScrolling;
 
 export interface RowProps extends IntrinsicNodeProps {
-  /**
-   * components to be listed in the Row
-   */
-  children: object;
-  /** Item index at which scrolling begins */
   scrollIndex?: number;
-
-  scrollType?: 'alwaysScroll' | 'neverScroll' | 'lazyScroll' | undefined;
+  scrollType?: 'alwaysScroll' | 'neverScroll' | 'lazyScroll';
 }
 
 const Row: Component<RowProps> = (props: RowProps) => {
-  let RowRef;
-  const gap = styles.Row.gap;
-  const adjustment = props.x === undefined ? styles.Row.x : props.x;
-
   return (
     <SolidRow
       {...props}
       animate
       style={styles.Row}
       clipping
-      ref={RowRef}
-      onSelectedChanged={withScrolling(['row', { ...props, adjustment: adjustment }, gap])}
+      onSelectedChanged={withScrolling('row', props.x as number)}
     />
   );
 };

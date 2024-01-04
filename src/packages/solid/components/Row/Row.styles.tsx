@@ -1,18 +1,6 @@
 import theme from 'theme';
 
-type RowStyle = {
-  Row: {
-    display: string;
-    justifyContent: string;
-    flexDirection: string;
-    gap: number;
-    x: number;
-    y: number;
-    width: number;
-  };
-};
-
-const styles: RowStyle = {
+const styles = {
   Row: {
     display: 'flex',
     justifyContent: 'flexStart',
@@ -22,6 +10,6 @@ const styles: RowStyle = {
     y: [200, { ...theme.animation.standard, duration: theme.animation.duration.fast }] as any,
     width: theme.layout.screenW
   }
-};
+} as const;
 
 export default styles;
