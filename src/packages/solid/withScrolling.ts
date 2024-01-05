@@ -1,24 +1,19 @@
-export function withScrolling(direction: 'column' | 'row', adjustment: number = 0) {
+export function withScrolling(adjustment: number = 0) {
   return (componentRef, selectedElement, selected, lastSelected) => {
-    let previousVal, newVal, next, size;
+    debugger;
+    let next;
     const gap = componentRef.gap || 0;
     const scrollType = componentRef.scrollType;
-    const [lastItem, windowVal] = updateLastIndex(componentRef, direction);
+    const [lastItem, windowVal] = updateLastIndex(componentRef);
 
     if (componentRef.children.length === 0) {
       return;
     }
 
     // values based on row or column
-    if (direction === 'row') {
-      previousVal = componentRef.x;
-      newVal = selectedElement.x;
-      size = selectedElement.width;
-    } else {
-      previousVal = componentRef.y;
-      newVal = selectedElement.y;
-      size = selectedElement.height;
-    }
+    const previousVal = componentRef.flexDirection === 'row' ? componentRef.x : componentRef.y;
+    const newVal = componentRef.flexDirection === 'row' ? selectedElement.x : selectedElement.y;
+    const size = componentRef.flexDirection === 'row' ? selectedElement.width : selectedElement.height;
 
     // TODO, find better name
     const direct = selected > lastSelected ? 'positive' : 'negative';
@@ -52,7 +47,9 @@ export function withScrolling(direction: 'column' | 'row', adjustment: number = 
       ) {
         next = previousVal - size - gap;
       } else if (
-        Math.abs(previousVal) + windowVal < lastItem.position + lastItem.size ||
+        (scrollType !== 'lazyScroll' &&
+          scrollType !== 'neverScroll' &&
+          Math.abs(previousVal) + windowVal < lastItem.position + lastItem.size) ||
         newVal < Math.abs(previousVal)
       ) {
         next = -newVal + adjustment;
@@ -60,17 +57,17 @@ export function withScrolling(direction: 'column' | 'row', adjustment: number = 
     }
 
     // updating value
-    if (direction === 'row' && componentRef.x !== next) {
+    if (componentRef.flexDirection === 'row' && componentRef.x !== next) {
       componentRef.x = next;
-    } else if (direction === 'column' && componentRef.y !== next) {
+    } else if (componentRef.flexDirection === 'column' && componentRef.y !== next) {
       componentRef.y = next;
     }
   };
 }
 
-function updateLastIndex(items, direction: 'column' | 'row') {
+function updateLastIndex(items) {
   let lastItem, windowVal;
-  if (direction === 'row') {
+  if (items.flexDirection === 'row') {
     lastItem = {
       position: items.children[items.children.length - 1].x,
       size: items.children[items.children.length - 1].width

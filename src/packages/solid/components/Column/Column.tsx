@@ -17,7 +17,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
       animate
       clipping
       style={styles.Column}
-      onSelectedChanged={withScrolling('column', props.y as number)}
+      onSelectedChanged={withScrolling(props.y as number)}
     />
   );
 };
