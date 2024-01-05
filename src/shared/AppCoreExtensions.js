@@ -21,15 +21,15 @@ import { CoreExtension, WebTrFontFace, SdfTrFontFace } from '@lightningjs/render
 
 export default class AppCoreExtension extends CoreExtension {
   async run(stage) {
-    stage.fontManager.addFontFace(new WebTrFontFace('NotoSans', {}, '/fonts/notoSans/NotoSans-Regular.ttf'));
+    stage.fontManager.addFontFace(new WebTrFontFace('NotoSans', {}, './fonts/notoSans/NotoSans-Regular.ttf'));
     stage.fontManager.addFontFace(
       new SdfTrFontFace(
         'Arial',
         {},
         'msdf',
         stage,
-        '/fonts/ubuntu/Ubuntu-Bold.msdf.png',
-        '/fonts/ubuntu/Ubuntu-Bold.msdf.json'
+        './fonts/ubuntu/Ubuntu-Bold.msdf.png',
+        './fonts/ubuntu/Ubuntu-Bold.msdf.json'
       )
     );
   }
