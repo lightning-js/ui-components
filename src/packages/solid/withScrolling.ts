@@ -1,14 +1,12 @@
 export function withScrolling(adjustment: number = 0) {
   return (componentRef, selectedElement, selected, lastSelected) => {
-    debugger;
-    let next;
-    const gap = componentRef.gap || 0;
-    const scrollType = componentRef.scrollType;
-    const [lastItem, windowVal] = updateLastIndex(componentRef);
-
     if (componentRef.children.length === 0) {
       return;
     }
+
+    const gap = componentRef.gap || 0;
+    const scrollType = componentRef.scrollType;
+    const [lastItem, windowVal] = updateLastIndex(componentRef);
 
     // values based on row or column
     const previousVal = componentRef.flexDirection === 'row' ? componentRef.x : componentRef.y;
@@ -18,7 +16,7 @@ export function withScrolling(adjustment: number = 0) {
     // TODO, find better name
     const direct = selected > lastSelected ? 'positive' : 'negative';
 
-    next = previousVal;
+    let next = previousVal;
 
     /** scrollIndex takes precedence */
     if (componentRef.scrollIndex != undefined && componentRef.scrollIndex >= 0) {
