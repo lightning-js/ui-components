@@ -1,26 +1,13 @@
-// @ts-nocheck
+import type { ComponentStyleConfig, ToneModeFallbackMap, StyleObject, VariantList } from '../types/types.js';
+import type { ObjectEntries } from '../types/object-methods.js';
+import type { NodeStyles, TextStyles } from '@lightningjs/solid';
 
-import type { WithTonesModes, ComponentConfig } from 'types';
-import { type NodeStyles } from '@lightningjs/solid';
-
-export type LookupObject<T = LooseComponentConfig> = {
-  [K in WithTonesModes as keyof WithTonesModes]?: LookupObjectStyleConfig<T>;
-};
-
-// export type LookupObjectStyleConfig<T = Record<string, unknown>> = Record<
-//   keyof Partial<NodeStyles>,
-//   { themeKey: keyof T; fallback: unknown }
-// >;
-
-export type LookupObjectStyleConfig<T = object> = {
-  [K in NodeStyles as keyof NodeStyles]?: { themeKey: keyof T; fallback: unknown };
-};
-
-// TODO how do we ensure a parameter is of a generic<T>, is it just ComponentConfig<any>?
-type LooseComponentConfig = ComponentConfig<WithTonesModes<LookupObjectStyleConfig>>;
+// any value capable of being assigned to a node.style.<property>
+// TODO this could probably be more specific
+export type SolidStyleValue = NodeStyles | TextStyles;
 
 // required style keys
-const defaultToneModeFallbackMap = {
+const defaultToneModeFallbackMap: ToneModeFallbackMap = {
   inverse: 'base',
   brand: 'base',
   focus: 'base',
@@ -39,22 +26,22 @@ export function makeComponentStyles({
   toneModes,
   themeStyles,
   toneModeFallbackMap = defaultToneModeFallbackMap
-}: {
-  themeKeys;
-  baseStyles;
-  lookupObject: LookupObject;
-  themeStyles: LooseComponentConfig;
-  toneModeFallbackMap;
-}) {
+}: ComponentStyleConfig) {
   /**
    * helper function to access theme.componentConfig values
    */
-  const themeStyleLookup = (toneModeName, themeKey) => themeStyles?.[toneModeName]?.[themeKey];
+  const themeStyleLookup = (
+    toneModeName: VariantList,
+    themeKey: keyof ComponentStyleConfig['themeKeys']
+  ): SolidStyleValue => themeStyles?.[toneModeName]?.[themeKey];
 
-  const addMissingToneModes = styleObject => {
+  const addMissingToneModes = (styleObject: StyleObject): StyleObject => {
+    // need to cast Object.keys, otherwise it has type `string[]`
+    const toneModeKeyArray = Object.keys(toneModeFallbackMap) as Array<keyof ToneModeFallbackMap>;
+
     /* find which toneModes are missing from the final object */
-    const missingToneModes = Object.keys(toneModeFallbackMap).filter(
-      toneMode => !Object.keys(styleObject).includes(toneMode)
+    const missingToneModes: Array<keyof ToneModeFallbackMap> = toneModeKeyArray.filter(
+      (toneMode): boolean => !Object.keys(styleObject).includes(toneMode)
     );
 
     /* create missing toneModes using fallback values */
@@ -74,31 +61,43 @@ export function makeComponentStyles({
    * a value of either the themeStyle[toneModeName][themeKey] or the fallback
    */
   const mapThemeStylesToSolidStyles = (
-    toneModeName: keyof LookupObject,
-    toneModeStyle: LookupObjectStyleConfig,
-    themeKeys
-  ) =>
-    Object.fromEntries(
-      Object.entries(toneModeStyle).map(([solidStyleKey, solidStyleValue]) => [
+    toneModeName: keyof ComponentStyleConfig['toneModes'],
+    toneModeStyle: ComponentStyleConfig['toneModes'],
+    themeKeys: ComponentStyleConfig['themeKeys']
+  ) => {
+    const entries = Object.entries(toneModeStyle) as ObjectEntries<ComponentStyleConfig['toneModes']>;
+    return Object.fromEntries(
+      entries.map(([solidStyleKey, solidStyleValue]) => [
         solidStyleKey,
         themeStyleLookup(toneModeName, themeKeys[solidStyleKey]) ?? solidStyleValue
       ])
     );
+  };
 
   /**
    * creates the object of tone and mode override styles
    *
-   * for each key in the root of the lookup object, pass its object to mapThemeStylesToSolidStyles for formatting
+   * for each key in the toneMode object, pass its set of styles to mapThemeStylesToSolidStyles for formatting
    */
-  const makeToneModeStyles = (baseStyles, lookupObject, themeKeys) => ({
-    ...baseStyles,
-    ...Object.fromEntries(
-      Object.entries(lookupObject).map(([toneModeName, toneModeStyle]) => [
-        toneModeName,
-        mapThemeStylesToSolidStyles(toneModeName as keyof LookupObject, toneModeStyle, themeKeys)
-      ])
-    )
-  });
+  const makeToneModeStyles = (
+    baseStyles: StyleObject,
+    toneModes: ComponentStyleConfig['toneModes'],
+    themeKeys: ComponentStyleConfig['themeKeys']
+  ): StyleObject => {
+    if (!toneModes) {
+      return baseStyles;
+    }
+    const entries = Object.entries(toneModes) as ObjectEntries<ComponentStyleConfig['toneModes']>;
+    return {
+      ...baseStyles,
+      ...Object.fromEntries(
+        entries.map(([toneModeName, toneModeStyle]) => [
+          toneModeName,
+          mapThemeStylesToSolidStyles(toneModeName, toneModeStyle, themeKeys)
+        ])
+      )
+    };
+  };
 
   /**
    * creates a base style object
@@ -106,20 +105,29 @@ export function makeComponentStyles({
    * if a property has a themeable value(has a corresponding themeKey in the themeKeys object) check the
    * componentConfig for a base value. if one exists use it, otherwise use the value from the defaults object
    */
-  const makeBaseStyles = (baseStyles, themeKeys) =>
-    Object.fromEntries(
-      Object.entries(baseStyles).map(([styleKey, styleValue]) => {
+  const makeBaseStyles = (
+    baseStyles: ComponentStyleConfig['base'],
+    themeKeys: ComponentStyleConfig['themeKeys']
+  ): StyleObject => {
+    const entries = Object.entries(baseStyles) as ObjectEntries<ComponentStyleConfig['base']>;
+    return Object.fromEntries(
+      entries.map(([styleKey, styleValue]) => {
         const baseStyleValue = themeKeys?.[styleKey]
           ? themeStyleLookup('base', themeKeys[styleKey]) ?? styleValue
           : styleValue;
         return [styleKey, baseStyleValue];
       })
     );
+  };
 
-  const generateSolidStylesFromLookupObject = (baseStyleConfig, lookupObject: LookupObject, themeKeys) => {
+  const generateSolidStylesFromLookupObject = (
+    baseStyleConfig: ComponentStyleConfig['base'],
+    toneModes: ComponentStyleConfig['toneModes'],
+    themeKeys: ComponentStyleConfig['themeKeys']
+  ): StyleObject => {
     const baseStyles = makeBaseStyles(baseStyleConfig, themeKeys);
 
-    const styleObject = makeToneModeStyles(baseStyles, lookupObject, themeKeys);
+    const styleObject = makeToneModeStyles(baseStyles, toneModes, themeKeys);
 
     const updatedStyleObject = addMissingToneModes(styleObject); // mutates incoming object, doesn't create a new one
 
