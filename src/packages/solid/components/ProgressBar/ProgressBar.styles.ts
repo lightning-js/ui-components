@@ -17,8 +17,9 @@
 
 import { type NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Color, Animatable, Tone } from 'types';
-import { makeComponentStyles, type LookupObject } from '../../utils/index.js';
+import type { Tone } from 'types';
+import { makeComponentStyles } from '../../utils/index.js';
+import type { ComponentStyleConfig } from '../../types/types.js';
 
 export interface ProgressBarStyle {
   tone: Tone;
@@ -27,15 +28,15 @@ export interface ProgressBarStyle {
 }
 
 export type ProgressBarStyleProperties = {
-  height: number;
-  color: Animatable<Color>;
-  borderRadius: number;
+  height: NodeStyles['height'];
+  color: NodeStyles['color'];
+  borderRadius: NodeStyles['borderRadius'];
 };
 
 const { ProgressBar: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } =
   theme?.componentConfig;
 
-const container = {
+const container: ComponentStyleConfig<ProgressBarStyleProperties> = {
   themeKeys: {
     color: 'barColor',
     borderRadius: 'borderRadius'
@@ -53,7 +54,7 @@ const container = {
   themeStyles
 };
 
-const progress = {
+const progress: ComponentStyleConfig<ProgressBarStyleProperties> = {
   themeKeys: {
     color: 'progressColor',
     borderRadius: 'borderRadius'
