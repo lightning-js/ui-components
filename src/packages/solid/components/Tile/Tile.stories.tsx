@@ -140,7 +140,7 @@ export const MetadataStandard: Story = {
   }
 };
 
-export const Version3: Story = {
+export const TileBadgeLabelSwitch: Story = {
   render: args => {
     return (
       <Tile
@@ -177,7 +177,7 @@ export const Version3: Story = {
   }
 };
 
-export const Version4: Story = {
+export const TileLogoCheckBoxTop: Story = {
   render: args => {
     return (
       <Tile
@@ -220,7 +220,7 @@ export const Version4: Story = {
   }
 };
 
-export const Version5: Story = {
+export const TileProgressBarTop: Story = {
   render: args => {
     return (
       <Tile
