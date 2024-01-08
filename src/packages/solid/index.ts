@@ -20,3 +20,4 @@ export { default as ProgressBar, progressBarStyles } from './components/Progress
 export { default as Icon, iconStyles } from './components/Icon';
 export { default as Button, buttonStyles } from './components/Button';
 export { default as Column, columnStyles } from './components/Column';
+export { default as Row, rowStyles } from './components/Row';

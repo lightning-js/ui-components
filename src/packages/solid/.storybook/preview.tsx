@@ -26,9 +26,15 @@ const RenderOptions = {
   threadXCoreWorkerUrl: undefined,
   rootId: 'storybook-root' as any,
   appWidth: 800,
-  appHeight: 600,
-  deviceLogicalPixelRatio: 1,
-  devicePhysicalPixelRatio: 1,
+  appHeight: 600
+  // deviceLogicalPixelRatio: 1
+};
+
+// global args
+export const argTypes = {
+  width: {
+    description: 'the width of the component'
+  }
 };
 
 const preview = {
