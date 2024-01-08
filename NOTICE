@@ -15,3 +15,5 @@ files in the notoSans directory.
 The src/shared/public/fonts/ubuntu directory within this component contains fonts which are licensed under the Ubuntu Font Licence. The ubuntu
 directory contains its own license file, called LICENSE, which describes the licensing of the
 files in the ubuntu directory.
+
+The src/packages/solid/types/object-methods.d.ts file within this component contains code which is licensed under the MIT license. The file contains a header describing the license of the contents of the file
