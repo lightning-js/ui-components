@@ -6,6 +6,8 @@ import Badge from '../Badge/Badge';
 import { View } from '@lightningjs/solid';
 import Label from './Label';
 import Metadata from '../Metadata/Metadata';
+import ProgressBar from '../ProgressBar/ProgressBar';
+import Checkbox from '../Checkbox/Checkbox';
 
 type Story = StoryObj<typeof Tile>;
 const lorum =
@@ -55,13 +57,13 @@ const meta: Meta<typeof Tile> = {
   }
 };
 
-export const Basic: Story = {
+export const MetadataInset: Story = {
   render: args => {
     return (
       <Tile
         {...args}
         topLeft={<Badge title="HD" />}
-        topRight={<Label width={75} title="Label" />}
+        topRight={<Label width={75} title="Label" mountX={0.5} />}
         inset={
           <>
             <View
@@ -107,7 +109,7 @@ export const MetadataStandard: Story = {
       <Tile
         {...args}
         topLeft={<Badge title="HD" />}
-        topRight={<Label width={75} title="Label" />}
+        topRight={<Label width={75} title="Label" mountX={0.5} />}
         inset={
           <View
             src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
@@ -115,7 +117,7 @@ export const MetadataStandard: Story = {
             height={theme.spacer.xxl + theme.spacer.md}
           />
         }
-        bottom={<Metadata debug title="Title" description={lorum} maxLines={1} />}
+        bottom={<Metadata title="Title" description={lorum} maxLines={1} />}
       />
     );
   },
@@ -134,6 +136,128 @@ export const MetadataStandard: Story = {
     },
     progressBar: {
       progress: 0.5
+    }
+  }
+};
+
+export const Version3: Story = {
+  render: args => {
+    return (
+      <Tile
+        {...args}
+        topLeft={<Label width={75} title="Label" />}
+        topRight={<Badge title="HD" />}
+        inset={
+          <View
+            src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
+            width={theme.spacer.lg * 5}
+            height={theme.spacer.xxl + theme.spacer.md}
+          />
+        }
+        bottom={<Metadata title="Title" description={lorum} maxLines={1} />}
+      />
+    );
+  },
+  args: {
+    states: 'focus',
+    width: 480,
+    height: 270,
+    artwork: {
+      src: 'https://image.tmdb.org/t/p/w500/zHdQ6yaqDf3OQO5uhr0auAgwK6O.jpg'
+    },
+    persistentMetadata: true,
+    metadata: {
+      title: 'Title',
+      description: lorum,
+      maxLines: 1
+    },
+    progressBar: {
+      progress: 0.5
+    }
+  }
+};
+
+export const Version4: Story = {
+  render: args => {
+    return (
+      <Tile
+        {...args}
+        topLeft={
+          <View
+            src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
+            width={theme.spacer.lg * 5}
+            height={theme.spacer.xxl + theme.spacer.md}
+          />
+        }
+        topRight={<Checkbox />}
+        inset={<Metadata title="Title" description={lorum} maxLines={1} />}
+      />
+    );
+  },
+  args: {
+    states: 'focus',
+    width: 480,
+    height: 270,
+    artwork: {
+      src: 'https://image.tmdb.org/t/p/w500/zHdQ6yaqDf3OQO5uhr0auAgwK6O.jpg',
+      effects: {
+        linearGradient: {
+          angle: 3.14,
+          stops: [0, 0.5],
+          colors: [getHexColor(...(theme.color.black as [string, number])), 0x00000000]
+        }
+      }
+    },
+    persistentMetadata: true,
+    metadata: {
+      title: 'Title',
+      description: lorum,
+      maxLines: 1
+    },
+    progressBar: {
+      progress: 0.5
+    }
+  }
+};
+
+export const Version5: Story = {
+  render: args => {
+    return (
+      <Tile
+        {...args}
+        topLeft={<ProgressBar progress={0.5} width={380} />}
+        inset={
+          <>
+            <Metadata description={lorum} maxLines={1} mountY={0.5}/>
+            <View
+              src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
+              width={theme.spacer.lg * 5}
+              height={theme.spacer.xxl + theme.spacer.md}
+            />
+          </>
+        }
+      />
+    );
+  },
+  args: {
+    states: 'focus',
+    width: 480,
+    height: 270,
+    artwork: {
+      src: 'https://image.tmdb.org/t/p/w500/zHdQ6yaqDf3OQO5uhr0auAgwK6O.jpg',
+      effects: {
+        linearGradient: {
+          angle: 3.14,
+          stops: [0, 0.5],
+          colors: [getHexColor(...(theme.color.black as [string, number])), 0x00000000]
+        }
+      }
+    },
+    persistentMetadata: true,
+    metadata: {
+      title: 'Title',
+      description: lorum,
+      maxLines: 1
     }
   }
 };

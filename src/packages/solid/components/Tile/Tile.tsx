@@ -66,7 +66,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
           forwardStates
           x={(props.width || styles.Container.width) - styles.Container.padding[0]}
           y={styles.Container.padding[1]}
-          mountX={2}
+          mountX={1}
         >
           {props.topRight}
         </View>
