@@ -65,7 +65,7 @@ export function makeComponentStyles({
     toneModeStyle: ComponentStyleConfig['toneModes'],
     themeKeys: ComponentStyleConfig['themeKeys']
   ) => {
-    const entries = Object.entries(toneModeStyle) as ObjectEntries<ComponentStyleConfig['toneModes']>;
+    const entries = Object.entries(toneModeStyle) as [ComponentStyleConfig['toneModes'], unknown][];
     return Object.fromEntries(
       entries.map(([solidStyleKey, solidStyleValue]) => [
         solidStyleKey,
@@ -87,7 +87,8 @@ export function makeComponentStyles({
     if (!toneModes) {
       return baseStyles;
     }
-    const entries = Object.entries(toneModes) as ObjectEntries<ComponentStyleConfig['toneModes']>;
+    // const entries = Object.entries(toneModes) as ObjectEntries<ComponentStyleConfig['toneModes']>;
+    const entries = Object.entries(toneModes) as [keyof ComponentStyleConfig['toneModes'], unknown][];
     return {
       ...baseStyles,
       ...Object.fromEntries(
@@ -109,7 +110,8 @@ export function makeComponentStyles({
     baseStyles: ComponentStyleConfig['base'],
     themeKeys: ComponentStyleConfig['themeKeys']
   ): StyleObject => {
-    const entries = Object.entries(baseStyles) as ObjectEntries<ComponentStyleConfig['base']>;
+    // const entries = Object.entries(baseStyles) as ObjectEntries<ComponentStyleConfig['base']>;
+    const entries = Object.entries(baseStyles) as [keyof ComponentStyleConfig['base'], unknown][];
     return Object.fromEntries(
       entries.map(([styleKey, styleValue]) => {
         const baseStyleValue = themeKeys?.[styleKey]
