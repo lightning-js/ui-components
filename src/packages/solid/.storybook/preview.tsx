@@ -24,7 +24,6 @@ import { useFocusManager } from '@lightningjs/solid-primitives';
 Config.stateMapperHook = (node, states) => {
   const tone = node.tone || '';
   const nextStates = states.map(state => state + tone);
-  console.log('STATEMAPPER', nextStates);
   return nextStates;
 };
 
@@ -51,14 +50,16 @@ const preview = {
   },
   decorators: [
     Story => {
-      useFocusManager();
       const solidRoot = document.createElement('div');
       RenderOptions.rootId = solidRoot;
-      render(() => (
-        <Canvas options={RenderOptions}>
-          <Story />
-        </Canvas>
-      ));
+      render(() => {
+        useFocusManager();
+        return (
+          <Canvas options={RenderOptions}>
+            <Story />
+          </Canvas>
+        );
+      });
       return solidRoot;
     }
   ]
