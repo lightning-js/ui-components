@@ -27,7 +27,6 @@ export function makeComponentStyles({
   const themeStyleLookup = (toneModeName, themeKey) => themeStyles?.[toneModeName]?.[themeKey];
 
   const addMissingToneModes = styleObject => {
-    // need to cast Object.keys, otherwise it has type `string[]`
     const toneModeKeyArray = Object.keys(toneModeFallbackMap);
 
     /* find which toneModes are missing from the final object */
