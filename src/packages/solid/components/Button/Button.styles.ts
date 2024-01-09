@@ -17,15 +17,14 @@
 
 import type { TextStyles, NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { WithTonesModes, Tone } from 'types';
-import type { ComponentStyleConfig } from '../../types/types.js';
+import type { Tone } from 'types';
+import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
 export interface ButtonStyle {
   tone: Tone;
-  Container: (NodeStyles & { padding: number[] }) &
-    WithTonesModes<NodeStyles & { padding: [number, number] }>;
-  Text: TextStyles & WithTonesModes<TextStyles>;
+  Container: NodeStyleSet<{ padding: number[] }>;
+  Text: TextStyleSet;
 }
 
 type ButtonStyleProperties = {
@@ -114,8 +113,8 @@ const text: ButtonConfig = {
   themeStyles
 };
 
-const Container = makeComponentStyles(container);
-const Text = makeComponentStyles(text);
+const Container = makeComponentStyles<ButtonStyle['Container']>(container);
+const Text = makeComponentStyles<ButtonStyle['Text']>(text);
 
 const styles: ButtonStyle = {
   tone: tone || 'neutral',
