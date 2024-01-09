@@ -20,7 +20,7 @@ import { View, Text, type NodeProps, type NodeStyles, type TextStyles } from '@l
 import type { Tone } from 'types';
 import styles from './Button.styles.js';
 
-export interface ButtonProps extends NodeProps {
+interface ButtonProps extends NodeProps {
   children: string | string[];
   tone?: Tone;
   style?: {
@@ -30,7 +30,6 @@ export interface ButtonProps extends NodeProps {
 }
 
 const Button: Component<ButtonProps> = props => {
-  console.log('styles', styles);
   return (
     <View
       {...props}
@@ -56,7 +55,7 @@ const Button: Component<ButtonProps> = props => {
   );
 };
 
-export const ButtonContainer: Component<ButtonProps> = props => {
+const ButtonContainer: Component<ButtonProps> = props => {
   return (
     <View
       {...props}
@@ -68,6 +67,4 @@ export const ButtonContainer: Component<ButtonProps> = props => {
   );
 };
 
-export default Button;
-export const ButtonStyles = styles;
-export type ButtonProps = NodeProps;
+export { Button as default, ButtonContainer, styles as ButtonStyles, type ButtonProps };

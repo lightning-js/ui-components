@@ -28,8 +28,6 @@ export interface ButtonStyle {
   Text: TextStyles & WithTonesModes<TextStyles>;
 }
 
-type ButtonConfig = ComponentStyleConfig<ButtonStyleProperties>;
-
 type ButtonStyleProperties = {
   backgroundColor?: NodeStyles['color'];
   borderRadius?: NodeStyles['borderRadius'];
@@ -38,6 +36,8 @@ type ButtonStyleProperties = {
   textAlign?: TextStyles['textAlign'];
   textColor?: TextStyles['color'];
 };
+
+type ButtonConfig = ComponentStyleConfig<ButtonStyleProperties>;
 
 const { Button: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
 
