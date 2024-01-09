@@ -19,24 +19,27 @@ import { type NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
 import type { Tone } from 'types';
 import { makeComponentStyles } from '../../utils/index.js';
-import type { ComponentStyleConfig } from '../../types/types.js';
+import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 
 export interface ProgressBarStyle {
   tone: Tone;
-  Container: NodeStyles;
-  ProgressBar: NodeStyles;
+  Container: NodeStyleSet;
+  ProgressBar: NodeStyleSet;
 }
 
-export type ProgressBarStyleProperties = {
-  height: NodeStyles['height'];
-  color: NodeStyles['color'];
-  borderRadius: NodeStyles['borderRadius'];
+type ProgressBarStyleProperties = {
+  height?: NodeStyles['height'];
+  progressColor?: NodeStyles['color'];
+  barColor?: NodeStyles['color'];
+  borderRadius?: NodeStyles['borderRadius'];
 };
+
+type ProgressBarConfig = ComponentStyleConfig<ProgressBarStyleProperties>;
 
 const { ProgressBar: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } =
   theme?.componentConfig;
 
-const container: ComponentStyleConfig<ProgressBarStyleProperties> = {
+const container: ProgressBarConfig = {
   themeKeys: {
     color: 'barColor',
     borderRadius: 'borderRadius'
@@ -54,7 +57,7 @@ const container: ComponentStyleConfig<ProgressBarStyleProperties> = {
   themeStyles
 };
 
-const progress: ComponentStyleConfig<ProgressBarStyleProperties> = {
+const progress: ProgressBarConfig = {
   themeKeys: {
     color: 'progressColor',
     borderRadius: 'borderRadius'
@@ -74,8 +77,8 @@ const progress: ComponentStyleConfig<ProgressBarStyleProperties> = {
   themeStyles
 };
 
-const Container = makeComponentStyles(container);
-const ProgressBar = makeComponentStyles(progress);
+const Container = makeComponentStyles<ProgressBarStyle['Container']>(container);
+const ProgressBar = makeComponentStyles<ProgressBarStyle['ProgressBar']>(progress);
 
 const styles: ProgressBarStyle = {
   tone: tone || 'neutral',
