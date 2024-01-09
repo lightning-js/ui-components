@@ -39,20 +39,20 @@ const styles: IconStyle = {
   container: {
     width: 100,
     height: 100,
-    color: getHexColor(...(theme.color.fillNeutral as [string, number])),
+    color: theme.color.fillNeutral,
     focus: {
-      color: getHexColor(...(theme.color.fillInverse as [string, number])),
+      color: theme.color.fillInverse,
       tone: {
         inverse: {
-          color: getHexColor(...(theme.color.fillNeutral as [string, number]))
+          color: theme.color.fillNeutral
         },
         brand: {
-          color: getHexColor(...(theme.color.fillBrand as [string, number]))
+          color: theme.color.fillBrand
         }
       }
     },
     disabled: {
-      color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number]))
+      color: theme.color.fillNeutralDisabled
     }
     //fixed: true
   }
