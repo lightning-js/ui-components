@@ -8,7 +8,7 @@
     "jsxImportSource": "solid-js",
     "types": ["solid-js"],
     "paths": {
-      "theme": ["../../shared/theme.ts"],
+      "theme": ["../../shared/theme.js"],
       "types": ["../../shared/types/solid.d.ts"],
       "utils": ["../../shared/utils/index.ts"]
     }
