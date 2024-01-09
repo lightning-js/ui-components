@@ -19,10 +19,11 @@ import { render, Canvas, Config } from '@lightningjs/solid';
 // @ts-expect-error we don't have declarations for this module
 import coreExtensionModuleUrl from './AppCoreExtensions.js?importChunkUrl'; // TODO import aliasing
 import { themes } from '@storybook/theming';
+import { useFocusManager } from '@lightningjs/solid-primitives';
 
 Config.stateMapperHook = (node, states) => {
   const tone = node.tone || '';
-  const nextStates = states.map((state) => state + tone);
+  const nextStates = states.map(state => state + tone);
   console.log('STATEMAPPER', nextStates);
   return nextStates;
 };
@@ -32,15 +33,9 @@ const RenderOptions = {
   threadXCoreWorkerUrl: undefined,
   rootId: 'storybook-root' as any,
   appWidth: 800,
-  appHeight: 600
-  // deviceLogicalPixelRatio: 1
-};
-
-// global args
-export const argTypes = {
-  width: {
-    description: 'the width of the component'
-  }
+  appHeight: 600,
+  deviceLogicalPixelRatio: 1,
+  devicePhysicalPixelRatio: 1
 };
 
 const preview = {
@@ -55,7 +50,7 @@ const preview = {
     }
   },
   decorators: [
-    (Story) => {
+    Story => {
       useFocusManager();
       const solidRoot = document.createElement('div');
       RenderOptions.rootId = solidRoot;
