@@ -37,3 +37,4 @@ export const ButtonContainer: Component<NodeProps> = props => {
 
 export default Button;
 export const ButtonStyles = styles;
+export type ButtonProps = NodeProps;

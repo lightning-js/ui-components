@@ -15,8 +15,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import SolidColumn from './Column';
-import Button from '../Button';
+import SolidColumn, { type ColumnProps } from './Column.jsx';
+import Button from '../Button/Button.jsx';
+import type { JSX } from 'solid-js/jsx-runtime';
 
 const meta = {
   title: 'Components/Column',
@@ -51,11 +52,11 @@ const meta = {
 export default meta;
 
 // create an array of buttons to use in column
-const createItems = length => {
+const createItems = (length: number) => {
   return Array.from({ length }).map((_, i) => {
     const button = (
       <Button width={300} height={100}>
-        Button {i + 1}
+        Button {`${i + 1}`}
       </Button>
     );
     return button;
@@ -65,7 +66,7 @@ const createItems = length => {
 const buttons = () => <>{createItems(7)}</>;
 
 export const AlwaysScroll = {
-  render: args => {
+  render: (args: JSX.IntrinsicAttributes & ColumnProps) => {
     return (
       <SolidColumn autofocus {...args}>
         {buttons}

@@ -14,8 +14,9 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import Checkbox from './Checkbox.jsx';
+import Checkbox, { type CheckboxProps } from './Checkbox.jsx';
 import Icon from '../Icon/Icon.jsx';
+import type { JSX } from 'solid-js/jsx-runtime';
 
 const check = '/assets/images/check-icon.png';
 
@@ -42,7 +43,7 @@ export const Basic = {
 };
 
 export const WithIcon = {
-  render: args => (
+  render: (args: JSX.IntrinsicAttributes & CheckboxProps) => (
     <Checkbox {...args}>
       <Icon width={18} height={14} src={check} />
     </Checkbox>
