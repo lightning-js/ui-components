@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from 'storybook-solidjs';
 import Tile from './Tile.jsx';
 import theme from 'theme';
 import { getHexColor } from 'utils';
-import Badge from '../Badge/Badge.jsx';
+import Badge from '../Badge/Badge.js';
 import { View } from '@lightningjs/solid';
-import Label from './Label.jsx';
-import Metadata from '../Metadata/Metadata.jsx';
-import ProgressBar from '../ProgressBar/ProgressBar.jsx';
-import Checkbox from '../Checkbox/Checkbox.jsx';
+import Label from './Label.js';
+import Metadata from '../Metadata/Metadata.js';
+import ProgressBar from '../ProgressBar/ProgressBar.js';
+import Checkbox from '../Checkbox/Checkbox.js';
 
 type Story = StoryObj<typeof Tile>;
 const lorum =

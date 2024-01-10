@@ -17,8 +17,8 @@
 import type { Component } from 'solid-js';
 import { Text, Show } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
-import Icon, { type IconProps } from '../Icon/Icon.jsx';
-import styles from './Badge.styles.jsx';
+import Icon, { type IconProps } from '../Icon/Icon.js';
+import styles from './Badge.styles.js';
 withPadding; // Preserve the import.
 
 // props in LUI: title, icon, iconAlign, iconWidth, iconHeight

@@ -17,8 +17,8 @@
 import type { Component, Accessor } from 'solid-js';
 import { View, Text, Show, For } from '@lightningjs/solid';
 import type { IntrinsicNodeProps, ElementNode } from '@lightningjs/solid';
-import Badge, { type BadgeProps } from '../Badge/Badge.jsx';
-import Rating, { type RatingProps } from './Rating.jsx';
+import Badge, { type BadgeProps } from '../Badge/Badge.js';
+import Rating, { type RatingProps } from './Rating.js';
 import styles from './Details.styles.js';
 
 export interface DetailsProps extends IntrinsicNodeProps {
