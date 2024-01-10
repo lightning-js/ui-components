@@ -13,6 +13,7 @@
   "scripts": {
     "start": "pnpm run storybook",
     "build": "pnpm run build-storybook",
+    "build-lib": "vite build",
     "build-storybook": "storybook build",
     "storybook": "storybook dev -p 6006",
     "test": "vitest"
