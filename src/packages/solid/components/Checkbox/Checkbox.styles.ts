@@ -15,7 +15,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import theme from 'theme';
-import { getHexColor } from 'utils';
 
 // TODO: LUI styles remove before merge
 // focus and unfocus no style changes

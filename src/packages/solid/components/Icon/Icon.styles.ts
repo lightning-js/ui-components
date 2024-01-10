@@ -16,7 +16,6 @@
  */
 
 import theme from 'theme';
-import { getHexColor } from 'utils';
 
 type States = 'active' | 'focus' | 'disabled';
 /**

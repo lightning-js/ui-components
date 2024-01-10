@@ -16,7 +16,6 @@
  */
 
 import theme from 'theme';
-import { getHexColor } from 'utils';
 import { type NodeStyles } from '@lightningjs/solid';
 
 const styles = {
@@ -24,11 +23,11 @@ const styles = {
     display: 'flex',
     justifyContent: 'spaceEvenly',
     height: theme.typography.tag1.lineHeight,
-    color: getHexColor(...(theme.color.fillBrand as [string, number])),
+    color: theme.color.fillBrand,
     borderRadius: theme.radius.sm,
     border: {
       width: theme.stroke.sm,
-      color: getHexColor(...(theme.color.strokeInverse as [string, number]))
+      color: theme.color.strokeInverse
     }
   } satisfies NodeStyles,
   padding: [
