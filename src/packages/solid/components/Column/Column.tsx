@@ -1,7 +1,7 @@
 import { type Component } from 'solid-js';
 import { type IntrinsicNodeProps } from '@lightningjs/solid';
 import { Column as SolidColumn } from '@lightningjs/solid-primitives';
-import styles from './Column.styles.js';
+import styles from './Column.styles.jsx';
 import { withScrolling } from '../../withScrolling.js';
 
 export interface ColumnProps extends IntrinsicNodeProps {

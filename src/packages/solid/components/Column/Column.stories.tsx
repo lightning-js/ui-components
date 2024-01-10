@@ -67,11 +67,7 @@ const buttons = () => <>{createItems(7)}</>;
 
 export const AlwaysScroll = {
   render: (args: JSX.IntrinsicAttributes & ColumnProps) => {
-    return (
-      <SolidColumn autofocus {...args}>
-        {buttons}
-      </SolidColumn>
-    );
+    return <SolidColumn autofocus {...args} />;
   },
   args: {
     children: buttons,

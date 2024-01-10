@@ -17,10 +17,8 @@
 import type { Component, Accessor } from 'solid-js';
 import { View, Text, Show, For } from '@lightningjs/solid';
 import type { IntrinsicNodeProps, ElementNode } from '@lightningjs/solid';
-import Badge from '../Badge/Badge.jsx';
-import type { BadgeProps } from '../Badge/Badge.jsx';
-import Rating from './Rating.jsx';
-import type { RatingProps } from './Rating.jsx';
+import Badge, { type BadgeProps } from '../Badge/Badge.jsx';
+import Rating, { type RatingProps } from './Rating.jsx';
 import styles from './Details.styles.js';
 
 export interface DetailsProps extends IntrinsicNodeProps {
@@ -41,7 +39,7 @@ export interface DetailsProps extends IntrinsicNodeProps {
 const Details: Component<DetailsProps> = (props: DetailsProps) => {
   return (
     <View
-      style={styles.container}
+      style={styles.Container}
       onBeforeLayout={(node: ElementNode, dimensions) => {
         if (dimensions?.height) {
           node.parent.height = dimensions.height;
