@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import ProgressBar from './ProgressBar.jsx';
+import ProgressBar from './ProgressBar.js';
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import theme from 'theme';
 import { hexColor } from '@lightningjs/solid';

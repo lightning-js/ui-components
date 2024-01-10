@@ -1,3 +1,2 @@
-
-export { default as default } from './Row';
-export { default as rowStyles } from './Row.styles';
+export { default as default } from './Row.jsx';
+export { default as rowStyles } from './Row.styles.js';

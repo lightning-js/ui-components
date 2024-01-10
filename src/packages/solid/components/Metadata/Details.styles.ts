@@ -18,7 +18,7 @@
 import theme from 'theme';
 
 const styles = {
-  container: {
+  Container: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center'
