@@ -43,7 +43,7 @@ export const Basic = {
 };
 
 export const WithIcon = {
-  render: (args: JSX.IntrinsicAttributes & CheckboxProps) => (
+  render: args => (
     <Checkbox {...args}>
       <Icon width={18} height={14} src={check} />
     </Checkbox>
