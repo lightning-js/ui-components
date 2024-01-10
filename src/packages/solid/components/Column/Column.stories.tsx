@@ -15,8 +15,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import SolidColumn, { type ColumnProps } from './Column.js';
-import Button from '../Button/Button.js';
+import SolidColumn, { type ColumnProps } from './Column.jsx';
+import Button from '../Button/Button.jsx';
 import type { JSX } from 'solid-js/jsx-runtime';
 
 const meta = {

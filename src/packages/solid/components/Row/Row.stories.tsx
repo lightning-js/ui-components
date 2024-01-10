@@ -1,5 +1,5 @@
-import SolidRow from './Row';
-import Button from '../Button';
+import SolidRow from './Row.jsx';
+import Button from '../Button/Button.jsx';
 
 const meta = {
   title: 'Components/Row',
