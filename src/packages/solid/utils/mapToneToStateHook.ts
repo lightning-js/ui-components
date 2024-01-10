@@ -11,6 +11,5 @@ export default (node: ElementNode, states: { string: boolean }[]) => {
         }
       })
     : states;
-  console.log(nextState);
   return nextState;
 };
