@@ -25,8 +25,22 @@ const meta: Meta<typeof Key> = {
 export const Basic: Story = {
   render: args => {
     return (
-      <Key {...args}>
+      <Key {...args} {...keyStyles.Container}>
         <Text style={ButtonStyles.Text}>A</Text>
+      </Key>
+    );
+  },
+  args: {
+    states: 'focus',
+    keySpacing: 2
+  }
+};
+
+export const Space: Story = {
+  render: args => {
+    return (
+      <Key {...args} {...keyStyles.Container} size={'lg'}>
+        <Text style={ButtonStyles.Text}>Space</Text>
       </Key>
     );
   },
