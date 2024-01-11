@@ -25,7 +25,7 @@ export type KeySizes = {
   xxl: number;
 };
 
-type keySize = keyof KeySizes;
+export type KeySize = keyof KeySizes;
 
 export const styles = {
   Container: {

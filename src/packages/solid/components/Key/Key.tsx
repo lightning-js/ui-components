@@ -18,7 +18,7 @@
 import type { Component } from 'solid-js';
 import { type IntrinsicNodeProps } from '@lightningjs/solid';
 import { ButtonContainer } from '../Button/Button.jsx';
-import styles from './Key.styles.js';
+import styles, { type KeySize } from './Key.styles.js';
 
 export interface KeyProps extends IntrinsicNodeProps {
   /**
@@ -28,7 +28,7 @@ export interface KeyProps extends IntrinsicNodeProps {
   /**
    * width of the Key
    */
-  size?: string;
+  size?: KeySize;
   /**
    * path to image or inline SVG XML
    */
