@@ -183,8 +183,8 @@ export default {
   layout: {
     columnCount: 10,
     focusScale: 1.2,
-    gutterX: { xs: 20, sm: 40, md: 60, lg: 80, xl: 100 },
-    gutterY: { xs: 20, sm: 40, md: 60, lg: 80, xl: 100 },
+    gutterX: 20,
+    gutterY: 20,
     marginX: 150,
     marginY: 150,
     safe: 50,
@@ -273,7 +273,6 @@ export default {
       fontFamily: 'Arial',
       fontSize: 25,
       fontStyle: '500',
-      letterSpacing: -0.2,
       lineHeight: 32,
       verticalAlign: 'middle',
       textBaseline: 'bottom'
@@ -290,7 +289,6 @@ export default {
       fontFamily: 'Arial',
       fontSize: 20,
       fontStyle: '500',
-      letterSpacing: 1,
       lineHeight: 32,
       verticalAlign: 'middle',
       textBaseline: 'bottom'
@@ -307,8 +305,16 @@ export default {
       fontFamily: 'Arial',
       fontSize: 20,
       fontStyle: '500',
-      letterSpacing: 0,
       lineHeight: 24,
+      verticalAlign: 'middle',
+      textBaseline: 'bottom'
+    },
+    footnote1: {
+      fontFamily: 'Arial',
+      fontSize: 22,
+      fontStyle: '300',
+      lineHeight: 30,
+      verticalAlign: 'middle',
       textBaseline: 'bottom'
     }
   },
