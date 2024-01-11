@@ -36,6 +36,7 @@ type ProgressBarStyleProperties = {
 
 type ProgressBarConfig = ComponentStyleConfig<ProgressBarStyleProperties>;
 
+/* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { ProgressBar: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } =
   theme?.componentConfig;
 

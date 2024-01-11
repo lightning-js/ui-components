@@ -38,6 +38,7 @@ type ButtonStyleProperties = {
 
 type ButtonConfig = ComponentStyleConfig<ButtonStyleProperties>;
 
+/* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Button: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
 
 const container: ButtonConfig = {
@@ -71,7 +72,7 @@ const container: ButtonConfig = {
       color: theme.color.interactiveBrand
     },
     'brand-focus': {
-      color: theme.color.green
+      color: theme.color.fillNeutral
     }
   },
   themeStyles
