@@ -17,13 +17,15 @@
 
 import theme from 'theme';
 
-export type Size = {
+export type KeySizes = {
   sm: number;
   md: number;
   lg: number;
   xl: number;
   xxl: number;
 };
+
+type keySize = keyof KeySizes;
 
 export const styles = {
   Container: {
