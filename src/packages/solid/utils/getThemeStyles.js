@@ -1,3 +1,23 @@
+/**
+ * This method accepts an element style config and returns a fully formed style object,
+ * which can be directly assigned to a solid element.
+ *
+ * the element style config is make up of the following properties:
+ * - `themeKeys` - key/value pairs defining a solid style property,
+ *    and the componentConfig property it should receive.
+ * - `base` - the default styles of a component
+ * - `toneModes` - any tone/mode/toneMode styles that a component has
+ * - `themeStyles` - the componentConfig provided by the theme
+ * - `toneModeFallbackMap`(optional) - an override to the defaultToneModeFallbackMap found below
+ *
+ * each method below has a comment explaining it, this is a rough overview of the steps this method goes through:
+ *
+ * 1. generate the base component styles, merging the style file values and themeStyle values(priority to the themeStyle values)
+ * 2. generate the tones and modes included in the toneModes object, again with priority to the themeStyles
+ * 3. generate styles for any tones and modes not included in the toneModes object using the fallback map
+ * 4. return the object to the style file
+ */
+
 // TODO types, sub components
 
 // required style keys
