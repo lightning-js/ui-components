@@ -26,13 +26,6 @@ export type AnimationSettings = { duration?: number; delay?: number; timing?: st
 export type TextAlign = 'left' | 'center' | 'right';
 export type ContentAlign = 'center' | 'flexStart' | 'flexEnd' | 'spaceBetween' | 'spaceEvenly';
 export type States = 'active' | 'focus' | 'disabled';
-export type Size = {
-  sm: number;
-  md: number;
-  lg: number;
-  xl: number;
-  xxl: number;
-};
 
 /**
  * allows the property to either be the supplied type,
