@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import Key from './Key.jsx';
-import { View } from '@lightningjs/solid';
+import { ButtonStyles } from '../Button/Button.jsx';
+import { Text } from '@lightningjs/solid';
+import keyStyles from './Key.styles.js';
 
 type Story = StoryObj<typeof Key>;
 
@@ -22,12 +24,15 @@ const meta: Meta<typeof Key> = {
 
 export const Basic: Story = {
   render: args => {
-    return <Key {...args} />;
+    return (
+      <Key {...args}>
+        <Text style={ButtonStyles.Text}>A</Text>
+      </Key>
+    );
   },
   args: {
     states: 'focus',
-    width: 480,
-    height: 270
+    keySpacing: 2
   }
 };
 

@@ -1,14 +1,12 @@
 import theme from 'theme';
 
-const styles = {
+export const styles = {
   Container: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
     height: theme.spacer.md * 9,
     minWidth: theme.spacer.md * 7,
     paddingX: theme.spacer.md,
     textStyle: theme.typography.headline2,
+    borderRadius: 10,//theme.radius.sm, // this doesnt work, only takes button
     sizes: {
       sm: 1,
       md: 2,

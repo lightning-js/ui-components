@@ -16,10 +16,9 @@
  */
 
 import type { Component } from 'solid-js';
-import { View, type IntrinsicNodeProps } from '@lightningjs/solid';
-import Button, { ButtonContainer } from '../Button/Button.jsx';
-import Icon from '../Icon/Icon.jsx';
-import styles from './Key.styles.jsx';
+import { type IntrinsicNodeProps } from '@lightningjs/solid';
+import { ButtonContainer } from '../Button/Button.jsx';
+import styles from './Key.styles.js';
 
 export interface KeyProps extends IntrinsicNodeProps {
   /**
@@ -45,10 +44,12 @@ const Key: Component<KeyProps> = props => {
     <ButtonContainer
       {...props}
       style={styles.Container}
-      width={styles.Container.sizes[props.size || 'sm'] * styles.Container.baseWidth * props.keySpacing}
-    >
-      <Icon src={props.src} width={styles.Container.iconWidth} height={styles.Container.iconHeight} />
-    </ButtonContainer>
+      width={
+        styles.Container.sizes[props.size || 'sm'] * styles.Container.baseWidth +
+        props.keySpacing * (styles.Container.sizes[props.size || 'sm'] - 1)
+      }
+      forwardStates
+    />
   );
 };
 
