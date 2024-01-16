@@ -23,7 +23,7 @@ export default defineConfig({
   ...config,
   resolve: {
     alias: {
-      theme: './theme.js',
+      theme: path.resolve(__dirname, '../packages/l3-ui-theme-base/theme.js'),
       utils: path.resolve(__dirname, '../shared/utils/index.ts'),
       '@lightningjs/solid-ui': path.resolve(__dirname, '../packages/solid/index.ts')
     },
