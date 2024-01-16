@@ -17,6 +17,7 @@
 
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
+import typescript from 'rollup-plugin-typescript2';
 import { importChunkUrl } from '@lightningjs/vite-plugin-import-chunk-url';
 import path from 'path';
 
@@ -36,7 +37,8 @@ const config = {
         moduleName: '@lightningjs/solid',
         generate: 'universal'
       }
-    })
+    }),
+    typescript() // https://github.com/ezolenko/rollup-plugin-typescript2?tab=readme-ov-file
   ],
   base: './',
   build: {
@@ -48,7 +50,7 @@ const config = {
     rollupOptions: {
       external: ['theme', '@lightningjs/solid', '@lightningjs/solid-primitives', '@lightningjs/renderer']
     },
-    minify: false,
+    minify: true,
     sourcemap: false,
     outDir: './dist'
   },
