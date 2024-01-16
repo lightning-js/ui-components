@@ -23,19 +23,19 @@ This library contains shared Lightning/Solid components
 
 If you haven't already, follow the steps found [here](https://github.com/lightning-js/solid) to bootstrap your lightningjs/solid app.
 
-1. install this package with your package manager of choice
+1. install this package and the base theme with your package manager of choice
 
 ```sh
-npm i @lightningjs/solid-ui # or pnpm/yarn
+npm i @lightningjs/solid-ui @lightningjs/l3-ui-theme-base # or pnpm/yarn
 ```
 
-2. add your theme as an alias in your vite config
+2. add the theme package as an alias in your vite config
 
 ```js
 // vite.config.js
   resolve: {
     alias: {
-      theme: path.resolve(__dirname, 'path/to/your/theme.js'),
+      theme: '@lightningjs/l3-ui-theme-base',
     }
   },
 ```

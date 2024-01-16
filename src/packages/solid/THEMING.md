@@ -15,6 +15,17 @@ _the app will not run without this configuration_
 in vite for example:
 
 ```js
+// vite.config.js
+  resolve: {
+    alias: {
+      theme: '@lightningjs/l3-ui-theme-base',
+    }
+  },
+```
+
+or if you have your own local theme:
+
+```js
   resolve: {
     alias: {
       theme: path.resolve(__dirname, 'path/to/your/theme.js'),
