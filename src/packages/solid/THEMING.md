@@ -8,7 +8,7 @@ Theming allows a user to provide styles to the components in this UI library. Th
 
 (See the README for the full solid-ui setup)
 
-Themes are loaded at compile time by the app bundler(we recommend [vite](https://vitejs.dev/) which is built on top of [rollup](https://rollupjs.org/)). In your bundler config, you'll need add an import alias.
+Themes are loaded at compile time by the app bundler (we recommend [vite](https://vitejs.dev/) which is built on top of [rollup](https://rollupjs.org/)). In your bundler config, you'll need add an import alias.
 
 _the app will not run without this configuration_
 
@@ -35,7 +35,7 @@ or if you have your own local theme:
 
 ## Component Setup
 
-Each themeable element in the Component will need the properties below. The `style` assignment provides the base component styles, the `tone` gets mapped to states via the `toneStateMapperHook`(more on that below), and the object merge beneath that ensures that any instance-level styles provided override the tone.
+Each themeable element in the Component will need the properties below. The `style` assignment provides the base component styles, the `tone` gets mapped to states via the `toneStateMapperHook` (more on that below), and the object merge beneath that ensures that any instance-level styles provided override the tone.
 
 ```jsx
 <View
@@ -50,7 +50,7 @@ Each themeable element in the Component will need the properties below. The `sty
 
 ### Theme File
 
-Contains values which can be referenced via `theme.property.path` in the style file(more on that below), and component configs which is how we create theme-level component styles.
+Contains values which can be referenced via `theme.property.path` in the style file (more on that below), and component configs which is how we create theme-level component styles.
 
 One config could look something like this:
 
@@ -92,10 +92,10 @@ Each style file contains a config which will get passed to `makeComponentStyles`
 - `base`
   - the default styles of a component
 - `toneModes`
-  - style overrides that'll get applied to a component based on it's states(which will represent tones, modes, and toneModes)
+  - style overrides that'll get applied to a component based on it's states (which will represent tones, modes, and toneModes)
 - `themeStyles`
   - these come in from the theme, the setup looks the same for each component
-- `toneModeFallbackMap`(optional)
+- `toneModeFallbackMap` (optional)
   - defines which mode/tone each tone/mode should fall back to. a default exists, this is only necessary for component-level map overrides
 
 ### Tones and Modes
@@ -104,13 +104,13 @@ Tones, Modes, and ToneModes are defined either in the component style file or th
 
 - tones - overrides to a component's default styles
   - usually an alternate color pallette
-- modes - styles that are applied during the component lifecycle, can be thought of as states(focus, disabled, etc)
+- modes - styles that are applied during the component lifecycle, can be thought of as states (focus, disabled, etc)
 - toneModes - variations on mode styles that are applied when a component with a specific tone receives that mode
   - ie. when a Button with tone "brand" receives the mode "focus", the styles defined in `brand-focus` would be applied
 
 #### Tones and Modes in Solid(toneStateMapperHook)
 
-tones are specific to solid-ui and not part of the lightningjs/solid framework, so we need to add them on. in the app's index(or wherever you're rendering your solid canvas), import the `mapToneToStateHook` method and assign it to the lightningjs/solid config object
+tones are specific to solid-ui and not part of the lightningjs/solid framework, so we need to add them on. in the app's index (or wherever you're rendering your solid canvas), import the `mapToneToStateHook` method and assign it to the lightningjs/solid config object
 
 ```js
 import { render, Canvas, Config } from '@lightningjs/solid';
