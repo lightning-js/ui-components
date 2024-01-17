@@ -15,16 +15,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { type Component, createMemo } from 'solid-js';
+import { For, type Accessor, type Component } from 'solid-js';
 import { type IntrinsicNodeProps } from '@lightningjs/solid';
-import { ButtonContainer } from '../Button/Button.jsx';
-import styles, { type KeyboardFormat } from './KeyBoard.styles.js';
+import styles, { type KeyboardFormat } from './Keyboard.styles.js';
+import KeyboardSingle from './KeyboardSingle.jsx';
 
-export interface KeyProps extends IntrinsicNodeProps {
+export interface KeyboardProps extends IntrinsicNodeProps {
   /**
    * object containing arrays that represent different formats that the keyboard can be presented in. These arrays can contain strings or objects.
    */
-  formats?: KeyboardFormat;
+  formats: KeyboardFormat;
 
   /**
    * center the keyboard within it's set width (must set the w property of Keyboard)
@@ -44,7 +44,7 @@ export interface KeyProps extends IntrinsicNodeProps {
   /**
    * component to display for each key
    */
-  keyComponent?: lng.Component;
+  // keyComponent?: lng.Component;
 
   /**
    * Default format of the keyboard to be shown. Should be a key of `formats`.
@@ -63,9 +63,26 @@ export interface KeyProps extends IntrinsicNodeProps {
 }
 
 // rows created from each array passed in
-const Key: Component<KeyProps> = props => {
+const Keyboard: Component<KeyboardProps> = (props: KeyboardProps) => {
+  // const formatKeybaord = (formats: KeyboardFormat) => {
+  // }
+
+  // const formattedKeyboard = createMemo(() => formatKeyboard(props.formats))
+  // export type KeyboardFormat = Record<string, Array<Array<string | Record<string, unknown>>>>;
+
   return (
+    <For debug each={props.formats.keys}>
+      {/* keyboard is each possibility we can toggle between */}
+      {(keyboardName: string) => (
+        <KeyboardSingle
+          {...props}
+          style={styles.Container}
+          title={keyboardName}
+          format={props.formats[keyboardName]}
+        />
+      )}
+    </For>
   );
 };
 
-export default Key;
+export default Keyboard;

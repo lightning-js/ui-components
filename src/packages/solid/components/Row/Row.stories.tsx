@@ -1,5 +1,7 @@
 import SolidRow from './Row.jsx';
 import Button from '../Button/Button.jsx';
+import SolidColumn from '../Column/Column.jsx';
+import theme from 'theme';
 
 const meta = {
   title: 'Components/Row',
@@ -129,6 +131,24 @@ export const ScrollIndex = {
     wrap: false,
     height: 500,
     width: 800,
+    x: 0
+  }
+};
+
+export const ColumnOfRows = {
+  render: args => {
+    return (
+      <SolidColumn autofocus height={2000} {...args}>
+        <SolidRow height={100} {...args}>{buttons}</SolidRow>
+        <SolidRow height={100} {...args}>{buttons}</SolidRow>
+        <SolidRow height={100} {...args}>{buttons}</SolidRow>
+      </SolidColumn>
+    );
+  },
+  args: {
+    wrap: false,
+    scrollType: 'neverScroll',
+    itemSpacing: theme.spacer.md * 10 + theme.spacer.md,
     x: 0
   }
 };

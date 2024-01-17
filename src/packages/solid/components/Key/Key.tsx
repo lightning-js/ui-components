@@ -21,6 +21,7 @@ import { ButtonContainer } from '../Button/Button.jsx';
 import styles, { type KeySize } from './Key.styles.js';
 
 export interface KeyProps extends IntrinsicNodeProps {
+  title?: string;
   /**
    * url for icon
    */
@@ -36,7 +37,7 @@ export interface KeyProps extends IntrinsicNodeProps {
   /**
    * The horizontal spacing between each key in a Keyboard. This value is factored into the width of the key so that it aligns with with the borders of other keys in a Keyboard.
    */
-  keySpacing: number;
+  keySpacing?: number;
 }
 
 const Key: Component<KeyProps> = props => {
@@ -46,7 +47,7 @@ const Key: Component<KeyProps> = props => {
       style={styles.Container}
       width={
         styles.Container.sizes[props.size || 'sm'] * styles.Container.baseWidth +
-        props.keySpacing * (styles.Container.sizes[props.size || 'sm'] - 1)
+        (props.keySpacing || styles.Container.keySpacing) * (styles.Container.sizes[props.size || 'sm'] - 1)
       }
       forwardStates
     />

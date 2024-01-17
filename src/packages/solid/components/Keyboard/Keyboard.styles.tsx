@@ -16,8 +16,9 @@
  */
 
 import theme from 'theme';
+import { type KeyProps } from '../Key/Key.jsx';
 
-export type KeyboardFormat = Record<string, Array<Array<string | Record<string, unknown>>>>;
+export type KeyboardFormat = Record<string, Array<Array<string | KeyProps>>>;
 
 export const styles = {
   Container: {

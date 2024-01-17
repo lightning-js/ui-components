@@ -16,17 +16,15 @@
  */
 
 import type { Meta, StoryObj } from 'storybook-solidjs';
-import KeyBoard from './KeyBoard.jsx';
-import { Text } from '@lightningjs/solid';
-import KeyBoardStyles from './KeyBoard.styles.js';
-import Key from '../Key/Key.jsx';
+import Keyboard from './Keyboard.jsx';
+import KeyboardSingle from './KeyboardSingle.jsx';
 
-type Story = StoryObj<typeof KeyBoard>;
+type Story = StoryObj<typeof Keyboard>;
 
-const meta: Meta<typeof KeyBoard> = {
+const meta: Meta<typeof Keyboard> = {
   title: 'Components/KeyBoard',
   tags: ['autodocs'],
-  component: KeyBoard,
+  component: Keyboard,
   argTypes: {
     states: {
       control: { type: 'radio' },
@@ -39,119 +37,95 @@ const meta: Meta<typeof KeyBoard> = {
   }
 };
 
-/**
- * 
- * each direct child represents a keyboard the user can toggle between. Within each child (separate keyboard options)
- * are groups of children. Each group represents the keys are are going to be in one row.
- * Keys are passed in, rows and columns are generated in the KeyBoard
- * 
- * Pros:
- * - user can pass in a specific key type that would be used ??? (is this possible? possible in L2 lui5)
- * - user can easily adjust specific key sizes
- * 
- * Cons:
- * - unsure if we can have a key to be able to toggle between the children (uppercase vs lowercase)- is this even needed in L3?
- * - user has to create every Key (more work)
- * 
- */
-export const Possibility1: Possibility1 = {
+export const Basic: Story = {
   render: args => {
-    return 
-    <KeyBoard>
-        <> // key: upperCase
-
-            /** insert top line multiple keys not just A and B */
-            <> 
-            <Key>
-                <Text>A</Text>
-            </Key>
-            <Key>
-                <Text>B</Text>
-            </Key>
-            </>
-
-            /** insert next line multiple keys not just C and D*/
-            <> 
-            <Key>
-                <Text>C</Text>
-            </Key>
-            <Key>
-                <Text>D</Text>
-            </Key>
-            </>
-
-            /** etc */
-        </>
-
-
-        <> // key: lowerCase
-
-            /** insert top line multiple keys not just a and b */
-            <> 
-            <Key>
-                <Text>a</Text>
-            </Key>
-            <Key>
-                <Text>b</Text>
-            </Key>
-            </>
-
-            /** insert next line multiple keys not just c and d*/
-            <> 
-            <Key>
-                <Text>c</Text>
-            </Key>
-            <Key>
-                <Text>d</Text>
-            </Key>
-            </>
-
-            /** etc */
-        </>
-
-    </Keyboard>;
+    return <Keyboard {...args} />;
   },
   args: {
-    states: 'focus'
+    states: 'focus',
+    formats: {
+      lowercase: [
+        [
+          '1',
+          '2',
+          '3',
+          '4',
+          '5',
+          '6',
+          '7',
+          '8',
+          '9',
+          '0',
+          {
+            title: 'Delete',
+            size: 'md'
+          }
+        ],
+        ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+        ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+        ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
+        [
+          {
+            title: 'Clear',
+            size: 'lg'
+          },
+          {
+            title: 'Space',
+            size: 'xl'
+          },
+          {
+            title: 'Done',
+            size: 'lg'
+          }
+        ]
+      ]
+    }
   }
 };
 
-
-/**
- * 
- * each direct child represents a keyboard the user can toggle between. Within each child (separate keyboard options)
- * are is a nested list of keyContent with each inner list representing a row
- * symbols (or objects with key props) are passed in, keys, rows, and columns are generated in the KeyBoard
- * 
- * 
- * Pros:
- * - easier for the user
- * - if passing an object, must contain key props
- * 
- * Cons:
- * - unsure if we can have a key to be able to toggle between the children (uppercase vs lowercase)- is this even needed in L3?
- * - All keys will use the Key component (lui5 L3 allows for possibility of custom Keys)
- *      - this can be combatted by adding an extra prop maybe?
- * - passing in different types can get confusing
- */
-export const Possibility2: Story = {
-    render: args => {
-      return 
-      <KeyBoard>
-
-      <> // key: upperCase
-        [ ['A','B'],['C', 'D']]
-      </>
-  
-      <> // key: lowerCase
-        [ ['a','b'],[{size: 'md', title: 'c'}, 'd']]
-      </>
-      
-      </Keyboard>;
-    },
-    args: {
-      states: 'focus'
-    }
-  };
+export const KeyboardSingle1: Story = {
+  render: args => {
+    return <KeyboardSingle {...args} />;
+  },
+  args: {
+    states: 'focus',
+    title: 'lowercase',
+    format: [
+      [
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '0',
+        {
+          title: 'Delete',
+          size: 'md'
+        }
+      ],
+      ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+      ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+      ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
+      [
+        {
+          title: 'Clear',
+          size: 'lg'
+        },
+        {
+          title: 'Space',
+          size: 'xl'
+        },
+        {
+          title: 'Done',
+          size: 'lg'
+        }
+      ]
+    ]
+  }
+};
 
 export default meta;

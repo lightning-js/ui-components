@@ -29,6 +29,7 @@ export type KeySize = keyof KeySizes;
 
 export const styles = {
   Container: {
+    keySpacing: theme.spacer.md,
     height: theme.spacer.md * 9,
     minWidth: theme.spacer.md * 7,
     paddingX: theme.spacer.md,
