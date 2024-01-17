@@ -19,6 +19,7 @@ import { For, type Accessor, type Component } from 'solid-js';
 import { type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles, { type KeyboardFormat } from './Keyboard.styles.js';
 import KeyboardSingle from './KeyboardSingle.jsx';
+import type { KeyProps } from '../Key/Key.jsx';
 
 export interface KeyboardProps extends IntrinsicNodeProps {
   /**
@@ -69,17 +70,12 @@ const Keyboard: Component<KeyboardProps> = (props: KeyboardProps) => {
 
   // const formattedKeyboard = createMemo(() => formatKeyboard(props.formats))
   // export type KeyboardFormat = Record<string, Array<Array<string | Record<string, unknown>>>>;
-
   return (
-    <For debug each={props.formats.keys}>
+    <For each={Object.keys(props.formats)}>
       {/* keyboard is each possibility we can toggle between */}
-      {(keyboardName: string) => (
-        <KeyboardSingle
-          {...props}
-          style={styles.Container}
-          title={keyboardName}
-          format={props.formats[keyboardName]}
-        />
+      {(keyboard: string) => (
+        <KeyboardSingle formats={props.formats} format={props.formats[keyboard]} />
+        // {...props} style={styles.Container} title={keyboard.key} format={keyboard.value} />
       )}
     </For>
   );

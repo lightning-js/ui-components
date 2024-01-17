@@ -90,6 +90,8 @@ export const KeyboardSingle1: Story = {
   args: {
     states: 'focus',
     title: 'lowercase',
+    centerKeyboard: true,
+    centerKeys: true,
     format: [
       [
         '1',

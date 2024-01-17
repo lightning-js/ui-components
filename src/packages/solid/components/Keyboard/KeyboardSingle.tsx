@@ -15,10 +15,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { For, type Component, Show } from 'solid-js';
+import { For, type Component, Show, createMemo } from 'solid-js';
 import { type KeyboardProps } from './Keyboard.jsx';
-import Column from '../Column/Column.jsx';
-import Row from '../Row/Row.jsx';
+import { Column, Row } from '@lightningjs/solid-primitives';
 import Key, { type KeyProps } from '../Key/Key.jsx';
 import styles from './Keyboard.styles.jsx';
 import keyStyles from '../Key//Key.styles.js';
@@ -26,23 +25,33 @@ import { Text } from '@lightningjs/solid';
 import { ButtonStyles } from '../Button/Button.jsx';
 
 export interface KeyboardSingleProps extends KeyboardProps {
-  format: Array<Array<string | Record<string, unknown>>>;
+  format: any; //Array<Array<string | Record<string, unknown>>>;
 }
 
 // rows created from each array passed in
 const KeyboardSingle: Component<KeyboardProps> = (props: KeyboardProps) => {
-  // export type KeyboardFormat = Array<Array<string | Record<string, unknown>>>;
+  // // export type KeyboardFormat = Array<Array<string | Record<string, unknown>>>;
+debugger
   return (
-    <Column autofocus itemSpacing={styles.Container.keySpacing} scrollType={'neverScroll'}>
+    <Column
+      autofocus
+      plinko
+      itemSpacing={styles.Container.keySpacing}
+      justifyContent={props.centerKeyboard != undefined && props.centerKeyboard ? 'center' : 'flexStart'}
+    >
       <For each={props.format}>
         {(row: Array<string | KeyProps>) => (
-          <Row scrollType={'neverScroll'} itemSpacing={styles.Container.keySpacing}>
+          <Row
+            justifyContent={props.centerKeys != undefined && props.centerKeys ? 'center' : 'flexStart'}
+            itemSpacing={styles.Container.keySpacing}
+            height={ButtonStyles.Container.height}
+          >
             <For each={row}>
               {(key: string | KeyProps) => (
                 <Show
                   when={typeof key === 'string'}
                   fallback={
-                    <Key {...key}>
+                    <Key {...keyStyles.Container} {...key}>
                       <Text style={ButtonStyles.Text}>{key.title}</Text>
                     </Key>
                   }
