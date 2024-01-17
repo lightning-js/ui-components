@@ -15,58 +15,112 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import type { TextStyles, NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import { getHexColor } from 'utils';
+import type { Tone } from 'types';
+import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
+import { makeComponentStyles } from '../../utils/index.js';
 
-const styles = {
-  Container: {
-    height: 100,
+export interface ButtonStyle {
+  tone: Tone;
+  Container: NodeStyleSet<{ padding: number[] }>;
+  Text: TextStyleSet;
+}
+
+type ButtonStyleProperties = {
+  backgroundColor?: NodeStyles['color'];
+  borderRadius?: NodeStyles['borderRadius'];
+  contentColor?: NodeStyles['color'];
+  justifyContent?: NodeStyles['justifyContent'];
+  textAlign?: TextStyles['textAlign'];
+  textColor?: TextStyles['color'];
+};
+
+type ButtonConfig = ComponentStyleConfig<ButtonStyleProperties>;
+
+/* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
+const { Button: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+
+const container: ButtonConfig = {
+  themeKeys: {
+    textAlign: 'textAlign',
+    borderRadius: 'borderRadius',
+    color: 'backgroundColor',
+    justifyContent: 'justifyContent'
+  },
+  base: {
     width: 400,
-    padding: [40, 10],
-    color: getHexColor(...(theme.color.interactiveNeutralFocusSoft as [string, number])), //interactiveNeutralFocus undefined
-    contentColor: getHexColor(...(theme.color.fillInverse as [string, number])),
+    height: 100,
     display: 'flex',
-    flexDirection: 'row',
+    padding: [theme.spacer.xxxl, theme.spacer.xl],
+    color: theme.color.interactiveNeutral,
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 20,
-    borderRadius: 30,
+    borderRadius: theme.radius.sm
+  },
+  toneModes: {
     focus: {
-      color: getHexColor(...(theme.color.interactiveNeutralFocus as [string, number])),
-      contentColor: getHexColor(...(theme.color.fillNeutral as [string, number]))
-      /*       tone: {
-        inverse: {
-          color: getHexColor(...(theme.color.interactiveNeutralFocus as [string, number])),
-          contentColor: getHexColor(...(theme.color.fillNeutral as [string, number]))
-        },
-        brand: {
-          contentColor: getHexColor(...(theme.color.fillNeutral as [string, number]))
-        }
-      } */
+      color: theme.color.interactiveNeutralFocus
     },
     disabled: {
-      color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number])),
-      contentColor: getHexColor(...(theme.color.fillNeutralDisabled as [string, number]))
+      color: theme.color.fillNeutralDisabled
+    },
+    inverse: {
+      color: theme.color.interactiveInverse
+    },
+    brand: {
+      color: theme.color.interactiveBrand
+    },
+    'brand-focus': {
+      color: theme.color.fillNeutral
     }
   },
-  Text: {
-    color: getHexColor(...(theme.color.textNeutral as [string, number])),
-    ...theme.typography.button1,
+  themeStyles
+};
+
+const text: ButtonConfig = {
+  themeKeys: {
+    color: 'textColor',
+    contentColor: 'contentColor'
+  },
+  base: {
+    textAlign: 'left',
+    color: theme.color.textNeutral,
+    contentColor: theme.color.fillInverse,
+    ...theme.typography.button1
+  },
+  toneModes: {
     focus: {
-      color: getHexColor(...(theme.color.fillInverse as [string, number])),
-      tone: {
-        inverse: {
-          color: getHexColor(...(theme.color.fillNeutral as [string, number]))
-        },
-        brand: {
-          color: getHexColor(...(theme.color.fillBrand as [string, number]))
-        }
-      }
+      color: theme.color.textInverse,
+      contentColor: theme.color.textInverse
     },
     disabled: {
-      color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number]))
+      color: theme.color.textNeutralDisabled,
+      contentColor: theme.color.textNeutralDisabled
+    },
+    inverse: {
+      color: theme.color.fillNeutral,
+      contentColor: theme.color.fillNeutral
+    },
+    brand: {
+      color: theme.color.fillBrand,
+      contentColor: theme.color.fillBrand
+    },
+    'brand-focus': {
+      color: theme.color.fillBrand,
+      contentColor: theme.color.fillBrand
     }
-  }
-} as const;
+  },
+  themeStyles
+};
+
+const Container = makeComponentStyles<ButtonStyle['Container']>(container);
+const Text = makeComponentStyles<ButtonStyle['Text']>(text);
+
+const styles: ButtonStyle = {
+  tone: tone || 'neutral',
+  Container,
+  Text
+};
 
 export default styles;

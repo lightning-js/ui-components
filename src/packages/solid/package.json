@@ -12,7 +12,6 @@
   ],
   "scripts": {
     "start": "pnpm run storybook",
-    "build": "pnpm run build-storybook",
     "build-lib": "vite build",
     "build-storybook": "storybook build",
     "storybook": "storybook dev -p 6006",
@@ -24,7 +23,6 @@
     "@lightningjs/renderer": "^0.6.0",
     "@lightningjs/solid": "^0.10.4",
     "@lightningjs/solid-primitives": "^0.4.7",
-    "@lightningjs/ui-components-theme-base": "^1.0.3",
     "@solidjs/router": "^0.8.3",
     "@storybook/html": "^7.5.1",
     "@storybook/html-vite": "^7.5.1",

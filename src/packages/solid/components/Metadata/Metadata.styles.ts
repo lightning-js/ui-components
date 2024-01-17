@@ -16,7 +16,6 @@
  */
 
 import theme from 'theme';
-import { getHexColor } from 'utils';
 
 const styles = {
   container: {
@@ -34,9 +33,9 @@ const styles = {
     maxLines: 3
   },
   disabled: {
-    titleText: { textColor: getHexColor(...(theme.color.textNeutralDisabled as [string, number])) },
+    titleText: { textColor: theme.color.textNeutralDisabled },
     descriptionText: {
-      textColor: getHexColor(...(theme.color.textNeutralDisabled as [string, number]))
+      textColor: theme.color.textNeutralDisabled
     }
   }
 };

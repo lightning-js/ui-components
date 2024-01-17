@@ -54,7 +54,7 @@ const config = {
   },
   resolve: {
     alias: {
-      theme: '@lightningjs/ui-components-theme-base',
+      theme: path.resolve(__dirname, '../l3-ui-theme-base/theme.js'),
       utils: path.resolve(__dirname, '../../shared/utils/index.ts')
     },
     dedupe: ['solid-js', '@lightningjs/solid', '@lightningjs/renderer']

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import Tile from './Tile.jsx';
 import theme from 'theme';
-import { getHexColor } from 'utils';
 import Badge from '../Badge/Badge.jsx';
 import { View } from '@lightningjs/solid';
 import Label from './Label.jsx';
@@ -87,7 +86,7 @@ export const MetadataInset: Story = {
         linearGradient: {
           angle: 3.14,
           stops: [0, 0.5],
-          colors: [getHexColor(...(theme.color.black as [string, number])), 0x00000000]
+          colors: [theme.color.black, 0x00000000]
         }
       }
     },
@@ -204,7 +203,7 @@ export const TileLogoCheckBoxTop: Story = {
         linearGradient: {
           angle: 3.14,
           stops: [0, 0.5],
-          colors: [getHexColor(...(theme.color.black as [string, number])), 0x00000000]
+          colors: [theme.color.black, 0x00000000]
         }
       }
     },
@@ -228,7 +227,7 @@ export const TileProgressBarTop: Story = {
         topLeft={<ProgressBar progress={0.5} width={380} />}
         inset={
           <>
-            <Metadata description={lorum} maxLines={1} mountY={0.5}/>
+            <Metadata description={lorum} maxLines={1} mountY={0.5} />
             <View
               src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
               width={theme.spacer.lg * 5}
@@ -249,7 +248,7 @@ export const TileProgressBarTop: Story = {
         linearGradient: {
           angle: 3.14,
           stops: [0, 0.5],
-          colors: [getHexColor(...(theme.color.black as [string, number])), 0x00000000]
+          colors: [theme.color.black, 0x00000000]
         }
       }
     },

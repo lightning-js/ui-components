@@ -15,7 +15,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import theme from 'theme';
-import { getHexColor } from 'utils';
 
 // TODO: LUI styles remove before merge
 // focus and unfocus no style changes
@@ -38,17 +37,17 @@ const styles = {
     justifyContent: 'center',
     width: size,
     height: size,
-    color: getHexColor(...(theme.color.fillNeutral as [string, number])),
+    color: theme.color.fillNeutral,
     borderRadius: size / 4,
     border: {
       width: strokeWidth,
-      color: getHexColor(...(theme.color.strokeInverse as [string, number]))
+      color: theme.color.strokeInverse
     },
     disabled: {
       alpha: theme.alpha.inactive
     },
     checked: {
-      color: getHexColor(...(theme.color.fillNeutralDisabled as [string, number]))
+      color: theme.color.fillNeutralDisabled
     }
   }
 } as const;

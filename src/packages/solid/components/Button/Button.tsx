@@ -16,25 +16,55 @@
  */
 
 import { type Component } from 'solid-js';
-import { View, Text, type NodeProps } from '@lightningjs/solid';
+import { View, Text, type NodeProps, type NodeStyles, type TextStyles } from '@lightningjs/solid';
+import type { Tone } from 'types';
 import styles from './Button.styles.js';
 
-export interface CoreButton extends NodeProps {
+interface ButtonProps extends NodeProps {
   children: string | string[];
+  tone?: Tone;
+  style?: {
+    Container?: NodeStyles;
+    Text?: TextStyles;
+  };
 }
 
-const Button: Component<CoreButton> = props => {
+const Button: Component<ButtonProps> = props => {
   return (
-    <View {...props} style={styles.Container} forwardStates>
-      <Text style={styles.Text}>{props.children}</Text>
+    <View
+      {...props}
+      style={styles.Container}
+      tone={props.tone || styles.tone}
+      {...{
+        ...styles.Container[props.tone || styles.tone],
+        ...props?.style?.Container
+      }}
+      forwardStates
+    >
+      <Text
+        style={styles.Text}
+        tone={props.tone || styles.tone}
+        {...{
+          ...styles.Text[props.tone || styles.tone],
+          ...props?.style?.Text
+        }}
+      >
+        {props.children}
+      </Text>
     </View>
   );
 };
 
-export const ButtonContainer: Component<NodeProps> = props => {
-  return <View {...props} style={styles.Container} forwardStates />;
+const ButtonContainer: Component<ButtonProps> = props => {
+  return (
+    <View
+      {...props}
+      style={styles.Container}
+      tone={props.tone || styles.tone}
+      {...styles.Container[props.tone || styles.tone]}
+      forwardStates
+    />
+  );
 };
 
-export default Button;
-export const ButtonStyles = styles;
-export type ButtonProps = NodeProps;
+export { Button as default, ButtonContainer, styles as ButtonStyles, type ButtonProps };

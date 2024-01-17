@@ -1,4 +1,4 @@
-import { Component, createSignal } from 'solid-js';
+import { type Component, createSignal } from 'solid-js';
 import { Show, type IntrinsicNodeProps, View } from '@lightningjs/solid';
 import styles from './Tile.styles.js';
 import { withPadding } from '@lightningjs/solid-primitives';

@@ -15,19 +15,76 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { type NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import { getHexColor } from 'utils';
+import type { Tone } from 'types';
+import { makeComponentStyles } from '../../utils/index.js';
+import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 
-const styles = {
-  container: {
+export interface ProgressBarStyle {
+  tone: Tone;
+  Container: NodeStyleSet;
+  ProgressBar: NodeStyleSet;
+}
+
+type ProgressBarStyleProperties = {
+  height?: NodeStyles['height'];
+  progressColor?: NodeStyles['color'];
+  barColor?: NodeStyles['color'];
+  borderRadius?: NodeStyles['borderRadius'];
+};
+
+type ProgressBarConfig = ComponentStyleConfig<ProgressBarStyleProperties>;
+
+/* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
+const { ProgressBar: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } =
+  theme?.componentConfig;
+
+const container: ProgressBarConfig = {
+  themeKeys: {
+    color: 'barColor',
+    borderRadius: 'borderRadius'
+  },
+  base: {
     height: theme.spacer.md,
-    color: getHexColor(...(theme.color.fillNeutralTertiary as [string, number])),
+    color: theme.color.fillNeutralTertiary,
     borderRadius: theme.radius.xs
   },
-  progressBar: {
+  toneModes: {
+    inverse: {
+      color: theme.color.fillInverseTertiary
+    }
+  },
+  themeStyles
+};
+
+const progress: ProgressBarConfig = {
+  themeKeys: {
+    color: 'progressColor',
+    borderRadius: 'borderRadius'
+  },
+  base: {
     borderRadius: theme.radius.xs,
-    color: getHexColor(...(theme.color.fillNeutral as [string, number]))
-  }
-} as const;
+    color: theme.color.fillNeutral
+  },
+  toneModes: {
+    inverse: {
+      color: theme.color.fillInverse
+    },
+    brand: {
+      color: theme.color.fillBrand
+    }
+  },
+  themeStyles
+};
+
+const Container = makeComponentStyles<ProgressBarStyle['Container']>(container);
+const ProgressBar = makeComponentStyles<ProgressBarStyle['ProgressBar']>(progress);
+
+const styles: ProgressBarStyle = {
+  tone: tone || 'neutral',
+  Container,
+  ProgressBar
+};
 
 export default styles;

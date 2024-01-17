@@ -15,26 +15,26 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 /* @refresh reload */
-import { render, Canvas } from '@lightningjs/solid';
-import { useFocusManager } from '@lightningjs/solid-primitives';
+import { render, Canvas, Config } from '@lightningjs/solid';
 // @ts-expect-error we don't have declarations for this module
 import coreExtensionModuleUrl from './AppCoreExtensions.js?importChunkUrl'; // TODO import aliasing
 import { themes } from '@storybook/theming';
+import { useFocusManager } from '@lightningjs/solid-primitives';
+
+Config.stateMapperHook = (node, states) => {
+  const tone = node.tone || '';
+  const nextStates = states.map(state => state + tone);
+  return nextStates;
+};
 
 const RenderOptions = {
   coreExtensionModule: coreExtensionModuleUrl,
   threadXCoreWorkerUrl: undefined,
   rootId: 'storybook-root' as any,
   appWidth: 800,
-  appHeight: 600
-  // deviceLogicalPixelRatio: 1
-};
-
-// global args
-export const argTypes = {
-  width: {
-    description: 'the width of the component'
-  }
+  appHeight: 600,
+  deviceLogicalPixelRatio: 1,
+  devicePhysicalPixelRatio: 1
 };
 
 const preview = {
@@ -49,15 +49,17 @@ const preview = {
     }
   },
   decorators: [
-    (Story) => {
-      useFocusManager();
+    Story => {
       const solidRoot = document.createElement('div');
       RenderOptions.rootId = solidRoot;
-      render(() => (
-        <Canvas options={RenderOptions}>
-          <Story />
-        </Canvas>
-      ));
+      render(() => {
+        useFocusManager();
+        return (
+          <Canvas options={RenderOptions}>
+            <Story />
+          </Canvas>
+        );
+      });
       return solidRoot;
     }
   ]

@@ -16,8 +16,9 @@
  */
 
 import type { Component } from 'solid-js';
-import { View, type NodeProps } from '@lightningjs/solid';
+import { View, type NodeProps, type NodeStyles } from '@lightningjs/solid';
 import styles from './ProgressBar.styles.js';
+import type { Tone } from 'types';
 
 export interface ProgressBarProps extends ProgressBarStyleProps, NodeProps {
   /**
@@ -32,6 +33,11 @@ export interface ProgressBarProps extends ProgressBarStyleProps, NodeProps {
    * total height of the component
    */
   height: number;
+  tone: Tone;
+  style?: {
+    Container?: NodeStyles;
+    ProgressBar?: NodeStyles;
+  };
 }
 
 export interface ProgressBarStyleProps {
@@ -41,10 +47,23 @@ export interface ProgressBarStyleProps {
 
 const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
   return (
-    <View {...props} style={styles.container}>
+    <View
+      {...props}
+      style={styles.Container}
+      tone={props.tone || styles.tone}
+      {...{
+        ...styles.Container[props.tone || styles.tone],
+        ...props?.style?.Container
+      }}
+    >
       <View
-        style={styles.progressBar}
+        style={styles.ProgressBar}
         animate
+        tone={props.tone || styles.tone}
+        {...{
+          ...styles.ProgressBar[props.tone || styles.tone],
+          ...props?.style?.ProgressBar
+        }}
         animationSettings={props.animationSettings}
         width={props.width * props.progress}
         borderRadius={props.borderRadius}

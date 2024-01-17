@@ -1,0 +1,14 @@
+{
+  "name": "@lightningjs/l3-ui-theme-base",
+  "version": "0.1.0",
+  "description": "A basic theme for the @lightningjs/solid-ui component library.",
+  "main": "theme.js",
+  "types": "theme.d.ts",
+  "type": "module",
+  "files": [
+    "*.js",
+    "*.ts"
+  ],
+  "author": "",
+  "license": "Apache-2.0"
+}

@@ -1,5 +1,4 @@
 import theme from 'theme';
-import { getHexColor } from 'utils';
 
 type ArtworkStyle = {
   Container: {
@@ -18,8 +17,8 @@ type ArtworkStyle = {
 const styles: ArtworkStyle = {
   Container: {
     fallbackSrc: undefined,
-    fillColor: getHexColor(...(theme.color.overlay as [string, number])),
-    gradientColor: getHexColor(...(theme.color.material as [string, number])),
+    fillColor: theme.color.overlay,
+    gradientColor: theme.color.material,
     imageScale: undefined,
     imageScalePivotX: 0.5,
     imageScalePivotY: 0.5,

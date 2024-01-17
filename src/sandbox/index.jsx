@@ -16,14 +16,16 @@
  */
 
 import { render, Canvas, Config } from '@lightningjs/solid';
+import { mapToneToStateHook } from '@lightningjs/solid-ui';
 import { Router } from '@solidjs/router';
 import App from './pages/App';
 import coreExtensionModuleUrl from '../shared/AppCoreExtensions.js?importChunkUrl';
 import coreWorkerUrl from '../shared/threadx-core-worker.js?importChunkUrl';
 
-Config.debug = true;
 Config.fontSettings.fontFamily = 'Ubuntu';
 Config.fontSettings.color = 0xffffffff;
+
+Config.stateMapperHook = mapToneToStateHook;
 
 const driver = 'main';
 const RenderOptions = {

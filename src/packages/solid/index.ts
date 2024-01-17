@@ -24,3 +24,4 @@ export { default as Metadata, metadataStyles } from './components/Metadata/index
 export { default as ProgressBar, progressBarStyles } from './components/ProgressBar/index.js';
 export { default as Row, rowStyles } from './components/Row/index.js';
 export { default as Tile, tileStyles } from './components/Tile/index.js';
+export * from './utils/index.js';

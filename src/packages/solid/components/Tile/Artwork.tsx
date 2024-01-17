@@ -33,6 +33,7 @@ export interface ArtworkStyleProps {}
 
 const Artwork: Component<ArtworkProps> = props => {
   const formatArtwork = (props: ArtworkProps) => {
+    /* eslint-disable solid/reactivity */ // this is fine, the call is wrapped in a memo
     let src = props.src ? props.src : props.fallbackSrc;
 
     if (src && props.srcCallback && typeof props.srcCallback === 'function') {

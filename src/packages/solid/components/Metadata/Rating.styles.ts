@@ -16,11 +16,10 @@
  */
 
 import theme from 'theme';
-import { getHexColor } from 'utils';
 
 const styles = {
   icon: {
-    color: getHexColor(...(theme.color.fillNeutral as [string, number])),
+    color: theme.color.fillNeutral,
     height: theme.typography.body2.lineHeight,
     width: theme.typography.body2.lineHeight
   },
