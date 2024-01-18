@@ -37,7 +37,11 @@ export interface KeyProps extends IntrinsicNodeProps {
   /**
    * The horizontal spacing between each key in a Keyboard. This value is factored into the width of the key so that it aligns with with the borders of other keys in a Keyboard.
    */
-  keySpacing?: number;
+  keySpacing: number;
+  /**
+   * If true, pressing the key will trigger the $toggleKeyboard event. If false, the key will trigger the $onSoftKey event.
+   */
+  toggle?: boolean;
 }
 
 const Key: Component<KeyProps> = props => {
@@ -49,7 +53,10 @@ const Key: Component<KeyProps> = props => {
         styles.Container.sizes[props.size || 'sm'] * styles.Container.baseWidth +
         (props.keySpacing || styles.Container.keySpacing) * (styles.Container.sizes[props.size || 'sm'] - 1)
       }
-      forwardStates
+      // if props onEnter, use that, else utilize toggle to see if update keyboard or add the key
+
+      // props.setValue('props.jeyID')
+      // onEnter={props.onEnter? props.onEnter : (props.toggle? toggleKeyboard: softKey, keyID/title) }
     />
   );
 };

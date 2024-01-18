@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { For, type Accessor, type Component } from 'solid-js';
+import { type Component, createSignal } from 'solid-js';
 import { type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles, { type KeyboardFormat } from './Keyboard.styles.js';
 import KeyboardSimple from './KeyboardSimple.jsx';
@@ -65,20 +65,7 @@ export interface KeyboardProps extends IntrinsicNodeProps {
 
 // rows created from each array passed in
 const Keyboard: Component<KeyboardProps> = (props: KeyboardProps) => {
-  // const formatKeybaord = (formats: KeyboardFormat) => {
-  // }
-
-  // const formattedKeyboard = createMemo(() => formatKeyboard(props.formats))
-  // export type KeyboardFormat = Record<string, Array<Array<string | Record<string, unknown>>>>;
-  return (
-    <For each={Object.keys(props.formats)}>
-      {/* keyboard is each possibility we can toggle between */}
-      {(keyboard: string) => (
-        <KeyboardSimple formats={props.formats} format={props.formats[keyboard]} />
-        // {...props} style={styles.Container} title={keyboard.key} format={keyboard.value} />
-      )}
-    </For>
-  );
+  return <KeyboardSimple {...props} />;
 };
 
 export default Keyboard;

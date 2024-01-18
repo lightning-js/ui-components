@@ -24,12 +24,8 @@ import keyStyles from '../Key/Key.styles.js';
 import { Text } from '@lightningjs/solid';
 import { ButtonStyles } from '../Button/Button.jsx';
 
-export interface KeyboardSingleProps extends KeyboardProps {
-  format: any; //Array<Array<string | Record<string, unknown>>>;
-}
-
 // rows created from each array passed in
-const KeyboardSingle: Component<KeyboardProps> = (props: KeyboardProps) => {
+const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
   // // export type KeyboardFormat = Array<Array<string | Record<string, unknown>>>;
   return (
     <Column
@@ -38,7 +34,7 @@ const KeyboardSingle: Component<KeyboardProps> = (props: KeyboardProps) => {
       itemSpacing={styles.Container.keySpacing}
       justifyContent={props.centerKeyboard != undefined && props.centerKeyboard ? 'center' : 'flexStart'}
     >
-      <For each={props.format}>
+      <For each={props.formats}>
         {(row: Array<string | KeyProps>) => (
           <Row
             justifyContent={props.centerKeys != undefined && props.centerKeys ? 'center' : 'flexStart'}
@@ -68,4 +64,4 @@ const KeyboardSingle: Component<KeyboardProps> = (props: KeyboardProps) => {
   );
 };
 
-export default KeyboardSingle;
+export default KeyboardSimple;

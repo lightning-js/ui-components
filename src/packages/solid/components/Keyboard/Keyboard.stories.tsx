@@ -43,43 +43,43 @@ export const Basic: Story = {
   },
   args: {
     states: 'focus',
-    formats: {
-      lowercase: [
-        [
-          '1',
-          '2',
-          '3',
-          '4',
-          '5',
-          '6',
-          '7',
-          '8',
-          '9',
-          '0',
-          {
-            title: 'Delete',
-            size: 'md'
-          }
-        ],
-        ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-        ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-        ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
-        [
-          {
-            title: 'Clear',
-            size: 'lg'
-          },
-          {
-            title: 'Space',
-            size: 'xl'
-          },
-          {
-            title: 'Done',
-            size: 'lg'
-          }
-        ]
+    centerKeyboard: true,
+    centerKeys: true,
+    formats: [
+      [
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '0',
+        {
+          title: 'Delete',
+          size: 'md'
+        }
+      ],
+      ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+      ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+      ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
+      [
+        {
+          title: 'Clear',
+          size: 'lg'
+        },
+        {
+          title: 'Space',
+          size: 'xl'
+        },
+        {
+          title: 'Done',
+          size: 'lg'
+        }
       ]
-    }
+    ]
   }
 };
 
@@ -89,10 +89,9 @@ export const KeyboardSimple1: Story = {
   },
   args: {
     states: 'focus',
-    title: 'lowercase',
     centerKeyboard: true,
     centerKeys: true,
-    format: [
+    formats: [
       [
         '1',
         '2',
