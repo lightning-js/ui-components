@@ -17,7 +17,7 @@
 
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import Keyboard from './Keyboard.jsx';
-import KeyboardSingle from './KeyboardSingle.jsx';
+import KeyboardSimple from './KeyboardSimple.jsx';
 
 type Story = StoryObj<typeof Keyboard>;
 
@@ -83,9 +83,9 @@ export const Basic: Story = {
   }
 };
 
-export const KeyboardSingle1: Story = {
+export const KeyboardSimple1: Story = {
   render: args => {
-    return <KeyboardSingle {...args} />;
+    return <KeyboardSimple {...args} />;
   },
   args: {
     states: 'focus',

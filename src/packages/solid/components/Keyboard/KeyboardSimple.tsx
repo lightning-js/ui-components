@@ -15,12 +15,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { For, type Component, Show, createMemo } from 'solid-js';
+import { For, type Component, Show } from 'solid-js';
 import { type KeyboardProps } from './Keyboard.jsx';
 import { Column, Row } from '@lightningjs/solid-primitives';
 import Key, { type KeyProps } from '../Key/Key.jsx';
 import styles from './Keyboard.styles.jsx';
-import keyStyles from '../Key//Key.styles.js';
+import keyStyles from '../Key/Key.styles.js';
 import { Text } from '@lightningjs/solid';
 import { ButtonStyles } from '../Button/Button.jsx';
 
@@ -31,7 +31,6 @@ export interface KeyboardSingleProps extends KeyboardProps {
 // rows created from each array passed in
 const KeyboardSingle: Component<KeyboardProps> = (props: KeyboardProps) => {
   // // export type KeyboardFormat = Array<Array<string | Record<string, unknown>>>;
-debugger
   return (
     <Column
       autofocus
