@@ -65,7 +65,7 @@ export interface KeyboardProps extends IntrinsicNodeProps {
 
 // rows created from each array passed in
 const Keyboard: Component<KeyboardProps> = (props: KeyboardProps) => {
-  return <KeyboardSimple {...props} />;
+  return <KeyboardSimple style={styles.Container} {...props} />;
 };
 
 export default Keyboard;

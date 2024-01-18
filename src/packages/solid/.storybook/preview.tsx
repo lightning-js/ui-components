@@ -28,8 +28,8 @@ const RenderOptions = {
   coreExtensionModule: coreExtensionModuleUrl,
   threadXCoreWorkerUrl: undefined,
   rootId: 'storybook-root' as any,
-  appWidth: 2000,
-  appHeight: 2000,
+  appWidth: 900,
+  appHeight: 700,
   deviceLogicalPixelRatio: 1,
   devicePhysicalPixelRatio: 1
 };
