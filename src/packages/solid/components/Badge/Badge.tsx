@@ -14,11 +14,12 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import type { Component } from 'solid-js';
+import { type Component } from 'solid-js';
 import { Text, Show } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
 import Icon, { type IconProps } from '../Icon/Icon.jsx';
-import styles from './Badge.styles.js';
+import styles, { type BadgeStyle } from './Badge.styles.js';
+import type { Tone } from 'types';
 withPadding; // Preserve the import.
 
 // props in LUI: title, icon, iconAlign, iconWidth, iconHeight
@@ -29,26 +30,47 @@ export type BadgeProps = {
    * Badge text
    */
   title: string;
+  // TODO better handling for default prop values
   /**
    * side of the text where icon will appear on
+   * defaults to left if value is either undefined or invalid
    */
   iconAlign?: string;
   /**
    * Object containing all properties supported in the [Icon component](?path=/docs/components-icon--icon)
    */
   icon?: Partial<IconProps>;
+  tone?: Tone;
+  style?: BadgeStyle;
 };
 
-const padding = styles.padding;
 const Badge: Component<BadgeProps> = (props: BadgeProps) => {
   return (
-    <node use:withPadding={padding} style={styles.Container} {...props}>
-      <Show when={props.iconAlign === 'left'}>
-        <Icon {...props.icon} />
+    <node
+      use:withPadding={styles.Container.padding}
+      {...props}
+      style={styles.Container}
+      tone={props.tone || styles.tone}
+      {...{
+        ...styles.Container[props.tone || styles.tone],
+        ...props?.style?.Container
+      }}
+    >
+      <Show when={Boolean(props.icon && props.iconAlign !== 'right')}>
+        <Icon {...props.icon} {...styles.Icon[props.tone || styles.tone]} />
       </Show>
-      <Text style={styles.textStyle}>{props.title}</Text>
-      <Show when={props.iconAlign === 'right'}>
-        <Icon {...props.icon} />
+      <Text
+        style={styles.Text.textStyle}
+        tone={props.tone || styles.tone}
+        {...{
+          ...styles.Text[props.tone || styles.tone],
+          ...props?.style?.Text
+        }}
+      >
+        {props.title}
+      </Text>
+      <Show when={Boolean(props.icon && props.iconAlign === 'right')}>
+        <Icon {...props.icon} style={{ Container: styles.Icon[props.tone || styles.tone] }} />
       </Show>
     </node>
   );
