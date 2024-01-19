@@ -44,8 +44,12 @@ const Icon: Component<IconProps> = props => {
   return (
     <View
       {...props}
-      // TODO, wait to see if fixed is needed
-      style={styles.container}
+      tone={props.tone || styles.tone}
+      style={styles.Container}
+      {...{
+        ...styles.Container[props.tone || styles.tone],
+        ...props?.style?.Container
+      }}
     />
   );
 };
