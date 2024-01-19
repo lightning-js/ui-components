@@ -16,7 +16,7 @@
  */
 
 export { default as Badge, badgeStyles } from './components/Badge/index.js';
-export { default as Button, buttonStyles } from './components/Button/index.js';
+export { default as Button, ButtonContainer, buttonStyles } from './components/Button/index.js';
 export { default as Checkbox, checkboxStyles } from './components/Checkbox/index.js';
 export { default as Column, columnStyles } from './components/Column/index.js';
 export { default as Icon, iconStyles } from './components/Icon/index.js';
