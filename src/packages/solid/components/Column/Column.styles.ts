@@ -14,17 +14,52 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
+import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
+import type { Tone } from 'types';
+import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
+import { makeComponentStyles } from '../../utils/index.js';
 
-const styles = {
-  Column: {
+export interface ColumnStyle {
+  tone: Tone;
+  Container: NodeStyleSet<{ padding: number[] }>;
+}
+
+type ColumnStyleProperties = {
+  display?: NodeStyles['display'];
+  justifyContent?: NodeStyles['justifyContent'];
+  flexDirection?: NodeStyles['flexDirection'];
+};
+
+type ColumnConfig = ComponentStyleConfig<ColumnStyleProperties>;
+
+/* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
+const { Column: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+
+const container: ColumnConfig = {
+  themeKeys: {
+    display: 'display',
+    justifyContent: 'justifyContent',
+    flexDirection: 'flexDirection'
+  },
+  base: {
     display: 'flex',
     justifyContent: 'flexStart',
     flexDirection: 'column',
+    scrollIndex: 0,
     gap: 30,
     x: theme.layout.marginX,
     y: [200, { ...theme.animation.standard, duration: theme.animation.duration.fast }] as any
-  }
-} as const;
+  },
+  toneModes: {},
+  themeStyles
+};
+
+const Container = makeComponentStyles<ColumnStyle['Container']>(container);
+
+const styles: ColumnStyle = {
+  tone: tone || 'neutral',
+  Container
+};
 
 export default styles;

@@ -20,12 +20,9 @@ import { render, Canvas, Config } from '@lightningjs/solid';
 import coreExtensionModuleUrl from './AppCoreExtensions.js?importChunkUrl'; // TODO import aliasing
 import { themes } from '@storybook/theming';
 import { useFocusManager } from '@lightningjs/solid-primitives';
+import mapToneToStateHook from '../utils/mapToneToStateHook';
 
-Config.stateMapperHook = (node, states) => {
-  const tone = node.tone || '';
-  const nextStates = states.map(state => state + tone);
-  return nextStates;
-};
+Config.stateMapperHook = mapToneToStateHook;
 
 const RenderOptions = {
   coreExtensionModule: coreExtensionModuleUrl,
