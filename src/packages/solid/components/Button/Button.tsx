@@ -61,7 +61,7 @@ const ButtonContainer: Component<ButtonProps> = props => {
       {...props}
       style={styles.Container}
       tone={props.tone || styles.tone}
-      {...styles.Container[props.tone || styles.tone]}
+      {...{ ...styles.Container[props.tone || styles.tone], ...props?.style?.Container }}
       forwardStates
     />
   );
