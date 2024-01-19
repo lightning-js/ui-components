@@ -16,19 +16,43 @@
  */
 
 import { defineConfig } from 'vite';
+import solidPlugin from 'vite-plugin-solid';
+import { importChunkUrl } from '@lightningjs/vite-plugin-import-chunk-url';
 import path from 'path';
-import config from '../../vite.config';
 
 export default defineConfig({
-  ...config,
+  optimizeDeps: {
+    include: [],
+    exclude: [
+      '@lightningjs/solid',
+      '@lightningjs/solid-primitives',
+      '@lightningjs/renderer/core',
+      '@lightningjs/renderer/workers/renderer'
+    ]
+  },
+  plugins: [
+    importChunkUrl(),
+    solidPlugin({
+      solid: {
+        moduleName: '@lightningjs/solid',
+        generate: 'universal'
+      }
+    })
+  ],
   resolve: {
     alias: {
       theme: path.resolve(__dirname, '../packages/l3-ui-theme-base/theme.js'),
       utils: path.resolve(__dirname, '../shared/utils/index.ts'),
       '@lightningjs/solid-ui': path.resolve(__dirname, '../packages/solid/index.ts')
     },
-    // breaks without this for some reason
     dedupe: ['solid-js', '@lightningjs/solid', '@lightningjs/renderer']
+  },
+  server: {
+    hmr: false,
+    headers: {
+      'Cross-Origin-Opener-Policy': 'same-origin',
+      'Cross-Origin-Embedder-Policy': 'require-corp'
+    }
   },
   publicDir: '../shared/public'
 });
