@@ -26,9 +26,10 @@ export interface ColumnStyle {
 }
 
 type ColumnStyleProperties = {
-  display?: NodeStyles['display'];
-  justifyContent?: NodeStyles['justifyContent'];
-  flexDirection?: NodeStyles['flexDirection'];
+  itemSpacing?: NodeStyles['itemSpacing'];
+  itemTransition: NodeStyles['itemTransition'];
+  scrollIndex: NodeStyles['scrollIndex'];
+  gap: NodeStyles['gap'];
 };
 
 type ColumnConfig = ComponentStyleConfig<ColumnStyleProperties>;
@@ -38,9 +39,10 @@ const { Column: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } 
 
 const container: ColumnConfig = {
   themeKeys: {
-    display: 'display',
-    justifyContent: 'justifyContent',
-    flexDirection: 'flexDirection'
+    itemSpacing: 'itemSpacing',
+    scrollIndex: 'scrollIndex',
+    itemTransition: 'itemTransition',
+    gap: 'gap'
   },
   base: {
     display: 'flex',
@@ -48,8 +50,8 @@ const container: ColumnConfig = {
     flexDirection: 'column',
     scrollIndex: 0,
     gap: 30,
-    x: theme.layout.marginX,
-    y: [200, { ...theme.animation.standard, duration: theme.animation.duration.fast }] as any
+    x: 0,
+    y: 0
   },
   toneModes: {},
   themeStyles
@@ -58,7 +60,7 @@ const container: ColumnConfig = {
 const Container = makeComponentStyles<ColumnStyle['Container']>(container);
 
 const styles: ColumnStyle = {
-  tone: tone || 'neutral',
+  tone: tone,
   Container
 };
 
