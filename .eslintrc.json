@@ -17,8 +17,15 @@
   ],
   "rules": {
     "no-console": "off",
-    "quotes": [2, "single", "avoid-escape"],
     "no-extra-boolean-cast": "off",
+    "no-prototype-builtins": [0],
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }
+    ],
     "prettier/prettier": [
       "error",
       {
@@ -29,6 +36,8 @@
         "tabWidth": 2
       }
     ],
+    "quotes": [2, "single", "avoid-escape"],
+    "solid/style-prop": "off",
     "space-before-function-paren": [
       0,
       {
@@ -36,15 +45,7 @@
         "named": "never",
         "asyncArrow": "always"
       }
-    ],
-    "prefer-const": [
-      "error",
-      {
-        "destructuring": "any",
-        "ignoreReadBeforeAssign": false
-      }
-    ],
-    "no-prototype-builtins": [0]
+    ]
   },
   "parserOptions": {
     "parser": "babel-eslint",
