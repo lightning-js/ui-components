@@ -91,6 +91,7 @@ export const KeyboardSimple1: Story = {
     states: 'focus',
     centerKeyboard: true,
     centerKeys: true,
+    autofocus: true,
     formats: [
       [
         '1',

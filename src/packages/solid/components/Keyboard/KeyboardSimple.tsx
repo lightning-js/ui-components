@@ -29,6 +29,7 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
   // // export type KeyboardFormat = Array<Array<string | Record<string, unknown>>>;
   return (
     <Column
+      autofocus={props.autofocus}
       plinko
       itemSpacing={styles.Container.keySpacing}
       justifyContent={props.centerKeyboard != undefined && props.centerKeyboard ? 'center' : 'flexStart'}
