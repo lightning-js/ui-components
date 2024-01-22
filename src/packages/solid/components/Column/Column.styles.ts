@@ -27,9 +27,9 @@ export interface ColumnStyle {
 
 type ColumnStyleProperties = {
   itemSpacing?: NodeStyles['itemSpacing'];
-  itemTransition: NodeStyles['itemTransition'];
-  scrollIndex: NodeStyles['scrollIndex'];
-  gap: NodeStyles['gap'];
+  itemTransition?: NodeStyles['itemTransition'];
+  scrollIndex?: NodeStyles['scrollIndex'];
+  gap?: NodeStyles['gap'];
 };
 
 type ColumnConfig = ComponentStyleConfig<ColumnStyleProperties>;
