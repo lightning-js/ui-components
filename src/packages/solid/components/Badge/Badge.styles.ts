@@ -47,7 +47,7 @@ const container: BadgeConfig = {
   },
   base: {
     color: theme.color.fillInverseSecondary,
-    borderRadius: theme.radius.sm, // needs to be applied _before_ border to prevent the node from breaking
+    borderRadius: theme.radius.sm, // borderRadius must be applied _before_ border to prevent the node from breaking
     border: {
       color: theme.color.strokeInverse,
       width: theme.stroke.sm
@@ -79,18 +79,6 @@ const container: BadgeConfig = {
     }
   },
   themeStyles
-  // toneModeFallbackMap: {
-  //   inverse: 'base',
-  //   brand: 'base',
-  //   focus: 'brand',
-  //   disabled: 'base',
-  //   'neutral-focus': 'focus',
-  //   'neutral-disabled': 'disabled',
-  //   'inverse-focus': 'focus',
-  //   'inverse-disabled': 'disabled',
-  //   'brand-focus': 'brand',
-  //   'brand-disabled': 'disabled'
-  // }
 };
 
 const text: BadgeConfig = {
