@@ -6,7 +6,7 @@ import { withScrolling } from '../../utils/withScrolling.js';
 
 export interface ColumnProps extends IntrinsicNodeProps {
   /** Item index at which scrolling begins */
-  scrollIndex: number;
+  scrollIndex?: number;
   scrollType?: 'alwaysScroll' | 'neverScroll' | 'lazyScroll';
 }
 
@@ -16,7 +16,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
       {...props}
       animate
       clipping
-      style={styles.Column}
+      style={styles.Container}
       onSelectedChanged={withScrolling(props.y as number)}
     />
   );
