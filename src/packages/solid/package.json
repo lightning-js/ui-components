@@ -12,7 +12,12 @@
     "*.js",
     "*.jsx",
     "*.ts",
-    "*.tsx"
+    "*.tsx",
+    "types",
+    "utils",
+    "components",
+    "LICENSE",
+    "README.md"
   ],
   "scripts": {
     "start": "pnpm run storybook",

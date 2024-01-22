@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "version": "independent",
+  "npmClient": "pnpm",
+  "command": {
+    "publish": {
+      "message": "chore(release): publish [skip ci]",
+      "allowBranch": "main",
+      "conventionalCommits": true
+    }
+  }
+}
