@@ -75,6 +75,17 @@ export const AlwaysScroll = {
     wrap: false,
     width: 400,
     height: 500,
-    y: 0
+    y: 0,
+    style: {
+      Column: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flexStart',
+        width: 320,
+        height: 600,
+        gap: 2000,
+        zIndex: 101
+      }
+    }
   }
 };

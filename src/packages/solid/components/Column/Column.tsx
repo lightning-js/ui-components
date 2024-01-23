@@ -11,13 +11,15 @@ export interface ColumnProps extends IntrinsicNodeProps {
 }
 
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
+
+  console.log(props.style);
   return (
     <SolidColumn
       {...props}
       animate
       clipping
       style={styles.Container}
-      onSelectedChanged={withScrolling(props.y as number)}
+      onSelectedChanged={withScrolling((props.y as number) | (styles.Container.y as number))}
     />
   );
 };
