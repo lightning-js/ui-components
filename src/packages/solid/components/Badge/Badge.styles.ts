@@ -53,7 +53,6 @@ const container: BadgeConfig = {
       width: theme.stroke.sm
     },
     display: 'flex',
-    height: theme.typography.tag1.lineHeight,
     justifyContent: 'spaceEvenly',
     padding: [
       theme.spacer.md - theme.stroke.sm,
@@ -86,8 +85,8 @@ const text: BadgeConfig = {
     color: 'textColor'
   },
   base: {
-    color: theme.color.textNeutral,
-    textStyle: theme.typography.tag1
+    ...theme.typography.tag1,
+    color: theme.color.textNeutral
   },
   toneModes: {
     inverse: {

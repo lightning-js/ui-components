@@ -60,7 +60,6 @@ export const Basic = {
       width: 20,
       height: 20,
       src: lightning
-      // color: 0x32a852ff
     }
   }
 };
