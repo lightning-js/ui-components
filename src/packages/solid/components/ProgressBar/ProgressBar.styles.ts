@@ -82,7 +82,7 @@ const Container = makeComponentStyles<ProgressBarStyle['Container']>(container);
 const ProgressBar = makeComponentStyles<ProgressBarStyle['ProgressBar']>(progress);
 
 const styles: ProgressBarStyle = {
-  tone: tone || 'neutral',
+  tone: tone,
   Container,
   ProgressBar
 };
