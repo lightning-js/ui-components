@@ -18,7 +18,7 @@ import { type Component } from 'solid-js';
 import { Text, Show } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
 import Icon, { type IconProps } from '../Icon/Icon.jsx';
-import styles, { type BadgeStyle } from './Badge.styles.js';
+import styles from './Badge.styles.js';
 import type { Tone } from 'types';
 withPadding; // Preserve the import.
 
@@ -40,8 +40,10 @@ export type BadgeProps = {
    * Object containing all properties supported in the [Icon component](?path=/docs/components-icon--icon)
    */
   icon?: Partial<IconProps>;
+  /**
+   * sets the component's color palette
+   */
   tone?: Tone;
-  style?: BadgeStyle;
 };
 
 const Badge: Component<BadgeProps> = (props: BadgeProps) => {
@@ -51,22 +53,13 @@ const Badge: Component<BadgeProps> = (props: BadgeProps) => {
       {...props}
       style={styles.Container}
       tone={props.tone || styles.tone}
-      {...{
-        ...styles.Container[props.tone || styles.tone],
-        ...props?.style?.Container
-      }}
+      states={props.tone || styles.tone} // set initial tone
+      forwardStates
     >
       <Show when={Boolean(props.icon && props.iconAlign !== 'right')}>
         <Icon {...props.icon} {...styles.Icon[props.tone || styles.tone]} />
       </Show>
-      <Text
-        style={styles.Text.textStyle}
-        tone={props.tone || styles.tone}
-        {...{
-          ...styles.Text[props.tone || styles.tone],
-          ...props?.style?.Text
-        }}
-      >
+      <Text style={styles.Text} tone={props.tone || styles.tone}>
         {props.title}
       </Text>
       <Show when={Boolean(props.icon && props.iconAlign === 'right')}>
