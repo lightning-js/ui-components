@@ -53,7 +53,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
       <Artwork
         {...props.artwork}
         width={props.width || styles.Container.width}
-        height={props.height || styles.Container.width}
+        height={props.height || styles.Container.height}
         alt="Solid logo"
       />
 
