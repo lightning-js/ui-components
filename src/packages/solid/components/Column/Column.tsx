@@ -12,7 +12,6 @@ export interface ColumnProps extends IntrinsicNodeProps {
 
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
 
-  console.log(props.style);
   return (
     <SolidColumn
       {...props}

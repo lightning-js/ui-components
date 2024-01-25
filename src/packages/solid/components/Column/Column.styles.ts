@@ -48,7 +48,6 @@ const container: ColumnConfig = {
     display: 'flex',
     justifyContent: 'flexStart',
     flexDirection: 'column',
-    scrollIndex: 0,
     gap: 30,
     x: 0,
     y: 0

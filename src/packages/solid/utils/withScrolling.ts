@@ -17,6 +17,7 @@ export function withScrolling(adjustment: number = 0) {
     const direct = selected > lastSelected ? 'positive' : 'negative';
 
     let next = currentVal;
+    debugger
 
     /** scrollIndex takes precedence */
     // if we have a scrollIndex and it is valid
@@ -35,7 +36,9 @@ export function withScrolling(adjustment: number = 0) {
       // if we want to scroll based to the -x value of the selected
       // this will be the case for alwaysScroll, and lazyScroll when we are scrolling negatively and the current positioning does not have the selected item shown
       // if direction is negative and absolute value of current position is higher than the position we want to be at, the selected Item is not shown
-      if (
+      if (scrollType === 'neverScroll') {
+
+      } else if (
         scrollType === 'alwaysScroll' ||
         (scrollType === 'lazyScroll' && direct === 'negative' && Math.abs(currentVal) > newVal)
       ) {
