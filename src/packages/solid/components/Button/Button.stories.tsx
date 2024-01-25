@@ -74,11 +74,13 @@ const meta: Meta<typeof Button> = {
 };
 
 export const Basic: Story = {
-  render: (args) => {
+  render: args => {
     return (
       <ButtonContainer {...args}>
-        <Icon width={22} height={28} src={lightning} />
-        <Text style={ButtonStyles.Text}>Button</Text>
+        <Icon tone={args.tone ?? ButtonStyles.tone} width={22} height={28} src={lightning} />
+        <Text tone={args.tone ?? ButtonStyles.tone} debug style={ButtonStyles.Text}>
+          Button
+        </Text>
       </ButtonContainer>
     );
   },
@@ -92,10 +94,12 @@ export const WithCheckbox: Story = {
   render: args => {
     return (
       <ButtonContainer {...args}>
-        <Checkbox checked>
-          <Icon width={18} height={14} src={check} />
+        <Checkbox checked tone={args.tone ?? ButtonStyles.tone}>
+          <Icon tone={args.tone ?? ButtonStyles.tone} width={18} height={14} src={check} />
         </Checkbox>
-        <Text style={ButtonStyles.Text}>Button</Text>
+        <Text tone={args.tone ?? ButtonStyles.tone} style={ButtonStyles.Text}>
+          Button
+        </Text>
       </ButtonContainer>
     );
   },
@@ -109,9 +113,11 @@ export const WithCheckboxRight: Story = {
   render: args => {
     return (
       <ButtonContainer {...args}>
-        <Text style={ButtonStyles.Text}>Button</Text>
-        <Checkbox checked>
-          <Icon width={18} height={14} src={check} />
+        <Text tone={args.tone ?? ButtonStyles.tone} style={ButtonStyles.Text}>
+          Button
+        </Text>
+        <Checkbox tone={args.tone ?? ButtonStyles.tone} checked>
+          <Icon tone={args.tone ?? ButtonStyles.tone} width={18} height={14} src={check} />
         </Checkbox>
       </ButtonContainer>
     );

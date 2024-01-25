@@ -49,21 +49,15 @@ const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
   return (
     <View
       {...props}
-      style={styles.Container}
-      tone={props.tone || styles.tone}
-      {...{
-        ...styles.Container[props.tone || styles.tone],
-        ...props?.style?.Container
-      }}
+      style={props?.style?.Container ?? styles.Container}
+      tone={props.tone ?? styles.tone}
+      states={props.tone ?? styles.tone}
+      forwardStates
     >
       <View
-        style={styles.ProgressBar}
         animate
-        tone={props.tone || styles.tone}
-        {...{
-          ...styles.ProgressBar[props.tone || styles.tone],
-          ...props?.style?.ProgressBar
-        }}
+        style={props?.style?.ProgressBar ?? styles.ProgressBar}
+        tone={props.tone ?? styles.tone}
         animationSettings={props.animationSettings}
         width={props.width * props.progress}
         borderRadius={props.borderRadius}

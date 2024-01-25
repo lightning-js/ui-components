@@ -15,46 +15,51 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
+import type { Tone } from 'types';
+import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
+import { makeComponentStyles } from '../../utils/index.js';
 
-type States = 'active' | 'focus' | 'disabled';
-/**
- * states can contain any of the style object's properties, except other states
- */
-type StateStyle<Type> = Partial<Omit<Type, States>>;
+export interface IconStyle {
+  tone: Tone;
+  Container: NodeStyleSet;
+}
 
-type IconStyle = {
-  container?: {
-    width: number;
-    height: number;
-    color: number;
-    focus?: StateStyle<IconStyle['container']>;
-    disabled?: StateStyle<IconStyle['container']>;
-    //fixed: boolean
-  };
+export type IconStyleProperties = {
+  color?: NodeStyles['color'];
 };
 
-const styles: IconStyle = {
-  container: {
+type IconConfig = ComponentStyleConfig<IconStyleProperties>;
+
+/* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
+const { Icon: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+
+const container: IconConfig = {
+  themeKeys: {
+    color: 'color'
+  },
+  base: {
     width: 100,
     height: 100,
-    color: theme.color.fillNeutral,
-    focus: {
-      color: theme.color.fillInverse,
-      tone: {
-        inverse: {
-          color: theme.color.fillNeutral
-        },
-        brand: {
-          color: theme.color.fillBrand
-        }
-      }
+    color: theme.color.fillNeutral
+  },
+  toneModes: {
+    inverse: {
+      color: theme.color.fillInverse
     },
-    disabled: {
-      color: theme.color.fillNeutralDisabled
+    brand: {
+      color: theme.color.fillBrand
     }
-    //fixed: true
-  }
+  },
+  themeStyles
+};
+
+const Container = makeComponentStyles<IconStyle['Container']>(container);
+
+const styles: IconStyle = {
+  tone: tone,
+  Container
 };
 
 export default styles;

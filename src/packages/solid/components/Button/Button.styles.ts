@@ -118,7 +118,7 @@ const Container = makeComponentStyles<ButtonStyle['Container']>(container);
 const Text = makeComponentStyles<ButtonStyle['Text']>(text);
 
 const styles: ButtonStyle = {
-  tone: tone || 'neutral',
+  tone: tone,
   Container,
   Text
 };

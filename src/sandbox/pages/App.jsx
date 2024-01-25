@@ -15,14 +15,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { View } from '@lightningjs/solid';
+import { View, Text } from '@lightningjs/solid';
 import { Button } from '@lightningjs/solid-ui';
 import { getHexColor } from 'utils';
 import { useFocusManager, Column } from '@lightningjs/solid-primitives';
 
 const App = () => {
-  let ColumnRef;
-
   useFocusManager({
     Menu: 'm',
     Text: 't',
@@ -30,18 +28,10 @@ const App = () => {
   });
 
   return (
-    // eslint-disable-next-line solid/style-prop
-    <View ref={window.APP} style={{ width: 1920, height: 1080 }}>
-      <View color={getHexColor('#071423')} />
-      <Column ref={ColumnRef}>
-        <Button autofocus y="200" x="300">
+    <View ref={window.APP} width={1280} height={720} color={getHexColor('#071423')}>
+      <Column y={200}>
+        <Button tone="brand" y={400}>
           Title
-        </Button>
-        <Button tone="brand" y="400" x="300">
-          Title Two
-        </Button>
-        <Button y="600" x="300">
-          Title Three
         </Button>
       </Column>
     </View>

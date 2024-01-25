@@ -25,6 +25,14 @@ const meta = {
     title: {
       description: 'text inside of badge'
     },
+    tone: {
+      control: { type: 'radio' },
+      options: ['neutral', 'inverse', 'brand'],
+      description: 'Sets the tone for the component',
+      table: {
+        defaultValue: { summary: 'neutral' }
+      }
+    },
     iconAlign: {
       control: 'select',
       options: ['none', 'left', 'right'],
