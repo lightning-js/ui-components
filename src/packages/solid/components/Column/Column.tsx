@@ -6,7 +6,7 @@ import { withScrolling } from '../../utils/withScrolling.js';
 
 export interface ColumnProps extends IntrinsicNodeProps {
   /** Item index at which scrolling begins */
-  scrollInde?: number;
+  scrollIndex?: number;
   scrollType?: 'alwaysScroll' | 'neverScroll' | 'lazyScroll';
 }
 
