@@ -43,24 +43,9 @@ export interface KeyboardProps extends IntrinsicNodeProps {
   centerKeys?: boolean;
 
   /**
-   * component to display for each key
-   */
-  // keyComponent?: lng.Component;
-
-  /**
    * Default format of the keyboard to be shown. Should be a key of `formats`.
    */
   defaultFormat?: string;
-
-  /**
-   * number of columns across the keyboard if passing a flat array
-   */
-  columnCount?: number;
-
-  /**
-   * number of rows down the keyboard if passing a flat array
-   */
-  rowCount?: number;
 }
 
 // rows created from each array passed in

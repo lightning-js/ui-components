@@ -40,21 +40,13 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
             justifyContent={props.centerKeys != undefined && props.centerKeys ? 'center' : 'flexStart'}
             itemSpacing={styles.Container.keySpacing}
             height={ButtonStyles.Container.height}
+            wrap={props.rowWrap}
           >
             <For each={row}>
               {(key: string | KeyProps) => (
-                <Show
-                  when={typeof key === 'string'}
-                  fallback={
-                    <Key {...keyStyles.Container} {...key}>
-                      <Text style={ButtonStyles.Text}>{key.title}</Text>
-                    </Key>
-                  }
-                >
-                  <Key {...keyStyles.Container}>
-                    <Text style={ButtonStyles.Text}>{key}</Text>
-                  </Key>
-                </Show>
+                <Key {...keyStyles.Container} {...key}>
+                  <Text style={ButtonStyles.Text}>{typeof key === 'string'? key: key.title}</Text>
+                </Key>
               )}
             </For>
           </Row>
