@@ -16,18 +16,57 @@
  */
 
 import theme from 'theme';
+import type { Tone } from 'types';
+import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
+import { makeComponentStyles } from '../../utils/index.js';
 import { type KeyProps } from '../Key/Key.jsx';
 
 export type KeyboardFormat = Array<Array<string | Record<string, KeyProps>>>;
 
-export const styles = {
-  Container: {
+export interface KeyboardStyle {
+  tone: Tone;
+  Container: NodeStyleSet<{ padding: number[] }>;
+  Text: TextStyleSet;
+}
+
+type KeyboardStyleProperties = {
+  keySpacing?: NodeStyles['keySpacing'];
+  screenW?: NodeStyles['screenW'];
+  marginX?: NodeStyles['marginX'];
+  inputSpacing?: NodeStyles['inputSpacing'];
+  inputStyle?: NodeStyles['inputStyle'];
+};
+
+type KeyboardConfig = ComponentStyleConfig<KeyboardStyleProperties>;
+
+/* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
+const { Keyboard: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+
+const container: KeyboardConfig = {
+  themeKeys: {
+    keySpacing: 'keySpacing',
+    screenW: 'screenW',
+    marginX: 'marginX',
+    inputSpacing: 'inputSpacing',
+    inputStyle: 'inputStyle'
+  },
+  base: {
     keySpacing: theme.spacer.md,
     screenW: theme.layout.screenW,
     marginX: theme.layout.marginX,
     inputSpacing: theme.spacer.md * 10 + theme.spacer.md,
     inputStyle: { radius: theme.radius.md }
-  }
-} as const;
+  },
+  toneModes: {},
+  themeStyles
+};
+
+const Container = makeComponentStyles<KeyboardStyle['Container']>(container);
+
+const styles: KeyboardStyle = {
+  tone: tone,
+  Container,
+  Text
+};
 
 export default styles;

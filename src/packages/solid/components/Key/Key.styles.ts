@@ -14,8 +14,11 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-
+import type { TextStyles, NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
+import type { Tone } from 'types';
+import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
+import { makeComponentStyles } from '../../utils/index.js';
 
 export type KeySizes = {
   sm: number;
@@ -27,14 +30,43 @@ export type KeySizes = {
 
 export type KeySize = keyof KeySizes;
 
-export const styles = {
-  Container: {
+export interface KeyStyles {
+  tone: Tone;
+  Container: NodeStyleSet<{ padding: number[] }>;
+  Text: TextStyleSet;
+}
+
+type KeyStyleProperties = {
+  backgroundColor?: NodeStyles['color'];
+  borderRadius?: NodeStyles['borderRadius'];
+  keySpacing?: NodeStyles['keySpacing'];
+  contentColor?: NodeStyles['color'];
+  justifyContent?: NodeStyles['justifyContent'];
+  textAlign?: TextStyles['textAlign'];
+  textColor?: TextStyles['color'];
+  baseWidth?: NodeStyles['baseWidth'];
+  sizes?: NodeStyles['sizes'];
+};
+
+type KeyConfig = ComponentStyleConfig<KeyStyleProperties>;
+
+/* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
+const { Key: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+
+const container: KeyConfig = {
+  themeKeys: {
+    keySpacing: 'keySpacing',
+    textAlign: 'textAlign',
+    borderRadius: 'borderRadius',
+    color: 'backgroundColor',
+    justifyContent: 'justifyContent',
+    baseWidth: 'baseWidth',
+    sizes: 'sizes'
+  },
+  base: {
     keySpacing: theme.spacer.md,
     height: theme.spacer.md * 9,
-    minWidth: theme.spacer.md * 7,
     paddingX: theme.spacer.md,
-    textStyle: theme.typography.headline2,
-    borderRadius: theme.radius.sm,
     sizes: {
       sm: 1,
       md: 2,
@@ -42,10 +74,67 @@ export const styles = {
       xl: 4,
       xxl: 5
     },
+    padding: [theme.spacer.xxxl, theme.spacer.xl],
     baseWidth: theme.spacer.md * 7,
-    iconWidth: theme.typography.headline2.lineHeight,
-    iconHeight: theme.typography.headline2.lineHeight
-  }
-} as const;
+    color: theme.color.interactiveNeutral,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: theme.radius.sm
+  },
+  toneModes: {
+    focus: {
+      color: theme.color.interactiveNeutralFocus
+    },
+    disabled: {
+      color: theme.color.fillNeutralDisabled
+    },
+    inverse: {
+      color: theme.color.interactiveInverse
+    },
+    'inverse-focus': {color: theme.color.interactiveInverseFocus
+    }
+  },
+  themeStyles
+};
+const text: KeyConfig = {
+  themeKeys: {
+    color: 'textColor',
+    contentColor: 'contentColor'
+  },
+  base: {
+    textAlign: 'left',
+    color: theme.color.textNeutral,
+    contentColor: theme.color.fillInverse,
+    ...theme.typography.headline2
+  },
+  toneModes: {
+    focus: {
+      color: theme.color.textInverse,
+      contentColor: theme.color.fillInverse
+    },
+    disabled: {
+      color: theme.color.textNeutralDisabled,
+      contentColor: theme.color.fillNeutralDisabled
+    },
+    'inverse-focus': {
+      color: theme.color.textNeutral,
+      contentColor: theme.color.fillNeutral
+    },
+    'brand-focus': {
+      contentColor: theme.color.fillNeutral
+    }
+  },
+  themeStyles
+};
+
+const Container = makeComponentStyles<KeyStyle['Container']>(container);
+const Text = makeComponentStyles<KeyStyle['Text']>(text);
+
+const styles: KeyStyle = {
+  tone: tone,
+  Container,
+  Text
+};
 
 export default styles;

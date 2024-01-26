@@ -16,7 +16,7 @@
  */
 
 import type { Component } from 'solid-js';
-import { type IntrinsicNodeProps } from '@lightningjs/solid';
+import { type IntrinsicNodeProps, Text } from '@lightningjs/solid';
 import { ButtonContainer } from '../Button/Button.jsx';
 import styles, { type KeySize } from './Key.styles.js';
 
@@ -48,16 +48,23 @@ const Key: Component<KeyProps> = props => {
   return (
     <ButtonContainer
       {...props}
-      style={styles.Container}
+      tone={props.tone ?? styles.tone}
+      style={props?.style?.Container ?? styles.Container}
+      states={props.tone ?? styles.tone}
+      forwardStates
       width={
         styles.Container.sizes[props.size || 'sm'] * styles.Container.baseWidth +
         (props.keySpacing || styles.Container.keySpacing) * (styles.Container.sizes[props.size || 'sm'] - 1)
       }
-      // if props onEnter, use that, else utilize toggle to see if update keyboard or add the key
+    >
+      <Text style={props?.style?.Text ?? styles.Text} tone={props.tone || styles.tone}>
+        {props.title ? props.title : ''}
+      </Text>
+    </ButtonContainer>
+    // if props onEnter, use that, else utilize toggle to see if update keyboard or add the key
 
-      // props.setValue('props.jeyID')
-      // onEnter={props.onEnter? props.onEnter : (props.toggle? toggleKeyboard: softKey, keyID/title) }
-    />
+    // props.setValue('props.jeyID')
+    // onEnter={props.onEnter? props.onEnter : (props.toggle? toggleKeyboard: softKey, keyID/title) }
   );
 };
 
