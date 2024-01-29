@@ -44,7 +44,7 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
           >
             <For each={row}>
               {(key: string | KeyProps) => (
-                <Key {...keyStyles.Container} {...key}/>
+                <Key {...keyStyles.Container} {...key} title={key.title || key.icon ? key.title : key} />
               )}
             </For>
           </Row>

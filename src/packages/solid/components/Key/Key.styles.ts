@@ -92,8 +92,7 @@ const container: KeyConfig = {
     inverse: {
       color: theme.color.interactiveInverse
     },
-    'inverse-focus': {color: theme.color.interactiveInverseFocus
-    }
+    'inverse-focus': { color: theme.color.interactiveInverseFocus }
   },
   themeStyles
 };
@@ -105,7 +104,7 @@ const text: KeyConfig = {
   base: {
     textAlign: 'left',
     color: theme.color.textNeutral,
-    contentColor: theme.color.fillInverse,
+    contentColor: theme.color.fillNeutral,
     ...theme.typography.headline2
   },
   toneModes: {
