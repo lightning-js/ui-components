@@ -32,7 +32,6 @@ interface ButtonProps extends NodeProps {
 const Button: Component<ButtonProps> = props => {
   return (
     <View
-      debug
       {...props}
       style={props?.style?.Container ?? styles.Container}
       tone={props.tone ?? styles.tone}
@@ -49,7 +48,6 @@ const Button: Component<ButtonProps> = props => {
 const ButtonContainer: Component<ButtonProps> = props => {
   return (
     <View
-      debug
       {...props}
       style={props?.style?.Container ?? styles.Container}
       tone={props.tone ?? styles.tone}
