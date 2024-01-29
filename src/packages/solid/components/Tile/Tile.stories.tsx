@@ -70,7 +70,7 @@ export const MetadataInset: Story = {
               width={theme.spacer.lg * 5}
               height={theme.spacer.xxl + theme.spacer.md}
             />
-            <Metadata debug title="Title" description={lorum} maxLines={1} />
+            <Metadata {...args.metadata} />
           </>
         }
       />
@@ -116,7 +116,7 @@ export const MetadataStandard: Story = {
             height={theme.spacer.xxl + theme.spacer.md}
           />
         }
-        bottom={<Metadata title="Title" description={lorum} maxLines={1} />}
+        bottom={<Metadata {...args.metadata} />}
       />
     );
   },
@@ -153,7 +153,7 @@ export const TileBadgeLabelSwitch: Story = {
             height={theme.spacer.xxl + theme.spacer.md}
           />
         }
-        bottom={<Metadata title="Title" description={lorum} maxLines={1} />}
+        bottom={<Metadata {...args.metadata} />}
       />
     );
   },
@@ -189,7 +189,7 @@ export const TileLogoCheckBoxTop: Story = {
           />
         }
         topRight={<Checkbox />}
-        inset={<Metadata title="Title" description={lorum} maxLines={1} />}
+        inset={<Metadata {...args.metadata} />}
       />
     );
   },
@@ -227,7 +227,7 @@ export const TileProgressBarTop: Story = {
         topLeft={<ProgressBar progress={0.5} width={380} />}
         inset={
           <>
-            <Metadata description={lorum} maxLines={1} mountY={0.5} />
+            <Metadata {...args.metadata} />
             <View
               src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
               width={theme.spacer.lg * 5}
