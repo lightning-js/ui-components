@@ -33,8 +33,6 @@ type KeyboardStyleProperties = {
   keySpacing?: NodeStyles['keySpacing'];
   screenW?: NodeStyles['screenW'];
   marginX?: NodeStyles['marginX'];
-  inputSpacing?: NodeStyles['inputSpacing'];
-  inputStyle?: NodeStyles['inputStyle'];
 };
 
 type KeyboardConfig = ComponentStyleConfig<KeyboardStyleProperties>;
@@ -47,15 +45,11 @@ const container: KeyboardConfig = {
     keySpacing: 'keySpacing',
     screenW: 'screenW',
     marginX: 'marginX',
-    inputSpacing: 'inputSpacing',
-    inputStyle: 'inputStyle'
   },
   base: {
     keySpacing: theme.spacer.md,
     screenW: theme.layout.screenW,
-    marginX: theme.layout.marginX,
-    inputSpacing: theme.spacer.md * 10 + theme.spacer.md,
-    inputStyle: { radius: theme.radius.md }
+    marginX: theme.layout.marginX
   },
   toneModes: {},
   themeStyles
@@ -65,8 +59,7 @@ const Container = makeComponentStyles<KeyboardStyle['Container']>(container);
 
 const styles: KeyboardStyle = {
   tone: tone,
-  Container,
-  Text
+  Container
 };
 
 export default styles;
