@@ -19,12 +19,9 @@ import theme from 'theme';
 import type { Tone } from 'types';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-import { type KeyProps } from '../Key/Key.jsx';
 import type { NodeStyles } from '@lightningjs/solid';
 import type { KeyConfig } from '../Key/Key.styles.js';
 import type { KeyStyle } from '../Key/Key.styles.js';
-
-export type KeyboardFormat = Array<Array<string | Record<string, KeyProps>>>;
 
 export interface KeyboardStyle {
   tone: Tone;
