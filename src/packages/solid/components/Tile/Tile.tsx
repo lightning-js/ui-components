@@ -40,7 +40,6 @@ export interface TileProps extends IntrinsicNodeProps {
 
 const Tile: Component<TileProps> = (props: TileProps) => {
   const [isFocused, setIsFocused] = createSignal(false);
-
   return (
     <node
       use:withPadding={styles.Container.padding}
@@ -54,7 +53,6 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         {...props.artwork}
         width={props.width || styles.Container.width}
         height={props.height || styles.Container.height}
-        alt="Solid logo"
       />
 
       <Show when={props.persistentMetadata || isFocused()}>
