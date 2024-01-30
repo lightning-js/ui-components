@@ -24,7 +24,6 @@ import keyStyles from '../Key/Key.styles.js';
 
 // rows created from each array passed in
 const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
-  // // export type KeyboardFormat = Array<Array<string | Record<string, unknown>>>;
   return (
     <Column
       autofocus={props.autofocus}
