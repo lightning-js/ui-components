@@ -37,18 +37,13 @@ export interface MetadataProps extends NodeStyles {
 }
 
 const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
-
   return (
     <View style={styles.container} {...props}>
       <Text width={props.width} style={styles.titleText}>
         {props.title}
       </Text>
       <Show when={props.description}>
-        <Text
-          width={props.width}
-          height={styles.descriptionText.lineHeight * (props.maxLines || styles.descriptionText.maxLines)}
-          style={styles.descriptionText}
-        >
+        <Text width={props.width} style={styles.descriptionText}>
           {props.description}
         </Text>
       </Show>

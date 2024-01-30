@@ -25,11 +25,14 @@ const styles = {
   },
   titleText: {
     ...theme.typography.headline3,
-    contain: 'both'
+    fontSize: 20,
+    contain: 'width',
+    maxLines: 1
   },
   descriptionText: {
     ...theme.typography.body2,
-    contain: 'both',
+    fontSize: 20,
+    contain: 'width',
     maxLines: 3
   },
   disabled: {
