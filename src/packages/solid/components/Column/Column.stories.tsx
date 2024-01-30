@@ -78,3 +78,17 @@ export const AlwaysScroll = {
     y: 0
   }
 };
+
+export const NeverScroll = {
+  render: (args: JSX.IntrinsicAttributes & ColumnProps) => {
+    return <SolidColumn autofocus {...args} />;
+  },
+  args: {
+    children: buttons,
+    scrollType: 'neverScroll',
+    wrap: false,
+    width: 400,
+    height: 500,
+    y: 360
+  }
+};
