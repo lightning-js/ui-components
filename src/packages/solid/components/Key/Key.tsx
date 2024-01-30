@@ -45,6 +45,7 @@ export interface KeyProps extends IntrinsicNodeProps {
 }
 
 const Key: Component<KeyProps> = props => {
+  const style1 = props?.style ?? styles;
   return (
     <ButtonContainer
       {...props}
@@ -53,9 +54,19 @@ const Key: Component<KeyProps> = props => {
       states={props.tone ?? styles.tone}
       forwardStates
       width={
-        styles.Container.sizes[props.size || 'sm'] * styles.Container.baseWidth +
-        (props.keySpacing || styles.Container.keySpacing) * (styles.Container.sizes[props.size || 'sm'] - 1)
+        style1.Container.sizes[props.size || 'sm'] * style1.Container.baseWidth +
+        style1.Container.keySpacing * (style1.Container.sizes[props.size || 'sm'] - 1)
       }
+      // Keep below for more thought
+      //
+      // width={
+      //   (props?.style?.Container?.sizes[props.size || 'sm'] ?? styles.Container.sizes[props.size || 'sm']) *
+      //     (props?.style?.Container?.baseWidth ?? styles.Container.baseWidth) +
+      //   (props?.style?.Container?.keySpacing ?? styles.Container.keySpacing) *
+      //     ((props?.style?.Container?.sizes[props.size || 'sm'] ??
+      //       styles.Container.sizes[props.size || 'sm']) -
+      //       1)
+      // }
     >
       <Text style={props?.style?.Text ?? styles.Text} tone={props.tone || styles.tone}>
         {props.title ? props.title : ''}

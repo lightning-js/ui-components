@@ -15,14 +15,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { For, type Component, Show } from 'solid-js';
+import { For, type Component } from 'solid-js';
 import { type KeyboardProps } from './Keyboard.jsx';
 import { Column, Row } from '@lightningjs/solid-primitives';
 import Key, { type KeyProps } from '../Key/Key.jsx';
 import styles from './Keyboard.styles.jsx';
 import keyStyles from '../Key/Key.styles.js';
-import { Text } from '@lightningjs/solid';
-import { ButtonStyles } from '../Button/Button.jsx';
 
 // rows created from each array passed in
 const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
@@ -31,20 +29,20 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
     <Column
       autofocus={props.autofocus}
       plinko
-      itemSpacing={styles.Container.keySpacing}
+      itemSpacing={props?.style?.Container?.keySpacing ?? styles.Container.keySpacing}
       justifyContent={props.centerKeyboard != undefined && props.centerKeyboard ? 'center' : 'flexStart'}
     >
       <For each={props.formats}>
         {(row: Array<string | KeyProps>) => (
           <Row
             justifyContent={props.centerKeys != undefined && props.centerKeys ? 'center' : 'flexStart'}
-            itemSpacing={styles.Container.keySpacing}
-            height={ButtonStyles.Container.height}
+            itemSpacing={ props?.style?.Container?.keySpacing?? styles.Container.keySpacing}
+            height={props?.style?.Container?.height || styles.Container.height}
             wrap={props.rowWrap}
           >
             <For each={row}>
               {(key: string | KeyProps) => (
-                <Key {...keyStyles.Container} {...key} title={key.title || key.icon ? key.title : key} />
+                <Key style={props?.style?.Key ?? keyStyles} {...(typeof key === 'string'? {} : key) } title={key.title || key.icon ? key.title : key} />
               )}
             </For>
           </Row>

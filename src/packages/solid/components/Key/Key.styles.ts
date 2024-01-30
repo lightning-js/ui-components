@@ -30,25 +30,25 @@ export type KeySizes = {
 
 export type KeySize = keyof KeySizes;
 
-export interface KeyStyles {
+export interface KeyStyle {
   tone: Tone;
   Container: NodeStyleSet<{ padding: number[] }>;
   Text: TextStyleSet;
 }
 
-type KeyStyleProperties = {
+export type KeyStyleProperties = {
   backgroundColor?: NodeStyles['color'];
   borderRadius?: NodeStyles['borderRadius'];
-  keySpacing?: NodeStyles['keySpacing'];
+  keySpacing?: number;
   contentColor?: NodeStyles['color'];
   justifyContent?: NodeStyles['justifyContent'];
   textAlign?: TextStyles['textAlign'];
   textColor?: TextStyles['color'];
-  baseWidth?: NodeStyles['baseWidth'];
-  sizes?: NodeStyles['sizes'];
+  baseWidth?: NodeStyles['width'];
+  sizes?: KeySizes;
 };
 
-type KeyConfig = ComponentStyleConfig<KeyStyleProperties>;
+export type KeyConfig = ComponentStyleConfig<KeyStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Key: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;

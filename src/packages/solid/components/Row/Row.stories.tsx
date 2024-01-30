@@ -1,6 +1,5 @@
 import SolidRow from './Row.jsx';
 import Button from '../Button/Button.jsx';
-import SolidColumn from '../Column/Column.jsx';
 import { Column, Row } from '@lightningjs/solid-primitives';
 import theme from 'theme';
 
@@ -132,23 +131,6 @@ export const ScrollIndex = {
     wrap: false,
     height: 500,
     width: 800,
-    x: 0
-  }
-};
-
-export const ColumnOfRows = {
-  render: args => {
-    return (
-      <Column autofocus height={2000} {...args}>
-        <Row height={100} {...args}>{buttons}</Row>
-        <Row height={100} {...args}>{buttons}</Row>
-        <Row height={100} {...args}>{buttons}</Row>
-      </Column>
-    );
-  },
-  args: {
-    wrap: false,
-    style: { gap: 30 },
     x: 0
   }
 };

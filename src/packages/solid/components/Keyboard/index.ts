@@ -15,5 +15,5 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export { default as default, type KeyBoardProps } from './KeyBoard.jsx';
-export { default as keyBoardStyles } from './KeyBoard.styles.js';
+export { default as default, type KeyboardProps } from './Keyboard.jsx';
+export { default as keyboardStyles } from './Keyboard.styles.js';

@@ -22,7 +22,7 @@ import KeyboardSimple from './KeyboardSimple.jsx';
 type Story = StoryObj<typeof Keyboard>;
 
 const meta: Meta<typeof Keyboard> = {
-  title: 'Components/KeyBoard',
+  title: 'Components/Keyboard',
   tags: ['autodocs'],
   component: Keyboard,
   argTypes: {
