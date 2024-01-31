@@ -55,10 +55,10 @@ export function withScrolling(adjustment: number = 0) {
         // if the (absolute value of current position  + the size of the visual portion of the row) is less than (the last Item position + the last Item size), then the last item is not shown
         // if scrolling backwards and the position of the selected item is less that the absolute value of the current position, the selected item is not shown
       } else if (
-        (scrollType !== 'lazyScroll' &&
-          scrollType !== 'neverScroll' &&
-          Math.abs(currentVal) + windowVal < lastItem.position + lastItem.size) ||
-        newVal < Math.abs(currentVal)
+        scrollType !== 'lazyScroll' &&
+        scrollType !== 'neverScroll' &&
+        (Math.abs(currentVal) + windowVal < lastItem.position + lastItem.size ||
+          newVal < Math.abs(currentVal))
       ) {
         next = -newVal + adjustment;
       }
