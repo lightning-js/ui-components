@@ -14,7 +14,7 @@ const Row: Component<RowProps> = (props: RowProps) => {
     <SolidRow
       {...props}
       animate
-      style={styles.Row}
+      style={styles.Container}
       clipping
       onSelectedChanged={withScrolling(props.x as number)}
     />
