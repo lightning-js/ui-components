@@ -22,7 +22,7 @@ import { makeComponentStyles } from '../../utils/index.js';
 
 export interface RowStyle {
   tone: Tone;
-  Container: NodeStyleSet<{ padding: number[] }>;
+  Container: NodeStyleSet;
 }
 
 type RowStyleProperties = {
