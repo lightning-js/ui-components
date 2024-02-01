@@ -15,7 +15,6 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
     <SolidColumn
       {...props}
       animate
-      clipping
       style={styles.Container}
       onSelectedChanged={withScrolling(props.y as number)}
     />
