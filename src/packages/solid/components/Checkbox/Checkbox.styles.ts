@@ -14,7 +14,77 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
+
+import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
+import type { Tone } from 'types';
+import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
+import { makeComponentStyles } from '../../utils/index.js';
+
+export interface CheckboxStyle {
+  tone: Tone;
+  Container: NodeStyleSet;
+}
+
+export type CheckboxStyleProperties = {
+  color?: NodeStyles['color'];
+  borderRadius?: NodeStyles['borderRadius'];
+  justifyContent?: NodeStyles['justifyContent'];
+};
+
+type CheckboxConfig = ComponentStyleConfig<CheckboxStyleProperties>;
+/* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
+const { Checkbox: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+
+const strokeWidth = theme.stroke.sm;
+const size = theme.spacer.xxl - strokeWidth * 2;
+
+const container: CheckboxConfig = {
+  themeKeys: {
+    color: 'color',
+    borderRadius: 'borderRadius',
+    justifyContent: 'justifyContent'
+  },
+  base: {
+    width: size,
+    height: size,
+    display: 'flex',
+    justifyContent: 'center',
+    color: theme.color.fillNeutral,
+    alignItems: 'center',
+    borderRadius: size / 4,
+    border: {
+      width: strokeWidth,
+      color: theme.color.strokeInverse
+    }
+  },
+  toneModes: {
+    disabled: {
+      alpha: theme.alpha.inactive
+    },
+    checked: {
+      color: theme.color.fillNeutralDisabled
+    }
+  },
+  themeStyles
+};
+
+const Container = makeComponentStyles<CheckboxStyle['Container']>(container);
+
+const styles: CheckboxStyle = {
+  tone: tone,
+  Container
+};
+
+export default styles;
+
+const styles = {
+  Container: {
+    disabled: {
+      alpha: theme.alpha.inactive
+    }
+  }
+} as const;
 
 // TODO: LUI styles remove before merge
 // focus and unfocus no style changes
@@ -27,29 +97,3 @@ import theme from 'theme';
 // taken from LUI
 // probably used to take into account if strokeWidth changes
 // is this necessary?
-const strokeWidth = theme.stroke.sm;
-const size = theme.spacer.xxl - strokeWidth * 2;
-
-const styles = {
-  Container: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: size,
-    height: size,
-    color: theme.color.fillNeutral,
-    borderRadius: size / 4,
-    border: {
-      width: strokeWidth,
-      color: theme.color.strokeInverse
-    },
-    disabled: {
-      alpha: theme.alpha.inactive
-    },
-    checked: {
-      color: theme.color.fillNeutralDisabled
-    }
-  } as const,
-} as const;
-
-export default styles;
