@@ -49,7 +49,7 @@ const config = {
       external: ['theme', '@lightningjs/solid', '@lightningjs/solid-primitives', '@lightningjs/renderer']
     },
     minify: false,
-    sourcemap: false,
+    sourcemap: true,
     outDir: './dist'
   },
   resolve: {
