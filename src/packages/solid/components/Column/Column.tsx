@@ -22,7 +22,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
     <SolidColumn
       {...props}
       style={styles.Container}
-      onSelectedChanged={multiFunction(props.onSelectedChanged, withScrolling(props.x as number))}
+      onSelectedChanged={multiFunction(props.onSelectedChanged, withScrolling(props.y as number))}
     />
   );
 };
