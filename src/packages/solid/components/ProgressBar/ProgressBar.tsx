@@ -55,7 +55,6 @@ const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
       forwardStates
     >
       <View
-        animate
         style={props?.style?.ProgressBar ?? styles.ProgressBar}
         tone={props.tone ?? styles.tone}
         animationSettings={props.animationSettings}

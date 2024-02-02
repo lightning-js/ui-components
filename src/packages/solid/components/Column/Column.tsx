@@ -3,6 +3,7 @@ import { type IntrinsicNodeProps } from '@lightningjs/solid';
 import { Column as SolidColumn } from '@lightningjs/solid-primitives';
 import styles from './Column.styles.js';
 import { withScrolling } from '../../utils/withScrolling.js';
+import { chainFunctions } from '../../index.js';
 
 export interface ColumnProps extends IntrinsicNodeProps {
   /** Item index at which scrolling begins */
@@ -11,13 +12,12 @@ export interface ColumnProps extends IntrinsicNodeProps {
 }
 
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
+
   return (
     <SolidColumn
       {...props}
-      animate
-      clipping
       style={styles.Container}
-      onSelectedChanged={withScrolling(props.y as number)}
+      onSelectedChanged={chainFunctions(props.onSelectedChanged, withScrolling(props.y as number))}
     />
   );
 };

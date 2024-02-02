@@ -18,13 +18,7 @@ export interface LabelStyleProps {
 
 const Label: Component<LabelProps> = props => {
   return (
-    <node
-      use:withPadding={styles.Container.padding}
-      {...props}
-      style={styles.Container}
-      animate
-      forwardStates
-    >
+    <node use:withPadding={styles.Container.padding} {...props} style={styles.Container} forwardStates>
       <Text style={styles.textStyle}>{props.title}</Text>
     </node>
   );

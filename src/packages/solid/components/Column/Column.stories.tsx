@@ -89,6 +89,6 @@ export const NeverScroll = {
     wrap: false,
     width: 400,
     height: 500,
-    y: 360
+    y: 0
   }
 };

@@ -57,7 +57,7 @@ export const Basic = {
     wrap: false,
     height: 500,
     width: 800,
-    x: 20
+    x: 30
   }
 };
 
@@ -75,7 +75,7 @@ export const LazyScroll = {
     wrap: false,
     height: 500,
     width: 800,
-    x: 0
+    x: 100
   }
 };
 
