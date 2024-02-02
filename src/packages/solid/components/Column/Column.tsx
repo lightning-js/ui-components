@@ -18,7 +18,6 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
   return (
     <SolidColumn
       {...props}
-      animate
       style={styles.Container}
       onSelectedChanged={
         typeof props.OnSelectedChanged === 'function' &&
