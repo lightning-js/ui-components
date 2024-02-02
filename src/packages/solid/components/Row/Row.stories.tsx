@@ -1,5 +1,7 @@
 import SolidRow from './Row.jsx';
 import Button from '../Button/Button.jsx';
+import { Column, Row } from '@lightningjs/solid-primitives';
+import theme from 'theme';
 
 const meta = {
   title: 'Components/Row',

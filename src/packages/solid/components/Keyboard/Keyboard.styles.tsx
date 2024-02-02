@@ -14,46 +14,50 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import type { TextStyles, NodeStyles } from '@lightningjs/solid';
+
 import theme from 'theme';
 import type { Tone } from 'types';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
+import type { NodeStyles } from '@lightningjs/solid';
+import type { KeyConfig } from '../Key/Key.styles.js';
+import type { KeyStyle } from '../Key/Key.styles.js';
 
-export type KeySizes = {
-  sm: number;
-  md: number;
-  lg: number;
-  xl: number;
-  xxl: number;
-};
-
-export type KeySize = keyof KeySizes;
-
-export interface KeyStyle {
+export interface KeyboardStyle {
   tone: Tone;
   Container: NodeStyleSet<{ padding: number[] }>;
+  Key: NodeStyleSet;
   Text: TextStyleSet;
 }
 
-export type KeyStyleProperties = {
-  backgroundColor?: NodeStyles['color'];
-  borderRadius?: NodeStyles['borderRadius'];
-  keySpacing?: number;
-  contentColor?: NodeStyles['color'];
-  justifyContent?: NodeStyles['justifyContent'];
-  textAlign?: TextStyles['textAlign'];
-  textColor?: TextStyles['color'];
-  baseWidth?: NodeStyles['width'];
-  sizes?: KeySizes;
+type KeyboardStyleProperties = {
+  keySpacing?: NodeStyles['keySpacing'];
+  screenW?: NodeStyles['screenW'];
+  marginX?: NodeStyles['marginX'];
 };
 
-export type KeyConfig = ComponentStyleConfig<KeyStyleProperties>;
+type KeyboardConfig = ComponentStyleConfig<KeyboardStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Key: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+const { Keyboard: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
 
-const container: KeyConfig = {
+const container: KeyboardConfig = {
+  themeKeys: {
+    keySpacing: 'keySpacing',
+    screenW: 'screenW',
+    marginX: 'marginX'
+  },
+  base: {
+    keySpacing: theme.spacer.md,
+    screenW: theme.layout.screenW,
+    marginX: theme.layout.marginX,
+    height: 100
+  },
+  toneModes: {},
+  themeStyles
+};
+
+const key: KeyConfig = {
   themeKeys: {
     keySpacing: 'keySpacing',
     textAlign: 'textAlign',
@@ -96,7 +100,8 @@ const container: KeyConfig = {
   },
   themeStyles
 };
-const text: KeyConfig = {
+
+const text: KeyboardConfig = {
   themeKeys: {
     color: 'textColor',
     contentColor: 'contentColor'
@@ -127,12 +132,14 @@ const text: KeyConfig = {
   themeStyles
 };
 
-const Container = makeComponentStyles<KeyStyle['Container']>(container);
-const Text = makeComponentStyles<KeyStyle['Text']>(text);
+const Container = makeComponentStyles<KeyboardStyle['Container']>(container);
+const Key = makeComponentStyles<KeyStyle['Container']>(key);
+const Text = makeComponentStyles<KeyboardStyle['Text']>(text);
 
-const styles: KeyStyle = {
+const styles: KeyboardStyle = {
   tone: tone,
   Container,
+  Key: { Key },
   Text
 };
 

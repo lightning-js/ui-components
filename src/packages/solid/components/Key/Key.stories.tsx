@@ -17,7 +17,6 @@
 
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import Key from './Key.jsx';
-import { ButtonStyles } from '../Button/Button.jsx';
 import { Text } from '@lightningjs/solid';
 import keyStyles from './Key.styles.js';
 
@@ -35,35 +34,37 @@ const meta: Meta<typeof Key> = {
       table: {
         defaultValue: { summary: 'focus' }
       }
+    },
+    tone: {
+      control: { type: 'radio' },
+      options: ['neutral', 'inverse', 'brand'],
+      description: 'Sets the tone for the component',
+      table: {
+        defaultValue: { summary: 'neutral' }
+      }
     }
   }
 };
 
 export const Basic: Story = {
   render: args => {
-    return (
-      <Key {...args} {...keyStyles.Container}>
-        <Text style={ButtonStyles.Text}>A</Text>
-      </Key>
-    );
+    return <Key {...args} tone={args.tone ?? keyStyles.tone} style={keyStyles} />;
   },
   args: {
     states: 'focus',
-    keySpacing: 2
+    keySpacing: 2,
+    title: 'A'
   }
 };
 
 export const Space: Story = {
   render: args => {
-    return (
-      <Key {...args} {...keyStyles.Container} size={'lg'}>
-        <Text style={ButtonStyles.Text}>Space</Text>
-      </Key>
-    );
+    return <Key {...args} tone={args.tone ?? keyStyles.tone} style={keyStyles} size={'lg'} />;
   },
   args: {
     states: 'focus',
-    keySpacing: 2
+    keySpacing: 2,
+    title: 'Space'
   }
 };
 
