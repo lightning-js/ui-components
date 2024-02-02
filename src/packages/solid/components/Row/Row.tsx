@@ -15,7 +15,11 @@ const Row: Component<RowProps> = (props: RowProps) => {
       {...props}
       animate
       style={styles.Container}
-      onSelectedChanged={props.onSelectedChanged ?? withScrolling(props.x as number)}
+      onSelectedChanged={
+        typeof props.OnSelectedChanged === 'function' &&
+        props.OnSelectedChanged.call(this) &&
+        withScrolling(props.x as number)
+      }
     />
   );
 };
