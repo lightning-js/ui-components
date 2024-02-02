@@ -10,15 +10,18 @@ export interface RowProps extends IntrinsicNodeProps {
 }
 
 const Row: Component<RowProps> = (props: RowProps) => {
+  const multiFunction = (callback: Function | any, originalFunc: Function) => {
+    return (...args: any[]) => {
+      typeof callback === 'function' && callback.apply(this, args);
+      originalFunc.apply(this, args);
+    };
+  };
+
   return (
     <SolidRow
       {...props}
       style={styles.Container}
-      onSelectedChanged={
-        withScrolling(props.x as number) &&
-        typeof props.OnSelectedChanged === 'function' &&
-        props.OnSelectedChanged.call(this)
-      }
+      onSelectedChanged={multiFunction(props.onSelectedChanged, withScrolling(props.x as number))}
     />
   );
 };

@@ -11,15 +11,18 @@ export interface ColumnProps extends IntrinsicNodeProps {
 }
 
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
+  const multiFunction = (callback: Function | any, originalFunc: Function) => {
+    return (...args: any[]) => {
+      typeof callback === 'function' && callback.apply(this, args);
+      originalFunc.apply(this, args);
+    };
+  };
+
   return (
     <SolidColumn
       {...props}
       style={styles.Container}
-      onSelectedChanged={
-        withScrolling(props.y as number) &&
-        typeof props.OnSelectedChanged === 'function' &&
-        props.OnSelectedChanged.call(this)
-      }
+      onSelectedChanged={multiFunction(props.onSelectedChanged, withScrolling(props.x as number))}
     />
   );
 };
