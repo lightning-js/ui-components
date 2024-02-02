@@ -11,10 +11,6 @@ export interface ColumnProps extends IntrinsicNodeProps {
 }
 
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
-  function isFunc(OnSelectedChanged: unknown) {
-    throw new Error('Function not implemented.');
-  }
-
   return (
     <SolidColumn
       {...props}
