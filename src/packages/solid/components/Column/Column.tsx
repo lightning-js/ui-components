@@ -16,9 +16,9 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
       {...props}
       style={styles.Container}
       onSelectedChanged={
+        withScrolling(props.y as number) &&
         typeof props.OnSelectedChanged === 'function' &&
-        props.OnSelectedChanged.call(this) &&
-        withScrolling(props.y as number)
+        props.OnSelectedChanged.call(this)
       }
     />
   );

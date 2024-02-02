@@ -15,9 +15,9 @@ const Row: Component<RowProps> = (props: RowProps) => {
       {...props}
       style={styles.Container}
       onSelectedChanged={
+        withScrolling(props.x as number) &&
         typeof props.OnSelectedChanged === 'function' &&
-        props.OnSelectedChanged.call(this) &&
-        withScrolling(props.x as number)
+        props.OnSelectedChanged.call(this)
       }
     />
   );
