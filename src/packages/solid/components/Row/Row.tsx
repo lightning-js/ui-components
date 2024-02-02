@@ -13,7 +13,6 @@ const Row: Component<RowProps> = (props: RowProps) => {
   return (
     <SolidRow
       {...props}
-      animate
       style={styles.Container}
       onSelectedChanged={
         typeof props.OnSelectedChanged === 'function' &&
