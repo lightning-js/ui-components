@@ -3,6 +3,7 @@ import { type IntrinsicNodeProps } from '@lightningjs/solid';
 import { Row as SolidRow } from '@lightningjs/solid-primitives';
 import styles from './Row.styles.js';
 import { withScrolling } from '../../utils/withScrolling.js';
+import { chainFunctions } from '../../index.js';
 
 export interface RowProps extends IntrinsicNodeProps {
   scrollIndex?: number;
@@ -10,18 +11,12 @@ export interface RowProps extends IntrinsicNodeProps {
 }
 
 const Row: Component<RowProps> = (props: RowProps) => {
-  const multiFunction = (callback: Function | any, originalFunc: Function) => {
-    return (...args: any[]) => {
-      typeof callback === 'function' && callback.apply(this, args);
-      originalFunc.apply(this, args);
-    };
-  };
 
   return (
     <SolidRow
       {...props}
       style={styles.Container}
-      onSelectedChanged={multiFunction(props.onSelectedChanged, withScrolling(props.x as number))}
+      onSelectedChanged={chainFunctions(props.onSelectedChanged, withScrolling(props.x as number))}
     />
   );
 };
