@@ -1,4 +1,4 @@
-export function withScrolling() {
+export function withScrolling(adjustment: number = 0) {
   return (componentRef, selectedElement, selected, lastSelected) => {
     if (componentRef.children.length === 0) {
       return;
@@ -39,7 +39,7 @@ export function withScrolling() {
         scrollType === 'alwaysScroll' ||
         (scrollType === 'lazyScroll' && direct === 'negative' && Math.abs(currentVal) > newVal)
       ) {
-        next = -newVal;
+        next = -newVal + adjustment;
 
         // if we want to scroll based on the size of the selected item
         // this will be the case for lazyScroll when we are scrolling positively and the current positioning does not have the selected item shown
@@ -60,7 +60,7 @@ export function withScrolling() {
         (Math.abs(currentVal) + windowVal < lastItem.position + lastItem.size ||
           newVal < Math.abs(currentVal))
       ) {
-        next = -newVal;
+        next = -newVal + adjustment;
       }
     }
 
