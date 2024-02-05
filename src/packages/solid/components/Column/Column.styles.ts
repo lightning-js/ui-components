@@ -50,7 +50,8 @@ const container: ColumnConfig = {
     flexDirection: 'column',
     gap: 30,
     x: 0,
-    y: 0
+    y: 0,
+    height: theme.layout.screenH
   },
   toneModes: {},
   themeStyles

@@ -59,7 +59,7 @@ export const Basic = {
     wrap: false,
     height: 500,
     width: 800,
-    x: 30
+    x: 100
   }
 };
 
@@ -95,7 +95,7 @@ export const AlwaysScroll = {
     wrap: false,
     height: 500,
     width: 800,
-    x: 0
+    x: 100
   }
 };
 
@@ -113,7 +113,7 @@ export const NeverScroll = {
     wrap: false,
     height: 500,
     width: 800,
-    x: 0
+    x: 100
   }
 };
 
@@ -131,6 +131,6 @@ export const ScrollIndex = {
     wrap: false,
     height: 500,
     width: 800,
-    x: 0
+    x: 100
   }
 };
