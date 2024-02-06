@@ -50,4 +50,10 @@ export {
   type LabelStyles
 } from './components/Label/index.js';
 export { default as Metadata, metadataStyles, type MetadataProps } from './components/Metadata/index.js';
+export {
+  default as ProgressBar,
+  progressBarStyles,
+  type ProgressBarProps,
+  type ProgressBarStyles
+} from './components/ProgressBar/index.js';
 export * from './utils/index.js';

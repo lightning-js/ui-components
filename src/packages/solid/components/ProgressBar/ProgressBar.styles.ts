@@ -21,7 +21,7 @@ import type { Tone } from 'types';
 import { makeComponentStyles } from '../../utils/index.js';
 import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 
-export interface ProgressBarStyle {
+export interface ProgressBarStyles {
   tone: Tone;
   Container: NodeStyleSet;
   ProgressBar: NodeStyleSet;
@@ -78,10 +78,10 @@ const progress: ProgressBarConfig = {
   themeStyles
 };
 
-const Container = makeComponentStyles<ProgressBarStyle['Container']>(container);
-const ProgressBar = makeComponentStyles<ProgressBarStyle['ProgressBar']>(progress);
+const Container = makeComponentStyles<ProgressBarStyles['Container']>(container);
+const ProgressBar = makeComponentStyles<ProgressBarStyles['ProgressBar']>(progress);
 
-const styles: ProgressBarStyle = {
+const styles: ProgressBarStyles = {
   tone: tone,
   Container,
   ProgressBar
