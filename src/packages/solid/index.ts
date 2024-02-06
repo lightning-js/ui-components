@@ -49,4 +49,5 @@ export {
   type LabelProps,
   type LabelStyles
 } from './components/Label/index.js';
+export { default as Metadata, metadataStyles, type MetadataProps } from './components/Metadata/index.js';
 export * from './utils/index.js';
