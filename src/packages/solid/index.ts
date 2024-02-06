@@ -21,4 +21,10 @@ export {
   type ArtworkProps,
   type ArtworkStyles
 } from './components/Artwork/index.js';
+export {
+  default as Label,
+  labelStyles,
+  type LabelProps,
+  type LabelStyles
+} from './components/Label/index.js';
 export * from './utils/index.js';

@@ -3,7 +3,7 @@ import Tile from './Tile.jsx';
 import theme from 'theme';
 import Badge from '../Badge/Badge.jsx';
 import { View } from '@lightningjs/solid';
-import Label from './Label.jsx';
+import Label from '../Label/Label.jsx';
 import Metadata from '../Metadata/Metadata.jsx';
 import ProgressBar from '../ProgressBar/ProgressBar.jsx';
 import Checkbox from '../Checkbox/Checkbox.jsx';
@@ -61,8 +61,16 @@ export const MetadataInset: Story = {
     return (
       <Tile
         {...args}
-        topLeft={<Badge title="HD" />}
-        topRight={<Label width={75} title="Label" mountX={0.5} />}
+        tone="brand"
+        topLeft={<Badge title="HD" tone="brand" />}
+        topRight={
+          <Label
+            width={75}
+            title="Label"
+            mountX={0.5}
+            // tone="brand"
+          />
+        }
         inset={
           <>
             <View
