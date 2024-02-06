@@ -22,6 +22,12 @@ export {
   type ArtworkStyles
 } from './components/Artwork/index.js';
 export {
+  default as Badge,
+  badgeStyles,
+  type BadgeProps,
+  type BadgeStyles
+} from './components/Badge/index.js';
+export {
   default as Label,
   labelStyles,
   type LabelProps,

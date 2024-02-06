@@ -21,7 +21,7 @@ import type { Tone } from 'types';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
-export interface BadgeStyle {
+export interface BadgeStyles {
   tone: Tone;
   Container: NodeStyleSet;
   Icon: NodeStyleSet;
@@ -117,11 +117,11 @@ const icon: BadgeConfig = {
   themeStyles
 };
 
-const Container = makeComponentStyles<BadgeStyle['Container']>(container);
-const Icon = makeComponentStyles<BadgeStyle['Icon']>(icon);
-const Text = makeComponentStyles<BadgeStyle['Text']>(text);
+const Container = makeComponentStyles<BadgeStyles['Container']>(container);
+const Icon = makeComponentStyles<BadgeStyles['Icon']>(icon);
+const Text = makeComponentStyles<BadgeStyles['Text']>(text);
 
-const styles: BadgeStyle = {
+const styles: BadgeStyles = {
   tone: tone,
   Container,
   Icon,
