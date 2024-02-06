@@ -57,4 +57,5 @@ export {
   type ProgressBarStyles
 } from './components/ProgressBar/index.js';
 export { default as Row, rowStyles, type RowProps, type RowStyles } from './components/Row/index.js';
+export { default as Tile, tileStyles, type TileProps, type TileStyles } from './components/Tile/index.js';
 export * from './utils/index.js';
