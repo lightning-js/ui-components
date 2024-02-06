@@ -28,6 +28,14 @@ export {
   type BadgeStyles
 } from './components/Badge/index.js';
 export {
+  default as Button,
+  ButtonContainer,
+  buttonStyles,
+  type ButtonProps,
+  type ButtonContainerProps,
+  type ButtonStyles
+} from './components/Button/index.js';
+export {
   default as Label,
   labelStyles,
   type LabelProps,

@@ -59,10 +59,4 @@ const ButtonContainer: Component<ButtonContainerProps> = props => {
   );
 };
 
-export {
-  Button as default,
-  ButtonContainer,
-  styles as ButtonStyles,
-  type ButtonProps,
-  type ButtonContainerProps
-};
+export { Button as default, ButtonContainer, type ButtonProps, type ButtonContainerProps };
