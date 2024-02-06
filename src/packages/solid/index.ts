@@ -37,6 +37,12 @@ export {
 } from './components/Button/index.js';
 export { default as Checkbox, checkboxStyles, type CheckboxProps } from './components/Checkbox/index.js';
 export {
+  default as Column,
+  columnStyles,
+  type ColumnProps,
+  type ColumnStyles
+} from './components/Column/index.js';
+export {
   default as Label,
   labelStyles,
   type LabelProps,
