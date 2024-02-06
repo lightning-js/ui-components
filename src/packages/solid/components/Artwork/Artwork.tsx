@@ -1,5 +1,6 @@
 import { type Component, createMemo } from 'solid-js';
 import { View, type IntrinsicNodeProps } from '@lightningjs/solid';
+// import styles from './Artwork.styles.old.js';
 import styles from './Artwork.styles.js';
 import { withPadding } from '@lightningjs/solid-primitives';
 withPadding;
@@ -31,26 +32,35 @@ export interface ArtworkProps extends ArtworkStyleProps, IntrinsicNodeProps {
 
 export interface ArtworkStyleProps {}
 
+const formatArtwork = (props: ArtworkProps) => {
+  /* eslint-disable solid/reactivity */ // this is fine, the call is wrapped in a memo
+  let src = props.src ? props.src : props.fallbackSrc;
+
+  if (src && props.srcCallback && typeof props.srcCallback === 'function') {
+    src = props.srcCallback({
+      closestAspectRatio: undefined,
+      aspectRatio: undefined,
+      src: src,
+      width: props.width,
+      height: props.height
+    });
+  }
+  return src;
+};
+
 const Artwork: Component<ArtworkProps> = props => {
-  const formatArtwork = (props: ArtworkProps) => {
-    /* eslint-disable solid/reactivity */ // this is fine, the call is wrapped in a memo
-    let src = props.src ? props.src : props.fallbackSrc;
-
-    if (src && props.srcCallback && typeof props.srcCallback === 'function') {
-      src = props.srcCallback({
-        closestAspectRatio: undefined,
-        aspectRatio: undefined,
-        src: src,
-        width: props.width,
-        height: props.height
-      });
-    }
-    return src;
-  };
-
   const formattedArtwork = createMemo(() => formatArtwork(props));
+  console.log(formattedArtwork());
 
-  return <View {...props} style={styles.Container} src={formattedArtwork()} />;
+  return (
+    <View
+      {...props}
+      // only apply color if no src is provided
+      color={Boolean(formattedArtwork()) ? undefined : props.color ?? styles.Container.fillColor}
+      style={styles.Container}
+      src={formattedArtwork()}
+    />
+  );
 };
 
 export default Artwork;
