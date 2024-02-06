@@ -35,6 +35,7 @@ export {
   type ButtonContainerProps,
   type ButtonStyles
 } from './components/Button/index.js';
+export { default as Checkbox, checkboxStyles, type CheckboxProps } from './components/Checkbox/index.js';
 export {
   default as Label,
   labelStyles,
