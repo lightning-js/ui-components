@@ -21,7 +21,7 @@ import type { Tone } from 'types';
 import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
-export interface IconStyle {
+export interface IconStyles {
   tone: Tone;
   Container: NodeStyleSet;
 }
@@ -55,9 +55,9 @@ const container: IconConfig = {
   themeStyles
 };
 
-const Container = makeComponentStyles<IconStyle['Container']>(container);
+const Container = makeComponentStyles<IconStyles['Container']>(container);
 
-const styles: IconStyle = {
+const styles: IconStyles = {
   tone: tone,
   Container
 };

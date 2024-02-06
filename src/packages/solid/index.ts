@@ -42,6 +42,7 @@ export {
   type ColumnProps,
   type ColumnStyles
 } from './components/Column/index.js';
+export { default as Icon, iconStyles, type IconProps, type IconStyles } from './components/Icon/index.js';
 export {
   default as Label,
   labelStyles,
