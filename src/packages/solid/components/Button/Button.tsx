@@ -18,17 +18,17 @@
 import { type Component } from 'solid-js';
 import { View, Text, type NodeProps } from '@lightningjs/solid';
 import type { Tone } from 'types';
-import styles, { type ButtonStyle } from './Button.styles.js';
+import styles, { type ButtonStyles } from './Button.styles.js';
 
 interface ButtonProps extends NodeProps {
   children: string | string[];
   tone?: Tone;
-  style?: Omit<ButtonStyle, 'tone'>;
+  style?: Omit<ButtonStyles, 'tone'>;
 }
 
 interface ButtonContainerProps extends NodeProps {
   tone?: Tone;
-  style?: Omit<ButtonStyle, 'tone'>;
+  style?: Omit<ButtonStyles, 'tone'>;
 }
 
 const Button: Component<ButtonProps> = props => {
