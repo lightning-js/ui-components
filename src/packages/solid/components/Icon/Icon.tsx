@@ -17,7 +17,8 @@
 
 import type { Component } from 'solid-js';
 import { View, type IntrinsicNodeProps } from '@lightningjs/solid';
-import styles from './Icon.styles.js';
+import styles, { type IconStyles } from './Icon.styles.js';
+import type { Tone } from 'types';
 
 export interface IconProps extends IntrinsicNodeProps {
   /**
@@ -38,18 +39,19 @@ export interface IconProps extends IntrinsicNodeProps {
    * path to image or inline SVG XML
    */
   src?: string;
+
+  style?: Partial<IconStyles>;
+
+  tone?: Tone;
 }
 
 const Icon: Component<IconProps> = props => {
   return (
     <View
       {...props}
-      tone={props.tone || styles.tone}
-      style={styles.Container}
-      {...{
-        ...styles.Container[props.tone || styles.tone],
-        ...props?.style?.Container
-      }}
+      style={props?.style?.Container ?? styles.Container}
+      tone={props.tone ?? styles.tone}
+      states={props.tone ?? styles.tone}
     />
   );
 };
