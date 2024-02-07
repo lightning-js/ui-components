@@ -16,6 +16,8 @@
  */
 import Checkbox from './Checkbox.jsx';
 import Icon from '../Icon/Icon.jsx';
+import checkboxStyles from '../Checkbox/Checkbox.styles.js';
+import { hexColor } from '@lightningjs/solid';
 
 const check = '/assets/images/check-icon.png';
 
@@ -24,6 +26,22 @@ const meta = {
   component: Checkbox,
   tags: ['autodocs'],
   argTypes: {
+    states: {
+      control: { type: 'radio' },
+      options: ['focus', 'unfocused', 'disabled'],
+      description: 'Sets the visual mode for the component',
+      table: {
+        defaultValue: { summary: 'focus' }
+      }
+    },
+    tone: {
+      control: { type: 'radio' },
+      options: ['neutral', 'inverse', 'brand'],
+      description: 'Sets the tone for the component',
+      table: {
+        defaultValue: { summary: 'neutral' }
+      }
+    },
     checked: {
       description: 'Toggles checked between on and off',
       control: 'boolean'
@@ -44,7 +62,7 @@ export const Basic = {
 export const WithIcon = {
   render: args => (
     <Checkbox {...args}>
-      <Icon width={18} height={14} src={check} />
+      <Icon width={18} height={14} style={checkboxStyles.Icon} src={check}/>
     </Checkbox>
   ),
   args: {

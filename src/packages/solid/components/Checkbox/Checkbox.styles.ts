@@ -20,15 +20,18 @@ import theme from 'theme';
 import type { Tone } from 'types';
 import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
+import type { IconConfig, IconStyle} from '../Icon/Icon.styles.js';
 
 export interface CheckboxStyle {
   tone: Tone;
   Container: NodeStyleSet;
+  Icon: NodeStyleSet;
 }
 
 export type CheckboxStyleProperties = {
   color?: NodeStyles['color'];
   borderRadius?: NodeStyles['borderRadius'];
+  borderColor?: NodeStyles['borderColor'];
   justifyContent?: NodeStyles['justifyContent'];
 };
 
@@ -43,6 +46,7 @@ const container: CheckboxConfig = {
   themeKeys: {
     color: 'color',
     borderRadius: 'borderRadius',
+    borderColor: 'borderColor',
     justifyContent: 'justifyContent'
   },
   base: {
@@ -53,47 +57,67 @@ const container: CheckboxConfig = {
     color: theme.color.fillNeutral,
     alignItems: 'center',
     borderRadius: size / 4,
+    borderColor: theme.color.strokeInverse,
     border: {
-      width: strokeWidth,
-      color: theme.color.strokeInverse
+      width: strokeWidth
     }
   },
   toneModes: {
+    neutral: {
+      borderColor: theme.color.strokeNeutralSecondary,
+      color: theme.color.fillInverseSecondary,
+    },
+    'checked': {
+      color: theme.color.fillNeutral
+    },
+    inverse: {
+      borderColor: theme.color.strokeInverseSecondary,
+      color: theme.color.fillNeutralSecondary,
+    },
+    'inverse-checked': {
+      color: theme.color.fillInverse
+    },
+    brand: {
+      borderColor: theme.color.strokeNeutralSecondary,
+      color: theme.color.fillNeutralSecondary,
+    },
+    'brand-checked': {
+      color: theme.color.fillBrand
+    },
     disabled: {
       alpha: theme.alpha.inactive
+    }
+  },
+  themeStyles
+};
+
+const icon: IconConfig = {
+  themeKeys: {
+    color: 'color'
+  },
+  base: {
+    width: theme.spacer.lg,
+    height: theme.spacer.lg,
+    color: theme.color.fillInverse,
+    src: theme.asset.check
+  },
+  toneModes: {
+    inverse: {
+      color: theme.color.fillNeutral
     },
-    checked: {
-      color: theme.color.fillNeutralDisabled
+    brand: {
+      color: theme.color.fillInverse
     }
   },
   themeStyles
 };
 
 const Container = makeComponentStyles<CheckboxStyle['Container']>(container);
-
+const Icon = makeComponentStyles<IconStyle['Container']>(icon);
 const styles: CheckboxStyle = {
   tone: tone,
-  Container
+  Container,
+  Icon: Icon
 };
 
 export default styles;
-
-const styles = {
-  Container: {
-    disabled: {
-      alpha: theme.alpha.inactive
-    }
-  }
-} as const;
-
-// TODO: LUI styles remove before merge
-// focus and unfocus no style changes
-// disabled: {
-//   alpha: theme.alpha.inactive;
-// }
-// checked: backgroundColor: theme.color.fillNeutralDisabled,
-// unchecked: backgroundColorChecked: theme.color.fillNeutral
-
-// taken from LUI
-// probably used to take into account if strokeWidth changes
-// is this necessary?

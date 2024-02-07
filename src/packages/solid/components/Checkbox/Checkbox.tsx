@@ -32,8 +32,11 @@ const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
     <View
       {...props}
       children={props.checked ? props.children : ''}
-      style={styles.Container}
-      states={{ checked: props.checked }}
+      style={props?.style?.Container ?? styles.Container}
+      tone={props.tone ?? styles.tone}
+      states={{
+        checked: props.checked ?? false
+      }}
     />
   );
 };
