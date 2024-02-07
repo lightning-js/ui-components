@@ -15,13 +15,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
 
 const styles = {
   Container: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center'
+    display: 'flex' as NodeStyles['display'],
+    flexDirection: 'row' as NodeStyles['flexDirection'],
+    alignItems: 'center' as NodeStyles['alignItems']
   },
   titleText: theme.typography.body2,
   contentSpacing: theme.spacer.lg,

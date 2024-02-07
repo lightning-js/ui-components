@@ -1,40 +1,75 @@
 import { type Component, createSignal } from 'solid-js';
-import { Show, type IntrinsicNodeProps, View } from '@lightningjs/solid';
-import styles from './Tile.styles.js';
+import { Show, type NodeProps, View } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
-import Artwork, { type ArtworkProps } from './Artwork.jsx';
+import Artwork, { type ArtworkProps } from '../Artwork/Artwork.jsx';
 import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
+import styles from './Tile.styles.js';
 withPadding;
 
-const lorum =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales est eu eleifend interdum. Vivamus egestas maximus elementum. Sed condimentum ligula justo, non sollicitudin lectus rutrum vel. Integer iaculis vitae nisl quis tincidunt. Sed quis dui vehicula, vehicula felis a, tempor leo. Fusce tincidunt, ante eget pretium efficitur, libero elit volutpat quam, sit amet porta tortor odio non ligula. Ut sed dolor eleifend massa auctor porttitor eget ut lectus. Vivamus elementum lorem mauris, eu luctus tortor posuere sit amet. Nunc a interdum metus.';
-
-export interface TileProps extends IntrinsicNodeProps {
+export interface TileProps extends NodeProps {
   /**
-   * String to img source for artwork
+   * prop object passed to the child Artwork component
    */
-  artwork: Partial<ArtworkProps>;
+  artwork: ArtworkProps;
+
   /**
-   * Metadata will be shown at all times if set to true, otherwise it will only show when the Tile has focusMetadata will be shown at all times if set to true, otherwise it will only show when the Tile has focus
+   * Controls how slotted components will be rendered. By default all slotted
+   * components will be hidden until the focus state is applied, where they will
+   * then be shown. If `persistentMetadata` is set to `true`, all slotted components
+   * will be rendered regardless of focus.
+   *
+   * "slotted components" refers to any component passed to the following properties:
+   * - topLeft
+   * - topRight
+   * - bottom
+   * - inset
    */
   persistentMetadata?: boolean;
-  /**
-   * property that holds the components to be put in topLeft View of tile
-   */
-  topLeft?: any;
-  /**
-   * property that holds the components to be put in topRight View of tile
-   */
-  topRight?: any;
-  /**
-   * property that holds the components to be put in inset View of tile
-   */
-  inset?: any;
-  /**
-   * property that holds the components to be put in bottom View of tile
-   */
-  bottom?: any;
 
+  /**
+   * component rendered to the upper left corner of the Tile
+   *
+   * component will be shown/hidden on focus unless persistentMetadata is true
+   *
+   * states are not forwarded to this component. if it should react to states
+   * applied to the Tile, they must also be set on this component
+   */
+  topLeft?: NodeProps['children'];
+
+  /**
+   * component rendered to the upper right corner of the Tile
+   *
+   * component will be shown/hidden on focus unless persistentMetadata is true
+   *
+   * states are not forwarded to this component. if it should react to states
+   * applied to the Tile, they must also be set on this component
+   */
+  topRight?: NodeProps['children'];
+
+  /**
+   * component rendered to center of the Tile, flex-aligned to the bottom border
+   *
+   * component will be shown/hidden on focus unless persistentMetadata is true
+   *
+   * states are not forwarded to this component. if it should react to states
+   * applied to the Tile, they must also be set on this component
+   */
+  inset?: NodeProps['children'];
+
+  /**
+   * component rendered below the Tile
+   *
+   * component will be shown/hidden on focus unless persistentMetadata is true
+   *
+   * states are not forwarded to this component. if it should react to states
+   * applied to the Tile, they must also be set on this component
+   */
+  bottom?: NodeProps['children'];
+
+  /**
+   * props passed to the child ProgressBar, rendered at the bottom of the component.
+   * ProgressBar will not appear if progressBar.progress is 0/falsy
+   */
   progressBar?: Partial<ProgressBarProps> | undefined;
 }
 
@@ -43,26 +78,27 @@ const Tile: Component<TileProps> = (props: TileProps) => {
   return (
     <node
       use:withPadding={styles.Container.padding}
+      forwardStates
       {...props}
       style={styles.Container}
-      forwardStates
+      tone={props.tone ?? styles.tone}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
     >
       <Artwork
         {...props.artwork}
+        tone={props.tone ?? styles.tone}
         width={props.width || styles.Container.width}
         height={props.height || styles.Container.height}
       />
 
       <Show when={props.persistentMetadata || isFocused()}>
-        <View forwardStates x={styles.Container.padding[0]} y={styles.Container.padding[1]}>
+        <View x={styles.Container.padding[0]} y={styles.Container.padding[1]}>
           {props.topLeft}
         </View>
 
         <View
-          forwardStates
-          x={(props.width || styles.Container.width) - styles.Container.padding[0]}
+          x={(props?.width || styles.Container.width) - styles.Container.padding[0]}
           y={styles.Container.padding[1]}
           mountX={1}
         >
@@ -70,8 +106,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         </View>
 
         <View
-          forwardStates
-          style={styles.insetBottom}
+          style={styles.InsetBottom}
           width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
           x={styles.Container.padding[0]}
           y={
@@ -84,10 +119,9 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         </View>
 
         <View
-          forwardStates
-          style={styles.standardBottom}
+          style={styles.StandardBottom}
           x={styles.Container.padding[0]}
-          y={(props.height || styles.Container.height) + styles.Container.padding[1]}
+          y={Number(props.height || styles.Container.height) + styles.Container.padding[1]}
           width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
         >
           {props.bottom}
@@ -102,7 +136,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
           y={
             (props.height || styles.Container.height) -
             styles.Container.paddingYProgress -
-            (props.progressBar.height || 0)
+            (props?.progressBar?.height || 0)
           }
         />
       </Show>

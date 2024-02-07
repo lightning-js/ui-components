@@ -16,4 +16,4 @@
  */
 
 export { default as default, type IconProps } from './Icon.jsx';
-export { default as iconStyles } from './Icon.styles.js';
+export { default as iconStyles, type IconStyles } from './Icon.styles.js';

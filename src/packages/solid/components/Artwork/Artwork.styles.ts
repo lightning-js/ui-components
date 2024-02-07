@@ -21,43 +21,48 @@ import type { Tone } from 'types';
 import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
-export interface IconStyles {
+export interface ArtworkStyles {
   tone: Tone;
-  Container: NodeStyleSet;
+  Container: NodeStyleSet<{ fillColor: NodeStyles['color'] }>;
 }
 
-export type IconStyleProperties = {
-  color?: NodeStyles['color'];
-};
+type ArtworkStyleProperties = Partial<{
+  borderRadius: NodeStyles['borderRadius'];
+  fallbackSrc: NodeStyles['src'];
+  fillColor: NodeStyles['color'];
+  gradientColor: NodeStyles['color'];
+  imageScale: NodeStyles['scale'];
+  imageScalePivotX: NodeStyles['pivotX'];
+  imageScalePivotY: NodeStyles['pivotY'];
+}>;
 
-type IconConfig = ComponentStyleConfig<IconStyleProperties>;
+type ArtworkConfig = ComponentStyleConfig<ArtworkStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Icon: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+const { Component: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
 
-const container: IconConfig = {
+const container: ArtworkConfig = {
   themeKeys: {
-    color: 'color'
+    fillColor: 'fillColor',
+    scale: 'imageScale',
+    pivotX: 'imageScalePivotX',
+    pivotY: 'imageScalePivotY'
   },
   base: {
-    width: 100,
-    height: 100,
-    color: theme.color.fillNeutral
-  },
-  toneModes: {
-    inverse: {
-      color: theme.color.fillInverse
-    },
-    brand: {
-      color: theme.color.fillBrand
-    }
+    borderRadius: theme.radius.md,
+    fallbackSrc: undefined,
+    fillColor: theme.color.overlay,
+    gradientColor: theme.color.material,
+    pivotX: 0.5,
+    pivotY: 0.5,
+    scale: undefined
   },
   themeStyles
 };
 
-const Container = makeComponentStyles<IconStyles['Container']>(container);
+const Container = makeComponentStyles<ArtworkStyles['Container']>(container);
 
-const styles: IconStyles = {
+const styles: ArtworkStyles = {
   tone: tone,
   Container
 };

@@ -16,21 +16,27 @@
  */
 
 import type { TextStyles, NodeStyles } from '@lightningjs/solid';
-import type { ObjectKeys } from './object-methods.js';
-import type { WithTonesModes } from 'types';
 
-export type StyleObject<T = object> = (NodeStyles | TextStyles) | ToneMode | T;
+// license: https://github.com/sindresorhus/ts-extras/blob/main/license
+// modified from https://github.com/sindresorhus/ts-extras/blob/main/source/object-keys.ts
+export type ObjectKeys<T extends object> = `${Exclude<keyof T, symbol>}`;
+
+// modified from https://github.com/sindresorhus/ts-extras/blob/main/source/object-entries.ts
+export type ObjectEntries<T extends Record<PropertyKey, unknown>> = Array<[ObjectKeys<T>, T[ObjectKeys<T>]]>;
+
+// TODO separate WithTonesModes into Config and StyleObject versions
+export type StyleObject<T = object> = (NodeStyles | TextStyles) & ToneMode & T;
 
 export type ThemeKeys<
   ComponentStyleList = object,
   BaseStyleType extends NodeStyles | TextStyles = NodeStyles
 > = {
   // solid style name: themed style name
-  [k in keyof BaseStyleType as keyof BaseStyleType]?: keyof ComponentStyleList;
+  [k in keyof BaseStyleType]?: keyof ComponentStyleList;
 };
 
 export interface ComponentStyleConfig<
-  ComponentStyleList = object,
+  ComponentStyleList = Record<string, unknown>,
   BaseStyleType extends NodeStyles | TextStyles = NodeStyles
 > {
   themeKeys: ThemeKeys<ComponentStyleList, BaseStyleType>;
@@ -71,11 +77,3 @@ export type VariantPropertySet<T> = {
     [K in keyof T]?: T[K];
   };
 };
-
-export type NodeStyleSet<AdditionalTypes = object> = Required<
-  NodeStyles & AdditionalTypes & WithTonesModes<NodeStyles & AdditionalTypes>
->;
-
-export type TextStyleSet<AdditionalTypes = object> = TextStyles &
-  AdditionalTypes &
-  WithTonesModes<TextStyles & AdditionalTypes>;

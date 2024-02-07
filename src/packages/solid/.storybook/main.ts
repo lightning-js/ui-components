@@ -16,7 +16,7 @@
  */
 
 const config = {
-  stories: ['../components/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: ['../components/**/*.stories.@(js|jsx|mjs|ts|tsx)', '../docs/*.mdx'],
   addons: [
     {
       name: '@storybook/addon-essentials',

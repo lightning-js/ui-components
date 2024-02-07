@@ -15,5 +15,5 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export { default as default } from './Column.jsx';
-export { default as columnStyles } from './Column.styles.js';
+export { default as default, type ColumnProps } from './Column.jsx';
+export { default as columnStyles, type ColumnStyles } from './Column.styles.js';
