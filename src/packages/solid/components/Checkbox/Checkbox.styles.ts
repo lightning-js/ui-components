@@ -20,7 +20,7 @@ import theme from 'theme';
 import type { Tone } from 'types';
 import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-import type { IconConfig, IconStyle} from '../Icon/Icon.styles.js';
+import type { IconConfig, IconStyle } from '../Icon/Icon.styles.js';
 
 export interface CheckboxStyle {
   tone: Tone;
@@ -65,21 +65,21 @@ const container: CheckboxConfig = {
   toneModes: {
     neutral: {
       borderColor: theme.color.strokeNeutralSecondary,
-      color: theme.color.fillInverseSecondary,
+      color: theme.color.fillInverseSecondary
     },
-    'checked': {
+    checked: {
       color: theme.color.fillNeutral
     },
     inverse: {
       borderColor: theme.color.strokeInverseSecondary,
-      color: theme.color.fillNeutralSecondary,
+      color: theme.color.fillNeutralSecondary
     },
     'inverse-checked': {
       color: theme.color.fillInverse
     },
     brand: {
       borderColor: theme.color.strokeNeutralSecondary,
-      color: theme.color.fillNeutralSecondary,
+      color: theme.color.fillNeutralSecondary
     },
     'brand-checked': {
       color: theme.color.fillBrand
@@ -102,6 +102,9 @@ const icon: IconConfig = {
     src: theme.asset.check
   },
   toneModes: {
+    neutral: {
+      color: theme.color.fillInverse
+    },
     inverse: {
       color: theme.color.fillNeutral
     },
@@ -117,7 +120,7 @@ const Icon = makeComponentStyles<IconStyle['Container']>(icon);
 const styles: CheckboxStyle = {
   tone: tone,
   Container,
-  Icon: Icon
+  Icon: { Icon }
 };
 
 export default styles;
