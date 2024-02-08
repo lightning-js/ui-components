@@ -32,7 +32,7 @@ export interface ProgressBarProps extends ProgressBarStyleProps, NodeProps {
   /**
    * total height of the component
    */
-  height: number;
+  height?: number;
   tone: Tone;
   style?: {
     Container?: NodeStyles;
@@ -42,7 +42,6 @@ export interface ProgressBarProps extends ProgressBarStyleProps, NodeProps {
 
 export interface ProgressBarStyleProps {
   progressColor?: number;
-  borderRadius?: number;
 }
 
 const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {

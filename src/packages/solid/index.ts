@@ -15,13 +15,47 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export { default as Badge, badgeStyles } from './components/Badge/index.js';
-export { default as Button, ButtonContainer, buttonStyles } from './components/Button/index.js';
-export { default as Checkbox, checkboxStyles } from './components/Checkbox/index.js';
-export { default as Column, columnStyles } from './components/Column/index.js';
-export { default as Icon, iconStyles } from './components/Icon/index.js';
-export { default as Metadata, metadataStyles } from './components/Metadata/index.js';
-export { default as ProgressBar, progressBarStyles } from './components/ProgressBar/index.js';
-export { default as Row, rowStyles } from './components/Row/index.js';
-export { default as Tile, tileStyles } from './components/Tile/index.js';
+export {
+  default as Artwork,
+  artworkStyles,
+  type ArtworkProps,
+  type ArtworkStyles
+} from './components/Artwork/index.js';
+export {
+  default as Badge,
+  badgeStyles,
+  type BadgeProps,
+  type BadgeStyles
+} from './components/Badge/index.js';
+export {
+  default as Button,
+  ButtonContainer,
+  buttonStyles,
+  type ButtonProps,
+  type ButtonContainerProps,
+  type ButtonStyles
+} from './components/Button/index.js';
+export { default as Checkbox, checkboxStyles, type CheckboxProps } from './components/Checkbox/index.js';
+export {
+  default as Column,
+  columnStyles,
+  type ColumnProps,
+  type ColumnStyles
+} from './components/Column/index.js';
+export { default as Icon, iconStyles, type IconProps, type IconStyles } from './components/Icon/index.js';
+export {
+  default as Label,
+  labelStyles,
+  type LabelProps,
+  type LabelStyles
+} from './components/Label/index.js';
+export { default as Metadata, metadataStyles, type MetadataProps } from './components/Metadata/index.js';
+export {
+  default as ProgressBar,
+  progressBarStyles,
+  type ProgressBarProps,
+  type ProgressBarStyles
+} from './components/ProgressBar/index.js';
+export { default as Row, rowStyles, type RowProps, type RowStyles } from './components/Row/index.js';
+export { default as Tile, tileStyles, type TileProps, type TileStyles } from './components/Tile/index.js';
 export * from './utils/index.js';

@@ -3,8 +3,8 @@ import Tile from './Tile.jsx';
 import theme from 'theme';
 import Badge from '../Badge/Badge.jsx';
 import { View } from '@lightningjs/solid';
-import Label from './Label.jsx';
-import Metadata from '../Metadata/Metadata.jsx';
+import Label from '../Label/Label.jsx';
+import Metadata, { type MetadataProps } from '../Metadata/Metadata.jsx';
 import ProgressBar from '../ProgressBar/ProgressBar.jsx';
 import Checkbox from '../Checkbox/Checkbox.jsx';
 
@@ -61,8 +61,16 @@ export const MetadataInset: Story = {
     return (
       <Tile
         {...args}
-        topLeft={<Badge title="HD" />}
-        topRight={<Label width={75} title="Label" mountX={0.5} />}
+        tone="brand"
+        topLeft={<Badge title="HD" tone="brand" />}
+        topRight={
+          <Label
+            width={75}
+            title="Label"
+            mountX={0.5}
+            // tone="brand"
+          />
+        }
         inset={
           <>
             <View
@@ -70,7 +78,7 @@ export const MetadataInset: Story = {
               width={theme.spacer.lg * 5}
               height={theme.spacer.xxl + theme.spacer.md}
             />
-            <Metadata {...args.metadata} />
+            <Metadata {...(args.metadata as MetadataProps)} tone="brand" />
           </>
         }
       />
@@ -116,7 +124,7 @@ export const MetadataStandard: Story = {
             height={theme.spacer.xxl + theme.spacer.md}
           />
         }
-        bottom={<Metadata {...args.metadata} />}
+        bottom={<Metadata {...(args.metadata as MetadataProps)} />}
       />
     );
   },
@@ -153,7 +161,7 @@ export const TileBadgeLabelSwitch: Story = {
             height={theme.spacer.xxl + theme.spacer.md}
           />
         }
-        bottom={<Metadata {...args.metadata} />}
+        bottom={<Metadata {...(args.metadata as MetadataProps)} />}
       />
     );
   },
@@ -189,7 +197,7 @@ export const TileLogoCheckBoxTop: Story = {
           />
         }
         topRight={<Checkbox />}
-        inset={<Metadata {...args.metadata} />}
+        inset={<Metadata {...(args.metadata as MetadataProps)} />}
       />
     );
   },
@@ -227,7 +235,7 @@ export const TileProgressBarTop: Story = {
         topLeft={<ProgressBar progress={0.5} width={380} />}
         inset={
           <>
-            <Metadata {...args.metadata} />
+            <Metadata {...(args.metadata as MetadataProps)} />
             <View
               src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
               width={theme.spacer.lg * 5}

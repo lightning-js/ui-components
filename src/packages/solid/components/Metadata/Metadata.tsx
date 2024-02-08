@@ -38,16 +38,16 @@ export interface MetadataProps extends NodeStyles {
 
 const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
   return (
-    <View style={styles.container} {...props}>
-      <Text width={props.width} style={styles.titleText}>
+    <View style={styles.container} tone={props.tone ?? styles.tone} {...props}>
+      <Text width={props.width} style={styles.titleText} tone={props.tone ?? styles.tone}>
         {props.title}
       </Text>
       <Show when={props.description}>
-        <Text width={props.width} style={styles.descriptionText}>
+        <Text width={props.width} style={styles.descriptionText} tone={props.tone ?? styles.tone}>
           {props.description}
         </Text>
       </Show>
-      <Details width={props.width} {...props.details} />
+      <Details width={props.width} {...props.details} tone={props.tone ?? styles.tone} />
     </View>
   );
 };

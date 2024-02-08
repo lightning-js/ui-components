@@ -20,7 +20,7 @@ import type { Tone } from 'types';
 import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
-export interface RowStyle {
+export interface RowStyles {
   tone: Tone;
   Container: NodeStyleSet;
 }
@@ -57,9 +57,9 @@ const container: RowConfig = {
   themeStyles
 };
 
-const Container = makeComponentStyles<RowStyle['Container']>(container);
+const Container = makeComponentStyles<RowStyles['Container']>(container);
 
-const styles: RowStyle = {
+const styles: RowStyles = {
   tone: tone,
   Container
 };

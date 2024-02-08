@@ -21,7 +21,7 @@ import type { Tone } from 'types';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
-export interface ButtonStyle {
+export interface ButtonStyles {
   tone: Tone;
   Container: NodeStyleSet<{ padding: number[] }>;
   Text: TextStyleSet;
@@ -114,10 +114,10 @@ const text: ButtonConfig = {
   themeStyles
 };
 
-const Container = makeComponentStyles<ButtonStyle['Container']>(container);
-const Text = makeComponentStyles<ButtonStyle['Text']>(text);
+const Container = makeComponentStyles<ButtonStyles['Container']>(container);
+const Text = makeComponentStyles<ButtonStyles['Text']>(text);
 
-const styles: ButtonStyle = {
+const styles: ButtonStyles = {
   tone: tone,
   Container,
   Text

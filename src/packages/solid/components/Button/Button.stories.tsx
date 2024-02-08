@@ -15,7 +15,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import type { Meta, StoryObj } from 'storybook-solidjs';
-import Button, { ButtonContainer, ButtonStyles } from './Button.jsx';
+import Button, { ButtonContainer } from './Button.jsx';
+import buttonStyles from './Button.styles.js';
 import { Text } from '@lightningjs/solid';
 import Icon from '../Icon/Icon.jsx';
 import Checkbox from '../Checkbox/Checkbox.jsx';
@@ -77,8 +78,8 @@ export const Basic: Story = {
   render: args => {
     return (
       <ButtonContainer {...args}>
-        <Icon tone={args.tone ?? ButtonStyles.tone} width={22} height={28} src={lightning} />
-        <Text tone={args.tone ?? ButtonStyles.tone} debug style={ButtonStyles.Text}>
+        <Icon tone={args.tone ?? buttonStyles.tone} width={22} height={28} src={lightning} />
+        <Text tone={args.tone ?? buttonStyles.tone} style={buttonStyles.Text}>
           Button
         </Text>
       </ButtonContainer>
@@ -94,10 +95,10 @@ export const WithCheckbox: Story = {
   render: args => {
     return (
       <ButtonContainer {...args}>
-        <Checkbox checked tone={args.tone ?? ButtonStyles.tone}>
-          <Icon tone={args.tone ?? ButtonStyles.tone} width={18} height={14} src={check} />
+        <Checkbox checked tone={args.tone ?? buttonStyles.tone}>
+          <Icon tone={args.tone ?? buttonStyles.tone} width={18} height={14} src={check} />
         </Checkbox>
-        <Text tone={args.tone ?? ButtonStyles.tone} style={ButtonStyles.Text}>
+        <Text tone={args.tone ?? buttonStyles.tone} style={buttonStyles.Text}>
           Button
         </Text>
       </ButtonContainer>
@@ -113,11 +114,11 @@ export const WithCheckboxRight: Story = {
   render: args => {
     return (
       <ButtonContainer {...args}>
-        <Text tone={args.tone ?? ButtonStyles.tone} style={ButtonStyles.Text}>
+        <Text tone={args.tone ?? buttonStyles.tone} style={buttonStyles.Text}>
           Button
         </Text>
-        <Checkbox tone={args.tone ?? ButtonStyles.tone} checked>
-          <Icon tone={args.tone ?? ButtonStyles.tone} width={18} height={14} src={check} />
+        <Checkbox tone={args.tone ?? buttonStyles.tone} checked>
+          <Icon tone={args.tone ?? buttonStyles.tone} width={18} height={14} src={check} />
         </Checkbox>
       </ButtonContainer>
     );

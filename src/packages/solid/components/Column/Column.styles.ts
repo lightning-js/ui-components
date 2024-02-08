@@ -20,7 +20,7 @@ import type { Tone } from 'types';
 import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
-export interface ColumnStyle {
+export interface ColumnStyles {
   tone: Tone;
   Container: NodeStyleSet;
 }
@@ -56,9 +56,9 @@ const container: ColumnConfig = {
   themeStyles
 };
 
-const Container = makeComponentStyles<ColumnStyle['Container']>(container);
+const Container = makeComponentStyles<ColumnStyles['Container']>(container);
 
-const styles: ColumnStyle = {
+const styles: ColumnStyles = {
   tone: tone,
   Container
 };

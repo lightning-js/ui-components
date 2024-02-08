@@ -5,21 +5,26 @@ import styles from './Label.styles.js';
 import { withPadding } from '@lightningjs/solid-primitives';
 withPadding;
 
-export interface LabelProps extends LabelStyleProps, IntrinsicNodeProps {
+export interface LabelProps extends IntrinsicNodeProps {
   /**
    * text to display in label
    */
   title: string;
 }
 
-export interface LabelStyleProps {
-  borderRadius?: number;
-}
-
 const Label: Component<LabelProps> = props => {
   return (
-    <node use:withPadding={styles.Container.padding} {...props} style={styles.Container} forwardStates>
-      <Text style={styles.textStyle}>{props.title}</Text>
+    <node
+      use:withPadding={styles.Container.padding}
+      {...props}
+      style={styles.Container}
+      tone={props.tone ?? styles.tone}
+      animate
+      forwardStates
+    >
+      <Text style={styles.Text} tone={props.tone ?? styles.tone}>
+        {props.title}
+      </Text>
     </node>
   );
 };

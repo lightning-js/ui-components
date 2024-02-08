@@ -20,7 +20,9 @@
 This library contains shared Lightning components, updated for @lightningjs version 3
 
 ## Package List
-- [@lightningjs/solid-ui](https://github.com/lightning-js/ui-components/blob/main/src/packages/solid/README.md)
+- `@lightningjs/solid-ui`
+  - [readme](https://github.com/lightning-js/ui-components/blob/main/src/packages/solid/README.md)
+  - [storybook docs](https://lightning-js.github.io/ui-components/)
 
 coming soon:
 

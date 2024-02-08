@@ -18,6 +18,7 @@
 import theme from 'theme';
 
 const styles = {
+  tone: 'neutral',
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -33,7 +34,7 @@ const styles = {
     ...theme.typography.body2,
     fontSize: 20,
     contain: 'width',
-    maxLines: 3
+    maxLines: 2
   },
   disabled: {
     titleText: { textColor: theme.color.textNeutralDisabled },
