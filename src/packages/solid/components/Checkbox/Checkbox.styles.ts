@@ -31,7 +31,7 @@ export interface CheckboxStyle {
 export type CheckboxStyleProperties = {
   color?: NodeStyles['color'];
   borderRadius?: NodeStyles['borderRadius'];
-  borderColor?: NodeStyles['borderColor'];
+  border?: NodeStyles['border'];
   justifyContent?: NodeStyles['justifyContent'];
 };
 
@@ -40,13 +40,13 @@ type CheckboxConfig = ComponentStyleConfig<CheckboxStyleProperties>;
 const { Checkbox: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
 
 const strokeWidth = theme.stroke.sm;
-const size = theme.spacer.xxl - strokeWidth * 2;
+const size = theme.spacer.xxl;
 
 const container: CheckboxConfig = {
   themeKeys: {
     color: 'color',
     borderRadius: 'borderRadius',
-    borderColor: 'borderColor',
+    border: 'border',
     justifyContent: 'justifyContent'
   },
   base: {
@@ -57,28 +57,37 @@ const container: CheckboxConfig = {
     color: theme.color.fillNeutral,
     alignItems: 'center',
     borderRadius: size / 4,
-    borderColor: theme.color.strokeInverse,
     border: {
+      color: theme.color.strokeInverse,
       width: strokeWidth
     }
   },
   toneModes: {
     neutral: {
-      borderColor: theme.color.strokeNeutralSecondary,
+      border: {
+        color: theme.color.strokeNeutralSecondary,
+        width: strokeWidth
+      },
       color: theme.color.fillInverseSecondary
     },
-    checked: {
+    'neutral-checked': {
       color: theme.color.fillNeutral
     },
     inverse: {
-      borderColor: theme.color.strokeInverseSecondary,
+      border: {
+        color: theme.color.strokeInverseSecondary,
+        width: strokeWidth
+      },
       color: theme.color.fillNeutralSecondary
     },
     'inverse-checked': {
       color: theme.color.fillInverse
     },
     brand: {
-      borderColor: theme.color.strokeNeutralSecondary,
+      border: {
+        color: theme.color.strokeNeutralSecondary,
+        width: strokeWidth
+      },
       color: theme.color.fillNeutralSecondary
     },
     'brand-checked': {
@@ -98,7 +107,6 @@ const icon: IconConfig = {
   base: {
     width: theme.spacer.lg,
     height: theme.spacer.lg,
-    color: theme.color.fillInverse,
     src: theme.asset.check
   },
   toneModes: {
@@ -120,7 +128,7 @@ const Icon = makeComponentStyles<IconStyle['Container']>(icon);
 const styles: CheckboxStyle = {
   tone: tone,
   Container,
-  Icon: { Icon }
+  Icon: { Container: Icon }
 };
 
 export default styles;
