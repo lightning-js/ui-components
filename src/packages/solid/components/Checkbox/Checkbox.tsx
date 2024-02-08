@@ -33,13 +33,13 @@ const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
       forwardStates
       {...props}
       tone={props.tone ?? styles.tone}
-      style={props?.style?.Container ?? styles.Container}
-      {...{
-        ...styles.Container[props.tone || styles.tone],
-        ...props?.style?.Container[props.tone || styles.tone]
-      }}
+      style={[
+        props.style?.Container,
+        props.style?.Container[props.tone || styles.tone],
+        styles.Container,
+        styles.Container[props.tone || styles.tone]]}
       states={{
-        checked: props.checked ?? false
+        checked: props.checked
       }}
       children={props.checked ? props.children : ''}
     />

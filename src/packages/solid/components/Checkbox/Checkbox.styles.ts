@@ -71,6 +71,10 @@ const container: CheckboxConfig = {
       color: theme.color.fillInverseSecondary
     },
     'neutral-checked': {
+      border: {
+        color: theme.color.strokeNeutralSecondary,
+        width: strokeWidth
+      },
       color: theme.color.fillNeutral
     },
     inverse: {
@@ -81,6 +85,10 @@ const container: CheckboxConfig = {
       color: theme.color.fillNeutralSecondary
     },
     'inverse-checked': {
+      border: {
+        color: theme.color.strokeInverseSecondary,
+        width: strokeWidth
+      },
       color: theme.color.fillInverse
     },
     brand: {
@@ -91,6 +99,10 @@ const container: CheckboxConfig = {
       color: theme.color.fillNeutralSecondary
     },
     'brand-checked': {
+      border: {
+        color: theme.color.strokeNeutralSecondary,
+        width: strokeWidth
+      },
       color: theme.color.fillBrand
     },
     disabled: {

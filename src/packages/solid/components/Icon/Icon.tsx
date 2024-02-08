@@ -50,11 +50,11 @@ const Icon: Component<IconProps> = props => {
     <View
       {...props}
       tone={props.tone ?? styles.tone}
-      style={props?.style?.Container ?? styles.Container}
-      {...{
-        ...styles.Container[props.tone || styles.tone],
-        ...props?.style?.Container[props.tone || styles.tone]
-      }}
+      style={[
+        props.style?.Container,
+        props.style?.Container[props.tone || styles.tone],
+        styles.Container,
+        styles.Container[props.tone || styles.tone]]}
       forwardStates
     />
   );
