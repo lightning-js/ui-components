@@ -49,7 +49,7 @@ const styles = {
     checked: {
       color: theme.color.fillNeutralDisabled
     }
-  }
+  } as const,
 } as const;
 
 export default styles;
