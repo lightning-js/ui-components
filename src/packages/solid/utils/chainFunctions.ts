@@ -21,7 +21,7 @@ export const chainFunctions = (callback: Function | undefined, originalFunc: Fun
     return originalFunc;
   }
 
-  return (...args: any[]) => {
+  return function (...args: unknown[]) {
     typeof callback === 'function' && callback.apply(this, args);
     originalFunc.apply(this, args);
   };

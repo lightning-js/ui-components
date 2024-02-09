@@ -46,13 +46,13 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
 
   return (
     <View
+      {...props}
       onUp={chainFunctions(props.onUp, onUp)}
       onDown={chainFunctions(props.onDown, onDown)}
       selected={props.selected || 0}
       onFocus={chainFunctions(props.onFocus, onGridFocus)}
-      onSelectedChanged={chainFunctions(props.onSelectedChanged, withScrolling(props.x as number))}
+      onSelectedChanged={chainFunctions(props.onSelectedChanged, withScrolling(props.y as number))}
       style={[props.style, styles.Container]}
-      {...props}
     />
   );
 };
