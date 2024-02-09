@@ -15,14 +15,22 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-/* eslint-disable @typescript-eslint/ban-types */
-export const chainFunctions = (callback: Function | undefined, originalFunc: Function) => {
-  if (!callback) {
-    return originalFunc;
+/**
+ * Asserts a condition is truthy, otherwise throws an error
+ *
+ * @remarks
+ * Useful at the top of functions to ensure certain conditions, arguments and
+ * properties are set/met before continuing. When using this function,
+ * TypeScript will narrow away falsy types from the condition.
+ *
+ * @param condition
+ * @param message
+ * @returns
+ */
+/// <reference types="vite/client" />
+export function assertTruthy(condition: unknown, message?: string): asserts condition {
+  if (import.meta.env.PROD) return;
+  if (!condition) {
+    throw new Error(message || 'Assertion failed');
   }
-
-  return function (...args: unknown[]) {
-    typeof callback === 'function' && callback.apply(this, args);
-    originalFunc.apply(this, args);
-  };
-};
+}
