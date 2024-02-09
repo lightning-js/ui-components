@@ -14,42 +14,133 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
+
+import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
+import type { Tone } from 'types';
+import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
+import { makeComponentStyles } from '../../utils/index.js';
+import type { IconConfig, IconStyle } from '../Icon/Icon.styles.js';
 
-// TODO: LUI styles remove before merge
-// focus and unfocus no style changes
-// disabled: {
-//   alpha: theme.alpha.inactive;
-// }
-// checked: backgroundColor: theme.color.fillNeutralDisabled,
-// unchecked: backgroundColorChecked: theme.color.fillNeutral
+export interface CheckboxStyle {
+  tone: Tone;
+  Container: NodeStyleSet;
+  Icon: NodeStyleSet;
+}
 
-// taken from LUI
-// probably used to take into account if strokeWidth changes
-// is this necessary?
+export type CheckboxStyleProperties = {
+  color?: NodeStyles['color'];
+  borderRadius?: NodeStyles['borderRadius'];
+  border?: NodeStyles['border'];
+  justifyContent?: NodeStyles['justifyContent'];
+};
+
+type CheckboxConfig = ComponentStyleConfig<CheckboxStyleProperties>;
+/* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
+const { Checkbox: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+
 const strokeWidth = theme.stroke.sm;
-const size = theme.spacer.xxl - strokeWidth * 2;
+const size = theme.spacer.xxl;
 
-const styles = {
-  Container: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+const container: CheckboxConfig = {
+  themeKeys: {
+    color: 'color',
+    borderRadius: 'borderRadius',
+    border: 'border',
+    justifyContent: 'justifyContent'
+  },
+  base: {
     width: size,
     height: size,
+    display: 'flex',
+    justifyContent: 'center',
     color: theme.color.fillNeutral,
+    alignItems: 'center',
     borderRadius: size / 4,
     border: {
-      width: strokeWidth,
-      color: theme.color.strokeInverse
+      color: theme.color.strokeInverse,
+      width: strokeWidth
+    }
+  },
+  toneModes: {
+    neutral: {
+      border: {
+        color: theme.color.strokeNeutralSecondary,
+        width: strokeWidth
+      },
+      color: theme.color.fillInverseSecondary
+    },
+    'neutral-checked': {
+      border: {
+        color: theme.color.strokeNeutralSecondary,
+        width: strokeWidth
+      },
+      color: theme.color.fillNeutral
+    },
+    inverse: {
+      border: {
+        color: theme.color.strokeInverseSecondary,
+        width: strokeWidth
+      },
+      color: theme.color.fillNeutralSecondary
+    },
+    'inverse-checked': {
+      border: {
+        color: theme.color.strokeInverseSecondary,
+        width: strokeWidth
+      },
+      color: theme.color.fillInverse
+    },
+    brand: {
+      border: {
+        color: theme.color.strokeNeutralSecondary,
+        width: strokeWidth
+      },
+      color: theme.color.fillNeutralSecondary
+    },
+    'brand-checked': {
+      border: {
+        color: theme.color.strokeNeutralSecondary,
+        width: strokeWidth
+      },
+      color: theme.color.fillBrand
     },
     disabled: {
       alpha: theme.alpha.inactive
-    },
-    checked: {
-      color: theme.color.fillNeutralDisabled
     }
-  } as const,
-} as const;
+  },
+  themeStyles
+};
+
+const icon: IconConfig = {
+  themeKeys: {
+    color: 'color'
+  },
+  base: {
+    width: theme.spacer.lg,
+    height: theme.spacer.lg,
+    src: theme.asset.check
+  },
+  toneModes: {
+    neutral: {
+      color: theme.color.fillInverse
+    },
+    inverse: {
+      color: theme.color.fillNeutral
+    },
+    brand: {
+      color: theme.color.fillInverse
+    }
+  },
+  themeStyles
+};
+
+const Container = makeComponentStyles<CheckboxStyle['Container']>(container);
+const Icon = makeComponentStyles<IconStyle['Container']>(icon);
+const styles: CheckboxStyle = {
+  tone: tone,
+  Container,
+  Icon: { Container: Icon }
+};
 
 export default styles;

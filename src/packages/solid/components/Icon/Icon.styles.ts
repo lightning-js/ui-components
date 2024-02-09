@@ -30,7 +30,7 @@ export type IconStyleProperties = {
   color?: NodeStyles['color'];
 };
 
-type IconConfig = ComponentStyleConfig<IconStyleProperties>;
+export type IconConfig = ComponentStyleConfig<IconStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Icon: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
@@ -42,7 +42,7 @@ const container: IconConfig = {
   base: {
     width: 100,
     height: 100,
-    color: theme.color.fillNeutral
+    color: theme.color.fillInverse
   },
   toneModes: {
     inverse: {
