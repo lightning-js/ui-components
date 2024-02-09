@@ -16,15 +16,21 @@
  */
 
 import { type Component } from 'solid-js';
-import { ElementNode, type IntrinsicNodeProps } from '@lightningjs/solid';
-import { Row as SolidRow } from '@lightningjs/solid-primitives';
+import { View, ElementNode, type NodeProps } from '@lightningjs/solid';
+import type { KeyHandler } from '@lightningjs/solid-primitives';
 import styles from './Row.styles.js';
+import { handleNavigation, onGridFocus } from '../../utils/handleNavigation.js';
 import { withScrolling } from '../../utils/withScrolling.js';
 import { chainFunctions } from '../../index.js';
 
-export interface RowProps extends IntrinsicNodeProps {
+export interface RowProps extends NodeProps {
+  /** Item index at which scrolling begins */
   scrollIndex?: number;
   scrollType?: 'alwaysScroll' | 'neverScroll' | 'lazyScroll';
+  selected?: number;
+  onRight?: KeyHandler;
+  onLeft?: KeyHandler;
+  onFocus?: KeyHandler;
   onSelectedChanged?: (
     this: ElementNode,
     elm: ElementNode,
@@ -35,12 +41,18 @@ export interface RowProps extends IntrinsicNodeProps {
 }
 
 const Row: Component<RowProps> = (props: RowProps) => {
+  const onLeft = handleNavigation('left');
+  const onRight = handleNavigation('right');
 
   return (
-    <SolidRow
-      {...props}
-      style={props.style ? [props.style, styles.Container] : styles.Container}
+    <View
+      onLeft={chainFunctions(props.onLeft, onLeft)}
+      onRight={chainFunctions(props.onRight, onRight)}
+      selected={props.selected || 0}
+      onFocus={chainFunctions(props.onFocus, onGridFocus)}
       onSelectedChanged={chainFunctions(props.onSelectedChanged, withScrolling(props.x as number))}
+      style={[props.style, styles.Container]}
+      {...props}
     />
   );
 };
