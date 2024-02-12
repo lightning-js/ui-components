@@ -34,6 +34,8 @@ const RenderOptions = {
   devicePhysicalPixelRatio: 1
 };
 
+let dispose;
+
 const preview = {
   parameters: {
     backgrounds: { default: 'dark' },
@@ -49,7 +51,11 @@ const preview = {
     Story => {
       const solidRoot = document.createElement('div');
       RenderOptions.rootId = solidRoot;
-      render(() => {
+      if (dispose) {
+        // teardown previous render (cleans up keyhandling)
+        dispose();
+      }
+      dispose = render(() => {
         useFocusManager();
         return (
           <Canvas options={RenderOptions}>
