@@ -8,27 +8,25 @@ on:
 
 jobs:
   publish_packages:
-    runs-on: ubunutu-latest
+    runs-on: ubuntu-latest
 
     steps:
       # need to have access to latest git for lerna
-      - name: install latest git
-        run: |
-          apt-get update
-          apt-get install -y git
+      # - name: install latest git
+      #   run: |
+      #     apt-get update
+      #     apt-get install -y git
 
       - name: checkout repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0 # ensure we get the full git history
-          ref: main
           token: ${{secrets.GH_PAT}}
 
       # add token to origin url so we can push version updates
       - name: git env setup
         run: |
           git config --global user.name "GitHub Action Runner"
-          git config --global user.email # TODO use OS account
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git remote set-url origin https://${{secrets.GH_PAT}}@github.com/lightning-js/ui-components
 
@@ -45,13 +43,10 @@ jobs:
           find src/ -type d -exec chmod 777 {} +
           chmod -R 777 .git/
 
-      - name: Build packages
-        run: pnpm run build:solid-lib
-
-      # - name: Publish artifacts
-      #   run: pnpm run lerna:publish
-      #   env:
-      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish artifacts
+        run: pnpm run lerna:publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   # publish_solid_ui_sb:
   #   needs: publish_packages # run if publish_pacakges succeeds
