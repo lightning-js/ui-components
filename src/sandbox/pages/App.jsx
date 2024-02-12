@@ -15,10 +15,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { View, Text } from '@lightningjs/solid';
-import { Button } from '@lightningjs/solid-ui';
+import { View } from '@lightningjs/solid';
+import { Button, Column } from '@lightningjs/solid-ui';
 import { getHexColor } from 'utils';
-import { useFocusManager, Column } from '@lightningjs/solid-primitives';
+import { useFocusManager } from '@lightningjs/solid-primitives';
 
 const App = () => {
   useFocusManager({

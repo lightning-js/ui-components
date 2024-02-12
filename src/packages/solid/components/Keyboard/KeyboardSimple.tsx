@@ -17,7 +17,8 @@
 
 import { For, type Component } from 'solid-js';
 import { type KeyboardProps } from './Keyboard.jsx';
-import { Column, Row } from '@lightningjs/solid-primitives';
+import Column from '../Column/Column.jsx';
+import Row from '../Row/Row.jsx';
 import Key, { type KeyProps } from '../Key/Key.jsx';
 import styles from './Keyboard.styles.jsx';
 import keyStyles from '../Key/Key.styles.js';
@@ -28,20 +29,20 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
     <Column
       autofocus={props.autofocus}
       plinko
-      itemSpacing={props?.style?.Container?.keySpacing ?? styles.Container.keySpacing}
+      itemSpacing={props.style?.Container?.keySpacing ?? styles.Container.keySpacing}
       justifyContent={props.centerKeyboard != undefined && props.centerKeyboard ? 'center' : 'flexStart'}
     >
       <For each={props.formats}>
         {(row: Array<string | KeyProps>) => (
           <Row
             justifyContent={props.centerKeys != undefined && props.centerKeys ? 'center' : 'flexStart'}
-            itemSpacing={ props?.style?.Container?.keySpacing?? styles.Container.keySpacing}
+            itemSpacing={props.style?.Container?.keySpacing?? styles.Container.keySpacing}
             height={props?.style?.Container?.height || styles.Container.height}
             wrap={props.rowWrap}
           >
             <For each={row}>
               {(key: string | KeyProps) => (
-                <Key style={props?.style?.Key ?? keyStyles} {...(typeof key === 'string'? {} : key) } title={key.title || key.icon ? key.title : key} />
+                <Key style={props.style?.Key ?? keyStyles} {...(typeof key === 'string'? {} : key) } title={key.title || key.icon ? key.title : key} />
               )}
             </For>
           </Row>
