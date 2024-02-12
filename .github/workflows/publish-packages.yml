@@ -47,10 +47,10 @@ jobs:
       - name: Build packages
         run: pnpm run solid:build-lib
 
-      # - name: Publish artifacts
-      #   run: pnpm run lerna:publish
-      #   env:
-      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish artifacts
+        run: pnpm run lerna:publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   # publish_solid_ui_sb:
   #   needs: publish_packages # run if publish_pacakges succeeds
