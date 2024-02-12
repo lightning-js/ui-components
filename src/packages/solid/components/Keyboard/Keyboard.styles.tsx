@@ -30,7 +30,7 @@ export interface KeyboardStyle {
   Text: TextStyleSet;
 }
 
-type KeyboardStyleProperties = {
+export type KeyboardStyleProperties = {
   keySpacing?: NodeStyles['keySpacing'];
   screenW?: NodeStyles['screenW'];
   marginX?: NodeStyles['marginX'];
