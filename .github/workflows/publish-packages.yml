@@ -45,7 +45,7 @@ jobs:
           chmod -R 777 .git/
 
       - name: Publish artifacts
-        run: pnpm run publish-ci
+        run: pnpm run solid:build-lib
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
