@@ -22,7 +22,7 @@
     "version-publish": "pnpm run lerna:version && pnpm run publish-packages"
   },
   "dependencies": {
-    "@lightningjs/renderer": "^0.7.0",
+    "@lightningjs/renderer": "^0.7.2",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jest": "^27.6.3",
@@ -33,10 +33,10 @@
   },
   "devDependencies": {
     "@lightningjs/ui-components-theme-base": "^1.2.0",
-    "@typescript-eslint/eslint-plugin": "^6.20.0",
-    "@typescript-eslint/parser": "^6.20.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
     "typescript": "^5.3.3",
-    "vite": "^5.0.12",
+    "vite": "^5.1.1",
     "vite-bundle-visualizer": "^1.0.1",
     "vite-plugin-cross-origin-isolation": "^0.1.6",
     "vite-plugin-solid": "^2.9.1"
