@@ -30,6 +30,9 @@
   },
   "author": "",
   "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@solidjs/router": "^0.10.10",
     "@storybook/html": "^7.6.13",
