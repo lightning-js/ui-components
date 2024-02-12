@@ -3,6 +3,9 @@
   "version": "independent",
   "npmClient": "pnpm",
   "command": {
+    "version": {
+      "allowBranch": "feat/add-lerna"
+    },
     "publish": {
       "message": "chore(release): publish [skip ci]",
       "allowBranch": "main",
