@@ -4,7 +4,7 @@ name: Publish Packages
 
 on:
   push:
-    branches: ['main', 'feat/add-lerna']
+    branches: 'main'
 
 jobs:
   publish_packages:
@@ -36,6 +36,11 @@ jobs:
           version: 8
           run_install: true
 
+      - name: Set npm publish token
+        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
       # update container FS permissions to allow scripts to build dist files and allow lerna to bootstrap
       # `find` command lists all dirs in src and runs the permission update on them
       - name: set file permissions
@@ -44,9 +49,7 @@ jobs:
           chmod -R 777 .git/
 
       - name: Publish artifacts
-        run: pnpm run lerna:publish
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: pnpm run version-publish
 
   # publish_solid_ui_sb:
   #   needs: publish_packages # run if publish_pacakges succeeds
