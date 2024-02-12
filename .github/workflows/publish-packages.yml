@@ -21,7 +21,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0 # ensure we get the full git history
-          ref: feat/add-lerna
           token: ${{secrets.GH_PAT}}
 
       # add token to origin url so we can push version updates
