@@ -9,6 +9,7 @@
   "types": "dist/types.d.ts",
   "scripts": {
     "start": "npm run solid:storybook",
+    "lerna:version": "lerna version --no-private",
     "lerna:publish": "lerna publish --no-private --yes",
     "lint": "pnpm eslint . --ext .js,.ts,.jsx,.tsx",
     "lint:fix": "pnpm eslint . --ext .js,.ts,.jsx,.tsx --fix",
