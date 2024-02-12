@@ -45,7 +45,7 @@ jobs:
           chmod -R 777 .git/
 
       - name: Publish artifacts
-        run: pnpm run lerna:publish-ci
+        run: pnpm run publish-ci
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 

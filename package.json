@@ -10,7 +10,7 @@
   "scripts": {
     "start": "npm run solid:storybook",
     "lerna:version": "lerna version --no-private",
-    "lerna:publish-ci": "lerna publish --no-private --yes",
+    "publish-ci": "lerna publish --no-private --yes",
     "lint": "pnpm eslint . --ext .js,.ts,.jsx,.tsx",
     "lint:fix": "pnpm eslint . --ext .js,.ts,.jsx,.tsx --fix",
     "reset": "rm -rf node_modules && rm -rf src/packages/solid/node_modules && rm -rf src/sandbox/node_modules && pnpm store prune",
