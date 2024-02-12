@@ -48,7 +48,7 @@ jobs:
         run: pnpm run solid:build-lib
 
       - name: Publish artifacts
-        run: pnpm run lerna:publish
+        run: pnpm run lerna:publish-ci
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
