@@ -9,15 +9,17 @@
   "types": "dist/types.d.ts",
   "scripts": {
     "start": "npm run solid:storybook",
-    "lerna:publish": "lerna publish --no-private --yes",
+    "lerna:version": "lerna version --no-private --conventional-commits --yes",
     "lint": "pnpm eslint . --ext .js,.ts,.jsx,.tsx",
     "lint:fix": "pnpm eslint . --ext .js,.ts,.jsx,.tsx --fix",
+    "publish-packages": "pnpm --filter './src/packages/**' publish",
     "reset": "rm -rf node_modules && rm -rf src/packages/solid/node_modules && rm -rf src/sandbox/node_modules && pnpm store prune",
     "solid:build-lib": "pnpm --filter @lightningjs/solid-ui build-lib",
     "solid:build-storybook": "pnpm --filter @lightningjs/solid-ui build-storybook",
     "solid:sandbox": "pnpm --filter solid-js-sandbox start",
     "solid:storybook": "pnpm --filter @lightningjs/solid-ui start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "version-publish": "pnpm run lerna:version && pnpm run publish-packages"
   },
   "dependencies": {
     "@lightningjs/renderer": "^0.7.0",

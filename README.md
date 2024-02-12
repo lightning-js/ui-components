@@ -17,16 +17,21 @@
 
 # Lightning UI
 
-This library contains shared Lightning components, updated for @lightningjs version 3
+This library contains a suite of UI components, written for [lightningjs version 3](https://github.com/lightning-js/renderer)
 
-## Package List
-- `@lightningjs/solid-ui`
-  - [readme](https://github.com/lightning-js/ui-components/blob/main/src/packages/solid/README.md)
-  - [storybook docs](https://lightning-js.github.io/ui-components/)
+## Packages
 
-coming soon:
+### solid-ui
 
-- @lightningjs/blits-ui
+[![npm version](https://img.shields.io/npm/v/@lightningjs%2Fsolid-ui.svg?style=flat)](https://www.npmjs.com/package/@lightningjs/solid-ui)
+
+Components for the [lightningjs/solid](https://github.com/lightning-js/solid) framework
+
+Get started with the [readme](https://github.com/lightning-js/ui-components/blob/main/src/packages/solid/README.md), or check out the latest components in our [storybook docs](https://lightning-js.github.io/ui-components/).
+
+### coming soon:
+
+- blits-ui
 
 ## Development
 

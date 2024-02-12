@@ -4,8 +4,7 @@
   "npmClient": "pnpm",
   "command": {
     "publish": {
-      "message": "chore(release): publish [skip ci]",
-      "allowBranch": ["main", "feat/add-lerna"],
+      "allowBranch": "main",
       "conventionalCommits": true
     }
   }
