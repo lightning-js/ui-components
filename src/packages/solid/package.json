@@ -8,6 +8,7 @@
   "files": [
     "dist",
     "components",
+    "utils",
     "*.js",
     "*.jsx",
     "*.ts",

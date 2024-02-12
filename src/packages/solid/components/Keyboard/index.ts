@@ -16,4 +16,4 @@
  */
 
 export { default as default, type KeyboardProps } from './Keyboard.jsx';
-export { default as keyboardStyles } from './Keyboard.styles.js';
+export { default as keyboardStyles, type KeyboardStyleProperties } from './Keyboard.styles.js';
