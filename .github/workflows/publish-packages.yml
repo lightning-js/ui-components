@@ -45,7 +45,7 @@ jobs:
           chmod -R 777 .git/
 
       - name: Build packages
-        run: pnpm run build:solid-lib
+        run: pnpm run solid:build-lib
 
       # - name: Publish artifacts
       #   run: pnpm run lerna:publish
