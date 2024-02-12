@@ -44,9 +44,6 @@ jobs:
           find src/ -type d -exec chmod 777 {} +
           chmod -R 777 .git/
 
-      - name: Build packages
-        run: pnpm run solid:build-lib
-
       - name: Publish artifacts
         run: pnpm run lerna:publish-ci
         env:
