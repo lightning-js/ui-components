@@ -5,7 +5,7 @@
   "command": {
     "publish": {
       "message": "chore(release): publish [skip ci]",
-      "allowBranch": "main",
+      "allowBranch": ["main", "feat/add-lerna"],
       "conventionalCommits": true
     }
   }
