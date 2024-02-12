@@ -12,10 +12,10 @@ jobs:
 
     steps:
       # need to have access to latest git for lerna
-      - name: install latest git
-        run: |
-          apt-get update
-          apt-get install -y git
+      # - name: install latest git
+      #   run: |
+      #     apt-get update
+      #     apt-get install -y git
 
       - name: checkout repo
         uses: actions/checkout@v3
