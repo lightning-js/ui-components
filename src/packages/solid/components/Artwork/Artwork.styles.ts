@@ -39,7 +39,7 @@ type ArtworkStyleProperties = Partial<{
 type ArtworkConfig = ComponentStyleConfig<ArtworkStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Component: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+const { Artwork: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
 
 const container: ArtworkConfig = {
   themeKeys: {
