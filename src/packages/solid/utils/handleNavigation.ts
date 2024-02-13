@@ -34,7 +34,11 @@ export function handleNavigation(direction: 'up' | 'right' | 'down' | 'left'): K
   return function () {
     const numChildren = this.children.length;
     const wrap = this.wrap;
-    const lastSelected = this.selected;
+    const lastSelected = this.selected || 0;
+
+    if (numChildren === 0) {
+      return false;
+    }
 
     if (direction === 'right' || direction === 'down') {
       do {
@@ -62,7 +66,10 @@ export function handleNavigation(direction: 'up' | 'right' | 'down' | 'left'): K
 
     if (this.selected === undefined) {
       this.selected = lastSelected;
-      return false;
+      if (this.children[this.selected].states!.has('focus')) {
+        // This child is already focused, so bubble up to next handler
+        return false;
+      }
     }
     const active = this.children[this.selected];
     assertTruthy(active instanceof ElementNode);
