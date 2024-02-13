@@ -52,7 +52,7 @@ jobs:
       - name: Publish artifacts
         run: pnpm run version-publish
 
-  # publish_solid_ui_sb:
-  #   needs: publish_packages # run if publish_pacakges succeeds
-  #   name: Publish solid-ui storybook
-  #   uses: ./.github/workflows/publish-solid-storybook.yml
+  publish_solid_ui_sb:
+    needs: publish_packages # run if publish_pacakges succeeds
+    name: Publish solid-ui storybook
+    uses: ./.github/workflows/publish-solid-storybook.yml
