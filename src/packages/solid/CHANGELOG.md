@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.3.0...@lightningjs/solid-ui@0.3.1) (2024-02-14)
+
+### Bug Fixes
+
+- nav with 0 children and non focus for selected ([#70](https://github.com/lightning-js/ui-components/issues/70)) ([0982901](https://github.com/lightning-js/ui-components/commit/0982901a07e474f94078d7980236020cb9b335a6))
+
 # 0.3.0 (2024-02-13)
 
 ### Bug Fixes
