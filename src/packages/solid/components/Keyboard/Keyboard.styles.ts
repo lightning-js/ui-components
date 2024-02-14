@@ -20,10 +20,9 @@ import type { Tone } from 'types';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 import type { NodeStyles } from '@lightningjs/solid';
-import type { KeyConfig } from '../Key/Key.styles.js';
-import type { KeyStyle } from '../Key/Key.styles.js';
+import type { KeyConfig, KeyStyles } from '../Key/Key.styles.js';
 
-export interface KeyboardStyle {
+export interface KeyboardStyles {
   tone: Tone;
   Container: NodeStyleSet<{ padding: number[] }>;
   Key: NodeStyleSet;
@@ -133,11 +132,11 @@ const text: KeyboardConfig = {
   themeStyles
 };
 
-const Container = makeComponentStyles<KeyboardStyle['Container']>(container);
-const Key = makeComponentStyles<KeyStyle['Container']>(key);
-const Text = makeComponentStyles<KeyboardStyle['Text']>(text);
+const Container = makeComponentStyles<KeyboardStyles['Container']>(container);
+const Key = makeComponentStyles<KeyStyles['Container']>(key);
+const Text = makeComponentStyles<KeyboardStyles['Text']>(text);
 
-const styles: KeyboardStyle = {
+const styles: KeyboardStyles = {
   tone: defaultTone,
   Container,
   Key, // TODO why was this wrapped in {}?
