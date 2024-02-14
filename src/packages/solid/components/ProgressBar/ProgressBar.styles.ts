@@ -17,7 +17,7 @@
 
 import { type NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 
@@ -37,7 +37,7 @@ type ProgressBarStyleProperties = {
 type ProgressBarConfig = ComponentStyleConfig<ProgressBarStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { ProgressBar: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } =
+const { ProgressBar: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
   theme?.componentConfig;
 
 const container: ProgressBarConfig = {
@@ -82,7 +82,7 @@ const Container = makeComponentStyles<ProgressBarStyles['Container']>(container)
 const ProgressBar = makeComponentStyles<ProgressBarStyles['ProgressBar']>(progress);
 
 const styles: ProgressBarStyles = {
-  tone: tone,
+  tone: defaultTone,
   Container,
   ProgressBar
 };

@@ -42,7 +42,8 @@ type ComponentConfig = ComponentStyleConfig<ComponentStyleProperties>;
 
 // replace Component with the component name, this line imports overrides from the theme's componentConfig if they exist
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Component: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+const { Component: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
+  theme?.componentConfig;
 
 const container: ComponentConfig = {
   themeKeys: {

@@ -16,7 +16,7 @@
  */
 import type { TextStyles, NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
@@ -51,7 +51,8 @@ export type KeyStyleProperties = {
 export type KeyConfig = ComponentStyleConfig<KeyStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Key: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+const { Key: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
+  theme?.componentConfig;
 
 const container: KeyConfig = {
   themeKeys: {
@@ -131,7 +132,7 @@ const Container = makeComponentStyles<KeyStyle['Container']>(container);
 const Text = makeComponentStyles<KeyStyle['Text']>(text);
 
 const styles: KeyStyle = {
-  tone: tone,
+  tone: defaultTone,
   Container,
   Text
 };
