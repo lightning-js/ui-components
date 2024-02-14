@@ -140,7 +140,7 @@ const Text = makeComponentStyles<KeyboardStyle['Text']>(text);
 const styles: KeyboardStyle = {
   tone: defaultTone,
   Container,
-  Key: { Key },
+  Key, // TODO why was this wrapped in {}?
   Text
 };
 
