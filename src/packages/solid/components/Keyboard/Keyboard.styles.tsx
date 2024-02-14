@@ -39,7 +39,8 @@ export type KeyboardStyleProperties = {
 type KeyboardConfig = ComponentStyleConfig<KeyboardStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Keyboard: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+const { Keyboard: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
+  theme?.componentConfig;
 
 const container: KeyboardConfig = {
   themeKeys: {
@@ -137,7 +138,7 @@ const Key = makeComponentStyles<KeyStyle['Container']>(key);
 const Text = makeComponentStyles<KeyboardStyle['Text']>(text);
 
 const styles: KeyboardStyle = {
-  tone: tone,
+  tone: defaultTone,
   Container,
   Key: { Key },
   Text

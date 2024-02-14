@@ -16,7 +16,7 @@
  */
 import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
@@ -35,7 +35,8 @@ type ColumnStyleProperties = {
 type ColumnConfig = ComponentStyleConfig<ColumnStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Column: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+const { Column: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
+  theme?.componentConfig;
 
 const container: ColumnConfig = {
   themeKeys: {
@@ -59,7 +60,7 @@ const container: ColumnConfig = {
 const Container = makeComponentStyles<ColumnStyles['Container']>(container);
 
 const styles: ColumnStyles = {
-  tone: tone,
+  tone: defaultTone,
   Container
 };
 

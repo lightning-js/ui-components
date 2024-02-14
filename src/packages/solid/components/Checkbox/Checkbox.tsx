@@ -17,7 +17,7 @@
 
 import type { Component } from 'solid-js';
 import { View, type NodeProps } from '@lightningjs/solid';
-import styles from './Checkbox.styles.js';
+import styles, { type CheckboxStyles } from './Checkbox.styles.js';
 
 export interface CheckboxProps extends NodeProps {
   /**
@@ -25,6 +25,8 @@ export interface CheckboxProps extends NodeProps {
    * Setting this to `true` will check the checkbox, and setting it to `false` will uncheck it.
    */
   checked?: boolean;
+
+  style?: Partial<CheckboxStyles>;
 }
 
 const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
@@ -35,9 +37,10 @@ const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
       tone={props.tone ?? styles.tone}
       style={[
         props.style?.Container,
-        props.style?.Container[props.tone || styles.tone],
+        props.style?.Container?.[props.tone || styles.tone],
         styles.Container,
-        styles.Container[props.tone || styles.tone]]}
+        styles.Container[props.tone || styles.tone]
+      ]}
       states={{
         checked: props.checked
       }}

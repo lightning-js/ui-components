@@ -17,15 +17,17 @@
 
 import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-import type { IconConfig, IconStyle } from '../Icon/Icon.styles.js';
+import type { IconConfig, IconStyles } from '../Icon/Icon.styles.js';
 
-export interface CheckboxStyle {
+export interface CheckboxStyles {
   tone: Tone;
   Container: NodeStyleSet;
-  Icon: NodeStyleSet;
+  Icon: {
+    Container: NodeStyleSet;
+  };
 }
 
 export type CheckboxStyleProperties = {
@@ -37,7 +39,8 @@ export type CheckboxStyleProperties = {
 
 type CheckboxConfig = ComponentStyleConfig<CheckboxStyleProperties>;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Checkbox: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+const { Checkbox: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
+  theme?.componentConfig;
 
 const strokeWidth = theme.stroke.sm;
 const size = theme.spacer.xxl;
@@ -135,10 +138,10 @@ const icon: IconConfig = {
   themeStyles
 };
 
-const Container = makeComponentStyles<CheckboxStyle['Container']>(container);
-const Icon = makeComponentStyles<IconStyle['Container']>(icon);
-const styles: CheckboxStyle = {
-  tone: tone,
+const Container = makeComponentStyles<CheckboxStyles['Container']>(container);
+const Icon = makeComponentStyles<IconStyles['Container']>(icon);
+const styles: CheckboxStyles = {
+  tone: defaultTone,
   Container,
   Icon: { Container: Icon }
 };

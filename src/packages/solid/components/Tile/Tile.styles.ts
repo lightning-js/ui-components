@@ -17,7 +17,7 @@
 
 import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
@@ -37,7 +37,8 @@ type TileStyleProperties = Partial<{
 type TileConfig = ComponentStyleConfig<TileStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Tile: { styles: tileThemeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+const { Tile: { styles: tileThemeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
+  theme?.componentConfig;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Surface: { styles: surfaceThemeStyles } = { styles: {} } } = theme?.componentConfig;
 
@@ -105,7 +106,7 @@ const StandardBottom = makeComponentStyles<TileStyles['StandardBottom']>(standar
 const LogoContainer = makeComponentStyles<TileStyles['LogoContainer']>(logoContainer);
 
 const styles: TileStyles = {
-  tone: tone,
+  tone: defaultTone,
   Container,
   InsetBottom,
   StandardBottom,

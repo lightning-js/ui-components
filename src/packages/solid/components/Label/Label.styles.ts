@@ -17,7 +17,7 @@
 
 import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
@@ -38,7 +38,8 @@ type LabelStyleProperties = Partial<{
 type LabelConfig = ComponentStyleConfig<LabelStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Label: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+const { Label: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
+  theme?.componentConfig;
 
 const container: LabelConfig = {
   themeKeys: {
@@ -92,7 +93,7 @@ const Container = makeComponentStyles<LabelStyles['Container']>(container);
 const Text = makeComponentStyles<LabelStyles['Container']>(text);
 
 const styles: LabelStyles = {
-  tone: tone,
+  tone: defaultTone,
   Container,
   Text
 };

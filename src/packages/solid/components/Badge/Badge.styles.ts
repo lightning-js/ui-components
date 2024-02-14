@@ -17,7 +17,7 @@
 
 import theme from 'theme';
 import { type NodeStyles } from '@lightningjs/solid';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
@@ -39,7 +39,8 @@ type BadgeStyleProperties = Partial<{
 type BadgeConfig = ComponentStyleConfig<BadgeStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Badge: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+const { Badge: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
+  theme?.componentConfig;
 
 const container: BadgeConfig = {
   themeKeys: {
@@ -122,7 +123,7 @@ const Icon = makeComponentStyles<BadgeStyles['Icon']>(icon);
 const Text = makeComponentStyles<BadgeStyles['Text']>(text);
 
 const styles: BadgeStyles = {
-  tone: tone,
+  tone: defaultTone,
   Container,
   Icon,
   Text

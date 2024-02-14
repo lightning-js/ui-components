@@ -17,7 +17,7 @@
 
 import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
@@ -33,7 +33,8 @@ export type IconStyleProperties = {
 export type IconConfig = ComponentStyleConfig<IconStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Icon: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+const { Icon: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
+  theme?.componentConfig;
 
 const container: IconConfig = {
   themeKeys: {
@@ -58,7 +59,7 @@ const container: IconConfig = {
 const Container = makeComponentStyles<IconStyles['Container']>(container);
 
 const styles: IconStyles = {
-  tone: tone,
+  tone: defaultTone,
   Container
 };
 

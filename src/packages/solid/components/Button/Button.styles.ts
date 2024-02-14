@@ -17,7 +17,7 @@
 
 import type { TextStyles, NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
@@ -39,7 +39,8 @@ type ButtonStyleProperties = {
 type ButtonConfig = ComponentStyleConfig<ButtonStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Button: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+const { Button: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
+  theme?.componentConfig;
 
 const container: ButtonConfig = {
   themeKeys: {
@@ -118,7 +119,7 @@ const Container = makeComponentStyles<ButtonStyles['Container']>(container);
 const Text = makeComponentStyles<ButtonStyles['Text']>(text);
 
 const styles: ButtonStyles = {
-  tone: tone,
+  tone: defaultTone,
   Container,
   Text
 };

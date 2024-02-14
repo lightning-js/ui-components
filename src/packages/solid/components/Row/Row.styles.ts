@@ -16,7 +16,7 @@
  */
 import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
@@ -35,7 +35,8 @@ type RowStyleProperties = {
 type RowConfig = ComponentStyleConfig<RowStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Row: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+const { Row: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
+  theme?.componentConfig;
 
 const container: RowConfig = {
   themeKeys: {
@@ -60,7 +61,7 @@ const container: RowConfig = {
 const Container = makeComponentStyles<RowStyles['Container']>(container);
 
 const styles: RowStyles = {
-  tone: tone,
+  tone: defaultTone,
   Container
 };
 

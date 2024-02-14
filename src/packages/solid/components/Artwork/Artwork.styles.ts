@@ -17,7 +17,7 @@
 
 import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
@@ -39,7 +39,8 @@ type ArtworkStyleProperties = Partial<{
 type ArtworkConfig = ComponentStyleConfig<ArtworkStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Artwork: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+const { Artwork: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
+  theme?.componentConfig;
 
 const container: ArtworkConfig = {
   themeKeys: {
@@ -63,7 +64,7 @@ const container: ArtworkConfig = {
 const Container = makeComponentStyles<ArtworkStyles['Container']>(container);
 
 const styles: ArtworkStyles = {
-  tone: tone,
+  tone: defaultTone,
   Container
 };
 
