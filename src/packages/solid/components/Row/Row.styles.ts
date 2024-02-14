@@ -40,18 +40,15 @@ const { Row: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: '
 
 const container: RowConfig = {
   themeKeys: {
-    itemSpacing: 'itemSpacing',
+    gap: 'itemSpacing',
     scrollIndex: 'scrollIndex',
-    itemTransition: 'itemTransition',
-    gap: 'gap'
+    itemTransition: 'itemTransition'
   },
   base: {
     display: 'flex',
     justifyContent: 'flexStart',
     flexDirection: 'row',
-    gap: 30,
-    x: 0,
-    y: 0,
+    gap: theme.layout.gutterX,
     width: theme.layout.screenW
   },
   toneModes: {},

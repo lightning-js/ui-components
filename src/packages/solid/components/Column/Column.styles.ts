@@ -40,18 +40,15 @@ const { Column: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone
 
 const container: ColumnConfig = {
   themeKeys: {
-    itemSpacing: 'itemSpacing',
+    gap: 'itemSpacing',
     scrollIndex: 'scrollIndex',
-    itemTransition: 'itemTransition',
-    gap: 'gap'
+    itemTransition: 'itemTransition'
   },
   base: {
     display: 'flex',
     justifyContent: 'flexStart',
     flexDirection: 'column',
-    gap: 30,
-    x: 0,
-    y: 0
+    gap: theme.layout.gutterY
   },
   toneModes: {},
   themeStyles
