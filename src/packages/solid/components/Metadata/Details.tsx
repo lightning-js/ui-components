@@ -39,7 +39,12 @@ export interface DetailsProps extends IntrinsicNodeProps {
 const Details: Component<DetailsProps> = (props: DetailsProps) => {
   return (
     <View
-      style={styles.Container}
+      style={[
+        props.style?.Container,
+        props.style?.Container?.[props.tone || styles.tone],
+        styles.Container,
+        styles.Container?.[props.tone || styles.tone]
+      ]}
       onBeforeLayout={(node: ElementNode, dimensions) => {
         if (dimensions?.height) {
           node.parent.height = dimensions.height;
@@ -49,7 +54,14 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
       {...props}
     >
       <Show when={props.title}>
-        <Text style={styles.titleText} marginRight={styles.contentSpacing}>
+        <Text
+          style={[
+            props.style?.Text,
+            props.style?.Text?.[props.tone || styles.tone],
+            styles.Text,
+            styles.Text?.[props.tone || styles.tone]
+          ]}
+        >
           {props.title}
         </Text>
       </Show>
@@ -59,8 +71,8 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
             {...badge}
             marginRight={
               props.badges?.length && idx() === props.badges.length - 1
-                ? styles.contentSpacing
-                : styles.badgeContentSpacing
+                ? props.style?.Container?.contentSpacing ?? styles.Container.contentSpacing
+                : props.style?.Container?.badgeContentSpacing ?? styles.Container.badgeContentSpacing
             }
           />
         )}
@@ -69,8 +81,14 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
         {(rating: RatingProps, idx: Accessor<number>) => (
           <Rating
             {...rating}
+            style={[
+              props.style?.Text,
+              props.style?.Text?.[props.tone || styles.tone],
+              styles.Text,
+              styles.Text?.[props.tone || styles.tone]
+            ]}
             marginRight={
-              props.ratings?.length && idx() === props.ratings.length - 1 ? 0 : styles.ratingContentSpacing
+              props.ratings?.length && idx() === props.ratings.length - 1 ? 0 : props.style?.Container?.ratingContentSpacing ?? styles.Container.ratingContentSpacing
             }
           />
         )}

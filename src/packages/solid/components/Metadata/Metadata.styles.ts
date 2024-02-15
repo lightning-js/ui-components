@@ -15,33 +15,88 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import type { TextStyles, NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
+import type { Tone } from '../../types/types.js';
+import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
+import { makeComponentStyles } from '../../utils/index.js';
 
-const styles = {
-  tone: 'neutral',
-  container: {
+export interface MetadataStyles {
+  tone: Tone;
+  Container: NodeStyleSet<{ padding: number[] }>;
+  DescriptionText: TextStyleSet;
+  TitleText: TextStyleSet;
+}
+
+type MetadataStyleProperties = {
+  justifyContent?: NodeStyles['justifyContent'];
+  textAlign?: TextStyles['textAlign'];
+  textColor?: TextStyles['color'];
+};
+
+type MetadataConfig = ComponentStyleConfig<MetadataStyleProperties>;
+
+/* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
+const { Metadata: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
+  theme?.componentConfig;
+
+const container: MetadataConfig = {
+  themeKeys: {
+    justifyContent: 'justifyContent'
+  },
+  base: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flexStart'
+    justifyContent: 'flexStart',
+    gap: theme.spacer.sm
   },
-  titleText: {
-    ...theme.typography.headline3,
-    fontSize: 20,
+  toneModes: {},
+  themeStyles
+};
+
+const titletext: MetadataConfig = {
+  themeKeys: {
+    color: 'textColor'
+  },
+  base: {
+    maxLines: 1,
     contain: 'width',
-    maxLines: 1
+    ...theme.typography.headline3
   },
-  descriptionText: {
-    ...theme.typography.body2,
-    fontSize: 20,
-    contain: 'width',
-    maxLines: 2
-  },
-  disabled: {
-    titleText: { textColor: theme.color.textNeutralDisabled },
-    descriptionText: {
-      textColor: theme.color.textNeutralDisabled
+  toneModes: {
+    disabled: {
+      color: theme.color.textNeutralDisabled
     }
-  }
+  },
+  themeStyles
+};
+
+const descriptiontext: MetadataConfig = {
+  themeKeys: {
+    color: 'textColor'
+  },
+  base: {
+    contain: 'width',
+    maxLines: 2,
+    ...theme.typography.body2
+  },
+  toneModes: {
+    disabled: {
+      color: theme.color.textNeutralDisabled
+    }
+  },
+  themeStyles
+};
+
+const Container = makeComponentStyles<MetadataStyles['Container']>(container);
+const DescriptionText = makeComponentStyles<MetadataStyles['DescriptionText']>(descriptiontext);
+const TitleText = makeComponentStyles<MetadataStyles['TitleText']>(titletext);
+
+const styles: MetadataStyles = {
+  tone: defaultTone,
+  Container,
+  TitleText,
+  DescriptionText
 };
 
 export default styles;

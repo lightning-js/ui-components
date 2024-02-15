@@ -46,15 +46,20 @@ export interface IconProps extends IntrinsicNodeProps {
 }
 
 const Icon: Component<IconProps> = props => {
+  let IconRef;
+  console.log(IconRef);
   return (
     <View
       {...props}
       tone={props.tone ?? styles.tone}
       style={[
+        ...props.style,
         props.style?.Container,
-        props.style?.Container[props.tone || styles.tone],
+        props.style?.Container?.[props.tone || styles.tone],
         styles.Container,
-        styles.Container[props.tone || styles.tone]]}
+        styles.Container?.[props.tone || styles.tone]
+      ]}
+      ref={IconRef}
       forwardStates
     />
   );

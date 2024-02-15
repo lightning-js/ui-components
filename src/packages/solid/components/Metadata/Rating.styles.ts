@@ -15,16 +15,78 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import type { TextStyles, NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
+import type { Tone } from '../../types/types.js';
+import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
+import { makeComponentStyles } from '../../utils/index.js';
+import type { IconStyles } from '../Icon/Icon.styles.js';
+import type { IconConfig } from '../Icon/Icon.styles.js';
 
-const styles = {
-  icon: {
-    color: theme.color.fillNeutral,
-    height: theme.typography.body2.lineHeight,
-    width: theme.typography.body2.lineHeight
+export interface RatingStyles {
+  tone: Tone;
+  Container: NodeStyleSet<{ padding: number[] }>;
+  Icon: NodeStyleSet;
+  Text: TextStyleSet;
+}
+
+type RatingStyleProperties = {
+  justifyContent?: NodeStyles['justifyContent'];
+  textAlign?: TextStyles['textAlign'];
+  textColor?: TextStyles['color'];
+};
+
+type RatingConfig = ComponentStyleConfig<RatingStyleProperties>;
+
+/* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
+const { Rating: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
+  theme?.componentConfig;
+
+const container: RatingConfig = {
+  themeKeys: {
+    justifyContent: 'justifyContent'
   },
-  text: theme.typography.body2,
-  iconMarginRight: theme.spacer.sm
+  base: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flexStart'
+  },
+  toneModes: {},
+  themeStyles
+};
+
+const text: RatingConfig = {
+  themeKeys: {},
+  base: {
+    ...theme.typography.body2
+  },
+  toneModes: {},
+  themeStyles
+};
+
+const icon: IconConfig = {
+  themeKeys: {
+    color: 'color'
+  },
+  base: {
+    height: theme.typography.body2.lineHeight,
+    width: theme.typography.body2.lineHeight,
+    color: theme.color.fillNeutral,
+    marginRight: theme.spacer.sm
+  },
+  toneModes: {},
+  themeStyles
+};
+
+const Container = makeComponentStyles<RatingStyles['Container']>(container);
+const Icon = makeComponentStyles<IconStyles['Container']>(icon);
+const Text = makeComponentStyles<RatingStyles['Text']>(text);
+
+const styles: RatingStyles = {
+  tone: defaultTone,
+  Container,
+  Text,
+  Icon
 };
 
 export default styles;

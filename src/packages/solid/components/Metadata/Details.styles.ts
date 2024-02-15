@@ -17,20 +17,71 @@
 
 import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
+import type { TextStyleSet, Tone } from '../../types/types.js';
+import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
+import { makeComponentStyles } from '../../utils/index.js';
 
-const styles = {
-  Container: {
-    display: 'flex' as NodeStyles['display'],
-    flexDirection: 'row' as NodeStyles['flexDirection'],
-    alignItems: 'center' as NodeStyles['alignItems']
+export interface DetailsStyles {
+  tone: Tone;
+  Container: NodeStyleSet;
+  Text: TextStyleSet;
+}
+
+export type DetailsStyleProperties = {
+  alignItems?: NodeStyles['alignItems'];
+  contentSpacing?: NodeStyles['contentSpacing'];
+  badgeContentSpacing?: NodeStyles['badgeContentSpacing'];
+  ratingContentSpacing?: NodeStyles['ratingContentSpacing'];
+};
+
+export type DetailsConfig = ComponentStyleConfig<DetailsStyleProperties>;
+
+/* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
+const { Details: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
+  theme?.componentConfig;
+
+const container: DetailsConfig = {
+  themeKeys: {
+    alignItems: 'alignItems',
+    contentSpacing: 'contentSpacing',
+    badgeContentSpacing: 'badgeContentSpacing',
+    ratingContentSpacing: 'ratingContentSpacing'
   },
-  titleText: theme.typography.body2,
-  contentSpacing: theme.spacer.lg,
-  badgeContentSpacing: theme.spacer.sm,
-  ratingContentSpacing: theme.spacer.lg,
-  disabled: {
-    titleText: { textColor: theme.color.textNeutralDisabled }
-  }
+  base: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    contentSpacing: theme.spacer.lg,
+    badgeContentSpacing: theme.spacer.sm,
+    ratingContentSpacing: theme.spacer.lg
+  },
+  toneModes: {},
+  themeStyles
+};
+
+const text: DetailsConfig = {
+  themeKeys: {
+    color: 'textColor'
+  },
+  base: {
+    ...theme.typography.body2,
+    marginRight: theme.spacer.lg
+  },
+  toneModes: {
+    disabled: {
+      color: theme.color.textNeutralDisabled
+    }
+  },
+  themeStyles
+};
+
+const Container = makeComponentStyles<DetailsStyles['Container']>(container);
+const Text = makeComponentStyles<DetailsStyles['Text']>(text);
+
+const styles: DetailsStyles = {
+  tone: defaultTone,
+  Container,
+  Text
 };
 
 export default styles;
