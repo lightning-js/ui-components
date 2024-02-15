@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.5](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.3.4...@lightningjs/solid-ui@0.3.5) (2024-02-15)
+
+### Bug Fixes
+
+- handle no children for focus ([#75](https://github.com/lightning-js/ui-components/issues/75)) ([faf6f2e](https://github.com/lightning-js/ui-components/commit/faf6f2ea3eb56d40745bf9fe81a7c241947771d1))
+
 ## [0.3.4](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.3.3...@lightningjs/solid-ui@0.3.4) (2024-02-15)
 
 ### Bug Fixes
