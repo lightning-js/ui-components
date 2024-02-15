@@ -50,7 +50,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
       onUp={chainFunctions(props.onUp, onUp)}
       onDown={chainFunctions(props.onDown, onDown)}
       selected={props.selected || 0}
-      onFocus={chainFunctions(props.onFocus, onGridFocus)}
+      forwardFocus={onGridFocus}
       onSelectedChanged={chainFunctions(props.onSelectedChanged, withScrolling(props.y as number))}
       style={[props.style, styles.Container]}
     />
