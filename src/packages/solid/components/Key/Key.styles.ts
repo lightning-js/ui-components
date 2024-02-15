@@ -30,7 +30,7 @@ export type KeySizes = {
 
 export type KeySize = keyof KeySizes;
 
-export interface KeyStyle {
+export interface KeyStyles {
   tone: Tone;
   Container: NodeStyleSet<{ padding: number[] }>;
   Text: TextStyleSet;
@@ -128,10 +128,10 @@ const text: KeyConfig = {
   themeStyles
 };
 
-const Container = makeComponentStyles<KeyStyle['Container']>(container);
-const Text = makeComponentStyles<KeyStyle['Text']>(text);
+const Container = makeComponentStyles<KeyStyles['Container']>(container);
+const Text = makeComponentStyles<KeyStyles['Text']>(text);
 
-const styles: KeyStyle = {
+const styles: KeyStyles = {
   tone: defaultTone,
   Container,
   Text

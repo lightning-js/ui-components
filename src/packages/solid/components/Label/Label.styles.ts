@@ -43,7 +43,8 @@ const { Label: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone:
 
 const container: LabelConfig = {
   themeKeys: {
-    color: 'backgroundColor'
+    color: 'backgroundColor',
+    borderRadius: 'radius'
   },
   base: {
     display: 'flex',

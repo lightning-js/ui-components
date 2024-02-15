@@ -16,4 +16,4 @@
  */
 
 export { default as default, type KeyProps } from './Key.jsx';
-export { default as keyStyles } from './Key.styles.js';
+export { default as keyStyles, type KeyStyles } from './Key.styles.js';
