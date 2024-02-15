@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.3.2...@lightningjs/solid-ui@0.3.3) (2024-02-15)
+
+### Bug Fixes
+
+- row and column use forwardFocus ([#73](https://github.com/lightning-js/ui-components/issues/73)) ([34837d3](https://github.com/lightning-js/ui-components/commit/34837d332e756c0bfb618dec076e2c188c55cc64))
+
 ## [0.3.2](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.3.1...@lightningjs/solid-ui@0.3.2) (2024-02-14)
 
 ### Bug Fixes
