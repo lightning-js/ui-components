@@ -20,13 +20,13 @@ import type { KeyHandler } from '@lightningjs/solid-primitives';
 import { assertTruthy } from './index.js';
 
 export function onGridFocus(this: ElementNode) {
-  if (!this || this.selected === undefined) return;
+  if (!this || this.selected === undefined || this.children.length === 0) return false;
   let child = this.children[this.selected];
   while (child?.skipFocus) {
     this.selected++;
     child = this.children[this.selected];
   }
-  if (!(child instanceof ElementNode)) return;
+  if (!(child instanceof ElementNode)) return false;
   child.setFocus();
 }
 
