@@ -46,8 +46,6 @@ export interface IconProps extends IntrinsicNodeProps {
 }
 
 const Icon: Component<IconProps> = props => {
-  let IconRef;
-  console.log(IconRef);
   return (
     <View
       {...props}
@@ -59,7 +57,6 @@ const Icon: Component<IconProps> = props => {
         styles.Container,
         styles.Container?.[props.tone || styles.tone]
       ]}
-      ref={IconRef}
       forwardStates
     />
   );
