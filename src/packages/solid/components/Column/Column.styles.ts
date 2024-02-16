@@ -48,7 +48,11 @@ const container: ColumnConfig = {
     display: 'flex',
     justifyContent: 'flexStart',
     flexDirection: 'column',
-    gap: theme.layout.gutterY
+    gap: theme.layout.gutterY,
+    itemTransition: {
+      ...theme.animation.standardEntrance,
+      duration: theme.animation.duration.fast
+    }
   },
   toneModes: {},
   themeStyles
