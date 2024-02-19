@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.6](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.3.5...@lightningjs/solid-ui@0.3.6) (2024-02-19)
+
+### Bug Fixes
+
+- update button with style array ([#78](https://github.com/lightning-js/ui-components/issues/78)) ([bf2f845](https://github.com/lightning-js/ui-components/commit/bf2f845fee43a450966a1317b128d4b5c21e7c8f))
+
 ## [0.3.5](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.3.4...@lightningjs/solid-ui@0.3.5) (2024-02-15)
 
 ### Bug Fixes
