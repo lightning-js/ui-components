@@ -35,12 +35,12 @@ const Button: Component<ButtonProps> = props => {
   return (
     <View
       {...props}
-      style={props?.style?.Container ?? styles.Container}
+      style={[props.style, styles.Container]}
       tone={props.tone ?? styles.tone}
       states={props.tone ?? styles.tone}
       forwardStates
     >
-      <Text style={props?.style?.Text ?? styles.Text} tone={props.tone || styles.tone}>
+      <Text style={[props.style?.Text, styles.Text]} tone={props.tone || styles.tone}>
         {props.children}
       </Text>
     </View>
@@ -51,7 +51,7 @@ const ButtonContainer: Component<ButtonContainerProps> = props => {
   return (
     <View
       {...props}
-      style={props?.style?.Container ?? styles.Container}
+      style={[props.style, styles.Container]}
       tone={props.tone ?? styles.tone}
       states={props.tone ?? styles.tone}
       forwardStates
