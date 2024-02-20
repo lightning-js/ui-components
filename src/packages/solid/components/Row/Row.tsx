@@ -24,9 +24,14 @@ import { withScrolling } from '../../utils/withScrolling.js';
 import { chainFunctions } from '../../index.js';
 
 export interface RowProps extends NodeProps {
-  /** Item index at which scrolling begins */
+  /** When auto scrolling, item index at which scrolling begins */
   scrollIndex?: number;
-  scrollType?: 'alwaysScroll' | 'neverScroll' | 'lazyScroll';
+  /* Determines when to scroll: 
+    auto- scroll until the last index is visible on the screen, then dont scroll
+    lazy- only scrolling when the component going to is not on screen
+    always- always scrolling
+    never- never scrolling */
+  scroll?: 'always' | 'never' | 'lazy' | 'auto';
   selected?: number;
   onRight?: KeyHandler;
   onLeft?: KeyHandler;
@@ -51,7 +56,10 @@ const Row: Component<RowProps> = (props: RowProps) => {
       onLeft={chainFunctions(props.onLeft, onLeft)}
       onRight={chainFunctions(props.onRight, onRight)}
       forwardFocus={onGridFocus}
-      onSelectedChanged={chainFunctions(props.onSelectedChanged, withScrolling(props.x as number))}
+      onSelectedChanged={chainFunctions(
+        props.onSelectedChanged,
+        props.scroll === undefined || props.scroll !== 'never' ? withScrolling(props.x as number) : () => {}
+      )}
       style={[props.style, styles.Container]}
     />
   );

@@ -24,9 +24,14 @@ import { handleNavigation, onGridFocus } from '../../utils/handleNavigation.js';
 import { chainFunctions } from '../../index.js';
 
 export interface ColumnProps extends NodeProps {
-  /** Item index at which scrolling begins */
+  /** When auto scrolling, item index at which scrolling begins */
   scrollIndex?: number;
-  scrollType?: 'alwaysScroll' | 'neverScroll' | 'lazyScroll';
+  /* Determines when to scroll: 
+    auto- scroll until the last index is visible on the screen, then dont scroll
+    lazy- only scrolling when the component going to is not on screen
+    always- always scrolling
+    never- never scrolling */
+  scroll?: 'always' | 'never' | 'lazy' | 'auto';
   selected?: number;
   onUp?: KeyHandler;
   onDown?: KeyHandler;
@@ -51,7 +56,10 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
       onDown={chainFunctions(props.onDown, onDown)}
       selected={props.selected || 0}
       forwardFocus={onGridFocus}
-      onSelectedChanged={chainFunctions(props.onSelectedChanged, withScrolling(props.y as number))}
+      onSelectedChanged={chainFunctions(
+        props.onSelectedChanged,
+        props.scroll === undefined || props.scroll !== 'never' ? withScrolling(props.y as number) : () => {}
+      )}
       style={[props.style, styles.Container]}
     />
   );

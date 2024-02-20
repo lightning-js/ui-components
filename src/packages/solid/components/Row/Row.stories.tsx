@@ -13,9 +13,9 @@ const meta = {
         defaultValue: { summary: '[]' }
       }
     },
-    scrollType: {
+    scroll: {
       control: { type: 'radio' },
-      options: ['lazyScroll', 'alwaysScroll', 'neverScroll'],
+      options: ['auto', 'lazy', 'always', 'never'],
       description: 'determines when to scroll',
       table: {
         defaultValue: { summary: false }
@@ -71,7 +71,7 @@ export const LazyScroll = {
   },
   args: {
     children: buttons,
-    scrollType: 'lazyScroll',
+    scroll: 'lazy',
     wrap: false,
     height: 500,
     width: 800,
@@ -89,7 +89,7 @@ export const AlwaysScroll = {
   },
   args: {
     children: buttons,
-    scrollType: 'alwaysScroll',
+    scroll: 'always',
     wrap: false,
     height: 500,
     width: 800,
@@ -107,7 +107,7 @@ export const NeverScroll = {
   },
   args: {
     children: buttons,
-    scrollType: 'neverScroll',
+    scroll: 'never',
     wrap: false,
     height: 500,
     width: 800,

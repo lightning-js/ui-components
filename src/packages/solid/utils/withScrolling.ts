@@ -15,16 +15,21 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { ElementNode } from "@lightningjs/solid";
+import type { ElementNode } from '@lightningjs/solid';
 
 export function withScrolling(adjustment: number = 0) {
-  return (componentRef: ElementNode, selectedElement: ElementNode, selected: number, lastSelected: number) => {
+  return (
+    componentRef: ElementNode,
+    selectedElement: ElementNode,
+    selected: number,
+    lastSelected: number
+  ) => {
     if (componentRef.children.length === 0) {
       return;
     }
 
     const gap = componentRef.gap || 0;
-    const scrollType = componentRef.scrollType;
+    const scroll = componentRef.scroll || 'auto';
     const [lastItem, windowVal] = updateLastIndex(componentRef);
 
     // values based on row or column
@@ -37,50 +42,47 @@ export function withScrolling(adjustment: number = 0) {
 
     let next = currentVal;
 
-    /** scrollIndex takes precedence */
-    // if we have a scrollIndex and it is valid
-    if (componentRef.scrollIndex != undefined && componentRef.scrollIndex >= 0) {
-      // if we are at an index on or after the scrollIndex
-      if (componentRef.selected >= componentRef.scrollIndex) {
-        if (direct === 'positive') {
-          next = currentVal - size - gap;
-        } else {
-          next = currentVal + size + gap;
+    // if we want to auto scroll ( scroll until the last component is sho on the screen)
+    if (scroll === 'auto') {
+      // if we have a scrollIndex and it is valid
+      if (componentRef.scrollIndex != undefined && componentRef.scrollIndex >= 0) {
+        // if we are at an index on or after the scrollIndex
+        if (componentRef.selected >= componentRef.scrollIndex) {
+          if (direct === 'positive') {
+            next = currentVal - size - gap;
+          } else {
+            next = currentVal + size + gap;
+          }
         }
-      }
-
-      /** want to scroll based on type */
-    } else {
-      // if we want to scroll based to the -x value of the selected
-      // this will be the case for alwaysScroll, and lazyScroll when we are scrolling negatively and the current positioning does not have the selected item shown
-      // if direction is negative and absolute value of current position is higher than the position we want to be at, the selected Item is not shown
-      if (
-        scrollType === 'alwaysScroll' ||
-        (scrollType === 'lazyScroll' && direct === 'negative' && Math.abs(currentVal) > newVal)
-      ) {
-        next = -newVal + adjustment;
-
-        // if we want to scroll based on the size of the selected item
-        // this will be the case for lazyScroll when we are scrolling positively and the current positioning does not have the selected item shown
-        // if direction is positive and (absolute value of current position + the size of the visual portion of the row) is less than (the position we want to be at + the size of the selected Item), the selected Item is not shown
-      } else if (
-        scrollType === 'lazyScroll' &&
-        direct === 'positive' &&
-        Math.abs(currentVal) + windowVal < newVal + size
-      ) {
-        next = currentVal - size - gap;
-        // if we want to default scroll ( scroll until all the last component is show)
-        // this will be the case when we have no scrollType (or an invalid one) and the lastItem is not shown (or selected is not shown)
+        // no valid scroll index, complete auto scroll
+        // this will be the case when we have no scroll (or an invalid one) and the lastItem is not shown (or selected is not shown)
         // if the (absolute value of current position  + the size of the visual portion of the row) is less than (the last Item position + the last Item size), then the last item is not shown
         // if scrolling backwards and the position of the selected item is less that the absolute value of the current position, the selected item is not shown
       } else if (
-        scrollType !== 'lazyScroll' &&
-        scrollType !== 'neverScroll' &&
-        (Math.abs(currentVal) + windowVal < lastItem.position + lastItem.size ||
-          newVal < Math.abs(currentVal))
+        Math.abs(currentVal) + windowVal < lastItem.position + lastItem.size ||
+        newVal < Math.abs(currentVal)
       ) {
         next = -newVal + adjustment;
       }
+
+      // if we want to scroll based to the -x value of the selected
+      // this will be the case for always, and lazy when we are scrolling negatively and the current positioning does not have the selected item shown
+      // if direction is negative and absolute value of current position is higher than the position we want to be at, the selected Item is not shown
+    } else if (
+      scroll === 'always' ||
+      (scroll === 'lazy' && direct === 'negative' && Math.abs(currentVal) > newVal)
+    ) {
+      next = -newVal + adjustment;
+
+      // if we want to scroll based on the size of the selected item
+      // this will be the case for lazy when we are scrolling positively and the current positioning does not have the selected item shown
+      // if direction is positive and (absolute value of current position + the size of the visual portion of the row) is less than (the position we want to be at + the size of the selected Item), the selected Item is not shown
+    } else if (
+      scroll === 'lazy' &&
+      direct === 'positive' &&
+      Math.abs(currentVal) + windowVal < newVal + size
+    ) {
+      next = currentVal - size - gap;
     }
 
     // updating value if scrolling is needed
