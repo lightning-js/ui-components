@@ -66,19 +66,19 @@ export function withScrolling(adjustment: number = 0) {
       }
 
       // if we want to scroll based to the -x value of the selected
-      // this will be the case for always, and lazy when we are scrolling negatively and the current positioning does not have the selected item shown
+      // this will be the case for always, and edge when we are scrolling negatively and the current positioning does not have the selected item shown
       // if direction is negative and absolute value of current position is higher than the position we want to be at, the selected Item is not shown
     } else if (
       scroll === 'always' ||
-      (scroll === 'lazy' && direct === 'negative' && Math.abs(currentVal) > newVal)
+      (scroll === 'edge' && direct === 'negative' && Math.abs(currentVal) > newVal)
     ) {
       next = -newVal + adjustment;
 
       // if we want to scroll based on the size of the selected item
-      // this will be the case for lazy when we are scrolling positively and the current positioning does not have the selected item shown
+      // this will be the case for edge when we are scrolling positively and the current positioning does not have the selected item shown
       // if direction is positive and (absolute value of current position + the size of the visual portion of the row) is less than (the position we want to be at + the size of the selected Item), the selected Item is not shown
     } else if (
-      scroll === 'lazy' &&
+      scroll === 'edge' &&
       direct === 'positive' &&
       Math.abs(currentVal) + windowVal < newVal + size
     ) {
