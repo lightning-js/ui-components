@@ -15,7 +15,7 @@ const meta = {
     },
     scroll: {
       control: { type: 'radio' },
-      options: ['auto', 'lazy', 'always', 'never'],
+      options: ['auto', 'lazy', 'always', 'none'],
       description: 'determines when to scroll',
       table: {
         defaultValue: { summary: false }
@@ -97,7 +97,7 @@ export const AlwaysScroll = {
   }
 };
 
-export const NeverScroll = {
+export const NoneScroll = {
   render: args => {
     return (
       <SolidRow autofocus {...args}>
@@ -107,7 +107,7 @@ export const NeverScroll = {
   },
   args: {
     children: buttons,
-    scroll: 'never',
+    scroll: 'none',
     wrap: false,
     height: 500,
     width: 800,

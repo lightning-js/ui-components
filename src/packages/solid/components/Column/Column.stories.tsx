@@ -40,7 +40,7 @@ const meta = {
     },
     scroll: {
       control: { type: 'radio' },
-      options: ['auto', 'lazy', 'always', 'never'],
+      options: ['auto', 'lazy', 'always', 'none'],
       description: 'determines when to scroll',
       table: {
         defaultValue: { summary: false }
@@ -79,13 +79,13 @@ export const AlwaysScroll = {
   }
 };
 
-export const NeverScroll = {
+export const NoneScroll = {
   render: (args: JSX.IntrinsicAttributes & ColumnProps) => {
     return <SolidColumn autofocus {...args} />;
   },
   args: {
     children: buttons,
-    scroll: 'never',
+    scroll: 'none',
     wrap: false,
     width: 400,
     height: 500,

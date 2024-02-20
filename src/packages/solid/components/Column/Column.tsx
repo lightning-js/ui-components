@@ -30,8 +30,8 @@ export interface ColumnProps extends NodeProps {
     auto- scroll until the last index is visible on the screen, then dont scroll
     lazy- only scrolling when the component going to is not on screen
     always- always scrolling
-    never- never scrolling */
-  scroll?: 'always' | 'never' | 'lazy' | 'auto';
+    none- none scrolling */
+  scroll?: 'always' | 'none' | 'lazy' | 'auto';
   selected?: number;
   onUp?: KeyHandler;
   onDown?: KeyHandler;
@@ -58,7 +58,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
       forwardFocus={onGridFocus}
       onSelectedChanged={chainFunctions(
         props.onSelectedChanged,
-        props.scroll === undefined || props.scroll !== 'never' ? withScrolling(props.y as number) : () => {}
+        props.scroll === undefined || props.scroll !== 'none' ? withScrolling(props.y as number) : () => {}
       )}
       style={[props.style, styles.Container]}
     />
