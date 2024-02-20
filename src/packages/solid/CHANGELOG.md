@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.7](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.3.6...@lightningjs/solid-ui@0.3.7) (2024-02-20)
+
+### Bug Fixes
+
+- update change to take unlimited functions and stop chain if true… ([#77](https://github.com/lightning-js/ui-components/issues/77)) ([bee9286](https://github.com/lightning-js/ui-components/commit/bee9286c0999012c30f095e1616356dc111efd2e))
+
 ## [0.3.6](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.3.5...@lightningjs/solid-ui@0.3.6) (2024-02-19)
 
 ### Bug Fixes
