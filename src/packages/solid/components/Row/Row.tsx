@@ -26,16 +26,28 @@ import { chainFunctions } from '../../index.js';
 export interface RowProps extends NodeProps {
   /** When auto scrolling, item index at which scrolling begins */
   scrollIndex?: number;
-  /* Determines when to scroll: 
-    auto- scroll until the last index is visible on the screen, then dont scroll
-    lazy- only scrolling when the component going to is not on screen
-    always- always scrolling
-    none- none scrolling */
-  scroll?: 'always' | 'none' | 'lazy' | 'auto';
+
+  /** Determines when to scroll(shift items along the axis):
+   * auto - scroll items immediately
+   * edge - scroll items when focus reaches the last item on screen
+   * always - focus remains at index 0, scroll until the final item is at index 0
+   * none - disable scrolling behavior, focus shifts as expected
+   * in both `auto` and `edge` items will only scroll until the last item is on screen */
+  scroll?: 'always' | 'none' | 'edge' | 'auto';
+
+  /** The inital index */
   selected?: number;
+
+  /** function to be called on right click */
   onRight?: KeyHandler;
+
+  /** function to be called on right click */
   onLeft?: KeyHandler;
+
+  /** function to be called when component gets focus */
   onFocus?: KeyHandler;
+
+  /** function to be called when the selected of the component changes */
   onSelectedChanged?: (
     this: ElementNode,
     elm: ElementNode,

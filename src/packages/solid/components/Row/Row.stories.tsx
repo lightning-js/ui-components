@@ -15,7 +15,7 @@ const meta = {
     },
     scroll: {
       control: { type: 'radio' },
-      options: ['auto', 'lazy', 'always', 'none'],
+      options: ['auto', 'edge', 'always', 'none'],
       description: 'determines when to scroll',
       table: {
         defaultValue: { summary: false }
@@ -61,7 +61,7 @@ export const Basic = {
   }
 };
 
-export const LazyScroll = {
+export const edgeScroll = {
   render: args => {
     return (
       <SolidRow autofocus {...args}>
@@ -71,7 +71,7 @@ export const LazyScroll = {
   },
   args: {
     children: buttons,
-    scroll: 'lazy',
+    scroll: 'edge',
     wrap: false,
     height: 500,
     width: 800,

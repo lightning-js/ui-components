@@ -40,7 +40,7 @@ const meta = {
     },
     scroll: {
       control: { type: 'radio' },
-      options: ['auto', 'lazy', 'always', 'none'],
+      options: ['auto', 'edge', 'always', 'none'],
       description: 'determines when to scroll',
       table: {
         defaultValue: { summary: false }
