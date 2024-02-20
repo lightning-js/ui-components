@@ -16,13 +16,18 @@
  */
 
 /* eslint-disable @typescript-eslint/ban-types */
-export const chainFunctions = (callback: Function | undefined, originalFunc: Function) => {
-  if (!callback) {
-    return originalFunc;
+// take an array of functions and if you return true from a function, it will stop the chain
+export const chainFunctions = (...args: (Function | undefined)[]) => {
+  const onlyFunctions = args.filter(func => typeof func === 'function') as Function[];
+  if (onlyFunctions.length === 0) {
+    return undefined;
   }
 
-  return function (...args: unknown[]) {
-    typeof callback === 'function' && callback.apply(this, args);
-    originalFunc.apply(this, args);
+  return function (...innerArgs: unknown[]) {
+    for (const func of onlyFunctions) {
+      if (func.apply(this, innerArgs) === true) {
+        return true;
+      }
+    }
   };
 };
