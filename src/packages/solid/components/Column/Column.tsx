@@ -58,7 +58,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
       forwardFocus={onGridFocus}
       onSelectedChanged={chainFunctions(
         props.onSelectedChanged,
-        props.scroll !== 'none' ? withScrolling(props.y as number) : () => {}
+        props.scroll !== 'none' ? withScrolling(props.y as number) : undefined
       )}
       style={[props.style, styles.Container]}
     />

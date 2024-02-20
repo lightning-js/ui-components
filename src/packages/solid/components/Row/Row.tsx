@@ -58,7 +58,7 @@ const Row: Component<RowProps> = (props: RowProps) => {
       forwardFocus={onGridFocus}
       onSelectedChanged={chainFunctions(
         props.onSelectedChanged,
-        props.scroll !== 'none' ? withScrolling(props.x as number) : () => {}
+        props.scroll !== 'none' ? withScrolling(props.x as number) : undefined
       )}
       style={[props.style, styles.Container]}
     />
