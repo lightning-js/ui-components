@@ -50,8 +50,7 @@ const container: ButtonConfig = {
     justifyContent: 'justifyContent'
   },
   base: {
-    width: 400,
-    height: 100,
+    height: theme.typography.button1.lineHeight + theme.spacer.xl * 2,
     display: 'flex',
     padding: [theme.spacer.xxxl, theme.spacer.xl],
     color: theme.color.interactiveNeutral,
@@ -97,14 +96,14 @@ const text: ButtonConfig = {
     },
     disabled: {
       color: theme.color.textNeutralDisabled,
-      contentColor: theme.color.textNeutralDisabled
+      contentColor: theme.color.fillNeutralDisabled
     },
     inverse: {
-      color: theme.color.fillNeutral,
+      color: theme.color.textNeutral,
       contentColor: theme.color.fillNeutral
     },
     brand: {
-      color: theme.color.fillBrand,
+      color: theme.color.textBrand,
       contentColor: theme.color.fillBrand
     },
     'brand-focus': {
