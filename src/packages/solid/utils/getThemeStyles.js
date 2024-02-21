@@ -18,6 +18,7 @@
  * 4. return the object to the style file
  */
 
+// TODO how can we reduce the number of objects?
 // TODO types, sub components
 
 // required style keys
@@ -46,21 +47,26 @@ export function makeComponentStyles({
    */
   const themeStyleLookup = (toneModeName, themeKey) => themeStyles?.[toneModeName]?.[themeKey];
 
-  const addMissingToneModes = styleObject => {
+  const fallBackTrace = toneModeName => toneModeFallbackMap[toneModeName];
+
+  const addMissingToneModes = (styleObject, themeKeys) => {
     const toneModeKeyArray = Object.keys(toneModeFallbackMap);
 
     /* find which toneModes are missing from the final object */
     const missingToneModes = toneModeKeyArray.filter(
       toneMode => !Object.keys(styleObject).includes(toneMode)
     );
-
     /* create missing toneModes using fallback values */
     missingToneModes.forEach(toneMode => {
-      /* merge fallback object with theme.componentConfig values to create missing toneModes */
-      styleObject[toneMode] = {
-        ...styleObject[toneModeFallbackMap[toneMode]],
-        ...themeStyles?.[toneMode]
-      };
+      // console.log(toneMode, styleObject);
+      if (styleObject[toneModeFallbackMap[toneMode]]) {
+        /* merge fallback object with theme.componentConfig values to create missing toneModes */
+        styleObject[toneMode] = mapThemeStylesToSolidStyles(
+          toneMode,
+          styleObject[toneModeFallbackMap[toneMode]],
+          themeKeys
+        );
+      }
     });
 
     return styleObject;
@@ -124,7 +130,7 @@ export function makeComponentStyles({
 
     const styleObject = makeToneModeStyles(baseStyles, toneModes, themeKeys);
 
-    const updatedStyleObject = addMissingToneModes(styleObject); // mutates incoming object, doesn't create a new one
+    const updatedStyleObject = addMissingToneModes(styleObject, themeKeys); // mutates incoming object, doesn't create a new one
 
     return updatedStyleObject;
   };
