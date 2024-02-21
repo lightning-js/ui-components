@@ -15,19 +15,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { createSignal, type Component, type Signal } from 'solid-js';
+import { type Component, type Signal } from 'solid-js';
 import { View, Text, type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles, { type InputStyles } from './Input.styles.js';
 import type { KeyHandler } from '@lightningjs/solid-primitives';
 import type { Tone } from 'types';
-import { buttonStyles } from '../Button/index.js';
-import Button from '../Button/index.js';
-import { chainFunctions } from '../../index.js';
 
 export interface InputProps extends IntrinsicNodeProps {
   /**
- * actualTitle is a proxy element for title which is used to store actual value typed when password is enabled
- */
+   * actualTitle is a proxy element for title which is used to store actual value typed when password is enabled
+   */
   actualTitle?: string;
 
   /**
@@ -40,11 +37,10 @@ export interface InputProps extends IntrinsicNodeProps {
    */
   helpText?: string;
 
-    /**
+  /**
    * index of the current cursor positions
    */
   position?: number;
-
 
   keySignal: Signal<string>;
 
@@ -59,41 +55,56 @@ export interface InputProps extends IntrinsicNodeProps {
 
 const Input: Component<InputProps> = props => {
   return (
-    <View 
-      {...props} 
-      style={[
-      props.style?.Container,
-      props.style?.Container[props.tone || styles.tone],
-      styles.Container,
-      styles.Container[props.tone || styles.tone]]}>
-    {/* eyebrow */}
-    <Text 
-      style={ [
-      props.style?.Text,
-      props.style?.Text[props.tone || styles.tone],
-      styles.Text,
-      styles.Text[props.tone || styles.tone]]}>
-        {props.eyebrow}
-    </Text>
     <View
+      {...props}
       style={[
-        props.style?.InputContainer,
-        props.style?.InputContainer[props.tone || styles.tone],
-        styles.InputContainer,
-        styles.InputContainer[props.tone || styles.tone]]}>
+        props.style?.Container,
+        props.style?.Container[props.tone || styles.tone],
+        styles.Container,
+        styles.Container[props.tone || styles.tone]
+      ]}
+    >
+      {/* eyebrow */}
       <Text
-      style={[props.style?.Text, props.style?.Text[props.tone || styles.tone], styles.Text, styles.Text[props.tone || styles.tone]]}>
-      {props.keySignal[0]}
+        style={[
+          props.style?.Text,
+          props.style?.Text[props.tone || styles.tone],
+          styles.Text,
+          styles.Text[props.tone || styles.tone]
+        ]}
+      >
+        {props.eyebrow}
       </Text>
-    </View>
-    {/* helptext */}
-    <Text style={ [
-      props.style?.Text,
-      props.style?.Text[props.tone || styles.tone],
-      styles.Text,
-      styles.Text[props.tone || styles.tone]]}>
+      <View
+        style={[
+          props.style?.InputContainer,
+          props.style?.InputContainer[props.tone || styles.tone],
+          styles.InputContainer,
+          styles.InputContainer[props.tone || styles.tone]
+        ]}
+      >
+        <Text
+          style={[
+            props.style?.Text,
+            props.style?.Text[props.tone || styles.tone],
+            styles.Text,
+            styles.Text[props.tone || styles.tone]
+          ]}
+        >
+          {props.keySignal[0]}
+        </Text>
+      </View>
+      {/* helptext */}
+      <Text
+        style={[
+          props.style?.Text,
+          props.style?.Text[props.tone || styles.tone],
+          styles.Text,
+          styles.Text[props.tone || styles.tone]
+        ]}
+      >
         {props.helpText}
-    </Text>
+      </Text>
     </View>
   );
 };
