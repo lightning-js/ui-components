@@ -99,12 +99,12 @@ const text: ButtonConfig = {
       contentColor: theme.color.fillNeutralDisabled
     },
     inverse: {
-      color: theme.color.textNeutral,
+      color: theme.color.fillNeutral,
       contentColor: theme.color.fillNeutral
     },
     brand: {
-      color: theme.color.textBrand,
-      contentColor: theme.color.fillBrand
+      color: theme.color.fillBrand,
+      contentColor: theme.color.textBrand
     },
     'brand-focus': {
       color: theme.color.fillBrand,
