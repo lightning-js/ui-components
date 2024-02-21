@@ -35,7 +35,7 @@ export interface RowProps extends NodeProps {
    * in both `auto` and `edge` items will only scroll until the last item is on screen */
   scroll?: 'always' | 'none' | 'edge' | 'auto';
 
-  /** The inital index */
+  /** The initial index */
   selected?: number;
 
   /** function to be called on right click */
