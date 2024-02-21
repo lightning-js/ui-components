@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.4.1...@lightningjs/solid-ui@0.5.0) (2024-02-21)
+
+### Features
+
+- **scrollToIndex:** adds functionality to scroll to a specific index ([#81](https://github.com/lightning-js/ui-components/issues/81)) ([3f03513](https://github.com/lightning-js/ui-components/commit/3f035136f605c6f9b6768f84149065d35985917a))
+
 ## [0.4.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.4.0...@lightningjs/solid-ui@0.4.1) (2024-02-21)
 
 ### Bug Fixes
