@@ -61,7 +61,7 @@ export {
   default as Keyboard,
   keyboardStyles,
   type KeyboardProps,
-  type KeyboardStyleProperties
+  type KeyboardStyles
 } from './components/Keyboard/index.js';
 export { default as Tile, tileStyles, type TileProps, type TileStyles } from './components/Tile/index.js';
 export * from './utils/index.js';
