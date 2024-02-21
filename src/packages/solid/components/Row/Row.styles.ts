@@ -49,10 +49,7 @@ const container: RowConfig = {
     justifyContent: 'flexStart',
     flexDirection: 'row',
     gap: theme.layout.gutterX,
-    itemTransition: {
-      ...theme.animation.standardEntrance,
-      duration: theme.animation.duration.fast
-    }
+    width: theme.layout.screenW
   },
   toneModes: {},
   themeStyles
