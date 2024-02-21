@@ -38,10 +38,10 @@ const meta = {
         defaultValue: { summary: false }
       }
     },
-    lazyScroll: {
-      control: { type: 'boolean' },
-      description:
-        'if true, will only scroll the row if the item is off screen and `alwaysScroll` and `neverScroll` are both false.',
+    scroll: {
+      control: { type: 'radio' },
+      options: ['auto', 'edge', 'always', 'none'],
+      description: 'determines when to scroll',
       table: {
         defaultValue: { summary: false }
       }
@@ -71,7 +71,7 @@ export const AlwaysScroll = {
   },
   args: {
     children: buttons,
-    scrollType: 'alwaysScroll',
+    scroll: 'always',
     wrap: false,
     width: 400,
     height: 500,
@@ -79,13 +79,13 @@ export const AlwaysScroll = {
   }
 };
 
-export const NeverScroll = {
+export const NoneScroll = {
   render: (args: JSX.IntrinsicAttributes & ColumnProps) => {
     return <SolidColumn autofocus {...args} />;
   },
   args: {
     children: buttons,
-    scrollType: 'neverScroll',
+    scroll: 'none',
     wrap: false,
     width: 400,
     height: 500,

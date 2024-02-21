@@ -13,9 +13,9 @@ const meta = {
         defaultValue: { summary: '[]' }
       }
     },
-    scrollType: {
+    scroll: {
       control: { type: 'radio' },
-      options: ['lazyScroll', 'alwaysScroll', 'neverScroll'],
+      options: ['auto', 'edge', 'always', 'none'],
       description: 'determines when to scroll',
       table: {
         defaultValue: { summary: false }
@@ -61,7 +61,7 @@ export const Basic = {
   }
 };
 
-export const LazyScroll = {
+export const edgeScroll = {
   render: args => {
     return (
       <SolidRow autofocus {...args}>
@@ -71,7 +71,7 @@ export const LazyScroll = {
   },
   args: {
     children: buttons,
-    scrollType: 'lazyScroll',
+    scroll: 'edge',
     wrap: false,
     height: 500,
     width: 800,
@@ -89,7 +89,7 @@ export const AlwaysScroll = {
   },
   args: {
     children: buttons,
-    scrollType: 'alwaysScroll',
+    scroll: 'always',
     wrap: false,
     height: 500,
     width: 800,
@@ -97,7 +97,7 @@ export const AlwaysScroll = {
   }
 };
 
-export const NeverScroll = {
+export const NoneScroll = {
   render: args => {
     return (
       <SolidRow autofocus {...args}>
@@ -107,7 +107,7 @@ export const NeverScroll = {
   },
   args: {
     children: buttons,
-    scrollType: 'neverScroll',
+    scroll: 'none',
     wrap: false,
     height: 500,
     width: 800,

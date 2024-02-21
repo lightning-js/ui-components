@@ -24,13 +24,29 @@ import { handleNavigation, onGridFocus } from '../../utils/handleNavigation.js';
 import { chainFunctions } from '../../index.js';
 
 export interface ColumnProps extends NodeProps {
-  /** Item index at which scrolling begins */
+  /** When auto scrolling, item index at which scrolling begins */
   scrollIndex?: number;
-  scrollType?: 'alwaysScroll' | 'neverScroll' | 'lazyScroll';
+  /** Determines when to scroll(shift items along the axis):
+   * auto - scroll items immediately
+   * edge - scroll items when focus reaches the last item on screen
+   * always - focus remains at index 0, scroll until the final item is at index 0
+   * none - disable scrolling behavior, focus shifts as expected
+   * in both `auto` and `edge` items will only scroll until the last item is on screen */
+  scroll?: 'always' | 'none' | 'edge' | 'auto';
+
+  /** The inital index */
   selected?: number;
-  onUp?: KeyHandler;
-  onDown?: KeyHandler;
+
+  /** function to be called on right click */
+  onRight?: KeyHandler;
+
+  /** function to be called on right click */
+  onLeft?: KeyHandler;
+
+  /** function to be called when component gets focus */
   onFocus?: KeyHandler;
+
+  /** function to be called when the selected of the component changes */
   onSelectedChanged?: (
     this: ElementNode,
     elm: ElementNode,
@@ -51,7 +67,10 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
       onDown={chainFunctions(props.onDown, onDown)}
       selected={props.selected || 0}
       forwardFocus={onGridFocus}
-      onSelectedChanged={chainFunctions(props.onSelectedChanged, withScrolling(props.y as number))}
+      onSelectedChanged={chainFunctions(
+        props.onSelectedChanged,
+        props.scroll !== 'none' ? withScrolling(props.y as number) : undefined
+      )}
       style={[props.style, styles.Container]}
     />
   );
