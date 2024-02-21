@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.4.0...@lightningjs/solid-ui@0.4.1) (2024-02-21)
+
+### Bug Fixes
+
+- **scrolling:** addressing api changes and scrolling functionality - breaking ([#79](https://github.com/lightning-js/ui-components/issues/79)) ([76185cd](https://github.com/lightning-js/ui-components/commit/76185cd3f355ff01f2cadcaed7d64c3114af9dde))
+
 # [0.4.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.3.7...@lightningjs/solid-ui@0.4.0) (2024-02-20)
 
 ### Features
