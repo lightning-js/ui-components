@@ -40,10 +40,6 @@ export interface ProgressBarProps extends ProgressBarStyleProps, NodeProps {
   style?: Partial<ProgressBarStyles>;
 }
 
-export interface ProgressBarStyleProps {
-  progressColor?: number;
-}
-
 const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
   return (
     <View
