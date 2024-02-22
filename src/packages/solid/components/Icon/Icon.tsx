@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { Component } from 'solid-js';
+import { type Component } from 'solid-js';
 import { View, type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles, { type IconStyles } from './Icon.styles.js';
 import type { Tone } from 'types';
@@ -50,11 +50,7 @@ const Icon: Component<IconProps> = props => {
     <View
       {...props}
       tone={props.tone ?? styles.tone}
-      style={[
-        props.style?.Container,
-        props.style?.Container[props.tone || styles.tone],
-        styles.Container,
-        styles.Container[props.tone || styles.tone]]}
+      style={[...[props.style].flat(), styles.Container, styles.Container[props.tone || styles.tone]]}
       forwardStates
     />
   );

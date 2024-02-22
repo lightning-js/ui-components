@@ -50,12 +50,26 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
       <Show when={props.src}>
         <Icon
           src={props.src}
-          marginRight={formattedTitle() ? styles.iconMarginRight : props.marginRight}
-          {...styles.icon}
+          tone={props.tone ?? styles.tone}
+          style={[
+            props.style?.Icon,
+            props.style?.Icon?.[props.tone || styles.tone],
+            styles.Icon,
+            styles.Icon?.[props.tone || styles.tone]
+          ]}
         />
       </Show>
       <Show when={formattedTitle()}>
-        <Text style={styles.text} marginRight={props.marginRight}>
+        <Text
+          style={[
+            props.style?.Text,
+            props.style?.Text?.[props.tone || styles.tone],
+            styles.Text,
+            styles.Text?.[props.tone || styles.tone]
+          ]}
+          tone={props.tone ?? styles.tone}
+          marginRight={props.marginRight}
+        >
           {formattedTitle()}
         </Text>
       </Show>

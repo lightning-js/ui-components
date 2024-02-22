@@ -30,6 +30,14 @@ const meta = {
     },
     description: {
       description: 'Description text'
+    },
+    tone: {
+      control: { type: 'radio' },
+      options: ['neutral', 'inverse', 'brand'],
+      description: 'Sets the tone for the component',
+      table: {
+        defaultValue: { summary: 'neutral' }
+      }
     }
   }
 };
