@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.5.0...@lightningjs/solid-ui@0.5.1) (2024-02-22)
+
+### Bug Fixes
+
+- **column:** typescript wrong props ([#82](https://github.com/lightning-js/ui-components/issues/82)) ([b9ab268](https://github.com/lightning-js/ui-components/commit/b9ab268423783f6ac06f48c06d1b14b17724cfa8))
+
 # [0.5.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.4.1...@lightningjs/solid-ui@0.5.0) (2024-02-21)
 
 ### Features
