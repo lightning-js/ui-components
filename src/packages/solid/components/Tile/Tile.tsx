@@ -124,7 +124,12 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         </View>
 
         <View
-          style={props?.style?.InsetBottom ?? styles.InsetBottom}
+          style={[
+            props.style?.InsetBottom,
+            props.style?.InsetBottom?.[props.tone || styles.tone],
+            styles.InsetBottom,
+            styles.InsetBottom?.[props.tone || styles.tone]
+          ]}
           width={
             (props.width || props?.style?.Container?.width || styles.Container.width) -
             styles.Container.padding[0] * 2
@@ -133,14 +138,21 @@ const Tile: Component<TileProps> = (props: TileProps) => {
           y={
             (props.height || props?.style?.Container?.height || styles.Container.height) -
             (props?.style?.Container?.padding?.[1] ?? styles.Container.padding[1]) -
-            (props.progressBar?.progress > 0 ? props.style?.Container?.paddingYProgress || styles.Container.paddingYProgress : 0)
+            (props.progressBar?.progress > 0
+              ? props.style?.Container?.paddingYProgress || styles.Container.paddingYProgress
+              : 0)
           }
         >
           {props.inset}
         </View>
 
         <View
-          style={props?.style?.StandardBottom ?? styles.StandardBottom}
+          style={[
+            props.style?.StandardBottom,
+            props.style?.StandardBottom?.[props.tone || styles.tone],
+            styles.StandardBottom,
+            styles.StandardBottom?.[props.tone || styles.tone]
+          ]}
           x={props?.style?.Container?.padding?.[0] ?? styles.Container.padding[0]}
           y={
             Number(props.height || props?.style?.Container?.height || styles.Container.height) +
