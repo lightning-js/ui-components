@@ -1,6 +1,5 @@
 import { type Component, createMemo } from 'solid-js';
-import { View, type NodeProps } from '@lightningjs/solid';
-// import styles from './Artwork.styles.old.js';
+import { View, type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles, { type ArtworkStyles } from './Artwork.styles.js';
 import { withPadding } from '@lightningjs/solid-primitives';
 import type { Tone } from '../../types.js';

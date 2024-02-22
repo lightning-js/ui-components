@@ -66,6 +66,7 @@ const ButtonContainer: Component<ButtonContainerProps> = props => {
     <View
       {...props}
       style={[
+        ...[props.style].flat(),
         props.style?.Container,
         props.style?.Container?.[props.tone || styles.tone],
         styles.Container,

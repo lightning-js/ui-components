@@ -29,7 +29,6 @@ type RowStyleProperties = {
   itemSpacing?: NodeStyles['itemSpacing'];
   itemTransition?: NodeStyles['itemTransition'];
   scrollIndex?: NodeStyles['scrollIndex'];
-  gap?: NodeStyles['gap'];
 };
 
 type RowConfig = ComponentStyleConfig<RowStyleProperties>;

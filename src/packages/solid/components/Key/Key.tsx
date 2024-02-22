@@ -86,7 +86,7 @@ const Key: Component<KeyProps> = props => {
           styles.Text,
           styles.Text[props.tone || styles.tone]
         ]}
-        tone={props.tone || styles.tone}
+        tone={props.tone ?? styles.tone}
         states={props.tone ?? styles.tone}
       >
         {props.title ? props.title : ''}

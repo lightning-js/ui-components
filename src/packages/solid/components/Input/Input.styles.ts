@@ -42,7 +42,9 @@ export type InputConfig = ComponentStyleConfig<InputStyleProperties>;
 const { Input: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
 
 const container: InputConfig = {
-  themeKeys: {},
+  themeKeys: {
+    justifyContent: 'justifyContent',
+  },
   base: {
     display: 'flex',
     justifyContent: 'flexStart',
@@ -59,7 +61,6 @@ const input: InputConfig = {
   themeKeys: {
     borderRadius: 'borderRadius',
     color: 'backgroundColor',
-    justifyContent: 'justifyContent',
     contentColor: 'contentColor'
   },
   base: {
@@ -70,7 +71,6 @@ const input: InputConfig = {
     padding: [theme.spacer.xxxl, theme.spacer.xl],
     color: theme.color.interactiveNeutral,
     contentColor: theme.color.fillInverse,
-    justifyContent: 'center',
     borderRadius: theme.radius.sm,
     marginX: theme.spacer.xxxl
   },

@@ -19,7 +19,8 @@ import { Text, Show, View } from '@lightningjs/solid';
 import type { IntrinsicNodeProps } from '@lightningjs/solid';
 import Icon from '../Icon/Icon.jsx';
 import type { IconProps } from '../Icon/Icon.jsx';
-import styles from './Rating.styles.js';
+import styles, { type RatingStyles } from './Rating.styles.js';
+import type { Tone } from '../../types.js';
 
 export interface RatingProps extends IntrinsicNodeProps {
   /**
@@ -30,6 +31,10 @@ export interface RatingProps extends IntrinsicNodeProps {
    * Text or number to display. Numbers from 0 to 100 will display as percentages.
    */
   title: string;
+
+  style?: Partial<RatingStyles>;
+
+  tone?: Tone;
 }
 
 const Rating: Component<RatingProps> = (props: RatingProps) => {
