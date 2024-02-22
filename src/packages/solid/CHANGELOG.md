@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.5.1...@lightningjs/solid-ui@0.5.2) (2024-02-22)
+
+### Bug Fixes
+
+- resolved unused import error in clients, update keyboard exports ([#83](https://github.com/lightning-js/ui-components/issues/83)) ([8584b58](https://github.com/lightning-js/ui-components/commit/8584b581ffc15081c04c7de620b8b0f7a34c52b6))
+
 ## [0.5.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.5.0...@lightningjs/solid-ui@0.5.1) (2024-02-22)
 
 ### Bug Fixes
