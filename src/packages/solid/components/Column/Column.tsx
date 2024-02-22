@@ -37,11 +37,11 @@ export interface ColumnProps extends NodeProps {
   /** The inital index */
   selected?: number;
 
-  /** function to be called on right click */
-  onRight?: KeyHandler;
+  /** function to be called on up click */
+  onUp?: KeyHandler;
 
-  /** function to be called on right click */
-  onLeft?: KeyHandler;
+  /** function to be called on down click */
+  onDown?: KeyHandler;
 
   /** function to be called when component gets focus */
   onFocus?: KeyHandler;
