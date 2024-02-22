@@ -30,8 +30,8 @@ export interface MetadataStyles {
 
 type MetadataStyleProperties = {
   justifyContent?: NodeStyles['justifyContent'];
-  textAlign?: TextStyles['textAlign'];
   textColor?: TextStyles['color'];
+  alpha?: TextStyles['alpha'];
 };
 
 type MetadataConfig = ComponentStyleConfig<MetadataStyleProperties>;
@@ -43,16 +43,19 @@ const { Metadata: { styles: themeStyles, defaultTone } = { styles: {}, defaultTo
 const container: MetadataConfig = {
   themeKeys: {
     justifyContent: 'justifyContent',
-    textAlign: 'textAlign'
+    alpha: 'alpha'
   },
   base: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flexStart',
-    gap: theme.spacer.sm,
-    textAlign: 'left'
+    alpha: theme.alpha.primary
   },
-  toneModes: {},
+  toneModes: {
+    disabled: {
+      alpha: theme.alpha.inactive
+    }
+  },
   themeStyles
 };
 
@@ -63,10 +66,23 @@ const titleText: MetadataConfig = {
   base: {
     maxLines: 1,
     contain: 'width',
-    ...theme.typography.headline3
+    ...theme.typography.headline3,
+    color: theme.color.textNeutral
   },
   toneModes: {
-    disabled: {
+    inverse: {
+      color: theme.color.textInverse
+    },
+    brand: {
+      color: theme.color.textNeutral
+    },
+    'inverse-disabled': {
+      color: theme.color.textNeutralDisabled
+    },
+    'neutral-disabled': {
+      color: theme.color.textNeutralDisabled
+    },
+    "brand-disabled": {
       color: theme.color.textNeutralDisabled
     }
   },
@@ -80,10 +96,23 @@ const descriptionText: MetadataConfig = {
   base: {
     contain: 'width',
     maxLines: 2,
-    ...theme.typography.body2
+    ...theme.typography.body2,
+    color: theme.color.textNeutralSecondary
   },
   toneModes: {
-    disabled: {
+    inverse: {
+      color: theme.color.textInverseSecondary
+    },
+    brand: {
+      color: theme.color.textNeutralSecondary
+    },
+    'inverse-disabled': {
+      color: theme.color.textNeutralDisabled
+    },
+    'neutral-disabled': {
+      color: theme.color.textNeutralDisabled
+    },
+    "brand-disabled": {
       color: theme.color.textNeutralDisabled
     }
   },

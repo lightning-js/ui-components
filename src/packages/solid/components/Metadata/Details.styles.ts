@@ -65,10 +65,23 @@ const text: DetailsConfig = {
   },
   base: {
     ...theme.typography.body2,
-    marginRight: theme.spacer.lg
+    marginRight: theme.spacer.lg,
+    color: theme.color.textNeutral
   },
   toneModes: {
-    disabled: {
+    inverse: {
+      color: theme.color.textInverse
+    },
+    brand: {
+      color: theme.color.textNeutral
+    },
+    'inverse-disabled': {
+      color: theme.color.textNeutralDisabled
+    },
+    'neutral-disabled': {
+      color: theme.color.textNeutralDisabled
+    },
+    'brand-disabled': {
       color: theme.color.textNeutralDisabled
     }
   },

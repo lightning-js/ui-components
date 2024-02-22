@@ -34,6 +34,7 @@ type RatingStyleProperties = {
   justifyContent?: NodeStyles['justifyContent'];
   textAlign?: TextStyles['textAlign'];
   textColor?: TextStyles['color'];
+  itemSpacing?: NodeStyles['itemSpacing'];
 };
 
 type RatingConfig = ComponentStyleConfig<RatingStyleProperties>;
@@ -45,13 +46,13 @@ const { Rating: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone
 const container: RatingConfig = {
   themeKeys: {
     justifyContent: 'justifyContent',
-    textAlign: 'textAlign'
+    itemSpacing: 'itemSpacing'
   },
   base: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flexStart',
-    textAlign: 'left'
+    itemSpacing: theme.spacer.sm
   },
   toneModes: {},
   themeStyles
@@ -62,6 +63,7 @@ const text: RatingConfig = {
     color: ['textcolor']
   },
   base: {
+    color: theme.color.textNeutral,
     ...theme.typography.body2
   },
   toneModes: {},
