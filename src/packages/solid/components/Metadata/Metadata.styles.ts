@@ -54,7 +54,7 @@ const container: MetadataConfig = {
   themeStyles
 };
 
-const titletext: MetadataConfig = {
+const titleText: MetadataConfig = {
   themeKeys: {
     color: 'textColor'
   },
@@ -71,7 +71,7 @@ const titletext: MetadataConfig = {
   themeStyles
 };
 
-const descriptiontext: MetadataConfig = {
+const descriptionText: MetadataConfig = {
   themeKeys: {
     color: 'textColor'
   },
@@ -89,8 +89,8 @@ const descriptiontext: MetadataConfig = {
 };
 
 const Container = makeComponentStyles<MetadataStyles['Container']>(container);
-const DescriptionText = makeComponentStyles<MetadataStyles['DescriptionText']>(descriptiontext);
-const TitleText = makeComponentStyles<MetadataStyles['TitleText']>(titletext);
+const DescriptionText = makeComponentStyles<MetadataStyles['DescriptionText']>(descriptionText);
+const TitleText = makeComponentStyles<MetadataStyles['TitleText']>(titleText);
 
 const styles: MetadataStyles = {
   tone: defaultTone,

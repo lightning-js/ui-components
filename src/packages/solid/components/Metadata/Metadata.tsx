@@ -37,7 +37,6 @@ export interface MetadataProps extends NodeStyles {
 }
 
 const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
-  debugger
   return (
     <View
       {...props}

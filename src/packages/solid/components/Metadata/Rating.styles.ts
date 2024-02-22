@@ -44,7 +44,8 @@ const { Rating: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone
 
 const container: RatingConfig = {
   themeKeys: {
-    justifyContent: 'justifyContent'
+    justifyContent: 'justifyContent',
+    textAlign: 'textAlign'
   },
   base: {
     display: 'flex',
@@ -56,7 +57,9 @@ const container: RatingConfig = {
 };
 
 const text: RatingConfig = {
-  themeKeys: {},
+  themeKeys: {
+    color: ['textcolor']
+  },
   base: {
     ...theme.typography.body2
   },

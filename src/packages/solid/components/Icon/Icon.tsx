@@ -51,7 +51,7 @@ const Icon: Component<IconProps> = props => {
       {...props}
       tone={props.tone ?? styles.tone}
       style={[
-        ...props.style,
+        Array.isArray(props.style) ? { ...props.style } : undefined,
         props.style?.Container,
         props.style?.Container?.[props.tone || styles.tone],
         styles.Container,
