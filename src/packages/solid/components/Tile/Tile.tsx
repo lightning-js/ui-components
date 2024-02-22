@@ -3,7 +3,8 @@ import { Show, type NodeProps, View } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
 import Artwork, { type ArtworkProps } from '../Artwork/Artwork.jsx';
 import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
-import styles from './Tile.styles.js';
+import styles, { type TileStyles } from './Tile.styles.js';
+import type { Tone } from '../../types.js';
 withPadding;
 
 export interface TileProps extends NodeProps {
@@ -71,58 +72,84 @@ export interface TileProps extends NodeProps {
    * ProgressBar will not appear if progressBar.progress is 0/falsy
    */
   progressBar?: Partial<ProgressBarProps> | undefined;
+
+  tone?: Tone;
+
+  style?: Partial<TileStyles>;
 }
 
 const Tile: Component<TileProps> = (props: TileProps) => {
   const [isFocused, setIsFocused] = createSignal(false);
   return (
     <node
-      use:withPadding={styles.Container.padding}
-      forwardStates
-      {...props}
-      style={styles.Container}
+      use:withPadding={props?.style?.Container?.padding ?? styles.Container.padding}
       tone={props.tone ?? styles.tone}
+      style={[
+        ...[props.style].flat(),
+        props.style?.Container,
+        props.style?.Container?.[props.tone || styles.tone],
+        styles.Container,
+        styles.Container?.[props.tone || styles.tone]
+      ]}
+      states={props.tone ?? styles.tone}
+      {...props}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
     >
       <Artwork
         {...props.artwork}
+        states={props.tone ?? styles.tone}
         tone={props.tone ?? styles.tone}
-        width={props.width || styles.Container.width}
-        height={props.height || styles.Container.height}
+        width={props.width || props?.style?.Container?.width || styles.Container.width}
+        height={props.height || props?.style?.Container?.height || styles.Container.height}
       />
 
       <Show when={props.persistentMetadata || isFocused()}>
-        <View x={styles.Container.padding[0]} y={styles.Container.padding[1]}>
+        <View
+          x={props?.style?.Container?.padding?.[0] ?? styles.Container.padding[0]}
+          y={props?.style?.Container?.padding?.[1] ?? styles.Container.padding[1]}
+        >
           {props.topLeft}
         </View>
 
         <View
-          x={(props?.width || styles.Container.width) - styles.Container.padding[0]}
-          y={styles.Container.padding[1]}
+          x={
+            (props?.width || props?.style?.Container?.width || styles.Container.width) -
+            (props?.style?.Container?.padding?.[0] ?? styles.Container.padding[0])
+          }
+          y={props?.style?.Container?.padding?.[1] ?? styles.Container.padding[1]}
           mountX={1}
         >
           {props.topRight}
         </View>
 
         <View
-          style={styles.InsetBottom}
-          width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
-          x={styles.Container.padding[0]}
+          style={props?.style?.InsetBottom ?? styles.InsetBottom}
+          width={
+            (props.width || props?.style?.Container?.width || styles.Container.width) -
+            styles.Container.padding[0] * 2
+          }
+          x={props?.style?.Container?.padding?.[0] ?? styles.Container.padding[0]}
           y={
-            (props.height || styles.Container.height) -
-            styles.Container.padding[1] -
-            (props.progressBar?.progress > 0 ? styles.Container.paddingYProgress : 0)
+            (props.height || props?.style?.Container?.height || styles.Container.height) -
+            (props?.style?.Container?.padding?.[1] ?? styles.Container.padding[1]) -
+            (props.progressBar?.progress > 0 ? props.style?.Container?.paddingYProgress || styles.Container.paddingYProgress : 0)
           }
         >
           {props.inset}
         </View>
 
         <View
-          style={styles.StandardBottom}
-          x={styles.Container.padding[0]}
-          y={Number(props.height || styles.Container.height) + styles.Container.padding[1]}
-          width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
+          style={props?.style?.StandardBottom ?? styles.StandardBottom}
+          x={props?.style?.Container?.padding?.[0] ?? styles.Container.padding[0]}
+          y={
+            Number(props.height || props?.style?.Container?.height || styles.Container.height) +
+            (props?.style?.Container?.padding?.[1] ?? styles.Container.padding[1])
+          }
+          width={
+            (props.width || props?.style?.Container?.width || styles.Container.width) -
+            (props?.style?.Container?.padding?.[1] ?? styles.Container.padding[1]) * 2
+          }
         >
           {props.bottom}
         </View>
@@ -131,11 +158,14 @@ const Tile: Component<TileProps> = (props: TileProps) => {
       <Show when={props.progressBar?.progress ? props.progressBar.progress > 0 : 0}>
         <ProgressBar
           {...props.progressBar}
-          width={(props.width || styles.Container.width) - styles.Container.padding[0] * 2}
-          x={styles.Container.padding[0]}
+          width={
+            (props.width || props?.style?.Container?.width || styles.Container.width) -
+            (props?.style?.Container?.padding?.[0] ?? styles.Container.padding[0]) * 2
+          }
+          x={props?.style?.Container?.padding?.[0] ?? styles.Container.padding[0]}
           y={
-            (props.height || styles.Container.height) -
-            styles.Container.paddingYProgress -
+            (props.height || props?.style?.Container?.height || styles.Container.height) -
+            (props?.style?.Container?.paddingYProgress ?? styles.Container.paddingYProgress) -
             (props?.progressBar?.height || 0)
           }
         />

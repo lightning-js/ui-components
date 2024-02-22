@@ -48,18 +48,29 @@ const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
   return (
     <View
       {...props}
-      style={props?.style?.Container ?? styles.Container}
+      style={[
+        ...[props.style].flat(),
+        props.style?.Container,
+        props.style?.Container?.[props.tone || styles.tone],
+        styles.Container,
+        styles.Container?.[props.tone || styles.tone]
+      ]}
       tone={props.tone ?? styles.tone}
       states={props.tone ?? styles.tone}
       forwardStates
     >
       <View
-        style={props?.style?.ProgressBar ?? styles.ProgressBar}
+        style={[
+          props.style?.ProgressBar,
+          props.style?.ProgressBar?.[props.tone || styles.tone],
+          styles.ProgressBar,
+          styles.ProgressBar[props.tone || styles.tone]
+        ]}
+        states={props.tone ?? styles.tone}
+        forwardStates
         tone={props.tone ?? styles.tone}
         animationSettings={props.animationSettings}
         width={props.width * props.progress}
-        borderRadius={props.borderRadius}
-        color={props.progressColor}
       />
     </View>
   );

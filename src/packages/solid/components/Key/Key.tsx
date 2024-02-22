@@ -18,7 +18,8 @@
 import type { Component } from 'solid-js';
 import { type IntrinsicNodeProps, Text } from '@lightningjs/solid';
 import { ButtonContainer } from '../Button/Button.jsx';
-import styles, { type KeySize } from './Key.styles.js';
+import styles, { type KeySize, type KeyStyles } from './Key.styles.js';
+import type { Tone } from '../../types.js';
 
 export interface KeyProps extends IntrinsicNodeProps {
   title?: string;
@@ -42,6 +43,10 @@ export interface KeyProps extends IntrinsicNodeProps {
    * If true, pressing the key will trigger the $toggleKeyboard event. If false, the key will trigger the $onSoftKey event.
    */
   toggle?: boolean;
+
+  style?: Partial<KeyStyles>;
+
+  tone?: Tone;
 }
 
 const Key: Component<KeyProps> = props => {
@@ -50,7 +55,13 @@ const Key: Component<KeyProps> = props => {
     <ButtonContainer
       {...props}
       tone={props.tone ?? styles.tone}
-      style={props?.style?.Container ?? styles.Container}
+      style={[
+        ...[props.style].flat(),
+        props.style?.Container,
+        props.style?.Container?.[props.tone || styles.tone],
+        styles.Container,
+        styles.Container?.[props.tone || styles.tone]
+      ]}
       states={props.tone ?? styles.tone}
       forwardStates
       width={
@@ -68,7 +79,16 @@ const Key: Component<KeyProps> = props => {
       //       1)
       // }
     >
-      <Text style={props?.style?.Text ?? styles.Text} tone={props.tone || styles.tone}>
+      <Text
+        style={[
+          props.style?.Text,
+          props.style?.Text?.[props.tone || styles.tone],
+          styles.Text,
+          styles.Text[props.tone || styles.tone]
+        ]}
+        tone={props.tone || styles.tone}
+        states={props.tone ?? styles.tone}
+      >
         {props.title ? props.title : ''}
       </Text>
     </ButtonContainer>

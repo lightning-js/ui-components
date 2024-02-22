@@ -18,6 +18,9 @@
 import type { Component } from 'solid-js';
 import { View, type NodeProps } from '@lightningjs/solid';
 import styles, { type CheckboxStyles } from './Checkbox.styles.js';
+import Icon from '../Icon/Icon.jsx';
+import type { Tone } from 'types';
+const check = '/assets/images/check-icon.png';
 
 export interface CheckboxProps extends NodeProps {
   /**
@@ -25,7 +28,7 @@ export interface CheckboxProps extends NodeProps {
    * Setting this to `true` will check the checkbox, and setting it to `false` will uncheck it.
    */
   checked?: boolean;
-
+  tone?: Tone;
   style?: Partial<CheckboxStyles>;
 }
 
@@ -36,15 +39,32 @@ const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
       {...props}
       tone={props.tone ?? styles.tone}
       style={[
+        ...[props.style].flat(),
         props.style?.Container,
         props.style?.Container?.[props.tone || styles.tone],
         styles.Container,
-        styles.Container[props.tone || styles.tone]
+        styles.Container?.[props.tone || styles.tone]
       ]}
       states={{
-        checked: props.checked
+        checked: props.checked,
+        tone: props.tone ?? styles.tone
       }}
-      children={props.checked ? props.children : ''}
+      children={
+        props.checked
+          ? props.children || (
+              <Icon
+                src={check}
+                tone={props.tone ?? styles.tone}
+                style={[
+                  props.style?.Icon,
+                  props.style?.Icon?.[props.tone || styles.tone],
+                  styles.Icon,
+                  styles.Icon[props.tone || styles.tone]
+                ]}
+              />
+            )
+          : ''
+      }
     />
   );
 };

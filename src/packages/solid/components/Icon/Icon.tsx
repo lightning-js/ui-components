@@ -50,7 +50,7 @@ const Icon: Component<IconProps> = props => {
     <View
       {...props}
       tone={props.tone ?? styles.tone}
-      style={[...[props.style].flat(), styles.Container, styles.Container[props.tone || styles.tone]]}
+      style={[...[props.style].flat(), styles.Container, styles.Container?.[props.tone || styles.tone]]}
       forwardStates
     />
   );
