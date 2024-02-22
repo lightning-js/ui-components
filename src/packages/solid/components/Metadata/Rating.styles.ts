@@ -50,7 +50,8 @@ const container: RatingConfig = {
   base: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flexStart'
+    justifyContent: 'flexStart',
+    textAlign: 'left'
   },
   toneModes: {},
   themeStyles

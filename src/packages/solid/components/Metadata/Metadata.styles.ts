@@ -42,7 +42,8 @@ const { Metadata: { styles: themeStyles, defaultTone } = { styles: {}, defaultTo
 
 const container: MetadataConfig = {
   themeKeys: {
-    justifyContent: 'justifyContent'
+    justifyContent: 'justifyContent',
+    textAlign: 'textAlign'
   },
   base: {
     display: 'flex',
