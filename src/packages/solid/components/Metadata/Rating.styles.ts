@@ -60,7 +60,7 @@ const container: RatingConfig = {
 
 const text: RatingConfig = {
   themeKeys: {
-    color: ['textColor']
+    color: 'textColor'
   },
   base: {
     color: theme.color.textNeutral,
