@@ -49,7 +49,8 @@ const container: MetadataConfig = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flexStart',
-    gap: theme.spacer.sm
+    gap: theme.spacer.sm,
+    textAlign: 'left'
   },
   toneModes: {},
   themeStyles
