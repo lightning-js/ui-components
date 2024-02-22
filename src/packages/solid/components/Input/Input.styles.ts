@@ -29,7 +29,11 @@ export interface InputStyles {
 }
 
 export type InputStyleProperties = {
-  color?: NodeStyles['color'];
+  backgroundColor?: NodeStyles['color'];
+  borderRadius?: NodeStyles['borderRadius'];
+  contentColor?: NodeStyles['color'];
+  justifyContent?: NodeStyles['justifyContent'];
+  textColor?: NodeStyles['color'];
 };
 
 export type InputConfig = ComponentStyleConfig<InputStyleProperties>;
@@ -38,8 +42,7 @@ export type InputConfig = ComponentStyleConfig<InputStyleProperties>;
 const { Input: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
 
 const container: InputConfig = {
-  themeKeys: {
-  },
+  themeKeys: {},
   base: {
     display: 'flex',
     justifyContent: 'flexStart',
@@ -48,18 +51,15 @@ const container: InputConfig = {
     height: 100,
     actualTitle: ''
   },
-  toneModes: {
-  },
+  toneModes: {},
   themeStyles
 };
 
 const input: InputConfig = {
   themeKeys: {
-    themeKeys: {
-      borderRadius: 'borderRadius',
-      color: 'backgroundColor',
-      justifyContent: 'justifyContent',
-    },
+    borderRadius: 'borderRadius',
+    color: 'backgroundColor',
+    justifyContent: 'justifyContent'
   },
   base: {
     width: 400,
@@ -70,7 +70,7 @@ const input: InputConfig = {
     color: theme.color.interactiveNeutral,
     justifyContent: 'center',
     borderRadius: theme.radius.sm,
-    marginX: theme.spacer.xxxl,
+    marginX: theme.spacer.xxxl
   },
   toneModes: {
     focus: {
@@ -101,10 +101,9 @@ const text: InputConfig = {
     textAlign: 'left',
     color: theme.color.textNeutral,
     contentColor: theme.color.fillInverse,
-    ...theme.typography.button1,
+    ...theme.typography.button1
   },
-  toneModes: {
-  },
+  toneModes: {},
   themeStyles
 };
 

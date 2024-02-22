@@ -17,7 +17,7 @@
 
 import { type Component } from 'solid-js';
 import { type IntrinsicNodeProps } from '@lightningjs/solid';
-import styles, { type KeyboardFormat } from './Keyboard.styles.js';
+import styles from './Keyboard.styles.js';
 import KeyboardSimple from './KeyboardSimple.jsx';
 import type { KeyProps } from '../Key/Key.jsx';
 
