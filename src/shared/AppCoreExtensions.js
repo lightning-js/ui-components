@@ -25,11 +25,21 @@ export default class AppCoreExtension extends CoreExtension {
     stage.fontManager.addFontFace(
       new SdfTrFontFace(
         'Arial',
-        {},
+        { weight: 500 },
         'msdf',
         stage,
         './fonts/ubuntu/Ubuntu-Bold.msdf.png',
         './fonts/ubuntu/Ubuntu-Bold.msdf.json'
+      )
+    );
+    stage.fontManager.addFontFace(
+      new SdfTrFontFace(
+        'Arial',
+        { weight: 300 },
+        'msdf',
+        stage,
+        './fonts/ubuntu/Ubuntu-Regular.msdf.png',
+        './fonts/ubuntu/Ubuntu-Regular.msdf.json'
       )
     );
   }
