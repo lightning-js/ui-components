@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.5.3...@lightningjs/solid-ui@0.5.4) (2024-02-23)
+
+### Bug Fixes
+
+- **styles:** makes all props styles and default styles to the components consistent ([#84](https://github.com/lightning-js/ui-components/issues/84)) ([42e0d5f](https://github.com/lightning-js/ui-components/commit/42e0d5f1331b54571067369ba7d034c15e5b1ac1))
+
 ## [0.5.3](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.5.2...@lightningjs/solid-ui@0.5.3) (2024-02-22)
 
 **Note:** Version bump only for package @lightningjs/solid-ui
