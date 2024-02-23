@@ -62,12 +62,14 @@ const container: KeyConfig = {
     color: 'backgroundColor',
     justifyContent: 'justifyContent',
     baseWidth: 'baseWidth',
-    sizes: 'sizes'
+    sizes: 'sizes',
+    contentColor: 'contentColor'
   },
   base: {
     keySpacing: theme.spacer.md,
     height: theme.spacer.md * 9,
     paddingX: theme.spacer.md,
+    contentColor: theme.color.fillNeutral,
     sizes: {
       sm: 1,
       md: 2,
@@ -85,44 +87,44 @@ const container: KeyConfig = {
   },
   toneModes: {
     focus: {
-      color: theme.color.interactiveNeutralFocus
+      color: theme.color.interactiveNeutralFocus,
+      contentColor: theme.color.fillInverse
     },
     disabled: {
-      color: theme.color.fillNeutralDisabled
+      color: theme.color.fillNeutralDisabled,
+      contentColor: theme.color.fillNeutralDisabled
     },
     inverse: {
       color: theme.color.interactiveInverse
     },
-    'inverse-focus': { color: theme.color.interactiveInverseFocus }
+    'inverse-focus': {
+      color: theme.color.interactiveInverseFocus,
+      contentColor: theme.color.fillNeutral
+    },
+    'brand-focus': {
+      contentColor: theme.color.fillNeutral
+    }
   },
   themeStyles
 };
 const text: KeyConfig = {
   themeKeys: {
-    color: 'textColor',
-    contentColor: 'contentColor'
+    color: 'textColor'
   },
   base: {
     textAlign: 'left',
     color: theme.color.textNeutral,
-    contentColor: theme.color.fillNeutral,
     ...theme.typography.headline2
   },
   toneModes: {
     focus: {
-      color: theme.color.textInverse,
-      contentColor: theme.color.fillInverse
+      color: theme.color.textInverse
     },
     disabled: {
-      color: theme.color.textNeutralDisabled,
-      contentColor: theme.color.fillNeutralDisabled
+      color: theme.color.textNeutralDisabled
     },
     'inverse-focus': {
-      color: theme.color.textNeutral,
-      contentColor: theme.color.fillNeutral
-    },
-    'brand-focus': {
-      contentColor: theme.color.fillNeutral
+      color: theme.color.textNeutral
     }
   },
   themeStyles

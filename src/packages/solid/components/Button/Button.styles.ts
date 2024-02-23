@@ -47,33 +47,40 @@ const container: ButtonConfig = {
     textAlign: 'textAlign',
     borderRadius: 'borderRadius',
     color: 'backgroundColor',
-    justifyContent: 'justifyContent'
+    justifyContent: 'justifyContent',
+    contentColor: 'contentColor'
   },
   base: {
-    width: 400,
-    height: 100,
+    height: theme.typography.button1.lineHeight + theme.spacer.xl * 2,
     display: 'flex',
     padding: [theme.spacer.xxxl, theme.spacer.xl],
     color: theme.color.interactiveNeutral,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: theme.radius.sm
+    borderRadius: theme.radius.sm,
+    contentColor: theme.color.fillNeutral
   },
   toneModes: {
     focus: {
-      color: theme.color.interactiveNeutralFocus
+      color: theme.color.interactiveNeutralFocus,
+      contentColor: theme.color.fillInverse
     },
     disabled: {
-      color: theme.color.fillNeutralDisabled
+      color: theme.color.fillNeutralDisabled,
+      contentColor: theme.color.textNeutralDisabled
     },
     inverse: {
       color: theme.color.interactiveInverse
     },
     brand: {
-      color: theme.color.interactiveBrand
+      contentColor: theme.color.fillBrand
+    },
+    'inverse-focus': {
+      color: theme.color.interactiveInverseFocus,
+      contentColor: theme.color.fillNeutral
     },
     'brand-focus': {
-      color: theme.color.fillNeutral
+      contentColor: theme.color.fillNeutral
     }
   },
   themeStyles
@@ -81,35 +88,22 @@ const container: ButtonConfig = {
 
 const text: ButtonConfig = {
   themeKeys: {
-    color: 'textColor',
-    contentColor: 'contentColor'
+    color: 'textColor'
   },
   base: {
     textAlign: 'left',
     color: theme.color.textNeutral,
-    contentColor: theme.color.fillInverse,
     ...theme.typography.button1
   },
   toneModes: {
     focus: {
-      color: theme.color.textInverse,
-      contentColor: theme.color.textInverse
+      color: theme.color.textInverse
     },
     disabled: {
-      color: theme.color.textNeutralDisabled,
-      contentColor: theme.color.textNeutralDisabled
+      color: theme.color.textNeutralDisabled
     },
-    inverse: {
-      color: theme.color.fillNeutral,
-      contentColor: theme.color.fillNeutral
-    },
-    brand: {
-      color: theme.color.fillBrand,
-      contentColor: theme.color.fillBrand
-    },
-    'brand-focus': {
-      color: theme.color.fillBrand,
-      contentColor: theme.color.fillBrand
+    'inverse-focus': {
+      color: theme.color.textNeutral
     }
   },
   themeStyles

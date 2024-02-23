@@ -58,38 +58,47 @@ const Input: Component<InputProps> = props => {
     <View
       {...props}
       style={[
+        ...[props.style].flat(),
         props.style?.Container,
-        props.style?.Container[props.tone || styles.tone],
+        props.style?.Container?.[props.tone || styles.tone],
         styles.Container,
-        styles.Container[props.tone || styles.tone]
+        styles.Container?.[props.tone || styles.tone]
       ]}
+      states={props.tone ?? styles.tone}
+      tone={props.tone ?? styles.tone}
     >
       {/* eyebrow */}
       <Text
         style={[
           props.style?.Text,
-          props.style?.Text[props.tone || styles.tone],
+          props.style?.Text?.[props.tone || styles.tone],
           styles.Text,
           styles.Text[props.tone || styles.tone]
         ]}
+        states={props.tone ?? styles.tone}
+        tone={props.tone ?? styles.tone}
       >
         {props.eyebrow}
       </Text>
       <View
         style={[
           props.style?.InputContainer,
-          props.style?.InputContainer[props.tone || styles.tone],
+          props.style?.InputContainer?.[props.tone || styles.tone],
           styles.InputContainer,
           styles.InputContainer[props.tone || styles.tone]
         ]}
+        states={props.tone ?? styles.tone}
+        tone={props.tone ?? styles.tone}
       >
         <Text
           style={[
             props.style?.Text,
-            props.style?.Text[props.tone || styles.tone],
+            props.style?.Text?.[props.tone || styles.tone],
             styles.Text,
             styles.Text[props.tone || styles.tone]
           ]}
+          states={props.tone ?? styles.tone}
+          tone={props.tone ?? styles.tone}
         >
           {props.keySignal[0]}
         </Text>
@@ -98,10 +107,12 @@ const Input: Component<InputProps> = props => {
       <Text
         style={[
           props.style?.Text,
-          props.style?.Text[props.tone || styles.tone],
+          props.style?.Text?.[props.tone || styles.tone],
           styles.Text,
           styles.Text[props.tone || styles.tone]
         ]}
+        states={props.tone ?? styles.tone}
+        tone={props.tone ?? styles.tone}
       >
         {props.helpText}
       </Text>

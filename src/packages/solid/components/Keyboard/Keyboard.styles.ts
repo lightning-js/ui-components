@@ -65,7 +65,8 @@ const key: KeyConfig = {
     color: 'backgroundColor',
     justifyContent: 'justifyContent',
     baseWidth: 'baseWidth',
-    sizes: 'sizes'
+    sizes: 'sizes',
+    contentColor: 'contentColor'
   },
   base: {
     keySpacing: theme.spacer.md,
@@ -78,6 +79,7 @@ const key: KeyConfig = {
       xl: 4,
       xxl: 5
     },
+    contentColor: theme.color.fillNeutral,
     padding: [theme.spacer.xxxl, theme.spacer.xl],
     baseWidth: theme.spacer.md * 7,
     color: theme.color.interactiveNeutral,
@@ -88,45 +90,45 @@ const key: KeyConfig = {
   },
   toneModes: {
     focus: {
-      color: theme.color.interactiveNeutralFocus
+      color: theme.color.interactiveNeutralFocus,
+      contentColor: theme.color.fillInverse
     },
     disabled: {
-      color: theme.color.fillNeutralDisabled
+      color: theme.color.fillNeutralDisabled,
+      contentColor: theme.color.fillNeutralDisabled
     },
     inverse: {
       color: theme.color.interactiveInverse
     },
-    'inverse-focus': { color: theme.color.interactiveInverseFocus }
+    'inverse-focus': {
+      color: theme.color.interactiveInverseFocus,
+      contentColor: theme.color.fillNeutral
+    },
+    'brand-focus': {
+      contentColor: theme.color.fillNeutral
+    }
   },
   themeStyles
 };
 
 const text: KeyboardConfig = {
   themeKeys: {
-    color: 'textColor',
-    contentColor: 'contentColor'
+    color: 'textColor'
   },
   base: {
     textAlign: 'left',
     color: theme.color.textNeutral,
-    contentColor: theme.color.fillNeutral,
     ...theme.typography.headline2
   },
   toneModes: {
     focus: {
-      color: theme.color.textInverse,
-      contentColor: theme.color.fillInverse
+      color: theme.color.textInverse
     },
     disabled: {
-      color: theme.color.textNeutralDisabled,
-      contentColor: theme.color.fillNeutralDisabled
+      color: theme.color.textNeutralDisabled
     },
     'inverse-focus': {
-      color: theme.color.textNeutral,
-      contentColor: theme.color.fillNeutral
-    },
-    'brand-focus': {
-      contentColor: theme.color.fillNeutral
+      color: theme.color.textNeutral
     }
   },
   themeStyles

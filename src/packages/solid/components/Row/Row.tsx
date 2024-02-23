@@ -18,10 +18,11 @@
 import { type Component } from 'solid-js';
 import { View, ElementNode, type NodeProps } from '@lightningjs/solid';
 import type { KeyHandler } from '@lightningjs/solid-primitives';
-import styles from './Row.styles.js';
+import styles, { type RowStyles } from './Row.styles.js';
 import { handleNavigation, onGridFocus } from '../../utils/handleNavigation.js';
 import { withScrolling } from '../../utils/withScrolling.js';
 import { chainFunctions } from '../../index.js';
+import type { Tone } from '../../types.js';
 
 export interface RowProps extends NodeProps {
   /** When auto scrolling, item index at which scrolling begins */
@@ -55,6 +56,10 @@ export interface RowProps extends NodeProps {
     selectedIndex: number,
     lastSelectedIndex: number
   ) => void;
+
+  tone?: Tone;
+
+  style?: Partial<RowStyles>;
 }
 
 const Row: Component<RowProps> = (props: RowProps) => {
@@ -72,7 +77,15 @@ const Row: Component<RowProps> = (props: RowProps) => {
         props.onSelectedChanged,
         props.scroll !== 'none' ? withScrolling(props.x as number) : undefined
       )}
-      style={[props.style, styles.Container]}
+      tone={props.tone ?? styles.tone}
+      style={[
+        ...[props.style].flat(),
+        props.style?.Container,
+        props.style?.Container?.[props.tone || styles.tone],
+        styles.Container,
+        styles.Container?.[props.tone || styles.tone]
+      ]}
+      states={props.tone ?? styles.tone}
     />
   );
 };

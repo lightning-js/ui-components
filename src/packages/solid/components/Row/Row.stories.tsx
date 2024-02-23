@@ -1,5 +1,6 @@
 import SolidRow from './Row.jsx';
 import Button from '../Button/Button.jsx';
+import { buttonStyles } from '../Button/index.js';
 
 const meta = {
   title: 'Components/Row',
@@ -36,7 +37,7 @@ export default meta;
 // create an array of buttons to use in Row
 const createItems = (length: number) => {
   return Array.from({ length }).map((_, i) => (
-    <Button width={300} height={100}>
+    <Button width={300} height={100} style={buttonStyles}>
       Button {i + 1}
     </Button>
   ));

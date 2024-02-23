@@ -29,7 +29,6 @@ type ColumnStyleProperties = {
   itemSpacing?: NodeStyles['itemSpacing'];
   itemTransition?: NodeStyles['itemTransition'];
   scrollIndex?: NodeStyles['scrollIndex'];
-  gap?: NodeStyles['gap'];
 };
 
 type ColumnConfig = ComponentStyleConfig<ColumnStyleProperties>;
@@ -48,7 +47,11 @@ const container: ColumnConfig = {
     display: 'flex',
     justifyContent: 'flexStart',
     flexDirection: 'column',
-    gap: theme.layout.gutterY
+    gap: theme.layout.gutterY,
+    itemTransition: {
+      ...theme.animation.standardEntrance,
+      duration: theme.animation.duration.fast
+    }
   },
   toneModes: {},
   themeStyles

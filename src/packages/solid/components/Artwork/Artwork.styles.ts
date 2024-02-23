@@ -45,6 +45,7 @@ const { Artwork: { styles: themeStyles, defaultTone } = { styles: {}, defaultTon
 const container: ArtworkConfig = {
   themeKeys: {
     fillColor: 'fillColor',
+    borderRadius: 'borderRadius',
     scale: 'imageScale',
     pivotX: 'imageScalePivotX',
     pivotY: 'imageScalePivotY'

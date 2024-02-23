@@ -15,11 +15,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { type Component, createMemo } from 'solid-js';
-import { Text, Show } from '@lightningjs/solid';
+import { Text, Show, View } from '@lightningjs/solid';
 import type { IntrinsicNodeProps } from '@lightningjs/solid';
 import Icon from '../Icon/Icon.jsx';
 import type { IconProps } from '../Icon/Icon.jsx';
-import styles from './Rating.styles.js';
+import styles, { type RatingStyles } from './Rating.styles.js';
+import type { Tone } from '../../types.js';
 
 export interface RatingProps extends IntrinsicNodeProps {
   /**
@@ -30,6 +31,10 @@ export interface RatingProps extends IntrinsicNodeProps {
    * Text or number to display. Numbers from 0 to 100 will display as percentages.
    */
   title: string;
+
+  style?: Partial<RatingStyles>;
+
+  tone?: Tone;
 }
 
 const Rating: Component<RatingProps> = (props: RatingProps) => {
@@ -46,16 +51,30 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
   };
   const formattedTitle = createMemo(() => formatTitle(props.title));
   return (
-    <>
+    <View
+      {...props}
+      tone={props.tone ?? styles.tone}
+      states={props.tone ?? styles.tone}
+      forwardStates
+      style={[
+        ...[props.style].flat(),
+        props.style?.Container,
+        props.style?.Container?.[props.tone || styles.tone],
+        styles.Container,
+        styles.Container?.[props.tone || styles.tone]
+      ]}
+    >
       <Show when={props.src}>
         <Icon
           src={props.src}
           tone={props.tone ?? styles.tone}
+          states={props.tone ?? styles.tone}
+          forwardStates
           style={[
             props.style?.Icon,
             props.style?.Icon?.[props.tone || styles.tone],
             styles.Icon,
-            styles.Icon?.[props.tone || styles.tone]
+            styles.Icon[props.tone || styles.tone]
           ]}
         />
       </Show>
@@ -65,15 +84,16 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
             props.style?.Text,
             props.style?.Text?.[props.tone || styles.tone],
             styles.Text,
-            styles.Text?.[props.tone || styles.tone]
+            styles.Text[props.tone || styles.tone]
           ]}
+          states={props.tone ?? styles.tone}
           tone={props.tone ?? styles.tone}
           marginRight={props.marginRight}
         >
           {formattedTitle()}
         </Text>
       </Show>
-    </>
+    </View>
   );
 };
 
