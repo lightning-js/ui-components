@@ -209,7 +209,7 @@ export default {
       fontFamily: 'Arial',
       fontSize: 75,
       lineHeight: 85,
-      fontStyle: '500',
+      fontWeight: 500,
       verticalAlign: 'middle',
       textBaseline: 'bottom'
     },
@@ -217,14 +217,14 @@ export default {
       fontFamily: 'Arial',
       fontSize: 50,
       lineHeight: 60,
-      fontStyle: '500',
+      fontWeight: 500,
       verticalAlign: 'middle',
       textBaseline: 'bottom'
     },
     headline1: {
       fontFamily: 'Arial',
       fontSize: 35,
-      fontStyle: '500',
+      fontWeight: 500,
       lineHeight: 48,
       verticalAlign: 'middle',
       textBaseline: 'bottom'
@@ -232,7 +232,7 @@ export default {
     headline2: {
       fontFamily: 'Arial',
       fontSize: 30,
-      fontStyle: '500',
+      fontWeight: 500,
       lineHeight: 40,
       verticalAlign: 'middle',
       textBaseline: 'bottom'
@@ -240,7 +240,7 @@ export default {
     headline3: {
       fontFamily: 'Arial',
       fontSize: 25,
-      fontStyle: '500',
+      fontWeight: 500,
       lineHeight: 36,
       verticalAlign: 'middle',
       textBaseline: 'bottom'
@@ -248,7 +248,7 @@ export default {
     body1: {
       fontFamily: 'Arial',
       fontSize: 25,
-      fontStyle: '300',
+      fontWeight: 300,
       lineHeight: 40,
       verticalAlign: 'middle',
       textBaseline: 'bottom'
@@ -256,7 +256,7 @@ export default {
     body2: {
       fontFamily: 'Arial',
       fontSize: 22,
-      fontStyle: '300',
+      fontWeight: 300,
       lineHeight: 32,
       verticalAlign: 'middle',
       textBaseline: 'bottom'
@@ -264,7 +264,7 @@ export default {
     body3: {
       fontFamily: 'Arial',
       fontSize: 20,
-      fontStyle: '300',
+      fontWeight: 300,
       lineHeight: 32,
       verticalAlign: 'middle',
       textBaseline: 'bottom'
@@ -272,7 +272,7 @@ export default {
     button1: {
       fontFamily: 'Arial',
       fontSize: 25,
-      fontStyle: '500',
+      fontWeight: 500,
       lineHeight: 32,
       verticalAlign: 'middle',
       textBaseline: 'bottom'
@@ -280,7 +280,7 @@ export default {
     button2: {
       fontFamily: 'Arial',
       fontSize: 20,
-      fontStyle: '500',
+      fontWeight: 500,
       lineHeight: 32,
       verticalAlign: 'middle',
       textBaseline: 'bottom'
@@ -288,7 +288,7 @@ export default {
     callout1: {
       fontFamily: 'Arial',
       fontSize: 20,
-      fontStyle: '500',
+      fontWeight: 500,
       lineHeight: 32,
       verticalAlign: 'middle',
       textBaseline: 'bottom'
@@ -296,7 +296,7 @@ export default {
     caption1: {
       fontFamily: 'Arial',
       fontSize: 15,
-      fontStyle: '500',
+      fontWeight: 500,
       lineHeight: 24,
       verticalAlign: 'middle',
       textBaseline: 'bottom'
@@ -304,7 +304,7 @@ export default {
     tag1: {
       fontFamily: 'Arial',
       fontSize: 20,
-      fontStyle: '500',
+      fontWeight: 500,
       lineHeight: 24,
       verticalAlign: 'middle',
       textBaseline: 'bottom'
@@ -312,7 +312,7 @@ export default {
     footnote1: {
       fontFamily: 'Arial',
       fontSize: 22,
-      fontStyle: '300',
+      fontWeight: 300,
       lineHeight: 30,
       verticalAlign: 'middle',
       textBaseline: 'bottom'
