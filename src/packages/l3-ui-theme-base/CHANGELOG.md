@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/l3-ui-theme-base@0.3.0...@lightningjs/l3-ui-theme-base@0.3.1) (2024-02-23)
+
+### Bug Fixes
+
+- rename fontStyle to fontWeight ([#85](https://github.com/lightning-js/ui-components/issues/85)) ([61e68d2](https://github.com/lightning-js/ui-components/commit/61e68d28a3710552774026dca45843fda9fc2b88))
+
 # 0.3.0 (2024-02-13)
 
 ### Features
