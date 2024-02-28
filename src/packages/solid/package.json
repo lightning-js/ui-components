@@ -26,7 +26,8 @@
     "build-storybook": "storybook build",
     "prepack": "npm run build-lib",
     "storybook": "storybook dev -p 6006",
-    "test": "vitest"
+    "test": "vitest",
+    "test:update-snapshots": "vitest -u"
   },
   "author": "",
   "license": "Apache-2.0",
@@ -34,14 +35,14 @@
     "access": "public"
   },
   "dependencies": {
-    "@solidjs/router": "^0.10.10",
+    "@solidjs/router": "^0.12.4",
     "@storybook/html": "^7.6.17",
     "@storybook/html-vite": "^7.6.17",
     "solid-js": "^1.8.15"
   },
   "peerDependencies": {
     "@lightningjs/renderer": "^0.7.1",
-    "@lightningjs/solid": "^0.12.9",
+    "@lightningjs/solid": "^0.13.0",
     "@lightningjs/solid-primitives": "^0.6.0"
   },
   "devDependencies": {
@@ -56,7 +57,7 @@
     "@storybook/theming": "^7.6.17",
     "@vitest/browser": "^1.3.1",
     "jsdom": "^24.0.0",
-    "playwright": "^1.41.2",
+    "playwright": "^1.42.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^7.6.17",
