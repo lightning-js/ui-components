@@ -19,7 +19,7 @@
  */
 
 // TODO types, sub components
-
+// TODO these are configurable per component, move to theme?
 const defaultModeKeys = ['focus', 'disabled'];
 const defaultToneKeys = ['brand', 'inverse', 'neutral'];
 
@@ -96,24 +96,28 @@ export function makeComponentStyles(
     return baseStyles;
   };
 
-  const convertComponentConfig = (themeStyles, themeKeys) => {
+  /**
+   * uses the themeKey map to assign themed values to solid style properties
+   * `themeKeys` is globally available
+   */
+  const mapThemeKeysToSolid = stylesToMap =>
+    Object.fromEntries(
+      Object.entries(themeKeys)
+        .filter(([_, themeKey]) => stylesToMap[themeKey])
+        .map(([solidKey, themeKey]) => [solidKey, stylesToMap[themeKey]])
+    );
+
+  const convertComponentConfig = themeStyles => {
     const convertedThemeStyles = Object.fromEntries(
       // iterate through each variant
       Object.entries(themeStyles).map(([variantName, styles]) => {
         // within each variant, assign the theme value to the correct solid style property for each theme key
-        const convertedStyles = Object.fromEntries(
-          Object.entries(themeKeys)
-            .filter(([_, themeKey]) => styles[themeKey])
-            .map(([solidKey, themeKey]) => [solidKey, styles[themeKey]])
-        );
+        const convertedStyles = mapThemeKeysToSolid(styles);
+        // repeat the above for each mode within a variant
         Object.entries(styles)
           .filter(([styleName, _]) => modeKeys.includes(styleName))
           .forEach(([modeName, modeStyles]) => {
-            convertedStyles[modeName] = Object.fromEntries(
-              Object.entries(themeKeys)
-                .filter(([_, themeKey]) => modeStyles[themeKey])
-                .map(([solidKey, themeKey]) => [solidKey, modeStyles[themeKey]])
-            );
+            convertedStyles[modeName] = mapThemeKeysToSolid(modeStyles);
           });
         return [variantName, convertedStyles];
       })
@@ -121,8 +125,8 @@ export function makeComponentStyles(
     return convertedThemeStyles;
   };
 
-  const generateSolidStylesFromLookupObject = (base, modes, tones, themeKeys) => {
-    const themeComponentStyles = convertComponentConfig(themeStyles, themeKeys);
+  const generateSolidStylesFromLookupObject = (base, modes, tones) => {
+    const themeComponentStyles = convertComponentConfig(themeStyles);
     debug && console.log(themeComponentStyles);
 
     const baseStyles = makeBaseStyles(base, themeComponentStyles);
