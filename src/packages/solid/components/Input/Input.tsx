@@ -19,7 +19,7 @@ import { type Component, type Signal } from 'solid-js';
 import { View, Text, type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles, { type InputStyles } from './Input.styles.js';
 import type { KeyHandler } from '@lightningjs/solid-primitives';
-import type { Tone } from 'types';
+import type { Tone } from '../../types.js';
 
 export interface InputProps extends IntrinsicNodeProps {
   /**
@@ -58,47 +58,34 @@ const Input: Component<InputProps> = props => {
     <View
       {...props}
       style={[
-        ...[props.style].flat(),
-        props.style?.Container,
-        props.style?.Container?.[props.tone || styles.tone],
-        styles.Container,
-        styles.Container?.[props.tone || styles.tone]
+        ...[props.style].flat(), //
+        styles.Container.tones[props.tone ?? styles.tone],
+        styles.Container.base
       ]}
-      states={props.tone ?? styles.tone}
-      tone={props.tone ?? styles.tone}
     >
       {/* eyebrow */}
       <Text
         style={[
-          props.style?.Text,
-          props.style?.Text?.[props.tone || styles.tone],
-          styles.Text,
-          styles.Text[props.tone || styles.tone]
+          props.style?.Text, //
+          styles.Text.tones[props.tone ?? styles.tone],
+          styles.Text.base
         ]}
-        states={props.tone ?? styles.tone}
-        tone={props.tone ?? styles.tone}
       >
         {props.eyebrow}
       </Text>
       <View
         style={[
-          props.style?.InputContainer,
-          props.style?.InputContainer?.[props.tone || styles.tone],
-          styles.InputContainer,
-          styles.InputContainer[props.tone || styles.tone]
+          props.style?.InputContainer, //
+          styles.InputContainer.tones[props.tone ?? styles.tone],
+          styles.InputContainer.base
         ]}
-        states={props.tone ?? styles.tone}
-        tone={props.tone ?? styles.tone}
       >
         <Text
           style={[
-            props.style?.Text,
-            props.style?.Text?.[props.tone || styles.tone],
-            styles.Text,
-            styles.Text[props.tone || styles.tone]
+            props.style?.Text, //
+            styles.Text.tones[props.tone ?? styles.tone],
+            styles.Text.base
           ]}
-          states={props.tone ?? styles.tone}
-          tone={props.tone ?? styles.tone}
         >
           {props.keySignal[0]}
         </Text>
@@ -106,13 +93,10 @@ const Input: Component<InputProps> = props => {
       {/* helptext */}
       <Text
         style={[
-          props.style?.Text,
-          props.style?.Text?.[props.tone || styles.tone],
-          styles.Text,
-          styles.Text[props.tone || styles.tone]
+          props.style?.Text, //
+          styles.Text.tones[props.tone ?? styles.tone],
+          styles.Text.base
         ]}
-        states={props.tone ?? styles.tone}
-        tone={props.tone ?? styles.tone}
       >
         {props.helpText}
       </Text>
