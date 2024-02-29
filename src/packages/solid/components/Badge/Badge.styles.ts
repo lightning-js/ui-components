@@ -39,8 +39,7 @@ type BadgeStyleProperties = Partial<{
 type BadgeConfig = ComponentStyleConfig<BadgeStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Badge: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
-  theme?.componentConfig;
+const { Badge: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: BadgeConfig = {
   themeKeys: {
@@ -125,7 +124,7 @@ const Icon = makeComponentStyles<BadgeStyles['Icon']>(icon);
 const Text = makeComponentStyles<BadgeStyles['Text']>(text);
 
 const styles: BadgeStyles = {
-  tone: defaultTone,
+  tone: defaultTone || 'neutral',
   Container,
   Icon,
   Text

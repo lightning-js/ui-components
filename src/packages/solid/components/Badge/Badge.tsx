@@ -60,7 +60,7 @@ const Badge: Component<BadgeProps> = (props: BadgeProps) => {
       forwardStates
     >
       <Show when={Boolean(props.icon && props.iconAlign !== 'right')}>
-        <Icon {...props.icon} {...styles.Icon.tones[props.tone ?? styles.tone]} />
+        <Icon {...props.icon} style={[styles.Icon.tones[props.tone ?? styles.tone], styles.Icon.base]} />
       </Show>
       <Text
         style={[styles.Text.tones[props.tone ?? styles.tone], styles.Text.base]}
