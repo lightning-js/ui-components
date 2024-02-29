@@ -53,42 +53,32 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
   return (
     <View
       {...props}
-      tone={props.tone ?? styles.tone}
-      states={props.tone ?? styles.tone}
       forwardStates
       style={[
         ...[props.style].flat(),
-        props.style?.Container,
-        props.style?.Container?.[props.tone || styles.tone],
-        styles.Container,
-        styles.Container?.[props.tone || styles.tone]
+        styles.Container.tones[props.tone || styles.tone],
+        styles.Container.base
       ]}
     >
       <Show when={props.src}>
         <Icon
-          src={props.src}
-          tone={props.tone ?? styles.tone}
-          states={props.tone ?? styles.tone}
           forwardStates
+          src={props.src}
           style={[
-            props.style?.Icon,
-            props.style?.Icon?.[props.tone || styles.tone],
-            styles.Icon,
-            styles.Icon[props.tone || styles.tone]
+            props.style?.Icon, //
+            styles.Icon.tones[props.tone || styles.tone],
+            styles.Icon.base
           ]}
         />
       </Show>
       <Show when={formattedTitle()}>
         <Text
-          style={[
-            props.style?.Text,
-            props.style?.Text?.[props.tone || styles.tone],
-            styles.Text,
-            styles.Text[props.tone || styles.tone]
-          ]}
-          states={props.tone ?? styles.tone}
-          tone={props.tone ?? styles.tone}
           marginRight={props.marginRight}
+          style={[
+            props.style?.Text, //
+            styles.Text.tones[props.tone || styles.tone],
+            styles.Text.base
+          ]}
         >
           {formattedTitle()}
         </Text>

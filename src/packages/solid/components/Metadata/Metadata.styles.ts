@@ -37,8 +37,7 @@ type MetadataStyleProperties = {
 type MetadataConfig = ComponentStyleConfig<MetadataStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Metadata: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
-  theme?.componentConfig;
+const { Metadata: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: MetadataConfig = {
   themeKeys: {
@@ -51,7 +50,7 @@ const container: MetadataConfig = {
     justifyContent: 'flexStart',
     alpha: theme.alpha.primary
   },
-  toneModes: {
+  modes: {
     disabled: {
       alpha: theme.alpha.inactive
     }
@@ -69,21 +68,23 @@ const titleText: MetadataConfig = {
     ...theme.typography.headline3,
     color: theme.color.textNeutral
   },
-  toneModes: {
+  tones: {
+    neutral: {
+      disabled: {
+        color: theme.color.textNeutralDisabled
+      }
+    },
     inverse: {
-      color: theme.color.textInverse
+      color: theme.color.textInverse,
+      disabled: {
+        color: theme.color.textNeutralDisabled
+      }
     },
     brand: {
-      color: theme.color.textNeutral
-    },
-    'inverse-disabled': {
-      color: theme.color.textNeutralDisabled
-    },
-    'neutral-disabled': {
-      color: theme.color.textNeutralDisabled
-    },
-    "brand-disabled": {
-      color: theme.color.textNeutralDisabled
+      color: theme.color.textNeutral,
+      disabled: {
+        color: theme.color.textNeutralDisabled
+      }
     }
   },
   themeStyles
@@ -99,21 +100,23 @@ const descriptionText: MetadataConfig = {
     ...theme.typography.body2,
     color: theme.color.textNeutralSecondary
   },
-  toneModes: {
+  tones: {
+    neutral: {
+      disabled: {
+        color: theme.color.textNeutralDisabled
+      }
+    },
     inverse: {
-      color: theme.color.textInverseSecondary
+      color: theme.color.textInverseSecondary,
+      disabled: {
+        color: theme.color.textNeutralDisabled
+      }
     },
     brand: {
-      color: theme.color.textNeutralSecondary
-    },
-    'inverse-disabled': {
-      color: theme.color.textNeutralDisabled
-    },
-    'neutral-disabled': {
-      color: theme.color.textNeutralDisabled
-    },
-    "brand-disabled": {
-      color: theme.color.textNeutralDisabled
+      color: theme.color.textNeutralSecondary,
+      disabled: {
+        color: theme.color.textNeutralDisabled
+      }
     }
   },
   themeStyles
@@ -124,7 +127,7 @@ const DescriptionText = makeComponentStyles<MetadataStyles['DescriptionText']>(d
 const TitleText = makeComponentStyles<MetadataStyles['TitleText']>(titleText);
 
 const styles: MetadataStyles = {
-  tone: defaultTone,
+  tone: defaultTone || 'neutral',
   Container,
   TitleText,
   DescriptionText
