@@ -25,9 +25,7 @@ import type { IconConfig, IconStyles } from '../Icon/Icon.styles.js';
 export interface CheckboxStyles {
   tone: Tone;
   Container: NodeStyleSet;
-  Icon: {
-    Container: NodeStyleSet;
-  };
+  Icon: NodeStyleSet;
 }
 
 export type CheckboxStyleProperties = {
@@ -65,53 +63,62 @@ const container: CheckboxConfig = {
       width: strokeWidth
     }
   },
-  toneModes: {
-    neutral: {
-      border: {
-        color: theme.color.strokeNeutralSecondary,
-        width: strokeWidth
-      },
-      color: theme.color.fillInverseSecondary
-    },
-    'neutral-checked': {
-      border: {
-        color: theme.color.strokeNeutralSecondary,
-        width: strokeWidth
-      },
-      color: theme.color.fillNeutral
-    },
-    inverse: {
-      border: {
-        color: theme.color.strokeInverseSecondary,
-        width: strokeWidth
-      },
-      color: theme.color.fillNeutralSecondary
-    },
-    'inverse-checked': {
-      border: {
-        color: theme.color.strokeInverseSecondary,
-        width: strokeWidth
-      },
-      color: theme.color.fillInverse
-    },
-    brand: {
-      border: {
-        color: theme.color.strokeNeutralSecondary,
-        width: strokeWidth
-      },
-      color: theme.color.fillNeutralSecondary
-    },
-    'brand-checked': {
-      border: {
-        color: theme.color.strokeNeutralSecondary,
-        width: strokeWidth
-      },
-      color: theme.color.fillBrand
-    },
+  modes: {
     disabled: {
       alpha: theme.alpha.inactive
     }
   },
+  tones: {
+    brand: {
+      borderRadius: size / 4,
+      border: {
+        color: theme.color.strokeNeutralSecondary,
+        width: strokeWidth
+      },
+      color: theme.color.fillNeutralSecondary,
+      checked: {
+        borderRadius: size / 4,
+        border: {
+          color: theme.color.strokeNeutralSecondary,
+          width: strokeWidth
+        },
+        color: theme.color.fillBrand
+      }
+    },
+    neutral: {
+      borderRadius: size / 4,
+      border: {
+        color: theme.color.strokeNeutralSecondary,
+        width: strokeWidth
+      },
+      color: theme.color.fillInverseSecondary,
+      checked: {
+        borderRadius: size / 4,
+        border: {
+          color: theme.color.strokeNeutralSecondary,
+          width: strokeWidth
+        },
+        color: theme.color.fillNeutral
+      }
+    },
+    inverse: {
+      borderRadius: size / 4,
+      border: {
+        color: theme.color.strokeInverseSecondary,
+        width: strokeWidth
+      },
+      color: theme.color.fillNeutralSecondary,
+      checked: {
+        borderRadius: size / 4,
+        border: {
+          color: theme.color.strokeInverseSecondary,
+          width: strokeWidth
+        },
+        color: theme.color.fillInverse
+      }
+    }
+  },
+  modeKeys: ['focus', 'disabled', 'checked'],
   themeStyles
 };
 
@@ -124,7 +131,7 @@ const icon: IconConfig = {
     height: theme.spacer.lg,
     src: theme.asset.check
   },
-  toneModes: {
+  tones: {
     neutral: {
       color: theme.color.fillInverse
     },
@@ -143,7 +150,7 @@ const Icon = makeComponentStyles<IconStyles['Container']>(icon);
 const styles: CheckboxStyles = {
   tone: defaultTone,
   Container,
-  Icon: { Container: Icon }
+  Icon
 };
 
 export default styles;

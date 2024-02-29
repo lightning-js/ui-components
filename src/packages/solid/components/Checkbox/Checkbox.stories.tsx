@@ -17,9 +17,8 @@
 import Checkbox from './Checkbox.jsx';
 import Icon from '../Icon/Icon.jsx';
 import checkboxStyles from '../Checkbox/Checkbox.styles.js';
-import { hexColor } from '@lightningjs/solid';
 
-const check = '/assets/images/check-icon.png';
+const icon = '/assets/images/ic_lightning_white_32.png';
 
 const meta = {
   title: 'Components/Checkbox',
@@ -62,7 +61,11 @@ export const Basic = {
 export const WithIcon = {
   render: args => (
     <Checkbox {...args}>
-      <Icon tone={args.tone} style={checkboxStyles.Icon} src={check} />
+      <Icon
+        tone={args.tone}
+        style={[checkboxStyles.Icon.tones[args.tone ?? checkboxStyles.tone], checkboxStyles.Icon.base]}
+        src={icon}
+      />
     </Checkbox>
   ),
   args: {
