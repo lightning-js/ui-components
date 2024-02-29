@@ -19,7 +19,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { makeComponentStyles } from './getThemeStyles.js';
 
-describe.only('makeComponentStyles', () => {
+describe('makeComponentStyles', () => {
   let styleConfig, expectedStyles;
   beforeEach(() => {
     styleConfig = {
@@ -31,84 +31,105 @@ describe.only('makeComponentStyles', () => {
         number: 200,
         stringProp: 'base'
       },
-      toneModes: {
+      modes: {
         focus: {
           stringProp: 'focus'
         },
         disabled: {
           stringProp: 'disabled'
-        },
+        }
+      },
+      tones: {
         inverse: {
           stringProp: 'inverse'
         },
         brand: {
-          stringProp: 'brand'
-        },
-        'brand-focus': {
-          stringProp: 'brandFocus'
+          stringProp: 'brand',
+          focus: {
+            stringProp: 'brandFocus'
+          }
         }
       },
-      themeStyles: {}
+      themeStyles: {
+        brand: {
+          themeNumber: 4
+        },
+        inverse: {
+          focus: {
+            stringTheme: 'themed-override',
+            themeNumber: 'theme-number-override'
+          }
+        }
+      }
     };
 
     expectedStyles = {
-      number: 200,
-      stringProp: 'base',
-      focus: {
-        stringProp: 'focus'
+      base: {
+        number: 200,
+        stringProp: 'base',
+        focus: {
+          stringProp: 'focus'
+        },
+        disabled: {
+          stringProp: 'disabled'
+        }
       },
-      disabled: {
-        stringProp: 'disabled'
-      },
-      inverse: {
-        stringProp: 'inverse'
-      },
-      'neutral-disabled': {
-        stringProp: 'disabled'
-      },
-      'neutral-focus': {
-        stringProp: 'focus'
-      },
-      'inverse-disabled': {
-        stringProp: 'disabled'
-      },
-      'inverse-focus': {
-        stringProp: 'focus'
-      },
-      brand: {
-        stringProp: 'brand'
-      },
-      'brand-disabled': {
-        stringProp: 'disabled'
-      },
-      'brand-focus': {
-        stringProp: 'brandFocus'
+      tones: {
+        brand: {
+          number: 4,
+          stringProp: 'brand',
+          focus: {
+            stringProp: 'brandFocus'
+          },
+          disabled: {
+            stringProp: 'disabled'
+          }
+        },
+        inverse: {
+          stringProp: 'inverse',
+          focus: {
+            number: 'theme-number-override',
+            stringProp: 'themed-override'
+          },
+          disabled: {
+            stringProp: 'disabled'
+          }
+        },
+        neutral: {
+          focus: {
+            stringProp: 'focus'
+          },
+          disabled: {
+            stringProp: 'disabled'
+          }
+        }
       }
     };
   });
-  it.only('converts a style config to a style object', async () => {
+  it('converts a style config to a style object', async () => {
     const styles = makeComponentStyles(styleConfig);
     expect(styles).toStrictEqual(expectedStyles);
   });
   it('overrides style config values with theme style values using themeKeys', () => {
-    styleConfig.themeStyles = {
-      brand: {
-        stringTheme: 'themed-override'
-      }
+    styleConfig.themeStyles.brand = {
+      stringTheme: 'themed-override',
+      themeNumber: 'theme-number-override'
     };
-    expectedStyles.brand = {
-      stringProp: 'themed-override'
+    expectedStyles.tones.brand = {
+      ...expectedStyles.tones.brand,
+      stringProp: 'themed-override',
+      number: 'theme-number-override'
     };
     const styles = makeComponentStyles(styleConfig);
     expect(styles).toStrictEqual(expectedStyles);
   });
   it("uses theme style values even if the toneMode doesn't exist in the config", () => {
-    styleConfig.themeStyles = {
-      'inverse-focus': {
-        stringTheme: 'themed-override'
-      }
+    styleConfig.themeStyles.inverse.focus = {
+      stringTheme: 'themed-override',
+      themeNumber: 'theme-number-override'
     };
-    expectedStyles['inverse-focus'] = {
+    expectedStyles.tones.inverse.focus = {
+      number: 'theme-number-override',
       stringProp: 'themed-override'
     };
     const styles = makeComponentStyles(styleConfig);

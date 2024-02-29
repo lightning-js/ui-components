@@ -106,6 +106,15 @@ export function makeComponentStyles(
             .filter(([_, themeKey]) => styles[themeKey])
             .map(([solidKey, themeKey]) => [solidKey, styles[themeKey]])
         );
+        Object.entries(styles)
+          .filter(([styleName, _]) => modeKeys.includes(styleName))
+          .forEach(([modeName, modeStyles]) => {
+            convertedStyles[modeName] = Object.fromEntries(
+              Object.entries(themeKeys)
+                .filter(([_, themeKey]) => modeStyles[themeKey])
+                .map(([solidKey, themeKey]) => [solidKey, modeStyles[themeKey]])
+            );
+          });
         return [variantName, convertedStyles];
       })
     );
