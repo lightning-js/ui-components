@@ -34,8 +34,7 @@ type RowStyleProperties = {
 type RowConfig = ComponentStyleConfig<RowStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Row: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
-  theme?.componentConfig;
+const { Row: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: RowConfig = {
   themeKeys: {
@@ -54,7 +53,6 @@ const container: RowConfig = {
       duration: theme.animation.duration.fast
     }
   },
-  toneModes: {},
   themeStyles
 };
 

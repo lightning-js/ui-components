@@ -80,10 +80,8 @@ const Row: Component<RowProps> = (props: RowProps) => {
       tone={props.tone ?? styles.tone}
       style={[
         ...[props.style].flat(),
-        props.style?.Container,
-        props.style?.Container?.[props.tone || styles.tone],
-        styles.Container,
-        styles.Container?.[props.tone || styles.tone]
+        styles.Container.tones[props.tone || styles.tone],
+        styles.Container.base
       ]}
       states={props.tone ?? styles.tone}
     />
