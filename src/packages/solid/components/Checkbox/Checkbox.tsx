@@ -42,7 +42,7 @@ const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
         styles.Container.tones[props.tone || styles.tone],
         styles.Container.base
       ]}
-      states={[...(props.checked ? ['checked'] : []), props.tone ?? styles.tone]}
+      states={{ checked: props.checked }}
       children={
         props.checked
           ? props.children || (
