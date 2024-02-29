@@ -34,8 +34,7 @@ type ColumnStyleProperties = {
 type ColumnConfig = ComponentStyleConfig<ColumnStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Column: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
-  theme?.componentConfig;
+const { Column: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: ColumnConfig = {
   themeKeys: {
@@ -53,14 +52,13 @@ const container: ColumnConfig = {
       duration: theme.animation.duration.fast
     }
   },
-  toneModes: {},
   themeStyles
 };
 
 const Container = makeComponentStyles<ColumnStyles['Container']>(container);
 
 const styles: ColumnStyles = {
-  tone: defaultTone,
+  tone: defaultTone || 'neutral',
   Container
 };
 
