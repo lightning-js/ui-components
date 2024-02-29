@@ -21,7 +21,6 @@ import Column from '../Column/Column.jsx';
 import Row from '../Row/Row.jsx';
 import Key, { type KeyProps } from '../Key/Key.jsx';
 import styles from './Keyboard.styles.js';
-import keyStyles from '../Key/Key.styles.js';
 
 // rows created from each array passed in
 const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
@@ -29,21 +28,21 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
     <Column
       autofocus={props.autofocus}
       plinko
-      itemSpacing={props.style?.Container?.keySpacing ?? styles.Container.keySpacing}
-      justifyContent={props.centerKeyboard != undefined && props.centerKeyboard ? 'center' : 'flexStart'}
+      itemSpacing={props.style?.Container?.keySpacing ?? styles.Container.base.keySpacing}
+      justifyContent={props.centerKeyboard && props.centerKeyboard ? 'center' : 'flexStart'}
     >
       <For each={props.formats}>
         {(row: Array<string | KeyProps>) => (
           <Row
-            justifyContent={props.centerKeys != undefined && props.centerKeys ? 'center' : 'flexStart'}
-            itemSpacing={props.style?.Container?.keySpacing ?? styles.Container.keySpacing}
-            height={props?.style?.Container?.height || styles.Container.height}
+            justifyContent={props.centerKeys && props.centerKeys ? 'center' : 'flexStart'}
+            itemSpacing={props.style?.Container?.keySpacing ?? styles.Container.base.keySpacing}
+            height={props?.style?.Container?.height || styles.Container.base.height}
             wrap={props.rowWrap}
           >
             <For each={row}>
               {(key: string | KeyProps) => (
                 <Key
-                  style={props.style?.Key ?? keyStyles}
+                  style={props.style?.Key}
                   {...(typeof key === 'string' ? {} : key)}
                   title={key.title || key.icon ? key.title : key}
                 />

@@ -38,8 +38,7 @@ export type KeyboardStyleProperties = {
 type KeyboardConfig = ComponentStyleConfig<KeyboardStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Keyboard: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
-  theme?.componentConfig;
+const { Keyboard: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: KeyboardConfig = {
   themeKeys: {
@@ -53,7 +52,6 @@ const container: KeyboardConfig = {
     marginX: theme.layout.marginX,
     height: 100
   },
-  toneModes: {},
   themeStyles
 };
 
@@ -66,7 +64,7 @@ const key: KeyConfig = {
     justifyContent: 'justifyContent',
     baseWidth: 'baseWidth',
     sizes: 'sizes',
-    contentColor: 'contentColor'
+    contentColor: 'contentColor' // what is this used for
   },
   base: {
     keySpacing: theme.spacer.md,
@@ -88,7 +86,7 @@ const key: KeyConfig = {
     alignItems: 'center',
     borderRadius: theme.radius.sm
   },
-  toneModes: {
+  modes: {
     focus: {
       color: theme.color.interactiveNeutralFocus,
       contentColor: theme.color.fillInverse
@@ -96,16 +94,20 @@ const key: KeyConfig = {
     disabled: {
       color: theme.color.fillNeutralDisabled,
       contentColor: theme.color.fillNeutralDisabled
-    },
+    }
+  },
+  tones: {
     inverse: {
-      color: theme.color.interactiveInverse
+      color: theme.color.interactiveInverse,
+      focus: {
+        color: theme.color.interactiveInverseFocus,
+        contentColor: theme.color.fillNeutral
+      }
     },
-    'inverse-focus': {
-      color: theme.color.interactiveInverseFocus,
-      contentColor: theme.color.fillNeutral
-    },
-    'brand-focus': {
-      contentColor: theme.color.fillNeutral
+    brand: {
+      focus: {
+        contentColor: theme.color.fillNeutral
+      }
     }
   },
   themeStyles
@@ -120,15 +122,19 @@ const text: KeyboardConfig = {
     color: theme.color.textNeutral,
     ...theme.typography.headline2
   },
-  toneModes: {
+  modes: {
     focus: {
       color: theme.color.textInverse
     },
     disabled: {
       color: theme.color.textNeutralDisabled
-    },
-    'inverse-focus': {
-      color: theme.color.textNeutral
+    }
+  },
+  tones: {
+    inverse: {
+      focus: {
+        color: theme.color.textNeutral
+      }
     }
   },
   themeStyles
