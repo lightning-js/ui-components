@@ -35,12 +35,10 @@ type TileStyleProperties = Partial<{
 }>;
 
 type TileConfig = ComponentStyleConfig<TileStyleProperties>;
-
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Tile: { styles: tileThemeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
-  theme?.componentConfig;
+const { Tile: { defaultTone, ...tileThemeStyles } = { styles: {} } } = theme?.componentConfig;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Surface: { styles: surfaceThemeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Surface: { defaultSurfaceTone, ...surfaceThemeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: TileConfig = {
   themeKeys: {
@@ -55,7 +53,7 @@ const container: TileConfig = {
     borderRadius: theme.radius.md,
     alpha: theme.alpha.primary
   },
-  toneModes: {
+  modes: {
     disabled: {
       alpha: theme.alpha.inactive
     }
@@ -74,7 +72,6 @@ const insetBottom: TileConfig = {
     justifyContent: 'flexStart',
     mountY: 1
   },
-  toneModes: {},
   themeStyles: tileThemeStyles
 };
 
@@ -85,7 +82,6 @@ const standardBottom: TileConfig = {
     flexDirection: 'column',
     justifyContent: 'flexStart'
   },
-  toneModes: {},
   themeStyles: tileThemeStyles
 };
 
@@ -95,7 +91,6 @@ const logoContainer: TileConfig = {
     width: theme.spacer.lg * 5,
     height: theme.spacer.xxl + theme.spacer.md
   },
-  toneModes: {},
   themeStyles: tileThemeStyles
 };
 
@@ -106,7 +101,7 @@ const StandardBottom = makeComponentStyles<TileStyles['StandardBottom']>(standar
 const LogoContainer = makeComponentStyles<TileStyles['LogoContainer']>(logoContainer);
 
 const styles: TileStyles = {
-  tone: defaultTone,
+  tone: defaultTone || 'neutral',
   Container,
   InsetBottom,
   StandardBottom,
