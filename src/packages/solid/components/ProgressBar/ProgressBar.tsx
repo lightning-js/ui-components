@@ -16,12 +16,12 @@
  */
 
 import type { Component } from 'solid-js';
-import { View, type NodeProps, type NodeStyles } from '@lightningjs/solid';
+import { View, type NodeProps } from '@lightningjs/solid';
 import styles from './ProgressBar.styles.js';
-import type { Tone } from 'types';
+import type { Tone } from '../../types.js';
 import { type ProgressBarStyles } from './ProgressBar.styles.js';
 
-export interface ProgressBarProps extends ProgressBarStyleProps, NodeProps {
+export interface ProgressBarProps extends NodeProps {
   /**
    * a numeric value of the current progress represented as a decimal between 0 and 1
    */
@@ -44,29 +44,22 @@ const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
   return (
     <View
       {...props}
+      forwardStates
       style={[
         ...[props.style].flat(),
-        props.style?.Container,
-        props.style?.Container?.[props.tone || styles.tone],
-        styles.Container,
-        styles.Container?.[props.tone || styles.tone]
+        styles.Container.tones[props.tone || styles.tone],
+        styles.Container.base
       ]}
-      tone={props.tone ?? styles.tone}
-      states={props.tone ?? styles.tone}
-      forwardStates
     >
       <View
-        style={[
-          props.style?.ProgressBar,
-          props.style?.ProgressBar?.[props.tone || styles.tone],
-          styles.ProgressBar,
-          styles.ProgressBar[props.tone || styles.tone]
-        ]}
-        states={props.tone ?? styles.tone}
         forwardStates
-        tone={props.tone ?? styles.tone}
         animationSettings={props.animationSettings}
         width={props.width * props.progress}
+        style={[
+          props.style?.ProgressBar,
+          styles.ProgressBar.tones[props.tone || styles.tone],
+          styles.ProgressBar.base
+        ]}
       />
     </View>
   );
