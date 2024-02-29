@@ -24,6 +24,7 @@ import { makeComponentStyles } from '../../utils/index.js';
 export interface ButtonStyles {
   tone: Tone;
   Container: NodeStyleSet<{ padding: number[] }>;
+  Content: NodeStyleSet;
   Text: TextStyleSet;
 }
 
@@ -39,16 +40,14 @@ type ButtonStyleProperties = {
 type ButtonConfig = ComponentStyleConfig<ButtonStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Button: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
-  theme?.componentConfig;
+const { Button: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: ButtonConfig = {
   themeKeys: {
     textAlign: 'textAlign',
     borderRadius: 'borderRadius',
     color: 'backgroundColor',
-    justifyContent: 'justifyContent',
-    contentColor: 'contentColor'
+    justifyContent: 'justifyContent'
   },
   base: {
     height: theme.typography.button1.lineHeight + theme.spacer.xl * 2,
@@ -60,27 +59,53 @@ const container: ButtonConfig = {
     borderRadius: theme.radius.sm,
     contentColor: theme.color.fillNeutral
   },
-  toneModes: {
+  modes: {
     focus: {
       color: theme.color.interactiveNeutralFocus,
       contentColor: theme.color.fillInverse
     },
     disabled: {
-      color: theme.color.fillNeutralDisabled,
-      contentColor: theme.color.textNeutralDisabled
-    },
+      color: theme.color.fillNeutralDisabled
+    }
+  },
+  tones: {
     inverse: {
       color: theme.color.interactiveInverse
     },
     brand: {
-      contentColor: theme.color.fillBrand
+      color: theme.color.interactiveBrand,
+      focus: {
+        color: theme.color.fillNeutral
+      }
+    }
+  },
+  themeStyles
+};
+
+const content: ButtonConfig = {
+  themeKeys: {
+    color: 'contentColor'
+  },
+  base: {
+    color: theme.color.textNeutral
+  },
+  modes: {
+    focus: {
+      color: theme.color.textInverse
     },
-    'inverse-focus': {
-      color: theme.color.interactiveInverseFocus,
-      contentColor: theme.color.fillNeutral
+    disabled: {
+      color: theme.color.textNeutralDisabled
+    }
+  },
+  tones: {
+    inverse: {
+      color: theme.color.fillNeutral
     },
-    'brand-focus': {
-      contentColor: theme.color.fillNeutral
+    brand: {
+      color: theme.color.fillBrand,
+      focus: {
+        color: theme.color.fillBrand
+      }
     }
   },
   themeStyles
@@ -95,26 +120,36 @@ const text: ButtonConfig = {
     color: theme.color.textNeutral,
     ...theme.typography.button1
   },
-  toneModes: {
+  modes: {
     focus: {
       color: theme.color.textInverse
     },
     disabled: {
       color: theme.color.textNeutralDisabled
+    }
+  },
+  tones: {
+    inverse: {
+      color: theme.color.fillNeutral
     },
-    'inverse-focus': {
-      color: theme.color.textNeutral
+    brand: {
+      color: theme.color.fillBrand,
+      focus: {
+        color: theme.color.fillBrand
+      }
     }
   },
   themeStyles
 };
 
 const Container = makeComponentStyles<ButtonStyles['Container']>(container);
+const Content = makeComponentStyles<ButtonStyles['Container']>(content);
 const Text = makeComponentStyles<ButtonStyles['Text']>(text);
 
 const styles: ButtonStyles = {
-  tone: defaultTone,
+  tone: defaultTone || 'neutral',
   Container,
+  Content,
   Text
 };
 
