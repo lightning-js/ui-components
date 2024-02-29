@@ -37,8 +37,7 @@ export type CheckboxStyleProperties = {
 
 type CheckboxConfig = ComponentStyleConfig<CheckboxStyleProperties>;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Checkbox: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
-  theme?.componentConfig;
+const { Checkbox: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const strokeWidth = theme.stroke.sm;
 const size = theme.spacer.xxl;
@@ -148,7 +147,7 @@ const icon: IconConfig = {
 const Container = makeComponentStyles<CheckboxStyles['Container']>(container);
 const Icon = makeComponentStyles<IconStyles['Container']>(icon);
 const styles: CheckboxStyles = {
-  tone: defaultTone,
+  tone: defaultTone || 'neutral',
   Container,
   Icon
 };
