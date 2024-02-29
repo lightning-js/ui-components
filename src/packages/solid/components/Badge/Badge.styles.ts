@@ -62,9 +62,10 @@ const container: BadgeConfig = {
       theme.spacer.md + theme.stroke.sm
     ]
   },
-  toneModes: {
+  tones: {
     inverse: {
       color: theme.color.fillNeutralSecondary,
+      borderRadius: theme.radius.sm,
       border: {
         color: theme.color.strokeInverseSecondary,
         width: theme.stroke.sm
@@ -72,6 +73,7 @@ const container: BadgeConfig = {
     },
     brand: {
       color: theme.color.fillBrand,
+      borderRadius: theme.radius.sm,
       border: {
         color: theme.color.strokeInverseSecondary,
         width: theme.stroke.sm
@@ -89,7 +91,7 @@ const text: BadgeConfig = {
     ...theme.typography.tag1,
     color: theme.color.textNeutral
   },
-  toneModes: {
+  tones: {
     inverse: {
       color: theme.color.textInverse
     },
@@ -107,7 +109,7 @@ const icon: BadgeConfig = {
   base: {
     color: theme.color.textNeutral
   },
-  toneModes: {
+  tones: {
     inverse: {
       color: theme.color.textInverse
     },
