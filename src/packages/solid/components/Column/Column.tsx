@@ -76,13 +76,11 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
         props.onSelectedChanged,
         props.scroll !== 'none' ? withScrolling(props.y as number) : undefined
       )}
-      tone={props.tone ?? styles.tone}
       style={[
         ...[props.style].flat(),
-        styles.Container.tones[props.tone || styles.tone],
+        styles.Container.tones[props.tone ?? styles.tone],
         styles.Container.base
       ]}
-      states={props.tone ?? styles.tone}
     />
   );
 };
