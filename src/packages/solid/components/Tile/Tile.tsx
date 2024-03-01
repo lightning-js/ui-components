@@ -1,4 +1,21 @@
-import { type Component, createSignal } from 'solid-js';
+/*
+ * Copyright 2024 Comcast Cable Communications Management, LLC
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import { type Component, createSignal, createMemo } from 'solid-js';
 import { Show, type NodeProps, View } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
 import Artwork, { type ArtworkProps } from '../Artwork/Artwork.jsx';
@@ -11,7 +28,7 @@ export interface TileProps extends NodeProps {
   /**
    * prop object passed to the child Artwork component
    */
-  artwork: ArtworkProps;
+  artwork?: ArtworkProps;
 
   /**
    * Controls how slotted components will be rendered. By default all slotted
@@ -78,11 +95,20 @@ export interface TileProps extends NodeProps {
   style?: Partial<TileStyles>;
 }
 
+const getStyleObject = (props: TileProps, styles: TileStyles) => ({
+  ...styles.Container.base,
+  ...styles.Container.tones[props.tone ?? styles.tone],
+  ...props
+});
+
 const Tile: Component<TileProps> = (props: TileProps) => {
+  const getStyleMemo = createMemo(() => getStyleObject(props, styles));
   const [isFocused, setIsFocused] = createSignal(false);
+  const getTone = (): Tone => props.tone ?? styles.tone;
+
   return (
     <node
-      use:withPadding={props?.style?.Container?.padding ?? styles.Container.base.padding}
+      use:withPadding={getStyleMemo().padding}
       {...props}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
@@ -94,25 +120,19 @@ const Tile: Component<TileProps> = (props: TileProps) => {
     >
       <Artwork
         {...props.artwork}
-        tone={props.tone ?? styles.tone}
-        width={props.width || props?.style?.Container?.width || styles.Container.base.width}
-        height={props.height || props?.style?.Container?.height || styles.Container.base.height}
+        tone={getTone()}
+        width={getStyleMemo().width}
+        height={getStyleMemo().height}
       />
 
       <Show when={props.persistentMetadata || isFocused()}>
-        <View
-          x={props?.style?.Container?.padding?.[0] ?? styles.Container.base.padding[0]}
-          y={props?.style?.Container?.padding?.[1] ?? styles.Container.base.padding[1]}
-        >
+        <View x={getStyleMemo().padding?.[0]} y={getStyleMemo().padding?.[1]}>
           {props.topLeft}
         </View>
 
         <View
-          x={
-            (props?.width || props?.style?.Container?.width || styles.Container.base.width) -
-            (props?.style?.Container?.padding?.[0] ?? styles.Container.base.padding[0])
-          }
-          y={props?.style?.Container?.padding?.[1] ?? styles.Container.base.padding[1]}
+          x={getStyleMemo().width - getStyleMemo().padding?.[0]}
+          y={getStyleMemo().padding?.[1]}
           mountX={1}
         >
           {props.topRight}
@@ -124,17 +144,12 @@ const Tile: Component<TileProps> = (props: TileProps) => {
             styles.InsetBottom.tones[props.tone || styles.tone],
             styles.InsetBottom.base
           ]}
-          width={
-            (props.width || props?.style?.Container?.width || styles.Container.base.width) -
-            styles.Container.base.padding[0] * 2
-          }
-          x={props?.style?.Container?.padding?.[0] ?? styles.Container.base.padding[0]}
+          width={getStyleMemo().width - getStyleMemo().padding[0] * 2}
+          x={getStyleMemo().padding?.[0] ?? getStyleMemo().padding[0]}
           y={
-            (props.height || props?.style?.Container?.height || styles.Container.base.height) -
-            (props?.style?.Container?.padding?.[1] ?? styles.Container.base.padding[1]) -
-            (props.progressBar?.progress > 0
-              ? props.style?.Container?.paddingYProgress || styles.Container.base.paddingYProgress
-              : 0)
+            getStyleMemo().height -
+            getStyleMemo().padding?.[1] -
+            (props.progressBar?.progress > 0 ? getStyleMemo().paddingYProgress : 0)
           }
         >
           {props.inset}
@@ -143,18 +158,12 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         <View
           style={[
             props.style?.StandardBottom,
-            styles.StandardBottom.tones[props.tone || styles.tone],
+            styles.StandardBottom.tones[getTone()],
             styles.StandardBottom.base
           ]}
-          x={props?.style?.Container?.padding?.[0] ?? styles.Container.base.padding[0]}
-          y={
-            Number(props.height || props?.style?.Container?.height || styles.Container.base.height) +
-            (props?.style?.Container?.padding?.[1] ?? styles.Container.base.padding[1])
-          }
-          width={
-            (props.width || props?.style?.Container?.width || styles.Container.base.width) -
-            (props?.style?.Container?.padding?.[1] ?? styles.Container.base.padding[1]) * 2
-          }
+          x={getStyleMemo().padding?.[0]}
+          y={getStyleMemo().height + getStyleMemo().padding?.[1]}
+          width={getStyleMemo().width - getStyleMemo().padding?.[1] * 2}
         >
           {props.bottom}
         </View>
@@ -163,16 +172,9 @@ const Tile: Component<TileProps> = (props: TileProps) => {
       <Show when={props.progressBar?.progress ? props.progressBar.progress > 0 : 0}>
         <ProgressBar
           {...props.progressBar}
-          width={
-            (props.width || props?.style?.Container?.width || styles.Container.base.width) -
-            (props?.style?.Container?.padding?.[0] ?? styles.Container.base.padding[0]) * 2
-          }
-          x={props?.style?.Container?.padding?.[0] ?? styles.Container.base.padding[0]}
-          y={
-            (props.height || props?.style?.Container?.height || styles.Container.base.height) -
-            (props?.style?.Container?.paddingYProgress ?? styles.Container.base.paddingYProgress) -
-            (props?.progressBar?.height || 0)
-          }
+          width={getStyleMemo().width - getStyleMemo().padding?.[0] * 2}
+          x={getStyleMemo().padding?.[0]}
+          y={getStyleMemo().height - getStyleMemo().paddingYProgress - (props?.progressBar?.height || 0)}
         />
       </Show>
     </node>
