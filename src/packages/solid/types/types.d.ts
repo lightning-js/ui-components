@@ -16,10 +16,6 @@
  */
 
 import type { TextStyles, NodeStyles } from '@lightningjs/solid';
-import type { ObjectKeys } from './object-methods.js';
-import type { WithTonesModes } from 'types';
-
-export type StyleObject<T = object> = (NodeStyles | TextStyles) | ToneMode | T;
 
 export type ThemeKeys<
   ComponentStyleList = object,
@@ -35,36 +31,30 @@ export interface ComponentStyleConfig<
 > {
   themeKeys: ThemeKeys<ComponentStyleList, BaseStyleType>;
   base: BaseStyleType;
-  toneModes?: {
-    // ex. focus
-    [k in VariantList]?: {
-      // ex. color: valid themed color value
-      [k in ObjectKeys<
-        ThemeKeys<ComponentStyleList, BaseStyleType>
-      >]?: ComponentStyleList[keyof ComponentStyleList];
-    };
+  tones?: {
+    [k in Tone]?:
+      | ComponentStyleList
+      | BaseStyleType
+      | {
+          [k in Mode]?: ComponentStyleList | BaseStyleType;
+        };
   };
+  modes?: {
+    [k in Mode]?: ComponentStyleList | BaseStyleType;
+  };
+  modeKeys: string[];
+  toneKeys: string[];
   // TODO type incoming theme styles
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  themeStyles: any;
-  toneModeFallbackMap?: ToneModeFallbackMap;
+  themeStyles: {
+    [k in VariantList]?: ComponentStyleList;
+  };
 }
-
-export type ToneModeFallbackMap = {
-  [key in VariantList]?: VariantList;
-};
 
 export type Tone = 'neutral' | 'inverse' | 'brand';
 export type Mode = 'focus' | 'disabled';
-export type ToneMode =
-  | 'neutral-focus'
-  | 'inverse-focus'
-  | 'brand-focus'
-  | 'neutral-disabled'
-  | 'inverse-disabled'
-  | 'brand-disabled';
 
-export type VariantList = 'base' | Tone | Mode | ToneMode;
+export type VariantList = 'base' | Tone | Mode;
 
 export type VariantPropertySet<T> = {
   [key in VariantList]?: {
@@ -72,10 +62,33 @@ export type VariantPropertySet<T> = {
   };
 };
 
-export type NodeStyleSet<AdditionalTypes = object> = Required<
-  NodeStyles & AdditionalTypes & WithTonesModes<NodeStyles & AdditionalTypes>
->;
+export interface WithTonesModes<StyleSet extends NodeStyles | TextStyles> {
+  /**
+   * base styles are `neutral`
+   */
+  neutral?: never;
+  // TODO `base` is required in theme, but not valid to be passed to component
+  base: StyleSet;
+  focus?: Partial<StyleSet>;
+  disabled?: Partial<StyleSet>;
+  inverse?: Partial<StyleSet> & {
+    focus?: Partial<StyleSet>;
+    disabled?: Partial<StyleSet>;
+  };
+  brand?: Partial<StyleSet> & {
+    focus?: Partial<StyleSet>;
+    disabled?: Partial<StyleSet>;
+  };
+}
 
-export type TextStyleSet<AdditionalTypes = object> = TextStyles &
-  AdditionalTypes &
-  WithTonesModes<TextStyles & AdditionalTypes>;
+export type NodeStyleSet<AdditionalTypes = object> = {
+  base: Required<NodeStyles & AdditionalTypes>;
+  tones?: WithTonesModes<NodeStyles & AdditionalTypes>; // includes modes of tones
+  modes?: WithTonesModes<NodeStyles & AdditionalTypes>;
+};
+
+export type TextStyleSet<AdditionalTypes = object> = {
+  base: Required<TextStyles & AdditionalTypes>;
+  tones: WithTonesModes<TextStyles & AdditionalTypes>;
+  modes: WithTonesModes<TextStyles & AdditionalTypes>;
+};
