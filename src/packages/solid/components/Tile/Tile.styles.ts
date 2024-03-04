@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Comcast Cable Communications Management, LLC
+ * Copyright 2024 Comcast Cable Communications Management, LLC
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -101,7 +101,7 @@ const StandardBottom = makeComponentStyles<TileStyles['StandardBottom']>(standar
 const LogoContainer = makeComponentStyles<TileStyles['LogoContainer']>(logoContainer);
 
 const styles: TileStyles = {
-  tone: defaultTone || 'neutral',
+  tone: defaultTone || defaultSurfaceTone || 'neutral',
   Container,
   InsetBottom,
   StandardBottom,
