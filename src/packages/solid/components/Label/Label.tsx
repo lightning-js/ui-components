@@ -18,7 +18,6 @@ export interface LabelProps extends IntrinsicNodeProps {
 }
 
 const Label: Component<LabelProps> = props => {
-  console.log(styles);
   return (
     <node
       use:withPadding={props?.style?.Container?.padding ?? styles.Container.base.padding}
