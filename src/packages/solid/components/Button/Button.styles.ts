@@ -30,7 +30,7 @@ export interface ButtonStyles {
 
 type ButtonStyleProperties = {
   backgroundColor?: NodeStyles['color'];
-  borderRadius?: NodeStyles['borderRadius'];
+  radius?: NodeStyles['borderRadius'];
   contentColor?: NodeStyles['color'];
   justifyContent?: NodeStyles['justifyContent'];
   textAlign?: TextStyles['textAlign'];
@@ -45,7 +45,7 @@ const { Button: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.comp
 const container: ButtonConfig = {
   themeKeys: {
     textAlign: 'textAlign',
-    borderRadius: 'borderRadius',
+    borderRadius: 'radius',
     color: 'backgroundColor',
     justifyContent: 'justifyContent'
   },
