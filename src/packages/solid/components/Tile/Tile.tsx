@@ -95,61 +95,46 @@ export interface TileProps extends NodeProps {
   style?: Partial<TileStyles>;
 }
 
-const getStyleObject = (props: TileProps, styles: TileStyles) => ({
-  ...styles.Container.base,
-  ...styles.Container.tones[props.tone ?? styles.tone],
-  ...props
-});
-
 const Tile: Component<TileProps> = (props: TileProps) => {
-  const getStyleMemo = createMemo(() => getStyleObject(props, styles));
   const [isFocused, setIsFocused] = createSignal(false);
   const getTone = (): Tone => props.tone ?? styles.tone;
 
+  const getStyle = styleKey =>
+    styles.Container.tones[getTone()]?.[styleKey] ?? styles.Container.base?.[styleKey];
+
   return (
     <node
-      use:withPadding={getStyleMemo().padding}
+      use:withPadding={getStyle('padding')}
       {...props}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
-      style={[
-        ...[props.style].flat(),
-        styles.Container.tones[props.tone || styles.tone],
-        styles.Container.base
-      ]}
+      style={[...[props.style].flat(), styles.Container.tones[getTone()], styles.Container.base]}
     >
       <Artwork
         {...props.artwork}
         tone={getTone()}
-        width={getStyleMemo().width}
-        height={getStyleMemo().height}
+        width={props.width ?? getStyle('width')}
+        height={props.height ?? getStyle('height')}
       />
 
       <Show when={props.persistentMetadata || isFocused()}>
-        <View x={getStyleMemo().padding?.[0]} y={getStyleMemo().padding?.[1]}>
+        {/* @ts-expect-error padding will always return an array */}
+        <View x={getStyle('padding')?.[0]} y={getStyle('padding')?.[1]}>
           {props.topLeft}
         </View>
 
-        <View
-          x={getStyleMemo().width - getStyleMemo().padding?.[0]}
-          y={getStyleMemo().padding?.[1]}
-          mountX={1}
-        >
+        <View x={getStyle('width') - getStyle('padding')?.[0]} y={getStyle('padding')?.[1]} mountX={1}>
           {props.topRight}
         </View>
 
         <View
-          style={[
-            props.style?.InsetBottom,
-            styles.InsetBottom.tones[props.tone || styles.tone],
-            styles.InsetBottom.base
-          ]}
-          width={getStyleMemo().width - getStyleMemo().padding[0] * 2}
-          x={getStyleMemo().padding?.[0] ?? getStyleMemo().padding[0]}
+          style={[props.style?.InsetBottom, styles.InsetBottom.tones[getTone()], styles.InsetBottom.base]}
+          width={getStyle('width') - getStyle('padding')?.[0] * 2}
+          x={getStyle('padding')?.[0]}
           y={
-            getStyleMemo().height -
-            getStyleMemo().padding?.[1] -
-            (props.progressBar?.progress > 0 ? getStyleMemo().paddingYProgress : 0)
+            getStyle('height') -
+            getStyle('padding')?.[1] -
+            (props.progressBar?.progress > 0 ? getStyle().paddingYProgress : 0)
           }
         >
           {props.inset}
@@ -161,9 +146,9 @@ const Tile: Component<TileProps> = (props: TileProps) => {
             styles.StandardBottom.tones[getTone()],
             styles.StandardBottom.base
           ]}
-          x={getStyleMemo().padding?.[0]}
-          y={getStyleMemo().height + getStyleMemo().padding?.[1]}
-          width={getStyleMemo().width - getStyleMemo().padding?.[1] * 2}
+          x={getStyle('padding')?.[0]}
+          y={getStyle('height') + getStyle('padding')?.[1]}
+          width={getStyle('width') - getStyle('padding')?.[1] * 2}
         >
           {props.bottom}
         </View>
@@ -172,9 +157,9 @@ const Tile: Component<TileProps> = (props: TileProps) => {
       <Show when={props.progressBar?.progress ? props.progressBar.progress > 0 : 0}>
         <ProgressBar
           {...props.progressBar}
-          width={getStyleMemo().width - getStyleMemo().padding?.[0] * 2}
-          x={getStyleMemo().padding?.[0]}
-          y={getStyleMemo().height - getStyleMemo().paddingYProgress - (props?.progressBar?.height || 0)}
+          width={getStyle('width') - getStyle('padding')?.[0] * 2}
+          x={getStyle('padding')?.[0]}
+          y={getStyle('height') - getStyle('paddingYProgress') - (props?.progressBar?.height || 0)}
         />
       </Show>
     </node>
