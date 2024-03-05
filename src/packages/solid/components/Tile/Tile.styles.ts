@@ -23,15 +23,16 @@ import { makeComponentStyles } from '../../utils/index.js';
 
 export interface TileStyles {
   tone: Tone;
-  Container: NodeStyleSet<{ padding: number[] }>;
+  Container: NodeStyleSet<{ padding: number[]; paddingYProgress: number }>;
   InsetBottom: NodeStyleSet;
   StandardBottom: NodeStyleSet;
   LogoContainer: NodeStyleSet;
 }
 
-type TileStyleProperties = Partial<{
+export type TileStyleProperties = Partial<{
   alpha: NodeStyles['alpha'];
   radius: NodeStyles['borderRadius'];
+  paddingYProgress: number;
 }>;
 
 type TileConfig = ComponentStyleConfig<TileStyleProperties>;
@@ -42,7 +43,8 @@ const { Surface: { defaultSurfaceTone, ...surfaceThemeStyles } = { styles: {} } 
 
 const container: TileConfig = {
   themeKeys: {
-    alpha: 'alpha'
+    alpha: 'alpha',
+    paddingYProgress: 'paddingYProgress'
   },
   base: {
     width: 400,

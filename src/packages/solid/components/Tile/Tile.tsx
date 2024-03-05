@@ -3,8 +3,8 @@ import { Show, type NodeProps, View } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
 import Artwork, { type ArtworkProps } from '../Artwork/Artwork.jsx';
 import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
-import styles, { type TileStyles } from './Tile.styles.js';
-import type { Tone } from '../../types.js';
+import styles, { type TileStyleProperties, type TileStyles } from './Tile.styles.js';
+import type { Tone } from '../../types/types.js';
 withPadding;
 
 export interface TileProps extends NodeProps {
@@ -73,6 +73,10 @@ export interface TileProps extends NodeProps {
    */
   progressBar?: Partial<ProgressBarProps> | undefined;
 
+  paddingYProgress: TileStyleProperties['paddingYProgress'];
+
+  padding: number[];
+
   tone?: Tone;
 
   style?: Partial<TileStyles>;
@@ -83,7 +87,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
   return (
     <node
       use:withPadding={
-        props?.style?.Container?.padding ??
+        props.padding ??
         styles.Container.tones[props.tone ?? styles.tone]?.padding ??
         styles.Container.base.padding
       }
@@ -101,13 +105,11 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         tone={props.tone ?? styles.tone}
         width={
           props.width ??
-          props?.style?.Container?.width ??
           styles.Container.tones[props.tone ?? styles.tone]?.width ??
           styles.Container.base.width
         }
         height={
           props.height ??
-          props?.style?.Container?.height ??
           styles.Container.tones[props.tone ?? styles.tone]?.height ??
           styles.Container.base.height
         }
@@ -116,12 +118,12 @@ const Tile: Component<TileProps> = (props: TileProps) => {
       <Show when={props.persistentMetadata || isFocused()}>
         <View
           x={
-            props?.style?.Container?.padding?.[0] ??
+            props.padding?.[0] ??
             styles.Container.tones[props.tone ?? styles.tone]?.padding?.[0] ??
             styles.Container.base.padding[0]
           }
           y={
-            props?.style?.Container?.padding?.[1] ??
+            props.padding?.[1] ??
             styles.Container.tones[props.tone ?? styles.tone]?.padding?.[1] ??
             styles.Container.base.padding[1]
           }
@@ -132,15 +134,14 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         <View
           x={
             (props?.width ??
-              props?.style?.Container?.width ??
               styles.Container.tones[props.tone ?? styles.tone]?.width ??
               styles.Container.base.width) -
-            (props?.style?.Container?.padding?.[0] ??
+            (props.padding?.[0] ??
               styles.Container.tones[props.tone ?? styles.tone]?.[0] ??
               styles.Container.base.padding[0])
           }
           y={
-            props?.style?.Container?.padding?.[1] ??
+            props.padding?.[1] ??
             styles.Container.tones[props.tone ?? styles.tone]?.padding?.[1] ??
             styles.Container.base.padding[1]
           }
@@ -157,26 +158,24 @@ const Tile: Component<TileProps> = (props: TileProps) => {
           ]}
           width={
             (props.width ??
-              props?.style?.Container?.width ??
               styles.Container.tones[props.tone ?? styles.tone]?.width ??
               styles.Container.base.width) -
             styles.Container.base.padding[0] * 2
           }
           x={
-            props?.style?.Container?.padding?.[0] ??
+            props.padding?.[0] ??
             styles.Container.tones[props.tone ?? styles.tone]?.padding?.[0] ??
             styles.Container.base.padding[0]
           }
           y={
             (props.height ??
-              props?.style?.Container?.height ??
               styles.Container.tones[props.tone ?? styles.tone]?.height ??
               styles.Container.base.height) -
-            (props?.style?.Container?.padding?.[1] ??
+            (props.padding?.[1] ??
               styles.Container.tones[props.tone ?? styles.tone]?.padding?.[1] ??
               styles.Container.base.padding[1]) -
             (props.progressBar?.progress > 0
-              ? props.style?.Container?.paddingYProgress ??
+              ? props.paddingYProgress ??
                 styles.Container.tones[props.tone ?? styles.tone]?.paddingYProgress ??
                 styles.Container.base.paddingYProgress
               : 0)
@@ -192,24 +191,25 @@ const Tile: Component<TileProps> = (props: TileProps) => {
             styles.StandardBottom.base
           ]}
           x={
-            props?.style?.Container?.padding?.[0] ??
+            props.padding?.[0] ??
             styles.Container.tones[props.tone ?? styles.tone]?.padding?.[0] ??
             styles.Container.base.padding[0]
           }
           y={
             Number(
               props.height ??
-                props?.style?.Container?.height ??
                 styles.Container.tones[props.tone ?? styles.tone]?.height ??
                 styles.Container.base.height
-            ) + (props?.style?.Container?.padding?.[1] ?? styles.Container.base.padding[1])
+            ) +
+            (props.padding?.[1] ??
+              styles.Container.tones[props.tone ?? styles.tone]?.padding?.[1] ??
+              styles.Container.base.padding[1])
           }
           width={
             (props.width ??
-              props?.style?.Container?.width ??
               styles.Container.tones[props.tone ?? styles.tone]?.width ??
               styles.Container.base.width) -
-            (props?.style?.Container?.padding?.[1] ??
+            (props.padding?.[1] ??
               styles.Container.tones[props.tone ?? styles.tone]?.padding?.[1] ??
               styles.Container.base.padding[1]) *
               2
@@ -224,25 +224,24 @@ const Tile: Component<TileProps> = (props: TileProps) => {
           {...props.progressBar}
           width={
             (props.width ??
-              props?.style?.Container?.width ??
               styles.Container.tones[props.tone ?? styles.tone]?.width ??
               styles.Container.base.width) -
-            (props?.style?.Container?.padding?.[0] ??
+            (props.padding?.[0] ??
               styles.Container.tones[props.tone ?? styles.tone]?.padding?.[0] ??
               styles.Container.base.padding[0]) *
               2
           }
           x={
-            props?.style?.Container?.padding?.[0] ??
+            props.padding?.[0] ??
             styles.Container.tones[props.tone ?? styles.tone]?.padding?.[0] ??
             styles.Container.base.padding[0]
           }
           y={
             (props.height ??
-              props?.style?.Container?.height ??
+              props.height ??
               styles.Container.tones[props.tone ?? styles.tone]?.height ??
               styles.Container.base.height) -
-            (props?.style?.Container?.paddingYProgress ??
+            (props.paddingYProgress ??
               styles.Container.tones[props.tone ?? styles.tone]?.paddingYProgress ??
               styles.Container.base.paddingYProgress) -
             (props?.progressBar?.height || 0)
