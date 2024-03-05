@@ -23,11 +23,11 @@ import { makeComponentStyles } from '../../utils/index.js';
 
 export interface LabelStyles {
   tone: Tone;
-  Container: NodeStyleSet;
+  Container: NodeStyleSet<{ padding: number[] }>;
   Text: TextStyleSet;
 }
 
-type LabelStyleProperties = Partial<{
+export type LabelStyleProperties = Partial<{
   backgroundColor: NodeStyles['color'];
   textColor: NodeStyles['color'];
   padding: [number, number];
