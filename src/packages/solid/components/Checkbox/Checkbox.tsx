@@ -19,7 +19,7 @@ import type { Component } from 'solid-js';
 import { View, type NodeProps } from '@lightningjs/solid';
 import styles, { type CheckboxStyles } from './Checkbox.styles.js';
 import Icon from '../Icon/Icon.jsx';
-import type { Tone } from '../../types.js';
+import type { Tone } from '../../types/types.js';
 const check = '/assets/images/check-icon.png';
 
 export interface CheckboxProps extends NodeProps {
@@ -39,7 +39,7 @@ const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
       {...props}
       style={[
         ...[props.style].flat(), //
-        styles.Container.tones[props.tone || styles.tone],
+        styles.Container.tones[props.tone ?? styles.tone],
         styles.Container.base
       ]}
       states={{ checked: props.checked }}

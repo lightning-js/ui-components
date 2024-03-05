@@ -19,7 +19,7 @@ import { View, Text, Show } from '@lightningjs/solid';
 import type { NodeStyles } from '@lightningjs/solid';
 import Details, { type DetailsProps } from './Details.jsx';
 import styles, { type MetadataStyles } from './Metadata.styles.js';
-import type { Tone } from '../../types.js';
+import type { Tone } from '../../types/types.js';
 
 export interface MetadataProps extends NodeStyles {
   /**

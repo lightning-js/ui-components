@@ -22,7 +22,7 @@ import styles, { type RowStyles } from './Row.styles.js';
 import { handleNavigation, onGridFocus } from '../../utils/handleNavigation.js';
 import { withScrolling } from '../../utils/withScrolling.js';
 import { chainFunctions } from '../../index.js';
-import type { Tone } from '../../types.js';
+import type { Tone } from '../../types/types.js';
 
 export interface RowProps extends NodeProps {
   /** When auto scrolling, item index at which scrolling begins */

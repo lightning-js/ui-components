@@ -19,7 +19,7 @@ import { type Component, type Signal } from 'solid-js';
 import { View, Text, type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles, { type InputStyles } from './Input.styles.js';
 import type { KeyHandler } from '@lightningjs/solid-primitives';
-import type { Tone } from '../../types.js';
+import type { Tone } from '../../types/types.js';
 
 export interface InputProps extends IntrinsicNodeProps {
   /**

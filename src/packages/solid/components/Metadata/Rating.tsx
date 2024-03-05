@@ -20,7 +20,7 @@ import type { IntrinsicNodeProps } from '@lightningjs/solid';
 import Icon from '../Icon/Icon.jsx';
 import type { IconProps } from '../Icon/Icon.jsx';
 import styles, { type RatingStyles } from './Rating.styles.js';
-import type { Tone } from '../../types.js';
+import type { Tone } from '../../types/types.js';
 
 export interface RatingProps extends IntrinsicNodeProps {
   /**

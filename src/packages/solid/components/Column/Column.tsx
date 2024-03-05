@@ -22,7 +22,7 @@ import styles, { type ColumnStyles } from './Column.styles.js';
 import { withScrolling } from '../../utils/withScrolling.js';
 import { handleNavigation, onGridFocus } from '../../utils/handleNavigation.js';
 import { chainFunctions } from '../../index.js';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 
 export interface ColumnProps extends NodeProps {
   /** When auto scrolling, item index at which scrolling begins */
