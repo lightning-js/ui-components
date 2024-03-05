@@ -28,15 +28,27 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
     <Column
       autofocus={props.autofocus}
       plinko
-      itemSpacing={props.style?.Container?.keySpacing ?? styles.Container.base.keySpacing}
+      itemSpacing={
+        props.keySpacing ??
+        styles.Container.tones[props.tone ?? styles.tone]?.keySpacing ??
+        styles.Container.base.keySpacing
+      }
       justifyContent={props.centerKeyboard && props.centerKeyboard ? 'center' : 'flexStart'}
     >
       <For each={props.formats}>
         {(row: Array<string | KeyProps>) => (
           <Row
             justifyContent={props.centerKeys && props.centerKeys ? 'center' : 'flexStart'}
-            itemSpacing={props.style?.Container?.keySpacing ?? styles.Container.base.keySpacing}
-            height={props?.style?.Container?.height || styles.Container.base.height}
+            itemSpacing={
+              props.keySpacing ??
+              styles.Container.tones[props.tone ?? styles.tone]?.keySpacing ??
+              styles.Container.base.keySpacing
+            }
+            height={
+              props?.height ??
+              styles.Container.tones[props.tone ?? styles.tone]?.height ??
+              styles.Container.base.height
+            }
             wrap={props.rowWrap}
           >
             <For each={row}>
@@ -44,6 +56,7 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
                 <Key
                   style={props.style?.Key}
                   {...(typeof key === 'string' ? {} : key)}
+                  // @ts-expect-error the ternary handles for the type error
                   title={key.title || key.icon ? key.title : key}
                 />
               )}
