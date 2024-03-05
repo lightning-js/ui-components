@@ -17,13 +17,12 @@
 
 import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
+import type { ComponentStyleConfig, NodeStyleSet, Tone } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
 export interface ArtworkStyles {
   tone: Tone;
-  Container: NodeStyleSet<{ fillColor: NodeStyles['color'] }>;
+  Container: NodeStyleSet<{ fillColor: NodeStyles['color']; gradientColor: NodeStyles['color'] }>;
 }
 
 type ArtworkStyleProperties = Partial<{

@@ -2,7 +2,7 @@ import { type Component, createMemo } from 'solid-js';
 import { View, type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles, { type ArtworkStyles } from './Artwork.styles.js';
 import { withPadding } from '@lightningjs/solid-primitives';
-import type { Tone } from '../../types.js';
+import type { Tone } from '../../types/types.js';
 withPadding;
 
 export interface ArtworkProps extends ArtworkStyleProps, IntrinsicNodeProps {
@@ -58,7 +58,13 @@ const Artwork: Component<ArtworkProps> = props => {
     <View
       {...props}
       // only apply color if no src is provided
-      color={Boolean(formattedArtwork()) ? undefined : props.color ?? styles.Container.fillColor}
+      color={
+        Boolean(formattedArtwork())
+          ? undefined
+          : props.color ??
+            styles.Container.tones[props.tone ?? styles.tone]?.fillColor ??
+            styles.Container.base.fillColor
+      }
       style={[
         ...[props.style].flat(),
         styles.Container.tones[props.tone || styles.tone],
