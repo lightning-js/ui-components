@@ -16,29 +16,30 @@
  */
 
 import theme from 'theme';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 import type { NodeStyles } from '@lightningjs/solid';
-import type { KeyConfig, KeyStyles } from '../Key/Key.styles.js';
+import type { KeyConfig, KeySizes, KeyStyles } from '../Key/Key.styles.js';
 
 export interface KeyboardStyles {
   tone: Tone;
-  Container: NodeStyleSet<{ padding: number[] }>;
-  Key: NodeStyleSet;
+  Container: NodeStyleSet<{ keySpacing?: number; screenW?: number; marginX?: number }>;
+  Key: NodeStyleSet<{ baseWidth: number; sizes: KeySizes; contentColor: NodeStyles['color'] }>;
   Text: TextStyleSet;
 }
 
 export type KeyboardStyleProperties = {
-  keySpacing?: NodeStyles['keySpacing'];
-  screenW?: NodeStyles['screenW'];
-  marginX?: NodeStyles['marginX'];
+  keySpacing?: number;
+  screenW?: number;
+  marginX?: number;
 };
 
 type KeyboardConfig = ComponentStyleConfig<KeyboardStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Keyboard: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
+// TODO handle keyProps coming in from theme
 
 const container: KeyboardConfig = {
   themeKeys: {
@@ -52,6 +53,7 @@ const container: KeyboardConfig = {
     marginX: theme.layout.marginX,
     height: 100
   },
+  // @ts-expect-error see TODO
   themeStyles
 };
 
@@ -110,6 +112,7 @@ const key: KeyConfig = {
       }
     }
   },
+  // @ts-expect-error see TODO
   themeStyles
 };
 
@@ -137,6 +140,7 @@ const text: KeyboardConfig = {
       }
     }
   },
+  // @ts-expect-error see TODO
   themeStyles
 };
 

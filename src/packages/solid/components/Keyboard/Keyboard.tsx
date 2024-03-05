@@ -17,10 +17,10 @@
 
 import { type Component } from 'solid-js';
 import { type IntrinsicNodeProps } from '@lightningjs/solid';
-import styles, { type KeyboardStyles } from './Keyboard.styles.js';
+import styles, { type KeyboardStyleProperties, type KeyboardStyles } from './Keyboard.styles.js';
 import KeyboardSimple from './KeyboardSimple.jsx';
 import type { KeyProps } from '../Key/Key.jsx';
-import type { Tone } from '../../types.js';
+import type { Tone } from '../../types/types.js';
 
 export type KeyboardFormat = Array<Array<string | KeyProps>>;
 
@@ -50,6 +50,8 @@ export interface KeyboardProps extends IntrinsicNodeProps {
    */
   defaultFormat?: string;
 
+  keySpacing?: KeyboardStyleProperties['keySpacing'];
+
   style?: Partial<KeyboardStyles>;
 
   tone?: Tone;
@@ -62,7 +64,7 @@ const Keyboard: Component<KeyboardProps> = (props: KeyboardProps) => {
       {...props}
       style={[
         ...[props.style].flat(),
-        styles.Container.tones[props.tone || styles.tone],
+        styles.Container.tones[props.tone ?? styles.tone],
         styles.Container.base
       ]}
     />
