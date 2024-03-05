@@ -45,7 +45,7 @@ const Button: Component<ButtonProps> = props => {
       <Text
         style={[
           ...[props.style?.Text].flat(), //
-          styles.Text.tones?.[props.tone ?? styles.tone],
+          styles.Text.tones[props.tone ?? styles.tone],
           styles.Text.base
         ]}
       >

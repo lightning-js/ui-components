@@ -143,7 +143,7 @@ const text: ButtonConfig = {
 };
 
 const Container = makeComponentStyles<ButtonStyles['Container']>(container);
-const Content = makeComponentStyles<ButtonStyles['Container']>(content);
+const Content = makeComponentStyles<ButtonStyles['Content']>(content);
 const Text = makeComponentStyles<ButtonStyles['Text']>(text);
 
 const styles: ButtonStyles = {
