@@ -15,35 +15,32 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+// import * as Solid from '@lightningjs/solid';
 import type { TextStyles, NodeStyles } from '@lightningjs/solid';
 
-export type ThemeKeys<
-  ComponentStyleList = object,
-  BaseStyleType extends NodeStyles | TextStyles = NodeStyles
-> = {
+export type ThemeKeys<BaseStyleType, ComponentStyleList = object> = {
   // solid style name: themed style name
   [k in keyof BaseStyleType as keyof BaseStyleType]?: keyof ComponentStyleList;
 };
 
 export interface ComponentStyleConfig<
   ComponentStyleList = object,
-  BaseStyleType extends NodeStyles | TextStyles = NodeStyles
+  BaseStyleType extends NodeStyles | TextStyles | NodeColor = NodeStyles | TextStyles
 > {
-  themeKeys: ThemeKeys<ComponentStyleList, BaseStyleType>;
+  themeKeys: ThemeKeys<BaseStyleType, ComponentStyleList>;
   base: BaseStyleType;
   tones?: {
     [k in Tone]?:
-      | ComponentStyleList
-      | BaseStyleType
+      | (ComponentStyleList & BaseStyleType)
       | {
-          [k in Mode]?: ComponentStyleList | BaseStyleType;
+          [k in Mode]?: ComponentStyleList & BaseStyleType;
         };
   };
   modes?: {
-    [k in Mode]?: ComponentStyleList | BaseStyleType;
+    [k in Mode]?: ComponentStyleList & BaseStyleType;
   };
-  modeKeys: string[];
-  toneKeys: string[];
+  modeKeys?: string[];
+  toneKeys?: string[];
   // TODO type incoming theme styles
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   themeStyles: {
@@ -62,15 +59,18 @@ export type VariantPropertySet<T> = {
   };
 };
 
-export interface WithTonesModes<StyleSet extends NodeStyles | TextStyles> {
+export interface WithTonesModes<StyleSet> {
   /**
    * base styles are `neutral`
    */
-  neutral?: never;
   // TODO `base` is required in theme, but not valid to be passed to component
-  base: StyleSet;
-  focus?: Partial<StyleSet>;
-  disabled?: Partial<StyleSet>;
+  // base: StyleSet;
+  // focus?: Partial<StyleSet>;
+  // disabled?: Partial<StyleSet>;
+  neutral?: Partial<StyleSet> & {
+    focus?: Partial<StyleSet>;
+    disabled?: Partial<StyleSet>;
+  };
   inverse?: Partial<StyleSet> & {
     focus?: Partial<StyleSet>;
     disabled?: Partial<StyleSet>;
@@ -81,14 +81,29 @@ export interface WithTonesModes<StyleSet extends NodeStyles | TextStyles> {
   };
 }
 
-export type NodeStyleSet<AdditionalTypes = object> = {
-  base: Required<NodeStyles & AdditionalTypes>;
-  tones?: WithTonesModes<NodeStyles & AdditionalTypes>; // includes modes of tones
-  modes?: WithTonesModes<NodeStyles & AdditionalTypes>;
+export interface WithModes<StyleSet> {
+  focus?: Partial<StyleSet>;
+  disabled?: Partial<StyleSet>;
+}
+
+export type FlexibleNodeStyles<AdditionalTypes = undefined> = NodeStyles & AdditionalTypes;
+export type FlexibleTextStyles<AdditionalTypes = undefined> = TextStyles & AdditionalTypes;
+
+// could be a nested object
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type NodeStyleSet<AdditionalTypes = undefined> = {
+  base: Required<FlexibleNodeStyles<AdditionalTypes>> & WithModes<FlexibleNodeStyles<AdditionalTypes>>;
+  tones: WithTonesModes<FlexibleNodeStyles<AdditionalTypes>>; // includes modes of tones
 };
 
-export type TextStyleSet<AdditionalTypes = object> = {
-  base: Required<TextStyles & AdditionalTypes>;
+// could be a nested object
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type TextStyleSet<AdditionalTypes = undefined> = {
+  base: Required<TextStyles & AdditionalTypes> & WithModes<TextStyles & AdditionalTypes>;
   tones: WithTonesModes<TextStyles & AdditionalTypes>;
-  modes: WithTonesModes<TextStyles & AdditionalTypes>;
 };
+
+/**
+ * renderer accepts 0xRGBA as either a number or string
+ */
+export type NodeColor = number | string;
