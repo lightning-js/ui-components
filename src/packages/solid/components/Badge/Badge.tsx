@@ -19,7 +19,7 @@ import { Text, Show } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
 import Icon, { type IconProps } from '../Icon/Icon.jsx';
 import styles, { type BadgeStyles } from './Badge.styles.js';
-import type { Tone } from '../../types.js';
+import type { Tone } from '../../types/types.js';
 withPadding; // Preserve the import.
 
 export type BadgeProps = {
@@ -50,7 +50,11 @@ export type BadgeProps = {
 const Badge: Component<BadgeProps> = (props: BadgeProps) => {
   return (
     <node
-      use:withPadding={props.padding ?? props?.style?.padding ?? styles.Container.base.padding}
+      use:withPadding={
+        props.padding ??
+        styles.Container?.tones[props.tone ?? styles.tone]?.padding ??
+        styles.Container.base.padding
+      }
       {...props}
       style={[
         ...[props.style].flat(), //

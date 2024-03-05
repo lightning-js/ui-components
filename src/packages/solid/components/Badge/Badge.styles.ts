@@ -23,7 +23,7 @@ import { makeComponentStyles } from '../../utils/index.js';
 
 export interface BadgeStyles {
   tone: Tone;
-  Container: NodeStyleSet;
+  Container: NodeStyleSet<{ padding: number[] }>;
   Icon: NodeStyleSet;
   Text: TextStyleSet;
 }
