@@ -23,15 +23,19 @@ import { makeComponentStyles } from '../../utils/index.js';
 
 export interface DetailsStyles {
   tone: Tone;
-  Container: NodeStyleSet;
+  Container: NodeStyleSet<{
+    badgeContentSpacing: number;
+    contentSpacing: number;
+    ratingContentSpacing: number;
+  }>;
   Text: TextStyleSet;
 }
 
 export type DetailsStyleProperties = {
   alignItems?: NodeStyles['alignItems'];
-  contentSpacing?: NodeStyles['contentSpacing'];
-  badgeContentSpacing?: NodeStyles['badgeContentSpacing'];
-  ratingContentSpacing?: NodeStyles['ratingContentSpacing'];
+  contentSpacing?: number;
+  badgeContentSpacing?: number;
+  ratingContentSpacing?: number;
 };
 
 export type DetailsConfig = ComponentStyleConfig<DetailsStyleProperties>;

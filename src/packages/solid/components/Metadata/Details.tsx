@@ -21,7 +21,7 @@ import Badge, { type BadgeProps } from '../Badge/Badge.jsx';
 import Rating, { type RatingProps } from './Rating.jsx';
 import styles from './Details.styles.js';
 import { type DetailsStyles } from './Details.styles.js';
-import type { Tone } from '../../types.js';
+import type { Tone } from '../../types/types.js';
 
 export interface DetailsProps extends IntrinsicNodeProps {
   /**
@@ -76,8 +76,12 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
             {...badge}
             marginRight={
               props.badges?.length && idx() === props.badges.length - 1
-                ? props.style?.Container?.contentSpacing ?? styles.Container.base.contentSpacing
-                : props.style?.Container?.badgeContentSpacing ?? styles.Container.base.badgeContentSpacing
+                ? props.style?.Container?.contentSpacing ??
+                  styles.Container.tones[props.tone ?? styles.tone]?.contentSpacing ??
+                  styles.Container.base.contentSpacing
+                : props.style?.Container?.badgeContentSpacing ??
+                  styles.Container.tones[props.tone ?? styles.tone]?.badgeContentSpacing ??
+                  styles.Container.base.badgeContentSpacing
             }
           />
         )}
@@ -95,7 +99,9 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
             marginRight={
               props.ratings?.length && idx() === props.ratings.length - 1
                 ? 0
-                : props.style?.Container?.ratingContentSpacing ?? styles.Container.base.ratingContentSpacing
+                : props.style?.Container?.ratingContentSpacing ??
+                  styles.Container.tones[props.tone ?? styles.tone]?.ratingContentSpacing ??
+                  styles.Container.base.ratingContentSpacing
             }
           />
         )}
