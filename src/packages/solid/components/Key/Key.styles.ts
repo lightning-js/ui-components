@@ -32,7 +32,13 @@ export type KeySize = keyof KeySizes;
 
 export interface KeyStyles {
   tone: Tone;
-  Container: NodeStyleSet<{ padding: number[] }>;
+  Container: NodeStyleSet<{
+    padding: number[];
+    sizes: KeySizes;
+    baseWidth: number;
+    keySpacing: number;
+    contentColor: NodeStyles['color'];
+  }>;
   Text: TextStyleSet;
 }
 

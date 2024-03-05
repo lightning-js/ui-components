@@ -19,7 +19,7 @@ import type { Component } from 'solid-js';
 import { type IntrinsicNodeProps, Text } from '@lightningjs/solid';
 import { ButtonContainer } from '../Button/Button.jsx';
 import styles, { type KeySize, type KeyStyles } from './Key.styles.js';
-import type { Tone } from '../../types.js';
+import type { Tone } from '../../types/types.js';
 
 export interface KeyProps extends IntrinsicNodeProps {
   title?: string;
@@ -44,7 +44,7 @@ export interface KeyProps extends IntrinsicNodeProps {
    */
   toggle?: boolean;
 
-  style?: Partial<KeyStyles>;
+  style?: KeyStyles;
 
   tone?: Tone;
 }
@@ -56,13 +56,19 @@ const Key: Component<KeyProps> = props => {
       {...props}
       style={[
         ...[props.style].flat(), //
-        styles.Container.tones[props.tone || styles.tone],
+        styles.Container.tones?.[props.tone ?? styles.tone],
         styles.Container.base
       ]}
       forwardStates
       width={
-        style1.Container.base.sizes[props.size || 'sm'] * style1.Container?.base.baseWidth +
-        style1.Container.base.keySpacing * (style1.Container?.base.sizes[props.size || 'sm'] - 1)
+        (style1.Container?.tones?.[props.tone ?? styles.tone]?.sizes?.[props.size || 'sm'] ??
+          style1.Container.base.sizes[props.size || 'sm']) *
+          (style1.Container?.tones?.[props.tone ?? styles.tone]?.baseWidth ??
+            style1.Container.base.baseWidth) +
+        (style1.Container.tones?.[props.tone ?? styles.tone]?.keySpacing ??
+          style1.Container.base.keySpacing) *
+          (style1.Container.tones?.[props.tone ?? styles.tone]?.sizes?.[props.size || 'sm'] ??
+            style1.Container.base.sizes[props.size || 'sm'] - 1)
       }
       // Keep below for more thought
       //
@@ -78,7 +84,7 @@ const Key: Component<KeyProps> = props => {
       <Text
         style={[
           props.style?.Text, //
-          styles.Text.tones[props.tone || styles.tone],
+          styles.Text.tones[props.tone ?? styles.tone],
           styles.Text.base
         ]}
       >
