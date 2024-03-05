@@ -18,7 +18,7 @@
 import type { Component } from 'solid-js';
 import { View, type NodeProps } from '@lightningjs/solid';
 import styles from './ProgressBar.styles.js';
-import type { Tone } from '../../types.js';
+import type { Tone } from '../../types/types.js';
 import { type ProgressBarStyles } from './ProgressBar.styles.js';
 
 export interface ProgressBarProps extends NodeProps {
@@ -26,6 +26,11 @@ export interface ProgressBarProps extends NodeProps {
    * a numeric value of the current progress represented as a decimal between 0 and 1
    */
   progress: number;
+
+  /**
+   * color of the overlay portion of the progress bar
+   */
+  progressColor: string | number;
   /**
    * total width of the component
    */
@@ -55,6 +60,7 @@ const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
         forwardStates
         animationSettings={props.animationSettings}
         width={props.width * props.progress}
+        color={props.progressColor}
         style={[
           props.style?.ProgressBar,
           styles.ProgressBar.tones[props.tone || styles.tone],
