@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.5.4...@lightningjs/solid-ui@0.6.0) (2024-03-07)
+
+### Features
+
+- update themed style creation ([#87](https://github.com/lightning-js/ui-components/issues/87)) ([59de5b2](https://github.com/lightning-js/ui-components/commit/59de5b24b83ab4da81c184e06c74e0dbc22af510))
+
 ## [0.5.4](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.5.3...@lightningjs/solid-ui@0.5.4) (2024-02-23)
 
 ### Bug Fixes
