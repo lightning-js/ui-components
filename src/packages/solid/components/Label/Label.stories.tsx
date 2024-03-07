@@ -14,24 +14,15 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import Checkbox from './Checkbox.jsx';
-import Icon from '../Icon/Icon.jsx';
-import checkboxStyles from '../Checkbox/Checkbox.styles.js';
-
-const icon = '/assets/images/ic_lightning_white_32.png';
+import Label from './Label.jsx';
 
 const meta = {
-  title: 'Components/Checkbox',
-  component: Checkbox,
+  title: 'Components/Label',
+  component: Label,
   tags: ['autodocs'],
   argTypes: {
-    states: {
-      control: { type: 'radio' },
-      options: ['focus', 'unfocused', 'disabled'],
-      description: 'Sets the visual mode for the component',
-      table: {
-        defaultValue: { summary: 'focus' }
-      }
+    title: {
+      description: 'text inside of Label'
     },
     tone: {
       control: { type: 'radio' },
@@ -40,10 +31,6 @@ const meta = {
       table: {
         defaultValue: { summary: 'neutral' }
       }
-    },
-    checked: {
-      description: 'Toggles checked between on and off',
-      control: 'boolean'
     }
   }
 };
@@ -52,25 +39,6 @@ export default meta;
 
 export const Basic = {
   args: {
-    checked: true,
-    width: 40,
-    height: 40
-  }
-};
-
-export const WithIcon = {
-  render: args => (
-    <Checkbox {...args}>
-      <Icon
-        tone={args.tone}
-        style={[checkboxStyles.Icon.tones[args.tone ?? checkboxStyles.tone], checkboxStyles.Icon.base]}
-        src={icon}
-      />
-    </Checkbox>
-  ),
-  args: {
-    checked: true,
-    width: 40,
-    height: 40
+    title: 'Label'
   }
 };

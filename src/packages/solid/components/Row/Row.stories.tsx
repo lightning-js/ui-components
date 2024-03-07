@@ -1,10 +1,10 @@
-import SolidRow from './Row.jsx';
+import Row from './Row.jsx';
 import Button from '../Button/Button.jsx';
 import { buttonStyles } from '../Button/index.js';
 
 const meta = {
   title: 'Components/Row',
-  component: SolidRow,
+  component: Row,
   tags: ['autodocs'],
   argTypes: {
     children: {
@@ -48,9 +48,9 @@ const buttons = () => createItems(7);
 export const Basic = {
   render: args => {
     return (
-      <SolidRow autofocus {...args}>
+      <Row autofocus {...args}>
         {buttons}
-      </SolidRow>
+      </Row>
     );
   },
   args: {
@@ -65,9 +65,9 @@ export const Basic = {
 export const edgeScroll = {
   render: args => {
     return (
-      <SolidRow autofocus {...args}>
+      <Row autofocus {...args}>
         {buttons}
-      </SolidRow>
+      </Row>
     );
   },
   args: {
@@ -83,9 +83,9 @@ export const edgeScroll = {
 export const AlwaysScroll = {
   render: args => {
     return (
-      <SolidRow autofocus {...args}>
+      <Row autofocus {...args}>
         {buttons}
-      </SolidRow>
+      </Row>
     );
   },
   args: {
@@ -101,9 +101,9 @@ export const AlwaysScroll = {
 export const NoneScroll = {
   render: args => {
     return (
-      <SolidRow autofocus {...args}>
+      <Row autofocus {...args}>
         {buttons}
-      </SolidRow>
+      </Row>
     );
   },
   args: {
@@ -119,9 +119,9 @@ export const NoneScroll = {
 export const ScrollIndex = {
   render: args => {
     return (
-      <SolidRow autofocus {...args}>
+      <Row autofocus {...args}>
         {buttons}
-      </SolidRow>
+      </Row>
     );
   },
   args: {

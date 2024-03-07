@@ -15,13 +15,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import SolidColumn, { type ColumnProps } from './Column.jsx';
+import Column, { type ColumnProps } from './Column.jsx';
 import Button from '../Button/Button.jsx';
 import type { JSX } from 'solid-js/jsx-runtime';
 
 const meta = {
   title: 'Components/Column',
-  component: SolidColumn,
+  component: Column,
   tags: ['autodocs'],
   argTypes: {
     children: {
@@ -67,7 +67,7 @@ const buttons = () => <>{createItems(7)}</>;
 
 export const AlwaysScroll = {
   render: (args: JSX.IntrinsicAttributes & ColumnProps) => {
-    return <SolidColumn autofocus {...args} />;
+    return <Column autofocus {...args} />;
   },
   args: {
     children: buttons,
@@ -81,7 +81,7 @@ export const AlwaysScroll = {
 
 export const NoneScroll = {
   render: (args: JSX.IntrinsicAttributes & ColumnProps) => {
-    return <SolidColumn autofocus {...args} />;
+    return <Column autofocus {...args} />;
   },
   args: {
     children: buttons,

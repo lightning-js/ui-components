@@ -17,7 +17,6 @@
 
 import { View } from '@lightningjs/solid';
 import { Button, Column } from '@lightningjs/solid-ui';
-import { getHexColor } from 'utils';
 import { useFocusManager } from '@lightningjs/solid-primitives';
 
 const App = () => {
@@ -28,7 +27,7 @@ const App = () => {
   });
 
   return (
-    <View ref={window.APP} width={1280} height={720} color={getHexColor('#071423')}>
+    <View ref={window.APP} width={1280} height={720} color={0xff071423}>
       <Column y={200}>
         <Button tone="brand" y={400}>
           Title

@@ -23,22 +23,25 @@ import { makeComponentStyles } from '../../utils/index.js';
 
 export interface DetailsStyles {
   tone: Tone;
-  Container: NodeStyleSet;
+  Container: NodeStyleSet<{
+    badgeContentSpacing: number;
+    contentSpacing: number;
+    ratingContentSpacing: number;
+  }>;
   Text: TextStyleSet;
 }
 
 export type DetailsStyleProperties = {
   alignItems?: NodeStyles['alignItems'];
-  contentSpacing?: NodeStyles['contentSpacing'];
-  badgeContentSpacing?: NodeStyles['badgeContentSpacing'];
-  ratingContentSpacing?: NodeStyles['ratingContentSpacing'];
+  contentSpacing?: number;
+  badgeContentSpacing?: number;
+  ratingContentSpacing?: number;
 };
 
 export type DetailsConfig = ComponentStyleConfig<DetailsStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Details: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
-  theme?.componentConfig;
+const { Details: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig; // TODO this probably shouldn't be themed this way
 
 const container: DetailsConfig = {
   themeKeys: {
@@ -55,7 +58,6 @@ const container: DetailsConfig = {
     badgeContentSpacing: theme.spacer.sm,
     ratingContentSpacing: theme.spacer.lg
   },
-  toneModes: {},
   themeStyles
 };
 
@@ -68,21 +70,23 @@ const text: DetailsConfig = {
     marginRight: theme.spacer.lg,
     color: theme.color.textNeutral
   },
-  toneModes: {
+  tones: {
+    neutral: {
+      disabled: {
+        color: theme.color.textNeutralDisabled
+      }
+    },
     inverse: {
-      color: theme.color.textInverse
+      color: theme.color.textInverse,
+      disabled: {
+        color: theme.color.textNeutralDisabled
+      }
     },
     brand: {
-      color: theme.color.textNeutral
-    },
-    'inverse-disabled': {
-      color: theme.color.textNeutralDisabled
-    },
-    'neutral-disabled': {
-      color: theme.color.textNeutralDisabled
-    },
-    'brand-disabled': {
-      color: theme.color.textNeutralDisabled
+      color: theme.color.textNeutral,
+      disabled: {
+        color: theme.color.textNeutralDisabled
+      }
     }
   },
   themeStyles
@@ -92,7 +96,7 @@ const Container = makeComponentStyles<DetailsStyles['Container']>(container);
 const Text = makeComponentStyles<DetailsStyles['Text']>(text);
 
 const styles: DetailsStyles = {
-  tone: defaultTone,
+  tone: defaultTone || 'neutral',
   Container,
   Text
 };

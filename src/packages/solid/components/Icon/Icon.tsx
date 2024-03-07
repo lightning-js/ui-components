@@ -18,7 +18,7 @@
 import { type Component } from 'solid-js';
 import { View, type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles, { type IconStyles } from './Icon.styles.js';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 
 export interface IconProps extends IntrinsicNodeProps {
   /**
@@ -49,8 +49,11 @@ const Icon: Component<IconProps> = props => {
   return (
     <View
       {...props}
-      tone={props.tone ?? styles.tone}
-      style={[...[props.style].flat(), styles.Container, styles.Container?.[props.tone || styles.tone]]}
+      style={[
+        ...[props.style].flat(), //
+        styles.Container.tones?.[props.tone || styles.tone],
+        styles.Container.base
+      ]}
       forwardStates
     />
   );

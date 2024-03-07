@@ -23,23 +23,22 @@ import { makeComponentStyles } from '../../utils/index.js';
 
 export interface LabelStyles {
   tone: Tone;
-  Container: NodeStyleSet;
+  Container: NodeStyleSet<{ padding: number[] }>;
   Text: TextStyleSet;
 }
 
-type LabelStyleProperties = Partial<{
+export type LabelStyleProperties = Partial<{
   backgroundColor: NodeStyles['color'];
   textColor: NodeStyles['color'];
   padding: [number, number];
-  borderRadius: NodeStyles['borderRadius'];
+  radius: NodeStyles['borderRadius'];
   height: NodeStyles['height'];
 }>;
 
 type LabelConfig = ComponentStyleConfig<LabelStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Label: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
-  theme?.componentConfig;
+const { Label: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: LabelConfig = {
   themeKeys: {
@@ -48,6 +47,7 @@ const container: LabelConfig = {
   },
   base: {
     display: 'flex',
+    justifyContent: 'center',
     color: theme.color.textNeutral,
     padding: [theme.spacer.md, theme.spacer.lg], // TODO themed padding values
     borderRadius: [theme.radius.md, theme.radius.md, theme.radius.md, theme.radius.none],
@@ -56,16 +56,15 @@ const container: LabelConfig = {
       backgroundColor: theme.color.fillNeutral
     }
   },
-  toneModes: {
+  tones: {
     inverse: {
       color: theme.color.fillInverse
     },
     brand: {
-      // color: theme.color.fillBrand
-      color: theme.color.orange
-    },
-    'brand-focus': {
-      color: theme.color.orange
+      color: theme.color.fillBrand,
+      focus: {
+        color: theme.color.orange
+      }
     }
   },
   themeStyles
@@ -79,7 +78,7 @@ const text: LabelConfig = {
     ...theme.typography.caption1,
     color: theme.color.textInverse
   },
-  toneModes: {
+  tones: {
     inverse: {
       color: theme.color.textNeutral
     },
@@ -94,7 +93,7 @@ const Container = makeComponentStyles<LabelStyles['Container']>(container);
 const Text = makeComponentStyles<LabelStyles['Container']>(text);
 
 const styles: LabelStyles = {
-  tone: defaultTone,
+  tone: defaultTone || 'neutral',
   Container,
   Text
 };

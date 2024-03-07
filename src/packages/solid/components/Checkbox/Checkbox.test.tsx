@@ -1,5 +1,6 @@
-/*
+﻿/**
  * Copyright 2023 Comcast Cable Communications Management, LLC
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,10 +16,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export { makeComponentStyles } from './getThemeStyles.js';
-export { withScrolling } from './withScrolling.js';
-export { useItemLayout, type ItemLayout } from './useItemLayout.js';
-export { chainFunctions } from './chainFunctions.js';
-export { assertTruthy } from './assertTruthy.js';
-export { handleNavigation, onGridFocus } from './handleNavigation.js';
-export { scrollToIndex } from './scrollToIndex.js';
+import Checkbox from './Checkbox.jsx';
+import { render } from '../../test-utils.jsx';
+import { describe, expect, it } from 'vitest';
+
+describe('Checkbox', () => {
+  it('renders', async () => {
+    const tree = await render(() => <Checkbox />);
+    expect(tree).toMatchSnapshot();
+  });
+});

@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Checkbox > renders 1`] = `
+{
+  "alpha": 1,
+  "children": Children [
+    "",
+  ],
+  "color": "#181819B3",
+  "height": 40,
+  "pivot": 0.5,
+  "pivotX": 0.5,
+  "pivotY": 0.5,
+  "scale": 1,
+  "width": 40,
+}
+`;

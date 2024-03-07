@@ -23,7 +23,7 @@ import { makeComponentStyles } from '../../utils/index.js';
 
 export interface BadgeStyles {
   tone: Tone;
-  Container: NodeStyleSet;
+  Container: NodeStyleSet<{ padding: number[] }>;
   Icon: NodeStyleSet;
   Text: TextStyleSet;
 }
@@ -39,8 +39,7 @@ type BadgeStyleProperties = Partial<{
 type BadgeConfig = ComponentStyleConfig<BadgeStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Badge: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
-  theme?.componentConfig;
+const { Badge: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: BadgeConfig = {
   themeKeys: {
@@ -62,9 +61,10 @@ const container: BadgeConfig = {
       theme.spacer.md + theme.stroke.sm
     ]
   },
-  toneModes: {
+  tones: {
     inverse: {
       color: theme.color.fillNeutralSecondary,
+      borderRadius: theme.radius.sm,
       border: {
         color: theme.color.strokeInverseSecondary,
         width: theme.stroke.sm
@@ -72,6 +72,7 @@ const container: BadgeConfig = {
     },
     brand: {
       color: theme.color.fillBrand,
+      borderRadius: theme.radius.sm,
       border: {
         color: theme.color.strokeInverseSecondary,
         width: theme.stroke.sm
@@ -89,7 +90,7 @@ const text: BadgeConfig = {
     ...theme.typography.tag1,
     color: theme.color.textNeutral
   },
-  toneModes: {
+  tones: {
     inverse: {
       color: theme.color.textInverse
     },
@@ -107,7 +108,7 @@ const icon: BadgeConfig = {
   base: {
     color: theme.color.textNeutral
   },
-  toneModes: {
+  tones: {
     inverse: {
       color: theme.color.textInverse
     },
@@ -123,7 +124,7 @@ const Icon = makeComponentStyles<BadgeStyles['Icon']>(icon);
 const Text = makeComponentStyles<BadgeStyles['Text']>(text);
 
 const styles: BadgeStyles = {
-  tone: defaultTone,
+  tone: defaultTone || 'neutral',
   Container,
   Icon,
   Text

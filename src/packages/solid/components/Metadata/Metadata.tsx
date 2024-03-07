@@ -19,7 +19,7 @@ import { View, Text, Show } from '@lightningjs/solid';
 import type { NodeStyles } from '@lightningjs/solid';
 import Details, { type DetailsProps } from './Details.jsx';
 import styles, { type MetadataStyles } from './Metadata.styles.js';
-import type { Tone } from '../../types.js';
+import type { Tone } from '../../types/types.js';
 
 export interface MetadataProps extends NodeStyles {
   /**
@@ -47,22 +47,17 @@ const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
       {...props}
       style={[
         ...[props.style].flat(),
-        props.style?.Container,
-        props.style?.Container?.[props.tone || styles.tone],
-        styles.Container,
-        styles.Container?.[props.tone || styles.tone]
+        styles.Container.tones[props.tone || styles.tone],
+        styles.Container.base
       ]}
-      tone={props.tone ?? styles.tone}
-      states={props.tone ?? styles.tone}
       forwardStates
     >
       <Text
         width={props.width}
         style={[
-          props.style?.TitleText,
-          props.style?.TitleText?.[props.tone || styles.tone],
-          styles.TitleText,
-          styles.TitleText[props.tone || styles.tone]
+          props.style?.TitleText, //
+          styles.TitleText.tones[props.tone || styles.tone],
+          styles.TitleText.base
         ]}
       >
         {props.title}
@@ -72,9 +67,8 @@ const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
           width={props.width}
           style={[
             props.style?.DescriptionText,
-            props.style?.DescriptionText?.[props.tone || styles.tone],
-            styles.DescriptionText,
-            styles.DescriptionText[props.tone || styles.tone]
+            styles.DescriptionText.tones[props.tone || styles.tone],
+            styles.DescriptionText.base
           ]}
         >
           {props.description}

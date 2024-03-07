@@ -17,7 +17,7 @@
 
 import { type Component } from 'solid-js';
 import { View, Text, type NodeProps } from '@lightningjs/solid';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 import styles, { type ButtonStyles } from './Button.styles.js';
 
 interface ButtonProps extends NodeProps {
@@ -28,7 +28,7 @@ interface ButtonProps extends NodeProps {
 
 interface ButtonContainerProps extends NodeProps {
   tone?: Tone;
-  style?: Omit<ButtonStyles, 'tone'>;
+  style?: Omit<ButtonStyles, 'tone' | 'Text'>;
 }
 
 const Button: Component<ButtonProps> = props => {
@@ -36,24 +36,18 @@ const Button: Component<ButtonProps> = props => {
     <View
       {...props}
       style={[
-        ...[props.style].flat(),
-        props.style?.Container,
-        props.style?.Container?.[props.tone || styles.tone],
-        styles.Container,
-        styles.Container?.[props.tone || styles.tone]
+        ...[props.style].flat(), //
+        styles.Container.tones?.[props.tone ?? styles.tone],
+        styles.Container.base
       ]}
-      tone={props.tone ?? styles.tone}
-      states={props.tone ?? styles.tone}
       forwardStates
     >
       <Text
         style={[
-          props.style?.Text,
-          props.style?.Text?.[props.tone || styles.tone],
-          styles.Text,
-          styles.Text[props.tone || styles.tone]
+          ...[props.style?.Text].flat(), //
+          styles.Text.tones[props.tone ?? styles.tone],
+          styles.Text.base
         ]}
-        tone={props.tone || styles.tone}
       >
         {props.children}
       </Text>
@@ -66,14 +60,10 @@ const ButtonContainer: Component<ButtonContainerProps> = props => {
     <View
       {...props}
       style={[
-        ...[props.style].flat(),
-        props.style?.Container,
-        props.style?.Container?.[props.tone || styles.tone],
-        styles.Container,
-        styles.Container?.[props.tone || styles.tone]
+        ...[props.style].flat(), //
+        styles.Container.tones?.[props.tone ?? styles.tone],
+        styles.Container.base
       ]}
-      tone={props.tone ?? styles.tone}
-      states={props.tone ?? styles.tone}
       forwardStates
     />
   );

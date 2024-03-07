@@ -17,7 +17,7 @@
 
 import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
@@ -39,11 +39,11 @@ export type InputStyleProperties = {
 export type InputConfig = ComponentStyleConfig<InputStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Input: { styles: themeStyles, tone } = { styles: {}, tone: 'neutral' } } = theme?.componentConfig;
+const { Input: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: InputConfig = {
   themeKeys: {
-    justifyContent: 'justifyContent',
+    justifyContent: 'justifyContent'
   },
   base: {
     display: 'flex',
@@ -53,7 +53,6 @@ const container: InputConfig = {
     height: 100,
     actualTitle: ''
   },
-  toneModes: {},
   themeStyles
 };
 
@@ -74,21 +73,23 @@ const input: InputConfig = {
     borderRadius: theme.radius.sm,
     marginX: theme.spacer.xxxl
   },
-  toneModes: {
+  modes: {
     focus: {
       color: theme.color.interactiveNeutralFocus
     },
     disabled: {
       color: theme.color.fillNeutralDisabled
-    },
+    }
+  },
+  tones: {
     inverse: {
       color: theme.color.interactiveInverse
     },
     brand: {
-      color: theme.color.interactiveBrand
-    },
-    'brand-focus': {
-      color: theme.color.fillNeutral
+      color: theme.color.interactiveBrand,
+      focus: {
+        color: theme.color.fillNeutral
+      }
     }
   },
   themeStyles
@@ -96,14 +97,13 @@ const input: InputConfig = {
 
 const text: InputConfig = {
   themeKeys: {
-    color: 'textColor',
+    color: 'textColor'
   },
   base: {
     textAlign: 'left',
     color: theme.color.textNeutral,
     ...theme.typography.button1
   },
-  toneModes: {},
   themeStyles
 };
 
@@ -112,7 +112,7 @@ const InputContainer = makeComponentStyles<InputStyles['InputContainer']>(input)
 const Text = makeComponentStyles<InputStyles['Text']>(text);
 
 const styles: InputStyles = {
-  tone: tone,
+  tone: defaultTone || 'neutral',
   Container,
   Text,
   InputContainer

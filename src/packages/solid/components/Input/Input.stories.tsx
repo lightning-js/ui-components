@@ -17,8 +17,6 @@
 
 import Input from './Input.jsx';
 import type { Meta, StoryObj } from 'storybook-solidjs';
-import lightning from '../../assets/images/ic_lightning_white_32.png';
-import { hexColor } from '@lightningjs/solid';
 import { createSignal } from 'solid-js';
 
 type Story = StoryObj<typeof Input>;
@@ -54,33 +52,46 @@ const meta: Meta<typeof Input> = {
 export default meta;
 
 export const Basic: Story = {
-
   render: args => {
     let inputContainer;
 
-    let handleKeyPress = (e) => {
-      if (e.key.length ===  1) {
+    let handleKeyPress = e => {
+      if (e.key.length === 1) {
         if (!inputContainer.actualTitle || inputContainer.actualTitle === '') {
           inputContainer.actualTitle = e.key;
-          inputContainer.position=1;
+          inputContainer.position = 1;
         } else {
-          inputContainer.actualTitle= inputContainer.actualTitle.slice(0,inputContainer.position) + e.key +  inputContainer.actualTitle.slice(inputContainer.position,inputContainer.actualTitle.length - 1);
+          inputContainer.actualTitle =
+            inputContainer.actualTitle.slice(0, inputContainer.position) +
+            e.key +
+            inputContainer.actualTitle.slice(inputContainer.position, inputContainer.actualTitle.length - 1);
           inputContainer.position++;
         }
-    } else if (e.key === 'Backspace') {
-      inputContainer.actualTitle = inputContainer.actualTitle.slice(0, inputContainer.actualTitle.length - 1);
-      inputContainer.position = inputContainer.position === 0 ? 0 : inputContainer.position - 1;
-    }
-    setTitle(inputContainer.actualTitle);
-  }
-  
+      } else if (e.key === 'Backspace') {
+        inputContainer.actualTitle = inputContainer.actualTitle.slice(
+          0,
+          inputContainer.actualTitle.length - 1
+        );
+        inputContainer.position = inputContainer.position === 0 ? 0 : inputContainer.position - 1;
+      }
+      setTitle(inputContainer.actualTitle);
+    };
+
     const [title, setTitle] = createSignal(args.actualTitle);
 
-    return <Input autofocus {...args} onKeyPress={handleKeyPress} keySignal={[title, setTitle]} ref={inputContainer}/>;
+    return (
+      <Input
+        autofocus
+        {...args}
+        onKeyPress={handleKeyPress}
+        keySignal={[title, setTitle]}
+        ref={inputContainer}
+      />
+    );
   },
   args: {
-    eyebrow: "eyebrow",
-    helpText: "helpText",
+    eyebrow: 'eyebrow',
+    helpText: 'helpText',
     width: 100,
     height: 100,
     actualTitle: '',

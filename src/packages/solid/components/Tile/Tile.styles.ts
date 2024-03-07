@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Comcast Cable Communications Management, LLC
+ * Copyright 2024 Comcast Cable Communications Management, LLC
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,28 +23,28 @@ import { makeComponentStyles } from '../../utils/index.js';
 
 export interface TileStyles {
   tone: Tone;
-  Container: NodeStyleSet<{ padding: number[] }>;
+  Container: NodeStyleSet<{ padding: number[]; paddingYProgress: number }>;
   InsetBottom: NodeStyleSet;
   StandardBottom: NodeStyleSet;
   LogoContainer: NodeStyleSet;
 }
 
-type TileStyleProperties = Partial<{
+export type TileStyleProperties = Partial<{
   alpha: NodeStyles['alpha'];
   radius: NodeStyles['borderRadius'];
+  paddingYProgress: number;
 }>;
 
 type TileConfig = ComponentStyleConfig<TileStyleProperties>;
-
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Tile: { styles: tileThemeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
-  theme?.componentConfig;
+const { Tile: { defaultTone, ...tileThemeStyles } = { styles: {} } } = theme?.componentConfig;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Surface: { styles: surfaceThemeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Surface: { defaultSurfaceTone, ...surfaceThemeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: TileConfig = {
   themeKeys: {
-    alpha: 'alpha'
+    alpha: 'alpha',
+    paddingYProgress: 'paddingYProgress'
   },
   base: {
     width: 400,
@@ -55,7 +55,7 @@ const container: TileConfig = {
     borderRadius: theme.radius.md,
     alpha: theme.alpha.primary
   },
-  toneModes: {
+  modes: {
     disabled: {
       alpha: theme.alpha.inactive
     }
@@ -74,7 +74,6 @@ const insetBottom: TileConfig = {
     justifyContent: 'flexStart',
     mountY: 1
   },
-  toneModes: {},
   themeStyles: tileThemeStyles
 };
 
@@ -85,7 +84,6 @@ const standardBottom: TileConfig = {
     flexDirection: 'column',
     justifyContent: 'flexStart'
   },
-  toneModes: {},
   themeStyles: tileThemeStyles
 };
 
@@ -95,7 +93,6 @@ const logoContainer: TileConfig = {
     width: theme.spacer.lg * 5,
     height: theme.spacer.xxl + theme.spacer.md
   },
-  toneModes: {},
   themeStyles: tileThemeStyles
 };
 
@@ -106,7 +103,7 @@ const StandardBottom = makeComponentStyles<TileStyles['StandardBottom']>(standar
 const LogoContainer = makeComponentStyles<TileStyles['LogoContainer']>(logoContainer);
 
 const styles: TileStyles = {
-  tone: defaultTone,
+  tone: defaultTone || defaultSurfaceTone || 'neutral',
   Container,
   InsetBottom,
   StandardBottom,

@@ -22,7 +22,7 @@ import styles, { type ColumnStyles } from './Column.styles.js';
 import { withScrolling } from '../../utils/withScrolling.js';
 import { handleNavigation, onGridFocus } from '../../utils/handleNavigation.js';
 import { chainFunctions } from '../../index.js';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 
 export interface ColumnProps extends NodeProps {
   /** When auto scrolling, item index at which scrolling begins */
@@ -76,15 +76,11 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
         props.onSelectedChanged,
         props.scroll !== 'none' ? withScrolling(props.y as number) : undefined
       )}
-      tone={props.tone ?? styles.tone}
       style={[
         ...[props.style].flat(),
-        props.style?.Container,
-        props.style?.Container?.[props.tone || styles.tone],
-        styles.Container,
-        styles.Container?.[props.tone || styles.tone]
+        styles.Container.tones[props.tone ?? styles.tone],
+        styles.Container.base
       ]}
-      states={props.tone ?? styles.tone}
     />
   );
 };

@@ -19,11 +19,8 @@ import { Text, Show } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
 import Icon, { type IconProps } from '../Icon/Icon.jsx';
 import styles, { type BadgeStyles } from './Badge.styles.js';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 withPadding; // Preserve the import.
-
-// props in LUI: title, icon, iconAlign, iconWidth, iconHeight
-// NOTE: Badge can have an icon on left or right or no Icon
 
 export type BadgeProps = {
   /**
@@ -45,39 +42,42 @@ export type BadgeProps = {
    */
   tone?: Tone;
 
+  padding?: number[];
+
   style?: Partial<BadgeStyles>;
 };
 
 const Badge: Component<BadgeProps> = (props: BadgeProps) => {
   return (
     <node
-      use:withPadding={props?.style?.Container?.padding ?? styles.Container.padding}
+      use:withPadding={
+        props.padding ??
+        styles.Container?.tones[props.tone ?? styles.tone]?.padding ??
+        styles.Container.base.padding
+      }
       {...props}
       style={[
-        ...[props.style].flat(),
-        props.style?.Container,
-        props.style?.Container?.[props.tone || styles.tone],
-        styles.Container,
-        styles.Container?.[props.tone || styles.tone]
+        ...[props.style].flat(), //
+        styles.Container.tones[props.tone || styles.tone],
+        styles.Container.base
       ]}
-      tone={props.tone || styles.tone}
-      states={props.tone || styles.tone} // set initial tone
       forwardStates
     >
       <Show when={Boolean(props.icon && props.iconAlign !== 'right')}>
-        <Icon {...props.icon} {...styles.Icon[props.tone || styles.tone]} />
+        <Icon {...props.icon} style={[styles.Icon.tones[props.tone ?? styles.tone], styles.Icon.base]} />
       </Show>
-      <Text style={styles.Text} tone={props.tone || styles.tone}>
+      <Text
+        style={[styles.Text.tones[props.tone ?? styles.tone], styles.Text.base]}
+        tone={props.tone || styles.tone}
+      >
         {props.title}
       </Text>
       <Show when={Boolean(props.icon && props.iconAlign === 'right')}>
         <Icon
           {...props.icon}
           style={[
-            props.style?.Icon,
-            props.style?.Icon?.[props.tone || styles.tone],
-            styles.Icon,
-            styles.Icon[props.tone || styles.tone]
+            styles.Icon.tones?.[props.tone ?? styles.tone], //
+            styles.Icon.base
           ]}
         />
       </Show>

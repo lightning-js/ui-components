@@ -32,7 +32,13 @@ export type KeySize = keyof KeySizes;
 
 export interface KeyStyles {
   tone: Tone;
-  Container: NodeStyleSet<{ padding: number[] }>;
+  Container: NodeStyleSet<{
+    padding: number[];
+    sizes: KeySizes;
+    baseWidth: number;
+    keySpacing: number;
+    contentColor: NodeStyles['color'];
+  }>;
   Text: TextStyleSet;
 }
 
@@ -51,8 +57,7 @@ export type KeyStyleProperties = {
 export type KeyConfig = ComponentStyleConfig<KeyStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Key: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
-  theme?.componentConfig;
+const { Key: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: KeyConfig = {
   themeKeys: {
@@ -85,7 +90,7 @@ const container: KeyConfig = {
     alignItems: 'center',
     borderRadius: theme.radius.sm
   },
-  toneModes: {
+  modes: {
     focus: {
       color: theme.color.interactiveNeutralFocus,
       contentColor: theme.color.fillInverse
@@ -93,16 +98,20 @@ const container: KeyConfig = {
     disabled: {
       color: theme.color.fillNeutralDisabled,
       contentColor: theme.color.fillNeutralDisabled
-    },
+    }
+  },
+  tones: {
     inverse: {
-      color: theme.color.interactiveInverse
+      color: theme.color.interactiveInverse,
+      focus: {
+        color: theme.color.interactiveInverseFocus,
+        contentColor: theme.color.fillNeutral
+      }
     },
-    'inverse-focus': {
-      color: theme.color.interactiveInverseFocus,
-      contentColor: theme.color.fillNeutral
-    },
-    'brand-focus': {
-      contentColor: theme.color.fillNeutral
+    brand: {
+      focus: {
+        contentColor: theme.color.fillNeutral
+      }
     }
   },
   themeStyles
@@ -116,15 +125,19 @@ const text: KeyConfig = {
     color: theme.color.textNeutral,
     ...theme.typography.headline2
   },
-  toneModes: {
+  modes: {
     focus: {
       color: theme.color.textInverse
     },
     disabled: {
       color: theme.color.textNeutralDisabled
-    },
-    'inverse-focus': {
-      color: theme.color.textNeutral
+    }
+  },
+  tones: {
+    inverse: {
+      focus: {
+        color: theme.color.textNeutral
+      }
     }
   },
   themeStyles
@@ -134,7 +147,7 @@ const Container = makeComponentStyles<KeyStyles['Container']>(container);
 const Text = makeComponentStyles<KeyStyles['Text']>(text);
 
 const styles: KeyStyles = {
-  tone: defaultTone,
+  tone: defaultTone || 'neutral',
   Container,
   Text
 };

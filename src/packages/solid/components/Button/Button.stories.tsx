@@ -76,10 +76,26 @@ const meta: Meta<typeof Button> = {
 
 export const Basic: Story = {
   render: args => {
+    return <Button {...args}>Button</Button>;
+  },
+  args: {
+    width: 400,
+    height: 100
+  }
+};
+
+export const Container: Story = {
+  render: args => {
     return (
       <ButtonContainer {...args}>
-        <Icon tone={args.tone ?? buttonStyles.tone} width={22} height={28} src={lightning} />
-        <Text tone={args.tone ?? buttonStyles.tone} style={buttonStyles.Text}>
+        <Icon
+          tone={args.tone ?? buttonStyles.tone}
+          width={22}
+          height={28}
+          src={lightning}
+          style={[buttonStyles.Content.tones[args.tone ?? buttonStyles.tone], buttonStyles.Content]}
+        />
+        <Text style={[buttonStyles.Text.tones[args.tone ?? buttonStyles.tone], buttonStyles.Text.base]}>
           Button
         </Text>
       </ButtonContainer>
@@ -98,7 +114,7 @@ export const WithCheckbox: Story = {
         <Checkbox checked tone={args.tone ?? buttonStyles.tone}>
           <Icon tone={args.tone ?? buttonStyles.tone} width={18} height={14} src={check} />
         </Checkbox>
-        <Text tone={args.tone ?? buttonStyles.tone} style={buttonStyles.Text}>
+        <Text style={[buttonStyles.Text.tones[args.tone ?? buttonStyles.tone], buttonStyles.Text.base]}>
           Button
         </Text>
       </ButtonContainer>
@@ -114,7 +130,7 @@ export const WithCheckboxRight: Story = {
   render: args => {
     return (
       <ButtonContainer {...args}>
-        <Text tone={args.tone ?? buttonStyles.tone} style={buttonStyles.Text}>
+        <Text style={[buttonStyles.Text.tones[args.tone ?? buttonStyles.tone], buttonStyles.Text.base]}>
           Button
         </Text>
         <Checkbox tone={args.tone ?? buttonStyles.tone} checked>

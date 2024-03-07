@@ -15,56 +15,43 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+// import * as Solid from '@lightningjs/solid';
 import type { TextStyles, NodeStyles } from '@lightningjs/solid';
-import type { ObjectKeys } from './object-methods.js';
-import type { WithTonesModes } from 'types';
 
-export type StyleObject<T = object> = (NodeStyles | TextStyles) | ToneMode | T;
-
-export type ThemeKeys<
-  ComponentStyleList = object,
-  BaseStyleType extends NodeStyles | TextStyles = NodeStyles
-> = {
+export type ThemeKeys<BaseStyleType, ComponentStyleList = object> = {
   // solid style name: themed style name
   [k in keyof BaseStyleType as keyof BaseStyleType]?: keyof ComponentStyleList;
 };
 
 export interface ComponentStyleConfig<
   ComponentStyleList = object,
-  BaseStyleType extends NodeStyles | TextStyles = NodeStyles
+  BaseStyleType extends NodeStyles | TextStyles | NodeColor = NodeStyles | TextStyles
 > {
-  themeKeys: ThemeKeys<ComponentStyleList, BaseStyleType>;
+  themeKeys: ThemeKeys<BaseStyleType, ComponentStyleList>;
   base: BaseStyleType;
-  toneModes?: {
-    // ex. focus
-    [k in VariantList]?: {
-      // ex. color: valid themed color value
-      [k in ObjectKeys<
-        ThemeKeys<ComponentStyleList, BaseStyleType>
-      >]?: ComponentStyleList[keyof ComponentStyleList];
-    };
+  tones?: {
+    [k in Tone]?:
+      | (ComponentStyleList & BaseStyleType)
+      | {
+          [k in Mode]?: ComponentStyleList & BaseStyleType;
+        };
   };
+  modes?: {
+    [k in Mode]?: ComponentStyleList & BaseStyleType;
+  };
+  modeKeys?: string[];
+  toneKeys?: string[];
   // TODO type incoming theme styles
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  themeStyles: any;
-  toneModeFallbackMap?: ToneModeFallbackMap;
+  themeStyles: {
+    [k in VariantList]?: ComponentStyleList;
+  };
 }
-
-export type ToneModeFallbackMap = {
-  [key in VariantList]?: VariantList;
-};
 
 export type Tone = 'neutral' | 'inverse' | 'brand';
 export type Mode = 'focus' | 'disabled';
-export type ToneMode =
-  | 'neutral-focus'
-  | 'inverse-focus'
-  | 'brand-focus'
-  | 'neutral-disabled'
-  | 'inverse-disabled'
-  | 'brand-disabled';
 
-export type VariantList = 'base' | Tone | Mode | ToneMode;
+export type VariantList = 'base' | Tone | Mode;
 
 export type VariantPropertySet<T> = {
   [key in VariantList]?: {
@@ -72,10 +59,51 @@ export type VariantPropertySet<T> = {
   };
 };
 
-export type NodeStyleSet<AdditionalTypes = object> = Required<
-  NodeStyles & AdditionalTypes & WithTonesModes<NodeStyles & AdditionalTypes>
->;
+export interface WithTonesModes<StyleSet> {
+  /**
+   * base styles are `neutral`
+   */
+  // TODO `base` is required in theme, but not valid to be passed to component
+  // base: StyleSet;
+  // focus?: Partial<StyleSet>;
+  // disabled?: Partial<StyleSet>;
+  neutral?: Partial<StyleSet> & {
+    focus?: Partial<StyleSet>;
+    disabled?: Partial<StyleSet>;
+  };
+  inverse?: Partial<StyleSet> & {
+    focus?: Partial<StyleSet>;
+    disabled?: Partial<StyleSet>;
+  };
+  brand?: Partial<StyleSet> & {
+    focus?: Partial<StyleSet>;
+    disabled?: Partial<StyleSet>;
+  };
+}
 
-export type TextStyleSet<AdditionalTypes = object> = TextStyles &
-  AdditionalTypes &
-  WithTonesModes<TextStyles & AdditionalTypes>;
+export interface WithModes<StyleSet> {
+  focus?: Partial<StyleSet>;
+  disabled?: Partial<StyleSet>;
+}
+
+export type FlexibleNodeStyles<AdditionalTypes = undefined> = NodeStyles & AdditionalTypes;
+export type FlexibleTextStyles<AdditionalTypes = undefined> = TextStyles & AdditionalTypes;
+
+// could be a nested object
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type NodeStyleSet<AdditionalTypes = undefined> = {
+  base: Required<FlexibleNodeStyles<AdditionalTypes>> & WithModes<FlexibleNodeStyles<AdditionalTypes>>;
+  tones: WithTonesModes<FlexibleNodeStyles<AdditionalTypes>>; // includes modes of tones
+};
+
+// could be a nested object
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type TextStyleSet<AdditionalTypes = undefined> = {
+  base: Required<TextStyles & AdditionalTypes> & WithModes<TextStyles & AdditionalTypes>;
+  tones: WithTonesModes<TextStyles & AdditionalTypes>;
+};
+
+/**
+ * renderer accepts 0xRGBA as either a number or string
+ */
+export type NodeColor = number | string;

@@ -17,12 +17,12 @@
 
 import { type Component } from 'solid-js';
 import { type IntrinsicNodeProps } from '@lightningjs/solid';
-import styles, { type KeyboardStyles } from './Keyboard.styles.js';
+import styles, { type KeyboardStyleProperties, type KeyboardStyles } from './Keyboard.styles.js';
 import KeyboardSimple from './KeyboardSimple.jsx';
 import type { KeyProps } from '../Key/Key.jsx';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 
-export type KeyboardFormat = Array<Array<string | Record<string, KeyProps>>>;
+export type KeyboardFormat = Array<Array<string | KeyProps>>;
 
 export interface KeyboardProps extends IntrinsicNodeProps {
   /**
@@ -50,6 +50,8 @@ export interface KeyboardProps extends IntrinsicNodeProps {
    */
   defaultFormat?: string;
 
+  keySpacing?: KeyboardStyleProperties['keySpacing'];
+
   style?: Partial<KeyboardStyles>;
 
   tone?: Tone;
@@ -59,16 +61,12 @@ export interface KeyboardProps extends IntrinsicNodeProps {
 const Keyboard: Component<KeyboardProps> = (props: KeyboardProps) => {
   return (
     <KeyboardSimple
-      tone={props.tone ?? styles.tone}
+      {...props}
       style={[
         ...[props.style].flat(),
-        props.style?.Container,
-        props.style?.Container?.[props.tone || styles.tone],
-        styles.Container,
-        styles.Container?.[props.tone || styles.tone]
+        styles.Container.tones[props.tone ?? styles.tone],
+        styles.Container.base
       ]}
-      states={props.tone ?? styles.tone}
-      {...props}
     />
   );
 };

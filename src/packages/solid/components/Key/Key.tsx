@@ -19,7 +19,7 @@ import type { Component } from 'solid-js';
 import { type IntrinsicNodeProps, Text } from '@lightningjs/solid';
 import { ButtonContainer } from '../Button/Button.jsx';
 import styles, { type KeySize, type KeyStyles } from './Key.styles.js';
-import type { Tone } from '../../types.js';
+import type { Tone } from '../../types/types.js';
 
 export interface KeyProps extends IntrinsicNodeProps {
   title?: string;
@@ -38,13 +38,13 @@ export interface KeyProps extends IntrinsicNodeProps {
   /**
    * The horizontal spacing between each key in a Keyboard. This value is factored into the width of the key so that it aligns with with the borders of other keys in a Keyboard.
    */
-  keySpacing: number;
+  keySpacing?: number;
   /**
    * If true, pressing the key will trigger the $toggleKeyboard event. If false, the key will trigger the $onSoftKey event.
    */
   toggle?: boolean;
 
-  style?: Partial<KeyStyles>;
+  style?: KeyStyles;
 
   tone?: Tone;
 }
@@ -54,19 +54,21 @@ const Key: Component<KeyProps> = props => {
   return (
     <ButtonContainer
       {...props}
-      tone={props.tone ?? styles.tone}
       style={[
-        ...[props.style].flat(),
-        props.style?.Container,
-        props.style?.Container?.[props.tone || styles.tone],
-        styles.Container,
-        styles.Container?.[props.tone || styles.tone]
+        ...[props.style].flat(), //
+        styles.Container.tones?.[props.tone ?? styles.tone],
+        styles.Container.base
       ]}
-      states={props.tone ?? styles.tone}
       forwardStates
       width={
-        style1.Container.sizes[props.size || 'sm'] * style1.Container.baseWidth +
-        style1.Container.keySpacing * (style1.Container.sizes[props.size || 'sm'] - 1)
+        (style1.Container?.tones?.[props.tone ?? styles.tone]?.sizes?.[props.size || 'sm'] ??
+          style1.Container.base.sizes[props.size || 'sm']) *
+          (style1.Container?.tones?.[props.tone ?? styles.tone]?.baseWidth ??
+            style1.Container.base.baseWidth) +
+        (style1.Container.tones?.[props.tone ?? styles.tone]?.keySpacing ??
+          style1.Container.base.keySpacing) *
+          (style1.Container.tones?.[props.tone ?? styles.tone]?.sizes?.[props.size || 'sm'] ??
+            style1.Container.base.sizes[props.size || 'sm'] - 1)
       }
       // Keep below for more thought
       //
@@ -81,13 +83,10 @@ const Key: Component<KeyProps> = props => {
     >
       <Text
         style={[
-          props.style?.Text,
-          props.style?.Text?.[props.tone || styles.tone],
-          styles.Text,
-          styles.Text[props.tone || styles.tone]
+          props.style?.Text, //
+          styles.Text.tones[props.tone ?? styles.tone],
+          styles.Text.base
         ]}
-        tone={props.tone ?? styles.tone}
-        states={props.tone ?? styles.tone}
       >
         {props.title ? props.title : ''}
       </Text>

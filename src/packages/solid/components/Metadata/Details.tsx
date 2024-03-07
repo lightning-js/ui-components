@@ -21,7 +21,7 @@ import Badge, { type BadgeProps } from '../Badge/Badge.jsx';
 import Rating, { type RatingProps } from './Rating.jsx';
 import styles from './Details.styles.js';
 import { type DetailsStyles } from './Details.styles.js';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 
 export interface DetailsProps extends IntrinsicNodeProps {
   /**
@@ -47,18 +47,14 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
     <View
       style={[
         ...[props.style].flat(),
-        props.style?.Container,
-        props.style?.Container?.[props.tone || styles.tone],
-        styles.Container,
-        styles.Container?.[props.tone || styles.tone]
+        styles.Container.tones[props.tone || styles.tone],
+        styles.Container.base
       ]}
-      tone={props.tone ?? styles.tone}
-      states={props.tone ?? styles.tone}
       forwardStates
       onBeforeLayout={(node: ElementNode, dimensions) => {
-        if (dimensions?.height) {
+        if (dimensions?.height && node.parent) {
           node.parent.height = dimensions.height;
-          node.parent.updateLayout();
+          node.parent?.updateLayout();
         }
       }}
       {...props}
@@ -66,13 +62,10 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
       <Show when={props.title}>
         <Text
           style={[
-            props.style?.Text,
-            props.style?.Text?.[props.tone || styles.tone],
-            styles.Text,
-            styles.Text[props.tone || styles.tone]
+            props.style?.Text, //
+            styles.Text.tones[props.tone || styles.tone],
+            styles.Text.base
           ]}
-          tone={props.tone ?? styles.tone}
-          states={props.tone ?? styles.tone}
         >
           {props.title}
         </Text>
@@ -83,11 +76,13 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
             {...badge}
             marginRight={
               props.badges?.length && idx() === props.badges.length - 1
-                ? props.style?.Container?.contentSpacing ?? styles.Container.contentSpacing
-                : props.style?.Container?.badgeContentSpacing ?? styles.Container.badgeContentSpacing
+                ? props.style?.Container?.contentSpacing ??
+                  styles.Container.tones[props.tone ?? styles.tone]?.contentSpacing ??
+                  styles.Container.base.contentSpacing
+                : props.style?.Container?.badgeContentSpacing ??
+                  styles.Container.tones[props.tone ?? styles.tone]?.badgeContentSpacing ??
+                  styles.Container.base.badgeContentSpacing
             }
-            tone={props.tone ?? styles.tone}
-            states={props.tone ?? styles.tone}
           />
         )}
       </For>
@@ -96,16 +91,17 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
           <Rating
             {...rating}
             style={[
-              props.style?.Text,
-              props.style?.Text?.[props.tone || styles.tone],
-              styles.Text,
-              styles.Text[props.tone || styles.tone]
+              props.style?.Text, //
+              styles.Text.tones[props.tone || styles.tone],
+              styles.Text.base
             ]}
-            tone={props.tone ?? styles.tone}
-            states={props.tone ?? styles.tone}
             forwardStates
             marginRight={
-              props.ratings?.length && idx() === props.ratings.length - 1 ? 0 : props.style?.Container?.ratingContentSpacing ?? styles.Container.ratingContentSpacing
+              props.ratings?.length && idx() === props.ratings.length - 1
+                ? 0
+                : props.style?.Container?.ratingContentSpacing ??
+                  styles.Container.tones[props.tone ?? styles.tone]?.ratingContentSpacing ??
+                  styles.Container.base.ratingContentSpacing
             }
           />
         )}

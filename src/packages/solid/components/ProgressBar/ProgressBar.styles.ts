@@ -37,8 +37,7 @@ type ProgressBarStyleProperties = {
 type ProgressBarConfig = ComponentStyleConfig<ProgressBarStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { ProgressBar: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
-  theme?.componentConfig;
+const { ProgressBar: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: ProgressBarConfig = {
   themeKeys: {
@@ -50,7 +49,7 @@ const container: ProgressBarConfig = {
     color: theme.color.fillNeutralTertiary,
     borderRadius: theme.radius.xs
   },
-  toneModes: {
+  tones: {
     inverse: {
       color: theme.color.fillInverseTertiary
     }
@@ -67,7 +66,7 @@ const progress: ProgressBarConfig = {
     borderRadius: theme.radius.xs,
     color: theme.color.fillNeutral
   },
-  toneModes: {
+  tones: {
     inverse: {
       color: theme.color.fillInverse
     },
@@ -82,7 +81,7 @@ const Container = makeComponentStyles<ProgressBarStyles['Container']>(container)
 const ProgressBar = makeComponentStyles<ProgressBarStyles['ProgressBar']>(progress);
 
 const styles: ProgressBarStyles = {
-  tone: defaultTone,
+  tone: defaultTone || 'neutral',
   Container,
   ProgressBar
 };
