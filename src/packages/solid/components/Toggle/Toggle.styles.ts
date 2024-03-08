@@ -29,6 +29,7 @@ export interface ToggleStyles {
 
 type ToggleStyleProperties = {
   backgroundColor?: NodeStyles['color'];
+  backgroundColorChecked?: NodeStyles['color'];
   knobWidth?: NodeStyles['width'];
   knobHeight?: NodeStyles['height'];
   knobPadding?: NodeStyles['padding'];
@@ -47,64 +48,53 @@ type ToggleConfig = ComponentStyleConfig<ToggleStyleProperties>;
 const { Toggle: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
   theme?.componentConfig;
 
+const knobSize = theme.spacer.xl;
+const knobPadding = theme.spacer.xs;
+const strokeWidth = theme.stroke.sm;
+
 const container: ToggleConfig = {
   themeKeys: {
     borderRadius: 'strokeRadius',
     borderColor: 'strokeColor',
-    color: 'backgroundColor'
+    color: 'backgroundColor',
+    colorChecked: 'backgroundColorChecked'
   },
   base: {
-    strokeColor: theme.color.fillNeutral,
-    backgroundColor: theme.color.fillInverseTertiary,
-    knobColor: theme.color.fillNeutral,
-    knobColorChecked: theme.color.fillInverse
+    borderColor: theme.color.fillNeutral,
+    color: theme.color.fillInverseTertiary,
+    colorChecked: theme.color.fillNeutral,
+    height: knobSize + (knobPadding + strokeWidth) * 2,
+    width: (strokeWidth + knobPadding * 2 + knobSize) * 2,
+    borderWidth: strokeWidth
   },
-  toneModes: {
+  modes: {
+    focus: {},
     disabled: {
-      strokeColor: theme.color.fillNeutralDisabled,
-      backgroundColor: theme.color.fillInverseDisabled,
-      knobColor: theme.color.fillNeutralDisabled,
-      knobColorChecked: theme.color.fillInverseDisabled
-    },
+      borderColor: theme.color.fillNeutralDisabled,
+      color: theme.color.fillInverseDisabled
+    }
+  },
+  tones: {
     inverse: {
-      strokeColor: theme.color.fillInverse,
-      backgroundColor: theme.color.fillNeutralTertiary,
-      knobColor: theme.color.fillInverse,
-      knobColorChecked: theme.color.fillNeutral
+      borderColor: theme.color.fillInverse,
+      color: theme.color.fillNeutralTertiary,
+      disabled: {
+        borderColor: theme.color.fillInverseDisabled,
+        color: theme.color.fillNeutralDisabled,
+        colorChecked: theme.color.fillInverseDisabled
+      }
     },
     brand: {
-      strokeColor: theme.color.fillBrand,
-      backgroundColor: theme.color.fillBrandTertiary,
-      knobColor: theme.color.fillBrand,
-      knobColorChecked: theme.color.fillInverse
-    },
-    'inverse-disabled': {
-      strokeColor: theme.color.fillInverseDisabled,
-      backgroundColor: theme.color.fillNeutralDisabled,
-      backgroundColorChecked: theme.color.fillInverseDisabled,
-      knobColor: theme.color.fillInverseDisabled,
-      knobColorChecked: theme.color.fillNeutralDisabled
-    },
-    'brand-disabled': {
-      strokeColor: theme.color.fillNeutralDisabled,
-      backgroundColor: theme.color.fillInverseDisabled,
-      backgroundColorChecked: theme.color.fillNeutralDisabled,
-      knobColor: theme.color.fillNeutralDisabled,
-      knobColorChecked: theme.color.fillInverseDisabled
-    },
-    'neutral-checked': {
-        backgroundColor: theme.color.fillNeutral,
-    },
-    'neutral-checked-disabled': {
-        backgroundColor: theme.color.fillNeutralDisabled,
-    }
-    'inverse-checked': {
-        backgroundColor: theme.color.fillInverse,
-    },
-    'brand-checked': {
-        backgroundColor: theme.color.fillBrand,
+      borderColor: theme.color.fillBrand,
+      color: theme.color.fillBrandTertiary,
+      disabled: {
+        borderColor: theme.color.fillNeutralDisabled,
+        color: theme.color.fillInverseDisabled,
+        colorChecked: theme.color.fillNeutralDisabled
+      }
     }
   },
+  // TODO: figure out checked state
   themeStyles
 };
 
@@ -114,30 +104,40 @@ const knob: ToggleConfig = {
     height: 'knobHeight',
     padding: 'knobPadding',
     borderRadius: 'knobRadius',
-    color: 'knobColor'
+    color: 'knobColor',
+    colorChecked: 'knobColorChecked'
   },
-  base: {},
-  toneModes: {
-    focus: {
-      color: theme.color.interactiveNeutralFocus,
-      contentColor: theme.color.fillInverse
-    },
+  base: {
+    color: theme.color.fillNeutral,
+    colorChecked: theme.color.fillInverse,
+    width: knobSize,
+    height: knobSize,
+    borderRadius: knobSize / 2,
+    padding: knobPadding
+  },
+  modes: {
+    focus: {},
     disabled: {
       color: theme.color.fillNeutralDisabled,
-      contentColor: theme.color.textNeutralDisabled
-    },
+      colorChecked: theme.color.fillInverseDisabled
+    }
+  },
+  tones: {
     inverse: {
-      color: theme.color.interactiveInverse
+      color: theme.color.fillInverse,
+      colorChecked: theme.color.fillNeutral,
+      disabled: {
+        color: theme.color.fillInverseDisabled,
+        colorChecked: theme.color.fillNeutralDisabled
+      }
     },
     brand: {
-      contentColor: theme.color.fillBrand
-    },
-    'inverse-focus': {
-      color: theme.color.interactiveInverseFocus,
-      contentColor: theme.color.fillNeutral
-    },
-    'brand-focus': {
-      contentColor: theme.color.fillNeutral
+      color: theme.color.fillBrand,
+      colorChecked: theme.color.fillInverse,
+      disabled: {
+        color: theme.color.fillNeutralDisabled,
+        colorChecked: theme.color.fillInverseDisabled
+      }
     }
   },
   themeStyles

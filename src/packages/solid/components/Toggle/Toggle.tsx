@@ -41,64 +41,86 @@ const Toggle: Component<ToggleProps> = (props: ToggleProps) => {
       : Container?.style.strokeWidth + Container?.style.knobPadding || 0;
   };
   const toggleX = createMemo(() => positionToggle(props.checked));
+  console.log(styles);
   return (
     <View
-      forwardStates
       {...props}
-      tone={props.tone ?? styles.tone}
+      // tone={props.tone ?? styles.tone}
       style={[
-        ...[props.style].Container.flat(),
-        props.style?.Container,
-        props.style?.Container?.[props.tone || styles.tone],
-        styles.Container,
-        styles.Container?.[props.tone || styles.tone]
+        ...[props.style].flat(),
+        styles.Container.tones?.[props.tone ?? styles.tone],
+        styles.Container.base
       ]}
-      states={[...(props.checked ? ['checked'] : []), props.tone ?? styles.tone]}
-      ref={Container}
-      children={
+      // states={[...(props.checked ? ['checked'] : []), props.tone ?? styles.tone]}
+      // ref={Container}
+      color={
         props.checked
-          ? props.children || (
-              <View
-                style={[
-                  ...[props.style].Knob.flat(),
-                  props.style?.Container,
-                  props.style?.Container?.[props.tone || styles.tone],
-                  styles.Container,
-                  styles.Container?.[props.tone || styles.tone]
-                ]}
-                y={
-                  (([props.style].flat().Knob.height || props.style?.Knob.height || styles.Knob.height || 0) -
-                    ([props.style].flat().Knob.knobHeight ||
-                      props.style?.Knob.knobHeight ||
-                      styles.Knob.knobHeight ||
-                      0)) /
-                  2
-                }
-                x={toggleX}
-                zIndex={2}
-                width={
-                  ([props.style].flat().Knob.knobWidth ||
-                    props.style?.Knob.knobWidth ||
-                    styles.Knob.knobWidth ||
-                    0) - 2
-                }
-                height={
-                  ([props.style].flat().Knob?.height ||
-                    props.style?.Knob?.height ||
-                    styles.Knob.height ||
-                    0) - 2
-                }
-                borderRadius={
-                  [props.style].flat().Knob?.borderRadius ||
-                  props.style?.Knob?.borderRadius ||
-                  styles.Knob.borderRadius ||
-                  0
-                }
-              />
-            )
-          : ''
+          ? [props.style].flat()?.Container?.colorChecked ??
+            styles.Container.tones?.[props.tone ?? styles.tone].colorChecked ??
+            styles.Container.base.colorChecked
+          : [props.style].flat()?.Container?.color ??
+            styles.Container.tones?.[props.tone ?? styles.tone].color ??
+            styles.Container.base.color
       }
-    />
+      // color={
+      //   props.checked
+      //     ? styles.Container.tones?.[props.tone ?? styles.tone].backgroundColorChecked ??
+      //       styles.Container.base.backgroundColorChecked
+      //     : styles.Container.tones?.[props.tone ?? styles.tone].backgroundColor ??
+      //       styles.Container.base.backgroundColor
+      // }
+    >
+      <View
+        style={[styles.Knob.tones?.[props.tone ?? styles.tone], styles.Knob.base]}
+        // y={
+        //   (([props.style].flat()?.Knob?.height || props.style?.Knob.height || styles.Knob.height || 0) -
+        //     ([props.style].flat()?.Knob?.knobHeight ||
+        //       props.style?.Knob?.knobHeight ||
+        //       styles.Knob.knobHeight ||
+        //       0)) /
+        //   2
+        // }
+        color={
+          props.checked
+            ? [props.style].flat()?.Knob?.colorChecked ??
+              styles.Knob.tones?.[props.tone ?? styles.tone].colorChecked ??
+              styles.Knob.base.colorChecked
+            : [props.style].flat()?.Knob?.color ??
+              styles.Knob.tones?.[props.tone ?? styles.tone].color ??
+              styles.Knob.base.color
+        }
+        y={
+          ((styles.Container.tones[props.tone ?? styles.tone]?.height ?? styles.Container.base.height ?? 2) -
+            (styles.Knob.tones[props.tone ?? styles.tone]?.height ?? styles.Knob.base.height ?? 0)) /
+          2
+        }
+        // x={toggleX}
+        zIndex={2}
+        // width={
+        //   ([props.style].flat()?.Knob?.knobWidth ||
+        //     props.style?.Knob.knobWidth ||
+        //     styles.Knob.knobWidth ||
+        //     0) - 2
+        // }
+        width={(styles.Knob.tones[props.tone ?? styles.tone]?.width ?? styles.Knob.base.width ?? 2) - 2}
+        // height={
+        //   ([props.style].flat()?.Knob?.knobHeight ||
+        //     props.style?.Knob?.knobHeight ||
+        //     styles.Knob.knobHeight ||
+        //     0) - 2
+        // }
+        height={(styles.Knob.tones[props.tone ?? styles.tone]?.height ?? styles.Knob.base.height ?? 2) - 2}
+        // borderRadius={
+        //   [props.style].flat()?.Knob?.knobRadius ||
+        //   props.style?.Knob?.knobRadius ||
+        //   styles.Knob?.knobRadius ||
+        //   0
+        // }
+        borderRadius={
+          styles.Knob.tones[props.tone ?? styles.tone]?.borderRadius ?? styles.Knob.base.borderRadius ?? 2
+        }
+      />
+    </View>
   );
 };
 
