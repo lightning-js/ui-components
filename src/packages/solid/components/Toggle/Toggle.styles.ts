@@ -65,7 +65,8 @@ const container: ToggleConfig = {
     colorChecked: theme.color.fillNeutral,
     height: knobSize + (knobPadding + strokeWidth) * 2,
     width: (strokeWidth + knobPadding * 2 + knobSize) * 2,
-    borderWidth: strokeWidth
+    borderWidth: strokeWidth,
+    borderRadius: knobSize / 2 + knobPadding + strokeWidth
   },
   modes: {
     focus: {},
