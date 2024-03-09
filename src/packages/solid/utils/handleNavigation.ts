@@ -28,6 +28,7 @@ export function onGridFocus(this: ElementNode) {
   }
   if (!(child instanceof ElementNode)) return false;
   child.setFocus();
+  return true;
 }
 
 export function handleNavigation(direction: 'up' | 'right' | 'down' | 'left'): KeyHandler {
@@ -66,7 +67,7 @@ export function handleNavigation(direction: 'up' | 'right' | 'down' | 'left'): K
 
     if (this.selected === undefined) {
       this.selected = lastSelected;
-      if (this.children[this.selected].states!.has('focus')) {
+      if (this.children[this.selected]?.states!.has('focus')) {
         // This child is already focused, so bubble up to next handler
         return false;
       }
