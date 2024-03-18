@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { type Component, onMount } from 'solid-js';
+import { type Component } from 'solid-js';
 import { View, ElementNode, type NodeProps } from '@lightningjs/solid';
 import type { KeyHandler } from '@lightningjs/solid-primitives';
 import styles, { type RowStyles } from './Row.styles.js';
