@@ -32,7 +32,7 @@ export interface ToggleProps extends NodeProps {
 
 const Toggle: Component<ToggleProps> = (props: ToggleProps) => {
   const positionToggle = (checked: boolean, props: ToggleProps) => {
-    return checked
+    return checked != undefined && props.checked
       ? // width
         (styles.Container.tones?.[props.tone ?? styles.tone].width ?? styles.Container.base.width) -
           // strokeWidth
@@ -49,7 +49,7 @@ const Toggle: Component<ToggleProps> = (props: ToggleProps) => {
           // knobPadding
           (styles.Knob.tones?.[props.tone ?? styles.tone].padding ?? styles.Knob.base.padding) || 0;
   };
-  const toggleX = createMemo(() => positionToggle(props.checked ?? false, props));
+  const toggleX = createMemo(() => positionToggle(props.checked, props));
 
   return (
     <View
