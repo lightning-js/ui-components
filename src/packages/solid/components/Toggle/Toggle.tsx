@@ -18,7 +18,7 @@
 import { createMemo, type Component } from 'solid-js';
 import { View, type NodeProps } from '@lightningjs/solid';
 import styles, { type ToggleStyles } from './Toggle.styles.js';
-import type { Tone } from 'types';
+import type { Tone } from '../../types/types.js';
 
 export interface ToggleProps extends NodeProps {
   /**
@@ -34,31 +34,22 @@ const Toggle: Component<ToggleProps> = (props: ToggleProps) => {
   const positionToggle = (checked: boolean, props: ToggleProps) => {
     return checked
       ? // width
-        ([props.style].flat()?.width ??
-          styles.Container.tones?.[props.tone ?? styles.tone].width ??
-          styles.Container.base.width) -
+        (styles.Container.tones?.[props.tone ?? styles.tone].width ?? styles.Container.base.width) -
           // strokeWidth
-          ([props.style].flat()?.borderWidth ??
-            styles.Container.tones?.[props.tone ?? styles.tone].borderWidth ??
+          (styles.Container.tones?.[props.tone ?? styles.tone].borderWidth ??
             styles.Container.base.borderWidth) -
           // knobPadding
-          ([props.style?.Knob].flat()?.padding ??
-            styles.Knob.tones?.[props.tone ?? styles.tone].padding ??
-            styles.Knob.base.padding) -
+          (styles.Knob.tones?.[props.tone ?? styles.tone].padding ?? styles.Knob.base.padding) -
           // knobWidth
-          ([props.style?.Knob].flat()?.width ??
-            styles.Knob.tones?.[props.tone ?? styles.tone].width ??
-            styles.Knob.base.width) || 0
+          (styles.Knob.tones?.[props.tone ?? styles.tone].width ?? styles.Knob.base.width) || 0
       : // strokeWidth
-        ([props.style].flat()?.borderWidth ??
-          styles.Container.tones?.[props.tone ?? styles.tone].borderWidth ??
+
+        (styles.Container.tones?.[props.tone ?? styles.tone].borderWidth ??
           styles.Container.base.borderWidth) +
           // knobPadding
-          ([props.style?.Knob].flat()?.padding ??
-            styles.Knob.tones?.[props.tone ?? styles.tone].padding ??
-            styles.Knob.base.padding) || 0;
+          (styles.Knob.tones?.[props.tone ?? styles.tone].padding ?? styles.Knob.base.padding) || 0;
   };
-  const toggleX = createMemo(() => positionToggle(props.checked, props));
+  const toggleX = createMemo(() => positionToggle(props.checked ?? false, props));
 
   return (
     <View
@@ -71,46 +62,29 @@ const Toggle: Component<ToggleProps> = (props: ToggleProps) => {
       ]}
       color={
         props.checked
-          ? [props.style].flat()?.colorChecked ??
-            styles.Container.tones?.[props.tone ?? styles.tone].colorChecked ??
+          ? styles.Container.tones?.[props.tone ?? styles.tone].colorChecked ??
             styles.Container.base.colorChecked
-          : [props.style].flat()?.color ??
-            styles.Container.tones?.[props.tone ?? styles.tone].color ??
-            styles.Container.base.color
+          : styles.Container.tones?.[props.tone ?? styles.tone].color ?? styles.Container.base.color
       }
     >
       <View
         style={[styles.Knob.tones?.[props.tone ?? styles.tone], styles.Knob.base]}
         color={
           props.checked
-            ? [props.style?.Knob].flat()?.colorChecked ??
-              styles.Knob.tones?.[props.tone ?? styles.tone].colorChecked ??
-              styles.Knob.base.colorChecked
-            : [props.style?.Knob].flat()?.color ??
-              styles.Knob.tones?.[props.tone ?? styles.tone].color ??
-              styles.Knob.base.color
+            ? styles.Knob.tones?.[props.tone ?? styles.tone].colorChecked ?? styles.Knob.base.colorChecked
+            : styles.Knob.tones?.[props.tone ?? styles.tone].color ?? styles.Knob.base.color
         }
         y={
-          (([props.style].flat()?.height ??
-            styles.Container.tones[props.tone ?? styles.tone]?.height ??
-            styles.Container.base.height ??
-            0) -
-            ([props.style?.Knob].flat()?.height ??
-              styles.Knob.tones[props.tone ?? styles.tone]?.height ??
-              styles.Knob.base.height ??
-              0)) /
+          ((styles.Container.tones[props.tone ?? styles.tone]?.height ?? styles.Container.base.height ?? 0) -
+            (styles.Knob.tones[props.tone ?? styles.tone]?.height ?? styles.Knob.base.height ?? 0)) /
           2
         }
         x={toggleX()}
         zIndex={2}
-        width={
-          (([props.style?.Knob].flat()?.width ?? styles.Knob.tones[props.tone ?? styles.tone]?.width) ??
-            styles.Knob.base.width ??
-            2) - 2
-        }
-        height={([props.style?.Knob].flat()?.height ?? styles.Knob.tones[props.tone ?? styles.tone]?.height ?? styles.Knob.base.height ?? 2) - 2}
+        width={(styles.Knob.tones[props.tone ?? styles.tone]?.width ?? styles.Knob.base.width ?? 2) - 2}
+        height={(styles.Knob.tones[props.tone ?? styles.tone]?.height ?? styles.Knob.base.height ?? 2) - 2}
         borderRadius={
-          [props.style?.Knob].flat()?.borderRadius ?? styles.Knob.tones[props.tone ?? styles.tone]?.borderRadius ?? styles.Knob.base.borderRadius ?? 2
+          styles.Knob.tones[props.tone ?? styles.tone]?.borderRadius ?? styles.Knob.base.borderRadius ?? 2
         }
       />
     </View>
