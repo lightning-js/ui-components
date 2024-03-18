@@ -46,6 +46,7 @@ const container: ColumnConfig = {
     display: 'flex',
     justifyContent: 'flexStart',
     flexDirection: 'column',
+    y: 0,
     gap: theme.layout.gutterY,
     itemTransition: {
       ...theme.animation.standardEntrance,

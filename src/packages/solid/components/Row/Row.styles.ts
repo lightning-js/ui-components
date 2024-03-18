@@ -46,6 +46,7 @@ const container: RowConfig = {
     display: 'flex',
     justifyContent: 'flexStart',
     flexDirection: 'row',
+    x: 0,
     gap: theme.layout.gutterX,
     width: theme.layout.screenW,
     itemTransition: {
