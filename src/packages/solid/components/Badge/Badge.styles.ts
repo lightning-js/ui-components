@@ -32,8 +32,9 @@ type BadgeStyleProperties = Partial<{
   backgroundColor: NodeStyles['color'];
   textColor: NodeStyles['color'];
   iconColor: NodeStyles['color'];
-  strokeColor: NodeStyles['color']; // TODO do we use this?
-  borderColor: NodeStyles['color'];
+  // TODO these aren't being used
+  // strokeColor: NodeStyles['color'];
+  // borderColor: NodeStyles['color'];
 }>;
 
 type BadgeConfig = ComponentStyleConfig<BadgeStyleProperties>;

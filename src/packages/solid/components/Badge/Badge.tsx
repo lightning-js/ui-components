@@ -15,36 +15,55 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { type Component } from 'solid-js';
-import { Text, Show } from '@lightningjs/solid';
+import { Text, Show, type NodeStyles } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
 import Icon, { type IconProps } from '../Icon/Icon.jsx';
-import styles, { type BadgeStyles } from './Badge.styles.js';
+import styles from './Badge.styles.js';
 import type { Tone } from '../../types/types.js';
 withPadding; // Preserve the import.
 
 export type BadgeProps = {
+  // Functional Properties
+
   /**
    * Badge text
    */
   title: string;
+
   // TODO better handling for default prop values
   /**
    * side of the text where icon will appear on
    * defaults to left if value is either undefined or invalid
    */
   iconAlign?: string;
+
   /**
    * Object containing all properties supported in the [Icon component](?path=/docs/components-icon--icon)
    */
   icon?: Partial<IconProps>;
+
   /**
    * sets the component's color palette
    */
   tone?: Tone;
 
+  // Style properties
   padding?: number[];
 
-  style?: Partial<BadgeStyles>;
+  /**
+   * override the default/tone container background color
+   */
+  backgroundColor: NodeStyles['color'];
+
+  /**
+   * override the default/tone text color
+   */
+  textColor: NodeStyles['color'];
+
+  /**
+   * override the default/tone icon image color
+   */
+  iconColor: NodeStyles['color'];
 };
 
 const Badge: Component<BadgeProps> = (props: BadgeProps) => {
@@ -56,17 +75,25 @@ const Badge: Component<BadgeProps> = (props: BadgeProps) => {
         styles.Container.base.padding
       }
       {...props}
+      color={props.backgroundColor}
       style={[
-        ...[props.style].flat(), //
-        styles.Container.tones[props.tone || styles.tone],
+        styles.Container.tones[props.tone || styles.tone], //
         styles.Container.base
       ]}
       forwardStates
     >
       <Show when={Boolean(props.icon && props.iconAlign !== 'right')}>
-        <Icon {...props.icon} style={[styles.Icon.tones[props.tone ?? styles.tone], styles.Icon.base]} />
+        <Icon
+          {...props.icon}
+          color={props.iconColor}
+          style={[
+            styles.Icon.tones[props.tone ?? styles.tone], //
+            styles.Icon.base
+          ]}
+        />
       </Show>
       <Text
+        color={props.textColor}
         style={[styles.Text.tones[props.tone ?? styles.tone], styles.Text.base]}
         tone={props.tone || styles.tone}
       >
@@ -75,6 +102,7 @@ const Badge: Component<BadgeProps> = (props: BadgeProps) => {
       <Show when={Boolean(props.icon && props.iconAlign === 'right')}>
         <Icon
           {...props.icon}
+          color={props.iconColor}
           style={[
             styles.Icon.tones?.[props.tone ?? styles.tone], //
             styles.Icon.base
