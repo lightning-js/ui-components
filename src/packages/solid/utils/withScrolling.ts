@@ -21,7 +21,7 @@ export function withScrolling(adjustment: number = 0) {
   return (
     componentRef: ElementNode,
     selectedElement: ElementNode,
-    selected: number,
+    selected: number = 0,
     lastSelected: number
   ) => {
     if (componentRef.children.length === 0) {
@@ -30,17 +30,19 @@ export function withScrolling(adjustment: number = 0) {
 
     const gap = componentRef.gap || 0;
     const scroll = componentRef.scroll || 'auto';
-    const [lastItem, windowVal] = updateLastIndex(componentRef);
+    const [lastItem, containerSize] = updateLastIndex(componentRef);
 
     // values based on row or column
-    const currentVal = componentRef.flexDirection === 'row' ? componentRef.x : componentRef.y;
-    const newVal = componentRef.flexDirection === 'row' ? selectedElement.x : selectedElement.y;
-    const size = componentRef.flexDirection === 'row' ? selectedElement.width : selectedElement.height;
+    let rootPosition = (componentRef.flexDirection === 'row' ? componentRef.x : componentRef.y) ?? 0;
+    const selectedPosition =
+      (componentRef.flexDirection === 'row' ? selectedElement.x : selectedElement.y) ?? 0;
+    const selectedSize =
+      (componentRef.flexDirection === 'row' ? selectedElement.width : selectedElement.height) ?? 0;
 
     // TODO, find better name
-    const direct = selected > lastSelected ? 'positive' : 'negative';
+    const direct = lastSelected === undefined ? 'none' : selected > lastSelected ? 'positive' : 'negative';
 
-    let next = currentVal;
+    let next = rootPosition;
 
     // if we want to auto scroll ( scroll until the last component is sho on the screen)
     if (scroll === 'auto') {
@@ -49,9 +51,9 @@ export function withScrolling(adjustment: number = 0) {
         // if we are at an index on or after the scrollIndex
         if (componentRef.selected >= componentRef.scrollIndex) {
           if (direct === 'positive') {
-            next = currentVal - size - gap;
+            next = rootPosition - selectedSize - gap;
           } else {
-            next = currentVal + size + gap;
+            next = rootPosition + selectedSize + gap;
           }
         }
         // no valid scroll index, complete auto scroll
@@ -59,10 +61,10 @@ export function withScrolling(adjustment: number = 0) {
         // if the (absolute value of current position  + the size of the visual portion of the row) is less than (the last Item position + the last Item size), then the last item is not shown
         // if scrolling backwards and the position of the selected item is less that the absolute value of the current position, the selected item is not shown
       } else if (
-        Math.abs(currentVal) + windowVal < lastItem.position + lastItem.size ||
-        newVal < Math.abs(currentVal)
+        Math.abs(rootPosition) + containerSize < lastItem.position + lastItem.size ||
+        selectedPosition < Math.abs(rootPosition)
       ) {
-        next = -newVal + adjustment;
+        next = -selectedPosition + adjustment;
       }
 
       // if we want to scroll based to the -x value of the selected
@@ -70,9 +72,9 @@ export function withScrolling(adjustment: number = 0) {
       // if direction is negative and absolute value of current position is higher than the position we want to be at, the selected Item is not shown
     } else if (
       scroll === 'always' ||
-      (scroll === 'edge' && direct === 'negative' && Math.abs(currentVal) > newVal)
+      (scroll === 'edge' && direct === 'negative' && Math.abs(rootPosition) > selectedPosition)
     ) {
-      next = -newVal + adjustment;
+      next = -selectedPosition + adjustment;
 
       // if we want to scroll based on the size of the selected item
       // this will be the case for edge when we are scrolling positively and the current positioning does not have the selected item shown
@@ -80,9 +82,25 @@ export function withScrolling(adjustment: number = 0) {
     } else if (
       scroll === 'edge' &&
       direct === 'positive' &&
-      Math.abs(currentVal) + windowVal < newVal + size
+      Math.abs(rootPosition) + containerSize < selectedPosition + selectedSize
     ) {
-      next = currentVal - size - gap;
+      next = rootPosition - selectedSize - gap;
+    }
+
+    // if inital load, edge scroll type, and we have a selected index we want to go to on start
+    else if (scroll === 'edge' && direct === 'none') {
+      let currentChildIndex = 0;
+      let currentChild, currentChildSize;
+      while (
+        currentChildIndex < componentRef.children.length &&
+        Math.abs(rootPosition) + containerSize < selectedPosition + selectedSize
+      ) {
+        currentChild = componentRef.children[currentChildIndex++];
+        currentChildSize =
+          (componentRef.flexDirection === 'row' ? currentChild.width : currentChild.height) ?? 0;
+        rootPosition -= currentChildSize + gap;
+      }
+      next = rootPosition;
     }
 
     // updating value if scrolling is needed
@@ -95,20 +113,20 @@ export function withScrolling(adjustment: number = 0) {
 }
 
 function updateLastIndex(items) {
-  let lastItem, windowVal;
+  let lastItem, containerSize;
   if (items.flexDirection === 'row') {
     lastItem = {
       position: items.children[items.children.length - 1].x,
       size: items.children[items.children.length - 1].width
     };
-    windowVal = items.width;
+    containerSize = items.width;
   } else {
     lastItem = {
       position: items.children[items.children.length - 1].y,
       size: items.children[items.children.length - 1].height
     };
-    windowVal = items.height;
+    containerSize = items.height;
   }
 
-  return [lastItem, windowVal];
+  return [lastItem, containerSize];
 }
