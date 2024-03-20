@@ -28,10 +28,26 @@ export interface BadgeStyles {
   Text: TextStyleSet;
 }
 
-type BadgeStyleProperties = Partial<{
+export type BadgeStyleProperties = Partial<{
+  /**
+   * container background color
+   */
   backgroundColor: NodeStyles['color'];
+
+  /**
+   * text color
+   */
   textColor: NodeStyles['color'];
+
+  /**
+   * icon image color
+   */
   iconColor: NodeStyles['color'];
+
+  /**
+   * container padding
+   */
+  padding: number[];
   // TODO these aren't being used
   // strokeColor: NodeStyles['color'];
   // borderColor: NodeStyles['color'];

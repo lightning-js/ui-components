@@ -15,14 +15,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { type Component } from 'solid-js';
-import { Text, Show, type NodeStyles } from '@lightningjs/solid';
+import { Text, Show } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
 import Icon, { type IconProps } from '../Icon/Icon.jsx';
-import styles from './Badge.styles.js';
+import styles, { type BadgeStyleProperties } from './Badge.styles.js';
 import type { Tone } from '../../types/types.js';
 withPadding; // Preserve the import.
 
-export type BadgeProps = {
+export type BadgeProps = BadgeStyleProperties & {
   // Functional Properties
 
   /**
@@ -46,24 +46,6 @@ export type BadgeProps = {
    * sets the component's color palette
    */
   tone?: Tone;
-
-  // Style properties
-  padding?: number[];
-
-  /**
-   * override the default/tone container background color
-   */
-  backgroundColor: NodeStyles['color'];
-
-  /**
-   * override the default/tone text color
-   */
-  textColor: NodeStyles['color'];
-
-  /**
-   * override the default/tone icon image color
-   */
-  iconColor: NodeStyles['color'];
 };
 
 const Badge: Component<BadgeProps> = (props: BadgeProps) => {
