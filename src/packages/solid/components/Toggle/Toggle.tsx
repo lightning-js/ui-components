@@ -34,20 +34,20 @@ const Toggle: Component<ToggleProps> = (props: ToggleProps) => {
   const positionToggle = (checked: boolean, props: ToggleProps) => {
     return checked != undefined && props.checked
       ? // width
-        (styles.Container.tones?.[props.tone ?? styles.tone].width ?? styles.Container.base.width) -
+        (styles.Container.tones?.[props.tone ?? styles.tone]?.width ?? styles.Container.base.width) -
           // strokeWidth
-          (styles.Container.tones?.[props.tone ?? styles.tone].borderWidth ??
+          (styles.Container.tones?.[props.tone ?? styles.tone]?.borderWidth ??
             styles.Container.base.borderWidth) -
           // knobPadding
-          (styles.Knob.tones?.[props.tone ?? styles.tone].padding ?? styles.Knob.base.padding) -
+          (styles.Knob.tones?.[props.tone ?? styles.tone]?.padding ?? styles.Knob.base.padding) -
           // knobWidth
-          (styles.Knob.tones?.[props.tone ?? styles.tone].width ?? styles.Knob.base.width) || 0
+          (styles.Knob.tones?.[props.tone ?? styles.tone]?.width ?? styles.Knob.base.width) || 0
       : // strokeWidth
 
-        (styles.Container.tones?.[props.tone ?? styles.tone].borderWidth ??
+        (styles.Container.tones?.[props.tone ?? styles.tone]?.borderWidth ??
           styles.Container.base.borderWidth) +
           // knobPadding
-          (styles.Knob.tones?.[props.tone ?? styles.tone].padding ?? styles.Knob.base.padding) || 0;
+          (styles.Knob.tones?.[props.tone ?? styles.tone]?.padding ?? styles.Knob.base.padding) || 0;
   };
   const toggleX = createMemo(() => positionToggle(props.checked, props));
 
@@ -62,17 +62,17 @@ const Toggle: Component<ToggleProps> = (props: ToggleProps) => {
       ]}
       color={
         props.checked
-          ? styles.Container.tones?.[props.tone ?? styles.tone].colorChecked ??
+          ? styles.Container.tones?.[props.tone ?? styles.tone]?.colorChecked ??
             styles.Container.base.colorChecked
-          : styles.Container.tones?.[props.tone ?? styles.tone].color ?? styles.Container.base.color
+          : styles.Container.tones?.[props.tone ?? styles.tone]?.color ?? styles.Container.base.color
       }
     >
       <View
         style={[styles.Knob.tones?.[props.tone ?? styles.tone], styles.Knob.base]}
         color={
           props.checked
-            ? styles.Knob.tones?.[props.tone ?? styles.tone].colorChecked ?? styles.Knob.base.colorChecked
-            : styles.Knob.tones?.[props.tone ?? styles.tone].color ?? styles.Knob.base.color
+            ? styles.Knob.tones?.[props.tone ?? styles.tone]?.colorChecked ?? styles.Knob.base.colorChecked
+            : styles.Knob.tones?.[props.tone ?? styles.tone]?.color ?? styles.Knob.base.color
         }
         y={
           ((styles.Container.tones[props.tone ?? styles.tone]?.height ?? styles.Container.base.height ?? 0) -
