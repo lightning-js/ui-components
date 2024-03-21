@@ -38,16 +38,15 @@ type ToggleStyleProperties = {
   knobColor?: NodeStyles['color'];
   knobColorChecked?: NodeStyles['color'];
   knobSize?: NodeStyles['width'];
-  strokeColor?: NodeStyles['borderColor'];
+  // strokeColor?: NodeStyles['borderColor'];
   strokeRadius?: NodeStyles['borderRadius'];
-  strokeWidth?: NodeStyles['borderWidth'];
+  // strokeWidth?: NodeStyles['borderWidth'];
 };
 
 type ToggleConfig = ComponentStyleConfig<ToggleStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Toggle: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
-  theme?.componentConfig;
+const { Toggle: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const knobSize = theme.spacer.xl;
 const knobPadding = theme.spacer.xs;
@@ -56,42 +55,62 @@ const strokeWidth = theme.stroke.sm;
 const container: ToggleConfig = {
   themeKeys: {
     borderRadius: 'strokeRadius',
-    borderColor: 'strokeColor',
-    borderWidth: 'strokeWidth',
     color: 'backgroundColor',
     colorChecked: 'backgroundColorChecked'
   },
   base: {
-    borderColor: theme.color.fillNeutral,
     color: theme.color.fillInverseTertiary,
     colorChecked: theme.color.fillNeutral,
     height: knobSize + (knobPadding + strokeWidth) * 2,
     width: (strokeWidth + knobPadding * 2 + knobSize) * 2,
-    borderWidth: strokeWidth,
-    borderRadius: knobSize / 2 + knobPadding + strokeWidth
+    borderRadius: knobSize / 2 + knobPadding + strokeWidth,
+    border: { // TODO- strokeWidth and strokeColor map to border object with themeKeys
+      color: theme.color.fillNeutral,
+      width: strokeWidth
+    }
   },
   modes: {
     focus: {},
     disabled: {
       borderColor: theme.color.fillNeutralDisabled,
+      border: {
+        color: theme.color.fillNeutralDisabled,
+        width: strokeWidth
+      },
       color: theme.color.fillInverseDisabled
     }
   },
   tones: {
     inverse: {
       borderColor: theme.color.fillInverse,
+      border: {
+        color: theme.color.fillInverse,
+        width: strokeWidth
+      },
       color: theme.color.fillNeutralTertiary,
       disabled: {
         borderColor: theme.color.fillInverseDisabled,
+        border: {
+          color: theme.color.fillInverseDisabled,
+          width: strokeWidth
+        },
         color: theme.color.fillNeutralDisabled,
         colorChecked: theme.color.fillInverseDisabled
       }
     },
     brand: {
       borderColor: theme.color.fillBrand,
+      border: {
+        color: theme.color.fillBrand,
+        width: strokeWidth
+      },
       color: theme.color.fillBrandTertiary,
       disabled: {
         borderColor: theme.color.fillNeutralDisabled,
+        border: {
+          color: theme.color.fillNeutralDisabled,
+          width: strokeWidth
+        },
         color: theme.color.fillInverseDisabled,
         colorChecked: theme.color.fillNeutralDisabled
       }

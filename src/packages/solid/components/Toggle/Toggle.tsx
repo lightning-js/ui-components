@@ -31,21 +31,21 @@ export interface ToggleProps extends NodeProps {
 }
 
 const Toggle: Component<ToggleProps> = (props: ToggleProps) => {
-  const positionToggle = (checked: boolean, props: ToggleProps) => {
+  const positionToggle = (checked: boolean | undefined, props: ToggleProps) => {
     return checked != undefined && props.checked
       ? // width
         (styles.Container.tones?.[props.tone ?? styles.tone]?.width ?? styles.Container.base.width) -
           // strokeWidth
-          (styles.Container.tones?.[props.tone ?? styles.tone]?.borderWidth ??
-            styles.Container.base.borderWidth) -
+          (styles.Container.tones?.[props.tone ?? styles.tone]?.border?.width ??
+            styles.Container.base.border.width) -
           // knobPadding
           (styles.Knob.tones?.[props.tone ?? styles.tone]?.padding ?? styles.Knob.base.padding) -
           // knobWidth
           (styles.Knob.tones?.[props.tone ?? styles.tone]?.width ?? styles.Knob.base.width) || 0
       : // strokeWidth
 
-        (styles.Container.tones?.[props.tone ?? styles.tone]?.borderWidth ??
-          styles.Container.base.borderWidth) +
+        (styles.Container.tones?.[props.tone ?? styles.tone]?.border?.width ??
+          styles.Container.base.border.width) +
           // knobPadding
           (styles.Knob.tones?.[props.tone ?? styles.tone]?.padding ?? styles.Knob.base.padding) || 0;
   };
