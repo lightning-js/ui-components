@@ -20,10 +20,22 @@ import type { Meta, StoryObj } from 'storybook-solidjs';
 
 type Story = StoryObj<typeof FPSCounter>;
 
+/** 
+ * This component displays the current frames per second (FPS) of the application.
+ * 
+ * To use, import FPSCounter and add it to your component tree.
+ * import { setupFPS } from '@lightningjs/solid';
+ * On your canvas element add renderer option:
+ * fpsUpdateInterval: 200
+ * and
+ * ref={(root) => setupFPS(root)}
+ * 
+ */
 const meta: Meta<typeof FPSCounter> = {
   title: 'Components/FPSCounter',
   component: FPSCounter,
-  tags: ['autodocs']
+  tags: ['autodocs'],
+  argTypes: {}
 };
 
 export default meta;

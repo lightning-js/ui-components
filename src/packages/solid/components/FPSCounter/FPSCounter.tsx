@@ -105,6 +105,7 @@ export function setupFPS(root) {
   });
 }
 
+/** Hi there */
 export const FPSCounter = props => {
   return (
     <View {...props} style={fpsStyle}>

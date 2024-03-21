@@ -15,4 +15,4 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export { FPSCounter as default } from './FPSCounter.jsx';
+export * from './FPSCounter.jsx';
