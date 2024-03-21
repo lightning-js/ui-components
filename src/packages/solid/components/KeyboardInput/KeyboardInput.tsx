@@ -37,10 +37,14 @@ export interface KeyboardInputProps extends IntrinsicNodeProps {
 
 // rows created from each array passed in
 const KeyboardInput: Component<KeyboardInputProps> = (props: KeyboardInputProps) => {
-  const [key, setKey] = createSignal('');
+  // signal representing a string of the key pressed and a boolean for if value has been added to the input yet
+  const [key, setKey] = createSignal(['', false]);
   let inputContainer;
 
-  const formatInputText = (key = '') => {
+  const formatInputText = key => {
+    if (key[1]) {
+      return;
+    }
     const inputText = inputContainer?.actualTitle ?? '';
     let position = inputContainer?.position ?? 0;
     let title;
@@ -67,9 +71,12 @@ const KeyboardInput: Component<KeyboardInputProps> = (props: KeyboardInputProps)
         break;
     }
 
-    inputContainer.actualTitle = title;
-    inputContainer.position = position;
-    return {title, position};
+    if (inputContainer) {
+      inputContainer.actualTitle = title;
+      inputContainer.position = position;
+    }
+    setKey(['', true]);
+    return { title, position };
   };
 
   const inputTitle = createMemo(() => formatInputText(key()));
@@ -77,7 +84,7 @@ const KeyboardInput: Component<KeyboardInputProps> = (props: KeyboardInputProps)
   return (
     <Column {...props} scroll={'none'}>
       <Input keySignal={inputTitle} ref={inputContainer} />
-      <Keyboard keySignal={setKey} formats={props.formats} />
+      <Keyboard keySignal={[key, setKey]} formats={props.formats} />
     </Column>
   );
 };

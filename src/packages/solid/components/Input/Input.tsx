@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { type Component, type Signal } from 'solid-js';
+import { type Accessor, type Component, type Signal } from 'solid-js';
 import { View, Text, type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles, { type InputStyles } from './Input.styles.js';
 import type { KeyHandler } from '@lightningjs/solid-primitives';
@@ -42,7 +42,7 @@ export interface InputProps extends IntrinsicNodeProps {
    */
   position?: number;
 
-  keySignal: Signal<string>;
+  keySignal: Accessor<{ title: any, position: number }>;
 
   onRight?: KeyHandler;
 
