@@ -64,6 +64,7 @@ export interface ColumnProps extends NodeProps {
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
   const onUp = handleNavigation('up');
   const onDown = handleNavigation('down');
+  let Container;
 
   return (
     <View
@@ -72,6 +73,15 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
       onDown={chainFunctions(props.onDown, onDown)}
       selected={props.selected || 0}
       forwardFocus={onGridFocus}
+      onCreate={() =>
+        withScrolling(props.y as number).call(
+          Container,
+          Container,
+          Container.children[props.selected ?? 0] as ElementNode,
+          props.selected ?? 0,
+          undefined
+        )
+      }
       onSelectedChanged={chainFunctions(
         props.onSelectedChanged,
         props.scroll !== 'none' ? withScrolling(props.y as number) : undefined
@@ -81,6 +91,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
         styles.Container.tones[props.tone ?? styles.tone],
         styles.Container.base
       ]}
+      ref={Container}
     />
   );
 };

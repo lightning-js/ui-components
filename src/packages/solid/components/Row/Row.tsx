@@ -65,6 +65,7 @@ export interface RowProps extends NodeProps {
 const Row: Component<RowProps> = (props: RowProps) => {
   const onLeft = handleNavigation('left');
   const onRight = handleNavigation('right');
+  let Container;
 
   return (
     <View
@@ -73,6 +74,15 @@ const Row: Component<RowProps> = (props: RowProps) => {
       onLeft={chainFunctions(props.onLeft, onLeft)}
       onRight={chainFunctions(props.onRight, onRight)}
       forwardFocus={onGridFocus}
+      onCreate={() =>
+        withScrolling(props.x as number).call(
+          Container,
+          Container,
+          Container.children[props.selected ?? 0] as ElementNode,
+          props.selected ?? 0,
+          undefined
+        )
+      }
       onSelectedChanged={chainFunctions(
         props.onSelectedChanged,
         props.scroll !== 'none' ? withScrolling(props.x as number) : undefined
@@ -84,6 +94,7 @@ const Row: Component<RowProps> = (props: RowProps) => {
         styles.Container.base
       ]}
       states={props.tone ?? styles.tone}
+      ref={Container}
     />
   );
 };
