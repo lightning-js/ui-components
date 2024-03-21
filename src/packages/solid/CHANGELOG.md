@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.7.0...@lightningjs/solid-ui@0.7.1) (2024-03-21)
+
+### Bug Fixes
+
+- **withScrolling:** scrolls selected item to correct position on creation when selected > 0 ([#92](https://github.com/lightning-js/ui-components/issues/92)) ([54964ad](https://github.com/lightning-js/ui-components/commit/54964addcdc561e29127f6e59e94ff79a2b0ca6b))
+
 # [0.7.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.6.0...@lightningjs/solid-ui@0.7.0) (2024-03-21)
 
 ### Features
