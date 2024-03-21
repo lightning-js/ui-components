@@ -25,7 +25,7 @@ import type { Color } from 'types';
 export interface ToggleStyles {
   tone: Tone;
   Container: NodeStyleSet<{ colorChecked: Color }>;
-  Knob: NodeStyleSet<{ padding: number[]; colorChecked: Color }>;
+  Knob: NodeStyleSet<{ padding: number; colorChecked: Color }>;
 }
 
 type ToggleStyleProperties = {
@@ -169,7 +169,7 @@ const Container = makeComponentStyles<ToggleStyles['Container']>(container);
 const Knob = makeComponentStyles<ToggleStyles['Knob']>(knob);
 
 const styles: ToggleStyles = {
-  tone: defaultTone,
+  tone: defaultTone || 'neutral',
   Container,
   Knob
 };
