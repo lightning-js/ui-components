@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.6.0...@lightningjs/solid-ui@0.7.0) (2024-03-21)
+
+### Features
+
+- **Toggle:** creates toggle ([#88](https://github.com/lightning-js/ui-components/issues/88)) ([78746b2](https://github.com/lightning-js/ui-components/commit/78746b213c807f8fbd889ac96af052f867577334))
+
 # [0.6.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.5.4...@lightningjs/solid-ui@0.6.0) (2024-03-07)
 
 ### Features
