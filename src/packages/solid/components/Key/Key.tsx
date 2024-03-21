@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { Component } from 'solid-js';
+import type { Component, Signal } from 'solid-js';
 import { type IntrinsicNodeProps, Text } from '@lightningjs/solid';
 import { ButtonContainer } from '../Button/Button.jsx';
 import styles, { type KeySize, type KeyStyles } from './Key.styles.js';
@@ -44,15 +44,15 @@ export interface KeyProps extends IntrinsicNodeProps {
    */
   toggle?: boolean;
 
+  keySignal: Signal<(string | boolean)[]>;
+
   style?: KeyStyles;
 
   tone?: Tone;
 }
 
 const Key: Component<KeyProps> = props => {
-  
-
-  //receives a signal 
+  const style1 = props?.style ?? styles;
   return (
     <ButtonContainer
       {...props}
@@ -61,8 +61,8 @@ const Key: Component<KeyProps> = props => {
         styles.Container.tones?.[props.tone ?? styles.tone],
         styles.Container.base
       ]}
-      //onEnter={props.onEnter ? props.onEnter : (props.toggle ? toggleKeyboard : softKey)}}
       forwardStates
+      onEnter={props.onEnter ? props.onEnter : props.keySignal[1]([props.title ?? '', false])}
       width={
         (style1.Container?.tones?.[props.tone ?? styles.tone]?.sizes?.[props.size || 'sm'] ??
           style1.Container.base.sizes[props.size || 'sm']) *

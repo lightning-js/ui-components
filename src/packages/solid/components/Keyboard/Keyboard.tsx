@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { type Component } from 'solid-js';
+import { type Component, type Signal } from 'solid-js';
 import { type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles, { type KeyboardStyleProperties, type KeyboardStyles } from './Keyboard.styles.js';
 import KeyboardSimple from './KeyboardSimple.jsx';
@@ -49,6 +49,8 @@ export interface KeyboardProps extends IntrinsicNodeProps {
    * Default format of the keyboard to be shown. Should be a key of `formats`.
    */
   defaultFormat?: string;
+
+  keySignal?: Signal<(string | boolean)[]>;
 
   keySpacing?: KeyboardStyleProperties['keySpacing'];
 
