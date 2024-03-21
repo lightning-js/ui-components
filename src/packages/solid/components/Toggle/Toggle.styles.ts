@@ -33,7 +33,7 @@ type ToggleStyleProperties = {
   backgroundColorChecked?: NodeStyles['color'];
   knobWidth?: NodeStyles['width'];
   knobHeight?: NodeStyles['height'];
-  knobPadding?: NodeStyles['padding'];
+  knobPadding?: number;
   knobRadius?: NodeStyles['borderRadius'];
   knobColor?: NodeStyles['color'];
   knobColorChecked?: NodeStyles['color'];
@@ -57,6 +57,7 @@ const container: ToggleConfig = {
   themeKeys: {
     borderRadius: 'strokeRadius',
     borderColor: 'strokeColor',
+    borderWidth: 'strokeWidth',
     color: 'backgroundColor',
     colorChecked: 'backgroundColorChecked'
   },
