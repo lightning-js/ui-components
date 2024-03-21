@@ -28,16 +28,17 @@ export function withScrolling(adjustment: number = 0) {
       return;
     }
 
+    const dimension = componentRef.flexDirection === 'row' ? 'width' : 'height';
+    const axis = componentRef.flexDirection === 'row' ? 'x' : 'y';
+
     const gap = componentRef.gap || 0;
     const scroll = componentRef.scroll || 'auto';
     const [lastItem, containerSize] = updateLastIndex(componentRef);
 
     // values based on row or column
-    let rootPosition = (componentRef.flexDirection === 'row' ? componentRef.x : componentRef.y) ?? 0;
-    const selectedPosition =
-      (componentRef.flexDirection === 'row' ? selectedElement.x : selectedElement.y) ?? 0;
-    const selectedSize =
-      (componentRef.flexDirection === 'row' ? selectedElement.width : selectedElement.height) ?? 0;
+    let rootPosition = componentRef[axis] ?? 0;
+    const selectedPosition = selectedElement[axis] ?? 0;
+    const selectedSize = selectedElement[dimension] ?? 0;
 
     // TODO, find better name
     const direct = lastSelected === undefined ? 'none' : selected > lastSelected ? 'positive' : 'negative';
@@ -87,7 +88,7 @@ export function withScrolling(adjustment: number = 0) {
       next = rootPosition - selectedSize - gap;
     }
 
-    // if inital load, edge scroll type, and we have a selected index we want to go to on start
+    // if initial load, edge scroll type, and we have a selected index we want to go to on start
     else if (scroll === 'edge' && direct === 'none') {
       let currentChildIndex = 0;
       let currentChild, currentChildSize;
@@ -96,17 +97,16 @@ export function withScrolling(adjustment: number = 0) {
         Math.abs(rootPosition) + containerSize < selectedPosition + selectedSize
       ) {
         currentChild = componentRef.children[currentChildIndex++];
-        currentChildSize =
-          (componentRef.flexDirection === 'row' ? currentChild.width : currentChild.height) ?? 0;
+        currentChildSize = currentChild[dimension] ?? 0;
         rootPosition -= currentChildSize + gap;
       }
       next = rootPosition;
     }
 
     // updating value if scrolling is needed
-    if (componentRef.flexDirection === 'row' && componentRef.x !== next) {
+    if (axis === 'x' && componentRef.x !== next) {
       componentRef.x = next;
-    } else if (componentRef.flexDirection === 'column' && componentRef.y !== next) {
+    } else if (axis === 'y' && componentRef.y !== next) {
       componentRef.y = next;
     }
   };
