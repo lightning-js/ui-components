@@ -62,6 +62,7 @@ const Input: Component<InputProps> = props => {
         styles.Container.tones[props.tone ?? styles.tone],
         styles.Container.base
       ]}
+      position={props.position ?? 0}
     >
       {/* eyebrow */}
       <Text
@@ -87,7 +88,7 @@ const Input: Component<InputProps> = props => {
             styles.Text.base
           ]}
         >
-          {props.keySignal[0]}
+          {props.keySignal}
         </Text>
       </View>
       {/* helptext */}
