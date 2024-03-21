@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { NodeStyles } from '@lightningjs/solid';
+import type { BorderStyleObject, NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
 import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
@@ -24,7 +24,7 @@ import type { Color } from 'types';
 
 export interface ToggleStyles {
   tone: Tone;
-  Container: NodeStyleSet<{ colorChecked: Color }>;
+  Container: NodeStyleSet<{ border: BorderStyleObject; colorChecked: Color }>;
   Knob: NodeStyleSet<{ padding: number; colorChecked: Color }>;
 }
 
