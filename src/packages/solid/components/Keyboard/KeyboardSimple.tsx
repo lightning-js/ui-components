@@ -27,6 +27,7 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
   return (
     <Column
       autofocus={props.autofocus}
+      scroll={'none'}
       plinko
       itemSpacing={
         props.keySpacing ??

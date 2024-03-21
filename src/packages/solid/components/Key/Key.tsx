@@ -50,7 +50,9 @@ export interface KeyProps extends IntrinsicNodeProps {
 }
 
 const Key: Component<KeyProps> = props => {
-  const style1 = props?.style ?? styles;
+  
+
+  //receives a signal 
   return (
     <ButtonContainer
       {...props}
@@ -59,6 +61,7 @@ const Key: Component<KeyProps> = props => {
         styles.Container.tones?.[props.tone ?? styles.tone],
         styles.Container.base
       ]}
+      //onEnter={props.onEnter ? props.onEnter : (props.toggle ? toggleKeyboard : softKey)}}
       forwardStates
       width={
         (style1.Container?.tones?.[props.tone ?? styles.tone]?.sizes?.[props.size || 'sm'] ??
