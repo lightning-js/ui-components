@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { createSignal, type Component, createMemo } from 'solid-js';
+import { createSignal, type Component, createMemo, createEffect } from 'solid-js';
 import { type IntrinsicNodeProps } from '@lightningjs/solid';
 // import styles, {
 //   type KeyboardInputStyleProperties,
@@ -39,6 +39,8 @@ export interface KeyboardInputProps extends IntrinsicNodeProps {
 const KeyboardInput: Component<KeyboardInputProps> = (props: KeyboardInputProps) => {
   // signal representing a string of the key pressed and a boolean for if value has been added to the input yet
   const [key, setKey] = createSignal(['', false]);
+  const [position, setPosition] = createSignal(0);
+  const [title, setTitle] = createSignal('');
   let inputContainer;
 
   const formatInputText = key => {
@@ -48,7 +50,7 @@ const KeyboardInput: Component<KeyboardInputProps> = (props: KeyboardInputProps)
     const inputText = inputContainer?.actualTitle ?? '';
     let position = inputContainer?.position ?? 0;
     let title;
-    switch (key.toLowerCase()) {
+    switch (key[0].toLowerCase()) {
       case 'delete':
         title = position > 0 ? inputText.slice(0, position - 1) + inputText.slice(position) : inputText;
         position--;
@@ -66,7 +68,9 @@ const KeyboardInput: Component<KeyboardInputProps> = (props: KeyboardInputProps)
         break;
       default:
         title =
-          position > 0 ? inputText.slice(0, position - 1) + key + inputText.slice(position) : key + inputText;
+          position > 0
+            ? inputText.slice(0, position) + key[0] + inputText.slice(position)
+            : key[0] + inputText;
         position++;
         break;
     }
@@ -76,14 +80,23 @@ const KeyboardInput: Component<KeyboardInputProps> = (props: KeyboardInputProps)
       inputContainer.position = position;
     }
     setKey(['', true]);
-    return { title, position };
+    setTitle(title);
+    setPosition(position);
   };
 
-  const inputTitle = createMemo(() => formatInputText(key()));
+  createEffect(() => {
+    formatInputText(key());
+  });
 
   return (
-    <Column {...props} scroll={'none'}>
-      <Input keySignal={inputTitle} ref={inputContainer} />
+    <Column {...props} scroll={'none'} gap={60}>
+      <Input
+        eyebrow={'search'}
+        helpText={'main'}
+        actualTitle={title()}
+        position={position()}
+        ref={inputContainer}
+      />
       <Keyboard keySignal={[key, setKey]} formats={props.formats} />
     </Column>
   );

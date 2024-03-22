@@ -56,8 +56,9 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
               {(key: string | KeyProps) => (
                 <Key
                   style={props.style?.Key}
-                  keySignal={props.keySignal}
                   {...(typeof key === 'string' ? {} : key)}
+                  // if not a toggle key
+                  onEnter={() => props.keySignal[1]([typeof key === 'string' ? key : key.title ?? '', false])}
                   // @ts-expect-error the ternary handles for the type error
                   title={key.title || key.icon ? key.title : key}
                 />

@@ -62,7 +62,6 @@ const Key: Component<KeyProps> = props => {
         styles.Container.base
       ]}
       forwardStates
-      onEnter={props.onEnter ? props.onEnter : props.keySignal[1]([props.title ?? '', false])}
       width={
         (style1.Container?.tones?.[props.tone ?? styles.tone]?.sizes?.[props.size || 'sm'] ??
           style1.Container.base.sizes[props.size || 'sm']) *
