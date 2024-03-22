@@ -23,11 +23,18 @@ export const chainFunctions = (...args: (Function | undefined)[]) => {
     return undefined;
   }
 
+  if (onlyFunctions.length === 1) {
+    return onlyFunctions[0];
+  }
+
   return function (...innerArgs: unknown[]) {
+    let result;
     for (const func of onlyFunctions) {
-      if (func.apply(this, innerArgs) === true) {
-        return true;
+      result = func.apply(this, innerArgs);
+      if (result === true) {
+        return result;
       }
     }
+    return result;
   };
 };
