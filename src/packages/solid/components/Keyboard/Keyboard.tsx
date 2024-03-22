@@ -50,7 +50,7 @@ export interface KeyboardProps extends IntrinsicNodeProps {
    */
   defaultFormat?: string;
 
-  keySignal?: Signal<(string | boolean)[]>;
+  keySignal: Signal<(string | boolean)[]>;
 
   keySpacing?: KeyboardStyleProperties['keySpacing'];
 
