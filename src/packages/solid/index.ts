@@ -65,3 +65,4 @@ export {
 } from './components/Keyboard/index.js';
 export { default as Tile, tileStyles, type TileProps, type TileStyles } from './components/Tile/index.js';
 export * from './utils/index.js';
+export * from './components/FPSCounter/index.js';
