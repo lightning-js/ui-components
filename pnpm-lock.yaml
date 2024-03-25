@@ -66,7 +66,7 @@ importers:
         specifier: ^0.7.5
         version: 0.7.5
       '@lightningjs/solid':
-        specifier: ^0.14.0
+        specifier: ^0.14.3
         version: 0.14.3(@babel/core@7.24.0)(@lightningjs/solid-primitives@0.6.3)(react-dom@18.2.0)(react@18.2.0)(solid-js@1.8.15)(typescript@5.4.2)(vite@5.1.5)
       '@lightningjs/solid-primitives':
         specifier: ^0.6.0
@@ -2411,7 +2411,7 @@ packages:
       solid-js: '*'
     dependencies:
       '@lightningjs/renderer': 0.7.5
-      '@lightningjs/solid': file:src/packages/solid(@babel/core@7.24.0)(@lightningjs/renderer@0.7.5)(@lightningjs/solid-primitives@0.6.3)(@lightningjs/solid-ui@0.6.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.2)(vite@5.1.5)
+      '@lightningjs/solid': file:src/packages/solid(@babel/core@7.24.0)(@lightningjs/renderer@0.7.5)(@lightningjs/solid-primitives@0.6.3)(@lightningjs/solid-ui@0.7.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.2)(vite@5.1.5)
       solid-js: 1.8.15
     transitivePeerDependencies:
       - '@babel/core'
@@ -4004,8 +4004,8 @@ packages:
       - encoding
       - supports-color
 
-  /@storybook/builder-vite@8.0.0-rc.3(typescript@5.4.2)(vite@5.1.5):
-    resolution: {integrity: sha512-skRbkqghJbPURkMR4PRiMWuWicOdT5gPcum2ZrPpYboDRFSolC/ew4y2STOxrZLLif0KysmZW4Ewkt0Acy7fwg==}
+  /@storybook/builder-vite@8.1.0-alpha.4(typescript@5.4.2)(vite@5.1.5):
+    resolution: {integrity: sha512-WvrddOLkDpHcbTjV8X1UG+NyFUn+Vc/kj7TrAFPLfrRNEgmMYGLc/VYdRCadinZ/QX2+TdUG+1J3/YgxY0QJ2Q==}
     peerDependencies:
       '@preact/preset-vite': '*'
       typescript: '>= 4.3.x'
@@ -4019,15 +4019,15 @@ packages:
       vite-plugin-glimmerx:
         optional: true
     dependencies:
-      '@storybook/channels': 8.0.0-rc.3
-      '@storybook/client-logger': 8.0.0-rc.3
-      '@storybook/core-common': 8.0.0-rc.3
-      '@storybook/core-events': 8.0.0-rc.3
-      '@storybook/csf-plugin': 8.0.0-rc.3
-      '@storybook/node-logger': 8.0.0-rc.3
-      '@storybook/preview': 8.0.0-rc.3
-      '@storybook/preview-api': 8.0.0-rc.3
-      '@storybook/types': 8.0.0-rc.3
+      '@storybook/channels': 8.1.0-alpha.4
+      '@storybook/client-logger': 8.1.0-alpha.4
+      '@storybook/core-common': 8.1.0-alpha.4
+      '@storybook/core-events': 8.1.0-alpha.4
+      '@storybook/csf-plugin': 8.1.0-alpha.4
+      '@storybook/node-logger': 8.1.0-alpha.4
+      '@storybook/preview': 8.1.0-alpha.4
+      '@storybook/preview-api': 8.1.0-alpha.4
+      '@storybook/types': 8.1.0-alpha.4
       '@types/find-cache-dir': 3.2.1
       browser-assert: 1.2.1
       es-module-lexer: 0.9.3
@@ -4053,11 +4053,11 @@ packages:
       telejson: 7.2.0
       tiny-invariant: 1.3.3
 
-  /@storybook/channels@8.0.0-rc.3:
-    resolution: {integrity: sha512-XGTHjZ4ovCS3i9ocjBMrEAnwQ16SXSXX9i+K+5o0p9NSHSWvwd2rtjtInSCDnBvJHWS+typVYkfwpcwcJkbP2g==}
+  /@storybook/channels@8.1.0-alpha.4:
+    resolution: {integrity: sha512-I56e37M9OWISsNY5nHochEE+3Xy4MdO8I3aKpNv1BNnq5Q2ql+lUdhyS98KwL98guJ1p7lluqJu0P5NB+p1Xlw==}
     dependencies:
-      '@storybook/client-logger': 8.0.0-rc.3
-      '@storybook/core-events': 8.0.0-rc.3
+      '@storybook/client-logger': 8.1.0-alpha.4
+      '@storybook/core-events': 8.1.0-alpha.4
       '@storybook/global': 5.0.0
       telejson: 7.2.0
       tiny-invariant: 1.3.3
@@ -4126,8 +4126,8 @@ packages:
     dependencies:
       '@storybook/global': 5.0.0
 
-  /@storybook/client-logger@8.0.0-rc.3:
-    resolution: {integrity: sha512-Bx4IFbpiCwyGXnCwbYW+bYIMAQzZrF9gQniEt5yDF7P5vGw4GcI7+Q6GCj+PIzlJDSt77dHvrHgTptIXbPNBHw==}
+  /@storybook/client-logger@8.1.0-alpha.4:
+    resolution: {integrity: sha512-EP81WZ+VFWCPaMtr/+nR5oM0wrU9zOtG5Pl3jjIJ1SU5OAhmBD0wSjbhHwD1FhBNJB4OuNqCeytKSbibozrzEg==}
     dependencies:
       '@storybook/global': 5.0.0
     dev: true
@@ -4213,13 +4213,13 @@ packages:
       - encoding
       - supports-color
 
-  /@storybook/core-common@8.0.0-rc.3:
-    resolution: {integrity: sha512-rv0Yx07iI3eckCdYShdMtLIg7KdL5JsFuEggVelHW61fvirm+ekWhXVu4EHKbUZPlntf+EdQryW0xYDJwNkEEQ==}
+  /@storybook/core-common@8.1.0-alpha.4:
+    resolution: {integrity: sha512-x6cEV3som5aweiQMJUoy0npV9LiABi6KjnYKaZMAFyTNmoonG/iRfeoo9gZCGjaqz1rQiWpHAmzYf6VqSvlYjw==}
     dependencies:
-      '@storybook/core-events': 8.0.0-rc.3
-      '@storybook/csf-tools': 8.0.0-rc.3
-      '@storybook/node-logger': 8.0.0-rc.3
-      '@storybook/types': 8.0.0-rc.3
+      '@storybook/core-events': 8.1.0-alpha.4
+      '@storybook/csf-tools': 8.1.0-alpha.4
+      '@storybook/node-logger': 8.1.0-alpha.4
+      '@storybook/types': 8.1.0-alpha.4
       '@yarnpkg/fslib': 2.10.3
       '@yarnpkg/libzip': 2.3.0
       chalk: 4.1.2
@@ -4254,8 +4254,8 @@ packages:
     dependencies:
       ts-dedent: 2.2.0
 
-  /@storybook/core-events@8.0.0-rc.3:
-    resolution: {integrity: sha512-W2hoe8hRA4RM7YVQoaSW6qbUCTlx/HfzQXqVTT78A/w5Th+GLzAvu6yX8E+fbPJotTNzK81yp9Uf1C4g2cveyg==}
+  /@storybook/core-events@8.1.0-alpha.4:
+    resolution: {integrity: sha512-UoTrCpcxjJKZytCmCueWeFcYBXZ+dIPhezjg9UMUc4Lk8B2/0NybffcXOHWJXktNWLPqe+ZX97vyukJPUUcsag==}
     dependencies:
       ts-dedent: 2.2.0
     dev: true
@@ -4318,10 +4318,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@storybook/csf-plugin@8.0.0-rc.3:
-    resolution: {integrity: sha512-4Dfy7yQKtlRRNZYqn8c+UASQYQPHuLjYYP944yb7LSXCxFkYMynuzRuqt0pDOm/I+85H2LXwPZr6jx0g1n48mA==}
+  /@storybook/csf-plugin@8.1.0-alpha.4:
+    resolution: {integrity: sha512-Lg0kJMPucF6zKDb7xS8yW9eb4RR4XY6wCJ0M92CdOk8PD8rWgFXFazPoG6QAiesiJJs8hEEGX0QSvCgEOaS8PQ==}
     dependencies:
-      '@storybook/csf-tools': 8.0.0-rc.3
+      '@storybook/csf-tools': 8.1.0-alpha.4
       unplugin: 1.9.0
     transitivePeerDependencies:
       - supports-color
@@ -4342,15 +4342,15 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@storybook/csf-tools@8.0.0-rc.3:
-    resolution: {integrity: sha512-4Z0wTok3IEtMxzhM+29TajUjTk3Y4UFNDgotgsJ4He7nJ6HUu73zea9HxI238MDM9zd92KZ17FLNIvyhUWpDUg==}
+  /@storybook/csf-tools@8.1.0-alpha.4:
+    resolution: {integrity: sha512-IzyStTC352/e56pxPIP2m0lfjxV0jLl4wuo2Tp0VJ92iHIHCCvRB4ilhUgyWahB+Jbao+A63Z9cmUW3c1pYhiw==}
     dependencies:
       '@babel/generator': 7.23.6
       '@babel/parser': 7.24.0
       '@babel/traverse': 7.24.0
       '@babel/types': 7.24.0
       '@storybook/csf': 0.1.2
-      '@storybook/types': 8.0.0-rc.3
+      '@storybook/types': 8.1.0-alpha.4
       fs-extra: 11.2.0
       recast: 0.23.5
       ts-dedent: 2.2.0
@@ -4458,8 +4458,8 @@ packages:
   /@storybook/node-logger@7.6.17:
     resolution: {integrity: sha512-w59MQuXhhUNrUVmVkXhMwIg2nvFWjdDczLTwYLorhfsE36CWeUOY5QCZWQy0Qf/h+jz8Uo7Evy64qn18v9C4wA==}
 
-  /@storybook/node-logger@8.0.0-rc.3:
-    resolution: {integrity: sha512-8VkQSMdU9/NwqQWRibG6hlI/MIq3qJ+qMx4TekTHvPXjJbbW+tRvGsFbyqQSFonZmg25XgUIp2wLc46CS/CEvw==}
+  /@storybook/node-logger@8.1.0-alpha.4:
+    resolution: {integrity: sha512-PoaHaoJEeDk5H316aKblR/qP9e3RVSk391RlulQIcHVmtQs+SfP9hol/kcHaWSNwPMvVKdnCZ3in0ctMofu9VA==}
     dev: true
 
   /@storybook/postinstall@7.6.17:
@@ -4484,15 +4484,15 @@ packages:
       ts-dedent: 2.2.0
       util-deprecate: 1.0.2
 
-  /@storybook/preview-api@8.0.0-rc.3:
-    resolution: {integrity: sha512-XiSM1ezxDsmlD+9vNjJyL/Hlp2JBGKwUyKSEAE304XN+FED7mUR9B9JaxvPnsgJ0cSgVyjJYI9H+/edaCNEc+g==}
+  /@storybook/preview-api@8.1.0-alpha.4:
+    resolution: {integrity: sha512-9w3dcoYgBRKCSZNwJ+qsjgRCsGyeInznZMjsXamaNjXcLEgZJLmQ5zTTb6aNXHbWyIqhN/OGdGINA+HJwdj1GQ==}
     dependencies:
-      '@storybook/channels': 8.0.0-rc.3
-      '@storybook/client-logger': 8.0.0-rc.3
-      '@storybook/core-events': 8.0.0-rc.3
+      '@storybook/channels': 8.1.0-alpha.4
+      '@storybook/client-logger': 8.1.0-alpha.4
+      '@storybook/core-events': 8.1.0-alpha.4
       '@storybook/csf': 0.1.2
       '@storybook/global': 5.0.0
-      '@storybook/types': 8.0.0-rc.3
+      '@storybook/types': 8.1.0-alpha.4
       '@types/qs': 6.9.12
       dequal: 2.0.3
       lodash: 4.17.21
@@ -4513,8 +4513,8 @@ packages:
   /@storybook/preview@7.6.17:
     resolution: {integrity: sha512-LvkMYK/y6alGjwRVNDIKL1lFlbyZ0H0c8iAbcQkiMoaFiujMQyVswMDKlWcj42Upfr/B1igydiruomc+eUt0mw==}
 
-  /@storybook/preview@8.0.0-rc.3:
-    resolution: {integrity: sha512-wJMyf+KeHITbDBLCjQqHDFTmtCH2HCqti1qUj9QVAY1rOfuxHpjO+yYkkgM1kKFeyb1sBx4YKZRzbeaox96Fwg==}
+  /@storybook/preview@8.1.0-alpha.4:
+    resolution: {integrity: sha512-ho+/lblNfJQRqocwSffkgYrGps4wsRCAJ6qwIa3oBjZ/V2FYJXXNIEtYhZ0SpgaP5MACSEqyFTt+pHAAhd6kAg==}
     dev: true
 
   /@storybook/react-dom-shim@7.6.17(react-dom@18.2.0)(react@18.2.0):
@@ -4578,10 +4578,10 @@ packages:
       '@types/express': 4.17.21
       file-system-cache: 2.3.0
 
-  /@storybook/types@8.0.0-rc.3:
-    resolution: {integrity: sha512-rV6Vj84WcD+Xea9c0LdVTAzRvDWHTFIbDiT4R4+yNppy9q5NZGTiWprdGNtOiDVCGsT6kpvafBzKYXPtLiCJ+Q==}
+  /@storybook/types@8.1.0-alpha.4:
+    resolution: {integrity: sha512-mPBL4/tjFYK1Vx73hbuflP3qV0fqF7V1mXpY4Vb0thG2tgMCc5y8GK6wMmquebdf98Bn/dggW0FWOVefCrGzzA==}
     dependencies:
-      '@storybook/channels': 8.0.0-rc.3
+      '@storybook/channels': 8.1.0-alpha.4
       '@types/express': 4.17.21
       file-system-cache: 2.3.0
     dev: true
@@ -10725,7 +10725,7 @@ packages:
     resolution: {integrity: sha512-dD+VMYC5fBBQNesVb+mjB0LOkZIf100SQFbjAt9/sDstNUvc5ce3yZwLYXzgcOc7jcSMkrBu/cZNRzEM4YIAyw==}
     engines: {node: ^14.18 || >=16}
     dependencies:
-      '@storybook/builder-vite': 8.0.0-rc.3(typescript@5.4.2)(vite@5.1.5)
+      '@storybook/builder-vite': 8.1.0-alpha.4(typescript@5.4.2)(vite@5.1.5)
     transitivePeerDependencies:
       - '@preact/preset-vite'
       - encoding
@@ -11951,17 +11951,17 @@ packages:
     engines: {node: '>=12.20'}
     dev: true
 
-  file:src/packages/solid(@babel/core@7.24.0)(@lightningjs/renderer@0.7.5)(@lightningjs/solid-primitives@0.6.3)(@lightningjs/solid-ui@0.6.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.2)(vite@5.1.5):
+  file:src/packages/solid(@babel/core@7.24.0)(@lightningjs/renderer@0.7.5)(@lightningjs/solid-primitives@0.6.3)(@lightningjs/solid-ui@0.7.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.2)(vite@5.1.5):
     resolution: {directory: src/packages/solid, type: directory}
     id: file:src/packages/solid
     name: '@lightningjs/solid-ui'
     peerDependencies:
       '@lightningjs/renderer': ^0.7.5
-      '@lightningjs/solid': ^0.14.0
+      '@lightningjs/solid': ^0.14.3
       '@lightningjs/solid-primitives': ^0.6.0
     dependencies:
       '@lightningjs/renderer': 0.7.5
-      '@lightningjs/solid': file:src/packages/solid(@babel/core@7.24.0)(@lightningjs/renderer@0.7.5)(@lightningjs/solid-primitives@0.6.3)(@lightningjs/solid-ui@0.6.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.2)(vite@5.1.5)
+      '@lightningjs/solid': file:src/packages/solid(@babel/core@7.24.0)(@lightningjs/renderer@0.7.5)(@lightningjs/solid-primitives@0.6.3)(@lightningjs/solid-ui@0.7.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.2)(vite@5.1.5)
       '@lightningjs/solid-primitives': 0.6.3(@lightningjs/renderer@0.7.5)(@lightningjs/solid@0.14.3)(solid-js@1.8.15)
       '@solid-primitives/refs': 1.0.8(solid-js@1.8.15)
       '@solidjs/router': 0.12.5(solid-js@1.8.15)
