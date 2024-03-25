@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.7.1...@lightningjs/solid-ui@0.8.0) (2024-03-25)
+
+### Bug Fixes
+
+- minor changes to chain - update packages ([#89](https://github.com/lightning-js/ui-components/issues/89)) ([44ea8f4](https://github.com/lightning-js/ui-components/commit/44ea8f41de39ebae98b023b8ecc3a922f0660d00))
+
+### Features
+
+- **fps:** Add FPSCounter ([#94](https://github.com/lightning-js/ui-components/issues/94)) ([f50d490](https://github.com/lightning-js/ui-components/commit/f50d490ba68444f71655b2dcfecff0fecf8451b9))
+
 ## [0.7.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.7.0...@lightningjs/solid-ui@0.7.1) (2024-03-21)
 
 ### Bug Fixes
