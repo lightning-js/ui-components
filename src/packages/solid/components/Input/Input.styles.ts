@@ -20,6 +20,7 @@ import theme from 'theme';
 import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
+import { getWidthByUpCount } from '../../utils/getWidthByUpcount.js';
 
 export interface InputStyles {
   tone: Tone;
@@ -63,7 +64,7 @@ const input: InputConfig = {
     contentColor: 'contentColor'
   },
   base: {
-    width: 400,
+    width: getWidthByUpCount(theme, 4),
     height: 100,
     display: 'flex',
     flexDirection: 'column',
@@ -74,9 +75,9 @@ const input: InputConfig = {
     marginX: theme.spacer.xxxl
   },
   modes: {
-    focus: {
-      color: theme.color.interactiveNeutralFocus
-    },
+    // focus: {
+    //   color: theme.color.interactiveNeutralFocus
+    // },
     disabled: {
       color: theme.color.fillNeutralDisabled
     }

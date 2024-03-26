@@ -82,7 +82,7 @@ const container: KeyConfig = {
       xl: 4,
       xxl: 5
     },
-    padding: [theme.spacer.xxxl, theme.spacer.xl],
+    padding: [theme.spacer.md],
     baseWidth: theme.spacer.md * 7,
     color: theme.color.interactiveNeutral,
     display: 'flex',
