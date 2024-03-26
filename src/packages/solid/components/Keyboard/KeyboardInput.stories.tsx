@@ -17,6 +17,7 @@
 
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import KeyboardInput from './KeyboardInput.jsx';
+import { createSignal } from 'solid-js';
 
 type Story = StoryObj<typeof KeyboardInput>;
 
@@ -38,12 +39,13 @@ const meta: Meta<typeof KeyboardInput> = {
 
 export const Basic: Story = {
   render: args => {
-    return <KeyboardInput {...args} />;
+    const titleSignal = createSignal('');
+
+    return <KeyboardInput {...args} titleSignal={titleSignal} />;
   },
   args: {
     states: 'focus',
-    centerKeyboard: true,
-    centerKeys: true,
+    width: 100,
     autofocus: true,
     formats: [
       [
@@ -64,63 +66,9 @@ export const Basic: Story = {
           announce: 'delete, button'
         }
       ],
-      [
-        'q',
-        'w',
-        'e',
-        'r',
-        't',
-        'y',
-        'u',
-        'i',
-        'o',
-        'p',
-        {
-          title: '#@!',
-          size: 'md',
-          toggle: 'symbols',
-          announce: 'symbol mode, button',
-          keyId: 'symbols'
-        }
-      ],
-      [
-        'a',
-        's',
-        'd',
-        'f',
-        'g',
-        'h',
-        'j',
-        'k',
-        'l',
-        '@',
-        {
-          title: 'áöû',
-          size: 'md',
-          toggle: 'accents',
-          announce: 'accents, button',
-          keyId: 'accents'
-        }
-      ],
-      [
-        'z',
-        'x',
-        'c',
-        'v',
-        'b',
-        'n',
-        'm',
-        { title: '_', announce: 'underscore, button' },
-        { title: '.', announce: 'period, button' },
-        { title: '-', announce: 'dash, button' },
-        {
-          title: 'shift',
-          size: 'md',
-          toggle: 'uppercase',
-          announce: 'shift on, button',
-          keyId: 'shift'
-        }
-      ],
+      ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+      ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+      ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
       [
         {
           title: 'Clear',
