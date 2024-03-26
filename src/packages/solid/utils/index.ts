@@ -22,3 +22,4 @@ export { chainFunctions } from './chainFunctions.js';
 export { assertTruthy } from './assertTruthy.js';
 export { handleNavigation, onGridFocus } from './handleNavigation.js';
 export { scrollToIndex } from './scrollToIndex.js';
+export { getWidthByUpCount } from './getWidthByUpcount.js';
