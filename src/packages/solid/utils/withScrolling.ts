@@ -36,9 +36,9 @@ export function withScrolling(adjustment: number = 0) {
     const [lastItem, containerSize] = updateLastIndex(componentRef);
 
     // values based on row or column
-    let rootPosition = componentRef[axis] ?? 0;
-    const selectedPosition = selectedElement[axis] ?? 0;
-    const selectedSize = selectedElement[dimension] ?? 0;
+    let rootPosition = componentRef?.[axis] ?? 0;
+    const selectedPosition = selectedElement?.[axis] ?? 0;
+    const selectedSize = selectedElement?.[dimension] ?? 0;
 
     // TODO, find better name
     const direct = lastSelected === undefined ? 'none' : selected > lastSelected ? 'positive' : 'negative';
