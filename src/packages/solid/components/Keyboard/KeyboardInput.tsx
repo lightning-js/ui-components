@@ -54,7 +54,7 @@ const KeyboardInput: Component<KeyboardInputProps> = (props: KeyboardInputProps)
         formats={props.formats}
         centerKeys={props.centerKeys}
         width={1000}
-        style={[...[props.style].flat()]}
+        style={props.style}
       />
     </Column>
   );
