@@ -50,12 +50,15 @@ export interface InputProps extends IntrinsicNodeProps {
 const Input: Component<InputProps> = props => {
   const [position, setPosition] = createSignal(props.position ?? props.actualTitle?.length ?? 0);
 
+  const [title, setTitle] = props.titleSignal;
+  const [keyEvent, setkeyEvent] = props.keyEvent;
+
   const formatInputText = key => {
     if (key === undefined || key === '') {
       return;
     }
 
-    const inputText = props.titleSignal[0]();
+    const inputText = title();
     let currentPosition = position();
     let newTitle = '';
     switch (key.toLowerCase()) {
@@ -89,15 +92,15 @@ const Input: Component<InputProps> = props => {
         break;
     }
 
-    props.keyEvent[1]('');
-    props.titleSignal[1](newTitle);
+    setkeyEvent('');
+    setTitle(newTitle);
     setPosition(currentPosition);
     return '';
   };
 
   createEffect(
     on(
-      () => props.keyEvent?.[0](),
+      () => keyEvent(),
       keyEvent => {
         formatInputText(keyEvent);
       },
@@ -106,7 +109,7 @@ const Input: Component<InputProps> = props => {
   );
 
   function onRight() {
-    setPosition(p => Math.max(p + 1, props.titleSignal[0]().length));
+    setPosition(p => Math.max(p + 1, title().length));
     return true;
   }
 
@@ -134,7 +137,7 @@ const Input: Component<InputProps> = props => {
           styles.Text.base
         ]}
       >
-        {props.titleSignal[0]()}
+        {title()}
       </Text>
     </View>
   );
