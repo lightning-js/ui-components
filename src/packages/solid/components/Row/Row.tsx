@@ -74,15 +74,17 @@ const Row: Component<RowProps> = (props: RowProps) => {
       onLeft={chainFunctions(props.onLeft, onLeft)}
       onRight={chainFunctions(props.onRight, onRight)}
       forwardFocus={onGridFocus}
-      onCreate={() =>
-        withScrolling(props.x as number).call(
-          Container,
-          Container,
-          Container.children[props.selected ?? 0] as ElementNode,
-          props.selected ?? 0,
-          undefined
-        )
-      }
+      onCreate={chainFunctions(
+        () =>
+          withScrolling(props.x as number).call(
+            Container,
+            Container,
+            Container.children[props.selected ?? 0] as ElementNode,
+            props.selected ?? 0,
+            undefined
+          ),
+        props.onCreate
+      )}
       onSelectedChanged={chainFunctions(
         props.onSelectedChanged,
         props.scroll !== 'none' ? withScrolling(props.x as number) : undefined
