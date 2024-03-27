@@ -20,6 +20,7 @@ import theme from 'theme';
 import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
+import { getWidthByUpCount } from '../../utils/getWidthByUpcount.js';
 
 export interface InputStyles {
   tone: Tone;
@@ -31,7 +32,6 @@ export interface InputStyles {
 export type InputStyleProperties = {
   backgroundColor?: NodeStyles['color'];
   borderRadius?: NodeStyles['borderRadius'];
-  contentColor?: NodeStyles['color'];
   justifyContent?: NodeStyles['justifyContent'];
   textColor?: NodeStyles['color'];
 };
@@ -60,10 +60,9 @@ const input: InputConfig = {
   themeKeys: {
     borderRadius: 'borderRadius',
     color: 'backgroundColor',
-    contentColor: 'contentColor'
   },
   base: {
-    width: 400,
+    width: getWidthByUpCount(theme, 4),
     height: 100,
     display: 'flex',
     flexDirection: 'column',

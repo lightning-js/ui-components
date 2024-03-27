@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { type Component } from 'solid-js';
+import { type Component, type Signal } from 'solid-js';
 import { type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles, { type KeyboardStyleProperties, type KeyboardStyles } from './Keyboard.styles.js';
 import KeyboardSimple from './KeyboardSimple.jsx';
@@ -36,11 +36,6 @@ export interface KeyboardProps extends IntrinsicNodeProps {
   centerKeyboard?: boolean;
 
   /**
-   * wrap keyboard rows when navigating left and right
-   */
-  rowWrap?: boolean;
-
-  /**
    * center the keys within it's set width (must set the w property of Keyboard)
    */
   centerKeys?: boolean;
@@ -49,6 +44,8 @@ export interface KeyboardProps extends IntrinsicNodeProps {
    * Default format of the keyboard to be shown. Should be a key of `formats`.
    */
   defaultFormat?: string;
+
+  keySignal: Signal<string>;
 
   keySpacing?: KeyboardStyleProperties['keySpacing'];
 
