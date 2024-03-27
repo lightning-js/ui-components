@@ -20,7 +20,7 @@ import Keyboard, { type KeyboardProps } from './Keyboard.jsx';
 import Column from '../Column/Column.jsx';
 import Input from '../Input/Input.jsx';
 import type { Tone } from '../../types/types.js';
-import { type KeyboardStyles } from './Keyboard.styles.js';
+import styles, { type KeyboardStyles } from './Keyboard.styles.js';
 
 export interface KeyboardInputProps extends KeyboardProps {
   /**
@@ -54,6 +54,7 @@ const KeyboardInput: Component<KeyboardInputProps> = (props: KeyboardInputProps)
         formats={props.formats}
         centerKeys={props.centerKeys}
         width={1000}
+        style={[...[props.style].flat()]}
       />
     </Column>
   );
