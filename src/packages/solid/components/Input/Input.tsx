@@ -28,7 +28,7 @@ export interface InputProps extends IntrinsicNodeProps {
   actualTitle?: string;
 
   /**
-   * index of the current cursor positions
+   * non-reactive index of the current cursor currentPosition
    */
   position?: number;
 
@@ -56,37 +56,42 @@ const Input: Component<InputProps> = props => {
     }
 
     const inputText = props.titleSignal[0]();
-    let positions = position();
+    let currentPosition = position();
     let newTitle = '';
     switch (key.toLowerCase()) {
       case 'backspace':
       case 'delete':
-        newTitle = positions > 0 ? inputText.slice(0, positions - 1) + inputText.slice(positions) : inputText;
-        positions--;
+        newTitle =
+          currentPosition > 0
+            ? inputText.slice(0, currentPosition - 1) + inputText.slice(currentPosition)
+            : inputText;
+        currentPosition--;
         break;
       case 'done':
         break;
       case 'space':
         newTitle =
-          positions > 0
-            ? inputText.slice(0, positions - 1) + ' ' + inputText.slice(positions)
+          currentPosition > 0
+            ? inputText.slice(0, currentPosition - 1) + ' ' + inputText.slice(currentPosition)
             : ' ' + inputText;
-        positions++;
+        currentPosition++;
         break;
       case 'clear':
         newTitle = '';
-        positions = 0;
+        currentPosition = 0;
         break;
       default:
         newTitle =
-          positions > 0 ? inputText.slice(0, positions) + key + inputText.slice(positions) : key + inputText;
-        positions++;
+          currentPosition > 0
+            ? inputText.slice(0, currentPosition) + key + inputText.slice(currentPosition)
+            : key + inputText;
+        currentPosition++;
         break;
     }
 
     props.keyEvent[1]('');
     props.titleSignal[1](newTitle);
-    setPosition(positions);
+    setPosition(currentPosition);
     return '';
   };
 
