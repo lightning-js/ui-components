@@ -36,11 +36,6 @@ export interface KeyboardProps extends IntrinsicNodeProps {
   centerKeyboard?: boolean;
 
   /**
-   * wrap keyboard rows when navigating left and right
-   */
-  rowWrap?: boolean;
-
-  /**
    * center the keys within it's set width (must set the w property of Keyboard)
    */
   centerKeys?: boolean;

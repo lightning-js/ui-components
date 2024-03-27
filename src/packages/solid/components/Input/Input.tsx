@@ -18,15 +18,9 @@
 import { createSignal, type Component, type Signal, createEffect, on } from 'solid-js';
 import { View, Text, type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles, { type InputStyles } from './Input.styles.js';
-import type { KeyHandler } from '@lightningjs/solid-primitives';
 import type { Tone } from '../../types/types.js';
 
 export interface InputProps extends IntrinsicNodeProps {
-  /**
-   * actualTitle is a proxy element for title which is used to store actual value typed when password is enabled
-   */
-  actualTitle?: string;
-
   /**
    * non-reactive index of the current cursor currentPosition
    */
@@ -48,9 +42,8 @@ export interface InputProps extends IntrinsicNodeProps {
 }
 
 const Input: Component<InputProps> = props => {
-  const [position, setPosition] = createSignal(props.position ?? props.actualTitle?.length ?? 0);
-
   const [title, setTitle] = props.titleSignal;
+  const [position, setPosition] = createSignal(props.position ?? title().length);
   const [keyEvent, setkeyEvent] = props.keyEvent;
 
   const formatInputText = key => {
