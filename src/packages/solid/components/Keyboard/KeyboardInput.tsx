@@ -39,10 +39,11 @@ export interface KeyboardInputProps extends KeyboardProps {
 // rows created from each array passed in
 const KeyboardInput: Component<KeyboardInputProps> = (props: KeyboardInputProps) => {
   // signal representing a string of the key pressed and a boolean for if value has been added to the input yet
+  // eslint-disable-next-line solid/reactivity
   const keyEvent = createSignal('');
 
   return (
-    <Column selected={1} scroll={'none'}>
+    <Column autofocus={props.autofocus} selected={1} scroll={'none'}>
       <Input keyEvent={keyEvent} titleSignal={props.titleSignal} />
       <Keyboard keySignal={keyEvent} formats={props.formats} centerKeys={true} width={1000} />
     </Column>
