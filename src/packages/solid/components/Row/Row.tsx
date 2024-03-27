@@ -89,7 +89,7 @@ const Row: Component<RowProps> = (props: RowProps) => {
         props.onSelectedChanged,
         props.scroll !== 'none' ? withScrolling(props.x as number) : undefined
       )}
-      tone={props.txsxsone ?? styles.tone}
+      tone={props.tone ?? styles.tone}
       style={[
         ...[props.style].flat(),
         styles.Container.tones[props.tone || styles.tone],
