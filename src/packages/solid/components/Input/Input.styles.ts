@@ -32,7 +32,6 @@ export interface InputStyles {
 export type InputStyleProperties = {
   backgroundColor?: NodeStyles['color'];
   borderRadius?: NodeStyles['borderRadius'];
-  contentColor?: NodeStyles['color'];
   justifyContent?: NodeStyles['justifyContent'];
   textColor?: NodeStyles['color'];
 };
@@ -61,7 +60,6 @@ const input: InputConfig = {
   themeKeys: {
     borderRadius: 'borderRadius',
     color: 'backgroundColor',
-    contentColor: 'contentColor'
   },
   base: {
     width: getWidthByUpCount(theme, 4),
@@ -75,9 +73,9 @@ const input: InputConfig = {
     marginX: theme.spacer.xxxl
   },
   modes: {
-    // focus: {
-    //   color: theme.color.interactiveNeutralFocus
-    // },
+    focus: {
+      color: theme.color.interactiveNeutralFocus
+    },
     disabled: {
       color: theme.color.fillNeutralDisabled
     }

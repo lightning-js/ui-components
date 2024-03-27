@@ -44,7 +44,7 @@ export interface KeyProps extends IntrinsicNodeProps {
    */
   toggle?: boolean;
 
-  keySignal: Signal<(string | boolean)[]>;
+  keySignal: Partial<KeyStyles>;
 
   style?: KeyStyles;
 
