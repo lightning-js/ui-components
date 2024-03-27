@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.8.0...@lightningjs/solid-ui@0.8.1) (2024-03-27)
+
+### Bug Fixes
+
+- **Row/Column:** adds chainFunction onCreate ([#99](https://github.com/lightning-js/ui-components/issues/99)) ([ffc2b8e](https://github.com/lightning-js/ui-components/commit/ffc2b8e2f2638e89ccf7f982182ec243f2fb7e51))
+
 # [0.8.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.7.1...@lightningjs/solid-ui@0.8.0) (2024-03-25)
 
 ### Bug Fixes
