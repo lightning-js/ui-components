@@ -19,13 +19,14 @@ import { createSignal, type Component, type Signal } from 'solid-js';
 import Keyboard, { type KeyboardProps } from './Keyboard.jsx';
 import Column from '../Column/Column.jsx';
 import Input from '../Input/Input.jsx';
-import type { KeyProps } from '../Key/Key.jsx';
 import type { Tone } from '../../types/types.js';
 import { type KeyboardStyles } from './Keyboard.styles.js';
 
-export type KeyboardFormat = Array<Array<string | KeyProps>>;
-
 export interface KeyboardInputProps extends KeyboardProps {
+  /**
+   * non-reactive index of the current cursor currentPosition of the input
+   */
+  position?: number;
   /**
    * signal passed in to represent the actual title within the input
    */
@@ -44,8 +45,16 @@ const KeyboardInput: Component<KeyboardInputProps> = (props: KeyboardInputProps)
 
   return (
     <Column autofocus={props.autofocus} selected={1} scroll={'none'}>
-      <Input keyEvent={keyEvent} titleSignal={props.titleSignal} />
-      <Keyboard keySignal={keyEvent} formats={props.formats} centerKeys={true} width={1000} />
+      <Input position={props.position} keyEvent={keyEvent} titleSignal={props.titleSignal} />
+      <Keyboard
+        centerKeyboard={props.centerKeyboard}
+        keySpacing={props.keySpacing}
+        defaultFormat={props.defaultFormat}
+        keySignal={keyEvent}
+        formats={props.formats}
+        centerKeys={props.centerKeys}
+        width={1000}
+      />
     </Column>
   );
 };
