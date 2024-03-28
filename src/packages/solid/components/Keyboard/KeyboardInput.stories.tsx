@@ -45,7 +45,6 @@ export const Basic: Story = {
   },
   args: {
     states: 'focus',
-    width: 100,
     autofocus: true,
     centerKeys: true,
     formats: [

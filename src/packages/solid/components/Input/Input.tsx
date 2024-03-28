@@ -27,7 +27,7 @@ export interface InputProps extends IntrinsicNodeProps {
   position?: number;
 
   /**
-   * signal passed in to represent what change we want to happe in the input
+   * signal passed in to represent what change we want to happen in the input
    */
   keyEvent: Signal<string>;
 
@@ -42,11 +42,12 @@ export interface InputProps extends IntrinsicNodeProps {
 }
 
 const Input: Component<InputProps> = props => {
+  /* eslint-disable solid/reactivity */
   const [title, setTitle] = props.titleSignal;
   const [position, setPosition] = createSignal(props.position ?? title().length);
-  const [keyEvent, setkeyEvent] = props.keyEvent;
+  const [keyEvent, setKeyEvent] = props.keyEvent;
 
-  const formatInputText = key => {
+  const formatInputText = (key: string) => {
     if (key === undefined || key === '') {
       return;
     }
@@ -85,7 +86,7 @@ const Input: Component<InputProps> = props => {
         break;
     }
 
-    setkeyEvent('');
+    setKeyEvent('');
     setTitle(newTitle);
     setPosition(currentPosition);
     return '';
