@@ -22,7 +22,7 @@ import styles, { type BadgeStyles } from './Badge.styles.js';
 import type { Tone } from '../../types/types.js';
 withPadding; // Preserve the import.
 
-export type BadgeProps = {
+type BadgeProps = {
   /**
    * Badge text
    */
@@ -47,6 +47,11 @@ export type BadgeProps = {
   style?: Partial<BadgeStyles>;
 };
 
+interface BadgeContainerProps extends NodeProps {
+  tone?: Tone;
+  style?: Omit<BadgeStyles, 'tone' | 'Text'>;
+}
+
 const Badge: Component<BadgeProps> = (props: BadgeProps) => {
   return (
     <node
@@ -63,26 +68,33 @@ const Badge: Component<BadgeProps> = (props: BadgeProps) => {
       ]}
       forwardStates
     >
-      <Show when={Boolean(props.icon && props.iconAlign !== 'right')}>
-        <Icon {...props.icon} style={[styles.Icon.tones[props.tone ?? styles.tone], styles.Icon.base]} />
-      </Show>
       <Text
         style={[styles.Text.tones[props.tone ?? styles.tone], styles.Text.base]}
         tone={props.tone || styles.tone}
       >
         {props.title}
       </Text>
-      <Show when={Boolean(props.icon && props.iconAlign === 'right')}>
-        <Icon
-          {...props.icon}
-          style={[
-            styles.Icon.tones?.[props.tone ?? styles.tone], //
-            styles.Icon.base
-          ]}
-        />
-      </Show>
     </node>
   );
 };
 
-export default Badge;
+const BadgeContainer: Component<BadgeContainerProps> = props => {
+  return (
+    <node
+      use:withPadding={
+        props.padding ??
+        styles.Container?.tones[props.tone ?? styles.tone]?.padding ??
+        styles.Container.base.padding
+      }
+      {...props}
+      style={[
+        ...[props.style].flat(), //
+        styles.Container.tones[props.tone || styles.tone],
+        styles.Container.base
+      ]}
+      forwardStates
+    />
+  );
+};
+
+export { Badge as default, BadgeContainer, type BadgeProps, type BadgeContainerProps };
