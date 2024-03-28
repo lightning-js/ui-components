@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.8.1...@lightningjs/solid-ui@0.9.0) (2024-03-28)
+
+### Features
+
+- **Button:** inherit theme styles from Surface ([#100](https://github.com/lightning-js/ui-components/issues/100)) ([5adc165](https://github.com/lightning-js/ui-components/commit/5adc165bb2bdd6212bdfc43e96ebc74047094b43))
+
 ## [0.8.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.8.0...@lightningjs/solid-ui@0.8.1) (2024-03-27)
 
 ### Bug Fixes
