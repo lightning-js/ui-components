@@ -41,6 +41,8 @@ type ButtonConfig = ComponentStyleConfig<ButtonStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Button: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
+/* @ts-expect-error next-line see above */
+const { Surface: { surfaceDefaultTone, ...surfaceThemeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: ButtonConfig = {
   themeKeys: {
@@ -79,7 +81,10 @@ const container: ButtonConfig = {
       }
     }
   },
-  themeStyles
+  themeStyles: {
+    ...surfaceThemeStyles,
+    ...themeStyles
+  }
 };
 
 const content: ButtonConfig = {
@@ -108,7 +113,10 @@ const content: ButtonConfig = {
       }
     }
   },
-  themeStyles
+  themeStyles: {
+    ...surfaceThemeStyles,
+    ...themeStyles
+  }
 };
 
 const text: ButtonConfig = {
@@ -139,7 +147,10 @@ const text: ButtonConfig = {
       }
     }
   },
-  themeStyles
+  themeStyles: {
+    ...surfaceThemeStyles,
+    ...themeStyles
+  }
 };
 
 const Container = makeComponentStyles<ButtonStyles['Container']>(container);
@@ -147,7 +158,7 @@ const Content = makeComponentStyles<ButtonStyles['Content']>(content);
 const Text = makeComponentStyles<ButtonStyles['Text']>(text);
 
 const styles: ButtonStyles = {
-  tone: defaultTone || 'neutral',
+  tone: defaultTone || surfaceDefaultTone || 'neutral',
   Container,
   Content,
   Text
