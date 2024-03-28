@@ -15,9 +15,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { type Component } from 'solid-js';
-import { Text, Show } from '@lightningjs/solid';
+import { Text, type NodeProps } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
-import Icon, { type IconProps } from '../Icon/Icon.jsx';
 import styles, { type BadgeStyles } from './Badge.styles.js';
 import type { Tone } from '../../types/types.js';
 withPadding; // Preserve the import.
@@ -27,16 +26,6 @@ type BadgeProps = {
    * Badge text
    */
   title: string;
-  // TODO better handling for default prop values
-  /**
-   * side of the text where icon will appear on
-   * defaults to left if value is either undefined or invalid
-   */
-  iconAlign?: string;
-  /**
-   * Object containing all properties supported in the [Icon component](?path=/docs/components-icon--icon)
-   */
-  icon?: Partial<IconProps>;
   /**
    * sets the component's color palette
    */
