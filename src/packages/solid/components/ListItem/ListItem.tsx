@@ -1,24 +1,47 @@
-import { type Component, createSignal } from 'solid-js';
-import { Show, type NodeProps, Text, View } from '@lightningjs/solid';
-import { withPadding } from '@lightningjs/solid-primitives';
-import Artwork, { type ArtworkProps } from '../Artwork/Artwork.jsx';
-import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
-import styles, { type ListItemStyleProperties, type ListItemStyles } from './ListItem.styles.js';
+import { type Component } from 'solid-js';
+import { Text, View } from '@lightningjs/solid';
+import styles, { type ListItemStyles } from './ListItem.styles.js';
 import type { Tone } from '../../types/types.js';
 
-export interface ListItemProps extends NodeProps {
-  title?: String,
-  description?: String,
+export interface ListItemProps {
+  title?: string,
+  description?: string,
   tone?: Tone;
   style?: Partial<ListItemStyles>;
 }
 
-const ListItem: Component<ListItemProps> = (props:ListItemProps) => {
+const ListItem: Component<ListItemProps> = (props) => {
   return (
-    <View width={500} height={500} color={0xff0000ff}>
-      <Text>Hello World</Text>
+    <View
+      {...props}
+      style={[
+        ...[props.style].flat(),
+        styles.Container.tones?.[props.tone ?? styles.tone], // Assuming defaultTone is defined somewhere or use a literal string
+        styles.Container.base
+      ]}
+      forwardStates
+    >
+      <Text
+        style={[
+          ...[props.style?.Title].flat(),
+          styles.Title.tones[props.tone ?? styles.tone], // Same assumption as above
+          styles.Title.base
+        ]}
+      >
+        {props.title}
+      </Text>
+      <Text
+        y={styles.Description.base.y}
+        style={[
+          ...[props.style?.Description].flat(),
+          styles.Description.tones[props.tone ?? styles.tone], // Same assumption as above
+          styles.Description.base
+        ]}
+      >
+        {props.description}
+      </Text>
     </View>
-  )
+  );
 }
 
 export default ListItem;

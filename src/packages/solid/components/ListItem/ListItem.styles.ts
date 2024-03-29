@@ -18,17 +18,21 @@
 import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
 import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
+import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
+import { getWidthByUpCount } from '../../utils/getWidthByUpCount.js';
 
 export interface ListItemStyles {
   tone: Tone,
   Container: NodeStyleSet;
+  Title: TextStyleSet;
+  Description: TextStyleSet;
 }
 
 export type ListItemStyleProperties = {
   alpha?: NodeStyles['alpha'],
   paddingX?: number,
+  paddingY?: number,
   contentSpacing?: number,
   titleTextStyle?: object,
   descriptionTextStyle?: object
@@ -37,19 +41,138 @@ export type ListItemStyleProperties = {
 type ListItemConfig = ComponentStyleConfig<ListItemStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { ListItem: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
+const { ListItem: { tone: defaultTone, ...themeStyles } = { style: {} } } = theme?.componentConfig;
+/* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
+const { Button: { tone: buttonDefaultTone, ...buttonThemeStyles } = { style: {} } } = theme?.componentConfig;
+/* @ts-expect-error next-line see above */
+const { Surface: { tone: surfaceDefaultTone, ...surfaceThemeStyles } = { style: {} } } = theme?.componentConfig;
 
 const container: ListItemConfig = {
+  themeKeys: {
+    alpha: 'alpha',
+    paddingX: 'paddingX',
+    paddingY: 'paddingY',
+    contentSpacing: 'contentSpacing',
+    titleTextStyle: 'titleTextStyle',
+    descriptionTextStyle: 'descriptionTextStyle'
+  },
+  base: {
+    height: theme.typography.headline3.lineHeight + theme.typography.body3.lineHeight + theme.spacer.xl * 2,
+    paddingY: theme.spacer.xl, 
+    paddingX: theme.spacer.xl, 
+    color: theme.color.interactiveNeutral,
+    borderRadius: theme.radius.sm,
+    contentColor: theme.color.fillNeutral,
+    width: getWidthByUpCount(theme, 3)
+  },
+  modes: {
+    focus: {
+      color: theme.color.interactiveNeutralFocus,
+      contentColor: theme.color.fillInverse
+    },
+    disabled: {
+      color: theme.color.fillNeutralDisabled
+    }
+  },
+  tones: {
+    inverse: {
+      color: theme.color.interactiveInverse
+    },
+    brand: {
+      color: theme.color.interactiveBrand,
+      focus: {
+        color: theme.color.fillNeutral
+      }
+    }
+  },
+  themeStyles: {
+    ...surfaceThemeStyles, 
+    ...buttonThemeStyles,
+    ...themeStyles
+  }
+}
+
+const title: ListItemConfig = {
   themeKeys: {},
-  base: {},
-  tones: {},
-  themeStyles
+  base: {
+    color: theme.color.textNeutral,
+    textAlign: 'left',
+    x: container.base.paddingX,
+    y: container.base.paddingY,
+    ...theme.typography.headline3
+  },
+  modes: {
+    focus: {
+      color: theme.color.textInverse
+    },
+    disabled: {
+      color: theme.color.textNeutralDisabled
+    }
+  },
+  tones: {
+    inverse: {
+      color: theme.color.fillNeutral
+    },
+    brand: {
+      color: theme.color.fillBrand,
+      focus: {
+        color: theme.color.fillBrand
+      }
+    }
+  },
+  themeStyles: {
+    ...surfaceThemeStyles, 
+    ...buttonThemeStyles,
+    ...themeStyles
+  }
+}
+
+const description: ListItemConfig = {
+  themeKeys: {
+    color: 'textColor'
+  },
+  base: {
+    color: theme.color.textNeutral,
+    textAlign: 'left',
+    x: container.base.paddingX,
+    y: title.base.lineHeight + title.base.y,
+    ...theme.typography.body3
+  },
+  modes: {
+    focus: {
+      color: theme.color.textInverse
+    },
+    disabled: {
+      color: theme.color.textNeutralDisabled
+    }
+  },
+  tones: {
+    inverse: {
+      color: theme.color.fillNeutral
+    },
+    brand: {
+      color: theme.color.fillBrand,
+      focus: {
+        color: theme.color.fillBrand
+      }
+    }
+  },
+  themeStyles: {
+    ...surfaceThemeStyles, 
+    ...buttonThemeStyles,
+    ...themeStyles
+  }
 }
 
 const Container = makeComponentStyles<ListItemStyles['Container']>(container)
+const Title = makeComponentStyles<ListItemStyles['Title']>(title)
+const Description = makeComponentStyles<ListItemStyles['Description']>(description)
+
 const styles: ListItemStyles = {
-  tone: defaultTone || 'neutral',
-  Container
+  tone: defaultTone || buttonDefaultTone || surfaceDefaultTone || 'neutral',
+  Container,
+  Title,
+  Description
 };
 
 export default styles;

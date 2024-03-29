@@ -17,8 +17,6 @@
 
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import ListItem from './ListItem.jsx';
-import theme from 'theme';
-import { View } from '@lightningjs/solid';
 
 type Story = StoryObj<typeof ListItem>;
 
@@ -26,18 +24,48 @@ const meta: Meta<typeof ListItem> = {
   title: 'Components/ListItem',
   tags: ['autodocs'],
   component: ListItem,
-  // argTypes: {
-  //   states: {
-
-  //   }
-  // }
+  argTypes: {
+    title: {
+      control: { type: 'text' },
+      description: 'Title text for list item',
+      table: {
+        defaultValue: { summary: 'undefined' }
+      }
+    },
+    description: {
+      control: { type: 'text' },
+      description: 'Description text for list item',
+      table: {
+        defaultValue: { summary: 'undefined' }
+      }
+    },
+    states: {
+      control: { type: 'radio' },
+      options: ['focus', 'unfocused', 'disabled'],
+      description: 'Sets the visual mode for the component',
+      table: {
+        defaultValue: { summary: 'focus' }
+      }
+    },
+    tone: {
+      control: { type: 'radio' },
+      options: ['neutral', 'inverse', 'brand'],
+      description: 'Sets the tone for the component',
+      table: {
+        defaultValue: { summary: 'neutral' }
+      }
+    }
+  }
 }
 
-export const ListItemStory: Story = {
+export const Basic: Story = {
+  args: {
+   title: 'Title',
+   description: 'Description'
+  },
   render: args => {
-    console.log('args')
     return (
-      <ListItem />
+      <ListItem {...args}/>
     )
   }
 }
