@@ -20,7 +20,7 @@ import theme from 'theme';
 import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-import { getWidthByUpCount } from '../../utils/getWidthByUpCount.js';
+import { getWidthByUpCount } from '../../utils/getWidthByUpcount.js';
 
 export interface ListItemStyles {
   tone: Tone,
