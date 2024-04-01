@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Comcast Cable Communications Management, LLC
+ * Copyright 2024 Comcast Cable Communications Management, LLC
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,8 +17,7 @@
 
 import type { TextStyles, NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
+import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet, Tone } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 
 /**
@@ -27,25 +26,25 @@ import { makeComponentStyles } from '../../utils/index.js';
  */
 
 // includes the tone and all returned style sets, usually one per element
-export interface ComponentStyle {
+// NodeStyleSet(and TextStyleSet) is a generic that takes an object<T> and returns `NodeStyles & T`
+export interface NewComponentStyles {
   tone: Tone;
   // ex. Container: NodeStyleSet;
 }
 
 // list of all values expected in a componentConfig, and their type
 // usually these map to a NodeStyle or TextStyle type
-type ComponentStyleProperties = Partial<{
+type NewComponentStyleProperties = Partial<{
   // ex. backgroundColor: NodeStyles['color'];
 }>;
 
-type ComponentConfig = ComponentStyleConfig<ComponentStyleProperties>;
+type NewComponentConfig = ComponentStyleConfig<NewComponentStyleProperties>;
 
 // replace Component with the component name, this line imports overrides from the theme's componentConfig if they exist
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Component: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
-  theme?.componentConfig;
+const { Component: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
-const container: ComponentConfig = {
+const container: NewComponentConfig = {
   themeKeys: {
     // key/value pairs mapping this element's property to the incoming componentConfig value
     // the values here should be listed in the ComponentStyleProperties type
@@ -55,7 +54,20 @@ const container: ComponentConfig = {
     //  default styles of a component
     // ex. color: theme.color.red
   },
-  toneModes: {
+  modes: {
+    // state and tone level overrides
+    // ex:
+    // focus: {
+    //   color: theme.color.blue
+    // },
+    // brand: {
+    //   color: theme.color.purple,
+    //   focus: {
+    //     color: theme.color.red
+    //   }
+    // }
+  },
+  tones: {
     // state and tone level overrides
     // ex:
     // focus: {
@@ -75,8 +87,8 @@ const container: ComponentConfig = {
 // ex. const Container = makeComponentStyles<ComponentStyle['Container']>(container);
 
 // the object returned to the component
-const styles: ComponentStyle = {
-  tone: tone
+const styles: NewComponentStyle = {
+  tone: defaultTone || 'neutral'
   // ex. Container
 };
 
