@@ -15,38 +15,26 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { type Component, type Signal } from 'solid-js';
+import { createSignal, type Component, type Signal, createEffect, on } from 'solid-js';
 import { View, Text, type IntrinsicNodeProps } from '@lightningjs/solid';
 import styles, { type InputStyles } from './Input.styles.js';
-import type { KeyHandler } from '@lightningjs/solid-primitives';
 import type { Tone } from '../../types/types.js';
 
 export interface InputProps extends IntrinsicNodeProps {
   /**
-   * actualTitle is a proxy element for title which is used to store actual value typed when password is enabled
-   */
-  actualTitle?: string;
-
-  /**
-   * eyebrow of input container.
-   */
-  eyebrow?: string;
-
-  /**
-   * help text for the input container.
-   */
-  helpText?: string;
-
-  /**
-   * index of the current cursor positions
+   * non-reactive index of the current cursor currentPosition
    */
   position?: number;
 
-  keySignal: Signal<string>;
+  /**
+   * signal passed in to represent what change we want to happen in the input
+   */
+  keyEvent: Signal<string>;
 
-  onRight?: KeyHandler;
-
-  onLeft?: KeyHandler;
+  /**
+   * signal passed in to represent the actual title within the input
+   */
+  titleSignal: Signal<string>;
 
   style?: Partial<InputStyles>;
 
@@ -54,16 +42,88 @@ export interface InputProps extends IntrinsicNodeProps {
 }
 
 const Input: Component<InputProps> = props => {
+  /* eslint-disable solid/reactivity */
+  const [title, setTitle] = props.titleSignal;
+  const [position, setPosition] = createSignal(props.position ?? title().length);
+  const [keyEvent, setKeyEvent] = props.keyEvent;
+
+  const formatInputText = (key: string) => {
+    if (key === undefined || key === '') {
+      return;
+    }
+
+    const inputText = title();
+    let currentPosition = position();
+    let newTitle = '';
+    switch (key.toLowerCase()) {
+      case 'backspace':
+      case 'delete':
+        newTitle =
+          currentPosition > 0
+            ? inputText.slice(0, currentPosition - 1) + inputText.slice(currentPosition)
+            : inputText;
+        currentPosition--;
+        break;
+      case 'done':
+        break;
+      case 'space':
+        newTitle =
+          currentPosition > 0
+            ? inputText.slice(0, currentPosition - 1) + ' ' + inputText.slice(currentPosition)
+            : ' ' + inputText;
+        currentPosition++;
+        break;
+      case 'clear':
+        newTitle = '';
+        currentPosition = 0;
+        break;
+      default:
+        newTitle =
+          currentPosition > 0
+            ? inputText.slice(0, currentPosition) + key + inputText.slice(currentPosition)
+            : key + inputText;
+        currentPosition++;
+        break;
+    }
+
+    setKeyEvent('');
+    setTitle(newTitle);
+    setPosition(currentPosition);
+    return '';
+  };
+
+  createEffect(
+    on(
+      () => keyEvent(),
+      keyEvent => {
+        formatInputText(keyEvent);
+      },
+      { defer: true }
+    )
+  );
+
+  function onRight() {
+    setPosition(p => Math.max(p + 1, title().length));
+    return true;
+  }
+
+  function onLeft() {
+    setPosition(p => Math.max(p - 1, 0));
+    return true;
+  }
+
   return (
     <View
       {...props}
+      position={position()}
+      onLeft={onLeft}
+      onRight={onRight}
       style={[
-        ...[props.style].flat(), //
-        styles.Container.tones[props.tone ?? styles.tone],
-        styles.Container.base
+        props.style?.InputContainer, //
+        styles.InputContainer.tones[props.tone ?? styles.tone],
+        styles.InputContainer.base
       ]}
     >
-      {/* eyebrow */}
       <Text
         style={[
           props.style?.Text, //
@@ -71,34 +131,7 @@ const Input: Component<InputProps> = props => {
           styles.Text.base
         ]}
       >
-        {props.eyebrow}
-      </Text>
-      <View
-        style={[
-          props.style?.InputContainer, //
-          styles.InputContainer.tones[props.tone ?? styles.tone],
-          styles.InputContainer.base
-        ]}
-      >
-        <Text
-          style={[
-            props.style?.Text, //
-            styles.Text.tones[props.tone ?? styles.tone],
-            styles.Text.base
-          ]}
-        >
-          {props.keySignal[0]}
-        </Text>
-      </View>
-      {/* helptext */}
-      <Text
-        style={[
-          props.style?.Text, //
-          styles.Text.tones[props.tone ?? styles.tone],
-          styles.Text.base
-        ]}
-      >
-        {props.helpText}
+        {title()}
       </Text>
     </View>
   );

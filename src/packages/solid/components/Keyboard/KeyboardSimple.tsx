@@ -27,18 +27,21 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
   return (
     <Column
       autofocus={props.autofocus}
+      scroll={'none'}
       plinko
       itemSpacing={
         props.keySpacing ??
         styles.Container.tones[props.tone ?? styles.tone]?.keySpacing ??
         styles.Container.base.keySpacing
       }
-      justifyContent={props.centerKeyboard && props.centerKeyboard ? 'center' : 'flexStart'}
+      justifyContent={props.centerKeyboard ? 'center' : 'flexStart'}
+      width={props.width}
     >
       <For each={props.formats}>
         {(row: Array<string | KeyProps>) => (
           <Row
-            justifyContent={props.centerKeys && props.centerKeys ? 'center' : 'flexStart'}
+          width={props.width}
+            justifyContent={props.centerKeys ? 'center' : 'flexStart'}
             itemSpacing={
               props.keySpacing ??
               styles.Container.tones[props.tone ?? styles.tone]?.keySpacing ??
@@ -56,6 +59,8 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
                 <Key
                   style={props.style?.Key}
                   {...(typeof key === 'string' ? {} : key)}
+                  // if not a toggle key
+                  onEnter={() => props.keySignal[1](typeof key === 'string' ? key : key.title ?? '')}
                   // @ts-expect-error the ternary handles for the type error
                   title={key.title || key.icon ? key.title : key}
                 />

@@ -35,7 +35,7 @@ export type KeyboardStyleProperties = {
   marginX?: number;
 };
 
-type KeyboardConfig = ComponentStyleConfig<KeyboardStyleProperties>;
+export type KeyboardConfig = ComponentStyleConfig<KeyboardStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Keyboard: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
