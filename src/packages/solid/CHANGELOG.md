@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.9.0...@lightningjs/solid-ui@0.10.0) (2024-04-01)
+
+### Features
+
+- **KeyboardInput:** creates keyboardInput component ([#97](https://github.com/lightning-js/ui-components/issues/97)) ([4d87066](https://github.com/lightning-js/ui-components/commit/4d8706688c4cfc83f0ee4a556406560a99dae85c))
+
 # [0.9.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.8.1...@lightningjs/solid-ui@0.9.0) (2024-03-28)
 
 ### Features
