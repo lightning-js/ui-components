@@ -28,6 +28,8 @@ import { makeComponentStyles } from '../../utils/index.js';
 // includes the tone and all returned style sets, usually one per element
 export interface CardContentStyles {
   tone: Tone;
+  Container: NodeStyleSet<{ padding: number[] }>;
+  MetadataContainer: NodeStyleSet<{ padding: number[] }>;
   // ex. Container: NodeStyleSet;
 }
 
@@ -42,8 +44,45 @@ type CardContentConfig = ComponentStyleConfig<CardContentStyleProperties>;
 // replace Component with the component name, this line imports overrides from the theme's componentConfig if they exist
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Component: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
+/* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
+const { Surface: { defaultSurfaceTone, ...surfaceThemeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: CardContentConfig = {
+  themeKeys: {
+    // key/value pairs mapping this element's property to the incoming componentConfig value
+    // the values here should be listed in the ComponentStyleProperties type
+    // ex. color: 'backgroundColor'
+  },
+  base: {
+    //  default styles of a component
+    // ex. color: theme.color.red
+    width: utils.getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).w,
+    height: utils.getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).h,
+    padding: [40, 10], // TODO support separate paddingX and paddingY values from theme, possibly formatter
+    paddingYProgress: theme.spacer.xl,
+    paddingYBetweenContent: theme.spacer.md,
+    borderRadius: theme.radius.md
+  },
+  toneModes: {
+    // state and tone level overrides
+    // ex:
+    // focus: {
+    //   color: theme.color.blue
+    // },
+    // brand: {
+    //   color: theme.color.purple
+    // },
+    // 'brand-focus': {
+    //   color: theme.color.red
+    // }
+  },
+  themeStyles: {
+    // passes the componentConfig values to makeComponentStyles()
+    ...surfaceThemeStyles
+  }
+};
+
+const metadataContainer: CardContentConfig = {
   themeKeys: {
     // key/value pairs mapping this element's property to the incoming componentConfig value
     // the values here should be listed in the ComponentStyleProperties type
@@ -70,11 +109,15 @@ const container: CardContentConfig = {
 };
 
 // generates the style object
-// ex. const Container = makeComponentStyles<ComponentStyle['Container']>(container);
+// ex. const Container = makeComponentStyles<ComponentStyles['Container']>(container);
+const Container = makeComponentStyles<CardContentStyles['Container']>(container);
+const MetadataContainer = makeComponentStyles<CardContentStyles['MetadataContainer']>(metadataContainer);
 
 // the object returned to the component
-const styles: CardContentStyle = {
-  tone: defaultTone || 'neutral'
+const styles: CardContentStyles = {
+  tone: defaultTone || defaultSurfaceTone || 'neutral',
+  Container,
+  MetadataContainer
   // ex. Container
 };
 
