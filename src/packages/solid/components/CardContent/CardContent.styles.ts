@@ -18,7 +18,7 @@
 import type { TextStyles, NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet, Tone } from '../../types/types.js';
-import { makeComponentStyles } from '../../utils/index.js';
+import { makeComponentStyles, getDimensions, getWidthByUpCount } from '../../utils/index.js';
 
 /**
  * replace all instances of `Component` (as in ComponentStyle) with the component's name
@@ -28,6 +28,7 @@ import { makeComponentStyles } from '../../utils/index.js';
 // includes the tone and all returned style sets, usually one per element
 export interface CardContentStyles {
   tone: Tone;
+  ArtworkContainer: NodeStyleSet<{ padding: number[] }>;
   Container: NodeStyleSet<{ padding: number[] }>;
   MetadataContainer: NodeStyleSet<{ padding: number[] }>;
   // ex. Container: NodeStyleSet;
@@ -56,12 +57,15 @@ const container: CardContentConfig = {
   base: {
     //  default styles of a component
     // ex. color: theme.color.red
-    width: utils.getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).w,
-    height: utils.getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).h,
-    padding: [40, 10], // TODO support separate paddingX and paddingY values from theme, possibly formatter
-    paddingYProgress: theme.spacer.xl,
-    paddingYBetweenContent: theme.spacer.md,
-    borderRadius: theme.radius.md
+    width: getWidthByUpCount(theme, 2),
+    height:
+      getDimensions(theme, {
+        ratioX: 16,
+        ratioY: 9,
+        upCount: 4
+      }).h ?? 0,
+    padding: [theme.spacer.md * 1.5, theme.spacer.xl], // TODO support separate paddingX and paddingY values from theme, possibly formatter
+    borderRadius: theme.radius.md,
   },
   toneModes: {
     // state and tone level overrides
@@ -82,6 +86,37 @@ const container: CardContentConfig = {
   }
 };
 
+const artworkContainer: CardContentConfig = {
+  themeKeys: {
+    // key/value pairs mapping this element's property to the incoming componentConfig value
+    // the values here should be listed in the ComponentStyleProperties type
+    // ex. color: 'backgroundColor'
+  },
+  base: {
+    //  default styles of a component
+    // ex. color: theme.color.red
+    width: getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).w,
+    height: getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).h,
+    padding: [40, 10] // TODO support separate paddingX and paddingY values from theme, possibly formatter
+  },
+  toneModes: {
+    // state and tone level overrides
+    // ex:
+    // focus: {
+    //   color: theme.color.blue
+    // },
+    // brand: {
+    //   color: theme.color.purple
+    // },
+    // 'brand-focus': {
+    //   color: theme.color.red
+    // }
+  },
+  themeStyles: {
+    // passes the componentConfig values to makeComponentStyles()
+  }
+};
+
 const metadataContainer: CardContentConfig = {
   themeKeys: {
     // key/value pairs mapping this element's property to the incoming componentConfig value
@@ -91,6 +126,10 @@ const metadataContainer: CardContentConfig = {
   base: {
     //  default styles of a component
     // ex. color: theme.color.red
+    width: (getWidthByUpCount(theme, 2) ?? 0) - getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).w,
+    height: getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).h,
+    color: theme.color.fillInverseSecondary,
+    padding: [theme.spacer.xl, theme.spacer.xl]
   },
   toneModes: {
     // state and tone level overrides
@@ -111,12 +150,14 @@ const metadataContainer: CardContentConfig = {
 // generates the style object
 // ex. const Container = makeComponentStyles<ComponentStyles['Container']>(container);
 const Container = makeComponentStyles<CardContentStyles['Container']>(container);
+const ArtworkContainer = makeComponentStyles<CardContentStyles['ArtworkContainer']>(artworkContainer);
 const MetadataContainer = makeComponentStyles<CardContentStyles['MetadataContainer']>(metadataContainer);
 
 // the object returned to the component
 const styles: CardContentStyles = {
   tone: defaultTone || defaultSurfaceTone || 'neutral',
   Container,
+  ArtworkContainer,
   MetadataContainer
   // ex. Container
 };

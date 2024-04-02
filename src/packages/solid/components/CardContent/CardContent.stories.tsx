@@ -23,6 +23,7 @@ import { View } from '@lightningjs/solid';
 import Label from '../Label/Label.jsx';
 import Metadata, { type MetadataProps } from '../Metadata/Metadata.jsx';
 import ProgressBar from '../ProgressBar/ProgressBar.jsx';
+import Details from '../Metadata/Details.jsx';
 
 type Story = StoryObj<typeof CardContent>;
 const lorum =
@@ -78,7 +79,7 @@ export const MetadataInset: Story = {
       <CardContent
         {...args}
         tone="brand"
-        topLeft={<Badge title="HD" tone="brand" />}
+        topLeft={<Badge title="HD" />}
         topRight={
           <Label
             width={75}
@@ -87,23 +88,21 @@ export const MetadataInset: Story = {
             // tone="brand"
           />
         }
-        inset={
+        metadataTop={
           <>
-            <View
-              src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
-              width={theme.spacer.lg * 5}
-              height={theme.spacer.xxl + theme.spacer.md}
-            />
             <Metadata {...(args.metadata as MetadataProps)} tone="brand" />
+          </>
+        }
+        metadataBottom={
+          <>
+            <Details {...args.details} tone="brand" />
           </>
         }
       />
     );
   },
   args: {
-    states: 'focus',
-    width: 480,
-    height: 270,
+    autofocus: true,
     artwork: {
       src: 'https://image.tmdb.org/t/p/w500/zHdQ6yaqDf3OQO5uhr0auAgwK6O.jpg',
       effects: {
@@ -114,11 +113,15 @@ export const MetadataInset: Story = {
         }
       }
     },
-    persistentMetadata: true,
+    shouldCollapse: true,
     metadata: {
       title: 'Title',
       description: lorum,
       maxLines: 1
+    },
+    details: {
+      title: 'Support text',
+      badges: [{ title: 'TV-14' }, { title: 'HD' }, { title: 'CC' }]
     },
     progressBar: {
       progress: 0.5

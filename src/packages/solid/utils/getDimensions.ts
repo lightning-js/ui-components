@@ -1,3 +1,5 @@
+import { getItemRatioDimensions } from "./getItemRatioDimensions.js";
+
 export function getDimensions(theme, obj = {}, fallback = {}) {
   const { w, h, ratioX, ratioY, upCount } = obj;
   const fallbackW = fallback.w || 0;
