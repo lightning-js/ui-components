@@ -1,0 +1,46 @@
+/*
+ * Copyright 2024 Comcast Cable Communications Management, LLC
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import theme from 'theme';
+
+/**
+ * returns a width value derived from the provided upcount and the
+ * following theme values: screenW, columnCount, marginX, gutterX.
+ *
+ * this value is representative of the screen's width minus the margin, divided
+ * equally among the number of displayed items(upcount) while accounting for item spacing(gutterX)
+ */
+export function getWidthByUpCount(upCount = 1) {
+  const screenW = theme.layout.screenW;
+  const columnCount = theme.layout.columnCount;
+  const marginX = theme.layout.marginX;
+  const gutterX = theme.layout.gutterX;
+
+  if (upCount < 1 || upCount > columnCount) {
+    console.error(`Column expects a number between 1 & ${columnCount}. Received ${upCount}`);
+    return;
+  }
+
+  // the screen width, minus the margin x on each side
+  const columnWidth = screenW - marginX * 2;
+  // the total space of column gaps in between items
+  const columnGapTotal = (upCount - 1) * gutterX;
+  // the remaining amount of space left for all items
+  const totalColumnsWidth = columnWidth - columnGapTotal;
+  // the width of each item in that remaining width
+  return totalColumnsWidth / upCount;
+}
