@@ -17,8 +17,8 @@
 
 /* eslint-disable @typescript-eslint/ban-types */
 // take an array of functions and if you return true from a function, it will stop the chain
-export const chainFunctions = (...args: (Function | undefined)[]) => {
-  const onlyFunctions = args.filter(func => typeof func === 'function') as Function[];
+export function chainFunctions<T>(...args: T[]) {
+  const onlyFunctions = args.filter(func => typeof func === 'function');
   if (onlyFunctions.length === 0) {
     return undefined;
   }
@@ -27,7 +27,7 @@ export const chainFunctions = (...args: (Function | undefined)[]) => {
     return onlyFunctions[0];
   }
 
-  return function (...innerArgs: unknown[]) {
+  return function (this: unknown, ...innerArgs: unknown[]) {
     let result;
     for (const func of onlyFunctions) {
       result = func.apply(this, innerArgs);
@@ -37,4 +37,4 @@ export const chainFunctions = (...args: (Function | undefined)[]) => {
     }
     return result;
   };
-};
+}
