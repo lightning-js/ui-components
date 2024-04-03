@@ -113,6 +113,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
           styles.Container.tones[props.tone ?? styles.tone]?.height ??
           styles.Container.base.height
         }
+        borderRadius={props.borderRadius ?? styles.Container.base.borderRadius}
       />
 
       <Show when={props.persistentMetadata || isFocused()}>

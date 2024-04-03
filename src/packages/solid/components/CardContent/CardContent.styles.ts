@@ -15,48 +15,31 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { TextStyles, NodeStyles } from '@lightningjs/solid';
+import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet, Tone } from '../../types/types.js';
+import type { ComponentStyleConfig, NodeStyleSet, Tone } from '../../types/types.js';
+import type { TileConfig } from '../Tile/Tile.styles.js';
 import { makeComponentStyles, getDimensions, getWidthByUpCount } from '../../utils/index.js';
 
-/**
- * replace all instances of `Component` (as in ComponentStyle) with the component's name
- * ex. Button -> ButtonStyle
- */
-
-// includes the tone and all returned style sets, usually one per element
 export interface CardContentStyles {
   tone: Tone;
-  ArtworkContainer: NodeStyleSet<{ padding: number[] }>;
+  TileContainer: NodeStyleSet<{ padding: number[] }>;
   Container: NodeStyleSet<{ padding: number[] }>;
   MetadataContainer: NodeStyleSet<{ padding: number[] }>;
-  // ex. Container: NodeStyleSet;
 }
 
-// list of all values expected in a componentConfig, and their type
-// usually these map to a NodeStyle or TextStyle type
-type CardContentStyleProperties = Partial<{
-  // ex. backgroundColor: NodeStyles['color'];
+export type CardContentStyleProperties = Partial<{
+  backgroundColor: NodeStyles['color'];
 }>;
 
 type CardContentConfig = ComponentStyleConfig<CardContentStyleProperties>;
 
-// replace Component with the component name, this line imports overrides from the theme's componentConfig if they exist
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Component: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
-/* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Surface: { defaultSurfaceTone, ...surfaceThemeStyles } = { styles: {} } } = theme?.componentConfig;
+const { CardContent: { defaultTone, ...cardContentthemeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: CardContentConfig = {
-  themeKeys: {
-    // key/value pairs mapping this element's property to the incoming componentConfig value
-    // the values here should be listed in the ComponentStyleProperties type
-    // ex. color: 'backgroundColor'
-  },
+  themeKeys: {},
   base: {
-    //  default styles of a component
-    // ex. color: theme.color.red
     width: getWidthByUpCount(theme, 2),
     height:
       getDimensions(theme, {
@@ -64,102 +47,75 @@ const container: CardContentConfig = {
         ratioY: 9,
         upCount: 4
       }).h ?? 0,
-    padding: [theme.spacer.md * 1.5, theme.spacer.xl], // TODO support separate paddingX and paddingY values from theme, possibly formatter
+    padding: [theme.spacer.xl, theme.spacer.xl], // TODO support separate paddingX and paddingY values from theme, possibly formatter
     borderRadius: theme.radius.md,
+    flexDirection: 'row',
+    display: 'flex'
   },
-  toneModes: {
-    // state and tone level overrides
-    // ex:
-    // focus: {
-    //   color: theme.color.blue
-    // },
-    // brand: {
-    //   color: theme.color.purple
-    // },
-    // 'brand-focus': {
-    //   color: theme.color.red
-    // }
-  },
-  themeStyles: {
-    // passes the componentConfig values to makeComponentStyles()
-    ...surfaceThemeStyles
-  }
+  modes: {},
+  tones: {},
+  themeStyles: cardContentthemeStyles
 };
 
-const artworkContainer: CardContentConfig = {
-  themeKeys: {
-    // key/value pairs mapping this element's property to the incoming componentConfig value
-    // the values here should be listed in the ComponentStyleProperties type
-    // ex. color: 'backgroundColor'
-  },
+const tileContainer: TileConfig = {
+  themeKeys: {},
   base: {
-    //  default styles of a component
-    // ex. color: theme.color.red
     width: getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).w,
     height: getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).h,
-    padding: [40, 10] // TODO support separate paddingX and paddingY values from theme, possibly formatter
   },
-  toneModes: {
-    // state and tone level overrides
-    // ex:
-    // focus: {
-    //   color: theme.color.blue
-    // },
-    // brand: {
-    //   color: theme.color.purple
-    // },
-    // 'brand-focus': {
-    //   color: theme.color.red
-    // }
-  },
-  themeStyles: {
-    // passes the componentConfig values to makeComponentStyles()
-  }
+  modes: {},
+  tones: {},
+  themeStyles: cardContentthemeStyles
 };
 
 const metadataContainer: CardContentConfig = {
   themeKeys: {
-    // key/value pairs mapping this element's property to the incoming componentConfig value
-    // the values here should be listed in the ComponentStyleProperties type
-    // ex. color: 'backgroundColor'
+    color: 'backgroundColor'
   },
   base: {
-    //  default styles of a component
-    // ex. color: theme.color.red
     width: (getWidthByUpCount(theme, 2) ?? 0) - getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).w,
     height: getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).h,
     color: theme.color.fillInverseSecondary,
     padding: [theme.spacer.xl, theme.spacer.xl]
   },
-  toneModes: {
-    // state and tone level overrides
-    // ex:
-    // focus: {
-    //   color: theme.color.blue
-    // },
-    // brand: {
-    //   color: theme.color.purple
-    // },
-    // 'brand-focus': {
-    //   color: theme.color.red
-    // }
+  modes: {
+    focus: {
+      color: theme.color.interactiveNeutralFocus
+    },
+    disabled: {
+      color: theme.color.fillNeutralDisabled
+    }
   },
-  themeStyles // passes the componentConfig values to makeComponentStyles()
+  tones: {
+    neutral: {
+      focus: {
+        color: theme.color.interactiveNeutralFocusSoft
+      }
+    },
+    inverse: {
+      color: theme.color.interactiveInverse,
+      focus: {
+        color: theme.color.interactiveInverseFocusSoft
+      }
+    },
+    brand: {
+      focus: {
+        color: theme.color.interactiveBrandFocusSoft
+      }
+    }
+  },
+  themeStyles: cardContentthemeStyles
 };
 
-// generates the style object
-// ex. const Container = makeComponentStyles<ComponentStyles['Container']>(container);
 const Container = makeComponentStyles<CardContentStyles['Container']>(container);
-const ArtworkContainer = makeComponentStyles<CardContentStyles['ArtworkContainer']>(artworkContainer);
+const TileContainer = makeComponentStyles<CardContentStyles['TileContainer']>(tileContainer);
 const MetadataContainer = makeComponentStyles<CardContentStyles['MetadataContainer']>(metadataContainer);
 
-// the object returned to the component
 const styles: CardContentStyles = {
-  tone: defaultTone || defaultSurfaceTone || 'neutral',
+  tone: defaultTone || 'neutral',
   Container,
-  ArtworkContainer,
+  TileContainer,
   MetadataContainer
-  // ex. Container
 };
 
 export default styles;

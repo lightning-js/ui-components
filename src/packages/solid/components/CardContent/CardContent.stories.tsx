@@ -19,11 +19,9 @@ import type { Meta, StoryObj } from 'storybook-solidjs';
 import CardContent from './CardContent.jsx';
 import theme from 'theme';
 import Badge from '../Badge/Badge.jsx';
-import { View } from '@lightningjs/solid';
 import Label from '../Label/Label.jsx';
 import Metadata, { type MetadataProps } from '../Metadata/Metadata.jsx';
-import ProgressBar from '../ProgressBar/ProgressBar.jsx';
-import Details from '../Metadata/Details.jsx';
+import Details, { type DetailsProps } from '../Metadata/Details.jsx';
 
 type Story = StoryObj<typeof CardContent>;
 const lorum =
@@ -73,21 +71,13 @@ const meta: Meta<typeof CardContent> = {
   }
 };
 
-export const MetadataInset: Story = {
+export const Basic: Story = {
   render: args => {
     return (
       <CardContent
         {...args}
-        tone="brand"
         topLeft={<Badge title="HD" />}
-        topRight={
-          <Label
-            width={75}
-            title="Label"
-            mountX={0.5}
-            // tone="brand"
-          />
-        }
+        topRight={<Label width={75} title="Label" mountX={0.5} />}
         metadataTop={
           <>
             <Metadata {...(args.metadata as MetadataProps)} tone="brand" />
@@ -95,7 +85,7 @@ export const MetadataInset: Story = {
         }
         metadataBottom={
           <>
-            <Details {...args.details} tone="brand" />
+            <Details {...(args.details as DetailsProps)} tone="brand" />
           </>
         }
       />
@@ -120,8 +110,7 @@ export const MetadataInset: Story = {
       maxLines: 1
     },
     details: {
-      title: 'Support text',
-      badges: [{ title: 'TV-14' }, { title: 'HD' }, { title: 'CC' }]
+      title: 'Support text'
     },
     progressBar: {
       progress: 0.5

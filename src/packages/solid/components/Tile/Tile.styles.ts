@@ -35,7 +35,7 @@ export type TileStyleProperties = Partial<{
   paddingYProgress: number;
 }>;
 
-type TileConfig = ComponentStyleConfig<TileStyleProperties>;
+export type TileConfig = ComponentStyleConfig<TileStyleProperties>;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Tile: { defaultTone, ...tileThemeStyles } = { styles: {} } } = theme?.componentConfig;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */

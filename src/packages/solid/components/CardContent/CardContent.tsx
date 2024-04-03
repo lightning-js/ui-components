@@ -22,6 +22,7 @@ import type { Tone } from '../../types/types.js';
 import Artwork, { type ArtworkProps } from '../Artwork/Artwork.jsx';
 import type { ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
 import ProgressBar from '../ProgressBar/ProgressBar.jsx';
+import Tile from '../Tile/Tile.jsx';
 withPadding; // Preserve the import.
 
 export interface CardContentProps extends NodeProps {
@@ -108,7 +109,7 @@ export interface CardContentProps extends NodeProps {
   padding?: number[];
 
   style?: Partial<CardContentStyles>;
-};
+}
 
 const CardContent: Component<CardContentProps> = props => {
   const [isFocused, setIsFocused] = createSignal(false);
@@ -116,110 +117,46 @@ const CardContent: Component<CardContentProps> = props => {
     <node
       use:withPadding={
         props.padding ??
-        styles.ArtworkContainer.tones[props.tone ?? styles.tone]?.padding ??
-        styles.ArtworkContainer.base.padding
+        styles.Container.tones[props.tone ?? styles.tone]?.padding ??
+        styles.Container.base.padding
       }
       {...props}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
       style={[
         ...[props.style].flat(),
-        styles.ArtworkContainer.tones[props.tone ?? styles.tone],
-        styles.ArtworkContainer.base
+        styles.Container.tones[props.tone ?? styles.tone],
+        styles.Container.base
       ]}
+      forwardFocus={1}
     >
-      <Artwork
-        {...props.artwork}
-        tone={props.tone ?? styles.tone}
-        width={
-          props.width ??
-          styles.ArtworkContainer.tones[props.tone ?? styles.tone]?.width ??
-          styles.ArtworkContainer.base.width
-        }
-        height={
-          props.height ??
-          styles.ArtworkContainer.tones[props.tone ?? styles.tone]?.height ??
-          styles.ArtworkContainer.base.height
-        }
+      {/* Left side of component- where Tile is */}
+      <Tile
+        {...props}
         borderRadius={[
           styles.Container.base.borderRadius,
           !props.shouldCollapse || isFocused() ? 0 : styles.Container.base.borderRadius,
           !props.shouldCollapse || isFocused() ? 0 : styles.Container.base.borderRadius,
           styles.Container.base.borderRadius
         ]}
+        style={[styles.TileContainer.tones[props.tone ?? styles.tone], styles.TileContainer.base]}
+        width={
+          props.width ??
+          styles.TileContainer.tones[props.tone ?? styles.tone]?.width ??
+          styles.TileContainer.base.width
+        }
+        height={
+          props.height ??
+          styles.TileContainer.tones[props.tone ?? styles.tone]?.height ??
+          styles.TileContainer.base.height
+        }
+        persistentMetadata={props.shouldCollapse ? false : true}
       />
 
-      <Show when={!props.shouldCollapse || isFocused()}>
-        <View
-          x={
-            props.padding?.[0] ??
-            styles.ArtworkContainer.tones[props.tone ?? styles.tone]?.padding?.[0] ??
-            styles.ArtworkContainer.base.padding[0]
-          }
-          y={
-            props.padding?.[1] ??
-            styles.ArtworkContainer.tones[props.tone ?? styles.tone]?.padding?.[1] ??
-            styles.ArtworkContainer.base.padding[1]
-          }
-        >
-          {props.topLeft}
-        </View>
-
-        <View
-          x={
-            (props?.width ??
-              styles.ArtworkContainer.tones[props.tone ?? styles.tone]?.width ??
-              styles.ArtworkContainer.base.width) -
-            (styles.ArtworkContainer.tones[props.tone ?? styles.tone]?.[0] ??
-              styles.ArtworkContainer.base.padding[0])
-          }
-          y={
-            props.padding?.[1] ??
-            styles.ArtworkContainer.tones[props.tone ?? styles.tone]?.padding?.[1] ??
-            styles.ArtworkContainer.base.padding[1]
-          }
-          mountX={1}
-        >
-          {props.topRight}
-        </View>
-      </Show>
-
-      <Show when={props.progressBar?.progress ? props.progressBar.progress > 0 : 0}>
-        <ProgressBar
-          {...props.progressBar}
-          width={
-            (props.width ??
-              styles.ArtworkContainer.tones[props.tone ?? styles.tone]?.width ??
-              styles.ArtworkContainer.base.width) -
-            (props.padding?.[0] ??
-              styles.ArtworkContainer.tones[props.tone ?? styles.tone]?.padding?.[0] ??
-              styles.ArtworkContainer.base.padding[0]) *
-              2
-          }
-          x={
-            props.padding?.[0] ??
-            styles.ArtworkContainer.tones[props.tone ?? styles.tone]?.padding?.[0] ??
-            styles.ArtworkContainer.base.padding[0]
-          }
-          y={
-            (props.height ??
-              styles.ArtworkContainer.tones[props.tone ?? styles.tone]?.height ??
-              styles.ArtworkContainer.base.height) -
-            (props.padding?.[1] ??
-              styles.ArtworkContainer.tones[props.tone ?? styles.tone]?.padding?.[1] ??
-              styles.ArtworkContainer.base.padding[1])
-          }
-          mountY={2}
-        />
-      </Show>
+      {/* Right side of component- where metadata is  */}
       <Show when={!props.shouldCollapse || isFocused()}>
         <View
           style={[styles.MetadataContainer.tones[props.tone ?? styles.tone], styles.MetadataContainer.base]}
-          x={
-            props.width ??
-            styles.ArtworkContainer.tones[props.tone ?? styles.tone]?.width ??
-            styles.ArtworkContainer.base.width
-          }
           borderRadius={[
             !props.shouldCollapse || isFocused() ? 0 : styles.Container.base.borderRadius,
             styles.Container.base.borderRadius,
