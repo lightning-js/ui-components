@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 /* @refresh reload */
-import { render, Canvas, Config } from '@lightningjs/solid';
+import { render } from '@lightningjs/solid';
 // @ts-expect-error we don't have declarations for this module
 import coreExtensionModuleUrl from './AppCoreExtensions.js?importChunkUrl'; // TODO import aliasing
 import { themes } from '@storybook/theming';
@@ -47,18 +47,14 @@ const preview = {
   decorators: [
     Story => {
       const solidRoot = document.createElement('div');
-      RenderOptions.rootId = solidRoot;
-      if (dispose) {
-        // teardown previous render (cleans up keyhandling)
-        dispose();
-      }
-      dispose = render(() => {
+      // teardown previous render (cleans up keyhandling)
+      dispose && dispose();
+      
+      render(() => {
         useFocusManager();
-        return (
-          <Canvas options={RenderOptions}>
-            <Story />
-          </Canvas>
-        );
+        return <Story />;
+      }, solidRoot).then(d => {
+        dispose = d
       });
       return solidRoot;
     }
