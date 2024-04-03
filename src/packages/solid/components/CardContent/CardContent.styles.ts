@@ -42,7 +42,7 @@ const container: CardContentConfig = {
   base: {
     width: getWidthByUpCount(theme, 2),
     height:
-      getDimensions(theme, {
+      getDimensions({
         ratioX: 16,
         ratioY: 9,
         upCount: 4
@@ -60,8 +60,8 @@ const container: CardContentConfig = {
 const tileContainer: TileConfig = {
   themeKeys: {},
   base: {
-    width: getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).w,
-    height: getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).h,
+    width: getDimensions({ ratioX: 16, ratioY: 9, upCount: 4 }).w,
+    height: getDimensions({ ratioX: 16, ratioY: 9, upCount: 4 }).h,
   },
   modes: {},
   tones: {},
@@ -73,8 +73,8 @@ const metadataContainer: CardContentConfig = {
     color: 'backgroundColor'
   },
   base: {
-    width: (getWidthByUpCount(theme, 2) ?? 0) - getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).w,
-    height: getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).h,
+    width: (getWidthByUpCount(theme, 2) ?? 0) - getDimensions({ ratioX: 16, ratioY: 9, upCount: 4 }).w,
+    height: getDimensions({ ratioX: 16, ratioY: 9, upCount: 4 }).h,
     color: theme.color.fillInverseSecondary,
     padding: [theme.spacer.xl, theme.spacer.xl]
   },

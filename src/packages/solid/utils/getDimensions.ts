@@ -14,8 +14,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-
-import { getItemRatioDimensions } from './getItemRatioDimensions.js';
+import { getItemRatioDimensions } from "./getItemRatioDimensions.js";
 import theme from 'theme';
 
 export function getDimensions(obj = {}, fallback = {}) {
@@ -38,7 +37,7 @@ export function getDimensions(obj = {}, fallback = {}) {
     };
     // calculate dynamic width and height based off item ratios
   } else if (ratioX && ratioY && upCount) {
-    dimensions = getItemRatioDimensions(theme, ratioX, ratioY, upCount);
+    dimensions = getItemRatioDimensions(ratioX, ratioY, upCount);
   } else if (h && upCount) {
     // calculate dynamic width based off a row upcount and a given height
     dimensions = {
