@@ -42,9 +42,9 @@
     "solid-js": "^1.8.15"
   },
   "peerDependencies": {
-    "@lightningjs/renderer": "^0.7.5",
-    "@lightningjs/solid": "^0.14.3",
-    "@lightningjs/solid-primitives": "^0.6.0"
+    "@lightningjs/renderer": "^0.8.1",
+    "@lightningjs/solid": "^0.15.0",
+    "@lightningjs/solid-primitives": "^0.6.3"
   },
   "devDependencies": {
     "@lightningjs/vite-plugin-import-chunk-url": "^0.3.0",
