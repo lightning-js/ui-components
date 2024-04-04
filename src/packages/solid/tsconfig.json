@@ -1,6 +1,13 @@
 {
   "extends": "../../../tsconfig.json",
-  "include": ["./components/**/*", "./utils/**/*", "../../shared/types/solid.d.ts", "*.ts", "*.tsx"],
+  "include": [
+    "./components/**/*",
+    "./utils/**/*",
+    "./types/**/*",
+    "../../shared/types/solid.d.ts",
+    "*.ts",
+    "*.tsx"
+  ],
   "rootDir": "../../",
   "compilerOptions": {
     "outDir": "./dist",
