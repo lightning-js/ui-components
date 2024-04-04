@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.11.0...@lightningjs/solid-ui@0.11.1) (2024-04-04)
+
+### Bug Fixes
+
+- replace Object.fromEntries to support chrome 63 ([#106](https://github.com/lightning-js/ui-components/issues/106)) ([cdd5895](https://github.com/lightning-js/ui-components/commit/cdd589596f139118e483779fbc0933651e5fd018))
+
 # [0.11.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.10.1...@lightningjs/solid-ui@0.11.0) (2024-04-03)
 
 ### Features
