@@ -103,7 +103,7 @@ export const Basic: Story = {
         }
       }
     },
-    shouldCollapse: true,
+    shouldCollapse: false,
     metadata: {
       title: 'Title',
       description: lorum,

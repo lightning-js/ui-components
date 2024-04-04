@@ -183,8 +183,7 @@ export const TileBadgeLabelSwitch: Story = {
     );
   },
   args: {
-    // states: 'focus',
-    // autofocus: true,
+    autofocus: true,
     width: 480,
     height: 270,
     artwork: {

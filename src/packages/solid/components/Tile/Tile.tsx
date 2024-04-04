@@ -5,6 +5,7 @@ import Artwork, { type ArtworkProps } from '../Artwork/Artwork.jsx';
 import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
 import styles, { type TileStyleProperties, type TileStyles } from './Tile.styles.js';
 import type { Tone } from '../../types/types.js';
+import { chainFunctions } from '../../index.js';
 withPadding;
 
 export interface TileProps extends NodeProps {
@@ -99,22 +100,12 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         styles.Container.tones[props.tone ?? styles.tone],
         styles.Container.base
       ]}
-      clipping={!(isFocused() || props.persistentMetadata)}
     >
       <Artwork
         {...props.artwork}
+        states={props.states}
+        style={props.style}
         tone={props.tone ?? styles.tone}
-        // width={
-        //   props.width ??
-        //   styles.Container.tones[props.tone ?? styles.tone]?.width ??
-        //   styles.Container.base.width
-        // }
-        // height={
-        //   props.height ??
-        //   styles.Container.tones[props.tone ?? styles.tone]?.height ??
-        //   styles.Container.base.height
-        // }
-        // borderRadius={props.borderRadius ?? styles.Container.base.borderRadius}
       />
 
       <Show when={props.persistentMetadata || isFocused()}>

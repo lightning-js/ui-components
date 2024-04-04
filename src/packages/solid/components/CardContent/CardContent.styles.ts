@@ -29,10 +29,12 @@ export interface CardContentStyles {
 }
 
 export type CardContentStyleProperties = {
-  backgroundColor: NodeStyles['color'];
+  backgroundColor?: NodeStyles['color'];
+  borderRadius?: NodeStyles['borderRadius'];
 };
 
-type CardContentConfig = ComponentStyleConfig<CardContentStyleProperties>;
+type CardContentModes = 'collapsed' | 'focus' | 'disabled';
+type CardContentConfig = ComponentStyleConfig<CardContentStyleProperties, CardContentModes>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { CardContent: { defaultTone, ...cardContentthemeStyles } = { styles: {} } } = theme?.componentConfig;
@@ -57,7 +59,7 @@ const container: CardContentConfig = {
   themeStyles: cardContentthemeStyles
 };
 
-const tileContainer: TileConfig = {
+const tileContainer: CardContentConfig = {
   themeKeys: {},
   base: {
     width: getDimensions({ ratioX: 16, ratioY: 9, upCount: 4 }).w,
@@ -70,7 +72,7 @@ const tileContainer: TileConfig = {
     }
   },
   tones: {},
-  // modeKeys: ['focus', 'disabled', 'collapsed'],
+  modeKeys: ['focus', 'disabled', 'collapsed'],
   themeStyles: cardContentthemeStyles
 };
 
@@ -80,7 +82,7 @@ const metadataContainer: CardContentConfig = {
   },
   base: {
     width: (getWidthByUpCount(theme, 2) ?? 0) - getDimensions({ ratioX: 16, ratioY: 9, upCount: 4 }).w,
-    height: getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).h,
+    height: getDimensions({ ratioX: 16, ratioY: 9, upCount: 4 }).h,
     color: theme.color.fillInverseSecondary,
     padding: [theme.spacer.xl, theme.spacer.xl],
     borderRadius: [0, theme.radius.md, theme.radius.md, 0]

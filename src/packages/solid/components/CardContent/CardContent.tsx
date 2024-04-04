@@ -116,7 +116,7 @@ const CardContent: Component<CardContentProps> = props => {
   const formatTile = (focusState: boolean, shouldCollapse: boolean) => {
     return shouldCollapse && !focusState;
   };
-  const collapsableTile = createMemo(() => formatTile(isFocused(), props.shouldCollapse ?? false));
+  const collapsedTile = createMemo(() => formatTile(isFocused(), props.shouldCollapse ?? false));
 
   return (
     <node
@@ -126,25 +126,21 @@ const CardContent: Component<CardContentProps> = props => {
         styles.Container.base.padding
       }
       {...props}
-      onFocus={() => () => setIsFocused(true)}
-      onBlur={() => setIsFocused(false)}
       style={[
         ...[props.style].flat(),
         styles.Container.tones[props.tone ?? styles.tone],
         styles.Container.base
       ]}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
+      states={{ collapsed: isFocused(), focus: isFocused() }}
+      forwardStates
       forwardFocus={1}
-      states={{ collapsed: collapsableTile() }}
     >
       {/* Left side of component- where Tile is */}
       <Tile
         {...props}
-        borderRadius={[
-          styles.Container.base.borderRadius,
-          !props.shouldCollapse || isFocused() ? 0 : styles.Container.base.borderRadius,
-          !props.shouldCollapse || isFocused() ? 0 : styles.Container.base.borderRadius,
-          styles.Container.base.borderRadius
-        ]}
+        states={{ collapsed: collapsedTile(), focus: isFocused() }}
         style={[styles.TileContainer.tones[props.tone ?? styles.tone], styles.TileContainer.base]}
         width={
           props.width ??
@@ -156,19 +152,13 @@ const CardContent: Component<CardContentProps> = props => {
           styles.TileContainer.tones[props.tone ?? styles.tone]?.height ??
           styles.TileContainer.base.height
         }
-        persistentMetadata={props.shouldCollapse ? false : true}
+        persistentMetadata={!props.shouldCollapse}
       />
 
       {/* Right side of component- where metadata is  */}
-      <Show when={!props.shouldCollapse || isFocused()}>
+      <Show when={isFocused() || !props.shouldCollapse}>
         <View
           style={[styles.MetadataContainer.tones[props.tone ?? styles.tone], styles.MetadataContainer.base]}
-          borderRadius={[
-            !props.shouldCollapse || isFocused() ? 0 : styles.Container.base.borderRadius,
-            styles.Container.base.borderRadius,
-            styles.Container.base.borderRadius,
-            !props.shouldCollapse || isFocused() ? 0 : styles.Container.base.borderRadius
-          ]}
         >
           <View x={styles.MetadataContainer.base.padding[0]} y={styles.MetadataContainer.base.padding[0]}>
             {props.metadataTop}
