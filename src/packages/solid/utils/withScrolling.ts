@@ -17,12 +17,18 @@
 
 import type { ElementNode } from '@lightningjs/solid';
 
+// adds properties expected by withScrolling
+export interface ScrollableElementNode extends ElementNode {
+  scrollIndex: number;
+  selected: number;
+}
+
 export function withScrolling(adjustment: number = 0) {
   return (
-    componentRef: ElementNode,
+    componentRef: ScrollableElementNode,
     selectedElement: ElementNode,
     selected: number = 0,
-    lastSelected: number
+    lastSelected: number | undefined
   ) => {
     if (componentRef.children.length === 0) {
       return;
@@ -113,20 +119,20 @@ export function withScrolling(adjustment: number = 0) {
   };
 }
 
-function updateLastIndex(items) {
+function updateLastIndex(items: ElementNode): [{ position: number; size: number }, number] {
   let lastItem, containerSize;
   if (items.flexDirection === 'row') {
     lastItem = {
-      position: items.children[items.children.length - 1].x,
-      size: items.children[items.children.length - 1].width
+      position: items.children[items.children.length - 1].x ?? 0,
+      size: items.children[items.children.length - 1].width ?? 0
     };
-    containerSize = items.width;
+    containerSize = items.width ?? 0;
   } else {
     lastItem = {
-      position: items.children[items.children.length - 1].y,
-      size: items.children[items.children.length - 1].height
+      position: items.children[items.children.length - 1].y ?? 0,
+      size: items.children[items.children.length - 1].height ?? 0
     };
-    containerSize = items.height;
+    containerSize = items.height ?? 0;
   }
 
   return [lastItem, containerSize];
