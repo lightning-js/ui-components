@@ -64,10 +64,13 @@ export interface ColumnProps extends NodeProps {
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
   const onUp = handleNavigation('up');
   const onDown = handleNavigation('down');
+  let Container: ScrollableElementNode;
 
   return (
     <View
       {...props}
+      // @ts-expect-error this is fine
+      ref={Container}
       onUp={chainFunctions(props.onUp, onUp)}
       onDown={chainFunctions(props.onDown, onDown)}
       selected={props.selected || 0}
