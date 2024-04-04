@@ -1,3 +1,20 @@
+/*
+ * Copyright 2024 Comcast Cable Communications Management, LLC
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 /**
  * This method accepts an element style config and returns a fully formed style object,
  * which can be directly assigned to a solid element.
@@ -17,6 +34,8 @@
  * 3. generate styles for any tones and modes not included in the toneModes object using the fallback map
  * 4. return the object to the style file
  */
+
+import objectFromEntries from './objectFromEntries';
 
 // TODO types, sub components
 // TODO these are configurable per component, move to theme?
@@ -66,7 +85,7 @@ export function makeComponentStyles(
 
       return [tone, styles];
     });
-    return Object.fromEntries(toneStyles);
+    return objectFromEntries(toneStyles);
   };
 
   /**
@@ -78,7 +97,7 @@ export function makeComponentStyles(
     const modeStyles = modeKeys.map(mode => {
       return [mode, { ...modes?.[mode], ...themeComponentStyles?.[mode] }];
     });
-    const modeObject = Object.fromEntries(modeStyles);
+    const modeObject = objectFromEntries(modeStyles);
     return modeObject;
   };
 
@@ -101,14 +120,14 @@ export function makeComponentStyles(
    * `themeKeys` is globally available
    */
   const mapThemeKeysToSolid = stylesToMap =>
-    Object.fromEntries(
+    objectFromEntries(
       Object.entries(themeKeys)
         .filter(([_, themeKey]) => stylesToMap[themeKey])
         .map(([solidKey, themeKey]) => [solidKey, stylesToMap[themeKey]])
     );
 
   const convertComponentConfig = themeStyles => {
-    const convertedThemeStyles = Object.fromEntries(
+    const convertedThemeStyles = objectFromEntries(
       // iterate through each variant
       Object.entries(themeStyles).map(([variantName, styles]) => {
         // within each variant, assign the theme value to the correct solid style property for each theme key
