@@ -15,14 +15,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { type Component, createMemo } from 'solid-js';
-import { Text, Show, View } from '@lightningjs/solid';
-import type { IntrinsicNodeProps } from '@lightningjs/solid';
+import { Text, Show, View, type TextProps } from '@lightningjs/solid';
+import type { UIComponentProps } from '../../types/interfaces.js';
+import styles from './Rating.styles.js';
 import Icon from '../Icon/Icon.jsx';
 import type { IconProps } from '../Icon/Icon.jsx';
-import styles, { type RatingStyles } from './Rating.styles.js';
-import type { Tone } from '../../types/types.js';
 
-export interface RatingProps extends IntrinsicNodeProps {
+export interface RatingProps extends UIComponentProps {
   /**
    * path to the rating's icon
    */
@@ -30,15 +29,11 @@ export interface RatingProps extends IntrinsicNodeProps {
   /**
    * Text or number to display. Numbers from 0 to 100 will display as percentages.
    */
-  title: string;
-
-  style?: Partial<RatingStyles>;
-
-  tone?: Tone;
+  title: string | number;
 }
 
 const Rating: Component<RatingProps> = (props: RatingProps) => {
-  const formatTitle = (title: string | number) => {
+  const formatTitle = (title: string | number): TextProps['children'] => {
     if ((typeof title !== 'string' && typeof title !== 'number') || !String(title).trim().length) {
       return;
     }
@@ -47,7 +42,7 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
     if (!Number.isNaN(title) && Number(title) >= 0 && Number(title) <= 100) {
       formatted += '%';
     }
-    return formatted;
+    return formatted as string;
   };
   const formattedTitle = createMemo(() => formatTitle(props.title));
   return (
@@ -55,7 +50,7 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
       {...props}
       forwardStates
       style={[
-        ...[props.style].flat(),
+        props.style, //
         styles.Container.tones[props.tone || styles.tone],
         styles.Container.base
       ]}
@@ -65,8 +60,7 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
           forwardStates
           src={props.src}
           style={[
-            props.style?.Icon, //
-            styles.Icon.tones[props.tone || styles.tone],
+            styles.Icon.tones[props.tone || styles.tone], //
             styles.Icon.base
           ]}
         />
@@ -75,8 +69,7 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
         <Text
           marginRight={props.marginRight}
           style={[
-            props.style?.Text, //
-            styles.Text.tones[props.tone || styles.tone],
+            styles.Text.tones[props.tone || styles.tone], //
             styles.Text.base
           ]}
         >

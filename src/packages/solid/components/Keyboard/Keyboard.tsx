@@ -16,15 +16,14 @@
  */
 
 import { type Component, type Signal } from 'solid-js';
-import { type IntrinsicNodeProps } from '@lightningjs/solid';
-import styles, { type KeyboardStyleProperties, type KeyboardStyles } from './Keyboard.styles.js';
+import type { UIComponentProps } from '../../types/interfaces.js';
+import styles, { type KeyboardStyleProperties } from './Keyboard.styles.js';
 import KeyboardSimple from './KeyboardSimple.jsx';
 import type { KeyProps } from '../Key/Key.jsx';
-import type { Tone } from '../../types/types.js';
 
 export type KeyboardFormat = Array<Array<string | KeyProps>>;
 
-export interface KeyboardProps extends IntrinsicNodeProps {
+export interface KeyboardProps extends UIComponentProps {
   /**
    * object containing arrays that represent different formats that the keyboard can be presented in. These arrays can contain strings or objects.
    */
@@ -45,13 +44,15 @@ export interface KeyboardProps extends IntrinsicNodeProps {
    */
   defaultFormat?: string;
 
+  /**
+   * returns the value of the activated key
+   */
   keySignal: Signal<string>;
 
+  /**
+   * gap between keys
+   */
   keySpacing?: KeyboardStyleProperties['keySpacing'];
-
-  style?: Partial<KeyboardStyles>;
-
-  tone?: Tone;
 }
 
 // rows created from each array passed in
@@ -60,7 +61,7 @@ const Keyboard: Component<KeyboardProps> = (props: KeyboardProps) => {
     <KeyboardSimple
       {...props}
       style={[
-        ...[props.style].flat(),
+        props.style, //
         styles.Container.tones[props.tone ?? styles.tone],
         styles.Container.base
       ]}

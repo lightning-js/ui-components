@@ -24,6 +24,7 @@ import styles from './Keyboard.styles.js';
 
 // rows created from each array passed in
 const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
+  const [keySignal, setKeySignal] = props.keySignal;
   return (
     <Column
       autofocus={props.autofocus}
@@ -48,7 +49,7 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
               styles.Container.base.keySpacing
             }
             height={
-              props?.height ??
+              props.height ??
               styles.Container.tones[props.tone ?? styles.tone]?.height ??
               styles.Container.base.height
             }
@@ -57,10 +58,9 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
             <For each={row}>
               {(key: string | KeyProps) => (
                 <Key
-                  style={props.style?.Key}
                   {...(typeof key === 'string' ? {} : key)}
                   // if not a toggle key
-                  onEnter={() => props.keySignal[1](typeof key === 'string' ? key : key.title ?? '')}
+                  onEnter={() => setKeySignal(typeof key === 'string' ? key : key.title ?? '')}
                   // @ts-expect-error the ternary handles for the type error
                   title={key.title || key.icon ? key.title : key}
                 />

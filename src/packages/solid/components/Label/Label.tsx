@@ -1,12 +1,11 @@
 import { type Component } from 'solid-js';
 import { Text } from '@lightningjs/solid';
-import type { IntrinsicNodeProps } from '@lightningjs/solid';
-import styles, { type LabelStyles, type LabelStyleProperties } from './Label.styles.js';
 import { withPadding } from '@lightningjs/solid-primitives';
-import type { Tone } from '../../types/types.js';
+import type { UIComponentProps } from '../../types/interfaces.js';
+import styles, { type LabelStyleProperties } from './Label.styles.js';
 withPadding;
 
-export interface LabelProps extends IntrinsicNodeProps {
+export interface LabelProps extends UIComponentProps {
   /**
    * text to display in label
    */
@@ -29,7 +28,7 @@ const Label: Component<LabelProps> = props => {
       }
       {...props}
       style={[
-        ...[props.style].flat(), //
+        props.style, //
         styles.Container.tones[props.tone || styles.tone],
         styles.Container.base
       ]}
@@ -37,8 +36,7 @@ const Label: Component<LabelProps> = props => {
     >
       <Text
         style={[
-          props.style?.Text, //
-          styles.Text.tones[props.tone || styles.tone],
+          styles.Text.tones[props.tone || styles.tone], //
           styles.Text.base
         ]}
       >

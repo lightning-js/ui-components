@@ -16,12 +16,11 @@
  */
 
 import type { Component } from 'solid-js';
-import { View, type NodeProps } from '@lightningjs/solid';
+import { View } from '@lightningjs/solid';
+import type { UIComponentProps } from '../../types/interfaces.js';
 import styles from './ProgressBar.styles.js';
-import type { Tone } from '../../types/types.js';
-import { type ProgressBarStyles } from './ProgressBar.styles.js';
 
-export interface ProgressBarProps extends NodeProps {
+export interface ProgressBarProps extends UIComponentProps {
   /**
    * a numeric value of the current progress represented as a decimal between 0 and 1
    */
@@ -39,10 +38,6 @@ export interface ProgressBarProps extends NodeProps {
    * total height of the component
    */
   height?: number;
-
-  tone: Tone;
-
-  style?: Partial<ProgressBarStyles>;
 }
 
 const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
@@ -51,7 +46,7 @@ const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
       {...props}
       forwardStates
       style={[
-        ...[props.style].flat(),
+        props.style, //
         styles.Container.tones[props.tone || styles.tone],
         styles.Container.base
       ]}
@@ -62,8 +57,7 @@ const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
         width={props.width * props.progress}
         color={props.progressColor}
         style={[
-          props.style?.ProgressBar,
-          styles.ProgressBar.tones[props.tone || styles.tone],
+          styles.ProgressBar.tones[props.tone || styles.tone], //
           styles.ProgressBar.base
         ]}
       />

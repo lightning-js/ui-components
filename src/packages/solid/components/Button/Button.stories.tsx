@@ -93,7 +93,7 @@ export const Container: Story = {
           width={22}
           height={28}
           src={lightning}
-          style={[buttonStyles.Content.tones[args.tone ?? buttonStyles.tone], buttonStyles.Content]}
+          style={[buttonStyles.Content.tones[args.tone ?? buttonStyles.tone], buttonStyles.Content.base]}
         />
         <Text style={[buttonStyles.Text.tones[args.tone ?? buttonStyles.tone], buttonStyles.Text.base]}>
           Button

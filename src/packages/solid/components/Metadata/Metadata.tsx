@@ -16,12 +16,11 @@
  */
 import { type Component } from 'solid-js';
 import { View, Text, Show } from '@lightningjs/solid';
-import type { NodeStyles } from '@lightningjs/solid';
+import type { UIComponentProps } from '../../types/interfaces.js';
 import Details, { type DetailsProps } from './Details.jsx';
-import styles, { type MetadataStyles } from './Metadata.styles.js';
-import type { Tone } from '../../types/types.js';
+import styles from './Metadata.styles.js';
 
-export interface MetadataProps extends NodeStyles {
+export interface MetadataProps extends UIComponentProps {
   /**
    * title text
    */
@@ -34,11 +33,10 @@ export interface MetadataProps extends NodeStyles {
    * Text, Badges, and Icons to be displayed below the title and description
    */
   details: DetailsProps;
+
+  // width: UIComponentProps['width'];
+
   maxLines: number;
-
-  style?: Partial<MetadataStyles>;
-
-  tone?: Tone;
 }
 
 const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
@@ -46,8 +44,8 @@ const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
     <View
       {...props}
       style={[
-        ...[props.style].flat(),
-        styles.Container.tones[props.tone || styles.tone],
+        props.style,
+        styles.Container.tones[props.tone || styles.tone], //
         styles.Container.base
       ]}
       forwardStates
@@ -55,8 +53,7 @@ const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
       <Text
         width={props.width}
         style={[
-          props.style?.TitleText, //
-          styles.TitleText.tones[props.tone || styles.tone],
+          styles.TitleText.tones[props.tone || styles.tone], //
           styles.TitleText.base
         ]}
       >
@@ -66,8 +63,7 @@ const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
         <Text
           width={props.width}
           style={[
-            props.style?.DescriptionText,
-            styles.DescriptionText.tones[props.tone || styles.tone],
+            styles.DescriptionText.tones[props.tone || styles.tone], //
             styles.DescriptionText.base
           ]}
         >

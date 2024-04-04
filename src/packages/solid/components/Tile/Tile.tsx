@@ -1,13 +1,30 @@
+/*
+ * Copyright 2024 Comcast Cable Communications Management, LLC
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 import { type Component, createSignal } from 'solid-js';
 import { Show, type NodeProps, View } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
+import type { UIComponentProps } from '../../types/interfaces.js';
 import Artwork, { type ArtworkProps } from '../Artwork/Artwork.jsx';
 import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
-import styles, { type TileStyleProperties, type TileStyles } from './Tile.styles.js';
-import type { Tone } from '../../types/types.js';
+import styles, { type TileStyleProperties } from './Tile.styles.js';
 withPadding;
 
-export interface TileProps extends NodeProps {
+export interface TileProps extends UIComponentProps {
   /**
    * prop object passed to the child Artwork component
    */
@@ -76,10 +93,6 @@ export interface TileProps extends NodeProps {
   paddingYProgress: TileStyleProperties['paddingYProgress'];
 
   padding: number[];
-
-  tone?: Tone;
-
-  style?: Partial<TileStyles>;
 }
 
 const Tile: Component<TileProps> = (props: TileProps) => {
@@ -95,7 +108,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
       style={[
-        ...[props.style].flat(),
+        props.style, //
         styles.Container.tones[props.tone ?? styles.tone],
         styles.Container.base
       ]}
@@ -125,7 +138,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
 
         <View
           x={
-            (props?.width ??
+            (props.width ??
               styles.Container.tones[props.tone ?? styles.tone]?.width ??
               styles.Container.base.width) -
             (props.padding?.[0] ??
@@ -144,8 +157,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
 
         <View
           style={[
-            props.style?.InsetBottom,
-            styles.InsetBottom.tones[props.tone ?? styles.tone],
+            styles.InsetBottom.tones[props.tone ?? styles.tone], //
             styles.InsetBottom.base
           ]}
           width={
@@ -178,8 +190,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
 
         <View
           style={[
-            props.style?.StandardBottom,
-            styles.StandardBottom.tones[props.tone ?? styles.tone],
+            styles.StandardBottom.tones[props.tone ?? styles.tone], //
             styles.StandardBottom.base
           ]}
           x={
