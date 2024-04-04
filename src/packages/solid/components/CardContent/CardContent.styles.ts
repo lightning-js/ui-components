@@ -18,7 +18,6 @@
 import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
 import type { ComponentStyleConfig, NodeStyleSet, Tone } from '../../types/types.js';
-import type { TileConfig } from '../Tile/Tile.styles.js';
 import { makeComponentStyles, getDimensions, getWidthByUpCount } from '../../utils/index.js';
 
 export interface CardContentStyles {
@@ -113,7 +112,6 @@ const metadataContainer: CardContentConfig = {
       }
     }
   },
-  // modeKeys: ['focus', 'disabled', 'collapsed'],
   themeStyles: cardContentthemeStyles
 };
 

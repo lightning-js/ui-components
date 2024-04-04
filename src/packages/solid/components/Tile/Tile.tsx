@@ -5,7 +5,6 @@ import Artwork, { type ArtworkProps } from '../Artwork/Artwork.jsx';
 import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
 import styles, { type TileStyleProperties, type TileStyles } from './Tile.styles.js';
 import type { Tone } from '../../types/types.js';
-import { chainFunctions } from '../../index.js';
 withPadding;
 
 export interface TileProps extends NodeProps {
