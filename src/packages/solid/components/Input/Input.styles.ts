@@ -59,7 +59,7 @@ const container: InputConfig = {
 const input: InputConfig = {
   themeKeys: {
     borderRadius: 'borderRadius',
-    color: 'backgroundColor',
+    color: 'backgroundColor'
   },
   base: {
     width: getWidthByUpCount(theme, 4),

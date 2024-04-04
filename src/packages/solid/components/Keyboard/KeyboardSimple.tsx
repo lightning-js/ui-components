@@ -40,7 +40,7 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
       <For each={props.formats}>
         {(row: Array<string | KeyProps>) => (
           <Row
-          width={props.width}
+            width={props.width}
             justifyContent={props.centerKeys ? 'center' : 'flexStart'}
             itemSpacing={
               props.keySpacing ??

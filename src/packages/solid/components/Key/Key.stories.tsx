@@ -17,7 +17,6 @@
 
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import Key from './Key.jsx';
-import { Text } from '@lightningjs/solid';
 import keyStyles from './Key.styles.js';
 
 type Story = StoryObj<typeof Key>;

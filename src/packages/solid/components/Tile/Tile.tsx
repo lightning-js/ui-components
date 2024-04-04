@@ -99,21 +99,22 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         styles.Container.tones[props.tone ?? styles.tone],
         styles.Container.base
       ]}
+      clipping={!(isFocused() || props.persistentMetadata)}
     >
       <Artwork
         {...props.artwork}
         tone={props.tone ?? styles.tone}
-        width={
-          props.width ??
-          styles.Container.tones[props.tone ?? styles.tone]?.width ??
-          styles.Container.base.width
-        }
-        height={
-          props.height ??
-          styles.Container.tones[props.tone ?? styles.tone]?.height ??
-          styles.Container.base.height
-        }
-        borderRadius={props.borderRadius ?? styles.Container.base.borderRadius}
+        // width={
+        //   props.width ??
+        //   styles.Container.tones[props.tone ?? styles.tone]?.width ??
+        //   styles.Container.base.width
+        // }
+        // height={
+        //   props.height ??
+        //   styles.Container.tones[props.tone ?? styles.tone]?.height ??
+        //   styles.Container.base.height
+        // }
+        // borderRadius={props.borderRadius ?? styles.Container.base.borderRadius}
       />
 
       <Show when={props.persistentMetadata || isFocused()}>

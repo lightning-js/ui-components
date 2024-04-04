@@ -20,7 +20,7 @@ import Keyboard, { type KeyboardProps } from './Keyboard.jsx';
 import Column from '../Column/Column.jsx';
 import Input from '../Input/Input.jsx';
 import type { Tone } from '../../types/types.js';
-import styles, { type KeyboardStyles } from './Keyboard.styles.js';
+import { type KeyboardStyles } from './Keyboard.styles.js';
 
 export interface KeyboardInputProps extends KeyboardProps {
   /**

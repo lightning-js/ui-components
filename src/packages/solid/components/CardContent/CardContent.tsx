@@ -14,14 +14,13 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import { createSignal, type Component } from 'solid-js';
+import { createSignal, type Component, createMemo } from 'solid-js';
 import { Show, type NodeProps, View } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
 import styles, { type CardContentStyles } from './CardContent.styles.js';
 import type { Tone } from '../../types/types.js';
-import Artwork, { type ArtworkProps } from '../Artwork/Artwork.jsx';
+import { type ArtworkProps } from '../Artwork/Artwork.jsx';
 import type { ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
-import ProgressBar from '../ProgressBar/ProgressBar.jsx';
 import Tile from '../Tile/Tile.jsx';
 withPadding; // Preserve the import.
 
@@ -113,6 +112,12 @@ export interface CardContentProps extends NodeProps {
 
 const CardContent: Component<CardContentProps> = props => {
   const [isFocused, setIsFocused] = createSignal(false);
+
+  const formatTile = (focusState: boolean, shouldCollapse: boolean) => {
+    return shouldCollapse && !focusState;
+  };
+  const collapsableTile = createMemo(() => formatTile(isFocused(), props.shouldCollapse ?? false));
+
   return (
     <node
       use:withPadding={
@@ -121,7 +126,7 @@ const CardContent: Component<CardContentProps> = props => {
         styles.Container.base.padding
       }
       {...props}
-      onFocus={() => setIsFocused(true)}
+      onFocus={() => () => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
       style={[
         ...[props.style].flat(),
@@ -129,6 +134,7 @@ const CardContent: Component<CardContentProps> = props => {
         styles.Container.base
       ]}
       forwardFocus={1}
+      states={{ collapsed: collapsableTile() }}
     >
       {/* Left side of component- where Tile is */}
       <Tile

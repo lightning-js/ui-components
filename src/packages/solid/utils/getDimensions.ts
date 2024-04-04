@@ -14,7 +14,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import { getItemRatioDimensions } from "./getItemRatioDimensions.js";
+import { getItemRatioDimensions } from './getItemRatioDimensions.js';
 import theme from 'theme';
 
 export function getDimensions(obj = {}, fallback = {}) {

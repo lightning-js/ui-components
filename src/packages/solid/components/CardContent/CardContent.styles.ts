@@ -24,13 +24,13 @@ import { makeComponentStyles, getDimensions, getWidthByUpCount } from '../../uti
 export interface CardContentStyles {
   tone: Tone;
   TileContainer: NodeStyleSet<{ padding: number[] }>;
-  Container: NodeStyleSet<{ padding: number[] }>;
+  Container: NodeStyleSet<{ padding: number[]; borderRadius: [number, number, number, number] }>;
   MetadataContainer: NodeStyleSet<{ padding: number[] }>;
 }
 
-export type CardContentStyleProperties = Partial<{
+export type CardContentStyleProperties = {
   backgroundColor: NodeStyles['color'];
-}>;
+};
 
 type CardContentConfig = ComponentStyleConfig<CardContentStyleProperties>;
 
@@ -48,7 +48,7 @@ const container: CardContentConfig = {
         upCount: 4
       }).h ?? 0,
     padding: [theme.spacer.xl, theme.spacer.xl], // TODO support separate paddingX and paddingY values from theme, possibly formatter
-    borderRadius: theme.radius.md,
+    borderRadius: [theme.radius.md, theme.radius.md, theme.radius.md, theme.radius.md],
     flexDirection: 'row',
     display: 'flex'
   },
@@ -62,9 +62,15 @@ const tileContainer: TileConfig = {
   base: {
     width: getDimensions({ ratioX: 16, ratioY: 9, upCount: 4 }).w,
     height: getDimensions({ ratioX: 16, ratioY: 9, upCount: 4 }).h,
+    borderRadius: [theme.radius.md, 0, 0, theme.radius.md]
   },
-  modes: {},
+  modes: {
+    collapsed: {
+      borderRadius: [theme.radius.md, theme.radius.md, theme.radius.md, theme.radius.md]
+    }
+  },
   tones: {},
+  // modeKeys: ['focus', 'disabled', 'collapsed'],
   themeStyles: cardContentthemeStyles
 };
 
@@ -74,9 +80,10 @@ const metadataContainer: CardContentConfig = {
   },
   base: {
     width: (getWidthByUpCount(theme, 2) ?? 0) - getDimensions({ ratioX: 16, ratioY: 9, upCount: 4 }).w,
-    height: getDimensions({ ratioX: 16, ratioY: 9, upCount: 4 }).h,
+    height: getDimensions(theme, { ratioX: 16, ratioY: 9, upCount: 4 }).h,
     color: theme.color.fillInverseSecondary,
-    padding: [theme.spacer.xl, theme.spacer.xl]
+    padding: [theme.spacer.xl, theme.spacer.xl],
+    borderRadius: [0, theme.radius.md, theme.radius.md, 0]
   },
   modes: {
     focus: {
@@ -104,6 +111,7 @@ const metadataContainer: CardContentConfig = {
       }
     }
   },
+  // modeKeys: ['focus', 'disabled', 'collapsed'],
   themeStyles: cardContentthemeStyles
 };
 
