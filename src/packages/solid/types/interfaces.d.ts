@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { NodeProps } from '@lightningjs/solid';
+import { type IntrinsicNodeProps, type IntrinsicNodeStyleProps } from '@lightningjs/solid';
 import type { Tone } from './types.js';
 
 type AddUndefined<T> = {
@@ -29,15 +29,13 @@ type AddUndefined<T> = {
  * overrides color - strings are accepted by the renderer even though the type
  * is number, and all our colors are strings due to JSON limitations
  */
-export interface UIComponentProps extends Omit<NodeProps, 'children'> {
-  color?: NodeProps['color'] & string;
+export interface UIComponentProps extends IntrinsicNodeStyleProps {
+  color?: IntrinsicNodeStyleProps['color'] & string;
+
   /**
-   * applied to the root node of the component, primarily used to handle state-based styling
-   * ie.
-   * Component.style.alpha = 0
-   * Component.style.focus.alpha = 1
+   * applied to the component's root node
    */
-  style?: NodeProps | NodeProps[] | undefined | undefined[];
+  style?: IntrinsicNodeProps['style'];
 
   /**
    * sets the component's color palette
