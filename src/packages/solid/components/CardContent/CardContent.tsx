@@ -48,7 +48,7 @@ export interface CardContentProps extends NodeProps {
   /**
    * component rendered to the upper right corner of the CardContent
    *
-   * component will be shown/hidden on focus unless  is false
+   * component will be shown/hidden on focus unless is false
    *
    * states are not forwarded to this component. if it should react to states
    * applied to the CardContent, they must also be set on this component
@@ -58,7 +58,7 @@ export interface CardContentProps extends NodeProps {
   /**
    * component rendered to center of the CardContent, flex-aligned to the bottom border
    *
-   * component will be shown/hidden on focus unless  is false
+   * component will be shown/hidden on focus unless is false
    *
    * states are not forwarded to this component. if it should react to states
    * applied to the CardContent, they must also be set on this component
@@ -133,39 +133,52 @@ const CardContent: Component<CardContentProps> = props => {
       ]}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
-      states={{ collapsed: isFocused(), focus: isFocused() }}
+      states={{ collapsed: isFocused() }}
       forwardStates
       forwardFocus={1}
     >
       {/* Left side of component- where Tile is */}
       <Tile
         {...props}
-        states={{ collapsed: collapsedTile(), focus: isFocused() }}
+        states={{ collapsed: collapsedTile() }}
         style={[styles.TileContainer.tones[props.tone ?? styles.tone], styles.TileContainer.base]}
         width={
-          props.width ??
-          styles.TileContainer.tones[props.tone ?? styles.tone]?.width ??
-          styles.TileContainer.base.width
+          styles.TileContainer.tones[props.tone ?? styles.tone]?.width ?? styles.TileContainer.base.width
         }
         height={
-          props.height ??
-          styles.TileContainer.tones[props.tone ?? styles.tone]?.height ??
-          styles.TileContainer.base.height
+          styles.TileContainer.tones[props.tone ?? styles.tone]?.height ?? styles.TileContainer.base.height
         }
         persistentMetadata={!props.shouldCollapse}
       />
 
       {/* Right side of component- where metadata is  */}
-      <Show when={isFocused() || !props.shouldCollapse}>
+      <Show when={!collapsedTile()}>
         <View
           style={[styles.MetadataContainer.tones[props.tone ?? styles.tone], styles.MetadataContainer.base]}
         >
-          <View x={styles.MetadataContainer.base.padding[0]} y={styles.MetadataContainer.base.padding[0]}>
+          <View
+            x={
+              styles.MetadataContainer.tones[props.tone ?? styles.tone]?.padding?.[0] ??
+              styles.MetadataContainer.base.padding[0]
+            }
+            y={
+              styles.MetadataContainer.tones[props.tone ?? styles.tone]?.padding?.[1] ??
+              styles.MetadataContainer.base.padding[1]
+            }
+          >
             {props.metadataTop}
           </View>
           <View
-            x={styles.MetadataContainer.base.padding[0]}
-            y={styles.MetadataContainer.base.height - styles.MetadataContainer.base.padding[0]}
+            x={
+              styles.MetadataContainer.tones[props.tone ?? styles.tone]?.padding?.[0] ??
+              styles.MetadataContainer.base.padding[0]
+            }
+            y={
+              (styles.MetadataContainer.tones[props.tone ?? styles.tone]?.height ??
+                styles.MetadataContainer.base.height) -
+              (styles.MetadataContainer.tones[props.tone ?? styles.tone]?.padding?.[1] ??
+                styles.MetadataContainer.base.padding[1])
+            }
             mountY={1}
           >
             {props.metadataBottom}
