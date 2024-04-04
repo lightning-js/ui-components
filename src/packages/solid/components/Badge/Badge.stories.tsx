@@ -14,7 +14,11 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import Badge from './Badge.jsx';
+
+import Icon from '../Icon/Icon.jsx';
+import Badge, { BadgeContainer } from './Badge.jsx';
+import { Text } from '@lightningjs/solid';
+import styles from './Badge.styles.js';
 const lightning = '/assets/images/ic_lightning_white_32.png';
 
 const meta = {
@@ -54,12 +58,27 @@ export default meta;
 
 export const Basic = {
   args: {
-    title: 'Badge Text',
-    iconAlign: 'left',
-    icon: {
-      width: 20,
-      height: 20,
-      src: lightning
-    }
+    title: 'Badge Text'
+  }
+};
+
+export const BadgeIcon = {
+  render: args => {
+    return (
+      <BadgeContainer {...args}>
+        <Icon
+          style={[styles.Icon.tones[args.tone ?? styles.tone], styles.Icon.base]}
+          tone={args.tone ?? styles.tone}
+          src={lightning}
+          width={25}
+          height={25}
+        />
+        <Text style={[styles.Text.tones[args.tone ?? styles.tone], styles.Text.base]}>Badge Text</Text>
+      </BadgeContainer>
+    );
+  },
+
+  args: {
+    title: 'Badge Text'
   }
 };

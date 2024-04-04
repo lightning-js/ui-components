@@ -15,28 +15,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { type Component } from 'solid-js';
-import { Text, Show } from '@lightningjs/solid';
+import { Text, type NodeProps } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
-import Icon, { type IconProps } from '../Icon/Icon.jsx';
 import styles, { type BadgeStyles } from './Badge.styles.js';
 import type { Tone } from '../../types/types.js';
 withPadding; // Preserve the import.
 
-export type BadgeProps = {
+type BadgeProps = {
   /**
    * Badge text
    */
   title: string;
-  // TODO better handling for default prop values
-  /**
-   * side of the text where icon will appear on
-   * defaults to left if value is either undefined or invalid
-   */
-  iconAlign?: string;
-  /**
-   * Object containing all properties supported in the [Icon component](?path=/docs/components-icon--icon)
-   */
-  icon?: Partial<IconProps>;
   /**
    * sets the component's color palette
    */
@@ -47,7 +36,13 @@ export type BadgeProps = {
   style?: Partial<BadgeStyles>;
 };
 
-const Badge: Component<BadgeProps> = (props: BadgeProps) => {
+interface BadgeContainerProps extends NodeProps {
+  padding?: number[];
+  tone?: Tone;
+  style?: Omit<BadgeStyles, 'tone' | 'Text'>;
+}
+
+const BadgeContainer: Component<BadgeContainerProps> = props => {
   return (
     <node
       use:withPadding={
@@ -62,27 +57,21 @@ const Badge: Component<BadgeProps> = (props: BadgeProps) => {
         styles.Container.base
       ]}
       forwardStates
-    >
-      <Show when={Boolean(props.icon && props.iconAlign !== 'right')}>
-        <Icon {...props.icon} style={[styles.Icon.tones[props.tone ?? styles.tone], styles.Icon.base]} />
-      </Show>
+    />
+  );
+};
+
+const Badge: Component<BadgeProps> = (props: BadgeProps) => {
+  return (
+    <BadgeContainer padding={props.padding} tone={props.tone} style={props.style}>
       <Text
         style={[styles.Text.tones[props.tone ?? styles.tone], styles.Text.base]}
         tone={props.tone || styles.tone}
       >
         {props.title}
       </Text>
-      <Show when={Boolean(props.icon && props.iconAlign === 'right')}>
-        <Icon
-          {...props.icon}
-          style={[
-            styles.Icon.tones?.[props.tone ?? styles.tone], //
-            styles.Icon.base
-          ]}
-        />
-      </Show>
-    </node>
+    </BadgeContainer>
   );
 };
 
-export default Badge;
+export { Badge as default, BadgeContainer, type BadgeProps, type BadgeContainerProps };

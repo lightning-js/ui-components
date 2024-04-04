@@ -1,6 +1,6 @@
 {
   "name": "@lightningjs/solid-ui",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "A shared library of components for the LightningJS Solid Framework.",
   "main": "dist/index.js",
   "source": "./index.ts",
@@ -42,9 +42,9 @@
     "solid-js": "^1.8.15"
   },
   "peerDependencies": {
-    "@lightningjs/renderer": "^0.7.5",
-    "@lightningjs/solid": "^0.14.3",
-    "@lightningjs/solid-primitives": "^0.6.0"
+    "@lightningjs/renderer": "^0.8.1",
+    "@lightningjs/solid": "^0.15.0",
+    "@lightningjs/solid-primitives": "^0.6.3"
   },
   "devDependencies": {
     "@lightningjs/vite-plugin-import-chunk-url": "^0.3.0",
