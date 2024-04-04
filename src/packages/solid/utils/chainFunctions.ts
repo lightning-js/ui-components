@@ -15,7 +15,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-/* eslint-disable @typescript-eslint/ban-types */
 // take an array of functions and if you return true from a function, it will stop the chain
 export function chainFunctions<T>(...args: T[]) {
   const onlyFunctions = args.filter(func => typeof func === 'function');
