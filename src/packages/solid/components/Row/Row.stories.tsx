@@ -1,6 +1,7 @@
 import Row from './Row.jsx';
 import Button from '../Button/Button.jsx';
 import { buttonStyles } from '../Button/index.js';
+import { View } from '@lightningjs/solid';
 
 const meta = {
   title: 'Components/Row',
@@ -43,21 +44,22 @@ const createItems = (length: number) => {
   ));
 };
 
-const buttons = () => createItems(7);
+const buttons = () => createItems(8);
 
 export const Basic = {
   render: args => {
     return (
-      <Row autofocus {...args}>
-        {buttons}
-      </Row>
+      <View width={2000} height={720}>
+        <Row autofocus {...args}>
+          {buttons}
+        </Row>
+      </View>
     );
   },
   args: {
     children: buttons,
     wrap: false,
-    height: 500,
-    width: 800,
+    scroll: 'edge',
     x: 30
   }
 };
@@ -65,17 +67,17 @@ export const Basic = {
 export const edgeScroll = {
   render: args => {
     return (
-      <Row autofocus {...args}>
-        {buttons}
-      </Row>
+      <View width={2000} height={720}>
+        <Row autofocus {...args}>
+          {buttons}
+        </Row>
+      </View>
     );
   },
   args: {
     children: buttons,
     scroll: 'edge',
     wrap: false,
-    height: 500,
-    width: 800,
     x: 100
   }
 };
@@ -83,17 +85,17 @@ export const edgeScroll = {
 export const AlwaysScroll = {
   render: args => {
     return (
-      <Row autofocus {...args}>
-        {buttons}
-      </Row>
+      <View width={2000} height={720}>
+        <Row autofocus {...args}>
+          {buttons}
+        </Row>
+      </View>
     );
   },
   args: {
     children: buttons,
     scroll: 'always',
     wrap: false,
-    height: 500,
-    width: 800,
     x: 0
   }
 };
@@ -101,17 +103,17 @@ export const AlwaysScroll = {
 export const NoneScroll = {
   render: args => {
     return (
-      <Row autofocus {...args}>
-        {buttons}
-      </Row>
+      <View width={2000} height={720}>
+        <Row autofocus {...args}>
+          {buttons}
+        </Row>
+      </View>
     );
   },
   args: {
     children: buttons,
-    scroll: 'none',
+    scroll: 'edge',
     wrap: false,
-    height: 500,
-    width: 800,
     x: 0
   }
 };
@@ -119,17 +121,17 @@ export const NoneScroll = {
 export const ScrollIndex = {
   render: args => {
     return (
-      <Row autofocus {...args}>
-        {buttons}
-      </Row>
+      <View width={2000} height={720}>
+        <Row autofocus {...args}>
+          {buttons}
+        </Row>
+      </View>
     );
   },
   args: {
     children: buttons,
     scrollIndex: 4,
     wrap: false,
-    height: 500,
-    width: 800,
     x: 0
   }
 };

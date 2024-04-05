@@ -43,7 +43,7 @@
   },
   "peerDependencies": {
     "@lightningjs/renderer": "^0.8.1",
-    "@lightningjs/solid": "^0.15.0",
+    "@lightningjs/solid": "^0.15.3",
     "@lightningjs/solid-primitives": "^0.6.3"
   },
   "devDependencies": {

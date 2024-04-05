@@ -18,6 +18,7 @@
 import Column, { type ColumnProps } from './Column.jsx';
 import Button from '../Button/Button.jsx';
 import type { JSX } from 'solid-js/jsx-runtime';
+import { View } from '@lightningjs/solid';
 
 const meta = {
   title: 'Components/Column',
@@ -67,28 +68,32 @@ const buttons = () => <>{createItems(7)}</>;
 
 export const AlwaysScroll = {
   render: (args: JSX.IntrinsicAttributes & ColumnProps) => {
-    return <Column autofocus {...args} />;
+    return (
+      <View height={720} width={400}>
+        <Column autofocus {...args} />;
+      </View>
+    );
   },
   args: {
     children: buttons,
     scroll: 'always',
     wrap: false,
-    width: 400,
-    height: 500,
     y: 0
   }
 };
 
 export const NoneScroll = {
   render: (args: JSX.IntrinsicAttributes & ColumnProps) => {
-    return <Column autofocus {...args} />;
+    return (
+      <View height={720} width={400}>
+        <Column autofocus {...args} />;
+      </View>
+    );
   },
   args: {
     children: buttons,
     scroll: 'none',
     wrap: false,
-    width: 400,
-    height: 500,
     y: 0
   }
 };
