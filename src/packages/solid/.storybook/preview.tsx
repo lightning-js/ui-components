@@ -54,7 +54,7 @@ const preview = {
         useFocusManager();
         return <Story />;
       }, solidRoot).then(d => {
-        dispose = d
+        dispose = d.dispose;
       });
       return solidRoot;
     }
