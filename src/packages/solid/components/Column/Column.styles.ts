@@ -44,7 +44,7 @@ const container: ColumnConfig = {
   },
   base: {
     display: 'flex',
-    justifyContent: 'flexStart',
+    flexBoundary: 'fixed',
     flexDirection: 'column',
     gap: theme.layout.gutterY,
     itemTransition: {
