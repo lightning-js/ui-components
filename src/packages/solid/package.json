@@ -36,14 +36,13 @@
   },
   "dependencies": {
     "@solid-primitives/refs": "^1.0.8",
-    "@solidjs/router": "^0.12.5",
     "@storybook/html": "^7.6.17",
-    "@storybook/html-vite": "^7.6.17",
-    "solid-js": "^1.8.15"
+    "@storybook/html-vite": "^7.6.17"
   },
   "peerDependencies": {
     "@lightningjs/renderer": "^0.8.1",
     "@lightningjs/solid": "^0.15.3",
+    "solid-js": "^1.8.15",
     "@lightningjs/solid-primitives": "^0.6.3"
   },
   "devDependencies": {

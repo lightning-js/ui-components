@@ -23,8 +23,9 @@ const fpsStyle = {
   color: 0x000000ff,
   height: 150,
   width: 330,
-  x: 1500,
-  y: 20,
+  x: 1910,
+  y: 10,
+  mountX: 1,
   alpha: 0.8,
   zIndex: 100
 };
@@ -32,12 +33,12 @@ const fpsStyle = {
 const fpsLabel = {
   x: 10,
   fontSize: 22,
-  textColor: hexColor('#ffffff')
+  textColor: hexColor('#f6f6f6')
 };
 
 const fpsValue = {
   fontSize: 22,
-  textColor: hexColor('#ffffff')
+  textColor: hexColor('#f6f6f6')
 };
 
 const [fps, setFps] = createSignal(0);
