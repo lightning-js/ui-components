@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.2](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.11.1...@lightningjs/solid-ui@0.11.2) (2024-04-06)
+
+### Bug Fixes
+
+- **Row&Column:** removes style default width and height ([#108](https://github.com/lightning-js/ui-components/issues/108)) ([199fde0](https://github.com/lightning-js/ui-components/commit/199fde02b69d19b0fa94f7e5c27b0880ac60e9a8))
+
 ## [0.11.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.11.0...@lightningjs/solid-ui@0.11.1) (2024-04-04)
 
 ### Bug Fixes
