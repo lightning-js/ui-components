@@ -15,8 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { View, Text } from '@lightningjs/solid';
-import { hexColor } from '@lightningjs/solid';
+import { View, Text, hexColor } from '@lightningjs/solid';
 import { createSignal } from 'solid-js';
 
 const fpsStyle = {
@@ -59,7 +58,7 @@ export const resetCounter = () => {
   setMinFps(99);
 };
 
-const calcFps = fps => {
+const calcFps = (fps: number) => {
   if (!fps) return;
 
   setFps(fps);
