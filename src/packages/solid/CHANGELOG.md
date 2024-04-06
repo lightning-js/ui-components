@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.3](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.11.2...@lightningjs/solid-ui@0.11.3) (2024-04-06)
+
+### Bug Fixes
+
+- add mergeRef for Column and Row ([#109](https://github.com/lightning-js/ui-components/issues/109)) ([d7f6756](https://github.com/lightning-js/ui-components/commit/d7f6756d60fed1a4e3f2fd6dea0cdb46665a547b))
+
 ## [0.11.2](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.11.1...@lightningjs/solid-ui@0.11.2) (2024-04-06)
 
 ### Bug Fixes
