@@ -26,7 +26,6 @@ export interface ArtworkStyles {
 }
 
 type ArtworkStyleProperties = Partial<{
-  borderRadius: NodeStyles['borderRadius'];
   fallbackSrc: NodeStyles['src'];
   fillColor: NodeStyles['color'];
   gradientColor: NodeStyles['color'];
@@ -43,13 +42,11 @@ const { Artwork: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.com
 const container: ArtworkConfig = {
   themeKeys: {
     fillColor: 'fillColor',
-    borderRadius: 'borderRadius',
     scale: 'imageScale',
     pivotX: 'imageScalePivotX',
     pivotY: 'imageScalePivotY'
   },
   base: {
-    borderRadius: theme.radius.md,
     fallbackSrc: undefined,
     fillColor: theme.color.overlay,
     gradientColor: theme.color.material,

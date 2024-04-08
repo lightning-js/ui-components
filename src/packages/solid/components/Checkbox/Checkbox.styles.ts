@@ -35,7 +35,9 @@ export type CheckboxStyleProperties = {
   justifyContent?: NodeStyles['justifyContent'];
 };
 
-type CheckboxConfig = ComponentStyleConfig<CheckboxStyleProperties>;
+type CheckboxModes = 'checked' | 'focus' | 'disabled';
+
+type CheckboxConfig = ComponentStyleConfig<CheckboxStyleProperties, CheckboxModes>;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Checkbox: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
 

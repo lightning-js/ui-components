@@ -183,13 +183,13 @@ export const TileBadgeLabelSwitch: Story = {
     );
   },
   args: {
-    states: 'focus',
+    autofocus: true,
     width: 480,
     height: 270,
     artwork: {
       src: 'https://image.tmdb.org/t/p/w500/zHdQ6yaqDf3OQO5uhr0auAgwK6O.jpg'
     },
-    persistentMetadata: true,
+    // persistentMetadata: true,
     metadata: {
       title: 'Title',
       description: lorum,

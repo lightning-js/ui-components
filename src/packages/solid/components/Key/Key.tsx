@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { Component, Signal } from 'solid-js';
+import type { Component } from 'solid-js';
 import { type IntrinsicNodeProps, Text } from '@lightningjs/solid';
 import { ButtonContainer } from '../Button/Button.jsx';
 import styles, { type KeySize, type KeyStyles } from './Key.styles.js';

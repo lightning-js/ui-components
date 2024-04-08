@@ -64,7 +64,8 @@ const container: ToggleConfig = {
     height: knobSize + (knobPadding + strokeWidth) * 2,
     width: (strokeWidth + knobPadding * 2 + knobSize) * 2,
     borderRadius: knobSize / 2 + knobPadding + strokeWidth,
-    border: { // TODO- strokeWidth and strokeColor map to border object with themeKeys
+    border: {
+      // TODO- strokeWidth and strokeColor map to border object with themeKeys
       color: theme.color.fillNeutral,
       width: strokeWidth
     }

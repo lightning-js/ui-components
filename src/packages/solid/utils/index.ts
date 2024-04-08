@@ -23,3 +23,5 @@ export { assertTruthy } from './assertTruthy.js';
 export { handleNavigation, onGridFocus } from './handleNavigation.js';
 export { scrollToIndex } from './scrollToIndex.js';
 export { getWidthByUpCount } from './getWidthByUpcount.js';
+export { getItemRatioDimensions } from './getItemRatioDimensions.js';
+export { getDimensions } from './getDimensions.js';

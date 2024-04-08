@@ -12,7 +12,7 @@ export interface LabelProps extends IntrinsicNodeProps {
    */
   title: string;
 
-  padding: LabelStyleProperties['padding'];
+  padding?: LabelStyleProperties['padding'];
 
   style?: Partial<LabelStyles>;
 

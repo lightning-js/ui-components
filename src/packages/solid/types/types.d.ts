@@ -25,19 +25,21 @@ export type ThemeKeys<BaseStyleType, ComponentStyleList = object> = {
 
 export interface ComponentStyleConfig<
   ComponentStyleList = object,
+  ModeSet extends string = Mode,
+  ToneSet extends string = Tone,
   BaseStyleType extends NodeStyles | TextStyles | NodeColor = NodeStyles | TextStyles
 > {
   themeKeys: ThemeKeys<BaseStyleType, ComponentStyleList>;
   base: BaseStyleType;
   tones?: {
-    [k in Tone]?:
+    [k in ToneSet]?:
       | (ComponentStyleList & BaseStyleType)
       | {
-          [k in Mode]?: ComponentStyleList & BaseStyleType;
+          [k in ModeSet]?: ComponentStyleList & BaseStyleType;
         };
   };
   modes?: {
-    [k in Mode]?: ComponentStyleList & BaseStyleType;
+    [k in ModeSet]?: ComponentStyleList & BaseStyleType;
   };
   modeKeys?: string[];
   toneKeys?: string[];

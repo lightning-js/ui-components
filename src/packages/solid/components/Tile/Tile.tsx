@@ -102,17 +102,9 @@ const Tile: Component<TileProps> = (props: TileProps) => {
     >
       <Artwork
         {...props.artwork}
+        states={props.states}
+        style={props.style}
         tone={props.tone ?? styles.tone}
-        width={
-          props.width ??
-          styles.Container.tones[props.tone ?? styles.tone]?.width ??
-          styles.Container.base.width
-        }
-        height={
-          props.height ??
-          styles.Container.tones[props.tone ?? styles.tone]?.height ??
-          styles.Container.base.height
-        }
       />
 
       <Show when={props.persistentMetadata || isFocused()}>
