@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.11.3...@lightningjs/solid-ui@0.12.0) (2024-04-08)
+
+### Bug Fixes
+
+- no need to use mergeRef ([#110](https://github.com/lightning-js/ui-components/issues/110)) ([e860d7e](https://github.com/lightning-js/ui-components/commit/e860d7ec62198f1b675f557df4149f05297a7469))
+
+### Features
+
+- **CardContent:** adds cardContent component ([#104](https://github.com/lightning-js/ui-components/issues/104)) ([048c74f](https://github.com/lightning-js/ui-components/commit/048c74fb7b85a83d0034c236ff79103a5a937cd8))
+
 ## [0.11.3](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.11.2...@lightningjs/solid-ui@0.11.3) (2024-04-06)
 
 ### Bug Fixes
