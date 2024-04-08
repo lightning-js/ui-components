@@ -22,7 +22,6 @@ import styles, { type RowStyles } from './Row.styles.js';
 import { handleNavigation, onGridFocus } from '../../utils/handleNavigation.js';
 import { withScrolling } from '../../utils/withScrolling.js';
 import { chainFunctions } from '../../index.js';
-import { mergeRefs } from '@solid-primitives/refs';
 import type { Tone } from '../../types/types.js';
 
 export interface RowProps extends NodeProps {
@@ -66,22 +65,20 @@ export interface RowProps extends NodeProps {
 const Row: Component<RowProps> = (props: RowProps) => {
   const onLeft = handleNavigation('left');
   const onRight = handleNavigation('right');
-  let Container;
 
   return (
     <View
       {...props}
-      ref={mergeRefs(props.ref, el => (Container = el))}
       selected={props.selected || 0}
       onLeft={chainFunctions(props.onLeft, onLeft)}
       onRight={chainFunctions(props.onRight, onRight)}
       forwardFocus={onGridFocus}
       onCreate={chainFunctions(
-        () =>
+        elm =>
           withScrolling(props.x as number).call(
-            Container,
-            Container,
-            Container.children[props.selected ?? 0] as ElementNode,
+            elm,
+            elm,
+            elm.children[props.selected ?? 0] as ElementNode,
             props.selected ?? 0,
             undefined
           ),

@@ -15,9 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { render, Canvas, Config } from '@lightningjs/solid';
-import { mapToneToStateHook } from '@lightningjs/solid-ui';
-import { Router } from '@solidjs/router';
+import { render, Config } from '@lightningjs/solid';
 import App from './pages/App';
 import coreExtensionModuleUrl from '../shared/AppCoreExtensions.js?importChunkUrl';
 import coreWorkerUrl from '../shared/threadx-core-worker.js?importChunkUrl';
@@ -25,19 +23,11 @@ import coreWorkerUrl from '../shared/threadx-core-worker.js?importChunkUrl';
 Config.fontSettings.fontFamily = 'Ubuntu';
 Config.fontSettings.color = 0xffffffff;
 
-Config.stateMapperHook = mapToneToStateHook;
-
 const driver = 'main';
-const RenderOptions = {
+Config.renderOptions = {
   coreExtensionModule: coreExtensionModuleUrl,
   threadXCoreWorkerUrl: driver === 'threadx' ? coreWorkerUrl : undefined
   // deviceLogicalPixelRatio: 1
 };
 
-render(() => (
-  <Canvas options={RenderOptions}>
-    <Router>
-      <App />
-    </Router>
-  </Canvas>
-));
+render(() => <App />);
