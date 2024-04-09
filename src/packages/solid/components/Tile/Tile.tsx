@@ -103,7 +103,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
       <Artwork
         {...props.artwork}
         states={props.states}
-        style={props.style}
+        borderRadius={styles.Container.base.borderRadius}
         tone={props.tone ?? styles.tone}
       />
 
@@ -172,6 +172,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
                 styles.Container.base.paddingYProgress
               : 0)
           }
+          mountY={1}
         >
           {props.inset}
         </View>

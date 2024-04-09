@@ -48,6 +48,7 @@ const container: MetadataConfig = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flexStart',
+    flexBoundary: 'contain',
     alpha: theme.alpha.primary
   },
   modes: {

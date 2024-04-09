@@ -253,11 +253,6 @@ export const TileProgressBarTop: Story = {
         inset={
           <>
             <Metadata {...(args.metadata as MetadataProps)} />
-            <View
-              src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
-              width={theme.spacer.lg * 5}
-              height={theme.spacer.xxl + theme.spacer.md}
-            />
           </>
         }
       />
