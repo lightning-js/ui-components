@@ -103,7 +103,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
       <Artwork
         {...props.artwork}
         states={props.states}
-        borderRadius={styles.Container.base.borderRadius}
+        style={props.style}
         tone={props.tone ?? styles.tone}
       />
 

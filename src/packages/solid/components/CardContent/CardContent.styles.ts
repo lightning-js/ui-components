@@ -41,7 +41,7 @@ const { CardContent: { defaultTone, ...cardContentthemeStyles } = { styles: {} }
 const container: CardContentConfig = {
   themeKeys: {},
   base: {
-    width: getWidthByUpCount(theme, 2),
+    // width: getWidthByUpCount(theme, 2),
     height:
       getDimensions({
         ratioX: 16,

@@ -32,6 +32,7 @@ type ArtworkStyleProperties = Partial<{
   imageScale: NodeStyles['scale'];
   imageScalePivotX: NodeStyles['pivotX'];
   imageScalePivotY: NodeStyles['pivotY'];
+  borderRadius: NodeStyles['borderRadius'];
 }>;
 
 type ArtworkConfig = ComponentStyleConfig<ArtworkStyleProperties>;
@@ -44,7 +45,8 @@ const container: ArtworkConfig = {
     fillColor: 'fillColor',
     scale: 'imageScale',
     pivotX: 'imageScalePivotX',
-    pivotY: 'imageScalePivotY'
+    pivotY: 'imageScalePivotY',
+    borderRadius: 'borderRadius'
   },
   base: {
     fallbackSrc: undefined,
@@ -52,7 +54,8 @@ const container: ArtworkConfig = {
     gradientColor: theme.color.material,
     pivotX: 0.5,
     pivotY: 0.5,
-    scale: undefined
+    scale: undefined,
+    borderRadius: theme.radius.md,
   },
   themeStyles
 };
