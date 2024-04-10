@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.12.1...@lightningjs/solid-ui@0.12.2) (2024-04-10)
+
+### Bug Fixes
+
+- **Tile:** updates flexContainer to reflect changes to flexBoundary p… ([#112](https://github.com/lightning-js/ui-components/issues/112)) ([0072034](https://github.com/lightning-js/ui-components/commit/0072034b5ed795e476dda92fcda3d61a60c0e286))
+
 ## [0.12.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.12.0...@lightningjs/solid-ui@0.12.1) (2024-04-10)
 
 ### Bug Fixes
