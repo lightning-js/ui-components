@@ -90,7 +90,7 @@ const text: LabelConfig = {
 };
 
 const Container = makeComponentStyles<LabelStyles['Container']>(container);
-const Text = makeComponentStyles<LabelStyles['Container']>(text);
+const Text = makeComponentStyles<LabelStyles['Text']>(text);
 
 const styles: LabelStyles = {
   tone: defaultTone || 'neutral',
