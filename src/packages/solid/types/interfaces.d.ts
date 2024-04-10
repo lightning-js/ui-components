@@ -18,10 +18,6 @@
 import { type IntrinsicNodeProps, type IntrinsicNodeStyleProps } from '@lightningjs/solid';
 import type { Tone } from './types.js';
 
-type AddUndefined<T> = {
-  [K in keyof T]: T[K] | undefined;
-};
-
 // TODO extends NodeProps, we may want to narrow this
 /**
  * ensures all our components provide the same API for tone
