@@ -172,7 +172,6 @@ const Tile: Component<TileProps> = (props: TileProps) => {
                 styles.Container.base.paddingYProgress
               : 0)
           }
-          mountY={1}
         >
           {props.inset}
         </View>
