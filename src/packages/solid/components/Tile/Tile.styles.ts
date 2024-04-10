@@ -72,7 +72,8 @@ const insetBottom: TileConfig = {
   base: {
     display: 'flex',
     flexDirection: 'column',
-    flexBoundary: 'contain'
+    flexBoundary: 'contain',
+    mountY: 1
   },
   themeStyles: tileThemeStyles
 };
