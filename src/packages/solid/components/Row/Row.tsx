@@ -16,7 +16,7 @@
  */
 
 import { type Component } from 'solid-js';
-import { View, ElementNode } from '@lightningjs/solid';
+import { View, ElementNode, type IntrinsicNodeCommonProps } from '@lightningjs/solid';
 import type { KeyHandler } from '@lightningjs/solid-primitives';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import { chainFunctions } from '../../utils/chainFunctions.js';
@@ -25,6 +25,8 @@ import { withScrolling, type ScrollableElementNode } from '../../utils/withScrol
 import styles from './Row.styles.js';
 
 export interface RowProps extends UIComponentProps {
+  /** function run on component mount */
+  onCreate?: IntrinsicNodeCommonProps['onCreate'];
   /** When auto scrolling, item index at which scrolling begins */
   scrollIndex?: number;
 
@@ -72,8 +74,8 @@ const Row: Component<RowProps> = (props: RowProps) => {
       onLeft={chainFunctions(props.onLeft, onLeft)}
       onRight={chainFunctions(props.onRight, onRight)}
       forwardFocus={onGridFocus}
-      onCreate={chainFunctions(
-        elm =>
+      onCreate={chainFunctions<RowProps['onCreate']>(
+        (elm: ScrollableElementNode) =>
           withScrolling(props.x as number).call(
             elm,
             elm,

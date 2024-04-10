@@ -16,7 +16,7 @@
  */
 
 import { type Component } from 'solid-js';
-import { View, type ElementNode } from '@lightningjs/solid';
+import { View, type ElementNode, type IntrinsicNodeCommonProps } from '@lightningjs/solid';
 import type { KeyHandler } from '@lightningjs/solid-primitives';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import { handleNavigation, onGridFocus } from '../../utils/handleNavigation.js';
@@ -25,7 +25,8 @@ import { chainFunctions } from '../../utils/chainFunctions.js';
 import styles from './Column.styles.js';
 
 export interface ColumnProps extends UIComponentProps {
-  onCreate?: () => void;
+  /** function run on component mount */
+  onCreate?: IntrinsicNodeCommonProps['onCreate'];
   /** function to be called on down click */
   onDown?: KeyHandler;
 
@@ -73,8 +74,8 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
       onDown={chainFunctions(props.onDown, onDown)}
       selected={props.selected || 0}
       forwardFocus={onGridFocus}
-      onCreate={chainFunctions(
-        elm =>
+      onCreate={chainFunctions<ColumnProps['onCreate']>(
+        (elm: ScrollableElementNode) =>
           withScrolling(props.y as number).call(
             elm,
             elm,
