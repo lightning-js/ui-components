@@ -16,15 +16,17 @@
  */
 
 import { type Component } from 'solid-js';
-import { View, ElementNode, type NodeProps } from '@lightningjs/solid';
+import { View, ElementNode, type IntrinsicNodeCommonProps } from '@lightningjs/solid';
 import type { KeyHandler } from '@lightningjs/solid-primitives';
-import styles, { type RowStyles } from './Row.styles.js';
+import type { UIComponentProps } from '../../types/interfaces.js';
+import { chainFunctions } from '../../utils/chainFunctions.js';
 import { handleNavigation, onGridFocus } from '../../utils/handleNavigation.js';
-import { withScrolling } from '../../utils/withScrolling.js';
-import { chainFunctions } from '../../index.js';
-import type { Tone } from '../../types/types.js';
+import { withScrolling, type ScrollableElementNode } from '../../utils/withScrolling.js';
+import styles from './Row.styles.js';
 
-export interface RowProps extends NodeProps {
+export interface RowProps extends UIComponentProps {
+  /** function run on component mount */
+  onCreate?: IntrinsicNodeCommonProps['onCreate'];
   /** When auto scrolling, item index at which scrolling begins */
   scrollIndex?: number;
 
@@ -56,25 +58,24 @@ export interface RowProps extends NodeProps {
     selectedIndex: number,
     lastSelectedIndex: number
   ) => void;
-
-  tone?: Tone;
-
-  style?: Partial<RowStyles>;
 }
 
 const Row: Component<RowProps> = (props: RowProps) => {
   const onLeft = handleNavigation('left');
   const onRight = handleNavigation('right');
+  let Container: ScrollableElementNode;
 
   return (
     <View
       {...props}
+      // @ts-expect-error this is fine
+      ref={Container}
       selected={props.selected || 0}
       onLeft={chainFunctions(props.onLeft, onLeft)}
       onRight={chainFunctions(props.onRight, onRight)}
       forwardFocus={onGridFocus}
-      onCreate={chainFunctions(
-        elm =>
+      onCreate={chainFunctions<RowProps['onCreate']>(
+        (elm: ScrollableElementNode) =>
           withScrolling(props.x as number).call(
             elm,
             elm,
@@ -88,13 +89,11 @@ const Row: Component<RowProps> = (props: RowProps) => {
         props.onSelectedChanged,
         props.scroll !== 'none' ? withScrolling(props.x as number) : undefined
       )}
-      tone={props.tone ?? styles.tone}
       style={[
-        ...[props.style].flat(),
+        props.style, //
         styles.Container.tones[props.tone || styles.tone],
         styles.Container.base
       ]}
-      states={props.tone ?? styles.tone}
     />
   );
 };

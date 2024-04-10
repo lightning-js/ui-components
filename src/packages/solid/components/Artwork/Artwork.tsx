@@ -1,23 +1,26 @@
 import { type Component, createMemo } from 'solid-js';
-import { View, type IntrinsicNodeProps } from '@lightningjs/solid';
-import styles, { type ArtworkStyles } from './Artwork.styles.js';
+import { View, type Effects, type NodeProps } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
-import type { Tone } from '../../types/types.js';
+import type { UIComponentProps } from '../../types/interfaces.js';
+import styles from './Artwork.styles.js';
 withPadding;
 
-export interface ArtworkProps extends ArtworkStyleProps, IntrinsicNodeProps {
+export interface ArtworkProps extends UIComponentProps {
   /**
    * Handles any blur/gradient/shader effects
    */
-  effects?: object;
+  effects?: Effects;
+
   /**
    * Sets the fallback image that will be shown in if the src request fails
    */
-  fallbackSrc?: string;
+  fallbackSrc?: NodeProps['src'];
+
   /**
    * Which image will be displayed
    */
-  src: string; // Inherited from lng.Element
+  src: NodeProps['src'];
+
   /**
    * optional callback that can be used to generate custom strings to request an image. The callback will be passed an object containing the following parameters: aspectRatio, src, w, h. Be default aspect ratio will match the closest value from srcCallbackAspectRatios
    */
@@ -28,9 +31,6 @@ export interface ArtworkProps extends ArtworkStyleProps, IntrinsicNodeProps {
     width: number;
     height: number;
   }) => string;
-
-  tone?: Tone;
-  style?: Omit<ArtworkStyles, 'tone'>;
 }
 
 export interface ArtworkStyleProps {}
@@ -44,8 +44,8 @@ const formatArtwork = (props: ArtworkProps) => {
       closestAspectRatio: undefined,
       aspectRatio: undefined,
       src: src,
-      width: props.width,
-      height: props.height
+      width: Number(props.width),
+      height: Number(props.height)
     });
   }
   return src;
@@ -66,7 +66,7 @@ const Artwork: Component<ArtworkProps> = props => {
             styles.Container.base.fillColor
       }
       style={[
-        ...[props.style].flat(),
+        props.style, //
         styles.Container.tones[props.tone || styles.tone],
         styles.Container.base
       ]}

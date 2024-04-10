@@ -16,17 +16,35 @@
  */
 
 import { type Component } from 'solid-js';
-import { View, ElementNode, type NodeProps } from '@lightningjs/solid';
+import { View, type ElementNode, type IntrinsicNodeCommonProps } from '@lightningjs/solid';
 import type { KeyHandler } from '@lightningjs/solid-primitives';
-import styles, { type ColumnStyles } from './Column.styles.js';
-import { withScrolling } from '../../utils/withScrolling.js';
+import type { UIComponentProps } from '../../types/interfaces.js';
 import { handleNavigation, onGridFocus } from '../../utils/handleNavigation.js';
-import { chainFunctions } from '../../index.js';
-import type { Tone } from '../../types/types.js';
+import { withScrolling, type ScrollableElementNode } from '../../utils/withScrolling.js';
+import { chainFunctions } from '../../utils/chainFunctions.js';
+import styles from './Column.styles.js';
 
-export interface ColumnProps extends NodeProps {
-  /** When auto scrolling, item index at which scrolling begins */
-  scrollIndex?: number;
+export interface ColumnProps extends UIComponentProps {
+  /** function run on component mount */
+  onCreate?: IntrinsicNodeCommonProps['onCreate'];
+  /** function to be called on down click */
+  onDown?: KeyHandler;
+
+  /** function to be called when component gets focus */
+  onFocus?: KeyHandler;
+
+  /** function to be called on up click */
+  onUp?: KeyHandler;
+
+  /** function to be called when the selected of the component changes */
+  onSelectedChanged?: (
+    this: ScrollableElementNode,
+    elm: ScrollableElementNode,
+    active: ElementNode,
+    selectedIndex: number,
+    lastSelectedIndex: number
+  ) => void;
+
   /** Determines when to scroll(shift items along the axis):
    * auto - scroll items immediately
    * edge - scroll items when focus reaches the last item on screen
@@ -35,45 +53,29 @@ export interface ColumnProps extends NodeProps {
    * in both `auto` and `edge` items will only scroll until the last item is on screen */
   scroll?: 'always' | 'none' | 'edge' | 'auto';
 
-  /** The inital index */
+  /** When auto scrolling, item index at which scrolling begins */
+  scrollIndex?: number;
+
+  /** The initial index */
   selected?: number;
-
-  /** function to be called on up click */
-  onUp?: KeyHandler;
-
-  /** function to be called on down click */
-  onDown?: KeyHandler;
-
-  /** function to be called when component gets focus */
-  onFocus?: KeyHandler;
-
-  /** function to be called when the selected of the component changes */
-  onSelectedChanged?: (
-    this: ElementNode,
-    elm: ElementNode,
-    active: ElementNode,
-    selectedIndex: number,
-    lastSelectedIndex: number
-  ) => void;
-
-  tone?: Tone;
-
-  style?: Partial<ColumnStyles>;
 }
 
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
   const onUp = handleNavigation('up');
   const onDown = handleNavigation('down');
+  let Container: ScrollableElementNode;
 
   return (
     <View
       {...props}
+      // @ts-expect-error this is fine
+      ref={Container}
       onUp={chainFunctions(props.onUp, onUp)}
       onDown={chainFunctions(props.onDown, onDown)}
       selected={props.selected || 0}
       forwardFocus={onGridFocus}
-      onCreate={chainFunctions(
-        elm =>
+      onCreate={chainFunctions<ColumnProps['onCreate']>(
+        (elm: ScrollableElementNode) =>
           withScrolling(props.y as number).call(
             elm,
             elm,
@@ -88,7 +90,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
         props.scroll !== 'none' ? withScrolling(props.y as number) : undefined
       )}
       style={[
-        ...[props.style].flat(),
+        props.style, //
         styles.Container.tones[props.tone ?? styles.tone],
         styles.Container.base
       ]}

@@ -16,11 +16,11 @@
  */
 
 import { createSignal, type Component, type Signal, createEffect, on } from 'solid-js';
-import { View, Text, type IntrinsicNodeProps } from '@lightningjs/solid';
-import styles, { type InputStyles } from './Input.styles.js';
-import type { Tone } from '../../types/types.js';
+import { View, Text } from '@lightningjs/solid';
+import type { UIComponentProps } from '../../types/interfaces.js';
+import styles from './Input.styles.js';
 
-export interface InputProps extends IntrinsicNodeProps {
+export interface InputProps extends UIComponentProps {
   /**
    * non-reactive index of the current cursor currentPosition
    */
@@ -35,10 +35,6 @@ export interface InputProps extends IntrinsicNodeProps {
    * signal passed in to represent the actual title within the input
    */
   titleSignal: Signal<string>;
-
-  style?: Partial<InputStyles>;
-
-  tone?: Tone;
 }
 
 const Input: Component<InputProps> = props => {
@@ -119,15 +115,14 @@ const Input: Component<InputProps> = props => {
       onLeft={onLeft}
       onRight={onRight}
       style={[
-        props.style?.InputContainer, //
+        props.style, //
         styles.InputContainer.tones[props.tone ?? styles.tone],
         styles.InputContainer.base
       ]}
     >
       <Text
         style={[
-          props.style?.Text, //
-          styles.Text.tones[props.tone ?? styles.tone],
+          styles.Text.tones[props.tone ?? styles.tone], //
           styles.Text.base
         ]}
       >

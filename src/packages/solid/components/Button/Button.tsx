@@ -16,19 +16,16 @@
  */
 
 import { type Component } from 'solid-js';
-import { View, Text, type NodeProps } from '@lightningjs/solid';
-import type { Tone } from '../../types/types.js';
-import styles, { type ButtonStyles } from './Button.styles.js';
+import { View, Text, type NodeProps, type TextProps } from '@lightningjs/solid';
+import type { UIComponentProps } from '../../types/interfaces.js';
+import styles from './Button.styles.js';
 
-interface ButtonProps extends NodeProps {
-  children: string | string[];
-  tone?: Tone;
-  style?: Omit<ButtonStyles, 'tone'>;
+interface ButtonProps extends UIComponentProps {
+  children: TextProps['children'];
 }
 
-interface ButtonContainerProps extends NodeProps {
-  tone?: Tone;
-  style?: Omit<ButtonStyles, 'tone' | 'Text'>;
+interface ButtonContainerProps extends UIComponentProps {
+  children: NodeProps['children'];
 }
 
 const Button: Component<ButtonProps> = props => {
@@ -36,7 +33,7 @@ const Button: Component<ButtonProps> = props => {
     <View
       {...props}
       style={[
-        ...[props.style].flat(), //
+        props.style, //
         styles.Container.tones?.[props.tone ?? styles.tone],
         styles.Container.base
       ]}
@@ -44,8 +41,7 @@ const Button: Component<ButtonProps> = props => {
     >
       <Text
         style={[
-          ...[props.style?.Text].flat(), //
-          styles.Text.tones[props.tone ?? styles.tone],
+          styles.Text.tones[props.tone ?? styles.tone], //
           styles.Text.base
         ]}
       >
@@ -60,7 +56,7 @@ const ButtonContainer: Component<ButtonContainerProps> = props => {
     <View
       {...props}
       style={[
-        ...[props.style].flat(), //
+        props.style, //
         styles.Container.tones?.[props.tone ?? styles.tone],
         styles.Container.base
       ]}
@@ -69,4 +65,4 @@ const ButtonContainer: Component<ButtonContainerProps> = props => {
   );
 };
 
-export { Button as default, ButtonContainer, type ButtonProps, type ButtonContainerProps };
+export { Button as default, ButtonContainer, type ButtonProps };

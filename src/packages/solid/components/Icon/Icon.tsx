@@ -17,32 +17,29 @@
 
 import { type Component } from 'solid-js';
 import { View, type IntrinsicNodeProps } from '@lightningjs/solid';
-import styles, { type IconStyles } from './Icon.styles.js';
-import type { Tone } from '../../types/types.js';
+import type { UIComponentProps } from '../../types/interfaces.js';
+import styles from './Icon.styles.js';
 
-export interface IconProps extends IntrinsicNodeProps {
+export interface IconProps extends UIComponentProps {
   /**
    * icon color (can only be applied on png icons)
    */
-  color?: number;
-  /**
-   * icon width
-   */
-  width?: number;
+  color?: UIComponentProps['color'];
 
   /**
    * icon height
    */
-  height?: number;
+  height?: IntrinsicNodeProps['height'];
 
   /**
    * path to image or inline SVG XML
    */
-  src?: string;
+  src?: IntrinsicNodeProps['src'];
 
-  style?: Partial<IconStyles>;
-
-  tone?: Tone;
+  /**
+   * icon width
+   */
+  width?: IntrinsicNodeProps['width'];
 }
 
 const Icon: Component<IconProps> = props => {
@@ -50,7 +47,7 @@ const Icon: Component<IconProps> = props => {
     <View
       {...props}
       style={[
-        ...[props.style].flat(), //
+        props.style, //
         styles.Container.tones?.[props.tone || styles.tone],
         styles.Container.base
       ]}

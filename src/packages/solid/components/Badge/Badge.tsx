@@ -15,31 +15,23 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { type Component } from 'solid-js';
-import { Text, type NodeProps } from '@lightningjs/solid';
+import { Text, type TextProps } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
-import styles, { type BadgeStyles } from './Badge.styles.js';
-import type { Tone } from '../../types/types.js';
+import type { UIComponentProps } from '../../types/interfaces.js';
+import styles from './Badge.styles.js';
 withPadding; // Preserve the import.
 
-type BadgeProps = {
+interface BadgeProps extends UIComponentProps {
   /**
    * Badge text
    */
-  title: string;
-  /**
-   * sets the component's color palette
-   */
-  tone?: Tone;
+  title: TextProps['children'];
 
   padding?: number[];
+}
 
-  style?: Partial<BadgeStyles>;
-};
-
-interface BadgeContainerProps extends NodeProps {
+interface BadgeContainerProps extends UIComponentProps {
   padding?: number[];
-  tone?: Tone;
-  style?: Omit<BadgeStyles, 'tone' | 'Text'>;
 }
 
 const BadgeContainer: Component<BadgeContainerProps> = props => {
@@ -52,7 +44,7 @@ const BadgeContainer: Component<BadgeContainerProps> = props => {
       }
       {...props}
       style={[
-        ...[props.style].flat(), //
+        props.style, //
         styles.Container.tones[props.tone || styles.tone],
         styles.Container.base
       ]}

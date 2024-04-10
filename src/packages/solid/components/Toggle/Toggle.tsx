@@ -16,18 +16,16 @@
  */
 
 import { createMemo, type Component } from 'solid-js';
-import { View, type NodeProps } from '@lightningjs/solid';
-import styles, { type ToggleStyles } from './Toggle.styles.js';
-import type { Tone } from '../../types/types.js';
+import { View } from '@lightningjs/solid';
+import type { UIComponentProps } from '../../types/interfaces.js';
+import styles from './Toggle.styles.js';
 
-export interface ToggleProps extends NodeProps {
+export interface ToggleProps extends UIComponentProps {
   /**
    * Indicates whether the Toggle is checked or unchecked.
    * Setting this to `true` will check the toggle, and setting it to `false` will uncheck it.
    */
   checked?: boolean;
-  tone?: Tone;
-  style?: Partial<ToggleStyles>;
 }
 
 const Toggle: Component<ToggleProps> = (props: ToggleProps) => {
@@ -54,9 +52,8 @@ const Toggle: Component<ToggleProps> = (props: ToggleProps) => {
   return (
     <View
       {...props}
-      // tone={props.tone ?? styles.tone}
       style={[
-        ...[props.style].flat(),
+        props.style, //
         styles.Container.tones?.[props.tone ?? styles.tone],
         styles.Container.base
       ]}
