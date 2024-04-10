@@ -44,7 +44,8 @@ const { Surface: { defaultSurfaceTone, ...surfaceThemeStyles } = { styles: {} } 
 const container: TileConfig = {
   themeKeys: {
     alpha: 'alpha',
-    paddingYProgress: 'paddingYProgress'
+    paddingYProgress: 'paddingYProgress',
+    borderRadius: 'radius'
   },
   base: {
     width: 400,
@@ -71,7 +72,7 @@ const insetBottom: TileConfig = {
   base: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flexStart',
+    flexBoundary: 'contain',
     mountY: 1
   },
   themeStyles: tileThemeStyles

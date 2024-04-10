@@ -52,7 +52,8 @@ const container: ArtworkConfig = {
     gradientColor: theme.color.material,
     pivotX: 0.5,
     pivotY: 0.5,
-    scale: undefined
+    scale: undefined,
+    borderRadius: theme.radius.md,
   },
   themeStyles
 };
