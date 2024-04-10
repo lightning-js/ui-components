@@ -35,9 +35,9 @@
   },
   "devDependencies": {
     "@lightningjs/ui-components-theme-base": "^1.2.0",
-    "@typescript-eslint/eslint-plugin": "^7.5.0",
-    "@typescript-eslint/parser": "^7.5.0",
-    "typescript": "^5.4.4",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
+    "typescript": "^5.4.5",
     "vite": "^5.2.8",
     "vite-bundle-visualizer": "^1.1.0",
     "vite-plugin-cross-origin-isolation": "^0.1.6",
