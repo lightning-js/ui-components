@@ -46,7 +46,13 @@ const config = {
       formats: ['es']
     },
     rollupOptions: {
-      external: ['theme', '@lightningjs/solid', '@lightningjs/solid-primitives', '@lightningjs/renderer']
+      external: [
+        'theme',
+        'solid-js',
+        '@lightningjs/solid',
+        '@lightningjs/solid-primitives',
+        '@lightningjs/renderer'
+      ]
     },
     minify: false,
     sourcemap: true,
