@@ -16,65 +16,58 @@ export default {
   },
   animation: {
     duration: {
-      none: '0ms',
-      xfast: '100ms',
-      fast: '250ms',
-      normal: '500ms',
-      slow: '750ms',
-      xslow: '900ms'
+      none: 0,
+      xfast: 100,
+      fast: 250,
+      normal: 500,
+      slow: 750,
+      xslow: 900
     },
-    delay: {
-      none: '0ms',
-      xfast: '10ms',
-      fast: '25ms',
-      normal: '50ms',
-      slow: '75ms',
-      xslow: '90ms'
-    },
+    delay: { none: 0, xfast: 10, fast: 25, normal: 50, slow: 75, xslow: 90 },
     expressive: {
       timingFunction: 'cubic-bezier(0, 0, 1, 1)',
-      delay: '0ms',
-      duration: '250ms'
+      delay: 0,
+      duration: 0.25
     },
     expressiveEntrance: {
       timingFunction: 'cubic-bezier(0, 0, 1, 1)',
-      delay: '0ms',
-      duration: '250ms'
+      delay: 0,
+      duration: 0.25
     },
     expressiveExit: {
       timingFunction: 'cubic-bezier(0, 0, 1, 1)',
-      delay: '0ms',
-      duration: '250ms'
+      delay: 0,
+      duration: 0.25
     },
     standard: {
       timingFunction: 'cubic-bezier(0, 0, 1, 1)',
-      delay: '0ms',
-      duration: '250ms'
+      delay: 0,
+      duration: 0.25
     },
     standardEntrance: {
       timingFunction: 'cubic-bezier(0, 0, 1, 1)',
-      delay: '0ms',
-      duration: '250ms'
+      delay: 0,
+      duration: 0.25
     },
     standardExit: {
       timingFunction: 'cubic-bezier(0, 0, 1, 1)',
-      delay: '0ms',
-      duration: '250ms'
+      delay: 0,
+      duration: 0.25
     },
     utility: {
       timingFunction: 'cubic-bezier(0, 0, 1, 1)',
-      delay: '0ms',
-      duration: '250ms'
+      delay: 0,
+      duration: 0.25
     },
     utilityEntrance: {
       timingFunction: 'cubic-bezier(0, 0, 1, 1)',
-      delay: '0ms',
-      duration: '250ms'
+      delay: 0,
+      duration: 0.25
     },
     utilityExit: {
       timingFunction: 'cubic-bezier(0, 0, 1, 1)',
-      delay: '0ms',
-      duration: '250ms'
+      delay: 0,
+      duration: 0.25
     }
   },
   asset: {
