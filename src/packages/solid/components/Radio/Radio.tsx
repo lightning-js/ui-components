@@ -51,17 +51,16 @@ const Radio: Component<RadioProps> = (props: RadioProps) => {
                       styles.Knob.base.colorChecked
                     : styles.Knob.tones?.[props.tone ?? styles.tone]?.color ?? styles.Knob.base.color
                 }
+                mount={0.5}
                 x={
-                  (styles.Container.tones?.[props.tone ?? styles.tone]?.border?.width ??
-                    styles.Container.base.border.width) +
-                    (styles.Knob.tones?.[props.tone ?? styles.tone]?.padding ?? styles.Knob.base.padding) || 0
+                  (styles.Container.tones[props.tone ?? styles.tone]?.width ??
+                    styles.Container.base.width ??
+                    0) / 2
                 }
                 y={
-                  ((styles.Container.tones[props.tone ?? styles.tone]?.height ??
+                  (styles.Container.tones[props.tone ?? styles.tone]?.height ??
                     styles.Container.base.height ??
-                    0) -
-                    (styles.Knob.tones[props.tone ?? styles.tone]?.height ?? styles.Knob.base.height ?? 0)) /
-                  2
+                    0) / 2
                 }
                 zIndex={2}
                 width={styles.Knob.tones[props.tone ?? styles.tone]?.width ?? styles.Knob.base.width ?? 2}
