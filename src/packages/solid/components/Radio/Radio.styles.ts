@@ -46,8 +46,7 @@ type RadioConfig = ComponentStyleConfig<RadioStyleProperties>;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Radio: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
 
-const knobSize = theme.spacer.xl;
-const knobPadding = theme.spacer.xs;
+const knobSize = theme.spacer.xxl;
 const strokeWidth = theme.stroke.sm;
 
 const container: RadioConfig = {
@@ -57,61 +56,27 @@ const container: RadioConfig = {
     colorChecked: 'backgroundColorChecked'
   },
   base: {
-    color: theme.color.fillInverseTertiary,
-    colorChecked: theme.color.fillNeutral,
-    height: knobSize + (knobPadding + strokeWidth) * 2,
-    width: knobSize + (knobPadding + strokeWidth) * 2,
-    borderRadius: knobSize / 2 + knobPadding + strokeWidth,
+    color: theme.color.fillNeutralSecondary,
+    colorChecked: theme.color.fillInverse,
+    height: knobSize + strokeWidth * 2,
+    width: knobSize + strokeWidth * 2,
+    borderRadius: knobSize / 2 + strokeWidth,
     border: {
-      // TODO- strokeWidth and strokeColor map to border object with themeKeys
-      color: theme.color.fillNeutral,
+      color: theme.color.strokeNeutralSecondary,
       width: strokeWidth
-    }
-  },
-  modes: {
-    focus: {},
-    disabled: {
-      borderColor: theme.color.fillNeutralDisabled,
-      border: {
-        color: theme.color.fillNeutralDisabled,
-        width: strokeWidth
-      },
-      color: theme.color.fillInverseDisabled
     }
   },
   tones: {
     inverse: {
-      borderColor: theme.color.fillInverse,
       border: {
-        color: theme.color.fillInverse,
+        color: theme.color.strokeInverseSecondary,
         width: strokeWidth
-      },
-      color: theme.color.fillNeutralTertiary,
-      disabled: {
-        borderColor: theme.color.fillInverseDisabled,
-        border: {
-          color: theme.color.fillInverseDisabled,
-          width: strokeWidth
-        },
-        color: theme.color.fillNeutralDisabled,
-        colorChecked: theme.color.fillInverseDisabled
       }
     },
     brand: {
-      borderColor: theme.color.fillBrand,
       border: {
         color: theme.color.fillBrand,
         width: strokeWidth
-      },
-      color: theme.color.fillBrandTertiary,
-      disabled: {
-        borderColor: theme.color.fillNeutralDisabled,
-        border: {
-          color: theme.color.fillNeutralDisabled,
-          width: strokeWidth
-        },
-        color: theme.color.fillInverseDisabled,
-        colorChecked: theme.color.fillNeutralDisabled
       }
     }
   },
@@ -122,42 +87,18 @@ const knob: RadioConfig = {
   themeKeys: {
     width: 'knobWidth',
     height: 'knobHeight',
-    padding: 'knobPadding',
     borderRadius: 'knobRadius',
-    color: 'knobColor',
-    colorChecked: 'knobColorChecked'
+    color: 'knobColor'
   },
   base: {
-    color: theme.color.fillNeutral,
-    colorChecked: theme.color.fillNeutral,
+    color: theme.color.fillInverse,
     width: knobSize,
     height: knobSize,
-    borderRadius: knobSize / 2,
-    padding: knobPadding
-  },
-  modes: {
-    focus: {},
-    disabled: {
-      color: theme.color.fillNeutralDisabled,
-      colorChecked: theme.color.fillInverseDisabled
-    }
+    borderRadius: knobSize / 2
   },
   tones: {
     inverse: {
-      color: theme.color.fillInverse,
-      colorChecked: theme.color.fillNeutral,
-      disabled: {
-        color: theme.color.fillInverseDisabled,
-        colorChecked: theme.color.fillNeutralDisabled
-      }
-    },
-    brand: {
-      color: theme.color.fillBrand,
-      colorChecked: theme.color.fillInverse,
-      disabled: {
-        color: theme.color.fillNeutralDisabled,
-        colorChecked: theme.color.fillInverseDisabled
-      }
+      color: theme.color.fillNeutral
     }
   },
   themeStyles
