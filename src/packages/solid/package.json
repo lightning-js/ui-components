@@ -67,6 +67,7 @@
     "vite-bundle-visualizer": "^1.1.0",
     "vite-plugin-cross-origin-isolation": "^0.1.6",
     "vite-plugin-solid": "^2.10.2",
+    "vite-plugin-dts": "^3.8.1",
     "vitest": "^1.5.0"
   }
 }
