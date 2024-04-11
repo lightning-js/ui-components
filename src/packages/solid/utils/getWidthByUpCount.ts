@@ -15,7 +15,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import theme from 'theme';
-export function getWidthByUpCount(upCount = 1) {
+
+export function getWidthByUpCount(upCount: number | undefined = 1): number {
   const screenW = theme.layout.screenW;
   const columnCount = theme.layout.columnCount;
   const marginX = theme.layout.marginX;
@@ -23,7 +24,7 @@ export function getWidthByUpCount(upCount = 1) {
 
   if (upCount < 1 || upCount > columnCount) {
     console.error(
-      `Column expects a number between 1 & ${columnCount}. Received ${upCount}. Defaulting to 1.`
+      `getWidthByUpCount expects an upCount between 1 & ${columnCount}, received ${upCount}. Defaulting to upCount 1.`
     );
     upCount = 1;
   }

@@ -17,7 +17,9 @@
 import { getItemRatioDimensions } from './getItemRatioDimensions.js';
 import { getWidthByUpCount } from './getWidthByUpCount.js';
 
-export function getDimensions(obj = {}, fallback = {}) {
+type DimensionsConfig = { w?: number; h?: number; ratioX?: number; ratioY?: number; upCount?: number };
+
+export function getDimensions(obj: DimensionsConfig = {}, fallback: DimensionsConfig = {}) {
   const { w, h, ratioX, ratioY, upCount } = obj;
   const fallbackW = fallback.w || 0;
   const fallbackH = fallback.h || 0;
