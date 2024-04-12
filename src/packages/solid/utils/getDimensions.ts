@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { getItemRatioDimensions } from './getItemRatioDimensions.js';
-import theme from 'theme';
+import { getWidthByUpCount } from './getWidthByUpCount.js';
 
 export function getDimensions(obj = {}, fallback = {}) {
   const { w, h, ratioX, ratioY, upCount } = obj;
@@ -41,7 +41,7 @@ export function getDimensions(obj = {}, fallback = {}) {
   } else if (h && upCount) {
     // calculate dynamic width based off a row upcount and a given height
     dimensions = {
-      w: Math.round(getWidthByUpCount(theme, upCount)),
+      w: Math.round(getWidthByUpCount(upCount)),
       h: h
     };
   } else if (h) {

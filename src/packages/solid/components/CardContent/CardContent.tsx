@@ -22,6 +22,7 @@ import type { Tone } from '../../types/types.js';
 import { type ArtworkProps } from '../Artwork/Artwork.jsx';
 import type { ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
 import Tile from '../Tile/Tile.jsx';
+import { getWidthByColumnSpan } from '../../utils/index.js';
 withPadding; // Preserve the import.
 
 export interface CardContentProps extends NodeProps {
@@ -101,6 +102,14 @@ export interface CardContentProps extends NodeProps {
    */
   metadataBottom?: NodeProps['children'];
   /**
+   * sets the number of columns the metadata section spans
+   */
+  metadataColumnSpan?: number;
+  /**
+   * sets the number of columns the tile section spans
+   */
+  tileColumnSpan?: number;
+  /**
    * sets the component's color palette
    */
   tone?: Tone;
@@ -143,11 +152,9 @@ const CardContent: Component<CardContentProps> = props => {
         states={{ collapsed: collapsedTile() }}
         style={[styles.TileContainer.tones[props.tone ?? styles.tone], styles.TileContainer.base]}
         width={
-          styles.TileContainer.tones[props.tone ?? styles.tone]?.width ?? styles.TileContainer.base.width
+          props.tileColumnSpan ? getWidthByColumnSpan(props.tileColumnSpan) : styles.TileContainer.base.width
         }
-        height={
-          styles.TileContainer.tones[props.tone ?? styles.tone]?.height ?? styles.TileContainer.base.height
-        }
+        height={props.height || styles.TileContainer.base.height}
         persistentMetadata={!props.shouldCollapse}
       />
 
@@ -155,30 +162,19 @@ const CardContent: Component<CardContentProps> = props => {
       <Show when={!collapsedTile()}>
         <View
           style={[styles.MetadataContainer.tones[props.tone ?? styles.tone], styles.MetadataContainer.base]}
+          width={
+            props.metadataColumnSpan
+              ? getWidthByColumnSpan(props.metadataColumnSpan)
+              : styles.MetadataContainer.base.width
+          }
+          height={props.height || styles.MetadataContainer.base.height}
         >
-          <View
-            x={
-              styles.MetadataContainer.tones[props.tone ?? styles.tone]?.padding?.[0] ??
-              styles.MetadataContainer.base.padding[0]
-            }
-            y={
-              styles.MetadataContainer.tones[props.tone ?? styles.tone]?.padding?.[1] ??
-              styles.MetadataContainer.base.padding[1]
-            }
-          >
+          <View x={styles.MetadataContainer.base.padding[0]} y={styles.MetadataContainer.base.padding[1]}>
             {props.metadataTop}
           </View>
           <View
-            x={
-              styles.MetadataContainer.tones[props.tone ?? styles.tone]?.padding?.[0] ??
-              styles.MetadataContainer.base.padding[0]
-            }
-            y={
-              (styles.MetadataContainer.tones[props.tone ?? styles.tone]?.height ??
-                styles.MetadataContainer.base.height) -
-              (styles.MetadataContainer.tones[props.tone ?? styles.tone]?.padding?.[1] ??
-                styles.MetadataContainer.base.padding[1])
-            }
+            x={styles.MetadataContainer.base.padding[0]}
+            y={styles.MetadataContainer.base.height - styles.MetadataContainer.base.padding[1]}
             mountY={1}
           >
             {props.metadataBottom}

@@ -14,17 +14,12 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
+
+import theme from 'theme';
 import { getWidthByUpCount } from './getWidthByUpCount.js';
+export function getWidthByColumnSpan(columnSpan: number) {
+  const columnCount = theme.layout.columnCount;
+  const gutterX = theme.layout.gutterX;
 
-export function getItemRatioDimensions(ratioX: number, ratioY: number, upCount: number) {
-  let w, h;
-
-  if (ratioX && ratioY && upCount) {
-    w = Math.round(getWidthByUpCount(upCount) ?? 0);
-    h = Math.round((w / ratioX) * ratioY);
-  } else {
-    w = 0;
-    h = 0;
-  }
-  return { w, h };
+  return (getWidthByUpCount(columnCount) ?? 1) * columnSpan + gutterX * (columnSpan - 1);
 }
