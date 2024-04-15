@@ -44,7 +44,7 @@ export type RadioStyleProperties = {
 type RadioConfig = ComponentStyleConfig<RadioStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Radio: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Radio: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
 const knobSize = theme.spacer.xxl;
 const strokeWidth = theme.stroke.sm;
