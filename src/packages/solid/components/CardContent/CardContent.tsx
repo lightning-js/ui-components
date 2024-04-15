@@ -154,7 +154,7 @@ const CardContent: Component<CardContentProps> = props => {
         width={
           props.tileColumnSpan ? getWidthByColumnSpan(props.tileColumnSpan) : styles.TileContainer.base.width
         }
-        height={props.height || styles.TileContainer.base.height}
+        height={props.height ?? styles.TileContainer.base.height}
         persistentMetadata={!props.shouldCollapse}
       />
 
@@ -167,7 +167,7 @@ const CardContent: Component<CardContentProps> = props => {
               ? getWidthByColumnSpan(props.metadataColumnSpan)
               : styles.MetadataContainer.base.width
           }
-          height={props.height || styles.MetadataContainer.base.height}
+          height={props.height ?? styles.MetadataContainer.base.height}
         >
           <View x={styles.MetadataContainer.base.padding[0]} y={styles.MetadataContainer.base.padding[1]}>
             {props.metadataTop}
