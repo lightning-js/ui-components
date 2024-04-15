@@ -18,7 +18,7 @@
 import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
 import type { ComponentStyleConfig, NodeStyleSet, Tone } from '../../types/types.js';
-import { makeComponentStyles, getDimensions, getWidthByUpCount } from '../../utils/index.js';
+import { makeComponentStyles, getDimensions, getWidthByColumnSpan } from '../../utils/index.js';
 
 export interface CardContentStyles {
   tone: Tone;
@@ -41,7 +41,6 @@ const { CardContent: { defaultTone, ...cardContentthemeStyles } = { styles: {} }
 const container: CardContentConfig = {
   themeKeys: {},
   base: {
-    width: getWidthByUpCount(theme, 2),
     height:
       getDimensions({
         ratioX: 16,
@@ -80,7 +79,7 @@ const metadataContainer: CardContentConfig = {
     color: 'backgroundColor'
   },
   base: {
-    width: (getWidthByUpCount(theme, 2) ?? 0) - getDimensions({ ratioX: 16, ratioY: 9, upCount: 4 }).w,
+    width: getWidthByColumnSpan(3),
     height: getDimensions({ ratioX: 16, ratioY: 9, upCount: 4 }).h,
     color: theme.color.fillInverseSecondary,
     padding: [theme.spacer.xl, theme.spacer.xl],

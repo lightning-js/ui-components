@@ -14,7 +14,8 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-export function getWidthByUpCount(theme, upCount = 1) {
+import theme from 'theme';
+export function getWidthByUpCount(upCount = 1) {
   const screenW = theme.layout.screenW;
   const columnCount = theme.layout.columnCount;
   const marginX = theme.layout.marginX;

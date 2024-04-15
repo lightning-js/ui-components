@@ -49,6 +49,14 @@ const meta: Meta<typeof CardContent> = {
       control: { type: 'radio' },
       options: [true, false]
     },
+    metadataColumnSpan: {
+      description: 'sets the number of columns the metadata section spans',
+      control: { type: 'number', step: 1, min: 0, max: 10 }
+    },
+    tileColumnSpan: {
+      description: 'sets the number of columns the tile section spans',
+      control: { type: 'number', step: 1, min: 0, max: 10 }
+    },
     progressBar: {
       description: 'object containing all the properties supported in the ProgressBar component',
       color: {
@@ -114,7 +122,9 @@ export const Basic: Story = {
     },
     progressBar: {
       progress: 0.5
-    }
+    },
+    tileColumnSpan: 3,
+    metadataColumnSpan: 3
   }
 };
 

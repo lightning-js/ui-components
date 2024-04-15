@@ -115,6 +115,8 @@ const Tile: Component<TileProps> = (props: TileProps) => {
     >
       <Artwork
         {...props.artwork}
+        width={props.width}
+        height={props.height}
         states={props.states}
         style={props.style}
         tone={props.tone ?? styles.tone}

@@ -20,7 +20,7 @@ import theme from 'theme';
 import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-import { getWidthByUpCount } from '../../utils/getWidthByUpcount.js';
+import { getWidthByUpCount } from '../../utils/getWidthByUpCount.js';
 
 export interface InputStyles {
   tone: Tone;
@@ -62,7 +62,7 @@ const input: InputConfig = {
     color: 'backgroundColor'
   },
   base: {
-    width: getWidthByUpCount(theme, 4),
+    width: getWidthByUpCount(4),
     height: 100,
     display: 'flex',
     flexDirection: 'column',

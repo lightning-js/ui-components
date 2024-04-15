@@ -22,6 +22,7 @@ export { chainFunctions } from './chainFunctions.js';
 export { assertTruthy } from './assertTruthy.js';
 export { handleNavigation, onGridFocus } from './handleNavigation.js';
 export { scrollToIndex } from './scrollToIndex.js';
-export { getWidthByUpCount } from './getWidthByUpcount.js';
+export { getWidthByUpCount } from './getWidthByUpCount.js';
+export { getWidthByColumnSpan } from './getWidthByColumnSpan.js';
 export { getItemRatioDimensions } from './getItemRatioDimensions.js';
 export { getDimensions } from './getDimensions.js';
