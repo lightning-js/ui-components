@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Comcast Cable Communications Management, LLC
+ * Copyright 2023 Comcast Cable Communications Management, LLC
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { Component } from 'solid-js';
+import { createMemo, type Component } from 'solid-js';
 import { View, type NodeProps } from '@lightningjs/solid';
 import type { Tone } from '../../types/types.js';
 import styles, { type RadioStyles } from './Radio.styles.js';
@@ -31,6 +31,13 @@ export interface RadioProps extends NodeProps {
 }
 
 const Radio: Component<RadioProps> = (props: RadioProps) => {
+  const getKnobColor = (checked: boolean | undefined, props: RadioProps) => {
+    return checked != undefined && props.checked
+      ? styles.Knob.tones?.[props.tone ?? styles.tone]?.colorChecked ?? styles.Knob.base.colorChecked
+      : styles.Knob.tones?.[props.tone ?? styles.tone]?.color ?? styles.Knob.base.color;
+  };
+  const knobColor = createMemo(() => getKnobColor(props.checked, props));
+
   return (
     <View
       {...props}
@@ -45,12 +52,7 @@ const Radio: Component<RadioProps> = (props: RadioProps) => {
           ? props.children || (
               <View
                 style={[styles.Knob.tones?.[props.tone ?? styles.tone], styles.Knob.base]}
-                color={
-                  props.checked
-                    ? styles.Knob.tones?.[props.tone ?? styles.tone]?.colorChecked ??
-                      styles.Knob.base.colorChecked
-                    : styles.Knob.tones?.[props.tone ?? styles.tone]?.color ?? styles.Knob.base.color
-                }
+                color={knobColor()}
                 mount={0.5}
                 x={(styles.Container.base.width ?? 0) / 2}
                 y={(styles.Container.base.height ?? 0) / 2}
