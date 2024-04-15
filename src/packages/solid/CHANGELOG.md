@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.3](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.12.2...@lightningjs/solid-ui@0.12.3) (2024-04-15)
+
+### Bug Fixes
+
+- **CardContent:** allows users to add columnSpan as prop ([#116](https://github.com/lightning-js/ui-components/issues/116)) ([9758d52](https://github.com/lightning-js/ui-components/commit/9758d52006bfa6ec7fe382c19e8b8d6dd101f4d8))
+- normalize styles, improve withScrolling type safety, update chainFunctions type defs ([#107](https://github.com/lightning-js/ui-components/issues/107)) ([be20e41](https://github.com/lightning-js/ui-components/commit/be20e41d7857b0b2fef9363ffbc2d3e2364ff25d))
+
 ## [0.12.2](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.12.1...@lightningjs/solid-ui@0.12.2) (2024-04-10)
 
 ### Bug Fixes
