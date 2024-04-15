@@ -52,23 +52,13 @@ const Radio: Component<RadioProps> = (props: RadioProps) => {
                     : styles.Knob.tones?.[props.tone ?? styles.tone]?.color ?? styles.Knob.base.color
                 }
                 mount={0.5}
-                x={
-                  (styles.Container.tones[props.tone ?? styles.tone]?.width ??
-                    styles.Container.base.width ??
-                    0) / 2
-                }
-                y={
-                  (styles.Container.tones[props.tone ?? styles.tone]?.height ??
-                    styles.Container.base.height ??
-                    0) / 2
-                }
+                x={(styles.Container.base.width ?? 0) / 2}
+                y={(styles.Container.base.height ?? 0) / 2}
                 zIndex={2}
-                width={styles.Knob.tones[props.tone ?? styles.tone]?.width ?? styles.Knob.base.width ?? 2}
-                height={styles.Knob.tones[props.tone ?? styles.tone]?.height ?? styles.Knob.base.height ?? 2}
+                width={styles.Knob.base.width}
+                height={styles.Knob.base.height}
                 borderRadius={
-                  styles.Knob.tones[props.tone ?? styles.tone]?.borderRadius ??
-                  styles.Knob.base.borderRadius ??
-                  2
+                  styles.Knob.tones[props.tone ?? styles.tone]?.borderRadius ?? styles.Knob.base.borderRadius
                 }
               />
             )
