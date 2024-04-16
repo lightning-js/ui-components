@@ -20,12 +20,12 @@ import { Text, View, type NodeProps } from '@lightningjs/solid';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import styles from './ListItem.styles.js';
 
-export interface ListItemProps extends UIComponentProps {
+interface ListItemProps extends UIComponentProps {
   title?: string;
   description?: string;
 }
 
-export interface ListItemContainerProps extends UIComponentProps {
+interface ListItemContainerProps extends UIComponentProps {
   children?: NodeProps['children'];
 }
 
@@ -78,6 +78,6 @@ const ListItemContainer: Component<ListItemContainerProps> = props => {
 export {
   ListItem as default, //
   ListItemContainer,
-  ListItemProps,
-  ListItemContainerProps
+  type ListItemProps,
+  type ListItemContainerProps
 };
