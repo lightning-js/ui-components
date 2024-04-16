@@ -84,6 +84,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
             props.selected ?? 0,
             undefined
           ),
+        // @ts-expect-error need to fix type for onLayout
         props.onLayout
       )}
       onSelectedChanged={chainFunctions(

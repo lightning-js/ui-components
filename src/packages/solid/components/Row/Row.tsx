@@ -84,6 +84,7 @@ const Row: Component<RowProps> = (props: RowProps) => {
             elm.selected,
             undefined
           ),
+        // @ts-expect-error need to fix type for onLayout
         props.onLayout
       )}
       onSelectedChanged={chainFunctions(
@@ -92,7 +93,7 @@ const Row: Component<RowProps> = (props: RowProps) => {
       )}
       style={[
         props.style, //
-        styles.Container.tones[props.tone || styles.tone], 
+        styles.Container.tones[props.tone || styles.tone],
         styles.Container.base
       ]}
     />
