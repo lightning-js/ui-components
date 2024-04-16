@@ -74,7 +74,8 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
       onDown={chainFunctions(props.onDown, onDown)}
       selected={props.selected || 0}
       forwardFocus={onGridFocus}
-      onCreate={chainFunctions<ColumnProps['onCreate']>(
+      // @ts-expect-error need to fix type for onLayout
+      onLayout={chainFunctions<ColumnProps['onLayout']>(
         (elm: ScrollableElementNode) =>
           withScrolling(props.y as number).call(
             elm,
@@ -83,7 +84,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
             props.selected ?? 0,
             undefined
           ),
-        props.onCreate
+        props.onLayout
       )}
       onSelectedChanged={chainFunctions(
         props.onSelectedChanged,
