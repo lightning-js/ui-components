@@ -14,16 +14,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-
 import theme from 'theme';
-
-/**
- * returns a width value derived from the provided upcount and the
- * following theme values: screenW, columnCount, marginX, gutterX.
- *
- * this value is representative of the screen's width minus the margin, divided
- * equally among the number of displayed items(upcount) while accounting for item spacing(gutterX)
- */
 export function getWidthByUpCount(upCount = 1) {
   const screenW = theme.layout.screenW;
   const columnCount = theme.layout.columnCount;
