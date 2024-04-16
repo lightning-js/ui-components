@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.5](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.12.4...@lightningjs/solid-ui@0.12.5) (2024-04-16)
+
+### Bug Fixes
+
+- **utils:** correct casing in getWidthByUpCount ([#119](https://github.com/lightning-js/ui-components/issues/119)) ([84ef1d2](https://github.com/lightning-js/ui-components/commit/84ef1d27d6bcc8d84809bd8c4fab2d374a8ad5a4))
+
 ## [0.12.4](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.12.3...@lightningjs/solid-ui@0.12.4) (2024-04-16)
 
 **Note:** Version bump only for package @lightningjs/solid-ui
