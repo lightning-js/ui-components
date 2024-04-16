@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/lightning-js/ui-components/compare/@lightningjs/l3-ui-theme-base@0.3.1...@lightningjs/l3-ui-theme-base@0.3.2) (2024-04-16)
+
+### Bug Fixes
+
+- **themes:** adds theme with animation duration in ms ([#114](https://github.com/lightning-js/ui-components/issues/114)) ([c38f214](https://github.com/lightning-js/ui-components/commit/c38f214fb4bdecabd90b473d7da242363c2dd571))
+
 ## [0.3.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/l3-ui-theme-base@0.3.0...@lightningjs/l3-ui-theme-base@0.3.1) (2024-02-23)
 
 ### Bug Fixes
