@@ -11,25 +11,19 @@ export default {
     alpha2: 0.3,
     alpha3: 0.5,
     alpha4: 0.7,
-    alpha5: 0.9
+    alpha5: 0.9,
+    alpha6: 0.95
   },
   animation: {
     duration: {
       none: 0,
-      xfast: 0.1,
-      fast: 0.25,
-      normal: 0.5,
-      slow: 0.75,
-      xslow: 0.9
+      xfast: 100,
+      fast: 250,
+      normal: 500,
+      slow: 750,
+      xslow: 900
     },
-    delay: {
-      none: 0,
-      xfast: 0.01,
-      fast: 0.025,
-      normal: 0.05,
-      slow: 0.075,
-      xslow: 0.09
-    },
+    delay: { none: 0, xfast: 10, fast: 25, normal: 50, slow: 75, xslow: 90 },
     expressive: {
       timingFunction: 'cubic-bezier(0, 0, 1, 1)',
       delay: 0,
@@ -87,15 +81,7 @@ export default {
       'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAOCAYAAAAi2ky3AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACtSURBVHgBvdPdDcIgEAfwoy8Nb45QN3AGF2s36Ahu4gpuIDoBfSgfpdoTlCbEWEMh6T8hFzjyg5AAkBHOcQe5UWqspRx435sDpMYj6IYQwwVSEiJ2MKVUBWuzLSLl2HL+uxmNCGFO8yaL7RHxve6qRZoAuS4hxac8735elWVx7jrtMKL1o0Gcat9jhExHSukN/kUIFZ7MpDRtzE1isDRkAUtDvrA8ZI597FUf8gWH9P0b4gko9wAAAABJRU5ErkJggg=='
   },
   color: {
-    palette: {
-      'blue-20': '0xbecffeff',
-      'blue-40': '0x93a9fdff',
-      'blue-90': '0x000033ff',
-      'grey-05': '0xf8f7faff',
-      'grey-40': '0x929096ff',
-      'grey-70': '0x48474bff',
-      'grey-90': '0x181819ff'
-    },
+    palette: {},
     white: '0xffffffff',
     black: '0x000000ff',
     grey: '0x929096ff',
@@ -105,9 +91,14 @@ export default {
     green: '0x2ecc71ff',
     blue: '0x93a9fdff',
     purple: '0x663399ff',
-    material: '0x181819ff',
-    materialBrand: '0x000033ff',
     overlay: '0x181819b3',
+    material: '0x181819ff',
+    materialNeutral: '0x181819ff',
+    materialNeutralElevated: '0x373639ff',
+    materialInverse: '0xf8f7faff',
+    materialInverseElevated: '0xffffffff',
+    materialBrand: '0x000033ff',
+    materialBrandElevated: '0x242a65ff',
     textNeutral: '0xf8f7faff',
     textNeutralSecondary: '0xf8f7fab3',
     textNeutralTertiary: '0xf8f7fa1a',
@@ -221,6 +212,22 @@ export default {
       verticalAlign: 'middle',
       textBaseline: 'bottom'
     },
+    display3: {
+      fontFamily: 'Arial',
+      fontSize: 56,
+      fontWeight: 400,
+      lineHeight: 68,
+      verticalAlign: 'middle',
+      textBaseline: 'bottom'
+    },
+    display4: {
+      fontFamily: 'Arial',
+      fontSize: 48,
+      fontWeight: 400,
+      lineHeight: 64,
+      verticalAlign: 'middle',
+      textBaseline: 'bottom'
+    },
     headline1: {
       fontFamily: 'Arial',
       fontSize: 35,
@@ -314,6 +321,30 @@ export default {
       fontSize: 22,
       fontWeight: 300,
       lineHeight: 30,
+      verticalAlign: 'middle',
+      textBaseline: 'bottom'
+    },
+    subtitle1: {
+      fontFamily: 'Arial',
+      fontSize: 32,
+      fontWeight: 400,
+      lineHeight: 36,
+      verticalAlign: 'middle',
+      textBaseline: 'bottom'
+    },
+    subtitle2: {
+      fontFamily: 'Arial',
+      fontSize: 28,
+      fontWeight: 500,
+      lineHeight: 32,
+      verticalAlign: 'middle',
+      textBaseline: 'bottom'
+    },
+    navigation: {
+      fontFamily: 'Arial',
+      fontSize: 28,
+      fontWeight: 400,
+      lineHeight: 32,
       verticalAlign: 'middle',
       textBaseline: 'bottom'
     }

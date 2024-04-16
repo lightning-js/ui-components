@@ -1,10 +1,1 @@
-{
-  "version": 3,
-  "file": "theme.d.ts",
-  "sourceRoot": "",
-  "sources": [
-    "theme.js"
-  ],
-  "names": [],
-  "mappings": ""
-}
+{"version":3,"file":"themeStyles.l3.d.ts","sourceRoot":"","sources":["themeStyles.l3.js"],"names":[],"mappings":""}
