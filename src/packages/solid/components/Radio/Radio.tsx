@@ -17,20 +17,20 @@
 
 import { createMemo, type Component } from 'solid-js';
 import { View, type NodeProps } from '@lightningjs/solid';
-import type { Tone } from '../../types/types.js';
-import styles, { type RadioStyles } from './Radio.styles.js';
+import styles from './Radio.styles.js';
+import type { UIComponentProps } from '../../types/interfaces.js';
 
-export interface RadioProps extends NodeProps {
+export interface RadioProps extends UIComponentProps {
   /**
    * Indicates whether the Radio is checked or unchecked.
    * Setting this to `true` will fill the Radio, and setting it to `false` will empty it.
    */
   checked?: boolean;
-  tone?: Tone;
-  style?: Partial<RadioStyles> | Partial<RadioStyles>[];
+
+  children?: NodeProps['children'];
 }
 
-const Radio: Component<RadioProps> = (props: RadioProps) => {
+const Radio: Component<RadioProps> = props => {
   const getKnobColor = (checked: boolean | undefined, props: RadioProps) => {
     return checked != undefined && props.checked
       ? styles.Knob.tones?.[props.tone ?? styles.tone]?.colorChecked ?? styles.Knob.base.colorChecked
@@ -42,7 +42,8 @@ const Radio: Component<RadioProps> = (props: RadioProps) => {
     <View
       {...props}
       style={[
-        ...[props.style].flat(),
+        /* @ts-expect-error next-line deconstructed style object should work here */
+        ...props.style, //
         styles.Container.tones?.[props.tone ?? styles.tone],
         styles.Container.base
       ]}
