@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.6](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.12.5...@lightningjs/solid-ui@0.12.6) (2024-04-16)
+
+### Bug Fixes
+
+- update row, column to use onLayout ([#117](https://github.com/lightning-js/ui-components/issues/117)) ([5641d02](https://github.com/lightning-js/ui-components/commit/5641d02ad21577298b15d58ff3befe57aa7063f0))
+
 ## [0.12.5](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.12.4...@lightningjs/solid-ui@0.12.5) (2024-04-16)
 
 ### Bug Fixes
