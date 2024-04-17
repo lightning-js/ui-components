@@ -63,13 +63,10 @@ export interface RowProps extends UIComponentProps {
 const Row: Component<RowProps> = (props: RowProps) => {
   const onLeft = handleNavigation('left');
   const onRight = handleNavigation('right');
-  let Container: ScrollableElementNode;
 
   return (
     <View
       {...props}
-      // @ts-expect-error this is fine
-      ref={Container}
       selected={props.selected || 0}
       onLeft={chainFunctions(props.onLeft, onLeft)}
       onRight={chainFunctions(props.onRight, onRight)}
@@ -84,7 +81,6 @@ const Row: Component<RowProps> = (props: RowProps) => {
             elm.selected,
             undefined
           ),
-        // @ts-expect-error need to fix type for onLayout
         props.onLayout
       )}
       onSelectedChanged={chainFunctions(

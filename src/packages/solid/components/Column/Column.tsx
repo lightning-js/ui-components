@@ -63,13 +63,10 @@ export interface ColumnProps extends UIComponentProps {
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
   const onUp = handleNavigation('up');
   const onDown = handleNavigation('down');
-  let Container: ScrollableElementNode;
 
   return (
     <View
       {...props}
-      // @ts-expect-error this is fine
-      ref={Container}
       onUp={chainFunctions(props.onUp, onUp)}
       onDown={chainFunctions(props.onDown, onDown)}
       selected={props.selected || 0}
@@ -84,7 +81,6 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
             props.selected ?? 0,
             undefined
           ),
-        // @ts-expect-error need to fix type for onLayout
         props.onLayout
       )}
       onSelectedChanged={chainFunctions(
