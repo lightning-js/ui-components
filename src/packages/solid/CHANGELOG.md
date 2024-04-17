@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.12.6...@lightningjs/solid-ui@0.13.0) (2024-04-17)
+
+### Bug Fixes
+
+- **chainFunctions:** add loose function type for function args ([#120](https://github.com/lightning-js/ui-components/issues/120)) ([2d66346](https://github.com/lightning-js/ui-components/commit/2d6634645d43b54b9eed701798cd0bf753aafaa6))
+
+### Features
+
+- **Radio:** create component ([#115](https://github.com/lightning-js/ui-components/issues/115)) ([b76b5ce](https://github.com/lightning-js/ui-components/commit/b76b5ce197f9a21c5e38d094bcf892faafaeac74))
+
 ## [0.12.6](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.12.5...@lightningjs/solid-ui@0.12.6) (2024-04-16)
 
 ### Bug Fixes
