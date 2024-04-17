@@ -15,12 +15,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export function chainFunctions(...args: unknown[]): unknown;
-export function chainFunctions<T>(...args: (unknown | T)[]): T;
+type ChainableFunction = (...args: unknown[]) => unknown;
+
+export function chainFunctions(...args: ChainableFunction[]): ChainableFunction;
+export function chainFunctions<T>(...args: (ChainableFunction | T)[]): T;
 
 // take an array of functions and if you return true from a function, it will stop the chain
-export function chainFunctions<T>(...args: (unknown | T)[]) {
-  const onlyFunctions = args.filter(func => typeof func === 'function') as Function[];
+export function chainFunctions<T extends ChainableFunction>(...args: (ChainableFunction | T)[]) {
+  const onlyFunctions = args.filter(func => typeof func === 'function');
   if (onlyFunctions.length === 0) {
     return undefined;
   }
@@ -29,7 +31,7 @@ export function chainFunctions<T>(...args: (unknown | T)[]) {
     return onlyFunctions[0];
   }
 
-  return function (this: unknown, ...innerArgs: unknown[]) {
+  return function (this: unknown | T, ...innerArgs: unknown[]) {
     let result;
     for (const func of onlyFunctions) {
       result = func.apply(this, innerArgs);
