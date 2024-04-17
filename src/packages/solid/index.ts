@@ -56,6 +56,12 @@ export {
   type ProgressBarProps,
   type ProgressBarStyles
 } from './components/ProgressBar/index.js';
+export {
+  default as Radio,
+  radioStyles,
+  type RadioProps,
+  type RadioStyles
+} from './components/Radio/index.js';
 export { default as Row, rowStyles, type RowProps, type RowStyles } from './components/Row/index.js';
 export {
   default as Keyboard,
