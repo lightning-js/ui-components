@@ -35,39 +35,38 @@
     "access": "public"
   },
   "dependencies": {
-    "@solid-primitives/refs": "^1.0.8",
-    "@storybook/html": "^7.6.17",
-    "@storybook/html-vite": "^7.6.17"
+    "@solid-primitives/refs": "^1.0.8"
   },
   "peerDependencies": {
-    "@lightningjs/renderer": "^0.8.1",
-    "@lightningjs/solid": "^0.15.9",
-    "@lightningjs/solid-primitives": "^0.6.3",
-    "solid-js": "^1.8.15"
+    "@lightningjs/solid": "*",
+    "@lightningjs/solid-primitives": "*",
+    "solid-js": "*"
   },
   "devDependencies": {
-    "@lightningjs/vite-plugin-import-chunk-url": "^0.3.0",
+    "@lightningjs/vite-plugin-import-chunk-url": "^0.3.1",
     "@storybook/addon-essentials": "^7.6.17",
     "@storybook/addon-interactions": "^7.6.17",
     "@storybook/addon-links": "^7.6.17",
     "@storybook/blocks": "^7.6.17",
     "@storybook/builder-vite": "^7.6.17",
+    "@storybook/html": "^7.6.17",
+    "@storybook/html-vite": "^7.6.17",
     "@storybook/manager-api": "^7.6.17",
     "@storybook/testing-library": "^0.2.2",
     "@storybook/theming": "^7.6.17",
-    "@vitest/browser": "^1.3.1",
+    "@vitest/browser": "^1.5.0",
     "jsdom": "^24.0.0",
-    "playwright": "^1.42.1",
+    "playwright": "^1.43.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^7.6.17",
     "storybook-solidjs": "1.0.0-beta.2",
     "storybook-solidjs-vite": "1.0.0-beta.2",
-    "typescript": "^5.4.2",
-    "vite": "^5.1.5",
-    "vite-bundle-visualizer": "^1.0.1",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.9",
+    "vite-bundle-visualizer": "^1.1.0",
     "vite-plugin-cross-origin-isolation": "^0.1.6",
-    "vite-plugin-solid": "^2.10.1",
-    "vitest": "^1.3.1"
+    "vite-plugin-solid": "^2.10.2",
+    "vitest": "^1.5.0"
   }
 }

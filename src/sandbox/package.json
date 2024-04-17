@@ -15,18 +15,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@lightningjs/renderer": "^0.7.4",
-    "@lightningjs/solid": "^0.15.9",
-    "@lightningjs/solid-primitives": "^0.6.1",
-    "@solidjs/router": "^0.12.4",
-    "solid-js": "^1.8.15"
+    "@lightningjs/renderer": "^0.8.2",
+    "@lightningjs/solid": "^0.15.10",
+    "@lightningjs/solid-primitives": "^0.6.6",
+    "@solidjs/router": "^0.12.5",
+    "solid-js": "^1.8.16"
   },
   "devDependencies": {
     "@lightningjs/solid-ui": "workspace:*",
-    "@lightningjs/vite-plugin-import-chunk-url": "^0.3.0",
-    "vite": "^5.1.4",
-    "vite-bundle-visualizer": "^1.0.1",
+    "@lightningjs/vite-plugin-import-chunk-url": "^0.3.1",
+    "vite": "^5.2.9",
+    "vite-bundle-visualizer": "^1.1.0",
     "vite-plugin-cross-origin-isolation": "^0.1.6",
-    "vite-plugin-solid": "^2.10.1"
+    "vite-plugin-solid": "^2.10.2"
   }
 }

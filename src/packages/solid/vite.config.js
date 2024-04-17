@@ -50,8 +50,7 @@ const config = {
         'theme',
         'solid-js',
         '@lightningjs/solid',
-        '@lightningjs/solid-primitives',
-        '@lightningjs/renderer'
+        '@lightningjs/solid-primitives'
       ]
     },
     minify: false,
@@ -63,7 +62,7 @@ const config = {
       theme: path.resolve(__dirname, '../l3-ui-theme-base/theme.js'),
       utils: path.resolve(__dirname, '../../shared/utils/index.ts')
     },
-    dedupe: ['solid-js', '@lightningjs/solid', '@lightningjs/renderer']
+    dedupe: ['solid-js', '@lightningjs/solid']
   },
   server: {
     hmr: false,
