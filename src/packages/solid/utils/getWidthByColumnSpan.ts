@@ -17,9 +17,10 @@
 
 import theme from 'theme';
 import { getWidthByUpCount } from './getWidthByUpCount.js';
-export function getWidthByColumnSpan(columnSpan: number) {
+
+export function getWidthByColumnSpan(columnSpan: number = 1) {
   const columnCount = theme.layout.columnCount;
   const gutterX = theme.layout.gutterX;
 
-  return (getWidthByUpCount(columnCount) ?? 1) * columnSpan + gutterX * (columnSpan - 1);
+  return getWidthByUpCount(columnCount) * columnSpan + gutterX * (columnSpan - 1);
 }
