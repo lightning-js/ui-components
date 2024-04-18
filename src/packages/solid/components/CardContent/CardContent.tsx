@@ -136,7 +136,7 @@ const CardContent: Component<CardContentProps> = props => {
       }
       {...props}
       style={[
-        ...[props.style].flat(),
+        props.style, //
         styles.Container.tones[props.tone ?? styles.tone],
         styles.Container.base
       ]}
@@ -161,7 +161,10 @@ const CardContent: Component<CardContentProps> = props => {
       {/* Right side of component- where metadata is  */}
       <Show when={!collapsedTile()}>
         <View
-          style={[styles.MetadataContainer.tones[props.tone ?? styles.tone], styles.MetadataContainer.base]}
+          style={[
+            styles.MetadataContainer.tones[props.tone ?? styles.tone], //
+            styles.MetadataContainer.base
+          ]}
           width={
             props.metadataColumnSpan
               ? getWidthByColumnSpan(props.metadataColumnSpan)
