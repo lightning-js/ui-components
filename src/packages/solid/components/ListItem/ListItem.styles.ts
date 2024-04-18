@@ -18,20 +18,20 @@
 import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet, Tone } from '../../types/types.js';
-import { makeComponentStyles } from '../../utils/index.js';
+import { getWidthByColumnSpan, makeComponentStyles } from '../../utils/index.js';
 
 export interface ListItemStyles {
   tone: Tone;
-  Container: NodeStyleSet<{ columnSpan: number; padding: [number, number] }>;
+  Container: NodeStyleSet<{ columnSpan: number; paddingX: number }>;
   Title: TextStyleSet;
   Description: TextStyleSet;
 }
 
 export type ListItemStyleProperties = {
   alpha?: NodeStyles['alpha'];
+  contentSpacing?: NodeStyles['gap'];
   paddingX?: number;
-  paddingY?: number;
-  contentSpacing?: number;
+  width?: NodeStyles['width'];
 };
 
 type ListItemConfig = ComponentStyleConfig<ListItemStyleProperties>;
@@ -49,22 +49,21 @@ const container: ListItemConfig = {
   themeKeys: {
     alpha: 'alpha',
     paddingX: 'paddingX',
-    paddingY: 'paddingY',
-    gap: 'contentSpacing'
+    gap: 'contentSpacing',
+    width: 'width'
   },
   base: {
+    alpha: theme.alpha.primary,
     borderRadius: theme.radius.sm,
     color: theme.color.interactiveNeutral,
     contentColor: theme.color.fillNeutral,
-    columnSpan: 3,
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center'
-    // padding: theme.spacer * 2, // TODO don't need to use padding and height
-    // padding: [theme.spacer.xl, theme.spacer.xl]
-    // height: theme.typography.headline3.lineHeight + theme.typography.body3.lineHeight + theme.spacer.xl * 2,
-    // paddingY: theme.spacer.xl,
-    // paddingX: theme.spacer.xl
+    justifyContent: 'center',
+    // TODO we should come up with a more uniform way to calculate item heights
+    height: theme.typography.headline3.lineHeight + theme.typography.body3.lineHeight + theme.spacer.xl * 2,
+    paddingX: theme.spacer.xl,
+    width: getWidthByColumnSpan(3)
   },
   modes: {
     focus: {
@@ -72,6 +71,7 @@ const container: ListItemConfig = {
       contentColor: theme.color.fillInverse
     },
     disabled: {
+      alpha: theme.alpha.inactive,
       color: theme.color.fillNeutralDisabled
     }
   },
@@ -94,10 +94,12 @@ const container: ListItemConfig = {
 };
 
 const title: ListItemConfig = {
-  themeKeys: {},
+  themeKeys: {
+    x: 'paddingX'
+  },
   base: {
     color: theme.color.textNeutral,
-    textAlign: 'left',
+    x: theme.spacer.xl,
     ...theme.typography.headline3
   },
   modes: {
@@ -128,13 +130,12 @@ const title: ListItemConfig = {
 
 const description: ListItemConfig = {
   themeKeys: {
-    color: 'textColor'
+    color: 'textColor',
+    x: 'paddingX'
   },
   base: {
     color: theme.color.textNeutral,
-    // textAlign: 'left',
-    // x: container.base.paddingX,
-    // y: title.base.lineHeight + title.base.y,
+    x: theme.spacer.xl,
     ...theme.typography.body3
   },
   modes: {

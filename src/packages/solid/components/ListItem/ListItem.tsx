@@ -20,8 +20,6 @@ import { Text, View, type NodeProps } from '@lightningjs/solid';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import styles, { type ListItemStyles } from './ListItem.styles.js';
 import { getWidthByColumnSpan } from '../../utils/getWidthByColumnSpan.js';
-import { withPadding } from '@lightningjs/solid-primitives';
-withPadding; // prevent compiler from removing import
 
 interface ListItemProps extends UIComponentProps {
   /**
@@ -46,10 +44,13 @@ interface ListItemContainerProps extends UIComponentProps {
   children?: NodeProps['children'];
 }
 
-const getColumnSpan = (props: ListItemProps, styles: ListItemStyles) =>
-  props.columnSpan ??
-  styles.Container.tones[props.tone ?? styles.tone]?.columnSpan ??
-  styles.Container.base.columnSpan;
+const getContainerWidth = (props: ListItemProps, styles: ListItemStyles) => {
+  if (props.columnSpan) {
+    return getWidthByColumnSpan(props.columnSpan);
+  } else {
+    return styles.Container.tones[props.tone ?? styles.tone]?.width ?? styles.Container.base.width;
+  }
+};
 
 const ListItem: Component<ListItemProps> = props => {
   return (
@@ -85,17 +86,13 @@ const ListItem: Component<ListItemProps> = props => {
 };
 
 const ListItemContainer: Component<ListItemContainerProps> = props => {
-  console.log(styles);
-  const columnSpan = createMemo(() => getColumnSpan(props, styles));
+  const containerWidth = createMemo(() => getContainerWidth(props, styles));
   return (
-    // @ts-expect-error node is needed for withPadding
-    <node
+    <View
       {...props}
-      // use:withPadding={styles.Container.base.padding}
-      use:withPadding={[30, 30]}
-      // width={getWidthByColumnSpan(columnSpan())}
+      width={containerWidth()}
       style={[
-        // expect-error waiting on solid-js style update
+        // @ts-expect-error waiting on solid-js style update
         props.style, //
         styles.Container.tones?.[props.tone ?? styles.tone],
         styles.Container.base
