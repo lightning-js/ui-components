@@ -22,8 +22,10 @@ export function getWidthByUpCount(upCount = 1) {
   const gutterX = theme.layout.gutterX;
 
   if (upCount < 1 || upCount > columnCount) {
-    console.error(`Column expects a number between 1 & ${columnCount}. Received ${upCount}`);
-    return;
+    console.error(
+      `Column expects a number between 1 & ${columnCount}. Received ${upCount}. Defaulting to 1.`
+    );
+    upCount = 1;
   }
 
   // the screen width, minus the margin x on each side
