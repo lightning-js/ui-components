@@ -15,26 +15,49 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { type Component } from 'solid-js';
+import { createMemo, type Component } from 'solid-js';
 import { Text, View, type NodeProps } from '@lightningjs/solid';
 import type { UIComponentProps } from '../../types/interfaces.js';
-import styles from './ListItem.styles.js';
+import styles, { type ListItemStyles } from './ListItem.styles.js';
+import { getWidthByColumnSpan } from '../../utils/getWidthByColumnSpan.js';
+import { withPadding } from '@lightningjs/solid-primitives';
+withPadding; // prevent compiler from removing import
 
 interface ListItemProps extends UIComponentProps {
+  /**
+   * content of the title
+   */
   title?: string;
+  /**
+   * content of the description
+   */
   description?: string;
+  /**
+   * number of columns the component spans
+   */
+  columnSpan?: number;
 }
 
 interface ListItemContainerProps extends UIComponentProps {
+  /**
+   * number of columns the component spans
+   */
+  columnSpan?: number;
   children?: NodeProps['children'];
 }
+
+const getColumnSpan = (props: ListItemProps, styles: ListItemStyles) =>
+  props.columnSpan ??
+  styles.Container.tones[props.tone ?? styles.tone]?.columnSpan ??
+  styles.Container.base.columnSpan;
 
 const ListItem: Component<ListItemProps> = props => {
   return (
     <ListItemContainer
       {...props}
       style={[
-        ...props.style, //
+        // @ts-expect-error waiting on solid-js style update
+        props.style, //
         styles.Container.tones?.[props.tone ?? styles.tone],
         styles.Container.base
       ]}
@@ -49,7 +72,7 @@ const ListItem: Component<ListItemProps> = props => {
         {props.title}
       </Text>
       <Text
-        y={styles.Description.base.y}
+        // y={styles.Description.base.y}
         style={[
           styles.Description.tones[props.tone ?? styles.tone], //
           styles.Description.base
@@ -62,10 +85,17 @@ const ListItem: Component<ListItemProps> = props => {
 };
 
 const ListItemContainer: Component<ListItemContainerProps> = props => {
+  console.log(styles);
+  const columnSpan = createMemo(() => getColumnSpan(props, styles));
   return (
-    <View
+    // @ts-expect-error node is needed for withPadding
+    <node
       {...props}
+      // use:withPadding={styles.Container.base.padding}
+      use:withPadding={[30, 30]}
+      // width={getWidthByColumnSpan(columnSpan())}
       style={[
+        // expect-error waiting on solid-js style update
         props.style, //
         styles.Container.tones?.[props.tone ?? styles.tone],
         styles.Container.base
