@@ -20,6 +20,7 @@
     "@storybook/html": "^8.0.8",
     "@storybook/html-vite": "^8.0.8",
     "@storybook/test": "^8.0.8",
-    "storybook": "^8.0.8"
+    "storybook": "^8.0.8",
+    "typescript": "^5.4.5"
   }
 }
