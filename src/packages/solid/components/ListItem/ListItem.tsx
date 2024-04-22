@@ -18,8 +18,8 @@
 import { createMemo, type Component } from 'solid-js';
 import { Text, View, type NodeProps } from '@lightningjs/solid';
 import type { UIComponentProps } from '../../types/interfaces.js';
-import styles, { type ListItemStyles } from './ListItem.styles.js';
 import { getWidthByColumnSpan } from '../../utils/getWidthByColumnSpan.js';
+import styles, { type ListItemStyles } from './ListItem.styles.js';
 
 interface ListItemProps extends UIComponentProps {
   /**
@@ -44,7 +44,7 @@ interface ListItemContainerProps extends UIComponentProps {
   children?: NodeProps['children'];
 }
 
-const getContainerWidth = (props: ListItemProps, styles: ListItemStyles) => {
+const getContainerWidth = (props: ListItemContainerProps | ListItemProps, styles: ListItemStyles): number => {
   if (props.columnSpan) {
     return getWidthByColumnSpan(props.columnSpan);
   } else {
@@ -56,8 +56,8 @@ const ListItem: Component<ListItemProps> = props => {
   return (
     <ListItemContainer
       {...props}
+      // @ts-expect-error TODO style type needs to be updated to accept nested arrays
       style={[
-        // @ts-expect-error waiting on solid-js style update
         props.style, //
         styles.Container.tones?.[props.tone ?? styles.tone],
         styles.Container.base
@@ -91,8 +91,8 @@ const ListItemContainer: Component<ListItemContainerProps> = props => {
     <View
       {...props}
       width={containerWidth()}
+      // @ts-expect-error TODO style type needs to be updated to accept nested arrays
       style={[
-        // @ts-expect-error waiting on solid-js style update
         props.style, //
         styles.Container.tones?.[props.tone ?? styles.tone],
         styles.Container.base
