@@ -32,6 +32,7 @@ export type ListItemStyleProperties = {
   contentSpacing?: NodeStyles['gap'];
   paddingX?: number;
   width?: NodeStyles['width'];
+  textColor?: NodeStyles['color'];
 };
 
 type ListItemConfig = ComponentStyleConfig<ListItemStyleProperties>;
