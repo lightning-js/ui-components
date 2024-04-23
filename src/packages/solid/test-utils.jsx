@@ -16,6 +16,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+// TODO convert to typescript
+
 import { render as solidRender, View, Canvas, activeElement } from '@lightningjs/solid';
 
 const RenderOptions = {
