@@ -22,7 +22,7 @@ import { getWidthByColumnSpan, makeComponentStyles } from '../../utils/index.js'
 
 export interface ListItemStyles {
   tone: Tone;
-  Container: NodeStyleSet<{ columnSpan: number; paddingX: number }>;
+  Container: NodeStyleSet<{ paddingX: number }>;
   Title: TextStyleSet;
   Description: TextStyleSet;
 }
