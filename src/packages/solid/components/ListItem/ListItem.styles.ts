@@ -38,13 +38,20 @@ export type ListItemStyleProperties = {
 type ListItemConfig = ComponentStyleConfig<ListItemStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { ListItem: { tone: defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
+const { ListItem: { tone: defaultTone, ...listItemThemeStyles } = { listItemThemeStyles: {} } } =
+  theme?.componentConfig;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Button: { tone: buttonDefaultTone, ...buttonThemeStyles } = { buttonThemeStyles: {} } } =
   theme?.componentConfig;
 /* @ts-expect-error next-line see above */
 const { Surface: { tone: surfaceDefaultTone, ...surfaceThemeStyles } = { surfaceThemeStyles: {} } } =
   theme?.componentConfig;
+
+const themeStyles = {
+  ...surfaceThemeStyles,
+  ...buttonThemeStyles,
+  ...listItemThemeStyles
+};
 
 const container: ListItemConfig = {
   themeKeys: {
@@ -87,11 +94,7 @@ const container: ListItemConfig = {
       }
     }
   },
-  themeStyles: {
-    ...surfaceThemeStyles,
-    ...buttonThemeStyles,
-    ...themeStyles
-  }
+  themeStyles
 };
 
 const title: ListItemConfig = {
@@ -122,11 +125,7 @@ const title: ListItemConfig = {
       }
     }
   },
-  themeStyles: {
-    ...surfaceThemeStyles,
-    ...buttonThemeStyles,
-    ...themeStyles
-  }
+  themeStyles
 };
 
 const description: ListItemConfig = {
@@ -158,11 +157,7 @@ const description: ListItemConfig = {
       }
     }
   },
-  themeStyles: {
-    ...surfaceThemeStyles,
-    ...buttonThemeStyles,
-    ...themeStyles
-  }
+  themeStyles
 };
 
 const Container = makeComponentStyles<ListItemStyles['Container']>(container);

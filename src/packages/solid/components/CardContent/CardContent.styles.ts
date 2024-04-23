@@ -54,7 +54,7 @@ const container: CardContentConfig = {
   },
   modes: {},
   tones: {},
-  themeStyles: themeStyles
+  themeStyles
 };
 
 const tileContainer: CardContentConfig = {
@@ -111,7 +111,7 @@ const metadataContainer: CardContentConfig = {
       }
     }
   },
-  themeStyles: themeStyles
+  themeStyles
 };
 
 const Container = makeComponentStyles<CardContentStyles['Container']>(container);
