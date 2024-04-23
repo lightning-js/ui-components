@@ -75,6 +75,9 @@ importers:
         specifier: '*'
         version: 1.8.16
     devDependencies:
+      '@lightningjs/l3-ui-theme-base':
+        specifier: workspace:*
+        version: link:../l3-ui-theme-base
       '@lightningjs/vite-plugin-import-chunk-url':
         specifier: ^0.3.1
         version: 0.3.1(vite@5.2.9)
