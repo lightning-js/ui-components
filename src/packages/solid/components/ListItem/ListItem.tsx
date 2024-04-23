@@ -73,7 +73,6 @@ const ListItem: Component<ListItemProps> = props => {
         {props.title}
       </Text>
       <Text
-        // y={styles.Description.base.y}
         style={[
           styles.Description.tones[props.tone ?? styles.tone], //
           styles.Description.base
