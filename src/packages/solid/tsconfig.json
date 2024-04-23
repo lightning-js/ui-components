@@ -6,7 +6,8 @@
     "./types/**/*",
     "../../shared/types/solid.d.ts",
     "*.ts",
-    "*.tsx"
+    "*.tsx",
+    "test-utils.jsx"
   ],
   "rootDir": "../../",
   "compilerOptions": {
