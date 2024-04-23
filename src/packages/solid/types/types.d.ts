@@ -20,7 +20,7 @@ import type { TextStyles, NodeStyles } from '@lightningjs/solid';
 
 export type ThemeKeys<BaseStyleType, ComponentStyleList = object> = {
   // solid style name: themed style name
-  [k in keyof BaseStyleType as keyof BaseStyleType]?: keyof ComponentStyleList;
+  [k in keyof BaseStyleType as keyof BaseStyleType | keyof ComponentStyleList]?: keyof ComponentStyleList;
 };
 
 export interface ComponentStyleConfig<
@@ -88,19 +88,19 @@ export interface WithModes<StyleSet> {
   disabled?: Partial<StyleSet>;
 }
 
-export type FlexibleNodeStyles<AdditionalTypes = undefined> = NodeStyles & AdditionalTypes;
-export type FlexibleTextStyles<AdditionalTypes = undefined> = TextStyles & AdditionalTypes;
+export type FlexibleNodeStyles<AdditionalTypes = {}> = NodeStyles & AdditionalTypes;
+export type FlexibleTextStyles<AdditionalTypes = {}> = TextStyles & AdditionalTypes;
 
 // could be a nested object
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type NodeStyleSet<AdditionalTypes = undefined> = {
+export type NodeStyleSet<AdditionalTypes = {}> = {
   base: Required<FlexibleNodeStyles<AdditionalTypes>> & WithModes<FlexibleNodeStyles<AdditionalTypes>>;
   tones: WithTonesModes<FlexibleNodeStyles<AdditionalTypes>>; // includes modes of tones
 };
 
 // could be a nested object
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type TextStyleSet<AdditionalTypes = undefined> = {
+export type TextStyleSet<AdditionalTypes = {}> = {
   base: Required<TextStyles & AdditionalTypes> & WithModes<TextStyles & AdditionalTypes>;
   tones: WithTonesModes<TextStyles & AdditionalTypes>;
 };
@@ -109,3 +109,16 @@ export type TextStyleSet<AdditionalTypes = undefined> = {
  * renderer accepts 0xRGBA as either a number or string
  */
 export type NodeColor = number | string;
+
+export type TypographySet = {
+  [key: string]: Typography;
+};
+
+export type Typography = {
+  fontFamily: string;
+  fontSize: number;
+  lineHeight: number;
+  fontWeight: number;
+  verticalAlign: string;
+  textBaseline: string;
+};

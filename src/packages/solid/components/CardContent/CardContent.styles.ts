@@ -36,7 +36,7 @@ type CardContentModes = 'collapsed' | 'focus' | 'disabled';
 type CardContentConfig = ComponentStyleConfig<CardContentStyleProperties, CardContentModes>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { CardContent: { defaultTone, ...cardContentthemeStyles } = { styles: {} } } = theme?.componentConfig;
+const { CardContent: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
 const container: CardContentConfig = {
   themeKeys: {},
@@ -54,7 +54,7 @@ const container: CardContentConfig = {
   },
   modes: {},
   tones: {},
-  themeStyles: cardContentthemeStyles
+  themeStyles
 };
 
 const tileContainer: CardContentConfig = {
@@ -71,7 +71,7 @@ const tileContainer: CardContentConfig = {
   },
   tones: {},
   modeKeys: ['focus', 'disabled', 'collapsed'],
-  themeStyles: cardContentthemeStyles
+  themeStyles: themeStyles
 };
 
 const metadataContainer: CardContentConfig = {
@@ -111,7 +111,7 @@ const metadataContainer: CardContentConfig = {
       }
     }
   },
-  themeStyles: cardContentthemeStyles
+  themeStyles
 };
 
 const Container = makeComponentStyles<CardContentStyles['Container']>(container);

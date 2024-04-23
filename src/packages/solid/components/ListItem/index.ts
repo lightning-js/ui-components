@@ -15,12 +15,5 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import theme from 'theme';
-import { getWidthByUpCount } from './getWidthByUpCount.js';
-
-export function getWidthByColumnSpan(columnSpan: number = 1) {
-  const columnCount = theme.layout.columnCount;
-  const gutterX = theme.layout.gutterX;
-
-  return getWidthByUpCount(columnCount) * columnSpan + gutterX * (columnSpan - 1);
-}
+export { default as default, type ListItemProps } from './ListItem.jsx';
+export { default as listItemStyles, type ListItemStyles } from './ListItem.styles.js';

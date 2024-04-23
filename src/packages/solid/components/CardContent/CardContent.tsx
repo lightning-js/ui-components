@@ -18,14 +18,14 @@ import { createSignal, type Component, createMemo } from 'solid-js';
 import { Show, type NodeProps, View } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
 import styles, { type CardContentStyles } from './CardContent.styles.js';
-import type { Tone } from '../../types/types.js';
+import type { UIComponentProps } from '../../types/interfaces.js';
 import { type ArtworkProps } from '../Artwork/Artwork.jsx';
 import type { ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
 import Tile from '../Tile/Tile.jsx';
 import { getWidthByColumnSpan } from '../../utils/index.js';
 withPadding; // Preserve the import.
 
-export interface CardContentProps extends NodeProps {
+export interface CardContentProps extends UIComponentProps {
   /**
    * prop object passed to the child Artwork component
    */
@@ -109,14 +109,8 @@ export interface CardContentProps extends NodeProps {
    * sets the number of columns the tile section spans
    */
   tileColumnSpan?: number;
-  /**
-   * sets the component's color palette
-   */
-  tone?: Tone;
 
   padding?: number[];
-
-  style?: Partial<CardContentStyles>;
 }
 
 const CardContent: Component<CardContentProps> = props => {
@@ -129,6 +123,7 @@ const CardContent: Component<CardContentProps> = props => {
 
   return (
     <node
+      // TODO padding is overridden by static dimensions
       use:withPadding={
         props.padding ??
         styles.Container.tones[props.tone ?? styles.tone]?.padding ??
@@ -136,7 +131,7 @@ const CardContent: Component<CardContentProps> = props => {
       }
       {...props}
       style={[
-        ...[props.style].flat(),
+        props.style, //
         styles.Container.tones[props.tone ?? styles.tone],
         styles.Container.base
       ]}
@@ -161,7 +156,10 @@ const CardContent: Component<CardContentProps> = props => {
       {/* Right side of component- where metadata is  */}
       <Show when={!collapsedTile()}>
         <View
-          style={[styles.MetadataContainer.tones[props.tone ?? styles.tone], styles.MetadataContainer.base]}
+          style={[
+            styles.MetadataContainer.tones[props.tone ?? styles.tone], //
+            styles.MetadataContainer.base
+          ]}
           width={
             props.metadataColumnSpan
               ? getWidthByColumnSpan(props.metadataColumnSpan)
