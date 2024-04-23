@@ -22,5 +22,8 @@
     "@storybook/test": "^8.0.8",
     "storybook": "^8.0.8",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@lightningjs/blits": "^0.9.7"
   }
 }
