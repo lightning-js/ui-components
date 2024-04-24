@@ -47,7 +47,7 @@ const meta: Meta<typeof Key> = {
 
 export const Basic: Story = {
   render: args => {
-    return <Key {...args} tone={args.tone ?? keyStyles.tone} style={keyStyles} />;
+    return <Key {...args} tone={args.tone ?? keyStyles.tone} />;
   },
   args: {
     states: 'focus',
@@ -58,7 +58,7 @@ export const Basic: Story = {
 
 export const Space: Story = {
   render: args => {
-    return <Key {...args} tone={args.tone ?? keyStyles.tone} style={keyStyles} size={'lg'} />;
+    return <Key {...args} tone={args.tone ?? keyStyles.tone} size={'lg'} />;
   },
   args: {
     states: 'focus',
