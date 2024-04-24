@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { View, Text, hexColor } from '@lightningjs/solid';
+import { View, hexColor } from '@lightningjs/solid';
 import { createSignal } from 'solid-js';
 
 const fpsStyle = {
@@ -110,52 +110,52 @@ export const FPSCounter = props => {
   return (
     <View {...props} style={fpsStyle}>
       <View>
-        <Text style={fpsLabel}>FPS:</Text>
-        <Text style={fpsValue} x={90}>
+        <node style={fpsLabel}>FPS:</node>
+        <node style={fpsValue} x={90}>
           {fps()}
-        </Text>
+        </node>
       </View>
 
       <View x={160}>
-        <Text style={fpsLabel}>AVG:</Text>
-        <Text style={fpsValue} x={100}>
+        <node style={fpsLabel}>AVG:</node>
+        <node style={fpsValue} x={100}>
           {avgFps()}
-        </Text>
+        </node>
       </View>
 
       <View x={0} y={20}>
-        <Text style={fpsLabel}>MIN:</Text>
-        <Text style={fpsValue} x={90}>
+        <node style={fpsLabel}>MIN:</node>
+        <node style={fpsValue} x={90}>
           {minFps()}
-        </Text>
+        </node>
       </View>
 
       <View x={160} y={20}>
-        <Text style={fpsLabel}>MAX:</Text>
-        <Text style={fpsValue} x={100}>
+        <node style={fpsLabel}>MAX:</node>
+        <node style={fpsValue} x={100}>
           {maxFps()}
-        </Text>
+        </node>
       </View>
 
       <View x={0} y={50}>
-        <Text style={fpsLabel}>Loaded Textures Cnt:</Text>
-        <Text style={fpsLabel} x={270}>
+        <node style={fpsLabel}>Loaded Textures Cnt:</node>
+        <node style={fpsLabel} x={270}>
           {isLoadedCount()}
-        </Text>
+        </node>
       </View>
 
       <View x={0} y={80}>
-        <Text style={fpsLabel}>Loading Textures Cnt:</Text>
-        <Text style={fpsLabel} x={270}>
+        <node style={fpsLabel}>Loading Textures Cnt:</node>
+        <node style={fpsLabel} x={270}>
           {isLoadingCount()}
-        </Text>
+        </node>
       </View>
 
       <View x={0} y={110}>
-        <Text style={fpsLabel}>Failed Textures Cnt:</Text>
-        <Text style={fpsLabel} x={270}>
+        <node style={fpsLabel}>Failed Textures Cnt:</node>
+        <node style={fpsLabel} x={270}>
           {isFailedCount()}
-        </Text>
+        </node>
       </View>
     </View>
   );
