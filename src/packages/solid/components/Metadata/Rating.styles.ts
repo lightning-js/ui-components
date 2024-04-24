@@ -40,8 +40,7 @@ type RatingStyleProperties = {
 type RatingConfig = ComponentStyleConfig<RatingStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Rating: { styles: themeStyles, defaultTone } = { styles: {}, defaultTone: 'neutral' } } =
-  theme?.componentConfig;
+const { Rating: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
 const container: RatingConfig = {
   themeKeys: {
@@ -54,7 +53,6 @@ const container: RatingConfig = {
     justifyContent: 'flexStart',
     itemSpacing: theme.spacer.sm
   },
-  toneModes: {},
   themeStyles
 };
 
@@ -66,7 +64,6 @@ const text: RatingConfig = {
     color: theme.color.textNeutral,
     ...theme.typography.body2
   },
-  toneModes: {},
   themeStyles
 };
 
@@ -80,7 +77,6 @@ const icon: IconConfig = {
     color: theme.color.fillNeutral,
     marginRight: theme.spacer.sm
   },
-  toneModes: {},
   themeStyles
 };
 

@@ -35,14 +35,21 @@ type ButtonStyleProperties = {
   justifyContent?: NodeStyles['justifyContent'];
   textAlign?: TextStyles['textAlign'];
   textColor?: TextStyles['color'];
+  padding?: number[];
 };
 
 type ButtonConfig = ComponentStyleConfig<ButtonStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Button: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Button: { defaultTone, ...buttonThemeStyles } = { buttonThemeStyles: {} } } = theme?.componentConfig;
 /* @ts-expect-error next-line see above */
-const { Surface: { surfaceDefaultTone, ...surfaceThemeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Surface: { surfaceDefaultTone, ...surfaceThemeStyles } = { surfaceThemeStyles: {} } } =
+  theme?.componentConfig;
+
+const themeStyles = {
+  ...buttonThemeStyles,
+  ...surfaceThemeStyles
+};
 
 const container: ButtonConfig = {
   themeKeys: {
@@ -81,10 +88,7 @@ const container: ButtonConfig = {
       }
     }
   },
-  themeStyles: {
-    ...surfaceThemeStyles,
-    ...themeStyles
-  }
+  themeStyles
 };
 
 const content: ButtonConfig = {
@@ -113,10 +117,7 @@ const content: ButtonConfig = {
       }
     }
   },
-  themeStyles: {
-    ...surfaceThemeStyles,
-    ...themeStyles
-  }
+  themeStyles
 };
 
 const text: ButtonConfig = {
@@ -147,10 +148,7 @@ const text: ButtonConfig = {
       }
     }
   },
-  themeStyles: {
-    ...surfaceThemeStyles,
-    ...themeStyles
-  }
+  themeStyles
 };
 
 const Container = makeComponentStyles<ButtonStyles['Container']>(container);

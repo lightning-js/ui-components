@@ -37,9 +37,10 @@ export type TileStyleProperties = Partial<{
 
 export type TileConfig = ComponentStyleConfig<TileStyleProperties>;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Tile: { defaultTone, ...tileThemeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Tile: { defaultTone, ...tileThemeStyles } = { tileThemeStyles: {} } } = theme?.componentConfig;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Surface: { defaultSurfaceTone, ...surfaceThemeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Surface: { defaultSurfaceTone, ...surfaceThemeStyles } = { surfaceThemeStyles: {} } } =
+  theme?.componentConfig;
 
 const container: TileConfig = {
   themeKeys: {

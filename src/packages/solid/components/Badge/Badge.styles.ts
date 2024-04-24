@@ -39,7 +39,7 @@ type BadgeStyleProperties = Partial<{
 type BadgeConfig = ComponentStyleConfig<BadgeStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Badge: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Badge: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
 const container: BadgeConfig = {
   themeKeys: {

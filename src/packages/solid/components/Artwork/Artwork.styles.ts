@@ -37,7 +37,7 @@ type ArtworkStyleProperties = Partial<{
 type ArtworkConfig = ComponentStyleConfig<ArtworkStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Artwork: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Artwork: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
 const container: ArtworkConfig = {
   themeKeys: {
@@ -53,7 +53,7 @@ const container: ArtworkConfig = {
     pivotX: 0.5,
     pivotY: 0.5,
     scale: undefined,
-    borderRadius: theme.radius.md,
+    borderRadius: theme.radius.md
   },
   themeStyles
 };
