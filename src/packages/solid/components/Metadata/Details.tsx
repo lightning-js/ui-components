@@ -41,6 +41,7 @@ export interface DetailsProps extends UIComponentProps {
 const Details: Component<DetailsProps> = (props: DetailsProps) => {
   return (
     <View
+      {...props}
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
@@ -51,10 +52,10 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
       onBeforeLayout={(node: ElementNode, dimensions) => {
         if (dimensions?.height && node.parent) {
           node.parent.height = dimensions.height;
-          node.parent?.updateLayout();
+          return true; // return true to inform renderer we've updated a dimension
         }
+        return false;
       }}
-      {...props}
     >
       <Show when={props.title}>
         <Text
