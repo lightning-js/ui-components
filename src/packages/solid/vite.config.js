@@ -17,7 +17,6 @@
 
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
-import dtsPlugin from 'vite-plugin-dts';
 import { importChunkUrl } from '@lightningjs/vite-plugin-import-chunk-url';
 import path from 'path';
 
@@ -37,8 +36,7 @@ const config = {
         moduleName: '@lightningjs/solid',
         generate: 'universal'
       }
-    }),
-    dtsPlugin()
+    })
   ],
   base: './',
   build: {
@@ -48,12 +46,7 @@ const config = {
       formats: ['es']
     },
     rollupOptions: {
-      external: [
-        'theme',
-        'solid-js',
-        '@lightningjs/solid',
-        '@lightningjs/solid-primitives'
-      ]
+      external: ['theme', 'solid-js', '@lightningjs/solid', '@lightningjs/solid-primitives']
     },
     minify: false,
     sourcemap: true,
