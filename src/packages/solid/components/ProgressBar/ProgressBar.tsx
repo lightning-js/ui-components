@@ -45,6 +45,7 @@ const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
     <View
       {...props}
       forwardStates
+      // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
         styles.Container.tones[props.tone || styles.tone],

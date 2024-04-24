@@ -107,6 +107,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
       {...props}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
+      // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
         styles.Container.tones[props.tone ?? styles.tone],

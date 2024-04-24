@@ -14,6 +14,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
+
 import type { Component, Accessor } from 'solid-js';
 import { View, Text, Show, For } from '@lightningjs/solid';
 import type { ElementNode } from '@lightningjs/solid';
@@ -40,6 +41,7 @@ export interface DetailsProps extends UIComponentProps {
 const Details: Component<DetailsProps> = (props: DetailsProps) => {
   return (
     <View
+      // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
         styles.Container.tones[props.tone || styles.tone],
