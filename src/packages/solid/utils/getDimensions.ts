@@ -19,7 +19,7 @@ import { getWidthByUpCount } from './getWidthByUpCount.js';
 
 type DimensionsConfig = { w?: number; h?: number; ratioX?: number; ratioY?: number; upCount?: number };
 
-export function getDimensions(obj: DimensionsConfig = {}, fallback: DimensionsConfig = {}) {
+export function getDimensions(obj: DimensionsConfig = {}, fallback: DimensionsConfig = {}): DimensionsConfig {
   const { w, h, ratioX, ratioY, upCount } = obj;
   const fallbackW = fallback.w || 0;
   const fallbackH = fallback.h || 0;
