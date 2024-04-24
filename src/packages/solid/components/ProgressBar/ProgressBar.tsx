@@ -29,7 +29,7 @@ export interface ProgressBarProps extends UIComponentProps {
   /**
    * color of the overlay portion of the progress bar
    */
-  progressColor: string | number;
+  progressColor?: string | number;
   /**
    * total width of the component
    */

@@ -12,10 +12,6 @@ export interface LabelProps extends UIComponentProps {
   title: string;
 
   padding?: LabelStyleProperties['padding'];
-
-  style?: Partial<LabelStyles>;
-
-  tone?: Tone;
 }
 
 const Label: Component<LabelProps> = props => {

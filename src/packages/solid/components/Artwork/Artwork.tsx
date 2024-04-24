@@ -24,6 +24,12 @@ withPadding;
 
 export interface ArtworkProps extends UIComponentProps {
   /**
+   * solid color background, will be displayed if no src is provided or
+   * URI is invalid
+   */
+  color?: UIComponentProps['color'];
+
+  /**
    * Handles any blur/gradient/shader effects
    */
   effects?: Effects;
@@ -36,7 +42,7 @@ export interface ArtworkProps extends UIComponentProps {
   /**
    * Which image will be displayed
    */
-  src: NodeProps['src'];
+  src?: NodeProps['src'];
 
   /**
    * optional callback that can be used to generate custom strings to request an image. The callback will be passed an object containing the following parameters: aspectRatio, src, w, h. Be default aspect ratio will match the closest value from srcCallbackAspectRatios

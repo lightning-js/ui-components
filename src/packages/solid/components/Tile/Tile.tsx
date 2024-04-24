@@ -90,9 +90,9 @@ export interface TileProps extends UIComponentProps {
    */
   progressBar?: Partial<ProgressBarProps> | undefined;
 
-  paddingYProgress: TileStyleProperties['paddingYProgress'];
+  paddingYProgress?: TileStyleProperties['paddingYProgress'];
 
-  padding: number[];
+  padding?: number[];
 }
 
 const Tile: Component<TileProps> = (props: TileProps) => {
@@ -145,7 +145,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
               styles.Container.tones[props.tone ?? styles.tone]?.width ??
               styles.Container.base.width) -
             (props.padding?.[0] ??
-              styles.Container.tones[props.tone ?? styles.tone]?.[0] ??
+              styles.Container.tones[props.tone ?? styles.tone]?.padding?.[0] ??
               styles.Container.base.padding[0])
           }
           y={
@@ -224,8 +224,9 @@ const Tile: Component<TileProps> = (props: TileProps) => {
           {props.bottom}
         </View>
       </Show>
-
-      <Show when={props.progressBar?.progress ? props.progressBar.progress > 0 : 0}>
+      {/* TODO why was this a ternary? */}
+      <Show when={props.progressBar.progress > 0}>
+        {/* @ts-expect-error doesn't get rendered if progress is falsy */}
         <ProgressBar
           {...props.progressBar}
           width={
