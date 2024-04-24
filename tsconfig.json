@@ -1,7 +1,19 @@
 {
-  "extends": "./tsconfig.build.json",
+  "exclude": ["node_modules/**/*"],
   "no-emit": true,
   "compilerOptions": {
-    "baseUrl": "."
+    "lib": ["ESNext", "DOM", "ES5"],
+    "strict": true,
+    "target": "ESNext",
+    "module": "NodeNext",
+    "esModuleInterop": true,
+    "verbatimModuleSyntax": true,
+    "composite": true,
+    "types": ["vite/client"],
+    "noEmit": false,
+    "isolatedModules": true,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "skipLibCheck": true
   }
 }

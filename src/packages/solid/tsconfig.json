@@ -1,13 +1,15 @@
 {
   "extends": "../../../tsconfig.json",
   "exclude": ["./dist", "./node_modules", "./storybook-static"],
+  "no-emit": false,
   "compilerOptions": {
     "baseUrl": ".",
-    "allowSyntheticDefaultImports": false,
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "outDir": "./dist",
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
+    "skipLibCheck": true,
     "types": ["solid-js"],
     "paths": {
       "theme": ["../l3-ui-theme-base/theme.d.ts"]
