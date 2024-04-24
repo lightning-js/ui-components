@@ -26,8 +26,6 @@ import type { Tone } from './types.js';
  * is number, and all our colors are strings due to JSON limitations
  */
 export interface UIComponentProps extends IntrinsicNodeProps {
-  color?: IntrinsicNodeStyleProps['color'] & string;
-
   /**
    * sets the component's color palette
    */

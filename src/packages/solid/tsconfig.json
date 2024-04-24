@@ -1,24 +1,16 @@
 {
   "extends": "../../../tsconfig.json",
-  "include": [
-    "./components/**/*",
-    "./utils/**/*",
-    "./types/**/*",
-    "../../shared/types/solid.d.ts",
-    "*.ts",
-    "*.tsx",
-    "test-utils.jsx"
-  ],
-  "rootDir": "../../",
+  "exclude": ["./dist", "./node_modules", "./storybook-static"],
   "compilerOptions": {
+    "baseUrl": ".",
+    "allowSyntheticDefaultImports": false,
+    "declaration": true,
     "outDir": "./dist",
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "types": ["solid-js"],
     "paths": {
-      "theme": ["../l3-ui-theme-base/theme.js"],
-      "types": ["../../shared/types/solid.d.ts"],
-      "utils": ["../../shared/utils/index.ts"]
+      "theme": ["../l3-ui-theme-base/theme.d.ts"]
     }
   }
 }
