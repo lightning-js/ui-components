@@ -30,4 +30,6 @@ export interface UIComponentProps extends IntrinsicNodeProps {
    * sets the component's color palette
    */
   tone?: Tone;
+
+  toneStyles?: any; // TODO add type
 }
