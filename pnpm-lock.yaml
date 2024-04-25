@@ -66,6 +66,9 @@ importers:
       '@lightningjs/blits':
         specifier: ^0.9.7
         version: 0.9.7(vite@5.2.10)
+      '@lightningjs/renderer':
+        specifier: ^0.8.3
+        version: 0.8.3
       '@lightningjs/vite-plugin-import-chunk-url':
         specifier: ^0.3.1
         version: 0.3.1(vite@5.2.10)
