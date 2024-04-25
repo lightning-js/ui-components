@@ -14,16 +14,15 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import Blits from '@lightningjs/blits';
-import Button from './Button.js';
-
+import Button, { ButtonProps } from './Button.ts';
+import {Meta, StoryObj} from "@storybook/html";
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/solid/writing-stories/introduction
 
-const meta = {
+const meta: Meta<ButtonProps> = {
   title: 'Components/Button',
   tags: ['autodocs'],
-  component: Button,
+  component: typeof Button,
   argTypes: {
     states: {
       control: { type: 'radio' },
@@ -42,27 +41,31 @@ const meta = {
       }
     },
     width: {
-      control: { type: 'number', min: 400, max: 1200, step: 50 },
+      control: { type: 'number', min: 100, max: 1200, step: 50 },
       description: 'When the fixed property is true, this will set the width of the component',
       table: {
-        defaultValue: { summary: 400 }
+        defaultValue: { summary: '400' }
       }
     },
     height: {
-      control: { type: 'number', min: 400, max: 1200, step: 50 },
+      control: { type: 'number', min: 50, max: 1200, step: 50 },
       description: 'When the fixed property is true, this will set the height of the component',
       table: {
-        defaultValue: { summary: 100 }
+        defaultValue: { summary: '100' }
       }
     }
   },
+  //@ts-ignore
+  render: args => ({
+    name: 'Button',
+    fn: Button,
+    template: `<Button :width="${args.width}" :height="${args.height}" text="Button" tone="${args.tone}" states="${args.states}" />`
+  }),
+
 };
 
-// story outputs label, function + template
-export const Basic = {
-  render: args => {
-    return ['Button', Button, `<Button :width="${args.width}" :height="${args.height}" text="Button" tone="${args.tone}" states="${args.states}" />`]
-  },
+type Story = StoryObj<ButtonProps>
+export const Basic: Story = {
   args: {
     width: 400,
     height: 100,

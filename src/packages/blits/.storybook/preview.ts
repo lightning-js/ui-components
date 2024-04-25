@@ -2,14 +2,14 @@ import Blits from '@lightningjs/blits';
 import type { Preview } from '@storybook/html';
 
 
-const launchApp = ([componentName, componentFn, componentTemplate]) => {
+const launchApp = ({name, fn, template}) => {
 
 // app with single component
 const App = Blits.Application({
   components: {
-    [componentName]: componentFn
+    [name]: fn
   },
-  template: componentTemplate,
+  template,
 })
 
 // timeout to wait until app div is available
@@ -19,13 +19,7 @@ setTimeout(() => {
     h: 1080,
     multithreaded: false,
     debugLevel: 1,
-    fonts: [
-      {
-        family: 'opensans',
-        type: 'web',
-        file: 'fonts/OpenSans-Medium.ttf',
-      },
-    ],
+    inspector: true
   })
 }, 0)
 
@@ -41,7 +35,8 @@ const preview: Preview = {
       }
     }
   },
-  decorators: [(Story) => `<div id='app' style='background-color:black'></div><script>${launchApp(Story())}</script>`]
+  //@ts-ignore
+  decorators: [(Story) => `<div id='app'></div><script>${launchApp(Story())}</script>`]
 };
 
 export default preview;
