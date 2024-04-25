@@ -33,7 +33,7 @@ export type IconStyleProperties = {
 export type IconConfig = ComponentStyleConfig<IconStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Icon: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Icon: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
 const container: IconConfig = {
   themeKeys: {

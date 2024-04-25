@@ -1,6 +1,5 @@
 import Row from './Row.jsx';
 import Button from '../Button/Button.jsx';
-import { buttonStyles } from '../Button/index.js';
 import { View } from '@lightningjs/solid';
 
 const meta = {
@@ -38,8 +37,8 @@ export default meta;
 // create an array of buttons to use in Row
 const createItems = (length: number) => {
   return Array.from({ length }).map((_, i) => (
-    <Button width={300} height={100} style={buttonStyles}>
-      Button {i + 1}
+    <Button width={300} height={100}>
+      Button {(i + 1).toString()}
     </Button>
   ));
 };

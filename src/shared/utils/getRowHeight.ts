@@ -15,12 +15,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import theme from 'theme';
-
-export const themeColumnWidth = 1920 - theme.layout.marginX * 2;
-
-export const getRowHeight = (itemLayout: { upCount: number; ratioX: number; ratioY: number }) =>
-  ((themeColumnWidth - (itemLayout.upCount - 1 * theme.layout.gutterX)) /
-    itemLayout.upCount /
-    itemLayout.ratioX) *
-  itemLayout.ratioY;
+export const getRowHeight = (itemLayout: { upCount: number; ratioX: number; ratioY: number }, theme) => {
+  const themeColumnWidth = 1920 - theme.layout.marginX * 2;
+  return (
+    ((themeColumnWidth - (itemLayout.upCount - 1 * theme.layout.gutterX)) /
+      itemLayout.upCount /
+      itemLayout.ratioX) *
+    itemLayout.ratioY
+  );
+};

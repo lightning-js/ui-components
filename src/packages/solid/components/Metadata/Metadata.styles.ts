@@ -37,7 +37,7 @@ type MetadataStyleProperties = {
 type MetadataConfig = ComponentStyleConfig<MetadataStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Metadata: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Metadata: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
 const container: MetadataConfig = {
   themeKeys: {

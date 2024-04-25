@@ -34,7 +34,7 @@ type RowStyleProperties = {
 type RowConfig = ComponentStyleConfig<RowStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Row: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Row: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
 const container: RowConfig = {
   themeKeys: {

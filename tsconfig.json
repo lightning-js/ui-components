@@ -1,19 +1,19 @@
 {
+  "exclude": ["node_modules/**/*"],
+  "no-emit": true,
   "compilerOptions": {
     "lib": ["ESNext", "DOM", "ES5"],
     "strict": true,
     "target": "ESNext",
     "module": "NodeNext",
-    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "allowJs": true,
     "verbatimModuleSyntax": true,
     "composite": true,
     "types": ["vite/client"],
-    "noEmit": true,
+    "noEmit": false,
     "isolatedModules": true,
-    "paths": {
-      "utils": ["./src/shared/utils/index.ts"]
-    }
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "skipLibCheck": true
   }
 }

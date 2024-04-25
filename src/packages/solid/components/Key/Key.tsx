@@ -15,11 +15,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { Component } from 'solid-js';
+import { type Component } from 'solid-js';
 import { Text, type NodeProps } from '@lightningjs/solid';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import { ButtonContainer } from '../Button/Button.jsx';
-import styles, { type KeySize, type KeyStyles } from './Key.styles.js';
+import styles, { type KeySize } from './Key.styles.js';
 
 export interface KeyProps extends UIComponentProps {
   /**
@@ -47,14 +47,13 @@ export interface KeyProps extends UIComponentProps {
    * If true, pressing the key will trigger the $toggleKeyboard event. If false, the key will trigger the $onSoftKey event.
    */
   toggle?: boolean;
-
-  keySignal: Partial<KeyStyles>;
 }
 
 const Key: Component<KeyProps> = props => {
   return (
     <ButtonContainer
       {...props}
+      // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
         styles.Container.tones?.[props.tone ?? styles.tone],

@@ -34,7 +34,7 @@ type ColumnStyleProperties = {
 type ColumnConfig = ComponentStyleConfig<ColumnStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Column: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Column: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
 const container: ColumnConfig = {
   themeKeys: {

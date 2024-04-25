@@ -26,8 +26,10 @@ import ProgressBar from '../ProgressBar/ProgressBar.jsx';
 import Checkbox from '../Checkbox/Checkbox.jsx';
 
 type Story = StoryObj<typeof Tile>;
+/** cspell: disable */
 const lorum =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales est eu eleifend interdum. Vivamus egestas maximus elementum. Sed condimentum ligula justo, non sollicitudin lectus rutrum vel. Integer iaculis vitae nisl quis tincidunt. Sed quis dui vehicula, vehicula felis a, tempor leo. Fusce tincidunt, ante eget pretium efficitur, libero elit volutpat quam, sit amet porta tortor odio non ligula. Ut sed dolor eleifend massa auctor porttitor eget ut lectus. Vivamus elementum lorem mauris, eu luctus tortor posuere sit amet. Nunc a interdum metus.';
+/** cspell: enable */
 
 const meta: Meta<typeof Tile> = {
   title: 'Components/Tile',
@@ -111,6 +113,7 @@ export const MetadataInset: Story = {
         linearGradient: {
           angle: 3.14,
           stops: [0, 0.5],
+          // @ts-expect-error colors can be strings but type expects numbers
           colors: [theme.color.black, 0x00000000]
         }
       }
@@ -228,6 +231,7 @@ export const TileLogoCheckBoxTop: Story = {
         linearGradient: {
           angle: 3.14,
           stops: [0, 0.5],
+          // @ts-expect-error colors can be strings but type expects numbers
           colors: [theme.color.black, 0x00000000]
         }
       }
@@ -268,6 +272,7 @@ export const TileProgressBarTop: Story = {
         linearGradient: {
           angle: 3.14,
           stops: [0, 0.5],
+          // @ts-expect-error colors can be strings but type expects numbers
           colors: [theme.color.black, 0x00000000]
         }
       }

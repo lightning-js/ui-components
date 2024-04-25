@@ -20,7 +20,7 @@ import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 import type { NodeStyles } from '@lightningjs/solid';
-import type { KeyConfig, KeySizes, KeyStyles } from '../Key/Key.styles.js';
+import type { KeySizes, KeyStyles, KeyConfig } from '../Key/Key.styles.js';
 
 export interface KeyboardStyles {
   tone: Tone;
@@ -33,13 +33,17 @@ export type KeyboardStyleProperties = {
   keySpacing?: number;
   screenW?: number;
   marginX?: number;
+  textColor?: NodeStyles['color'];
 };
 
 export type KeyboardConfig = ComponentStyleConfig<KeyboardStyleProperties>;
 
+// export type KeyConfig = ComponentStyleConfig<KeyStyleProperties>;
+
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Keyboard: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
-// TODO handle keyProps coming in from theme
+const { Keyboard: { defaultTone, ...themeStyles } = {} } = theme?.componentConfig;
+/* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
+const { Key: { defaultKeyTone, ...keyThemeStyles } = {} } = theme?.componentConfig;
 
 const container: KeyboardConfig = {
   themeKeys: {
@@ -53,7 +57,7 @@ const container: KeyboardConfig = {
     marginX: theme.layout.marginX,
     height: 100
   },
-  // @ts-expect-error see TODO
+  // @ts-expect-error TODO fix style types for component configs
   themeStyles
 };
 
@@ -71,7 +75,6 @@ const key: KeyConfig = {
   base: {
     keySpacing: theme.spacer.md,
     height: theme.spacer.md * 9,
-    paddingX: theme.spacer.md,
     sizes: {
       sm: 1,
       md: 2,
@@ -112,8 +115,7 @@ const key: KeyConfig = {
       }
     }
   },
-  // @ts-expect-error see TODO
-  themeStyles
+  themeStyles: keyThemeStyles
 };
 
 const text: KeyboardConfig = {
@@ -140,7 +142,7 @@ const text: KeyboardConfig = {
       }
     }
   },
-  // @ts-expect-error see TODO
+  // @ts-expect-error TODO fix style types for component configs
   themeStyles
 };
 

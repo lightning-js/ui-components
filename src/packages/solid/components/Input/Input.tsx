@@ -114,6 +114,7 @@ const Input: Component<InputProps> = props => {
       position={position()}
       onLeft={onLeft}
       onRight={onRight}
+      // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
         styles.InputContainer.tones[props.tone ?? styles.tone],

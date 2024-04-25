@@ -29,7 +29,7 @@ export interface ProgressBarProps extends UIComponentProps {
   /**
    * color of the overlay portion of the progress bar
    */
-  progressColor: string | number;
+  progressColor?: string | number;
   /**
    * total width of the component
    */
@@ -45,6 +45,7 @@ const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
     <View
       {...props}
       forwardStates
+      // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
         styles.Container.tones[props.tone || styles.tone],

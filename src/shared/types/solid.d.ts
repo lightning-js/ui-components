@@ -15,12 +15,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-declare module 'theme' {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const theme: any;
-  export default theme;
-}
-
 export type Color = number | string;
 export type AnimationSettings = { duration?: number; delay?: number; timing?: string };
 export type TextAlign = 'left' | 'center' | 'right';

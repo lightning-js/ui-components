@@ -112,49 +112,49 @@ export const FPSCounter = props => {
       <View>
         <Text style={fpsLabel}>FPS:</Text>
         <Text style={fpsValue} x={90}>
-          {fps()}
+          {fps().toString()}
         </Text>
       </View>
 
       <View x={160}>
         <Text style={fpsLabel}>AVG:</Text>
         <Text style={fpsValue} x={100}>
-          {avgFps()}
+          {avgFps().toString()}
         </Text>
       </View>
 
       <View x={0} y={20}>
         <Text style={fpsLabel}>MIN:</Text>
         <Text style={fpsValue} x={90}>
-          {minFps()}
+          {minFps().toString()}
         </Text>
       </View>
 
       <View x={160} y={20}>
         <Text style={fpsLabel}>MAX:</Text>
         <Text style={fpsValue} x={100}>
-          {maxFps()}
+          {maxFps().toString()}
         </Text>
       </View>
 
       <View x={0} y={50}>
         <Text style={fpsLabel}>Loaded Textures Cnt:</Text>
         <Text style={fpsLabel} x={270}>
-          {isLoadedCount()}
+          {isLoadedCount().toString()}
         </Text>
       </View>
 
       <View x={0} y={80}>
         <Text style={fpsLabel}>Loading Textures Cnt:</Text>
         <Text style={fpsLabel} x={270}>
-          {isLoadingCount()}
+          {isLoadingCount().toString()}
         </Text>
       </View>
 
       <View x={0} y={110}>
         <Text style={fpsLabel}>Failed Textures Cnt:</Text>
         <Text style={fpsLabel} x={270}>
-          {isFailedCount()}
+          {isFailedCount().toString()}
         </Text>
       </View>
     </View>

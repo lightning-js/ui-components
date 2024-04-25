@@ -43,7 +43,15 @@ const defaultModeKeys = ['focus', 'disabled'];
 const defaultToneKeys = ['brand', 'inverse', 'neutral'];
 
 export function makeComponentStyles(
-  { themeKeys, base, modes, tones, themeStyles, modeKeys = defaultModeKeys, toneKeys = defaultToneKeys },
+  {
+    themeKeys,
+    base,
+    modes = {},
+    tones = {},
+    themeStyles,
+    modeKeys = defaultModeKeys,
+    toneKeys = defaultToneKeys
+  },
   debug = false
 ) {
   /**

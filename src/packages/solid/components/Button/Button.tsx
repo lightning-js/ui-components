@@ -32,6 +32,7 @@ const Button: Component<ButtonProps> = props => {
   return (
     <View
       {...props}
+      // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
         styles.Container.tones?.[props.tone ?? styles.tone],
@@ -55,6 +56,7 @@ const ButtonContainer: Component<ButtonContainerProps> = props => {
   return (
     <View
       {...props}
+      // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
         styles.Container.tones?.[props.tone ?? styles.tone],
@@ -65,4 +67,9 @@ const ButtonContainer: Component<ButtonContainerProps> = props => {
   );
 };
 
-export { Button as default, ButtonContainer, type ButtonProps };
+export {
+  Button as default, //
+  ButtonContainer,
+  type ButtonProps,
+  type ButtonContainerProps
+};

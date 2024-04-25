@@ -17,7 +17,7 @@
 import { createSignal, type Component, createMemo } from 'solid-js';
 import { Show, type NodeProps, View } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
-import styles, { type CardContentStyles } from './CardContent.styles.js';
+import styles from './CardContent.styles.js';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import { type ArtworkProps } from '../Artwork/Artwork.jsx';
 import type { ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
@@ -130,6 +130,7 @@ const CardContent: Component<CardContentProps> = props => {
         styles.Container.base.padding
       }
       {...props}
+      // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
         styles.Container.tones[props.tone ?? styles.tone],
@@ -145,7 +146,10 @@ const CardContent: Component<CardContentProps> = props => {
       <Tile
         {...props}
         states={{ collapsed: collapsedTile() }}
-        style={[styles.TileContainer.tones[props.tone ?? styles.tone], styles.TileContainer.base]}
+        style={[
+          styles.TileContainer.tones[props.tone ?? styles.tone], //
+          styles.TileContainer.base
+        ]}
         width={
           props.tileColumnSpan ? getWidthByColumnSpan(props.tileColumnSpan) : styles.TileContainer.base.width
         }

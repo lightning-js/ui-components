@@ -31,8 +31,8 @@ export function scrollToIndex(componentRef: ElementNode, selectedIndex: number) 
   componentRef.selected = selectedIndex;
 
   if (componentRef.flexDirection === 'row') {
-    componentRef.x = -componentRef.children[selectedIndex].x;
+    componentRef.x = -Number(componentRef.children[selectedIndex].x);
   } else if (componentRef.flexDirection === 'column') {
-    componentRef.y = -componentRef.children[selectedIndex].y;
+    componentRef.y = -Number(componentRef.children[selectedIndex].y);
   }
 }

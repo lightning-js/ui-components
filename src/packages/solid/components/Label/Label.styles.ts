@@ -38,7 +38,7 @@ export type LabelStyleProperties = Partial<{
 type LabelConfig = ComponentStyleConfig<LabelStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Label: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Label: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
 const container: LabelConfig = {
   themeKeys: {

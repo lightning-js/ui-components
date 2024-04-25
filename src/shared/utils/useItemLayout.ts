@@ -15,9 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import theme from 'theme';
-
-export const useItemLayout = (itemLayout: { upCount: number; ratioX: number; ratioY: number }) => {
+export const useItemLayout = (itemLayout: { upCount: number; ratioX: number; ratioY: number }, theme) => {
   if (itemLayout) {
     const width =
       (theme.layout.screenW - theme.layout.marginX * 2) / itemLayout.upCount - theme.layout.gutterX;

@@ -43,6 +43,7 @@ const BadgeContainer: Component<BadgeContainerProps> = props => {
         styles.Container.base.padding
       }
       {...props}
+      // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
         styles.Container.tones[props.tone || styles.tone],
@@ -57,7 +58,10 @@ const Badge: Component<BadgeProps> = (props: BadgeProps) => {
   return (
     <BadgeContainer padding={props.padding} tone={props.tone} style={props.style}>
       <Text
-        style={[styles.Text.tones[props.tone ?? styles.tone], styles.Text.base]}
+        style={[
+          styles.Text.tones[props.tone ?? styles.tone], //
+          styles.Text.base
+        ]}
         tone={props.tone || styles.tone}
       >
         {props.title}

@@ -39,7 +39,7 @@ type CheckboxModes = 'checked' | 'focus' | 'disabled';
 
 type CheckboxConfig = ComponentStyleConfig<CheckboxStyleProperties, CheckboxModes>;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Checkbox: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Checkbox: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
 const strokeWidth = theme.stroke.sm;
 const size = theme.spacer.xxl;

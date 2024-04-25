@@ -39,7 +39,7 @@ export type InputStyleProperties = {
 export type InputConfig = ComponentStyleConfig<InputStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Input: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Input: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
 const container: InputConfig = {
   themeKeys: {

@@ -21,7 +21,7 @@ import type { KeyHandler } from '@lightningjs/solid-primitives';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import { chainFunctions } from '../../utils/chainFunctions.js';
 import { handleNavigation, onGridFocus } from '../../utils/handleNavigation.js';
-import { withScrolling, type ScrollableElementNode } from '../../utils/withScrolling.js';
+import { withScrolling, type ScrollableElement } from '../../utils/withScrolling.js';
 import styles from './Row.styles.js';
 
 export interface RowProps extends UIComponentProps {
@@ -71,9 +71,8 @@ const Row: Component<RowProps> = (props: RowProps) => {
       onLeft={chainFunctions(props.onLeft, onLeft)}
       onRight={chainFunctions(props.onRight, onRight)}
       forwardFocus={onGridFocus}
-      // @ts-expect-error need to fix type for onLayout
       onLayout={chainFunctions<RowProps['onLayout']>(
-        (elm: ScrollableElementNode) =>
+        (elm: ScrollableElement) =>
           withScrolling(props.x as number).call(
             elm,
             elm,
@@ -87,6 +86,7 @@ const Row: Component<RowProps> = (props: RowProps) => {
         props.onSelectedChanged,
         props.scroll !== 'none' ? withScrolling(props.x as number) : undefined
       )}
+      // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
         styles.Container.tones[props.tone || styles.tone],

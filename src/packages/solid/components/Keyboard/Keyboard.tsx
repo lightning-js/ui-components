@@ -52,7 +52,7 @@ export interface KeyboardProps extends UIComponentProps {
   /**
    * gap between keys
    */
-  keySpacing?: KeyboardStyleProperties['keySpacing'];
+  keySpacing: KeyboardStyleProperties['keySpacing'];
 }
 
 // rows created from each array passed in
@@ -60,6 +60,7 @@ const Keyboard: Component<KeyboardProps> = (props: KeyboardProps) => {
   return (
     <KeyboardSimple
       {...props}
+      // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
         styles.Container.tones[props.tone ?? styles.tone],

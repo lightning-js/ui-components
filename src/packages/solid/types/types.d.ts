@@ -53,7 +53,7 @@ export interface ComponentStyleConfig<
 export type Tone = 'neutral' | 'inverse' | 'brand';
 export type Mode = 'focus' | 'disabled';
 
-export type VariantList = 'base' | Tone | Mode;
+export type VariantList = 'base' | 'neutral' | 'inverse' | 'brand' | 'focus' | 'disabled';
 
 export type VariantPropertySet<T> = {
   [key in VariantList]?: {

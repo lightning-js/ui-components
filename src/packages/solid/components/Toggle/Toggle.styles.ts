@@ -20,12 +20,11 @@ import theme from 'theme';
 import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-import type { Color } from 'types';
 
 export interface ToggleStyles {
   tone: Tone;
-  Container: NodeStyleSet<{ border: BorderStyleObject; colorChecked: Color }>;
-  Knob: NodeStyleSet<{ padding: number; colorChecked: Color }>;
+  Container: NodeStyleSet<{ border: BorderStyleObject; colorChecked: NodeStyles['color'] }>;
+  Knob: NodeStyleSet<{ padding: number; colorChecked: NodeStyles['color'] }>;
 }
 
 type ToggleStyleProperties = {
@@ -46,7 +45,7 @@ type ToggleStyleProperties = {
 type ToggleConfig = ComponentStyleConfig<ToggleStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Toggle: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Toggle: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
 const knobSize = theme.spacer.xl;
 const knobPadding = theme.spacer.xs;

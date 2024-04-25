@@ -39,7 +39,7 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
       width={props.width}
     >
       <For each={props.formats}>
-        {(row: Array<string | KeyProps>) => (
+        {(row: (string | KeyProps)[]) => (
           <Row
             width={props.width}
             justifyContent={props.centerKeys ? 'center' : 'flexStart'}
@@ -61,8 +61,7 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
                   {...(typeof key === 'string' ? {} : key)}
                   // if not a toggle key
                   onEnter={() => setKeySignal(typeof key === 'string' ? key : key.title ?? '')}
-                  // @ts-expect-error the ternary handles for the type error
-                  title={key.title || key.icon ? key.title : key}
+                  title={typeof key === 'string' ? key : key.title ?? ''}
                 />
               )}
             </For>

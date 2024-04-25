@@ -36,12 +36,13 @@ export type DetailsStyleProperties = {
   contentSpacing?: number;
   badgeContentSpacing?: number;
   ratingContentSpacing?: number;
+  textColor?: NodeStyles['color'];
 };
 
 export type DetailsConfig = ComponentStyleConfig<DetailsStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Details: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig; // TODO this probably shouldn't be themed this way
+const { Details: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig; // TODO this probably shouldn't be themed this way
 
 const container: DetailsConfig = {
   themeKeys: {

@@ -57,7 +57,7 @@ export type KeyStyleProperties = {
 export type KeyConfig = ComponentStyleConfig<KeyStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Key: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Key: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
 const container: KeyConfig = {
   themeKeys: {
