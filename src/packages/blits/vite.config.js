@@ -18,6 +18,7 @@
 import { defineConfig } from 'vite';
 import { importChunkUrl } from '@lightningjs/vite-plugin-import-chunk-url';
 import path from 'path';
+import blitsVitePlugins from '@lightningjs/blits/vite'
 
 const config = {
   optimizeDeps: {
@@ -28,7 +29,7 @@ const config = {
       '@lightningjs/renderer/workers/renderer'
     ]
   },
-  plugins: [],
+  plugins: [...blitsVitePlugins],
   base: './',
   build: {
     lib: {
