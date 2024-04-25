@@ -19,6 +19,8 @@ import ProgressBar from './ProgressBar.js';
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import theme from 'theme';
 import { hexColor } from '@lightningjs/solid';
+import createComponentWithTone from '../../utils/createComponentWithTone.jsx';
+import styles from './ProgressBar.styles.js';
 
 type Story = StoryObj<typeof ProgressBar>;
 
@@ -27,14 +29,6 @@ const meta: Meta<typeof ProgressBar> = {
   component: ProgressBar,
   tags: ['autodocs'],
   argTypes: {
-    color: {
-      description: 'color of bar representing the total progress',
-      control: 'color'
-    },
-    progressColor: {
-      description: 'color of bar representing the current progress',
-      control: 'color'
-    },
     progress: {
       description: 'Percentage of current progress in a decimal format from 0 to 1',
       control: { type: 'number', step: 0.1, min: 0, max: 1.0 }
@@ -57,6 +51,30 @@ export const Basic: Story = {
         color={hexColor(args.color) || undefined}
       />
     );
+  },
+  argTypes: {
+    color: {
+      description: 'color of bar representing the total progress',
+      control: 'color'
+    },
+    progressColor: {
+      description: 'color of bar representing the current progress',
+      control: 'color'
+    }
+  },
+  args: {
+    width: 500,
+    height: theme.spacer.md,
+    progress: 0.5,
+    borderRadius: theme.radius.xs
+  }
+};
+
+const ProgressBarBrand = createComponentWithTone(ProgressBar, 'brand', styles);
+
+export const Brand: Story = {
+  render: args => {
+    return <ProgressBarBrand {...args} />;
   },
   args: {
     width: 500,

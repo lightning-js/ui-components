@@ -18,7 +18,7 @@
 import type { Component } from 'solid-js';
 import { View } from '@lightningjs/solid';
 import type { UIComponentProps } from '../../types/interfaces.js';
-import styles from './ProgressBar.styles.js';
+import styles, { type ProgressBarStyles } from './ProgressBar.styles.js';
 
 export interface ProgressBarProps extends UIComponentProps {
   /**
@@ -38,9 +38,14 @@ export interface ProgressBarProps extends UIComponentProps {
    * total height of the component
    */
   height?: number;
+
+  toned?: boolean;
+
+  toneStyles?: Omit<ProgressBarStyles, 'tone'>;
 }
 
 const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
+  const toneStyles = props.toneStyles;
   return (
     <View
       {...props}
@@ -48,7 +53,7 @@ const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
-        styles.Container.tones[props.tone || styles.tone],
+        toneStyles?.Container,
         styles.Container.base
       ]}
     >
@@ -58,7 +63,7 @@ const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
         width={props.width * props.progress}
         color={props.progressColor}
         style={[
-          styles.ProgressBar.tones[props.tone || styles.tone], //
+          toneStyles?.ProgressBar, //
           styles.ProgressBar.base
         ]}
       />
