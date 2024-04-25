@@ -224,8 +224,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
           {props.bottom}
         </View>
       </Show>
-      {/* TODO why was this a ternary? */}
-      <Show when={props.progressBar.progress > 0}>
+      <Show when={props.progressBar?.progress > 0}>
         {/* @ts-expect-error doesn't get rendered if progress is falsy */}
         <ProgressBar
           {...props.progressBar}
