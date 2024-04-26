@@ -43,7 +43,7 @@ const meta = {
 export default meta;
 
 export const Basic = {
-  render: args => <Wave {...args} />,
+  render: args => <Wave autofocus {...args} />,
   args: {
   }
 };

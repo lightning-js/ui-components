@@ -30,30 +30,29 @@ export interface WaveStyles {
 
 type WaveStyleProperties = {
   backgroundColor?: NodeStyles['color'];
-  duration?:  number
+  duration?:  number;
   keyframes?: number[];
-  lockedRatio?: number;
-  lockedPaddingRatio?: number;
   radius?: NodeStyles['borderRadius'];
   repeat?: number;
+  itemSpacing?: NodeStyles['itemSpacing'];
 }
 
 type WaveConfig = ComponentStyleConfig<WaveStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Wave: { defaultTone, ...themeStyles } = { styles: {} } } = theme?.componentConfig;
+const { Wave: { defaultTone, ...waveThemeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: WaveConfig = {
   themeKeys: {
     borderRadius: 'radius',
     color: 'backgroundColor',
-    gap: 'lockedPaddingRatio',
+    gap: 'itemSpacing',
   },
   base: {
-    gap: 5 / 3,
+    gap: theme.spacer.sm,
     flexDirection: 'row',
     display: 'flex',
-
+    height: theme.spacer.sm * 5
   },
   modes: {
     focus: {},
@@ -64,19 +63,20 @@ const container: WaveConfig = {
     brand: {}
   },
   // TODO: figure out checked state
-  themeStyles
+  themeStyles: waveThemeStyles
 };
 
 const rectangles: WaveConfig = {
   themeKeys: {
     borderRadius: 'radius',
     color: 'backgroundColor',
-    gap:'lockedPaddingRatio',
+    gap: 'itemSpacing',
   },
   base: {
     width: theme.spacer.sm,
     height: 100,
-    color: theme.color.fillNeutral
+    color: theme.color.fillNeutral,
+    mountY: .5,
   },
   modes: {
     focus: {},
@@ -87,7 +87,7 @@ const rectangles: WaveConfig = {
     brand: {}
   },
   // TODO: figure out checked state
-  themeStyles
+  themeStyles: waveThemeStyles
 };
 
 const Container = makeComponentStyles<WaveStyles['Container']>(container);
