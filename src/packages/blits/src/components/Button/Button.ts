@@ -20,6 +20,13 @@ function isValidJustifyContent(v: unknown): v is JustifyContent {
   return typeof v === 'string' && JustifyContentValues.includes(v as JustifyContent);
 }
 
+// no flex in Blits yet so haven't integrated alignment but type is ready for when we need it
+const AlignValues = ['left', 'center', 'right'] as const;
+type Align = typeof AlignValues[number];
+function isValidAlign(v: unknown): v is Align {
+  return typeof v === 'string' && AlignValues.includes(v as Align);
+}
+
 export type ButtonProps = {
   text: string;
   states: States;
@@ -33,7 +40,7 @@ type ButtonState = {
   font: string;
   fontSize: number;
   fontWeight: number;
-  textAlign: 'left' | 'center' | 'right';
+  textAlign: Align;
   radius: number;
   lineHeight: number;
 }
@@ -44,7 +51,10 @@ const Button = Blits.Component('Button', {
       key: 'text',
       default: '',
       required: false,
-      cast: String
+      cast: (v: string): string => {
+        if (typeof v === 'string') return v;
+        throw new Error(`Invalid text input '${v}' - must be of type string`)
+      }
     },
     {
       key: 'states',
@@ -56,7 +66,7 @@ const Button = Blits.Component('Button', {
        *   isValidState(v);
        * }
        */
-      cast: (v: string) => {
+      cast: (v: string): States => {
         if (isValidState(v)) return v;
         throw new Error(`Invalid state '${v}'`);
       }
@@ -65,7 +75,7 @@ const Button = Blits.Component('Button', {
       key: 'tone',
       default: 'neutral',
       required: false,
-      cast: (v: string) => {
+      cast: (v: string): Tone => {
         if (isValidTone(v)) return v;
         throw new Error(`Invalid tone '${v}'`);
       }
@@ -74,7 +84,7 @@ const Button = Blits.Component('Button', {
       key: 'justifyContent',
       default: 'center',
       required: false,
-      cast: (v: string) => {
+      cast: (v: string): JustifyContent => {
         if (isValidJustifyContent(v)) return v;
         throw new Error(`Invalid justifyContent '${v}'`);
       }
@@ -113,24 +123,29 @@ const Button = Blits.Component('Button', {
       font: styles.Text.base.fontFamily,
       fontSize: styles.Text.base.fontSize,
       fontWeight: styles.Text.base.fontWeight,
-      textAlign: styles.Container.base.alignItems,
+      textAlign: styles.Container.base.alignItems as Align,
       radius: styles.Container.base.borderRadius,
       lineHeight: styles.Text.base.lineHeight,
     }
   },
+  // TODO: type styles - haven't done this yet as we haven't decided on how we're going to do styles yet
   computed: {
     containerColor(): string {
       if (this.states === 'unfocused') {
         if (this.tone === 'neutral') return styles.Container.base.color
+        //@ts-ignore
         return styles.Container.tones[this.tone].color
       }
+      //@ts-ignore
       return styles.Container.tones[this.tone][this.states].color
     },
     textColor(): string {
       if (this.states === 'unfocused') {
         if (this.tone === 'neutral') return styles.Text.base.color
+        //@ts-ignore
         return styles.Text.tones[this.tone].color
       }
+      //@ts-ignore
       return styles.Text.tones[this.tone][this.states].color
     },
   },
