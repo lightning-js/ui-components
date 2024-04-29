@@ -1,12 +1,30 @@
 import Blits from '@lightningjs/blits'
-
 import styles from './Button.styles.ts'
+
+// Type definitions + type guards for Tone/States/JustifyContent
+const ToneValues = ['neutral', 'inverse', 'brand'] as const;
+type Tone = typeof ToneValues[number];
+function isValidTone(v: unknown): v is Tone {
+  return typeof v === 'string' && ToneValues.includes(v as Tone);
+}
+
+const StatesValues = ['focus', 'unfocused', 'disabled'] as const;
+type States = typeof StatesValues[number];
+function isValidState(v: unknown): v is States {
+  return typeof v === 'string' && StatesValues.includes(v as States);
+}
+
+const JustifyContentValues = ['center', 'flexStart', 'flexEnd', 'spaceBetween', 'spaceEvenly'] as const;
+type JustifyContent = typeof JustifyContentValues[number];
+function isValidJustifyContent(v: unknown): v is JustifyContent {
+  return typeof v === 'string' && JustifyContentValues.includes(v as JustifyContent);
+}
 
 export type ButtonProps = {
   text: string;
-  states: 'focus' | 'unfocused' | 'disabled';
-  tone: 'neutral' | 'inverse' | 'brand';
-  justifyContent: 'center' | 'flexStart' | 'flexEnd' | 'spaceBetween' | 'spaceEvenly';
+  states: States;
+  tone: Tone;
+  justifyContent: JustifyContent;
   width: number;
   height: number;
 }
@@ -32,19 +50,34 @@ const Button = Blits.Component('Button', {
       key: 'states',
       default: 'focus',
       required: false,
-      cast: String
+      /*
+       * Wanted to use validate from docs - but not yet implemented?
+       * validate(v: string) {
+       *   isValidState(v);
+       * }
+       */
+      cast: (v: string) => {
+        if (isValidState(v)) return v;
+        throw new Error(`Invalid state '${v}'`);
+      }
     },
     {
       key: 'tone',
       default: 'neutral',
       required: false,
-      cast: String
+      cast: (v: string) => {
+        if (isValidTone(v)) return v;
+        throw new Error(`Invalid tone '${v}'`);
+      }
     },
     {
       key: 'justifyContent',
       default: 'center',
       required: false,
-      cast: String
+      cast: (v: string) => {
+        if (isValidJustifyContent(v)) return v;
+        throw new Error(`Invalid justifyContent '${v}'`);
+      }
     },
     {
       key: 'width',
