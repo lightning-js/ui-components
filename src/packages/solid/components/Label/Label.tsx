@@ -1,6 +1,6 @@
 import { type Component } from 'solid-js';
 import { Text } from '@lightningjs/solid';
-import { withPadding } from '@lightningjs/solid-primitives';
+import { withPadding } from 'utils/index.js';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import styles, { type LabelStyleProperties } from './Label.styles.js';
 withPadding;

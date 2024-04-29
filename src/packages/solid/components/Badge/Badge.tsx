@@ -16,7 +16,7 @@
  */
 import { type Component } from 'solid-js';
 import { Text, type TextProps } from '@lightningjs/solid';
-import { withPadding } from '@lightningjs/solid-primitives';
+import { withPadding } from 'utils/index.js';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import styles from './Badge.styles.js';
 withPadding; // Preserve the import.

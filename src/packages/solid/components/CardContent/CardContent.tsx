@@ -16,7 +16,7 @@
  */
 import { createSignal, type Component, createMemo } from 'solid-js';
 import { Show, type NodeProps, View } from '@lightningjs/solid';
-import { withPadding } from '@lightningjs/solid-primitives';
+import { withPadding } from 'utils/index.js';
 import styles from './CardContent.styles.js';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import { type ArtworkProps } from '../Artwork/Artwork.types.js';
