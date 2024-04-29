@@ -76,7 +76,6 @@ const rectangles: WaveConfig = {
     width: theme.spacer.sm,
     height: 100,
     color: theme.color.fillNeutral,
-    mountY: .5,
   },
   modes: {
     focus: {},

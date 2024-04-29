@@ -15,10 +15,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { createMemo, type Component } from 'solid-js';
+import { createEffect, createMemo, type Component } from 'solid-js';
 import { View } from '@lightningjs/solid';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import styles from './Wave.styles.js';
+import { createRenderEffect } from "solid-js";
 
 export interface WaveProps extends UIComponentProps {}
 
@@ -32,13 +33,13 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
   
   const isAnimating = createMemo(() => props.toggleAnimation);
   
-  function startAnimations() {
+  function startAnimation() {
 
-    // left animation
-    left.chain({ height: height()}, { duration: 100 })
-    .chain({ height: (height()*2.5)}, { duration: 100 })
-    .chain({ height: (height()*2)}, { duration: 100 })
-    .chain({ height: height()}, { duration: 100 }).start();
+    // // left animation
+    // left.animate({ height: height()}, { duration: 100 }).start();
+    // left.animate({ height: (height()*2.5)}, { duration: 100, delay: 101}).start();
+    // left.animate({ height: (height()/2)}, { duration: 100, delay: 202 }).start();
+    // left.animate({ height: height()}, { duration: 100, delay: 303 }).start();
 
     // center left animation
     leftCenter.chain({ height: height()/2}, { duration: 100 })
@@ -49,13 +50,13 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
     // center animation
     center.chain({ height: height()*3}, { duration: 100 })
     .chain({ height: (height()/2*3)}, { duration: 100 })
-    .chain({ height: (height()*1.25*3)}, { duration: 100 })
+    .chain({ height: (height()/3*3)}, { duration: 100 })
     .chain({ height: height()*3}, { duration: 100 }).start();
 
     // center right animation
     rightCenter.chain({ height: height()/2}, { duration: 100 })
-    .chain({ height: (height()/8/2)}, { duration: 100 })
-    .chain({ height: (height()*1.5/2)}, { duration: 100 })
+    .chain({ height: (height()/2/2)}, { duration: 100 })
+    .chain({ height: (height()*1.25/2)}, { duration: 100 })
     .chain({ height: height()/2}, { duration: 100 }).start();
 
     // right animation
@@ -72,12 +73,22 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
 
   setTimeout(() => 
     setInterval(() =>
-    startAnimations(), 400), 1000
+    startAnimation(), 390), 1000
+  );
+
+
+  createEffect(
+    () => {
+        left.animate({ height: height()}, { duration: 100, loop: true }).start();
+        left.animate({ height: (height()*2.5)}, { duration: 100, delay: 125, loop: true}).start();
+        left.animate({ height: (height()/2)}, { duration: 100, delay: 250, loop: true }).start();
+        left.animate({ height: height()}, { duration: 100, delay: 375, loop: true }).start();
+    }, props.toggleAnimation
   );
 
   return (
-    <View {...props} style={[props.style, styles.Container.tones?.[props.tone ?? styles.tone], styles.Container.base]}
-    onEnter={startAnimations}>
+    <View {...props} style={[props.style, styles.Container.tones?.[props.tone ?? styles.tone], styles.Container.base]}>
+    {/* onEnter={startAnimation} */}
       {/* Left */}
       <View
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
