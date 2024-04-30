@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.2](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.14.1...@lightningjs/solid-ui@0.14.2) (2024-04-30)
+
+### Bug Fixes
+
+- rollback eslint ([#129](https://github.com/lightning-js/ui-components/issues/129)) ([5f19dc5](https://github.com/lightning-js/ui-components/commit/5f19dc54b37511f6e2950e02e2175b62acf21a8a))
+
 ## [0.14.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.14.0...@lightningjs/solid-ui@0.14.1) (2024-04-25)
 
 ### Bug Fixes
