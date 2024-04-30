@@ -75,7 +75,7 @@ const calcPerformanceMetrics = stage => {
   let isLoadedCount = 0;
   let isLoadingCount = 0;
   let isFailedCount = 0;
-  stage.txManager.textureIdCache.forEach((value, key, map) => {
+  stage.txManager.textureIdCache.forEach((value: { state: string }) => {
     if (value.state === 'loaded') {
       isLoadedCount++;
     }

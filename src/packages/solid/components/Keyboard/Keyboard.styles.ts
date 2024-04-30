@@ -43,7 +43,7 @@ export type KeyboardConfig = ComponentStyleConfig<KeyboardStyleProperties>;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Keyboard: { defaultTone, ...themeStyles } = {} } = theme?.componentConfig;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Key: { defaultKeyTone, ...keyThemeStyles } = {} } = theme?.componentConfig;
+const { Key: { ...keyThemeStyles } = {} } = theme?.componentConfig; // TODO default tone for sub-components
 
 const container: KeyboardConfig = {
   themeKeys: {

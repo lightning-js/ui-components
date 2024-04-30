@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-type ChainableFunction = (...args: any[]) => unknown;
+type ChainableFunction = (...args: unknown[]) => unknown;
 
 export function chainFunctions(...args: ChainableFunction[]): ChainableFunction;
 export function chainFunctions<T>(...args: (ChainableFunction | T)[]): T;

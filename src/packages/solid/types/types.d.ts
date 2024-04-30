@@ -88,19 +88,19 @@ export interface WithModes<StyleSet> {
   disabled?: Partial<StyleSet>;
 }
 
-export type FlexibleNodeStyles<AdditionalTypes = {}> = NodeStyles & AdditionalTypes;
-export type FlexibleTextStyles<AdditionalTypes = {}> = TextStyles & AdditionalTypes;
+export type FlexibleNodeStyles<AdditionalTypes = unknown> = NodeStyles & AdditionalTypes;
+export type FlexibleTextStyles<AdditionalTypes = unknown> = TextStyles & AdditionalTypes;
 
 // could be a nested object
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type NodeStyleSet<AdditionalTypes = {}> = {
+export type NodeStyleSet<AdditionalTypes = unknown> = {
   base: Required<FlexibleNodeStyles<AdditionalTypes>> & WithModes<FlexibleNodeStyles<AdditionalTypes>>;
   tones: WithTonesModes<FlexibleNodeStyles<AdditionalTypes>>; // includes modes of tones
 };
 
 // could be a nested object
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type TextStyleSet<AdditionalTypes = {}> = {
+export type TextStyleSet<AdditionalTypes = unknown> = {
   base: Required<TextStyles & AdditionalTypes> & WithModes<TextStyles & AdditionalTypes>;
   tones: WithTonesModes<TextStyles & AdditionalTypes>;
 };

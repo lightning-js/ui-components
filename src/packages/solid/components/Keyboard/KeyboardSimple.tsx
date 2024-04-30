@@ -24,7 +24,8 @@ import styles from './Keyboard.styles.js';
 
 // rows created from each array passed in
 const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
-  const [keySignal, setKeySignal] = props.keySignal;
+  // eslint-disable-next-line solid/reactivity
+  const [_, setKeySignal] = props.keySignal;
   return (
     <Column
       autofocus={props.autofocus}

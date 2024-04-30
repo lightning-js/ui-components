@@ -39,6 +39,7 @@ const meta: Meta<typeof KeyboardInput> = {
 
 export const Basic: Story = {
   render: args => {
+    // eslint-disable-next-line solid/reactivity
     const titleSignal = createSignal('');
 
     return <KeyboardInput {...args} titleSignal={titleSignal} />;
