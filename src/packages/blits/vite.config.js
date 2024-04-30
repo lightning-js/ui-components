@@ -29,7 +29,7 @@ const config = {
       '@lightningjs/renderer/workers/renderer'
     ]
   },
-  plugins: [...blitsVitePlugins],
+  plugins: [...blitsVitePlugins, importChunkUrl()],
   base: './',
   build: {
     lib: {
@@ -78,12 +78,8 @@ const config = {
     },
     testTransformMode: { web: ['/.[jt]sx?$/'] },
     globals: true
-  }
+  },
+  publicDir: '../../shared/public'
 };
 
-export default () => {
-  config.plugins = [...config.plugins, importChunkUrl()];
-  config.publicDir = '../../shared/public';
-
-  return defineConfig(config);
-};
+export default defineConfig(config);
