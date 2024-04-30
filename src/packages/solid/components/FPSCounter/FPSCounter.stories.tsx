@@ -41,7 +41,7 @@ const meta: Meta<typeof FPSCounter> = {
 export default meta;
 
 export const Basic: Story = {
-  render: args => {
+  render: () => {
     return <FPSCounter x={10} y={10} />;
   }
 };

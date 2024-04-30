@@ -56,18 +56,16 @@ const meta: Meta<typeof ListItem> = {
       }
     }
   }
-}
+};
 
 export const Basic: Story = {
   args: {
-   title: 'Title',
-   description: 'Description'
+    title: 'Title',
+    description: 'Description'
   },
   render: args => {
-    return (
-      <ListItem {...args}/>
-    )
+    return <ListItem {...args} />;
   }
-}
+};
 
 export default meta;

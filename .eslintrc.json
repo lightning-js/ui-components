@@ -6,7 +6,7 @@
     "node": true,
     "jest": true
   },
-  "ignorePatterns": ["node_modules", "dist", "storybook-static"],
+  "ignorePatterns": ["node_modules", "dist", "storybook-static", "**/l3-ui-theme-base/**/*"],
   "plugins": ["jest", "prettier"],
   "extends": [
     "plugin:solid/recommended",
@@ -44,6 +44,18 @@
         "anonymous": "always",
         "named": "never",
         "asyncArrow": "always"
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "args": "all",
+        "argsIgnorePattern": "^_",
+        "caughtErrors": "all",
+        "caughtErrorsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "ignoreRestSiblings": true
       }
     ]
   },
