@@ -36,7 +36,8 @@ const config = {
         moduleName: '@lightningjs/solid',
         generate: 'universal'
       }
-    })
+    }),
+    importChunkUrl()
   ],
   base: './',
   build: {
@@ -84,12 +85,8 @@ const config = {
     },
     testTransformMode: { web: ['/.[jt]sx?$/'] },
     globals: true
-  }
+  },
+  publicDir: '../../shared/public'
 };
 
-export default () => {
-  config.plugins = [...config.plugins, importChunkUrl()];
-  config.publicDir = '../../shared/public';
-
-  return defineConfig(config);
-};
+export default defineConfig(config);
