@@ -16,51 +16,21 @@
  */
 
 import { type Component, createMemo } from 'solid-js';
-import { View, type Effects, type NodeProps } from '@lightningjs/solid';
+import { View } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
-import type { UIComponentProps } from '../../types/interfaces.js';
+import type { Tone } from 'types/types.js';
 import styles from './Artwork.styles.js';
+import type { ArtworkProps } from './Artwork.types.js';
 withPadding;
 
-export interface ArtworkProps extends UIComponentProps {
-  /**
-   * solid color background, will be displayed if no src is provided or
-   * URI is invalid
-   */
-  color?: UIComponentProps['color'];
+const getTone = (props: ArtworkProps) => props.tone ?? styles.tone;
 
-  /**
-   * Handles any blur/gradient/shader effects
-   */
-  effects?: Effects;
-
-  /**
-   * Sets the fallback image that will be shown in if the src request fails
-   */
-  fallbackSrc?: NodeProps['src'];
-
-  /**
-   * Which image will be displayed
-   */
-  src?: NodeProps['src'];
-
-  /**
-   * optional callback that can be used to generate custom strings to request an image. The callback will be passed an object containing the following parameters: aspectRatio, src, w, h. Be default aspect ratio will match the closest value from srcCallbackAspectRatios
-   */
-  srcCallback?: (obj: {
-    closestAspectRatio: string | undefined;
-    aspectRatio: string | undefined;
-    src: string;
-    width: number;
-    height: number;
-  }) => string;
-}
-
-export interface ArtworkStyleProps {}
-
-const formatArtwork = (props: ArtworkProps) => {
-  /* eslint-disable solid/reactivity */ // this is fine, the call is wrapped in a memo
-  let src = props.src ? props.src : props.fallbackSrc;
+const formatSrc = (props: ArtworkProps, tone: Tone) => {
+  let src = //
+    props.src ??
+    props.fallbackSrc ??
+    styles.Container.tones[tone]?.fallbackSrc ??
+    styles.Container.base.fallbackSrc;
 
   if (src && props.srcCallback && typeof props.srcCallback === 'function') {
     src = props.srcCallback({
@@ -74,27 +44,44 @@ const formatArtwork = (props: ArtworkProps) => {
   return src;
 };
 
+const getColor = (props: ArtworkProps, formattedArtwork: string) =>
+  Boolean(formattedArtwork)
+    ? undefined
+    : // using fillColor here because props.color will alter the image
+      props.fillColor ??
+      styles.Container.tones[props.tone ?? styles.tone]?.fillColor ??
+      styles.Container.base.fillColor;
+
+const getLinearGradient = (props: ArtworkProps, tone: Tone) => {
+  const gradientColor =
+    props.gradientColor ?? styles.Container.tones[tone]?.gradientColor ?? styles.Container.base.gradientColor;
+
+  return {
+    colors: [0xff000000, Number(gradientColor)]
+  };
+};
+
 const Artwork: Component<ArtworkProps> = props => {
-  const formattedArtwork = createMemo(() => formatArtwork(props));
+  const tone = createMemo(() => getTone(props));
+  const src = createMemo(() => formatSrc(props, tone()));
+  const color = createMemo(() => getColor(props, src()));
+  const linearGradient = createMemo(() => getLinearGradient(props, tone()));
 
   return (
     <View
       {...props}
-      // only apply color if no src is provided
-      color={
-        Boolean(formattedArtwork())
-          ? undefined
-          : props.color ??
-            styles.Container.tones[props.tone ?? styles.tone]?.fillColor ??
-            styles.Container.base.fillColor
-      }
+      color={color()}
+      linearGradient={linearGradient()}
+      pivotX={props.imageScalePivotX}
+      pivotY={props.imageScalePivotX}
+      scale={props.imageScale}
+      src={src()}
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
-        styles.Container.tones[props.tone || styles.tone],
+        styles.Container.tones[props.tone ?? styles.tone],
         styles.Container.base
       ]}
-      src={formattedArtwork()}
     />
   );
 };
