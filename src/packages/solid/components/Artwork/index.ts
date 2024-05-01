@@ -1,2 +1,3 @@
-export { default as default, type ArtworkProps } from './Artwork.jsx';
-export { default as artworkStyles, type ArtworkStyles } from './Artwork.styles.js';
+export { default as default } from './Artwork.jsx';
+export { default as artworkStyles } from './Artwork.styles.js';
+export type { ArtworkProps, ArtworkStyles } from './Artwork.types.js';
