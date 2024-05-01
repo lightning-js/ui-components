@@ -53,6 +53,9 @@ const getColor = (props: ArtworkProps, formattedArtwork: string) =>
       styles.Container.base.fillColor;
 
 const getLinearGradient = (props: ArtworkProps, tone: Tone) => {
+  if (!props.gradient) {
+    return undefined;
+  }
   const gradientColor =
     props.gradientColor ?? styles.Container.tones[tone]?.gradientColor ?? styles.Container.base.gradientColor;
 
