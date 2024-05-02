@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.14.2...@lightningjs/solid-ui@0.15.0) (2024-05-02)
+
+### Features
+
+- set up storybook ([#128](https://github.com/lightning-js/ui-components/issues/128)) ([cdd8108](https://github.com/lightning-js/ui-components/commit/cdd8108d30102df50b92d3ad986799fc5d1744f8)), closes [#126](https://github.com/lightning-js/ui-components/issues/126)
+
 ## [0.14.2](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.14.1...@lightningjs/solid-ui@0.14.2) (2024-04-30)
 
 ### Bug Fixes
