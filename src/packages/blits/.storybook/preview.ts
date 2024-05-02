@@ -48,7 +48,7 @@ const preview: Preview = {
       default: 'dark'
     }
   },
-  //@ts-ignore
+  //@ts-expect-error custom decorator uses differently typed Story
   decorators: [(Story) => `<div id='app'></div><script>${launchApp(Story())}</script>`]
 };
 

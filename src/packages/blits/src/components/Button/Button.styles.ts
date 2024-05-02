@@ -20,7 +20,9 @@ const styles = {
       },
       tones: {
         brand: {
-          color: '0xbecffe1a',
+          unfocused: {
+            color: '0xbecffe1a',
+          },
           focus: {
             color: '0xf8f7faff',
             contentColor: '0x181819ff',
@@ -30,7 +32,9 @@ const styles = {
           },
         },
         inverse: {
-          color: '0x48474b1a',
+          unfocused: {
+            color: '0x48474b1a',
+          },
           focus: {
             color: '0xffffffff',
             contentColor: '0x181819ff',
@@ -40,6 +44,9 @@ const styles = {
           },
         },
         neutral: {
+          unfocused: {
+            color: '0xffffff1a',
+          },
           focus: {
             color: '0xffffffff',
             contentColor: '0x181819ff',
@@ -108,7 +115,9 @@ const styles = {
       },
       tones: {
         brand: {
-          color: '0x93a9fdff',
+          unfocused: {
+            color: '0x93a9fdff',
+          },
           focus: {
             color: '0x93a9fdff',
           },
@@ -117,7 +126,9 @@ const styles = {
           },
         },
         inverse: {
-          color: '0xf8f7faff',
+          unfocused: {
+            color: '0xf8f7faff',
+          },
           focus: {
             color: '0x181819ff',
           },
@@ -126,6 +137,9 @@ const styles = {
           },
         },
         neutral: {
+          unfocused: {
+            color: '0xf8f7faff',
+          },
           focus: {
             color: '0x181819ff',
           },

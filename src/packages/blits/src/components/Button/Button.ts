@@ -23,9 +23,9 @@ function isValidJustifyContent(v: unknown): v is JustifyContent {
 // no flex in Blits yet so haven't integrated alignment but type is ready for when we need it
 const AlignValues = ['left', 'center', 'right'] as const;
 type Align = typeof AlignValues[number];
-function isValidAlign(v: unknown): v is Align {
-  return typeof v === 'string' && AlignValues.includes(v as Align);
-}
+// function isValidAlign(v: unknown): v is Align {
+//   return typeof v === 'string' && AlignValues.includes(v as Align);
+// }
 
 export type ButtonProps = {
   text: string;
@@ -131,22 +131,10 @@ const Button = Blits.Component('Button', {
   // TODO: type styles - haven't done this yet as we haven't decided on how we're going to do styles yet
   computed: {
     containerColor(): string {
-      if (this.states === 'unfocused') {
-        if (this.tone === 'neutral') return styles.Container.base.color
-        //@ts-ignore
-        return styles.Container.tones[this.tone].color
-      }
-      //@ts-ignore
-      return styles.Container.tones[this.tone][this.states].color
+      return styles.Container.tones[this.tone as Tone][this.states as States].color;
     },
     textColor(): string {
-      if (this.states === 'unfocused') {
-        if (this.tone === 'neutral') return styles.Text.base.color
-        //@ts-ignore
-        return styles.Text.tones[this.tone].color
-      }
-      //@ts-ignore
-      return styles.Text.tones[this.tone][this.states].color
+      return styles.Text.tones[this.tone as Tone][this.states as States].color
     },
   },
 })

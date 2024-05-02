@@ -55,7 +55,7 @@ const meta: Meta<ButtonProps> = {
       }
     }
   },
-  //@ts-ignore custom render method needed to use Blits component
+  //@ts-expect-error custom render method needed to use Blits component
   render: args => ({
     name: 'Button',
     fn: Button,
