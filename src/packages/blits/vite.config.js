@@ -16,29 +16,20 @@
  */
 
 import { defineConfig } from 'vite';
-import solidPlugin from 'vite-plugin-solid';
 import { importChunkUrl } from '@lightningjs/vite-plugin-import-chunk-url';
 import path from 'path';
+import blitsVitePlugins from '@lightningjs/blits/vite'
 
 const config = {
   optimizeDeps: {
     include: [],
     exclude: [
-      '@lightningjs/solid',
-      '@lightningjs/solid-primitives',
+      '@lightningjs/blits',
       '@lightningjs/renderer/core',
       '@lightningjs/renderer/workers/renderer'
     ]
   },
-  plugins: [
-    solidPlugin({
-      solid: {
-        moduleName: '@lightningjs/solid',
-        generate: 'universal'
-      }
-    }),
-    importChunkUrl()
-  ],
+  plugins: [...blitsVitePlugins, importChunkUrl()],
   base: './',
   build: {
     lib: {
@@ -47,7 +38,10 @@ const config = {
       formats: ['es']
     },
     rollupOptions: {
-      external: ['theme', 'solid-js', '@lightningjs/solid', '@lightningjs/solid-primitives']
+      external: [
+        'theme',
+        '@lightningjs/blits'
+      ]
     },
     minify: false,
     sourcemap: true,
@@ -57,8 +51,7 @@ const config = {
     alias: {
       theme: path.resolve(__dirname, '../l3-ui-theme-base/theme.js'),
       utils: path.resolve(__dirname, '../../shared/utils/index.ts')
-    },
-    dedupe: ['solid-js', '@lightningjs/solid']
+    }
   },
   server: {
     hmr: false,
