@@ -54,6 +54,7 @@
     "@storybook/manager-api": "^7.6.17",
     "@storybook/testing-library": "^0.2.2",
     "@storybook/theming": "^7.6.17",
+    "@testing-library/jest-dom": "^6.4.2",
     "@vitest/browser": "^1.5.0",
     "jsdom": "^24.0.0",
     "playwright": "^1.43.1",
@@ -68,6 +69,6 @@
     "vite-plugin-cross-origin-isolation": "^0.1.6",
     "vite-plugin-dts": "^3.8.1",
     "vite-plugin-solid": "^2.10.2",
-    "vitest": "^1.5.0"
+    "vitest": "^1.5.3"
   }
 }
