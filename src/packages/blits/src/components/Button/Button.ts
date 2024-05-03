@@ -1,31 +1,7 @@
 import Blits from '@lightningjs/blits'
 import styles from './Button.styles.ts'
-
-// Type definitions + type guards for Tone/States/JustifyContent
-const ToneValues = ['neutral', 'inverse', 'brand'] as const;
-type Tone = typeof ToneValues[number];
-function isValidTone(v: unknown): v is Tone {
-  return typeof v === 'string' && ToneValues.includes(v as Tone);
-}
-
-const StatesValues = ['focus', 'unfocused', 'disabled'] as const;
-type States = typeof StatesValues[number];
-function isValidState(v: unknown): v is States {
-  return typeof v === 'string' && StatesValues.includes(v as States);
-}
-
-const JustifyContentValues = ['center', 'flexStart', 'flexEnd', 'spaceBetween', 'spaceEvenly'] as const;
-type JustifyContent = typeof JustifyContentValues[number];
-function isValidJustifyContent(v: unknown): v is JustifyContent {
-  return typeof v === 'string' && JustifyContentValues.includes(v as JustifyContent);
-}
-
-// no flex in Blits yet so haven't integrated alignment but type is ready for when we need it
-const AlignValues = ['left', 'center', 'right'] as const;
-type Align = typeof AlignValues[number];
-// function isValidAlign(v: unknown): v is Align {
-//   return typeof v === 'string' && AlignValues.includes(v as Align);
-// }
+import type { Tone, States, JustifyContent, Align } from '../../types/types';
+import {isValidTone, isValidState, isValidJustifyContent} from "../../utils/index.ts";
 
 export type ButtonProps = {
   text: string;
@@ -128,7 +104,6 @@ const Button = Blits.Component('Button', {
       lineHeight: styles.Text.base.lineHeight,
     }
   },
-  // TODO: type styles - haven't done this yet as we haven't decided on how we're going to do styles yet
   computed: {
     containerColor(): string {
       return styles.Container.tones[this.tone as Tone][this.states as States].color;
