@@ -18,12 +18,13 @@
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import Tile from './Tile.jsx';
 import theme from 'theme';
-import Badge from '../Badge/Badge.jsx';
+import Badge, { type BadgeProps } from '../Badge/Badge.jsx';
 import { View } from '@lightningjs/solid';
-import Label from '../Label/Label.jsx';
+import Label, { type LabelProps } from '../Label/Label.jsx';
 import Metadata, { type MetadataProps } from '../Metadata/Metadata.jsx';
-import ProgressBar from '../ProgressBar/ProgressBar.jsx';
-import Checkbox from '../Checkbox/Checkbox.jsx';
+import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
+import Checkbox, { type CheckboxProps } from '../Checkbox/Checkbox.jsx';
+import type { UIComponentProps } from 'types/interfaces.js';
 
 type Story = StoryObj<typeof Tile>;
 /** cspell: disable */
@@ -134,8 +135,10 @@ export const MetadataStandard: Story = {
     return (
       <Tile
         {...args}
-        topLeft={<Badge title="HD" />}
-        topRight={<Label width={75} title="Label" mountX={0.5} />}
+        // @ts-expect-error something's up with the element type
+        topLeft={(props: BadgeProps) => <Badge {...props} title="HD" />}
+        // @ts-expect-error something's up with the element type
+        topRight={(props: LabelProps) => <Label {...props} width={75} title="Label" />}
         inset={
           <View
             src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
@@ -171,8 +174,10 @@ export const TileBadgeLabelSwitch: Story = {
     return (
       <Tile
         {...args}
-        topLeft={<Label width={75} title="Label" />}
-        topRight={<Badge title="HD" />}
+        // @ts-expect-error something's up with the element type
+        topLeft={(props: LabelProps) => <Label {...props} width={75} title="Label" />}
+        // @ts-expect-error something's up with the element type
+        topRight={(props: BadgeProps) => <Badge {...props} title="HD" />}
         inset={
           <View
             src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
@@ -208,14 +213,17 @@ export const TileLogoCheckBoxTop: Story = {
     return (
       <Tile
         {...args}
-        topLeft={
+        // @ts-expect-error something's up with the element type
+        topLeft={(props: UIComponentProps) => (
           <View
+            {...props}
             src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
             width={theme.spacer.lg * 5}
             height={theme.spacer.xxl + theme.spacer.md}
           />
-        }
-        topRight={<Checkbox />}
+        )}
+        // @ts-expect-error something's up with the element type
+        topRight={(props: CheckboxProps) => <Checkbox {...props} />}
         inset={<Metadata {...(args.metadata as MetadataProps)} />}
       />
     );
@@ -252,10 +260,11 @@ export const TileProgressBarTop: Story = {
     return (
       <Tile
         {...args}
-        topLeft={<ProgressBar progress={0.5} width={380} />}
+        // @ts-expect-error something's up with the element type
+        topLeft={(props: ProgressBarProps) => <ProgressBar {...props} progress={0.5} width={380} />}
         inset={
           <>
-            <Metadata {...(args.metadata as MetadataProps)} />
+            <Metadata {...(args.metadata as MetadataProps)} {...props} />
           </>
         }
       />
