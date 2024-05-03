@@ -19,102 +19,110 @@ import { createEffect, createMemo, type Component } from 'solid-js';
 import { View } from '@lightningjs/solid';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import styles from './Wave.styles.js';
-import { createRenderEffect } from "solid-js";
 
 export interface WaveProps extends UIComponentProps {}
 
 const Wave: Component<WaveProps> = (props: WaveProps) => {
 
-  let right, left, center, rightCenter, leftCenter;
+  let right, left, center, rightCenter, leftCenter, Container;
   
   // @ts-expect-error
-  const height = createMemo(() => props.height ?? styles.Container.tones[props.tone ?? styles.tone].height ?? styles.Container.base.height);
+  const maxHeight = createMemo(() => props.height ?? styles.Container.tones[props.tone ?? styles.tone].height ?? styles.Container.base.height);
 
   
   const isAnimating = createMemo(() => props.toggleAnimation);
   
   function startAnimation() {
 
-    // // left animation
-    // left.animate({ height: height()}, { duration: 100 }).start();
-    // left.animate({ height: (height()*2.5)}, { duration: 100, delay: 101}).start();
-    // left.animate({ height: (height()/2)}, { duration: 100, delay: 202 }).start();
-    // left.animate({ height: height()}, { duration: 100, delay: 303 }).start();
+    if (isAnimating()) {
+    // right animation
+    left.chain({ height: (maxHeight()/3)}, { duration: 300})
+    .chain({ height: (maxHeight()/3)}, { duration: 50})
+    .chain({ height: (maxHeight()/2)}, { duration: 300})
+    .chain({ height: (maxHeight()/2)}, { duration: 50})
+    .chain({ height: (maxHeight())}, { duration: 300})
+    .chain({ height: maxHeight()/4}, { duration: 300})
+    .chain({ height: maxHeight()/4}, { duration: 50}).start();
 
-    // center left animation
-    leftCenter.chain({ height: height()/2}, { duration: 100 })
-    .chain({ height: (height()/8/2)}, { duration: 100 })
-    .chain({ height: (height()*1.5/2)}, { duration: 100 })
-    .chain({ height: height()/2}, { duration: 100 }).start();
+    // center left animation 2-
+    leftCenter.chain({ height: (maxHeight()/2)}, { duration: 300})
+    .chain({ height: (maxHeight()/2)}, { duration: 50})
+    .chain({ height: (maxHeight()/3)}, { duration: 300})
+    .chain({ height: (maxHeight()/3)}, { duration: 50})
+    .chain({ height: (maxHeight()/4)}, { duration: 300})
+    .chain({ height: maxHeight()}, { duration: 300})
+    .chain({ height: maxHeight()}, { duration: 50}).start();
 
-    // center animation
-    center.chain({ height: height()*3}, { duration: 100 })
-    .chain({ height: (height()/2*3)}, { duration: 100 })
-    .chain({ height: (height()/3*3)}, { duration: 100 })
-    .chain({ height: height()*3}, { duration: 100 }).start();
+    // // center animation
+    center.chain({ height: maxHeight()}, { duration: 300 })
+    .chain({ height: maxHeight()}, { duration: 50 })
+    .chain({ height: (maxHeight()/4)}, { duration: 300 })
+    .chain({ height: (maxHeight()/4)}, { duration: 50 })
+    .chain({ height: maxHeight()}, { duration: 300 })
+    .chain({ height: (maxHeight())}, { duration: 50 })
+    .chain({ height: (maxHeight()/4)}, { duration: 300 }).start();
 
-    // center right animation
-    rightCenter.chain({ height: height()/2}, { duration: 100 })
-    .chain({ height: (height()/2/2)}, { duration: 100 })
-    .chain({ height: (height()*1.25/2)}, { duration: 100 })
-    .chain({ height: height()/2}, { duration: 100 }).start();
+    // // center right animation
+    rightCenter.chain({ height: (maxHeight()/2)}, { duration: 300})
+    .chain({ height: (maxHeight()/2)}, { duration: 50})
+    .chain({ height: (maxHeight()/3)}, { duration: 300})
+    .chain({ height: (maxHeight()/3)}, { duration: 50})
+    .chain({ height: (maxHeight()/4)}, { duration: 300})
+    .chain({ height: maxHeight()}, { duration: 300})
+    .chain({ height: maxHeight()}, { duration: 50}).start();
 
     // right animation
-    right.chain({ height: height()}, { duration: 100 })
-    .chain({ height: (height()*3)}, { duration: 100 })
-    .chain({ height: (height()*1.5)}, { duration: 100 })
-    .chain({ height: height()}, { duration: 100 }).start();
+    right.chain({ height: (maxHeight()/3)}, { duration: 300})
+    .chain({ height: (maxHeight()/3)}, { duration: 50})
+    .chain({ height: (maxHeight()/2)}, { duration: 300})
+    .chain({ height: (maxHeight()/2)}, { duration: 50})
+    .chain({ height: (maxHeight())}, { duration: 300})
+    .chain({ height: maxHeight()/4}, { duration: 300})
+    .chain({ height: maxHeight()/4}, { duration: 50}).start();
    }
+  }
 
-  //  this.h = this.w * this.style.lockedRatio;
-  //  this._padding = this.w * this.style.lockedPaddingRatio;
-  //  this._left2H = this._right1H = this.h * 2;
-  //  this._middleH = this.h * 3;
-
-  setTimeout(() => 
+  createEffect(() => {
     setInterval(() =>
-    startAnimation(), 390), 1000
-  );
-
-
-  createEffect(
-    () => {
-        left.animate({ height: height()}, { duration: 100, loop: true }).start();
-        left.animate({ height: (height()*2.5)}, { duration: 100, delay: 125, loop: true}).start();
-        left.animate({ height: (height()/2)}, { duration: 100, delay: 250, loop: true }).start();
-        left.animate({ height: height()}, { duration: 100, delay: 375, loop: true }).start();
-    }, props.toggleAnimation
-  );
+      startAnimation(), 1450);
+    }, isAnimating());
 
   return (
-    <View {...props} style={[props.style, styles.Container.tones?.[props.tone ?? styles.tone], styles.Container.base]}>
-    {/* onEnter={startAnimation} */}
+    <View {...props} style={[props.style, styles.Container.tones?.[props.tone ?? styles.tone], styles.Container.base]} ref={Container}>
       {/* Left */}
       <View
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
         ref={left}
+        y={maxHeight()}
+        height={maxHeight()/4}
       ></View>
       {/* Left Center */}
       <View
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
         ref={leftCenter}
+        y={maxHeight()}
+        height={maxHeight()/1.5}
       ></View>
       {/* Center */}
       <View
-
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
         ref={center}
+        y={maxHeight()}
+        height={maxHeight()}
       ></View>
       {/* Right Center */}
       <View
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
         ref={rightCenter}
+        y={maxHeight()}
+        height={maxHeight()/1.5}
       ></View>
       {/* Right */}
       <View
-
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
         ref={right}
+        y={maxHeight()}
+        height={maxHeight()/4}
       ></View>
     </View>
   );

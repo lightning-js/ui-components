@@ -29,11 +29,8 @@ export interface WaveStyles {
 }
 
 type WaveStyleProperties = {
-  backgroundColor?: NodeStyles['color'];
-  duration?:  number;
-  keyframes?: number[];
+  color?: NodeStyles['color'];
   radius?: NodeStyles['borderRadius'];
-  repeat?: number;
   itemSpacing?: NodeStyles['itemSpacing'];
 }
 
@@ -41,18 +38,19 @@ type WaveConfig = ComponentStyleConfig<WaveStyleProperties>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Wave: { defaultTone, ...waveThemeStyles } = { styles: {} } } = theme?.componentConfig;
+/* @ts-expect-error next-line see above */
+const { Surface: { surfaceDefaultTone, ...surfaceThemeStyles } = { styles: {} } } = theme?.componentConfig;
 
 const container: WaveConfig = {
   themeKeys: {
-    borderRadius: 'radius',
-    color: 'backgroundColor',
     gap: 'itemSpacing',
   },
   base: {
     gap: theme.spacer.sm,
     flexDirection: 'row',
     display: 'flex',
-    height: theme.spacer.sm * 5
+    height: theme.spacer.sm * 7 ,
+    width: theme.spacer.sm * 10,
   },
   modes: {
     focus: {},
@@ -63,27 +61,29 @@ const container: WaveConfig = {
     brand: {}
   },
   // TODO: figure out checked state
-  themeStyles: waveThemeStyles
+  themeStyles: {
+    ...surfaceThemeStyles,
+    ...waveThemeStyles
+  }
 };
 
 const rectangles: WaveConfig = {
   themeKeys: {
     borderRadius: 'radius',
-    color: 'backgroundColor',
-    gap: 'itemSpacing',
+    color: 'color',
   },
   base: {
     width: theme.spacer.sm,
-    height: 100,
     color: theme.color.fillNeutral,
+    mountY: 0.5,
   },
   modes: {
     focus: {},
     disabled: {}
   },
   tones: {
-    inverse: {},
-    brand: {}
+    inverse: {color: theme.color.fillInverse},
+    brand: {color: theme.color.fillBrand}
   },
   // TODO: figure out checked state
   themeStyles: waveThemeStyles

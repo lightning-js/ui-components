@@ -37,6 +37,10 @@ const meta = {
         defaultValue: { summary: 'neutral' }
       }
     },
+    toggleAnimation: {
+        description: 'Toggles animation on and off',
+        control: 'boolean'
+      }
   }
 };
 

@@ -96,7 +96,7 @@ const content: ButtonConfig = {
     color: 'contentColor'
   },
   base: {
-    color: theme.color.textNeutral
+    color: theme.color.textNeutral,
   },
   modes: {
     focus: {
