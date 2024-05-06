@@ -16,27 +16,8 @@
  */
 
 import theme from 'theme';
-import { type NodeStyles } from '@lightningjs/solid';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-
-export interface BadgeStyles {
-  tone: Tone;
-  Container: NodeStyleSet<{ padding: number[] }>;
-  Icon: NodeStyleSet;
-  Text: TextStyleSet;
-}
-
-type BadgeStyleProperties = Partial<{
-  backgroundColor: NodeStyles['color'];
-  textColor: NodeStyles['color'];
-  iconColor: NodeStyles['color'];
-  strokeColor: NodeStyles['color']; // TODO do we use this?
-  borderColor: NodeStyles['color'];
-}>;
-
-type BadgeConfig = ComponentStyleConfig<BadgeStyleProperties>;
+import type { BadgeConfig, BadgeStyles } from './Badge.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Badge: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;

@@ -14,5 +14,6 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-export { default as default, type BadgeProps } from './Badge.jsx';
-export { default as badgeStyles, type BadgeStyles } from './Badge.styles.js';
+export { default as default } from './Badge.jsx';
+export { default as badgeStyles } from './Badge.styles.js';
+export type { BadgeProps, BadgeStyles } from './Badge.types.js';

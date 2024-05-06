@@ -14,39 +14,30 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import { type Component } from 'solid-js';
-import { Text, type TextProps } from '@lightningjs/solid';
-import { withPadding } from '../../utils/index.js';
-import type { UIComponentProps } from '../../types/interfaces.js';
+import { createMemo, type Component } from 'solid-js';
+import { Text } from '@lightningjs/solid';
+import { withPadding } from '@lightningjs/solid-primitives';
 import styles from './Badge.styles.js';
+import type { BadgeProps } from './Badge.types.js';
 withPadding; // Preserve the import.
 
-interface BadgeProps extends UIComponentProps {
-  /**
-   * Badge text
-   */
-  title: TextProps['children'];
+const getTone = (props: BadgeProps) => props.tone ?? styles.tone;
 
-  padding?: number[];
-}
+const getTitle = (title: string | string[]) => title ?? '';
 
-interface BadgeContainerProps extends UIComponentProps {
-  padding?: number[];
-}
+const BadgeContainer: Component<BadgeProps> = props => {
+  const tone = createMemo(() => getTone(props));
 
-const BadgeContainer: Component<BadgeContainerProps> = props => {
   return (
     <node
       use:withPadding={
-        props.padding ??
-        styles.Container?.tones[props.tone ?? styles.tone]?.padding ??
-        styles.Container.base.padding
+        props.padding ?? styles.Container?.tones[tone()]?.padding ?? styles.Container.base.padding
       }
       {...props}
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
-        styles.Container.tones[props.tone || styles.tone],
+        styles.Container.tones[tone()],
         styles.Container.base
       ]}
       forwardStates
@@ -55,19 +46,22 @@ const BadgeContainer: Component<BadgeContainerProps> = props => {
 };
 
 const Badge: Component<BadgeProps> = (props: BadgeProps) => {
+  const tone = createMemo(() => getTone(props));
+  const title = createMemo(() => getTitle(props.title));
+
   return (
-    <BadgeContainer padding={props.padding} tone={props.tone} style={props.style}>
+    <BadgeContainer padding={props.padding} tone={tone()} style={props.style}>
       <Text
         style={[
-          styles.Text.tones[props.tone ?? styles.tone], //
+          styles.Text.tones[tone()], //
           styles.Text.base
         ]}
-        tone={props.tone || styles.tone}
+        tone={props.tone ?? styles.tone}
       >
-        {props.title}
+        {title()}
       </Text>
     </BadgeContainer>
   );
 };
 
-export { Badge as default, BadgeContainer, type BadgeProps, type BadgeContainerProps };
+export { Badge as default, BadgeContainer };
