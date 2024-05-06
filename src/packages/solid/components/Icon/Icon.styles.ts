@@ -19,7 +19,6 @@ import theme from 'theme';
 import { makeComponentStyles } from '../../utils/index.js';
 import type { IconConfig, IconStyles } from './Icon.types.js';
 
-
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Icon: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
