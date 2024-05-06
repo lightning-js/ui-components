@@ -15,6 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import Wave from './Wave.jsx';
+import type { WaveProps } from './Wave.types.js';
 
 const meta = {
   title: 'Components/Wave',
@@ -38,16 +39,15 @@ const meta = {
       }
     },
     toggleAnimation: {
-        description: 'Toggles animation on and off',
-        control: 'boolean'
-      }
+      description: 'Toggles animation on and off',
+      control: 'boolean'
+    }
   }
 };
 
 export default meta;
 
 export const Basic = {
-  render: args => <Wave autofocus {...args} />,
-  args: {
-  }
+  render: (args: WaveProps) => <Wave autofocus {...args} />,
+  args: {}
 };

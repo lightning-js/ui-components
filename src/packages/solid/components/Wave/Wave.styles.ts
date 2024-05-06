@@ -15,26 +15,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { BorderStyleObject, NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-import type { Color } from 'types';
-
-export interface WaveStyles {
-  tone: Tone;
-  Container: NodeStyleSet;
-  Rectangles: NodeStyleSet;
-}
-
-type WaveStyleProperties = {
-  color?: NodeStyles['color'];
-  radius?: NodeStyles['borderRadius'];
-  itemSpacing?: NodeStyles['itemSpacing'];
-}
-
-type WaveConfig = ComponentStyleConfig<WaveStyleProperties>;
+import type { WaveConfig, WaveStyles } from './Wave.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Wave: { defaultTone, ...waveThemeStyles } = { styles: {} } } = theme?.componentConfig;
@@ -43,14 +26,14 @@ const { Surface: { surfaceDefaultTone, ...surfaceThemeStyles } = { styles: {} } 
 
 const container: WaveConfig = {
   themeKeys: {
-    gap: 'itemSpacing',
+    gap: 'itemSpacing'
   },
   base: {
     gap: theme.spacer.sm,
     flexDirection: 'row',
     display: 'flex',
-    height: theme.spacer.sm * 7 ,
-    width: theme.spacer.sm * 10,
+    height: theme.spacer.sm * 7,
+    width: theme.spacer.sm * 10
   },
   modes: {
     focus: {},
@@ -70,30 +53,35 @@ const container: WaveConfig = {
 const rectangles: WaveConfig = {
   themeKeys: {
     borderRadius: 'radius',
-    color: 'color',
+    color: 'color'
   },
   base: {
     width: theme.spacer.sm,
+    // @ts-expect-error colors can be strings but type expects numbers
     color: theme.color.fillNeutral,
-    mountY: 0.5,
+    mountY: 0.5
   },
   modes: {
     focus: {},
     disabled: {}
   },
   tones: {
-    inverse: {color: theme.color.fillInverse},
-    brand: {color: theme.color.fillBrand}
+    // @ts-expect-error colors can be strings but type expects numbers
+    inverse: { color: theme.color.fillInverse },
+    // @ts-expect-error colors can be strings but type expects numbers
+    brand: { color: theme.color.fillBrand }
   },
-  // TODO: figure out checked state
-  themeStyles: waveThemeStyles
+  themeStyles: {
+    ...surfaceThemeStyles,
+    ...waveThemeStyles
+  }
 };
 
 const Container = makeComponentStyles<WaveStyles['Container']>(container);
 const Rectangles = makeComponentStyles<WaveStyles['Rectangles']>(rectangles);
 
 const styles: WaveStyles = {
-  tone: defaultTone || 'neutral',
+  tone: defaultTone || surfaceDefaultTone || 'neutral',
   Container,
   Rectangles
 };

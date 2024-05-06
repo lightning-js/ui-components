@@ -17,113 +17,142 @@
 
 import { createEffect, createMemo, type Component } from 'solid-js';
 import { View } from '@lightningjs/solid';
-import type { UIComponentProps } from '../../types/interfaces.js';
 import styles from './Wave.styles.js';
-
-export interface WaveProps extends UIComponentProps {}
+import type { ElementNode } from '@lightningjs/solid';
+import type { WaveProps } from './Wave.types.js';
 
 const Wave: Component<WaveProps> = (props: WaveProps) => {
+  let right: ElementNode,
+    left: ElementNode,
+    center: ElementNode,
+    rightCenter: ElementNode,
+    leftCenter: ElementNode;
 
-  let right, left, center, rightCenter, leftCenter, Container;
-  
-  // @ts-expect-error
-  const maxHeight = createMemo(() => props.height ?? styles.Container.tones[props.tone ?? styles.tone].height ?? styles.Container.base.height);
+  const maxHeight = createMemo(
+    () =>
+      props.height ??
+      // @ts-expect-error defaults to base height if undefined
+      styles.Container.tones[props.tone ?? styles.tone]?.height ??
+      // @ts-expect-error styles height is a number and valid
+      styles.Container.base.height
+  );
 
-  
   const isAnimating = createMemo(() => props.toggleAnimation);
-  
+
   function startAnimation() {
+    if (isAnimating() && left && leftCenter && center && rightCenter && right) {
+      // left animation
+      left
+        .chain({ height: maxHeight() / 3 }, { duration: 300 })
+        .chain({ height: maxHeight() / 3 }, { duration: 50 })
+        .chain({ height: maxHeight() / 2 }, { duration: 300 })
+        .chain({ height: maxHeight() / 2 }, { duration: 50 })
+        .chain({ height: maxHeight() }, { duration: 300 })
+        .chain({ height: maxHeight() / 4 }, { duration: 300 })
+        .chain({ height: maxHeight() / 4 }, { duration: 50 })
+        .start();
 
-    if (isAnimating()) {
-    // right animation
-    left.chain({ height: (maxHeight()/3)}, { duration: 300})
-    .chain({ height: (maxHeight()/3)}, { duration: 50})
-    .chain({ height: (maxHeight()/2)}, { duration: 300})
-    .chain({ height: (maxHeight()/2)}, { duration: 50})
-    .chain({ height: (maxHeight())}, { duration: 300})
-    .chain({ height: maxHeight()/4}, { duration: 300})
-    .chain({ height: maxHeight()/4}, { duration: 50}).start();
+      // center left animation
+      leftCenter
+        .chain({ height: maxHeight() / 2 }, { duration: 300 })
+        .chain({ height: maxHeight() / 2 }, { duration: 50 })
+        .chain({ height: maxHeight() / 3 }, { duration: 300 })
+        .chain({ height: maxHeight() / 3 }, { duration: 50 })
+        .chain({ height: maxHeight() / 4 }, { duration: 300 })
+        .chain({ height: maxHeight() }, { duration: 300 })
+        .chain({ height: maxHeight() }, { duration: 50 })
+        .start();
 
-    // center left animation 2-
-    leftCenter.chain({ height: (maxHeight()/2)}, { duration: 300})
-    .chain({ height: (maxHeight()/2)}, { duration: 50})
-    .chain({ height: (maxHeight()/3)}, { duration: 300})
-    .chain({ height: (maxHeight()/3)}, { duration: 50})
-    .chain({ height: (maxHeight()/4)}, { duration: 300})
-    .chain({ height: maxHeight()}, { duration: 300})
-    .chain({ height: maxHeight()}, { duration: 50}).start();
+      // center animation
+      center
+        .chain({ height: maxHeight() }, { duration: 300 })
+        .chain({ height: maxHeight() }, { duration: 50 })
+        .chain({ height: maxHeight() / 4 }, { duration: 300 })
+        .chain({ height: maxHeight() / 4 }, { duration: 50 })
+        .chain({ height: maxHeight() }, { duration: 300 })
+        .chain({ height: maxHeight() }, { duration: 50 })
+        .chain({ height: maxHeight() / 4 }, { duration: 300 })
+        .start();
 
-    // // center animation
-    center.chain({ height: maxHeight()}, { duration: 300 })
-    .chain({ height: maxHeight()}, { duration: 50 })
-    .chain({ height: (maxHeight()/4)}, { duration: 300 })
-    .chain({ height: (maxHeight()/4)}, { duration: 50 })
-    .chain({ height: maxHeight()}, { duration: 300 })
-    .chain({ height: (maxHeight())}, { duration: 50 })
-    .chain({ height: (maxHeight()/4)}, { duration: 300 }).start();
+      // center right animation
+      rightCenter
+        .chain({ height: maxHeight() / 2 }, { duration: 300 })
+        .chain({ height: maxHeight() / 2 }, { duration: 50 })
+        .chain({ height: maxHeight() / 3 }, { duration: 300 })
+        .chain({ height: maxHeight() / 3 }, { duration: 50 })
+        .chain({ height: maxHeight() / 4 }, { duration: 300 })
+        .chain({ height: maxHeight() }, { duration: 300 })
+        .chain({ height: maxHeight() }, { duration: 50 })
+        .start();
 
-    // // center right animation
-    rightCenter.chain({ height: (maxHeight()/2)}, { duration: 300})
-    .chain({ height: (maxHeight()/2)}, { duration: 50})
-    .chain({ height: (maxHeight()/3)}, { duration: 300})
-    .chain({ height: (maxHeight()/3)}, { duration: 50})
-    .chain({ height: (maxHeight()/4)}, { duration: 300})
-    .chain({ height: maxHeight()}, { duration: 300})
-    .chain({ height: maxHeight()}, { duration: 50}).start();
-
-    // right animation
-    right.chain({ height: (maxHeight()/3)}, { duration: 300})
-    .chain({ height: (maxHeight()/3)}, { duration: 50})
-    .chain({ height: (maxHeight()/2)}, { duration: 300})
-    .chain({ height: (maxHeight()/2)}, { duration: 50})
-    .chain({ height: (maxHeight())}, { duration: 300})
-    .chain({ height: maxHeight()/4}, { duration: 300})
-    .chain({ height: maxHeight()/4}, { duration: 50}).start();
-   }
+      // right animation
+      right
+        .chain({ height: maxHeight() / 3 }, { duration: 300 })
+        .chain({ height: maxHeight() / 3 }, { duration: 50 })
+        .chain({ height: maxHeight() / 2 }, { duration: 300 })
+        .chain({ height: maxHeight() / 2 }, { duration: 50 })
+        .chain({ height: maxHeight() }, { duration: 300 })
+        .chain({ height: maxHeight() / 4 }, { duration: 300 })
+        .chain({ height: maxHeight() / 4 }, { duration: 50 })
+        .start();
+    }
   }
 
   createEffect(() => {
-    setInterval(() =>
-      startAnimation(), 1450);
-    }, isAnimating());
+    setInterval(() => startAnimation(), 1450);
+  });
 
   return (
-    <View {...props} style={[props.style, styles.Container.tones?.[props.tone ?? styles.tone], styles.Container.base]} ref={Container}>
+    <View
+      {...props}
+      // @ts-expect-error TODO type needs to be fixed in framework
+      style={[props.style, styles.Container.tones?.[props.tone ?? styles.tone], styles.Container.base]}
+    >
       {/* Left */}
       <View
+        // @ts-expect-error TODO type needs to be fixed in framework
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
+        /* @ts-expect-error check in place */
         ref={left}
         y={maxHeight()}
-        height={maxHeight()/4}
-      ></View>
+        height={maxHeight() / 4}
+      />
       {/* Left Center */}
       <View
+        // @ts-expect-error TODO type needs to be fixed in framework
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
+        /* @ts-expect-error check in place */
         ref={leftCenter}
         y={maxHeight()}
-        height={maxHeight()/1.5}
-      ></View>
+        height={maxHeight() / 1.5}
+      />
       {/* Center */}
       <View
+        // @ts-expect-error TODO type needs to be fixed in framework
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
+        /* @ts-expect-error check in place */
         ref={center}
         y={maxHeight()}
         height={maxHeight()}
-      ></View>
+      />
       {/* Right Center */}
       <View
+        // @ts-expect-error TODO type needs to be fixed in framework
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
+        /* @ts-expect-error check in place */
         ref={rightCenter}
         y={maxHeight()}
-        height={maxHeight()/1.5}
-      ></View>
+        height={maxHeight() / 1.5}
+      />
       {/* Right */}
       <View
+        // @ts-expect-error TODO type needs to be fixed in framework
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
+        /* @ts-expect-error check in place */
         ref={right}
         y={maxHeight()}
-        height={maxHeight()/4}
-      ></View>
+        height={maxHeight() / 4}
+      />
     </View>
   );
 };
