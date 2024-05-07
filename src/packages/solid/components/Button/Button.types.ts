@@ -11,13 +11,38 @@ export interface ButtonContainerProps extends UIComponentProps {
 }
 
 export interface ButtonStyleProperties {
+  /**
+   * solid color background of badge
+   *
+   * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
+   */
   backgroundColor?: NodeStyles['color'];
-  radius?: NodeStyles['borderRadius'];
+  /**
+   * color of content in button
+   *
+   * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
+   */
   contentColor?: NodeStyles['color'];
+  /**
+   * where the content is aligned within the button
+   */
   justifyContent?: NodeStyles['justifyContent'];
+  /**
+   * where the text is aligned within the button
+   */
   textAlign?: TextStyles['textAlign'];
+  /**
+   * color of text in button
+   *
+   * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
+   */
   textColor?: TextStyles['color'];
   padding?: number[];
+
+  /**
+   * corner radius of badge
+   */
+  radius?: NodeStyles['borderRadius'];
 }
 
 export interface ButtonStyles {
