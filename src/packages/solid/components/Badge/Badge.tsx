@@ -40,6 +40,11 @@ const BadgeContainer: Component<BadgeProps> = props => {
         styles.Container.tones[tone()],
         styles.Container.base
       ]}
+      borderColor={props.strokeColor} // TODO clew uses strokeColor, but we currently don't account for nested properties (border.color)
+      borderWidth={props.strokeWidth} // TODO clew uses strokeWidth, but we currently don't account for nested properties (border.width)
+      color={props.backgroundColor}
+      itemSpacing={props.contentSpacing}
+      borderRadius={props.radius}
       forwardStates
     />
   );
@@ -50,8 +55,9 @@ const Badge: Component<BadgeProps> = (props: BadgeProps) => {
   const title = createMemo(() => getTitle(props.title));
 
   return (
-    <BadgeContainer padding={props.padding} tone={tone()} style={props.style}>
+    <BadgeContainer {...props} padding={props.padding} tone={tone()} style={props.style}>
       <Text
+        color={props.textColor}
         style={[
           styles.Text.tones[tone()], //
           styles.Text.base

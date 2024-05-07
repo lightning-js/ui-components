@@ -26,7 +26,7 @@ const container: BadgeConfig = {
   themeKeys: {
     color: 'backgroundColor',
     borderRadius: 'radius',
-    gap: 'itemSpacing'
+    gap: 'contentSpacing'
   },
   base: {
     color: theme.color.fillInverseSecondary,
