@@ -16,38 +16,28 @@
  */
 
 import type { Component } from 'solid-js';
-import { View, type NodeProps } from '@lightningjs/solid';
-import type { UIComponentProps } from '../../types/interfaces.js';
+import { View } from '@lightningjs/solid';
 import styles from './Checkbox.styles.js';
 import Icon from '../Icon/Icon.jsx';
-const check = '/assets/images/check-icon.png';
+import type { CheckboxProps } from './Checkbox.types.js';
 
-export interface CheckboxProps extends UIComponentProps {
-  /**
-   * Indicates whether the checkbox is checked or unchecked.
-   * Setting this to `true` will check the checkbox, and setting it to `false` will uncheck it.
-   */
-  checked?: boolean;
-  children?: NodeProps['children'];
-}
+const check = '/assets/images/check-icon.png';
 
 const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
   return (
     <View
-      forwardStates
       {...props}
-      // @ts-expect-error TODO type needs to be fixed in framework
-      style={[
-        props.style, //
-        styles.Container.tones[props.tone ?? styles.tone],
-        styles.Container.base
-      ]}
+      borderRadius={props.radius}
       states={{ checked: props.checked }}
+      color={props.backgroundColor}
       children={
         props.checked
           ? props.children || (
               <Icon
                 src={check}
+                color={props.strokeColor}
+                width={props.checkWidth}
+                height={props.checkHeight}
                 style={[
                   styles.Icon.tones[props.tone || styles.tone], //
                   styles.Icon.base
@@ -56,6 +46,13 @@ const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
             )
           : ''
       }
+      // @ts-expect-error TODO type needs to be fixed in framework
+      style={[
+        props.style, //
+        styles.Container.tones[props.tone ?? styles.tone],
+        styles.Container.base
+      ]}
+      forwardStates
     />
   );
 };

@@ -15,29 +15,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-import type { IconConfig, IconStyles } from '../Icon/Icon.types.js';
+import type { CheckboxStyles, CheckboxConfig } from './Checkbox.types.js';
 
-export interface CheckboxStyles {
-  tone: Tone;
-  Container: NodeStyleSet;
-  Icon: NodeStyleSet;
-}
-
-export type CheckboxStyleProperties = {
-  color?: NodeStyles['color'];
-  borderRadius?: NodeStyles['borderRadius'];
-  border?: NodeStyles['border'];
-  justifyContent?: NodeStyles['justifyContent'];
-};
-
-type CheckboxModes = 'checked' | 'focus' | 'disabled';
-
-type CheckboxConfig = ComponentStyleConfig<CheckboxStyleProperties, CheckboxModes>;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Checkbox: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
@@ -46,8 +27,8 @@ const size = theme.spacer.xxl;
 
 const container: CheckboxConfig = {
   themeKeys: {
-    color: 'color',
-    borderRadius: 'borderRadius',
+    color: 'backgroundColor',
+    borderRadius: 'radius',
     border: 'border',
     justifyContent: 'justifyContent'
   },
@@ -123,9 +104,11 @@ const container: CheckboxConfig = {
   themeStyles
 };
 
-const icon: IconConfig = {
+const icon: CheckboxConfig = {
   themeKeys: {
-    color: 'color'
+    color: 'strokeColor',
+    width: 'checkWidth',
+    height: 'checkHeight'
   },
   base: {
     width: theme.spacer.lg,
@@ -147,7 +130,8 @@ const icon: IconConfig = {
 };
 
 const Container = makeComponentStyles<CheckboxStyles['Container']>(container);
-const Icon = makeComponentStyles<IconStyles['Container']>(icon);
+const Icon = makeComponentStyles<CheckboxStyles['Icon']>(icon);
+
 const styles: CheckboxStyles = {
   tone: defaultTone || 'neutral',
   Container,
