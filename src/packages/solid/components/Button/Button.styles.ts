@@ -35,7 +35,8 @@ const container: ButtonConfig = {
     textAlign: 'textAlign',
     borderRadius: 'radius',
     color: 'backgroundColor',
-    justifyContent: 'justifyContent'
+    justifyContent: 'justify',
+    itemSpacing: 'contentSpacing'
   },
   base: {
     height: theme.typography.button1.lineHeight + theme.spacer.xl * 2,

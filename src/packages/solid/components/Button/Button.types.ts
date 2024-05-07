@@ -2,11 +2,11 @@ import type { NodeProps, NodeStyles, TextProps, TextStyles } from '@lightningjs/
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet, Tone } from 'types/types.js';
 import type { UIComponentProps } from 'types/interfaces.js';
 
-export interface ButtonProps extends UIComponentProps {
+export interface ButtonProps extends UIComponentProps, ButtonStyleProperties {
   children: TextProps['children'];
 }
 
-export interface ButtonContainerProps extends UIComponentProps {
+export interface ButtonContainerProps extends UIComponentProps, ButtonStyleProperties {
   children: NodeProps['children'];
 }
 
@@ -24,13 +24,18 @@ export interface ButtonStyleProperties {
    */
   contentColor?: NodeStyles['color'];
   /**
+   * Padding between title and prefix/suffix
+   */
+  contentSpacing?: number;
+  /**
    * where the content is aligned within the button
    */
-  justifyContent?: NodeStyles['justifyContent'];
+  justify?: NodeStyles['justifyContent'];
   /**
    * where the text is aligned within the button
    */
   textAlign?: TextStyles['textAlign'];
+
   /**
    * color of text in button
    *

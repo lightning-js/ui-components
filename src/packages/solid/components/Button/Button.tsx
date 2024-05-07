@@ -22,17 +22,10 @@ import type { ButtonContainerProps, ButtonProps } from './Button.types.js';
 
 const Button: Component<ButtonProps> = props => {
   return (
-    <View
-      {...props}
-      // @ts-expect-error TODO type needs to be fixed in framework
-      style={[
-        props.style, //
-        styles.Container.tones?.[props.tone ?? styles.tone],
-        styles.Container.base
-      ]}
-      forwardStates
-    >
+    <ButtonContainer {...props} forwardStates>
       <Text
+        textAlign={props.textAlign}
+        color={props.textColor}
         style={[
           styles.Text.tones[props.tone ?? styles.tone], //
           styles.Text.base
@@ -40,7 +33,7 @@ const Button: Component<ButtonProps> = props => {
       >
         {props.children}
       </Text>
-    </View>
+    </ButtonContainer>
   );
 };
 
@@ -48,6 +41,10 @@ const ButtonContainer: Component<ButtonContainerProps> = props => {
   return (
     <View
       {...props}
+      color={props.backgroundColor}
+      contentColor={props.contentColor}
+      justifyContent={props.justify}
+      itemSpacing={props.contentSpacing}
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
