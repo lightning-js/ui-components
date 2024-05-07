@@ -97,8 +97,8 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
   }
 
   createEffect(() => {
-    // currently hardcoded to 1450ms to match the animation duration + 100 ms for buffer
-    setInterval(() => startAnimation(), 1450);
+    // currently hardcoded to 1450ms to match the animation duration + 75 ms for buffer
+    setInterval(() => startAnimation(), 1425);
   });
 
   return (

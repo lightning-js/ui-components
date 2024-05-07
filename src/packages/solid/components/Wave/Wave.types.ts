@@ -2,7 +2,9 @@ import type { NodeStyles } from '@lightningjs/solid';
 import type { ComponentStyleConfig, NodeStyleSet, Tone } from '../../types/types.js';
 import type { UIComponentProps } from '../../types/interfaces.js';
 
-export interface WaveProps extends UIComponentProps {}
+export interface WaveProps extends UIComponentProps {
+  toggleAnimation?: boolean;
+}
 
 export interface WaveStyleProperties {
   color?: NodeStyles['color'];
