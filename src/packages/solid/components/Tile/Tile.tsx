@@ -17,7 +17,7 @@
 
 import { type Component, createSignal } from 'solid-js';
 import { Show, type NodeProps, View } from '@lightningjs/solid';
-import { withPadding } from '@lightningjs/solid-primitives';
+import { withPadding } from '../../utils/index.js';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import Artwork from '../Artwork/Artwork.jsx';
 import type { ArtworkProps } from '../Artwork/Artwork.types.js';
