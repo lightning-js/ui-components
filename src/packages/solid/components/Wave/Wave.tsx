@@ -111,53 +111,52 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
     >
       {/* Left */}
       <View
-        // @ts-expect-error TODO type needs to be fixed in framework
-        style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
         ref={left}
         color={props.color}
         borderRadius={props.radius}
         y={maxHeight()}
         height={maxHeight() / 4}
+        // @ts-expect-error TODO type needs to be fixed in framework
+        style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
       />
       {/* Left Center */}
       <View
-        // @ts-expect-error TODO type needs to be fixed in framework
-        style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
         ref={leftCenter}
         color={props.color}
         borderRadius={props.radius}
         y={maxHeight()}
         height={maxHeight() / 1.5}
+        // @ts-expect-error TODO type needs to be fixed in framework
+        style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
       />
       {/* Center */}
       <View
-        // @ts-expect-error TODO type needs to be fixed in framework
-        style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
         ref={center}
         color={props.color}
         borderRadius={props.radius}
         y={maxHeight()}
         height={maxHeight()}
+        // @ts-expect-error TODO type needs to be fixed in framework
+        style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
       />
       {/* Right Center */}
       <View
-        // @ts-expect-error TODO type needs to be fixed in framework
-        style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
         ref={rightCenter}
         color={props.color}
         borderRadius={props.radius}
         y={maxHeight()}
         height={maxHeight() / 1.5}
+        // @ts-expect-error TODO type needs to be fixed in framework
+        style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
       />
       {/* Right */}
       <View
-        // @ts-expect-error TODO type needs to be fixed in framework
-        style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
-        ref={right}
         color={props.color}
         borderRadius={props.radius}
         y={maxHeight()}
         height={maxHeight() / 4}
+        // @ts-expect-error TODO type needs to be fixed in framework
+        style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
       />
     </View>
   );
