@@ -24,7 +24,9 @@ const { Badge: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.
 
 const container: BadgeConfig = {
   themeKeys: {
-    color: 'backgroundColor'
+    color: 'backgroundColor',
+    borderRadius: 'radius',
+    gap: 'itemSpacing'
   },
   base: {
     color: theme.color.fillInverseSecondary,
@@ -33,6 +35,7 @@ const container: BadgeConfig = {
       color: theme.color.strokeInverse,
       width: theme.stroke.sm
     },
+    gap: theme.spacer.xs,
     display: 'flex',
     justifyContent: 'spaceEvenly',
     padding: [

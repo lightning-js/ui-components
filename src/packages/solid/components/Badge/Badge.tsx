@@ -22,17 +22,17 @@ import type { BadgeProps } from './Badge.types.js';
 withPadding; // Preserve the import.
 
 const getTone = (props: BadgeProps) => props.tone ?? styles.tone;
-
 const getTitle = (title: string | string[]) => title ?? '';
+const getPadding = (props: BadgeProps, tone: string) =>
+  props.padding ?? styles.Container?.tones[tone]?.padding ?? styles.Container.base.padding;
 
 const BadgeContainer: Component<BadgeProps> = props => {
   const tone = createMemo(() => getTone(props));
+  const padding = createMemo(() => getPadding(props, tone()));
 
   return (
     <node
-      use:withPadding={
-        props.padding ?? styles.Container?.tones[tone()]?.padding ?? styles.Container.base.padding
-      }
+      use:withPadding={padding()}
       {...props}
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[
@@ -56,7 +56,7 @@ const Badge: Component<BadgeProps> = (props: BadgeProps) => {
           styles.Text.tones[tone()], //
           styles.Text.base
         ]}
-        tone={props.tone ?? styles.tone}
+        tone={tone()}
       >
         {title()}
       </Text>
