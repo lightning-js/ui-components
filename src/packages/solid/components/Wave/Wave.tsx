@@ -104,6 +104,8 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
   return (
     <View
       {...props}
+      color={undefined}
+      itemSpacing={props.itemSpacing}
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[props.style, styles.Container.tones?.[props.tone ?? styles.tone], styles.Container.base]}
     >
@@ -112,6 +114,8 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
         // @ts-expect-error TODO type needs to be fixed in framework
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
         ref={left}
+        color={props.color}
+        borderRadius={props.radius}
         y={maxHeight()}
         height={maxHeight() / 4}
       />
@@ -120,6 +124,8 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
         // @ts-expect-error TODO type needs to be fixed in framework
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
         ref={leftCenter}
+        color={props.color}
+        borderRadius={props.radius}
         y={maxHeight()}
         height={maxHeight() / 1.5}
       />
@@ -128,6 +134,8 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
         // @ts-expect-error TODO type needs to be fixed in framework
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
         ref={center}
+        color={props.color}
+        borderRadius={props.radius}
         y={maxHeight()}
         height={maxHeight()}
       />
@@ -136,6 +144,8 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
         // @ts-expect-error TODO type needs to be fixed in framework
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
         ref={rightCenter}
+        color={props.color}
+        borderRadius={props.radius}
         y={maxHeight()}
         height={maxHeight() / 1.5}
       />
@@ -144,6 +154,8 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
         // @ts-expect-error TODO type needs to be fixed in framework
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
         ref={right}
+        color={props.color}
+        borderRadius={props.radius}
         y={maxHeight()}
         height={maxHeight() / 4}
       />

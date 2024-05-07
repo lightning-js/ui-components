@@ -19,14 +19,22 @@ import type { NodeStyles } from '@lightningjs/solid';
 import type { ComponentStyleConfig, NodeStyleSet, Tone } from '../../types/types.js';
 import type { UIComponentProps } from '../../types/interfaces.js';
 
-export interface WaveProps extends UIComponentProps {
+export interface WaveProps extends UIComponentProps, WaveStyleProperties {
   toggleAnimation?: boolean;
 }
 
 export interface WaveStyleProperties {
+  /**
+   * color of each rectangle in the wave
+   *
+   * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
+   */
   color?: NodeStyles['color'];
-  radius?: NodeStyles['borderRadius'];
+  /**
+   * spacing between each rectangle in the wave
+   */
   itemSpacing?: NodeStyles['itemSpacing'];
+  radius?: NodeStyles['borderRadius'];
 }
 
 export interface WaveStyles {
