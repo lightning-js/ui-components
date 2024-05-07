@@ -20,7 +20,7 @@ import { makeComponentStyles } from '../../utils/index.js';
 import type { BadgeConfig, BadgeStyles } from './Badge.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Badge: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
+const { Badge: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme.componentConfig;
 
 const container: BadgeConfig = {
   themeKeys: {

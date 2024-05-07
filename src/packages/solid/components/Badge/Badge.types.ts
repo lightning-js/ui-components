@@ -10,11 +10,42 @@ export interface BadgeProps extends UIComponentProps, BadgeStyleProperties {
 }
 
 export type BadgeStyleProperties = Partial<{
+  /**
+   * solid color background of badge
+   *
+   * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
+   */
   backgroundColor: NodeStyles['color'];
+
+  /**
+   * color of text within badge
+   *
+   * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
+   */
   textColor: NodeStyles['color'];
+
+  /**
+   * color of icon within badge
+   *
+   * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
+   */
   iconColor: NodeStyles['color'];
+
+  /**
+   * color of border around badge
+   *
+   * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
+   */
   strokeColor: NodeStyles['color']; // TODO clew uses strokeColor, but we currently don't account for nested properties (border.color)
+
+  /**
+   * spacing between badge items
+   */
   itemSpacing: NodeStyles['itemSpacing'];
+
+  /**
+   * corner radius of badge
+   */
   radius?: NodeStyles['borderRadius'];
 }>;
 
