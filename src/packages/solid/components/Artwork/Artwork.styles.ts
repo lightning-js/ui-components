@@ -15,36 +15,21 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { ComponentStyleConfig, NodeStyleSet, Tone } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-
-export interface ArtworkStyles {
-  tone: Tone;
-  Container: NodeStyleSet<{ fillColor: NodeStyles['color']; gradientColor: NodeStyles['color'] }>;
-}
-
-type ArtworkStyleProperties = Partial<{
-  fallbackSrc: NodeStyles['src'];
-  fillColor: NodeStyles['color'];
-  gradientColor: NodeStyles['color'];
-  imageScale: NodeStyles['scale'];
-  imageScalePivotX: NodeStyles['pivotX'];
-  imageScalePivotY: NodeStyles['pivotY'];
-}>;
-
-type ArtworkConfig = ComponentStyleConfig<ArtworkStyleProperties>;
+import type { ArtworkStyles, ArtworkConfig } from './Artwork.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Artwork: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
 const container: ArtworkConfig = {
   themeKeys: {
+    fallbackSrc: 'fallbackSrc',
     fillColor: 'fillColor',
     scale: 'imageScale',
     pivotX: 'imageScalePivotX',
-    pivotY: 'imageScalePivotY'
+    pivotY: 'imageScalePivotY',
+    borderRadius: 'radius'
   },
   base: {
     fallbackSrc: undefined,

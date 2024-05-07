@@ -19,7 +19,7 @@ import { Show, type NodeProps, View } from '@lightningjs/solid';
 import { withPadding } from '@lightningjs/solid-primitives';
 import styles from './CardContent.styles.js';
 import type { UIComponentProps } from '../../types/interfaces.js';
-import { type ArtworkProps } from '../Artwork/Artwork.jsx';
+import { type ArtworkProps } from '../Artwork/Artwork.types.js';
 import type { ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
 import Tile from '../Tile/Tile.jsx';
 import { getWidthByColumnSpan } from '../../utils/index.js';
