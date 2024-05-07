@@ -8,7 +8,7 @@
   "type": "module",
   "types": "dist/types.d.ts",
   "scripts": {
-    "start": "echo \"start has been removed. run dev:<framework> script instead.\" && exit 1",
+    "start": "echo \"Error: start has been removed. run dev:<framework> script instead.\" && exit 1",
     "dev:blits": "pnpm --filter @lightningjs/blits-ui dev",
     "dev:solid": "pnpm --filter @lightningjs/solid-ui dev",
     "lerna:version": "lerna version --no-private --conventional-commits --yes",
