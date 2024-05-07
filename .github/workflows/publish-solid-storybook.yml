@@ -38,7 +38,7 @@ jobs:
           run_install: true
 
       - name: Build Storybook
-        run: pnpm run solid:build-storybook
+        run: pnpm run build:solid:docs
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
