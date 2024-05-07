@@ -1,5 +1,10 @@
 import type {Tone, States, JustifyContent, Align} from "../types/types";
 
+// generic type guard - returns whether input is included in a given array
+export function isType<Type>(v: unknown, typeValues: readonly unknown[]): v is Type {
+  return typeValues.includes(v);
+}
+
 // type guards for Tone/States/JustifyContent
 export const ToneValues = ['neutral', 'inverse', 'brand'] as const;
 export function isValidTone(v: unknown): v is Tone {

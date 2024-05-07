@@ -1,7 +1,7 @@
 import Blits from "@lightningjs/blits";
 import styles from "./ProgressBar.styles";
 import type { Tone } from "../../types/types";
-import { isValidTone } from "../../utils";
+import { ToneValues, isType } from "../../utils";
 
 export type ProgressBarProps = {
     width: number;
@@ -20,7 +20,7 @@ const ProgressBar = Blits.Component('ProgressBar', {
       default: 'neutral',
       required: false,
       cast: (v: string): Tone => {
-        if (isValidTone(v)) return v;
+        if (isType<Tone>(v, ToneValues)) return v;
         throw new Error(`Invalid tone '${v}'`);
       }
     },
