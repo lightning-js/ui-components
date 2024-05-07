@@ -15,7 +15,8 @@ export type BadgeStyleProperties = Partial<{
   iconColor: NodeStyles['color'];
   strokeColor: NodeStyles['color']; // TODO do we use this?
   borderColor: NodeStyles['color'];
-}>
+}>;
+
 export interface BadgeStyles {
   tone: Tone;
   Container: NodeStyleSet<{ padding: number[] }>;
