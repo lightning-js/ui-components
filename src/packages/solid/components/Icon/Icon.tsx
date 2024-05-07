@@ -18,7 +18,7 @@
 import { type Component } from 'solid-js';
 import { View } from '@lightningjs/solid';
 import styles from './Icon.styles.js';
-import type { IconProps } from './Icon.types.ts';
+import type { IconProps } from './Icon.types.js';
 
 const Icon: Component<IconProps> = props => {
   return (
