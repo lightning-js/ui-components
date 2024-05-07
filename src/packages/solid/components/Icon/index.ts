@@ -15,5 +15,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export { default as default, type IconProps } from './Icon.jsx';
-export { default as iconStyles, type IconStyles } from './Icon.styles.js';
+export { default as default } from './Icon.jsx';
+export { default as iconStyles } from './Icon.styles.js';
+export type { IconProps, IconStyles } from './Icon.types.js';

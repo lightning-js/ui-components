@@ -16,31 +16,9 @@
  */
 
 import { type Component } from 'solid-js';
-import { View, type IntrinsicNodeProps } from '@lightningjs/solid';
-import type { UIComponentProps } from '../../types/interfaces.js';
+import { View } from '@lightningjs/solid';
 import styles from './Icon.styles.js';
-
-export interface IconProps extends UIComponentProps {
-  /**
-   * icon color (can only be applied on png icons)
-   */
-  color?: UIComponentProps['color'];
-
-  /**
-   * icon height
-   */
-  height?: IntrinsicNodeProps['height'];
-
-  /**
-   * path to image or inline SVG XML
-   */
-  src?: IntrinsicNodeProps['src'];
-
-  /**
-   * icon width
-   */
-  width?: IntrinsicNodeProps['width'];
-}
+import type { IconProps } from './Icon.types.js';
 
 const Icon: Component<IconProps> = props => {
   return (
@@ -49,7 +27,7 @@ const Icon: Component<IconProps> = props => {
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
-        styles.Container.tones?.[props.tone || styles.tone],
+        styles.Container.tones?.[props.tone ?? styles.tone],
         styles.Container.base
       ]}
       forwardStates

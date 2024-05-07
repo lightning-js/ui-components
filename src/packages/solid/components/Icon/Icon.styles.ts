@@ -15,22 +15,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-
-export interface IconStyles {
-  tone: Tone;
-  Container: NodeStyleSet;
-}
-
-export type IconStyleProperties = {
-  color?: NodeStyles['color'];
-};
-
-export type IconConfig = ComponentStyleConfig<IconStyleProperties>;
+import type { IconConfig, IconStyles } from './Icon.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Icon: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
