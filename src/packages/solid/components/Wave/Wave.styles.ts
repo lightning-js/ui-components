@@ -57,7 +57,6 @@ const rectangles: WaveConfig = {
   },
   base: {
     width: theme.spacer.sm,
-    // @ts-expect-error colors can be strings but type expects numbers
     color: theme.color.fillNeutral,
     mountY: 0.5
   },
@@ -66,9 +65,7 @@ const rectangles: WaveConfig = {
     disabled: {}
   },
   tones: {
-    // @ts-expect-error colors can be strings but type expects numbers
     inverse: { color: theme.color.fillInverse },
-    // @ts-expect-error colors can be strings but type expects numbers
     brand: { color: theme.color.fillBrand }
   },
   themeStyles: {
