@@ -20,8 +20,7 @@
     "README.md"
   ],
   "scripts": {
-    "start": "pnpm run storybook",
-    "build": "vite build",
+    "dev": "pnpm run storybook",
     "build-lib": "vite build",
     "build-storybook": "storybook build",
     "prepack": "npm run build-lib",
