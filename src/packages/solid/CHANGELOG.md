@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.15.2...@lightningjs/solid-ui@0.16.0) (2024-05-07)
+
+### Features
+
+- **primitives:** migrates withpadding and createSpriteMap ([#127](https://github.com/lightning-js/ui-components/issues/127)) ([50ee146](https://github.com/lightning-js/ui-components/commit/50ee146a69a2b8fa537341487305023e2b3c3f16))
+
 ## [0.15.2](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.15.1...@lightningjs/solid-ui@0.15.2) (2024-05-07)
 
 ### Bug Fixes
