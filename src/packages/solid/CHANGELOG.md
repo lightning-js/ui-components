@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.16.0...@lightningjs/solid-ui@0.16.1) (2024-05-07)
+
+**Note:** Version bump only for package @lightningjs/solid-ui
+
 # [0.16.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.15.2...@lightningjs/solid-ui@0.16.0) (2024-05-07)
 
 ### Features
