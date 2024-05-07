@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.2](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.15.1...@lightningjs/solid-ui@0.15.2) (2024-05-07)
+
+### Bug Fixes
+
+- **Artwork:** allow style properties to be set inline, add support for gradient and fillColor ([#130](https://github.com/lightning-js/ui-components/issues/130)) ([16e9923](https://github.com/lightning-js/ui-components/commit/16e9923581108c048d2b60a191aa0d9ac9001263))
+
 ## [0.15.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.15.0...@lightningjs/solid-ui@0.15.1) (2024-05-07)
 
 ### Bug Fixes
