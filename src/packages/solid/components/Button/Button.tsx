@@ -16,17 +16,9 @@
  */
 
 import { type Component } from 'solid-js';
-import { View, Text, type NodeProps, type TextProps } from '@lightningjs/solid';
-import type { UIComponentProps } from '../../types/interfaces.js';
+import { View, Text } from '@lightningjs/solid';
 import styles from './Button.styles.js';
-
-interface ButtonProps extends UIComponentProps {
-  children: TextProps['children'];
-}
-
-interface ButtonContainerProps extends UIComponentProps {
-  children: NodeProps['children'];
-}
+import type { ButtonContainerProps, ButtonProps } from './Button.types.js';
 
 const Button: Component<ButtonProps> = props => {
   return (
@@ -70,6 +62,5 @@ const ButtonContainer: Component<ButtonContainerProps> = props => {
 export {
   Button as default, //
   ButtonContainer,
-  type ButtonProps,
-  type ButtonContainerProps
+  type ButtonProps
 };
