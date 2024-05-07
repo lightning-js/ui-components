@@ -31,9 +31,6 @@ export interface ColumnProps extends UIComponentProps {
   /** function to be called on down click */
   onDown?: KeyHandler;
 
-  /** function to be called when component gets focus */
-  onFocus?: KeyHandler;
-
   /** function to be called on up click */
   onUp?: KeyHandler;
 
