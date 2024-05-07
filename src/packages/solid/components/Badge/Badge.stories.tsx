@@ -37,11 +37,6 @@ const meta = {
         defaultValue: { summary: 'neutral' }
       }
     },
-    iconAlign: {
-      control: 'select',
-      options: ['none', 'left', 'right'],
-      description: 'Side of the text the icon will appear on'
-    },
     icon: {
       src: {
         description: 'path to image or inline SVG XML'
