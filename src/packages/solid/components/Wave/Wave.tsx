@@ -31,9 +31,7 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
   const maxHeight = createMemo(
     () =>
       props.height ??
-      // @ts-expect-error defaults to base height if undefined
       styles.Container.tones[props.tone ?? styles.tone]?.height ??
-      // @ts-expect-error styles height is a number and valid
       styles.Container.base.height
   );
 
@@ -99,6 +97,7 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
   }
 
   createEffect(() => {
+    // currently hardcoded to 1450ms to match the animation duration + 100 ms for buffer
     setInterval(() => startAnimation(), 1450);
   });
 
@@ -112,7 +111,6 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
       <View
         // @ts-expect-error TODO type needs to be fixed in framework
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
-        /* @ts-expect-error check in place */
         ref={left}
         y={maxHeight()}
         height={maxHeight() / 4}
@@ -121,7 +119,6 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
       <View
         // @ts-expect-error TODO type needs to be fixed in framework
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
-        /* @ts-expect-error check in place */
         ref={leftCenter}
         y={maxHeight()}
         height={maxHeight() / 1.5}
@@ -130,7 +127,6 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
       <View
         // @ts-expect-error TODO type needs to be fixed in framework
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
-        /* @ts-expect-error check in place */
         ref={center}
         y={maxHeight()}
         height={maxHeight()}
@@ -139,7 +135,6 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
       <View
         // @ts-expect-error TODO type needs to be fixed in framework
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
-        /* @ts-expect-error check in place */
         ref={rightCenter}
         y={maxHeight()}
         height={maxHeight() / 1.5}
@@ -148,7 +143,6 @@ const Wave: Component<WaveProps> = (props: WaveProps) => {
       <View
         // @ts-expect-error TODO type needs to be fixed in framework
         style={[props.style, styles.Rectangles.tones?.[props.tone ?? styles.tone], styles.Rectangles.base]}
-        /* @ts-expect-error check in place */
         ref={right}
         y={maxHeight()}
         height={maxHeight() / 4}
