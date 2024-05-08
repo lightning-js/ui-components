@@ -25,7 +25,7 @@ type Style = {
             color: string
         },
         tones: {
-            [_tone: keyof Tone]: {
+            [tone in Tone]: {
                 color: string
             }
         }

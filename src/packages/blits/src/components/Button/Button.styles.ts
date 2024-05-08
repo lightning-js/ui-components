@@ -28,8 +28,8 @@ type Style = {
 }
 
 type ToneStyle = {
-  [_tone: keyof Tone]: {
-      [_state: keyof States]: StateStyle
+  [tone in Tone]: {
+      [state in States]: StateStyle
   }
 }
 

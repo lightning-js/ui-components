@@ -19,7 +19,7 @@ type Style = {
 }
 
 type ToneStyle = {
-    [_tone: keyof Tone]: {
+    [tone in Tone]: {
         color: string
     }
 }
