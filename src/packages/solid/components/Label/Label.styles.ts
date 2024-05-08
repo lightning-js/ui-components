@@ -15,27 +15,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-
-export interface LabelStyles {
-  tone: Tone;
-  Container: NodeStyleSet<{ padding: number[] }>;
-  Text: TextStyleSet;
-}
-
-export type LabelStyleProperties = Partial<{
-  backgroundColor: NodeStyles['color'];
-  textColor: NodeStyles['color'];
-  padding: [number, number];
-  radius: NodeStyles['borderRadius'];
-  height: NodeStyles['height'];
-}>;
-
-type LabelConfig = ComponentStyleConfig<LabelStyleProperties>;
+import type { LabelStyles, LabelConfig } from './Label.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Label: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;

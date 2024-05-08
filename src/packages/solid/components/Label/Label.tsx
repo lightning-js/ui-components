@@ -1,18 +1,9 @@
 import { type Component } from 'solid-js';
 import { Text } from '@lightningjs/solid';
 import { withPadding } from '../../utils/index.js';
-import type { UIComponentProps } from '../../types/interfaces.js';
-import styles, { type LabelStyleProperties } from './Label.styles.js';
+import styles from './Label.styles.js';
+import type { LabelProps } from './Label.types.js';
 withPadding;
-
-export interface LabelProps extends UIComponentProps {
-  /**
-   * text to display in label
-   */
-  title: string;
-
-  padding?: LabelStyleProperties['padding'];
-}
 
 const Label: Component<LabelProps> = props => {
   return (
@@ -23,6 +14,8 @@ const Label: Component<LabelProps> = props => {
         styles.Container.base.padding
       }
       {...props}
+      color={props.backgroundColor}
+      borderRadius={props.radius}
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
@@ -32,6 +25,7 @@ const Label: Component<LabelProps> = props => {
       forwardStates
     >
       <Text
+        color={props.textColor}
         style={[
           styles.Text.tones[props.tone || styles.tone], //
           styles.Text.base
