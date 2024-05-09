@@ -48,7 +48,7 @@ export default defineConfig({
     dedupe: ['solid-js', '@lightningjs/solid', '@lightningjs/renderer']
   },
   server: {
-    hmr: false,
+    hmr: true,
     headers: {
       'Cross-Origin-Opener-Policy': 'same-origin',
       'Cross-Origin-Embedder-Policy': 'require-corp'

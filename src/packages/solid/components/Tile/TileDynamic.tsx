@@ -16,8 +16,8 @@
  */
 
 import { type Component, createSignal, createMemo } from 'solid-js';
-import { Show, type NodeProps, View } from '@lightningjs/solid';
-import { withPadding } from '../../utils/index.js';
+import { Dynamic, Show, type NodeProps, View } from '@lightningjs/solid';
+import { withPadding } from '@lightningjs/solid-primitives';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import Artwork from '../Artwork/Artwork.jsx';
 import type { ArtworkProps } from '../Artwork/Artwork.types.js';
@@ -25,6 +25,8 @@ import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar.j
 import styles, { type TileStyleProperties } from './Tile.styles.js';
 import type { Tone } from 'types/types.js';
 withPadding;
+
+type SlottedComponent = (props: unknown) => JSX.Element;
 
 export interface TileProps extends UIComponentProps {
   /**
@@ -54,7 +56,7 @@ export interface TileProps extends UIComponentProps {
    * states are not forwarded to this component. if it should react to states
    * applied to the Tile, they must also be set on this component
    */
-  topLeft?: NodeProps['children'];
+  topLeft?: SlottedComponent;
 
   /**
    * component rendered to the upper right corner of the Tile
@@ -64,7 +66,7 @@ export interface TileProps extends UIComponentProps {
    * states are not forwarded to this component. if it should react to states
    * applied to the Tile, they must also be set on this component
    */
-  topRight?: NodeProps['children'];
+  topRight?: SlottedComponent;
 
   /**
    * component rendered to center of the Tile, flex-aligned to the bottom border
@@ -136,11 +138,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
 
   return (
     <node
-      use:withPadding={
-        props.padding ??
-        styles.Container.tones[props.tone ?? styles.tone]?.padding ??
-        styles.Container.base.padding
-      }
+      use:withPadding={[paddingX(), paddingY()]}
       {...props}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
@@ -161,37 +159,35 @@ const Tile: Component<TileProps> = (props: TileProps) => {
       />
 
       <Show when={props.persistentMetadata || isFocused()}>
-        <View x={paddingX()} y={paddingY()}>
-          {props.topLeft}
-        </View>
+        {/* @ts-expect-error return type needs to be updated in solid */}
+        <Dynamic component={props.topLeft} x={paddingX()} y={paddingY()} />
 
-        <View x={width() - paddingX()} y={paddingY()} mountX={1}>
-          {props.topRight}
-        </View>
+        {/* @ts-expect-error return type needs to be updated in solid */}
+        <Dynamic component={props.topRight} x={width() - paddingX()} y={paddingY()} mountX={1} />
 
-        <View
+        {/* @ts-expect-error return type needs to be updated in solid */}
+        <Dynamic
+          component={props.inset}
+          width={width() - paddingX() * 2}
+          x={paddingX()}
+          y={height() - paddingY() - paddingYProgress()}
           style={[
             styles.InsetBottom.tones[props.tone ?? styles.tone], //
             styles.InsetBottom.base
           ]}
-          width={width() - paddingX() * 2}
-          x={paddingX()}
-          y={height() - paddingY() - paddingYProgress()}
-        >
-          {props.inset}
-        </View>
+        />
 
-        <View
+        {/* @ts-expect-error return type needs to be updated in solid */}
+        <Dynamic
+          component={props.bottom}
+          x={paddingX()}
+          y={height() + paddingY()}
+          width={width() - paddingY() * 2}
           style={[
             styles.StandardBottom.tones[props.tone ?? styles.tone], //
             styles.StandardBottom.base
           ]}
-          x={paddingX()}
-          y={height() + paddingY()}
-          width={width() - paddingY() * 2}
-        >
-          {props.bottom}
-        </View>
+        />
       </Show>
       <Show when={props.progressBar?.progress > 0}>
         {/* @ts-expect-error doesn't get rendered if progress is falsy */}
@@ -199,7 +195,7 @@ const Tile: Component<TileProps> = (props: TileProps) => {
           {...props.progressBar}
           width={width() - paddingX() * 2}
           x={paddingX()}
-          y={height() - paddingYProgress() - (props?.progressBar?.height || 0)}
+          y={height() - paddingYProgress() - (props?.progressBar?.height ?? 0)}
         />
       </Show>
     </node>

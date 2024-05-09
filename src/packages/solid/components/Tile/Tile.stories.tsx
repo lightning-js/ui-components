@@ -17,6 +17,7 @@
 
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import Tile from './Tile.jsx';
+import TileDynamic from './TileDynamic.jsx';
 import theme from 'theme';
 import Badge, { type BadgeProps } from '../Badge/Badge.jsx';
 import { View } from '@lightningjs/solid';
@@ -139,14 +140,17 @@ export const MetadataStandard: Story = {
         topLeft={(props: BadgeProps) => <Badge {...props} title="HD" />}
         // @ts-expect-error something's up with the element type
         topRight={(props: LabelProps) => <Label {...props} width={75} title="Label" />}
-        inset={
+        // @ts-expect-error something's up with the element type
+        inset={(props: Record<string, unknown>) => (
           <View
+            {...props}
             src={'../../assets/images/Xfinity-Provider-Logo-2x1.png'}
             width={theme.spacer.lg * 5}
             height={theme.spacer.xxl + theme.spacer.md}
           />
-        }
-        bottom={<Metadata {...(args.metadata as MetadataProps)} />}
+        )}
+        // @ts-expect-error something's up with the element type
+        bottom={(props: MetadataProps) => <Metadata {...props} {...(args.metadata as MetadataProps)} />}
       />
     );
   },
@@ -262,11 +266,12 @@ export const TileProgressBarTop: Story = {
         {...args}
         // @ts-expect-error something's up with the element type
         topLeft={(props: ProgressBarProps) => <ProgressBar {...props} progress={0.5} width={380} />}
-        inset={
+        // @ts-expect-error something's up with the element type
+        inset={props => (
           <>
             <Metadata {...(args.metadata as MetadataProps)} {...props} />
           </>
-        }
+        )}
       />
     );
   },

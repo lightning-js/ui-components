@@ -17,3 +17,5 @@
 
 export { default as default, type TileProps } from './Tile.jsx';
 export { default as tileStyles, type TileStyles } from './Tile.styles.js';
+export { default as TileDynamic } from './TileDynamic.jsx';
+export { default as TileSlotsOnMount } from './TileSlotsOnMount.jsx';
