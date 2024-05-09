@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import ProgressBar, { ProgressBarProps } from './ProgressBar.ts';
-import {Meta, StoryObj} from "@storybook/html";
+import { Meta, StoryObj } from '@storybook/html';
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/solid/writing-stories/introduction
 
@@ -26,8 +26,7 @@ const meta: Meta<ProgressBarProps> = {
   argTypes: {
     containerColor: {
       description: 'color of bar representing the total progress',
-      control: 'color',
-      
+      control: 'color'
     },
     progressColor: {
       description: 'color of bar representing the current progress',
@@ -48,24 +47,27 @@ const meta: Meta<ProgressBarProps> = {
       table: {
         defaultValue: { summary: 'neutral' }
       }
-    },
+    }
   },
   //@ts-expect-error custom render method needed to use Blits component
   render: args => ({
-      name: 'ProgressBar',
-      fn: ProgressBar,
-      template: `<ProgressBar ${Object.entries(args).filter(([_k,v]) => v !== undefined).map(([k,v]) => `${k}="${v}"`).join(' ')} />`
-    })
+    name: 'ProgressBar',
+    fn: ProgressBar,
+    template: `<ProgressBar ${Object.entries(args)
+      .filter(([_k, v]) => v !== undefined)
+      .map(([k, v]) => `${k}="${v}"`)
+      .join(' ')} />`
+  })
 };
 
-type Story = StoryObj<ProgressBarProps>
+type Story = StoryObj<ProgressBarProps>;
 export const Basic: Story = {
   args: {
     width: 500,
     height: 10,
     progress: 0.5,
     borderRadius: 2,
-    tone: 'neutral',
+    tone: 'neutral'
   }
 };
 

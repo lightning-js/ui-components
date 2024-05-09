@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import Button, { ButtonProps } from './Button.ts';
-import {Meta, StoryObj} from "@storybook/html";
+import { Meta, StoryObj } from '@storybook/html';
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/solid/writing-stories/introduction
 
@@ -60,11 +60,10 @@ const meta: Meta<ButtonProps> = {
     name: 'Button',
     fn: Button,
     template: `<Button :width="${args.width}" :height="${args.height}" text="Button" tone="${args.tone}" states="${args.states}" />`
-  }),
-
+  })
 };
 
-type Story = StoryObj<ButtonProps>
+type Story = StoryObj<ButtonProps>;
 export const Basic: Story = {
   args: {
     width: 400,

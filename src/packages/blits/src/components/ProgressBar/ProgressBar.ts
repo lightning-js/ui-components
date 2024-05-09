@@ -1,20 +1,20 @@
-import Blits from "@lightningjs/blits";
-import styles from "./ProgressBar.styles";
-import type { Tone } from "../../types/types";
-import { ToneValues, isType } from "../../utils";
+import Blits from '@lightningjs/blits';
+import styles from './ProgressBar.styles';
+import type { Tone } from '../../types/types';
+import { ToneValues, isType } from '../../utils';
 
 export type ProgressBarProps = {
-    width: number;
-    height: number;
-    progress: number;
-    borderRadius: number;
-    containerColor: string;
-    progressColor: string;
-    tone: Tone;
-}
+  width: number;
+  height: number;
+  progress: number;
+  borderRadius: number;
+  containerColor: string;
+  progressColor: string;
+  tone: Tone;
+};
 
 const ProgressBar = Blits.Component('ProgressBar', {
-    props: [
+  props: [
     {
       key: 'tone',
       default: 'neutral',
@@ -56,15 +56,15 @@ const ProgressBar = Blits.Component('ProgressBar', {
     {
       key: 'containerColor',
       default: null,
-      required: false,
+      required: false
     },
     {
       key: 'progressColor',
       default: null,
-      required: false,
+      required: false
     }
   ],
-    template: `
+  template: `
     <Element :w="$width" :h="$height" :color="$progressContainerColor" :effects="[$shader('radius', {radius: $radius})]">
       <Element
         :w="$width * $progress"
@@ -76,15 +76,15 @@ const ProgressBar = Blits.Component('ProgressBar', {
   `,
   computed: {
     progressContainerColor() {
-      return this.containerColor ?? styles.Container.tones[this.tone as Tone].color
+      return this.containerColor ?? styles.Container.tones[this.tone as Tone].color;
     },
     progressBarColor() {
-      return this.progressColor ?? styles.ProgressBar.tones[this.tone as Tone].color
+      return this.progressColor ?? styles.ProgressBar.tones[this.tone as Tone].color;
     },
     radius() {
-      return this.borderRadius ?? styles.Container.base.borderRadius
+      return this.borderRadius ?? styles.Container.base.borderRadius;
     }
   }
-  })
-  
-  export { ProgressBar as default }
+});
+
+export { ProgressBar as default };

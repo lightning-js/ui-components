@@ -18,39 +18,39 @@
 import type { Tone } from '../../types/types.js';
 
 type Style = {
-    Container: {
-        base: {
-            width: number,
-            height: number,
-            color: string
-        },
-        tones: {
-            [tone in Tone]: {
-                color: string
-            }
-        }
-    }
-}
+  Container: {
+    base: {
+      width: number;
+      height: number;
+      color: string;
+    };
+    tones: {
+      [tone in Tone]: {
+        color: string;
+      };
+    };
+  };
+};
 
 const styles: Style = {
-    Container: {
-        base: {
-            width: 100,
-            height: 100,
-            color: "0x181819ff"
-        },
-        tones: {
-            brand: {
-                color: "0x93a9fdff"
-            },
-            inverse: {
-                color: "0x181819ff"
-            },
-            neutral: {
-                color: "0x181819ff"
-            }
-        }
+  Container: {
+    base: {
+      width: 100,
+      height: 100,
+      color: '0x181819ff'
+    },
+    tones: {
+      brand: {
+        color: '0x93a9fdff'
+      },
+      inverse: {
+        color: '0x181819ff'
+      },
+      neutral: {
+        color: '0x181819ff'
+      }
     }
-}
+  }
+};
 
 export default styles;

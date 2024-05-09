@@ -1,4 +1,4 @@
-import type {Tone, States, JustifyContent, Align} from "../types/types";
+import type { Tone, States, JustifyContent, Align } from '../types/types';
 
 // generic type guard - returns whether input is included in a given array
 export function isType<Type>(v: unknown, typeValues: readonly unknown[]): v is Type {
@@ -16,7 +16,13 @@ export function isValidState(v: unknown): v is States {
   return typeof v === 'string' && StatesValues.includes(v as States);
 }
 
-export const JustifyContentValues = ['center', 'flexStart', 'flexEnd', 'spaceBetween', 'spaceEvenly'] as const;
+export const JustifyContentValues = [
+  'center',
+  'flexStart',
+  'flexEnd',
+  'spaceBetween',
+  'spaceEvenly'
+] as const;
 export function isValidJustifyContent(v: unknown): v is JustifyContent {
   return typeof v === 'string' && JustifyContentValues.includes(v as JustifyContent);
 }

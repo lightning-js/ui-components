@@ -15,8 +15,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import Icon, { IconProps } from './Icon.ts';
-import {Meta, StoryObj} from "@storybook/html";
-import lightning from "../../assets/images/ic_lightning_white_32.png";
+import { Meta, StoryObj } from '@storybook/html';
+import lightning from '../../assets/images/ic_lightning_white_32.png';
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/solid/writing-stories/introduction
 
@@ -51,13 +51,16 @@ const meta: Meta<IconProps> = {
   },
   //@ts-expect-error custom render method needed to use Blits component
   render: args => ({
-      name: 'Icon',
-      fn: Icon,
-      template: `<Icon ${Object.entries(args).filter(([_k,v]) => v !== undefined).map(([k,v]) => `${k}="${v}"`).join(' ')} />`
-    })
+    name: 'Icon',
+    fn: Icon,
+    template: `<Icon ${Object.entries(args)
+      .filter(([_k, v]) => v !== undefined)
+      .map(([k, v]) => `${k}="${v}"`)
+      .join(' ')} />`
+  })
 };
 
-type Story = StoryObj<IconProps>
+type Story = StoryObj<IconProps>;
 export const Basic: Story = {
   args: {
     width: 100,

@@ -1,7 +1,7 @@
-import Blits from '@lightningjs/blits'
-import styles from './Button.styles.ts'
+import Blits from '@lightningjs/blits';
+import styles from './Button.styles.ts';
 import type { Tone, States, JustifyContent, Align } from '../../types/types';
-import {isValidTone, isValidState, isValidJustifyContent} from "../../utils/index.ts";
+import { isValidTone, isValidState, isValidJustifyContent } from '../../utils/index.ts';
 
 export type ButtonProps = {
   text: string;
@@ -10,7 +10,7 @@ export type ButtonProps = {
   justifyContent: JustifyContent;
   width: number;
   height: number;
-}
+};
 
 type ButtonState = {
   font: string;
@@ -19,7 +19,7 @@ type ButtonState = {
   textAlign: Align;
   radius: number;
   lineHeight: number;
-}
+};
 
 const Button = Blits.Component('Button', {
   props: [
@@ -29,7 +29,7 @@ const Button = Blits.Component('Button', {
       required: false,
       cast: (v: string): string => {
         if (typeof v === 'string') return v;
-        throw new Error(`Invalid text input '${v}' - must be of type string`)
+        throw new Error(`Invalid text input '${v}' - must be of type string`);
       }
     },
     {
@@ -101,17 +101,17 @@ const Button = Blits.Component('Button', {
       fontWeight: styles.Text.base.fontWeight,
       textAlign: styles.Container.base.alignItems as Align,
       radius: styles.Container.base.borderRadius,
-      lineHeight: styles.Text.base.lineHeight,
-    }
+      lineHeight: styles.Text.base.lineHeight
+    };
   },
   computed: {
     containerColor(): string {
       return styles.Container.tones[this.tone as Tone][this.states as States].color;
     },
     textColor(): string {
-      return styles.Text.tones[this.tone as Tone][this.states as States].color
-    },
-  },
-})
+      return styles.Text.tones[this.tone as Tone][this.states as States].color;
+    }
+  }
+});
 
-export { Button as default }
+export { Button as default };
