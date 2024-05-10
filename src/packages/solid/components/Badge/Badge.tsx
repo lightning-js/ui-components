@@ -34,8 +34,8 @@ const BadgeContainer: Component<BadgeProps> = props => {
     <node
       use:withPadding={padding()}
       {...props}
-      borderColor={props.strokeColor} // TODO clew uses strokeColor, but we currently don't account for nested properties (border.color)
-      borderWidth={props.strokeWidth} // TODO clew uses strokeWidth, but we currently don't account for nested properties (border.width)
+      // borderColor={props.strokeColor} // TODO clew uses strokeColor, but we currently don't account for nested properties (border.color)
+      // borderWidth={props.strokeWidth} // TODO clew uses strokeWidth, but we currently don't account for nested properties (border.width)
       color={props.backgroundColor}
       itemSpacing={props.contentSpacing}
       borderRadius={props.radius}

@@ -29,6 +29,8 @@ const container: BadgeConfig = {
     gap: 'contentSpacing'
   },
   base: {
+    // TODO clew uses strokeColor, but we currently don't account for nested properties (border.color)
+    // TODO clew uses strokeWidth, but we currently don't account for nested properties (border.width)
     color: theme.color.fillInverseSecondary,
     borderRadius: theme.radius.sm, // borderRadius must be applied _before_ border to prevent the node from breaking
     border: {
