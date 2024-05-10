@@ -17,7 +17,7 @@
 import ProgressBar, { ProgressBarProps } from './ProgressBar.ts';
 import { Meta, StoryObj } from '@storybook/html';
 
-// More on how to set up stories at: https://storybook.js.org/docs/7.0/solid/writing-stories/introduction
+// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 
 const meta: Meta<ProgressBarProps> = {
   title: 'Components/ProgressBar',
@@ -73,4 +73,4 @@ export const Basic: Story = {
 
 export default meta;
 
-// More on writing stories with args: https://storybook.js.org/docs/7.0/solid/writing-stories/args
+// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args

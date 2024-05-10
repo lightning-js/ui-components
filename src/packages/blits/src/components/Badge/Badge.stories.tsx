@@ -18,7 +18,7 @@ import Badge, { BadgeProps } from './Badge.ts';
 import { Meta, StoryObj } from '@storybook/html';
 import lightning from '../../assets/images/ic_lightning_white_32.png';
 
-// More on how to set up stories at: https://storybook.js.org/docs/7.0/solid/writing-stories/introduction
+// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 
 const meta: Meta<BadgeProps> = {
   title: 'Components/Badge',
@@ -79,4 +79,4 @@ export const BadgeIcon: Story = {
 
 export default meta;
 
-// More on writing stories with args: https://storybook.js.org/docs/7.0/solid/writing-stories/args
+// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
