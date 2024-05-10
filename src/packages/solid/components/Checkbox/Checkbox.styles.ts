@@ -22,9 +22,6 @@ import type { CheckboxStyles, CheckboxConfig } from './Checkbox.types.js';
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Checkbox: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
-const strokeWidth = theme.stroke.sm;
-const size = theme.spacer.xxl;
-
 const container: CheckboxConfig = {
   themeKeys: {
     color: 'backgroundColor',
@@ -33,16 +30,16 @@ const container: CheckboxConfig = {
     justifyContent: 'justifyContent'
   },
   base: {
-    width: size,
-    height: size,
+    width: theme.spacer.xxl,
+    height: theme.spacer.xxl,
     display: 'flex',
     justifyContent: 'center',
     color: theme.color.fillNeutral,
     alignItems: 'center',
-    borderRadius: size / 4,
+    borderRadius: theme.spacer.xxl / 4,
     border: {
       color: theme.color.strokeInverse,
-      width: strokeWidth
+      width: theme.stroke.sm
     }
   },
   modes: {
@@ -52,49 +49,49 @@ const container: CheckboxConfig = {
   },
   tones: {
     brand: {
-      borderRadius: size / 4,
+      borderRadius: theme.spacer.xxl / 4,
       border: {
         color: theme.color.strokeNeutralSecondary,
-        width: strokeWidth
+        width: theme.stroke.sm
       },
       color: theme.color.fillNeutralSecondary,
       checked: {
-        borderRadius: size / 4,
+        borderRadius: theme.spacer.xxl / 4,
         border: {
           color: theme.color.strokeNeutralSecondary,
-          width: strokeWidth
+          width: theme.stroke.sm
         },
         color: theme.color.fillBrand
       }
     },
     neutral: {
-      borderRadius: size / 4,
+      borderRadius: theme.spacer.xxl / 4,
       border: {
         color: theme.color.strokeNeutralSecondary,
-        width: strokeWidth
+        width: theme.stroke.sm
       },
       color: theme.color.fillInverseSecondary,
       checked: {
-        borderRadius: size / 4,
+        borderRadius: theme.spacer.xxl / 4,
         border: {
           color: theme.color.strokeNeutralSecondary,
-          width: strokeWidth
+          width: theme.stroke.sm
         },
         color: theme.color.fillNeutral
       }
     },
     inverse: {
-      borderRadius: size / 4,
+      borderRadius: theme.spacer.xxl / 4,
       border: {
         color: theme.color.strokeInverseSecondary,
-        width: strokeWidth
+        width: theme.stroke.sm
       },
       color: theme.color.fillNeutralSecondary,
       checked: {
-        borderRadius: size / 4,
+        borderRadius: theme.spacer.xxl / 4,
         border: {
           color: theme.color.strokeInverseSecondary,
-          width: strokeWidth
+          width: theme.stroke.sm
         },
         color: theme.color.fillInverse
       }
