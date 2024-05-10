@@ -26,9 +26,26 @@ export interface LabelProps extends UIComponentProps, LabelStyleProperties {
 }
 
 export interface LabelStyleProperties {
+  /**
+   * color of background of the label
+   *
+   * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
+   */
   backgroundColor?: NodeStyles['color'];
+
+  /**
+   * color of text in the label
+   */
   textColor?: NodeStyles['color'];
-  padding?: [number, number];
+
+  /**
+   * padding around the text in the label
+   */
+  padding?: [number, number]; //  CLEW uses paddingY and paddingX, combined in just padding
+
+  /**
+   * border radius of the label
+   */
   radius?: NodeStyles['borderRadius'];
 }
 
