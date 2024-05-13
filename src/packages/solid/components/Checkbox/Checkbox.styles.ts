@@ -20,7 +20,7 @@ import theme from 'theme';
 import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-import type { IconConfig, IconStyles } from '../Icon/Icon.styles.js';
+import type { IconConfig, IconStyles } from '../Icon/Icon.types.js';
 
 export interface CheckboxStyles {
   tone: Tone;
