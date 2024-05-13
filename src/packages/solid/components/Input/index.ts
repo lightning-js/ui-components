@@ -15,5 +15,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export { default as default, type InputProps } from './Input.jsx';
-export { default as inputStyles, type InputStyles } from './Input.styles.js';
+export { default as default } from './Input.jsx';
+export { default as inputStyles } from './Input.styles.js';
+export type { InputProps, InputStyles } from './Input.types.js';
