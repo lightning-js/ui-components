@@ -7,33 +7,29 @@ export interface ProgressBarProps extends UIComponentProps, ProgressBarStyleProp
    * a numeric value of the current progress represented as a decimal between 0 and 1
    */
   progress: number;
-
-  /**
-   * color of the overlay portion of the progress bar
-   */
-  progressColor?: string | number;
-
-  /**
-   * total width of the component
-   */
-  width: number;
-
-  /**
-   * total height of the component
-   */
-  height?: number;
-
-  /**
-   * radius of the progress bar
-   */
-  radius?: number;
 }
 
 export interface ProgressBarStyleProperties {
+  /**
+   * total height of the component
+   */
   height?: NodeStyles['height'];
+  /**
+   * color of the overlay portion of the progress bar
+   *
+   * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
+   */
   progressColor?: NodeStyles['color'];
+  /**
+   * color of the background portion of the progress bar
+   *
+   * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
+   */
   barColor?: NodeStyles['color'];
-  borderRadius?: NodeStyles['borderRadius'];
+  /**
+   * border radius of the progressBar
+   */
+  radius?: NodeStyles['borderRadius'];
 }
 
 export interface ProgressBarStyles {
