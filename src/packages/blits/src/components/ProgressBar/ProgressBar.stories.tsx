@@ -14,23 +14,31 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import Button, { ButtonProps } from './Button.ts';
+import ProgressBar, { ProgressBarProps } from './ProgressBar.ts';
 import { Meta, StoryObj } from '@storybook/html';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 
-const meta: Meta<ButtonProps> = {
-  title: 'Components/Button',
+const meta: Meta<ProgressBarProps> = {
+  title: 'Components/ProgressBar',
   tags: ['autodocs'],
-  component: typeof Button,
+  component: typeof ProgressBar,
   argTypes: {
-    states: {
-      control: { type: 'radio' },
-      options: ['focus', 'unfocused', 'disabled'],
-      description: 'Sets the visual mode for the component',
-      table: {
-        defaultValue: { summary: 'focus' }
-      }
+    containerColor: {
+      description: 'color of bar representing the total progress',
+      control: 'color'
+    },
+    progressColor: {
+      description: 'color of bar representing the current progress',
+      control: 'color'
+    },
+    progress: {
+      description: 'Percentage of current progress in a decimal format from 0 to 1',
+      control: { type: 'number', step: 0.1, min: 0, max: 1.0 }
+    },
+    borderRadius: {
+      description: 'Radius of the bar',
+      control: { type: 'number', step: 1, min: 0, max: 50 }
     },
     tone: {
       control: { type: 'radio' },
@@ -39,37 +47,27 @@ const meta: Meta<ButtonProps> = {
       table: {
         defaultValue: { summary: 'neutral' }
       }
-    },
-    width: {
-      control: { type: 'number', min: 100, max: 1200, step: 50 },
-      description: 'When the fixed property is true, this will set the width of the component',
-      table: {
-        defaultValue: { summary: '400' }
-      }
-    },
-    height: {
-      control: { type: 'number', min: 50, max: 1200, step: 50 },
-      description: 'When the fixed property is true, this will set the height of the component',
-      table: {
-        defaultValue: { summary: '100' }
-      }
     }
   },
   //@ts-expect-error custom render method needed to use Blits component
   render: args => ({
-    name: 'Button',
-    fn: Button,
-    template: `<Button :width="${args.width}" :height="${args.height}" text="Button" tone="${args.tone}" states="${args.states}" />`
+    name: 'ProgressBar',
+    fn: ProgressBar,
+    template: `<ProgressBar ${Object.entries(args)
+      .filter(([_k, v]) => v !== undefined)
+      .map(([k, v]) => `${k}="${v}"`)
+      .join(' ')} />`
   })
 };
 
-type Story = StoryObj<ButtonProps>;
+type Story = StoryObj<ProgressBarProps>;
 export const Basic: Story = {
   args: {
-    width: 400,
-    height: 100,
-    tone: 'neutral',
-    states: 'focus'
+    width: 500,
+    height: 10,
+    progress: 0.5,
+    borderRadius: 2,
+    tone: 'neutral'
   }
 };
 

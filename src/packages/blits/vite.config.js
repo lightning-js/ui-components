@@ -18,16 +18,12 @@
 import { defineConfig } from 'vite';
 import { importChunkUrl } from '@lightningjs/vite-plugin-import-chunk-url';
 import path from 'path';
-import blitsVitePlugins from '@lightningjs/blits/vite'
+import blitsVitePlugins from '@lightningjs/blits/vite';
 
 const config = {
   optimizeDeps: {
     include: [],
-    exclude: [
-      '@lightningjs/blits',
-      '@lightningjs/renderer/core',
-      '@lightningjs/renderer/workers/renderer'
-    ]
+    exclude: ['@lightningjs/blits', '@lightningjs/renderer/core', '@lightningjs/renderer/workers/renderer']
   },
   plugins: [...blitsVitePlugins, importChunkUrl()],
   base: './',
@@ -38,10 +34,7 @@ const config = {
       formats: ['es']
     },
     rollupOptions: {
-      external: [
-        'theme',
-        '@lightningjs/blits'
-      ]
+      external: ['theme', '@lightningjs/blits']
     },
     minify: false,
     sourcemap: true,

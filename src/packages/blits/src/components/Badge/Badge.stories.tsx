@@ -14,23 +14,19 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import Button, { ButtonProps } from './Button.ts';
+import Badge, { BadgeProps } from './Badge.ts';
 import { Meta, StoryObj } from '@storybook/html';
+import lightning from '../../assets/images/ic_lightning_white_32.png';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 
-const meta: Meta<ButtonProps> = {
-  title: 'Components/Button',
+const meta: Meta<BadgeProps> = {
+  title: 'Components/Badge',
   tags: ['autodocs'],
-  component: typeof Button,
+  component: typeof Badge,
   argTypes: {
-    states: {
-      control: { type: 'radio' },
-      options: ['focus', 'unfocused', 'disabled'],
-      description: 'Sets the visual mode for the component',
-      table: {
-        defaultValue: { summary: 'focus' }
-      }
+    title: {
+      description: 'text inside of badge'
     },
     tone: {
       control: { type: 'radio' },
@@ -40,36 +36,44 @@ const meta: Meta<ButtonProps> = {
         defaultValue: { summary: 'neutral' }
       }
     },
-    width: {
-      control: { type: 'number', min: 100, max: 1200, step: 50 },
-      description: 'When the fixed property is true, this will set the width of the component',
-      table: {
-        defaultValue: { summary: '400' }
-      }
+    iconAlign: {
+      control: 'select',
+      options: ['none', 'left', 'right'],
+      description: 'Side of the text the icon will appear on'
     },
-    height: {
-      control: { type: 'number', min: 50, max: 1200, step: 50 },
-      description: 'When the fixed property is true, this will set the height of the component',
-      table: {
-        defaultValue: { summary: '100' }
-      }
+    iconSrc: {
+      description: 'path to image or inline SVG XML'
+    },
+    iconColor: {
+      description: 'color of icon',
+      control: 'color'
     }
   },
   //@ts-expect-error custom render method needed to use Blits component
   render: args => ({
-    name: 'Button',
-    fn: Button,
-    template: `<Button :width="${args.width}" :height="${args.height}" text="Button" tone="${args.tone}" states="${args.states}" />`
+    name: 'Badge',
+    fn: Badge,
+    template: `<Badge ${Object.entries(args)
+      .filter(([_k, v]) => v !== undefined)
+      .map(([k, v]) => `${k}="${v}"`)
+      .join(' ')} />`
   })
 };
 
-type Story = StoryObj<ButtonProps>;
+type Story = StoryObj<BadgeProps>;
 export const Basic: Story = {
   args: {
-    width: 400,
-    height: 100,
+    title: 'Badge Text',
+    tone: 'neutral'
+  }
+};
+
+export const BadgeIcon: Story = {
+  args: {
+    title: 'Badge Text',
     tone: 'neutral',
-    states: 'focus'
+    iconSrc: lightning,
+    iconAlign: 'left'
   }
 };
 

@@ -14,23 +14,31 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import Button, { ButtonProps } from './Button.ts';
+import Icon, { IconProps } from './Icon.ts';
 import { Meta, StoryObj } from '@storybook/html';
+import lightning from '../../assets/images/ic_lightning_white_32.png';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 
-const meta: Meta<ButtonProps> = {
-  title: 'Components/Button',
+const meta: Meta<IconProps> = {
+  title: 'Components/Icon',
   tags: ['autodocs'],
-  component: typeof Button,
+  component: typeof Icon,
   argTypes: {
-    states: {
-      control: { type: 'radio' },
-      options: ['focus', 'unfocused', 'disabled'],
-      description: 'Sets the visual mode for the component',
-      table: {
-        defaultValue: { summary: 'focus' }
-      }
+    iconColor: {
+      description: 'color of icon',
+      control: 'color'
+    },
+    height: {
+      description: 'height of icon',
+      control: 'number'
+    },
+    width: {
+      description: 'width of icon',
+      control: 'number'
+    },
+    iconSrc: {
+      description: 'path to image or inline SVG XML'
     },
     tone: {
       control: { type: 'radio' },
@@ -39,37 +47,26 @@ const meta: Meta<ButtonProps> = {
       table: {
         defaultValue: { summary: 'neutral' }
       }
-    },
-    width: {
-      control: { type: 'number', min: 100, max: 1200, step: 50 },
-      description: 'When the fixed property is true, this will set the width of the component',
-      table: {
-        defaultValue: { summary: '400' }
-      }
-    },
-    height: {
-      control: { type: 'number', min: 50, max: 1200, step: 50 },
-      description: 'When the fixed property is true, this will set the height of the component',
-      table: {
-        defaultValue: { summary: '100' }
-      }
     }
   },
   //@ts-expect-error custom render method needed to use Blits component
   render: args => ({
-    name: 'Button',
-    fn: Button,
-    template: `<Button :width="${args.width}" :height="${args.height}" text="Button" tone="${args.tone}" states="${args.states}" />`
+    name: 'Icon',
+    fn: Icon,
+    template: `<Icon ${Object.entries(args)
+      .filter(([_k, v]) => v !== undefined)
+      .map(([k, v]) => `${k}="${v}"`)
+      .join(' ')} />`
   })
 };
 
-type Story = StoryObj<ButtonProps>;
+type Story = StoryObj<IconProps>;
 export const Basic: Story = {
   args: {
-    width: 400,
+    width: 100,
     height: 100,
-    tone: 'neutral',
-    states: 'focus'
+    iconSrc: lightning,
+    tone: 'neutral'
   }
 };
 
