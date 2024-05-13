@@ -19,7 +19,7 @@ import { Show, type NodeProps, View } from '@lightningjs/solid';
 import styles from './CardContent.styles.js';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import { type ArtworkProps } from '../Artwork/Artwork.types.js';
-import type { ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
+import type { ProgressBarProps } from '../ProgressBar/ProgressBar.types.jsx';
 import Tile from '../Tile/Tile.jsx';
 import { getWidthByColumnSpan, withPadding } from '../../utils/index.js';
 withPadding; // Preserve the import.

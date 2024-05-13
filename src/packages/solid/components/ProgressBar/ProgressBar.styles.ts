@@ -15,26 +15,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { type NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
-
-export interface ProgressBarStyles {
-  tone: Tone;
-  Container: NodeStyleSet;
-  ProgressBar: NodeStyleSet;
-}
-
-type ProgressBarStyleProperties = {
-  height?: NodeStyles['height'];
-  progressColor?: NodeStyles['color'];
-  barColor?: NodeStyles['color'];
-  borderRadius?: NodeStyles['borderRadius'];
-};
-
-type ProgressBarConfig = ComponentStyleConfig<ProgressBarStyleProperties>;
+import type { ProgressBarConfig, ProgressBarStyles } from './ProgressBar.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { ProgressBar: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
