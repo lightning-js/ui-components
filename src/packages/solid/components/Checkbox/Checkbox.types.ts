@@ -24,22 +24,34 @@ export interface CheckboxStyleProperties {
    * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
    */
   backgroundColor?: NodeStyles['color'];
-  radius?: NodeStyles['borderRadius'];
-  border?: NodeStyles['border'];
-  justifyContent?: NodeStyles['justifyContent'];
   /**
-   * color of border around checkbox
-   *
-   * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
+   * radius of the border of checkbox
    */
-  strokeColor?: NodeStyles['color']; // TODO clew uses strokeColor, but we currently don't account for nested properties (border.color)
-  strokeWidth?: NodeStyles['borderWidth']; // TODO clew uses strokeWidth, but we currently don't account for nested properties (border.width)
+  radius?: NodeStyles['borderRadius'];
+  /**
+   * placement of content in checkbox
+   */
+  justifyContent?: NodeStyles['justifyContent'];
+  // /**
+  //  * color of border around checkbox
+  //  *
+  //  * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
+  //  */
+  // strokeColor?: NodeStyles['color']; // TODO clew uses strokeColor, but we currently don't account for nested properties (border.color)
+  /**
+   * width of border around checkbox
+   */
+  // strokeWidth?: NodeStyles['borderWidth']; // TODO clew uses strokeWidth, but we currently don't account for nested properties (border.width)
   /**
    * width of icon in the checkbox
+   *
+   * only applied to built-in icons, ignored if child component is passed
    */
   checkWidth?: NodeStyles['width'];
   /**
    * height of icon in the checkbox
+   *
+   * only applied to built-in icons, ignored if child component is passed
    */
   checkHeight?: NodeStyles['height'];
 }

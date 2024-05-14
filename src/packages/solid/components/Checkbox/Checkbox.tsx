@@ -35,7 +35,7 @@ const Checkbox: Component<CheckboxProps> = (props: CheckboxProps) => {
           ? props.children || (
               <Icon
                 src={check}
-                color={props.strokeColor}
+                // color={props.strokeColor} TODO clew uses strokeColor, but we currently don't account for nested properties (border.color)
                 width={props.checkWidth}
                 height={props.checkHeight}
                 style={[
