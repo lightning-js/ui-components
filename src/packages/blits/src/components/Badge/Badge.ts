@@ -1,7 +1,7 @@
 import Blits from '@lightningjs/blits';
 import styles from './Badge.styles';
 import { Tone } from '../../types/types';
-import { isType, isValidTone } from '../../utils';
+import { isType, isValidTone, getTextWidth } from '../../utils';
 import Icon from '../Icon/Icon';
 
 const IconAlignments = ['none', 'left', 'right'] as const;
@@ -115,14 +115,7 @@ const Badge = Blits.Component('Badge', {
       return this.padding[3] + (this.icon.show && this.iconAlign !== 'right' && this.icon.width + this.gap);
     },
     textWidth(): number {
-      // calculate width of text using dummy canvas element - hopefully blits will get flex soon so we dont need to do this
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      ctx!.font = `${this.fontSize}px ${this.font}`;
-      const text = ctx!.measureText(this.title);
-      canvas.remove();
-
-      return text.width;
+      return getTextWidth(this.title, this.font, this.fontSize);
     },
     containerSize(): { w: number; h: number } {
       return {
@@ -155,6 +148,14 @@ const Badge = Blits.Component('Badge', {
     },
     textColor(): string {
       return styles.Text.tones[this.tone as Tone].color;
+    }
+  },
+  methods: {
+    width(): number {
+      return this.containerSize.w;
+    },
+    height(): number {
+      return this.containerSize.h;
     }
   }
 });
