@@ -20,31 +20,31 @@ import type { Tone } from '../../types/types.js';
 type Style = {
   Container: {
     base: {
-      [_prop: string]: any;
+      [_prop: string]: unknown;
     };
     tones: {
       [tone in Tone]: {
-        [_prop: string]: any;
+        [_prop: string]: unknown;
       };
     };
   };
   Icon: {
     base: {
-      [_prop: string]: any;
+      [_prop: string]: unknown;
     };
     tones: {
       [tone in Tone]: {
-        [_prop: string]: any;
+        [_prop: string]: unknown;
       };
     };
   };
   Text: {
     base: {
-      [_prop: string]: any;
+      [_prop: string]: unknown;
     };
     tones: {
       [tone in Tone]: {
-        [_prop: string]: any;
+        [_prop: string]: unknown;
       };
     };
   };
