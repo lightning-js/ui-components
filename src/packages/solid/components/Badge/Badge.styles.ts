@@ -16,42 +16,28 @@
  */
 
 import theme from 'theme';
-import { type NodeStyles } from '@lightningjs/solid';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-
-export interface BadgeStyles {
-  tone: Tone;
-  Container: NodeStyleSet<{ padding: number[] }>;
-  Icon: NodeStyleSet;
-  Text: TextStyleSet;
-}
-
-type BadgeStyleProperties = Partial<{
-  backgroundColor: NodeStyles['color'];
-  textColor: NodeStyles['color'];
-  iconColor: NodeStyles['color'];
-  strokeColor: NodeStyles['color']; // TODO do we use this?
-  borderColor: NodeStyles['color'];
-}>;
-
-type BadgeConfig = ComponentStyleConfig<BadgeStyleProperties>;
+import type { BadgeConfig, BadgeStyles } from './Badge.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
-const { Badge: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
+const { Badge: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme.componentConfig;
 
 const container: BadgeConfig = {
   themeKeys: {
-    color: 'backgroundColor'
+    color: 'backgroundColor',
+    borderRadius: 'radius',
+    gap: 'contentSpacing'
   },
   base: {
+    // TODO clew uses strokeColor, but we currently don't account for nested properties (border.color)
+    // TODO clew uses strokeWidth, but we currently don't account for nested properties (border.width)
     color: theme.color.fillInverseSecondary,
     borderRadius: theme.radius.sm, // borderRadius must be applied _before_ border to prevent the node from breaking
     border: {
       color: theme.color.strokeInverse,
       width: theme.stroke.sm
     },
+    gap: theme.spacer.xs,
     display: 'flex',
     justifyContent: 'spaceEvenly',
     padding: [
