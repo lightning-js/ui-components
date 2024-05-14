@@ -36,8 +36,9 @@ export type BadgeStyleProperties = Partial<{
    *
    * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
    */
-  strokeColor: NodeStyles['color']; // TODO clew uses strokeColor, but we currently don't account for nested properties (border.color)
-  strokeWidth: NodeStyles['borderWidth']; // TODO clew uses strokeWidth, but we currently don't account for nested properties (border.width)
+  // strokeColor: NodeStyles['color']; // TODO clew uses strokeColor, but we currently don't account for nested properties (border.color)
+  // strokeWidth: NodeStyles['borderWidth']; // TODO clew uses strokeWidth, but we currently don't account for nested properties (border.width)
+
   /**
    * spacing between badge items
    */
