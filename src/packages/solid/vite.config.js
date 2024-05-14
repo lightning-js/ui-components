@@ -69,7 +69,11 @@ const config = {
   },
   test: {
     browser: {
-      enabled: true,
+      /**
+       * browser mode causes tests to fail with the following error:
+       * SyntaxError: The requested module 'ui-components/node_modules/.pnpm/chalk@3.0.0/node_modules/chalk/source/index.js?v=6d2cbdb3' does not provide an export named 'default'`
+       */
+      enabled: false,
       headless: false,
       provider: 'playwright',
       name: 'chromium',
