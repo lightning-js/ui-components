@@ -231,16 +231,6 @@ const Details = Blits.Component('Details', {
       this.ratingProps.x =
         this.badgeProps.x + (lastBadge && (lastBadge.x ?? 0) + (lastBadge.w ?? 0) + this.gap);
     }
-  },
-  input: {
-    right(e) {
-      console.log(e, this.badges);
-      this.badges.pop();
-    },
-    left(e) {
-      console.log(e, this.ratings);
-      this.ratings.pop();
-    }
   }
 });
 

@@ -15,21 +15,31 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { Tone } from '../../types/types.js';
+import { ComponentStyle } from '../../utils/styleUtils.js';
 
 type Style = {
   Container: {
     base: {
-      [_prop: string]: unknown;
+      contentSpacing: number;
+      badgeContentSpacing: number;
+      ratingContentSpacing: number;
     };
   };
   Text: {
     base: {
-      [_prop: string]: unknown;
+      fontFamily: string;
+      fontSize: number;
+      fontWeight: number;
+      lineHeight: number;
+      marginRight: number;
+      color: string;
+      disabled: {
+        color: string;
+      };
     };
     tones: {
-      [tone in Tone]: {
-        [_prop: string]: unknown;
+      inverse: {
+        color: string;
       };
     };
   };
@@ -63,4 +73,4 @@ const styles: Style = {
   }
 };
 
-export default styles;
+export default styles satisfies ComponentStyle;

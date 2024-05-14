@@ -1,7 +1,7 @@
 import Blits from '@lightningjs/blits';
 import styles from './Badge.styles';
 import { Tone } from '../../types/types';
-import { isType, isValidTone, getTextWidth } from '../../utils';
+import { isType, isValidTone, getTextWidth, getStyledProp } from '../../utils';
 import Icon from '../Icon/Icon';
 
 const IconAlignments = ['none', 'left', 'right'] as const;
@@ -22,7 +22,6 @@ type BadgeState = {
   padding: Padding;
   font: string;
   fontSize: number;
-  fontWeight: number;
   lineHeight: number;
   gap: number;
 };
@@ -99,7 +98,6 @@ const Badge = Blits.Component('Badge', {
       padding: styles.Container.base.padding,
       font: styles.Text.base.fontFamily,
       fontSize: styles.Text.base.fontSize,
-      fontWeight: styles.Text.base.fontWeight,
       lineHeight: styles.Text.base.lineHeight,
       gap: styles.Container.base.gap
     };
@@ -133,21 +131,21 @@ const Badge = Blits.Component('Badge', {
     border(): { radius: number; color: string; width: number } {
       return {
         radius: styles.Container.base.borderRadius,
-        color: styles.Container.tones[this.tone as Tone].border.color,
-        width: styles.Container.tones[this.tone as Tone].border.width
+        color: getStyledProp('border.color', styles.Container, this.tone) as string,
+        width: getStyledProp('border.width', styles.Container, this.tone) as number
       };
     },
     icon(): { show: boolean; color: string; src: string; width: number; height: number } {
       return {
         show: !!this.iconSrc,
-        color: this.iconColor ?? styles.Icon.tones[this.tone as Tone].color,
+        color: this.iconColor ?? (getStyledProp('color', styles.Icon, this.tone) as string),
         src: this.iconSrc,
         width: this.lineHeight,
         height: this.lineHeight
       };
     },
     textColor(): string {
-      return styles.Text.tones[this.tone as Tone].color;
+      return getStyledProp('color', styles.Text, this.tone) as string;
     }
   },
   methods: {

@@ -15,31 +15,48 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { Tone } from '../../types/types.js';
+import { ComponentStyle } from '../../utils/styleUtils.js';
 
 type Style = {
   Container: {
     base: {
-      [_prop: string]: unknown;
+      alpha: number;
+      disabled: {
+        alpha: number;
+      };
     };
   };
   TitleText: {
     base: {
-      [_prop: string]: unknown;
+      maxLines: number;
+      fontFamily: string;
+      fontSize: number;
+      lineHeight: number;
+      color: string;
+      disabled: {
+        color: string;
+      };
     };
     tones: {
-      [tone in Tone]: {
-        [_prop: string]: unknown;
+      inverse: {
+        color: string;
       };
     };
   };
   DescriptionText: {
     base: {
-      [_prop: string]: unknown;
+      maxLines: number;
+      fontFamily: string;
+      fontSize: number;
+      lineHeight: number;
+      color: string;
+      disabled: {
+        color: string;
+      };
     };
     tones: {
-      [tone in Tone]: {
-        [_prop: string]: unknown;
+      inverse: {
+        color: string;
       };
     };
   };
@@ -48,10 +65,6 @@ type Style = {
 const styles: Style = {
   Container: {
     base: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'flexStart',
-      flexBoundary: 'contain',
       alpha: 1,
       disabled: {
         alpha: 0.5
@@ -61,13 +74,9 @@ const styles: Style = {
   TitleText: {
     base: {
       maxLines: 1,
-      contain: 'width',
       fontFamily: 'Arial',
       fontSize: 25,
-      fontWeight: 500,
       lineHeight: 36,
-      verticalAlign: 'middle',
-      textBaseline: 'bottom',
       color: '0xf8f7faff',
       disabled: {
         color: '0xf8f7fa80'
@@ -81,16 +90,11 @@ const styles: Style = {
   },
   DescriptionText: {
     base: {
-      contain: 'width',
       maxLines: 2,
       fontFamily: 'Arial',
       fontSize: 22,
-      fontWeight: 300,
       lineHeight: 32,
-      verticalAlign: 'middle',
-      textBaseline: 'bottom',
       color: '0xf8f7fab3',
-      focus: {},
       disabled: {
         color: '0xf8f7fa80'
       }
@@ -103,4 +107,4 @@ const styles: Style = {
   }
 };
 
-export default styles;
+export default styles satisfies ComponentStyle;

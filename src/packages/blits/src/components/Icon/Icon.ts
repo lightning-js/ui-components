@@ -1,7 +1,7 @@
 import Blits from '@lightningjs/blits';
 import styles from './Icon.styles';
 import { Tone } from '../../types/types';
-import { isValidTone } from '../../utils';
+import { getStyledProp, isValidTone } from '../../utils';
 
 export type IconProps = {
   width?: number;
@@ -47,8 +47,8 @@ const Icon = Blits.Component('Icon', {
     <Element :w="$width" :h="$height" :src="$iconSrc" :color="$color" />
   `,
   computed: {
-    color() {
-      return this.iconColor ?? styles.Container.tones[this.tone as Tone].color;
+    color(): string {
+      return this.iconColor ?? (getStyledProp('color', styles.Container, this.tone) as string);
     }
   }
 });

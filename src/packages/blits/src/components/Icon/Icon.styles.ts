@@ -16,6 +16,7 @@
  */
 
 import type { Tone } from '../../types/types.js';
+import { ComponentStyle } from '../../utils/styleUtils.js';
 
 type Style = {
   Container: {
@@ -25,7 +26,7 @@ type Style = {
       color: string;
     };
     tones: {
-      [tone in Tone]: {
+      [tone in Tone]?: {
         color: string;
       };
     };
@@ -42,15 +43,9 @@ const styles: Style = {
     tones: {
       brand: {
         color: '0x93a9fdff'
-      },
-      inverse: {
-        color: '0x181819ff'
-      },
-      neutral: {
-        color: '0x181819ff'
       }
     }
   }
 };
 
-export default styles;
+export default styles satisfies ComponentStyle;

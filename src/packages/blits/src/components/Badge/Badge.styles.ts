@@ -15,36 +15,45 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { Tone } from '../../types/types.js';
+import { Tone } from '../../types/types.js';
+import { ComponentStyle } from '../../utils/styleUtils.js';
 
 type Style = {
   Container: {
     base: {
-      [_prop: string]: unknown;
+      padding: [number, number, number, number];
+      gap: number;
+      borderRadius: number;
     };
     tones: {
       [tone in Tone]: {
-        [_prop: string]: unknown;
+        color: string;
+        border: {
+          color: string;
+          width: number;
+        };
       };
     };
   };
   Icon: {
     base: {
-      [_prop: string]: unknown;
+      color: string;
     };
     tones: {
       [tone in Tone]: {
-        [_prop: string]: unknown;
+        color: string;
       };
     };
   };
   Text: {
     base: {
-      [_prop: string]: unknown;
+      fontFamily: string;
+      fontSize: number;
+      lineHeight: number;
     };
     tones: {
       [tone in Tone]: {
-        [_prop: string]: unknown;
+        color: string;
       };
     };
   };
@@ -61,7 +70,7 @@ const styles: Style = {
       brand: {
         color: '0x93a9fdff',
         border: {
-          color: 0x181819b3,
+          color: '0x181819b3',
           width: 2
         }
       },
@@ -82,7 +91,9 @@ const styles: Style = {
     }
   },
   Icon: {
-    base: {},
+    base: {
+      color: '0xf8f7faff'
+    },
     tones: {
       brand: {
         color: '0xf8f7faff'
@@ -99,10 +110,7 @@ const styles: Style = {
     base: {
       fontFamily: 'Arial',
       fontSize: 20,
-      fontWeight: 500,
-      lineHeight: 24,
-      verticalAlign: 'middle',
-      textBaseline: 'bottom'
+      lineHeight: 24
     },
     tones: {
       brand: {
@@ -118,4 +126,4 @@ const styles: Style = {
   }
 };
 
-export default styles;
+export default styles satisfies ComponentStyle;

@@ -15,20 +15,27 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { ComponentStyle } from '../../utils';
+
 type Style = {
   Container: {
     base: {
-      [_prop: string]: unknown;
+      itemSpacing: number;
     };
   };
   Text: {
     base: {
-      [_prop: string]: unknown;
+      color: string;
+      fontFamily: string;
+      fontSize: number;
+      lineHeight: number;
     };
   };
   Icon: {
     base: {
-      [_prop: string]: unknown;
+      height: number;
+      width: number;
+      color: string;
     };
   };
 };
@@ -44,7 +51,6 @@ const styles: Style = {
       color: '0xf8f7faff',
       fontFamily: 'Arial',
       fontSize: 22,
-      fontWeight: 300,
       lineHeight: 32
     }
   },
@@ -57,4 +63,4 @@ const styles: Style = {
   }
 };
 
-export default styles;
+export default styles satisfies ComponentStyle;

@@ -143,18 +143,6 @@ const Metadata = Blits.Component('Metadata', {
     descriptionColor(): string {
       return getStyledProp('color', styles.DescriptionText, this.tone, this.states) as string;
     }
-  },
-  hooks: {
-    focus() {
-      this.select('details').focus();
-    }
-  },
-  input: {
-    up(e) {
-      console.log(e);
-      // this.details.badges = [...this.details.badges.slice(0, 2), { title: 'CCC' }];
-      this.details.title = 'Support';
-    }
   }
 });
 

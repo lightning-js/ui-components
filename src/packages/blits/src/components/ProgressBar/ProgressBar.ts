@@ -1,7 +1,7 @@
 import Blits from '@lightningjs/blits';
 import styles from './ProgressBar.styles';
 import type { Tone } from '../../types/types';
-import { ToneValues, isType } from '../../utils';
+import { ToneValues, getStyledProp, isType } from '../../utils';
 
 export type ProgressBarProps = {
   width: number;
@@ -75,14 +75,14 @@ const ProgressBar = Blits.Component('ProgressBar', {
     </Element>
   `,
   computed: {
-    progressContainerColor() {
-      return this.containerColor ?? styles.Container.tones[this.tone as Tone].color;
+    progressContainerColor(): string {
+      return this.containerColor ?? (getStyledProp('color', styles.Container, this.tone) as string);
     },
-    progressBarColor() {
-      return this.progressColor ?? styles.ProgressBar.tones[this.tone as Tone].color;
+    progressBarColor(): string {
+      return this.progressColor ?? (getStyledProp('color', styles.ProgressBar, this.tone) as string);
     },
-    radius() {
-      return this.borderRadius ?? styles.Container.base.borderRadius;
+    radius(): number {
+      return this.borderRadius ?? (getStyledProp('borderRadius', styles.Container, this.tone) as number);
     }
   }
 });

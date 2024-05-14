@@ -1,7 +1,7 @@
 import Blits from '@lightningjs/blits';
 import styles from './Button.styles.ts';
 import type { Tone, States, JustifyContent, Align } from '../../types/types';
-import { isValidTone, isValidState, isValidJustifyContent } from '../../utils/index.ts';
+import { isValidTone, isValidState, isValidJustifyContent, getStyledProp } from '../../utils/index.ts';
 
 export type ButtonProps = {
   text: string;
@@ -106,10 +106,10 @@ const Button = Blits.Component('Button', {
   },
   computed: {
     containerColor(): string {
-      return styles.Container.tones[this.tone as Tone][this.states as States].color;
+      return getStyledProp('color', styles.Container, this.tone, this.states) as string;
     },
     textColor(): string {
-      return styles.Text.tones[this.tone as Tone][this.states as States].color;
+      return getStyledProp('color', styles.Text, this.tone, this.states) as string;
     }
   }
 });
