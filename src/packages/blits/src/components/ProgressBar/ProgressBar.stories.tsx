@@ -53,10 +53,7 @@ const meta: Meta<ProgressBarProps> = {
   render: args => ({
     name: 'ProgressBar',
     fn: ProgressBar,
-    template: `<ProgressBar ${Object.entries(args)
-      .filter(([_k, v]) => v !== undefined)
-      .map(([k, v]) => `${k}="${v}"`)
-      .join(' ')} />`
+    args
   })
 };
 
