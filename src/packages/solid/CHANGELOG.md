@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.16.2...@lightningjs/solid-ui@0.17.0) (2024-05-14)
+
+### Features
+
+- **Solid:** Badge updates styles ([#134](https://github.com/lightning-js/ui-components/issues/134)) ([e3a4efb](https://github.com/lightning-js/ui-components/commit/e3a4efbb519afce5807232e954001c27ead15bb6))
+
 ## [0.16.2](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.16.1...@lightningjs/solid-ui@0.16.2) (2024-05-14)
 
 ### Bug Fixes
