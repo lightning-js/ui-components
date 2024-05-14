@@ -20,6 +20,9 @@ import type { ComponentStyleConfig, NodeStyleSet, Tone } from '../../types/types
 import type { UIComponentProps } from '../../types/interfaces.js';
 
 export interface WaveProps extends UIComponentProps, WaveStyleProperties {
+  /**
+   * if true, the wave will animate
+   */
   toggleAnimation?: boolean;
 }
 
@@ -34,6 +37,9 @@ export interface WaveStyleProperties {
    * spacing between each rectangle in the wave
    */
   itemSpacing?: NodeStyles['itemSpacing'];
+  /**
+   * the radius of the rectangles in the wave
+   */
   radius?: NodeStyles['borderRadius'];
 }
 
