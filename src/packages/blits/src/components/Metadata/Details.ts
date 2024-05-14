@@ -154,7 +154,7 @@ const Details = Blits.Component('Details', {
   },
   computed: {
     titleColor(): string {
-      return getStyledProp('color', styles.Text, this.tone, this.states) as string;
+      return getStyledProp('color', styles.Text, this.tone, this.states) ?? '#fff';
     },
     titleWidth(): number {
       if (!this.title) return 0;

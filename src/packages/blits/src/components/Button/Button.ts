@@ -106,10 +106,10 @@ const Button = Blits.Component('Button', {
   },
   computed: {
     containerColor(): string {
-      return getStyledProp('color', styles.Container, this.tone, this.states) as string;
+      return getStyledProp('color', styles.Container, this.tone, this.states) ?? '#00000000';
     },
     textColor(): string {
-      return getStyledProp('color', styles.Text, this.tone, this.states) as string;
+      return getStyledProp('color', styles.Text, this.tone, this.states) ?? '#fff';
     }
   }
 });

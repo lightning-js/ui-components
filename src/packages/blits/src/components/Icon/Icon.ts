@@ -48,7 +48,7 @@ const Icon = Blits.Component('Icon', {
   `,
   computed: {
     color(): string {
-      return this.iconColor ?? (getStyledProp('color', styles.Container, this.tone) as string);
+      return this.iconColor ?? getStyledProp('color', styles.Container, this.tone) ?? '#fff';
     }
   }
 });

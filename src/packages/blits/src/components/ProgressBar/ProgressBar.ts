@@ -76,13 +76,13 @@ const ProgressBar = Blits.Component('ProgressBar', {
   `,
   computed: {
     progressContainerColor(): string {
-      return this.containerColor ?? (getStyledProp('color', styles.Container, this.tone) as string);
+      return this.containerColor ?? getStyledProp('color', styles.Container, this.tone) ?? '#00000000';
     },
     progressBarColor(): string {
-      return this.progressColor ?? (getStyledProp('color', styles.ProgressBar, this.tone) as string);
+      return this.progressColor ?? getStyledProp('color', styles.ProgressBar, this.tone) ?? '#fff';
     },
     radius(): number {
-      return this.borderRadius ?? (getStyledProp('borderRadius', styles.Container, this.tone) as number);
+      return this.borderRadius ?? getStyledProp('borderRadius', styles.Container, this.tone) ?? 0;
     }
   }
 });

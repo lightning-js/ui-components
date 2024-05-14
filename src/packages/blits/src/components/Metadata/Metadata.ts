@@ -135,13 +135,13 @@ const Metadata = Blits.Component('Metadata', {
   },
   computed: {
     containerAlpha(): number {
-      return getStyledProp('alpha', styles.Container, this.tone, this.states) as number;
+      return getStyledProp('alpha', styles.Container, this.tone, this.states) ?? 1;
     },
     titleColor(): string {
-      return getStyledProp('color', styles.TitleText, this.tone, this.states) as string;
+      return getStyledProp('color', styles.TitleText, this.tone, this.states) ?? '#fff';
     },
     descriptionColor(): string {
-      return getStyledProp('color', styles.DescriptionText, this.tone, this.states) as string;
+      return getStyledProp('color', styles.DescriptionText, this.tone, this.states) ?? '#fff';
     }
   }
 });

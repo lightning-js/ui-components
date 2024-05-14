@@ -35,17 +35,17 @@ const deepSearch = (obj: unknown, keys: string[]): unknown | null => {
 };
 
 // prioritised by -> tone + state -> state -> tone -> base
-export const getStyledProp = (
+export const getStyledProp = <T>(
   prop: string,
   style: ElementStyle,
   tone: Tone = 'neutral',
   states: States = 'unfocused'
-): unknown | null => {
+): T | null => {
   let value: unknown;
   [style.tones?.[tone]?.[states], style.base[states], style.tones?.[tone], style.base].find(object => {
     if (!object) return false;
     value = deepSearch(object, prop.split('.'));
     return !!value;
   });
-  return value;
+  return value as T | null;
 };

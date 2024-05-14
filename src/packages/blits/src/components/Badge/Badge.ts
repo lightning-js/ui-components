@@ -131,21 +131,21 @@ const Badge = Blits.Component('Badge', {
     border(): { radius: number; color: string; width: number } {
       return {
         radius: styles.Container.base.borderRadius,
-        color: getStyledProp('border.color', styles.Container, this.tone) as string,
-        width: getStyledProp('border.width', styles.Container, this.tone) as number
+        color: getStyledProp('border.color', styles.Container, this.tone) ?? '#00000000',
+        width: getStyledProp('border.width', styles.Container, this.tone) ?? 0
       };
     },
     icon(): { show: boolean; color: string; src: string; width: number; height: number } {
       return {
         show: !!this.iconSrc,
-        color: this.iconColor ?? (getStyledProp('color', styles.Icon, this.tone) as string),
+        color: this.iconColor ?? getStyledProp('color', styles.Icon, this.tone),
         src: this.iconSrc,
         width: this.lineHeight,
         height: this.lineHeight
       };
     },
     textColor(): string {
-      return getStyledProp('color', styles.Text, this.tone) as string;
+      return getStyledProp('color', styles.Text, this.tone) ?? '#000';
     }
   },
   methods: {
