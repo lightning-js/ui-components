@@ -20,8 +20,7 @@ import theme from 'theme';
 import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-import type { IconStyles } from '../Icon/Icon.styles.js';
-import type { IconConfig } from '../Icon/Icon.styles.js';
+import type { IconStyles, IconConfig } from '../Icon/Icon.types.js';
 
 export interface RatingStyles {
   tone: Tone;

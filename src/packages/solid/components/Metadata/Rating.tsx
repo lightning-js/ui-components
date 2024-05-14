@@ -19,7 +19,7 @@ import { Text, Show, View, type TextProps } from '@lightningjs/solid';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import styles from './Rating.styles.js';
 import Icon from '../Icon/Icon.jsx';
-import type { IconProps } from '../Icon/Icon.jsx';
+import type { IconProps } from '../Icon/Icon.types.jsx';
 
 export interface RatingProps extends UIComponentProps {
   /**
