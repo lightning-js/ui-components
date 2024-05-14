@@ -15,30 +15,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { TextStyles, NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-
-export interface ButtonStyles {
-  tone: Tone;
-  Container: NodeStyleSet<{ padding: number[] }>;
-  Content: NodeStyleSet;
-  Text: TextStyleSet;
-}
-
-type ButtonStyleProperties = {
-  backgroundColor?: NodeStyles['color'];
-  radius?: NodeStyles['borderRadius'];
-  contentColor?: NodeStyles['color'];
-  justifyContent?: NodeStyles['justifyContent'];
-  textAlign?: TextStyles['textAlign'];
-  textColor?: TextStyles['color'];
-  padding?: number[];
-};
-
-type ButtonConfig = ComponentStyleConfig<ButtonStyleProperties>;
+import type { ButtonStyles, ButtonConfig } from './Button.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Button: { defaultTone, ...buttonThemeStyles } = { buttonThemeStyles: {} } } = theme?.componentConfig;
@@ -56,7 +35,8 @@ const container: ButtonConfig = {
     textAlign: 'textAlign',
     borderRadius: 'radius',
     color: 'backgroundColor',
-    justifyContent: 'justifyContent'
+    justifyContent: 'justify',
+    itemSpacing: 'contentSpacing'
   },
   base: {
     height: theme.typography.button1.lineHeight + theme.spacer.xl * 2,

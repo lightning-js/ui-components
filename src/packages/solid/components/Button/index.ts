@@ -15,10 +15,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export {
-  default as default,
-  ButtonContainer,
-  type ButtonProps,
-  type ButtonContainerProps
-} from './Button.jsx';
-export { default as buttonStyles, type ButtonStyles } from './Button.styles.js';
+export { default as default, ButtonContainer } from './Button.jsx';
+export { default as buttonStyles } from './Button.styles.js';
+export type { ButtonProps, ButtonStyles } from './Button.types.js';

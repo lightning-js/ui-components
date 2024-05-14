@@ -16,31 +16,16 @@
  */
 
 import { type Component } from 'solid-js';
-import { View, Text, type NodeProps, type TextProps } from '@lightningjs/solid';
-import type { UIComponentProps } from '../../types/interfaces.js';
+import { View, Text } from '@lightningjs/solid';
 import styles from './Button.styles.js';
-
-interface ButtonProps extends UIComponentProps {
-  children: TextProps['children'];
-}
-
-interface ButtonContainerProps extends UIComponentProps {
-  children: NodeProps['children'];
-}
+import type { ButtonContainerProps, ButtonProps } from './Button.types.js';
 
 const Button: Component<ButtonProps> = props => {
   return (
-    <View
-      {...props}
-      // @ts-expect-error TODO type needs to be fixed in framework
-      style={[
-        props.style, //
-        styles.Container.tones?.[props.tone ?? styles.tone],
-        styles.Container.base
-      ]}
-      forwardStates
-    >
+    <ButtonContainer {...props} forwardStates>
       <Text
+        textAlign={props.textAlign}
+        color={props.textColor}
         style={[
           styles.Text.tones[props.tone ?? styles.tone], //
           styles.Text.base
@@ -48,7 +33,7 @@ const Button: Component<ButtonProps> = props => {
       >
         {props.children}
       </Text>
-    </View>
+    </ButtonContainer>
   );
 };
 
@@ -56,6 +41,10 @@ const ButtonContainer: Component<ButtonContainerProps> = props => {
   return (
     <View
       {...props}
+      color={props.backgroundColor}
+      contentColor={props.contentColor}
+      justifyContent={props.justify}
+      itemSpacing={props.contentSpacing}
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
@@ -70,6 +59,5 @@ const ButtonContainer: Component<ButtonContainerProps> = props => {
 export {
   Button as default, //
   ButtonContainer,
-  type ButtonProps,
-  type ButtonContainerProps
+  type ButtonProps
 };
