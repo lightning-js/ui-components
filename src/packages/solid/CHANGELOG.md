@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.6](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.17.5...@lightningjs/solid-ui@0.17.6) (2024-05-15)
+
+### Bug Fixes
+
+- **Solid:** removes spread from styles props ([#146](https://github.com/lightning-js/ui-components/issues/146)) ([685ee7d](https://github.com/lightning-js/ui-components/commit/685ee7db44e043643f85d9338089fe5f054efe6a))
+
 ## [0.17.5](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.17.4...@lightningjs/solid-ui@0.17.5) (2024-05-15)
 
 ### Bug Fixes
