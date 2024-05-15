@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.17.6...@lightningjs/solid-ui@0.18.0) (2024-05-15)
+
+### Bug Fixes
+
+- **Solid:** updates progressBar styles ([#141](https://github.com/lightning-js/ui-components/issues/141)) ([78ced63](https://github.com/lightning-js/ui-components/commit/78ced63917ecd29d01b24823f34cc52cb1468239))
+
+### Features
+
+- **Solid:** Wave creates component ([#132](https://github.com/lightning-js/ui-components/issues/132)) ([da14343](https://github.com/lightning-js/ui-components/commit/da14343714e51a23b67392016990c6cae11ff21e))
+
 ## [0.17.6](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.17.5...@lightningjs/solid-ui@0.17.6) (2024-05-15)
 
 ### Bug Fixes
