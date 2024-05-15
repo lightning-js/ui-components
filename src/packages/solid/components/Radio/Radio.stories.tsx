@@ -49,8 +49,6 @@ export default meta;
 export const Basic = {
   render: args => <Radio {...args} />,
   args: {
-    checked: true,
-    states: 'focus',
-    tone: 'neutral'
+    checked: true
   }
 };

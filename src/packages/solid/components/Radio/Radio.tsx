@@ -41,16 +41,16 @@ const Radio: Component<RadioProps> = props => {
   return (
     <View
       {...props}
+      // @ts-expect-error TODO type needs to be fixed in framework
       style={[
-        /* @ts-expect-error next-line deconstructed style object should work here */
-        ...props.style, //
+        props.style, //
         styles.Container.tones?.[props.tone ?? styles.tone],
         styles.Container.base
       ]}
       states={{ checked: props.checked }}
       children={
         props.checked
-          ? props.children || (
+          ? props.children ?? (
               <View
                 style={[styles.Knob.tones?.[props.tone ?? styles.tone], styles.Knob.base]}
                 color={knobColor()}

@@ -40,7 +40,9 @@ export type RadioStyleProperties = {
   strokeRadius?: NodeStyles['borderRadius'];
 };
 
-type RadioConfig = ComponentStyleConfig<RadioStyleProperties>;
+export type RadioModes = 'checked' | 'focus' | 'disabled';
+
+type RadioConfig = ComponentStyleConfig<RadioStyleProperties, RadioModes>;
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Radio: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
@@ -79,6 +81,7 @@ const container: RadioConfig = {
       }
     }
   },
+  modeKeys: ['focus', 'disabled', 'checked'],
   themeStyles
 };
 
