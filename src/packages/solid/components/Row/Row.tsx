@@ -47,9 +47,6 @@ export interface RowProps extends UIComponentProps {
   /** function to be called on right click */
   onLeft?: KeyHandler;
 
-  /** function to be called when component gets focus */
-  onFocus?: KeyHandler;
-
   /** function to be called when the selected of the component changes */
   onSelectedChanged?: (
     this: ElementNode,
