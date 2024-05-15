@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.4](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.17.3...@lightningjs/solid-ui@0.17.4) (2024-05-15)
+
+### Bug Fixes
+
+- **Solid:** updates Label styles ([#139](https://github.com/lightning-js/ui-components/issues/139)) ([e80cdf2](https://github.com/lightning-js/ui-components/commit/e80cdf279f92b226669a5d8ed51c5402c130318c))
+
 ## [0.17.3](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.17.2...@lightningjs/solid-ui@0.17.3) (2024-05-15)
 
 ### Bug Fixes
