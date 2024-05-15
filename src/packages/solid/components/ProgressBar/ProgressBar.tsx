@@ -27,7 +27,11 @@ const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
       borderRadius={props.radius}
       color={props.barColor}
       // @ts-expect-error TODO type needs to be fixed in framework
-      style={[props.style, styles.Container.tones[props.tone ?? styles.tone], styles.Container.base]}
+      style={[
+        props.style, //
+        styles.Container.tones[props.tone ?? styles.tone],
+        styles.Container.base
+      ]}
       forwardStates
     >
       <View
@@ -35,7 +39,10 @@ const ProgressBar: Component<ProgressBarProps> = (props: ProgressBarProps) => {
         animationSettings={props.animationSettings}
         width={props.width * props.progress}
         color={props.progressColor}
-        style={[styles.ProgressBar.tones[props.tone ?? styles.tone], styles.ProgressBar.base]}
+        style={[
+          styles.ProgressBar.tones[props.tone ?? styles.tone], //
+          styles.ProgressBar.base
+        ]}
         forwardStates
       />
     </View>
