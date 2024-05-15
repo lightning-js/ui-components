@@ -15,7 +15,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import Column, { type ColumnProps } from './Column.jsx';
+import Column from './Column.jsx';
+import type { ColumnProps } from './Column.types.js';
 import Button from '../Button/Button.jsx';
 import type { JSX } from 'solid-js/jsx-runtime';
 import { View } from '@lightningjs/solid';
