@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.5](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.17.4...@lightningjs/solid-ui@0.17.5) (2024-05-15)
+
+### Bug Fixes
+
+- **Solid:** updates Input styles ([#142](https://github.com/lightning-js/ui-components/issues/142)) ([b590719](https://github.com/lightning-js/ui-components/commit/b590719c9bb9f2b5e33e682c14f31f566dcafad8))
+
 ## [0.17.4](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.17.3...@lightningjs/solid-ui@0.17.4) (2024-05-15)
 
 ### Bug Fixes
