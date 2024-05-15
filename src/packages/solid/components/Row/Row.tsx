@@ -16,46 +16,12 @@
  */
 
 import { type Component } from 'solid-js';
-import { View, ElementNode, type IntrinsicNodeCommonProps } from '@lightningjs/solid';
-import type { KeyHandler } from '@lightningjs/solid-primitives';
-import type { UIComponentProps } from '../../types/interfaces.js';
+import { View, ElementNode } from '@lightningjs/solid';
 import { chainFunctions } from '../../utils/chainFunctions.js';
 import { handleNavigation, onGridFocus } from '../../utils/handleNavigation.js';
 import { withScrolling, type ScrollableElement } from '../../utils/withScrolling.js';
 import styles from './Row.styles.js';
-
-export interface RowProps extends UIComponentProps {
-  /** function run on component mount */
-  onCreate?: IntrinsicNodeCommonProps['onCreate'];
-  /** When auto scrolling, item index at which scrolling begins */
-  scrollIndex?: number;
-
-  /** Determines when to scroll(shift items along the axis):
-   * auto - scroll items immediately
-   * edge - scroll items when focus reaches the last item on screen
-   * always - focus remains at index 0, scroll until the final item is at index 0
-   * none - disable scrolling behavior, focus shifts as expected
-   * in both `auto` and `edge` items will only scroll until the last item is on screen */
-  scroll?: 'always' | 'none' | 'edge' | 'auto';
-
-  /** The initial index */
-  selected?: number;
-
-  /** function to be called on right click */
-  onRight?: KeyHandler;
-
-  /** function to be called on right click */
-  onLeft?: KeyHandler;
-
-  /** function to be called when the selected of the component changes */
-  onSelectedChanged?: (
-    this: ElementNode,
-    elm: ElementNode,
-    active: ElementNode,
-    selectedIndex: number,
-    lastSelectedIndex: number
-  ) => void;
-}
+import type { RowProps } from './Row.types.js';
 
 const Row: Component<RowProps> = (props: RowProps) => {
   const onLeft = handleNavigation('left');
@@ -65,6 +31,9 @@ const Row: Component<RowProps> = (props: RowProps) => {
     <View
       {...props}
       selected={props.selected || 0}
+      gap={props.itemSpacing}
+      itemTransition={props.itemTransition}
+      scrollIndex={props.scrollIndex}
       onLeft={chainFunctions(props.onLeft, onLeft)}
       onRight={chainFunctions(props.onRight, onRight)}
       forwardFocus={onGridFocus}
