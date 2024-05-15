@@ -56,25 +56,6 @@ const input: InputConfig = {
     borderRadius: theme.radius.sm,
     marginX: theme.spacer.xxxl
   },
-  modes: {
-    focus: {
-      color: theme.color.interactiveNeutralFocus
-    },
-    disabled: {
-      color: theme.color.fillNeutralDisabled
-    }
-  },
-  tones: {
-    inverse: {
-      color: theme.color.interactiveInverse
-    },
-    brand: {
-      color: theme.color.interactiveBrand,
-      focus: {
-        color: theme.color.fillNeutral
-      }
-    }
-  },
   themeStyles
 };
 
