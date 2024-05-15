@@ -18,7 +18,7 @@
 import Input from './Input.jsx';
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import { createSignal } from 'solid-js';
-import { View } from '@lightningjs/solid';
+import { View, hexColor } from '@lightningjs/solid';
 
 type Story = StoryObj<typeof Input>;
 
@@ -27,7 +27,7 @@ const meta: Meta<typeof Input> = {
   component: Input,
   tags: ['autodocs'],
   argTypes: {
-    color: {
+    backgroundColor: {
       description: 'color of Input',
       control: 'color'
     },
@@ -63,7 +63,13 @@ export const Basic: Story = {
 
     return (
       <View onKeyPress={handleKeyPress}>
-        <Input {...args} autofocus keyEvent={[keyPress, setKeyPress]} titleSignal={[title, setTitle]} />
+        <Input
+          {...args}
+          autofocus
+          backgroundColor={hexColor(args.backgroundColor) || undefined}
+          keyEvent={[keyPress, setKeyPress]}
+          titleSignal={[title, setTitle]}
+        />
       </View>
     );
   },

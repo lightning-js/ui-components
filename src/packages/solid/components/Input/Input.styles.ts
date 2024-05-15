@@ -15,35 +15,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 import { getWidthByUpCount } from '../../utils/getWidthByUpCount.js';
-
-export interface InputStyles {
-  tone: Tone;
-  Container: NodeStyleSet;
-  InputContainer: NodeStyleSet;
-  Text: TextStyleSet;
-}
-
-export type InputStyleProperties = {
-  backgroundColor?: NodeStyles['color'];
-  borderRadius?: NodeStyles['borderRadius'];
-  justifyContent?: NodeStyles['justifyContent'];
-  textColor?: NodeStyles['color'];
-};
-
-export type InputConfig = ComponentStyleConfig<InputStyleProperties>;
+import type { InputStyles, InputConfig } from './Input.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Input: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
 const container: InputConfig = {
   themeKeys: {
-    justifyContent: 'justifyContent'
+    justifyContent: 'justify'
   },
   base: {
     display: 'flex',
@@ -58,10 +40,12 @@ const container: InputConfig = {
 
 const input: InputConfig = {
   themeKeys: {
-    borderRadius: 'borderRadius',
+    borderRadius: 'radius',
     color: 'backgroundColor'
   },
   base: {
+    // TODO clew uses strokeColor, but we currently don't account for nested properties (border.color)
+    // TODO clew uses strokeWidth, but we currently don't account for nested properties (border.width)
     width: getWidthByUpCount(4),
     height: 100,
     display: 'flex',
@@ -71,25 +55,6 @@ const input: InputConfig = {
     contentColor: theme.color.fillInverse,
     borderRadius: theme.radius.sm,
     marginX: theme.spacer.xxxl
-  },
-  modes: {
-    focus: {
-      color: theme.color.interactiveNeutralFocus
-    },
-    disabled: {
-      color: theme.color.fillNeutralDisabled
-    }
-  },
-  tones: {
-    inverse: {
-      color: theme.color.interactiveInverse
-    },
-    brand: {
-      color: theme.color.interactiveBrand,
-      focus: {
-        color: theme.color.fillNeutral
-      }
-    }
   },
   themeStyles
 };

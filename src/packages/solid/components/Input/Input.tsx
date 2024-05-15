@@ -15,27 +15,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { createSignal, type Component, type Signal, createEffect, on } from 'solid-js';
+import { createSignal, type Component, createEffect, on } from 'solid-js';
 import { View, Text } from '@lightningjs/solid';
-import type { UIComponentProps } from '../../types/interfaces.js';
 import styles from './Input.styles.js';
-
-export interface InputProps extends UIComponentProps {
-  /**
-   * non-reactive index of the current cursor currentPosition
-   */
-  position?: number;
-
-  /**
-   * signal passed in to represent what change we want to happen in the input
-   */
-  keyEvent: Signal<string>;
-
-  /**
-   * signal passed in to represent the actual title within the input
-   */
-  titleSignal: Signal<string>;
-}
+import type { InputProps } from './Input.types.js';
 
 const Input: Component<InputProps> = props => {
   /* eslint-disable solid/reactivity */
@@ -111,6 +94,11 @@ const Input: Component<InputProps> = props => {
   return (
     <View
       {...props}
+      // borderColor={props.strokeColor} // TODO clew uses strokeColor, but we currently don't account for nested properties (border.color)
+      // borderWidth={props.strokeWidth} // TODO clew uses strokeWidth, but we currently don't account for nested properties (border.width)
+      color={props.backgroundColor}
+      justifyContent={props.justify}
+      borderRadius={props.radius}
       position={position()}
       onLeft={onLeft}
       onRight={onRight}
@@ -122,6 +110,8 @@ const Input: Component<InputProps> = props => {
       ]}
     >
       <Text
+        tone={props.tone ?? styles.tone}
+        color={props.textColor}
         style={[
           styles.Text.tones[props.tone ?? styles.tone], //
           styles.Text.base
