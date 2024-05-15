@@ -21,7 +21,8 @@ import { withPadding } from '../../utils/index.js';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import Artwork from '../Artwork/Artwork.jsx';
 import type { ArtworkProps } from '../Artwork/Artwork.types.js';
-import ProgressBar, { type ProgressBarProps } from '../ProgressBar/ProgressBar.jsx';
+import ProgressBar from '../ProgressBar/ProgressBar.jsx';
+import type { ProgressBarProps } from 'components/ProgressBar/ProgressBar.types.js';
 import styles, { type TileStyleProperties } from './Tile.styles.js';
 withPadding;
 
