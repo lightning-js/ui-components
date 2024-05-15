@@ -25,14 +25,14 @@ const container: RowConfig = {
   themeKeys: {
     gap: 'itemSpacing',
     scrollIndex: 'scrollIndex',
-    itemTransition: 'itemTransition'
+    transition: 'itemTransition'
   },
   base: {
     display: 'flex',
     flexBoundary: 'fixed',
     flexDirection: 'row',
     gap: theme.layout.gutterX,
-    itemTransition: {
+    transition: {
       ...theme.animation.standardEntrance,
       duration: theme.animation.duration.fast
     }

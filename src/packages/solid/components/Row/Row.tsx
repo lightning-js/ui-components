@@ -32,7 +32,7 @@ const Row: Component<RowProps> = (props: RowProps) => {
       {...props}
       selected={props.selected || 0}
       gap={props.itemSpacing}
-      itemTransition={props.itemTransition}
+      transition={props.itemTransition}
       scrollIndex={props.scrollIndex}
       onLeft={chainFunctions(props.onLeft, onLeft)}
       onRight={chainFunctions(props.onRight, onRight)}
