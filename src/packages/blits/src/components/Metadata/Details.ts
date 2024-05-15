@@ -4,7 +4,14 @@ import Badge, { BadgeProps } from '../Badge/Badge';
 import { getStyledProp } from '../../utils/styleUtils';
 import { getTextWidth } from '../../utils/textUtils';
 import Rating, { RatingProps } from './Rating';
-import { getFlexRects, getMaxHeight, type FlexRect, isValidState, isValidTone } from '../../utils';
+import {
+  getFlexRects,
+  getMaxHeight,
+  type FlexRect,
+  isValidState,
+  isValidTone,
+  UnrequiredString
+} from '../../utils';
 import { States, Tone } from '../../types/types';
 
 export type DetailsProps = {
@@ -39,7 +46,6 @@ const Details = Blits.Component('Details', {
     {
       key: 'states',
       default: 'focus',
-      required: false,
       cast: (v: string): States => {
         if (isValidState(v)) return v;
         throw new Error(`Invalid state '${v}'`);
@@ -48,7 +54,6 @@ const Details = Blits.Component('Details', {
     {
       key: 'tone',
       default: 'neutral',
-      required: false,
       cast: (v: string): Tone => {
         if (isValidTone(v)) return v;
         throw new Error(`Invalid tone '${v}'`);
@@ -56,30 +61,26 @@ const Details = Blits.Component('Details', {
     },
     {
       key: 'width',
-      required: false,
       default: 770,
       cast: Number
     },
     {
       key: 'badges',
-      required: false,
       cast: (v: unknown) => {
-        if (Array.isArray(v)) return v;
+        if (!v || Array.isArray(v)) return v;
         throw new Error('Badges must be an array');
       }
     },
     {
       key: 'ratings',
-      required: false,
       cast: (v: unknown) => {
-        if (Array.isArray(v)) return v;
+        if (!v || Array.isArray(v)) return v;
         throw new Error('Ratings must be an array');
       }
     },
     {
       key: 'title',
-      required: false,
-      cast: String
+      cast: UnrequiredString
     }
   ],
   components: {

@@ -1,10 +1,9 @@
 import Blits from '@lightningjs/blits';
 import styles from './Metadata.styles';
 import { States, Tone } from '../../types/types';
-import Badge from '../Badge/Badge';
 import { getStyledProp } from '../../utils/styleUtils';
 import Details, { DetailsProps } from './Details';
-import { isValidState, isValidTone } from '../../utils';
+import { UnrequiredString, isValidState, isValidTone } from '../../utils';
 
 export type MetadataProps = {
   title: string;
@@ -34,30 +33,25 @@ const Metadata = Blits.Component('Metadata', {
   props: [
     {
       key: 'title',
-      required: false,
-      cast: String
+      cast: UnrequiredString
     },
     {
       key: 'description',
-      required: false,
-      cast: String
+      cast: UnrequiredString
     },
     {
       key: 'maxLines',
-      required: false,
       default: 3,
       cast: Number
     },
     {
       key: 'width',
-      required: false,
       default: 770,
       cast: Number
     },
     {
       key: 'states',
       default: 'focus',
-      required: false,
       cast: (v: string): States => {
         if (isValidState(v)) return v;
         throw new Error(`Invalid state '${v}'`);
@@ -66,7 +60,6 @@ const Metadata = Blits.Component('Metadata', {
     {
       key: 'tone',
       default: 'neutral',
-      required: false,
       cast: (v: string): Tone => {
         if (isValidTone(v)) return v;
         throw new Error(`Invalid tone '${v}'`);
@@ -74,15 +67,13 @@ const Metadata = Blits.Component('Metadata', {
     },
     {
       key: 'details',
-      required: false,
       cast: (v: unknown) => {
-        if (typeof v === 'object') return v;
+        if (!v || typeof v === 'object') return v;
         throw new Error(`Invalid details object '${v}'`);
       }
     }
   ],
   components: {
-    Badge,
     Details
   },
   template: `

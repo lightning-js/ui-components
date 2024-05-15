@@ -1,7 +1,7 @@
 import Blits from '@lightningjs/blits';
 import styles from './Badge.styles';
 import { Tone } from '../../types/types';
-import { isType, isValidTone, getTextWidth, getStyledProp } from '../../utils';
+import { isType, isValidTone, getTextWidth, getStyledProp, UnrequiredString } from '../../utils';
 import Icon from '../Icon/Icon';
 
 const IconAlignments = ['none', 'left', 'right'] as const;
@@ -33,23 +33,19 @@ const Badge = Blits.Component('Badge', {
   props: [
     {
       key: 'title',
-      required: false,
-      cast: (v?: string): string | undefined => v
+      cast: UnrequiredString
     },
     {
       key: 'iconSrc',
-      required: false,
-      cast: (v?: string): string | undefined => v
+      cast: UnrequiredString
     },
     {
       key: 'iconColor',
-      required: false,
-      cast: (v?: string): string | undefined => v
+      cast: UnrequiredString
     },
     {
       key: 'iconAlign',
       default: 'left',
-      required: false,
       cast: (v: unknown): IconAlign | undefined => {
         if (v === undefined || isType<IconAlign>(v, IconAlignments)) return v;
         throw new Error(`Invalid icon alignment '${v}'`);
@@ -58,7 +54,6 @@ const Badge = Blits.Component('Badge', {
     {
       key: 'tone',
       default: 'neutral',
-      required: false,
       cast: (v: string): Tone => {
         if (isValidTone(v)) return v;
         throw new Error(`Invalid tone '${v}'`);
@@ -79,7 +74,7 @@ const Badge = Blits.Component('Badge', {
         :width="$icon.width"
         :height="$icon.height"
         :show="$icon.show"
-        :iconSrc="$icon.src ?? ''"
+        :iconSrc="$icon.src"
         :iconColor="$icon.color"
       />
       <Text
@@ -113,7 +108,7 @@ const Badge = Blits.Component('Badge', {
       return this.padding[3] + (this.icon.show && this.iconAlign !== 'right' && this.icon.width + this.gap);
     },
     textWidth(): number {
-      return getTextWidth(this.title, this.font, this.fontSize);
+      return this.title ? getTextWidth(this.title, this.font, this.fontSize) : 0;
     },
     containerSize(): { w: number; h: number } {
       return {

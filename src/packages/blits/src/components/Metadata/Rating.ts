@@ -1,6 +1,7 @@
 import Blits from '@lightningjs/blits';
 import styles from './Rating.styles';
 import { getTextWidth } from '../../utils/textUtils';
+import { UnrequiredString } from '../../utils';
 
 export type RatingProps = {
   src: string;
@@ -26,13 +27,19 @@ const Rating = Blits.Component('Rating', {
   props: [
     {
       key: 'src',
-      required: false,
-      cast: String
+      cast: (v: unknown): string => {
+        if (!!v && typeof v === 'string') return v;
+        throw new Error(`Invalid rating icon source '${v}' - ratings must have an icon`);
+      }
     },
     {
       key: 'title',
-      required: false,
-      cast: String
+      cast: (v: unknown): string | number | undefined => {
+        if (!!!v) return undefined;
+        if (typeof v === 'number' && isFinite(v)) return v as number;
+        if (typeof v === 'string' && isFinite(parseFloat(v))) return parseFloat(v) as number;
+        return v.toString();
+      }
     }
   ],
   template: `

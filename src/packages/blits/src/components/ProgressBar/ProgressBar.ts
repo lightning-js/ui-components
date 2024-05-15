@@ -18,7 +18,6 @@ const ProgressBar = Blits.Component('ProgressBar', {
     {
       key: 'tone',
       default: 'neutral',
-      required: false,
       cast: (v: string): Tone => {
         if (isType<Tone>(v, ToneValues)) return v;
         throw new Error(`Invalid tone '${v}'`);
@@ -27,41 +26,38 @@ const ProgressBar = Blits.Component('ProgressBar', {
     {
       key: 'width',
       default: 400,
-      required: false,
       cast: Number
     },
     {
       key: 'height',
       default: styles.Container.base.height,
-      required: false,
       cast: Number
     },
     {
       key: 'progress',
       default: 0.5,
-      required: false,
-      cast: (v: number): number => {
-        if (v < 0 || v > 1) throw new Error(`Invalid progress '${v}' - must be between 0 and 1`);
+      cast: (v: unknown): number => {
+        if (typeof v !== 'number' || v < 0 || v > 1)
+          throw new Error(`Invalid progress '${v}' - must be between 0 and 1`);
         return v;
       }
     },
     {
       key: 'borderRadius',
-      required: false,
-      cast: (v: number): number => {
-        if (v < 0) throw new Error(`Invalid border radius '${v}' - must be greater than 0`);
+      cast: (v: unknown): number | undefined => {
+        if (!!!v) return undefined;
+        if (typeof v !== 'number' || v < 0)
+          throw new Error(`Invalid border radius '${v}' - must be a number greater than 0`);
         return v;
       }
     },
     {
       key: 'containerColor',
-      default: null,
-      required: false
+      default: null
     },
     {
       key: 'progressColor',
-      default: null,
-      required: false
+      default: null
     }
   ],
   template: `

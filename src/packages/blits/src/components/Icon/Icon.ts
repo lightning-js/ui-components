@@ -1,7 +1,7 @@
 import Blits from '@lightningjs/blits';
 import styles from './Icon.styles';
 import { Tone } from '../../types/types';
-import { getStyledProp, isValidTone } from '../../utils';
+import { UnrequiredString, getStyledProp, isValidTone } from '../../utils';
 
 export type IconProps = {
   width?: number;
@@ -16,27 +16,24 @@ const Icon = Blits.Component('Icon', {
     {
       key: 'width',
       default: styles.Container.base.width,
-      required: false,
       cast: Number
     },
     {
       key: 'height',
       default: styles.Container.base.height,
-      required: false,
       cast: Number
     },
     {
       key: 'iconSrc',
-      required: true
+      cast: UnrequiredString
     },
     {
       key: 'iconColor',
-      required: false
+      cast: UnrequiredString
     },
     {
       key: 'tone',
       default: 'neutral',
-      required: false,
       cast: (v: string): Tone => {
         if (isValidTone(v)) return v;
         throw new Error(`Invalid tone '${v}'`);
