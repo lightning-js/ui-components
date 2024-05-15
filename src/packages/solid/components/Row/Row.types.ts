@@ -63,11 +63,11 @@ export interface RowStyleProperties {
   /**
    * The animation transition applied to items in the row on scroll
    */
-  itemTransition?: NodeStyles['itemTransition'];
+  itemTransition?: NodeStyles['transition'];
   /**
    * the index of which we want scrolling to start
    */
-  scrollIndex?: NodeStyles['scrollIndex'];
+  scrollIndex?: number;
 }
 
 export interface RowStyles {
