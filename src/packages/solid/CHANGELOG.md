@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.2](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.17.1...@lightningjs/solid-ui@0.17.2) (2024-05-15)
+
+### Bug Fixes
+
+- **Solid:** updates Checkbox styles ([#137](https://github.com/lightning-js/ui-components/issues/137)) ([70a68c5](https://github.com/lightning-js/ui-components/commit/70a68c5b0cd05bdebfa38b49e8d9ce3369a9895e))
+
 ## [0.17.1](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.17.0...@lightningjs/solid-ui@0.17.1) (2024-05-14)
 
 ### Bug Fixes
