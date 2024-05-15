@@ -25,14 +25,14 @@ const container: ColumnConfig = {
   themeKeys: {
     gap: 'itemSpacing',
     scrollIndex: 'scrollIndex',
-    itemTransition: 'itemTransition'
+    transition: 'itemTransition'
   },
   base: {
     display: 'flex',
     flexBoundary: 'fixed',
     flexDirection: 'column',
     gap: theme.layout.gutterY,
-    itemTransition: {
+    transition: {
       ...theme.animation.standardEntrance,
       duration: theme.animation.duration.fast
     }

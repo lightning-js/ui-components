@@ -49,11 +49,11 @@ export interface ColumnStyleProperties {
   /**
    * The animation transition applied to items in the column on scroll
    */
-  itemTransition?: NodeStyles['itemTransition'];
+  itemTransition?: NodeStyles['transition'];
   /**
    * the index of which we want scrolling to start
    */
-  scrollIndex?: NodeStyles['scrollIndex'];
+  scrollIndex?: number;
 }
 
 export interface ColumnStyles {
