@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.3](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.17.2...@lightningjs/solid-ui@0.17.3) (2024-05-15)
+
+### Bug Fixes
+
+- remove onFocus prop as its on intrinsicNode and wrong type ([#138](https://github.com/lightning-js/ui-components/issues/138)) ([439bc61](https://github.com/lightning-js/ui-components/commit/439bc614cb366bf105a07517aa10452cd324c1f7))
+
 ## [0.17.2](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.17.1...@lightningjs/solid-ui@0.17.2) (2024-05-15)
 
 ### Bug Fixes
