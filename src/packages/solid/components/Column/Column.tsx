@@ -16,49 +16,13 @@
  */
 
 import { type Component } from 'solid-js';
-import { View, type SolidNode, type IntrinsicNodeCommonProps } from '@lightningjs/solid';
+import { View } from '@lightningjs/solid';
 import type { KeyHandler } from '@lightningjs/solid-primitives';
-import type { UIComponentProps } from '../../types/interfaces.js';
 import { handleNavigation, onGridFocus } from '../../utils/handleNavigation.js';
 import { withScrolling, type ScrollableElement } from '../../utils/withScrolling.js';
 import { chainFunctions } from '../../utils/chainFunctions.js';
 import styles from './Column.styles.js';
-
-export interface ColumnProps extends UIComponentProps {
-  /** function run on component mount */
-  onCreate?: IntrinsicNodeCommonProps['onCreate'];
-
-  /** function to be called on down click */
-  onDown?: KeyHandler;
-
-  /** function to be called on up click */
-  onUp?: KeyHandler;
-
-  /** function to be called when the selected of the component changes */
-  onSelectedChanged?: (
-    this: ScrollableElement,
-    elm: ScrollableElement,
-    active: SolidNode,
-    selectedIndex: number,
-    lastSelectedIndex: number
-  ) => void;
-
-  /** Determines when to scroll(shift items along the axis):
-   * auto - scroll items immediately
-   * edge - scroll items when focus reaches the last item on screen
-   * always - focus remains at index 0, scroll until the final item is at index 0
-   * none - disable scrolling behavior, focus shifts as expected
-   * in both `auto` and `edge` items will only scroll until the last item is on screen */
-  scroll?: 'always' | 'none' | 'edge' | 'auto';
-
-  /** When auto scrolling, item index at which scrolling begins */
-  scrollIndex?: number;
-
-  /** The initial index */
-  selected?: number;
-}
-
-type ScrollableComponent = Component<UIComponentProps | { scrollIndex?: number; selected?: number }>;
+import type { ColumnProps, ScrollableComponent } from './Column.types.js';
 
 const ScrollableView: ScrollableComponent = props => <View {...props} />;
 
@@ -71,6 +35,8 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
     <ScrollableView
       {...props}
       ref={Container}
+      gap={props.itemSpacing}
+      transition={props.itemTransition}
       onUp={chainFunctions<KeyHandler | undefined>(props.onUp, onUp)}
       onDown={chainFunctions<KeyHandler | undefined>(props.onDown, onDown)}
       selected={props.selected || 0}

@@ -14,24 +14,9 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-
-export interface ColumnStyles {
-  tone: Tone;
-  Container: NodeStyleSet;
-}
-
-type ColumnStyleProperties = {
-  itemSpacing?: NodeStyles['itemSpacing'];
-  itemTransition?: NodeStyles['itemTransition'];
-  scrollIndex?: NodeStyles['scrollIndex'];
-};
-
-type ColumnConfig = ComponentStyleConfig<ColumnStyleProperties>;
+import type { ColumnStyles, ColumnConfig } from './Column.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Column: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
@@ -40,14 +25,14 @@ const container: ColumnConfig = {
   themeKeys: {
     gap: 'itemSpacing',
     scrollIndex: 'scrollIndex',
-    itemTransition: 'itemTransition'
+    transition: 'itemTransition'
   },
   base: {
     display: 'flex',
     flexBoundary: 'fixed',
     flexDirection: 'column',
     gap: theme.layout.gutterY,
-    itemTransition: {
+    transition: {
       ...theme.animation.standardEntrance,
       duration: theme.animation.duration.fast
     }
