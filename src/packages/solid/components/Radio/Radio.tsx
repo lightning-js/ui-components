@@ -20,25 +20,26 @@ import { View } from '@lightningjs/solid';
 import styles from './Radio.styles.js';
 import type { RadioProps } from './Radio.types.js';
 
-const Radio: Component<RadioProps> = props => {
-  const getKnobColor = (checked: boolean | undefined, props: RadioProps) => {
-    return checked != undefined && props.checked
-      ? props.knobColorChecked ??
-          styles.Knob.tones?.[props.tone ?? styles.tone]?.colorChecked ??
-          styles.Knob.base.colorChecked
-      : props.knobColor ?? styles.Knob.tones?.[props.tone ?? styles.tone]?.color ?? styles.Knob.base.color;
-  };
-  const knobColor = createMemo(() => getKnobColor(props.checked, props));
+const getKnobColor = (checked: boolean | undefined, props: RadioProps) => {
+  return checked != undefined && props.checked
+    ? props.knobColorChecked ??
+        styles.Knob.tones?.[props.tone ?? styles.tone]?.colorChecked ??
+        styles.Knob.base.colorChecked
+    : props.knobColor ?? styles.Knob.tones?.[props.tone ?? styles.tone]?.color ?? styles.Knob.base.color;
+};
 
-  const getColor = (checked: boolean | undefined, props: RadioProps) => {
-    return checked != undefined && props.checked
-      ? props.backgroundColorChecked ??
-          styles.Container.tones?.[props.tone ?? styles.tone]?.colorChecked ??
-          styles.Container.base.colorChecked
-      : props.backgroundColor ??
-          styles.Container.tones?.[props.tone ?? styles.tone]?.color ??
-          styles.Container.base.color;
-  };
+const getColor = (checked: boolean | undefined, props: RadioProps) => {
+  return checked != undefined && props.checked
+    ? props.backgroundColorChecked ??
+        styles.Container.tones?.[props.tone ?? styles.tone]?.colorChecked ??
+        styles.Container.base.colorChecked
+    : props.backgroundColor ??
+        styles.Container.tones?.[props.tone ?? styles.tone]?.color ??
+        styles.Container.base.color;
+};
+
+const Radio: Component<RadioProps> = props => {
+  const knobColor = createMemo(() => getKnobColor(props.checked, props));
   const backgroundColor = createMemo(() => getColor(props.checked, props));
 
   return (
