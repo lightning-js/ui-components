@@ -34,6 +34,7 @@ type RatingStyleProperties = {
   textAlign?: TextStyles['textAlign'];
   textColor?: TextStyles['color'];
   itemSpacing?: NodeStyles['itemSpacing'];
+  alignItems?: NodeStyles['alignItems'];
 };
 
 type RatingConfig = ComponentStyleConfig<RatingStyleProperties>;
@@ -48,9 +49,10 @@ const container: RatingConfig = {
   },
   base: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     justifyContent: 'flexStart',
-    itemSpacing: theme.spacer.sm
+    itemSpacing: theme.spacer.sm,
+    alignItems: 'center'
   },
   themeStyles
 };
@@ -62,6 +64,25 @@ const text: RatingConfig = {
   base: {
     color: theme.color.textNeutral,
     ...theme.typography.body2
+  },
+  tones: {
+    neutral: {
+      disabled: {
+        color: theme.color.textNeutralDisabled
+      }
+    },
+    inverse: {
+      color: theme.color.textInverse,
+      disabled: {
+        color: theme.color.textNeutralDisabled
+      }
+    },
+    brand: {
+      color: theme.color.textNeutral,
+      disabled: {
+        color: theme.color.textNeutralDisabled
+      }
+    }
   },
   themeStyles
 };

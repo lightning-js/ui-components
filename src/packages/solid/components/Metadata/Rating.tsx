@@ -47,7 +47,6 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
   const formattedTitle = createMemo(() => formatTitle(props.title));
   return (
     <View
-      {...props}
       forwardStates
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[

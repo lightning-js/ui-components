@@ -51,15 +51,16 @@ export const Basic = {
     maxLines: 3,
     details: {
       title: 'Support text',
+      height: 35,
       badges: [{ title: 'TV-14' }, { title: 'HD' }, { title: 'CC' }],
       ratings: [
         {
           src: lightning,
-          title: 76
+          title: '76'
         },
         {
           src: lightning,
-          title: 96
+          title: '96'
         }
       ]
     },
