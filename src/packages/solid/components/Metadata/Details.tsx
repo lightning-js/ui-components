@@ -18,34 +18,23 @@
 import type { Component, Accessor } from 'solid-js';
 import { View, Text, Show, For } from '@lightningjs/solid';
 import type { ElementNode } from '@lightningjs/solid';
-import type { UIComponentProps } from '../../types/interfaces.js';
 import styles from './Details.styles.js';
-import Badge, { type BadgeProps } from '../Badge/Badge.jsx';
-import Rating, { type RatingProps } from './Rating.jsx';
-
-export interface DetailsProps extends UIComponentProps {
-  /**
-   * an array of BadgeProps to render [Badges](?path=/docs/components-badge--docs)
-   */
-  badges?: BadgeProps[];
-  /**
-   * an array of RatingProps to render ratings
-   */
-  ratings?: RatingProps[];
-  /**
-   * text to display as details title
-   */
-  title?: string;
-}
+import type { BadgeProps } from '../Badge/Badge.types.js';
+import Badge from 'components/Badge/Badge.jsx';
+import Rating from './Rating.jsx';
+import type { RatingProps } from './Rating.types.js';
+import type { DetailsProps } from './Details.types.js';
 
 const Details: Component<DetailsProps> = (props: DetailsProps) => {
   return (
     <View
       {...props}
+      alignItems={props.alignItems}
+      gap={props.contentSpacing}
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
-        styles.Container.tones[props.tone || styles.tone],
+        styles.Container.tones[props.tone ?? styles.tone],
         styles.Container.base
       ]}
       forwardStates
@@ -60,7 +49,7 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
       <Show when={props.title}>
         <Text
           style={[
-            styles.Text.tones[props.tone || styles.tone], //
+            styles.Text.tones[props.tone ?? styles.tone], //
             styles.Text.base
           ]}
         >
@@ -73,9 +62,9 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
             {...badge}
             marginRight={
               props.badges?.length && idx() === props.badges.length - 1
-                ? styles.Container.tones[props.tone ?? styles.tone]?.contentSpacing ??
-                  styles.Container.base.contentSpacing
-                : styles.Container.tones[props.tone ?? styles.tone]?.badgeContentSpacing ??
+                ? 0
+                : props.badgeContentSpacing ??
+                  styles.Container.tones[props.tone ?? styles.tone]?.badgeContentSpacing ??
                   styles.Container.base.badgeContentSpacing
             }
           />
@@ -85,11 +74,15 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
         {(rating: RatingProps, idx: Accessor<number>) => (
           <Rating
             {...rating}
+            textColor={
+              props.textColor ?? styles.Text.tones[props.tone ?? styles.tone]?.color ?? styles.Text.base.color
+            }
             forwardStates
             marginRight={
               props.ratings?.length && idx() === props.ratings.length - 1
                 ? 0
-                : styles.Container.tones[props.tone ?? styles.tone]?.ratingContentSpacing ??
+                : props.ratingContentSpacing ??
+                  styles.Container.tones[props.tone ?? styles.tone]?.ratingContentSpacing ??
                   styles.Container.base.ratingContentSpacing
             }
           />
