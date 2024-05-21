@@ -15,31 +15,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { TextStyleSet, Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-
-export interface DetailsStyles {
-  tone: Tone;
-  Container: NodeStyleSet<{
-    badgeContentSpacing: number;
-    contentSpacing: number;
-    ratingContentSpacing: number;
-  }>;
-  Text: TextStyleSet;
-}
-
-export type DetailsStyleProperties = {
-  alignItems?: NodeStyles['alignItems'];
-  contentSpacing?: number;
-  badgeContentSpacing?: number;
-  ratingContentSpacing?: number;
-  textColor?: NodeStyles['color'];
-};
-
-export type DetailsConfig = ComponentStyleConfig<DetailsStyleProperties>;
+import type { DetailsStyles, DetailsConfig } from './Details.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Details: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig; // TODO this probably shouldn't be themed this way
@@ -47,7 +25,7 @@ const { Details: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme
 const container: DetailsConfig = {
   themeKeys: {
     alignItems: 'alignItems',
-    contentSpacing: 'contentSpacing',
+    gap: 'contentSpacing',
     badgeContentSpacing: 'badgeContentSpacing',
     ratingContentSpacing: 'ratingContentSpacing'
   },
@@ -55,7 +33,7 @@ const container: DetailsConfig = {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    contentSpacing: theme.spacer.lg,
+    gap: theme.spacer.lg,
     badgeContentSpacing: theme.spacer.sm,
     ratingContentSpacing: theme.spacer.lg
   },
