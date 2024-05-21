@@ -15,29 +15,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { TextStyles, NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 import type { IconStyles, IconConfig } from '../Icon/Icon.types.js';
-
-export interface RatingStyles {
-  tone: Tone;
-  Container: NodeStyleSet<{ padding: number[] }>;
-  Icon: NodeStyleSet;
-  Text: TextStyleSet;
-}
-
-type RatingStyleProperties = {
-  justifyContent?: NodeStyles['justifyContent'];
-  textAlign?: TextStyles['textAlign'];
-  textColor?: TextStyles['color'];
-  itemSpacing?: NodeStyles['itemSpacing'];
-  alignItems?: NodeStyles['alignItems'];
-};
-
-type RatingConfig = ComponentStyleConfig<RatingStyleProperties>;
+import type { RatingStyles, RatingConfig } from './Rating.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Rating: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
@@ -45,13 +26,13 @@ const { Rating: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?
 const container: RatingConfig = {
   themeKeys: {
     justifyContent: 'justifyContent',
-    itemSpacing: 'itemSpacing'
+    gap: 'contentSpacing'
   },
   base: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flexStart',
-    itemSpacing: theme.spacer.sm,
+    gap: theme.spacer.sm,
     alignItems: 'center'
   },
   themeStyles
