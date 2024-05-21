@@ -47,6 +47,7 @@ const container: ToggleConfig = {
   modes: {
     focus: {},
     disabled: {
+      borderRadius: knobSize / 2 + knobPadding + strokeWidth,
       border: {
         color: theme.color.fillNeutralDisabled,
         width: strokeWidth
@@ -57,6 +58,7 @@ const container: ToggleConfig = {
   },
   tones: {
     inverse: {
+      borderRadius: knobSize / 2 + knobPadding + strokeWidth,
       border: {
         color: theme.color.fillInverse,
         width: strokeWidth
@@ -64,6 +66,7 @@ const container: ToggleConfig = {
       color: theme.color.fillNeutralTertiary,
       colorChecked: theme.color.fillInverse,
       disabled: {
+        borderRadius: knobSize / 2 + knobPadding + strokeWidth,
         border: {
           color: theme.color.fillInverseDisabled,
           width: strokeWidth
@@ -73,6 +76,7 @@ const container: ToggleConfig = {
       }
     },
     brand: {
+      borderRadius: knobSize / 2 + knobPadding + strokeWidth,
       border: {
         color: theme.color.fillBrand,
         width: strokeWidth
@@ -80,6 +84,7 @@ const container: ToggleConfig = {
       color: theme.color.fillBrandTertiary,
       colorChecked: theme.color.fillBrand,
       disabled: {
+        borderRadius: knobSize / 2 + knobPadding + strokeWidth,
         border: {
           color: theme.color.fillNeutralDisabled,
           width: strokeWidth

@@ -19,7 +19,6 @@ import { createMemo, type Component } from 'solid-js';
 import { View } from '@lightningjs/solid';
 import styles from './Toggle.styles.js';
 import type { ToggleProps } from './Toggle.types.js';
-import theme from 'theme';
 
 const positionToggle = (checked: boolean | undefined, props: ToggleProps) => {
   return checked != undefined && props.checked
@@ -54,12 +53,9 @@ const getBackgroundColor = (checked: boolean | undefined, props: ToggleProps) =>
     ? props.backgroundColorChecked ??
         styles.Container.tones?.[props.tone ?? styles.tone]?.colorChecked ??
         styles.Container.base.colorChecked
-    : theme.color.fillInverse;
-  // props.backgroundColor ?? styles.Container.tones?.[props.tone ?? styles.tone]?.color ?? styles.Container.base.color;
-
-  // theme.color.fillInverse;
-  // styles.Container.tones?.[props.tone ?? styles.tone]?.color ??
-  // styles.Container.base.color;
+    : props.backgroundColor ??
+        styles.Container.tones?.[props.tone ?? styles.tone]?.color ??
+        styles.Container.base.color;
 };
 
 const Toggle: Component<ToggleProps> = (props: ToggleProps) => {

@@ -13,7 +13,7 @@ export interface ToggleProps extends UIComponentProps, ToggleStyleProperties {
 
 export interface ToggleStyleProperties {
   /**
-   * color of background when checkbox is unchecked
+   * color of background when toggle is unchecked
    *
    * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
    */
@@ -21,7 +21,7 @@ export interface ToggleStyleProperties {
   backgroundColor?: NodeStyles['color'];
 
   /**
-   * color of background then checkbox is checked
+   * color of background then toggle is checked
    *
    * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
    */
@@ -56,6 +56,7 @@ export interface ToggleStyleProperties {
    * Color of the knob when checked
    */
   knobColorChecked?: NodeStyles['color'];
+
   // /**
   //  * color of border around toggle
   //  *
@@ -68,6 +69,7 @@ export interface ToggleStyleProperties {
   //  * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
   //  */
   // strokeColorChecked?: NodeStyles['color']; // TODO clew uses strokeColor, but we currently don't account for nested properties (border.color)
+
   /**
    * radius of the outer border of toggle
    */
