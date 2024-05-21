@@ -16,61 +16,55 @@
  */
 import { type Component, createMemo } from 'solid-js';
 import { Text, Show, View, type TextProps } from '@lightningjs/solid';
-import type { UIComponentProps } from '../../types/interfaces.js';
 import styles from './Rating.styles.js';
 import Icon from '../Icon/Icon.jsx';
-import type { IconProps } from '../Icon/Icon.types.jsx';
+import type { RatingProps } from './Rating.types.js';
 
-export interface RatingProps extends UIComponentProps {
-  /**
-   * path to the rating's icon
-   */
-  iconSrc: NonNullable<IconProps['src']>;
-  /**
-   * Text or number to display. Numbers from 0 to 100 will display as percentages.
-   */
-  title: string | number;
-}
+const formatTitle = (title: string | number): TextProps['children'] => {
+  if ((typeof title !== 'string' && typeof title !== 'number') || !String(title).trim().length) {
+    return;
+  }
+
+  let formatted = title;
+  if (!Number.isNaN(title) && Number(title) >= 0 && Number(title) <= 100) {
+    formatted += '%';
+  }
+  return formatted as string;
+};
 
 const Rating: Component<RatingProps> = (props: RatingProps) => {
-  const formatTitle = (title: string | number): TextProps['children'] => {
-    if ((typeof title !== 'string' && typeof title !== 'number') || !String(title).trim().length) {
-      return;
-    }
-
-    let formatted = title;
-    if (!Number.isNaN(title) && Number(title) >= 0 && Number(title) <= 100) {
-      formatted += '%';
-    }
-    return formatted as string;
-  };
   const formattedTitle = createMemo(() => formatTitle(props.title));
   return (
     <View
       {...props}
+      justifyContent={props.justifyContent}
+      gap={props.contentSpacing}
+      alignItems={props.alignItems}
       forwardStates
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
-        styles.Container.tones[props.tone || styles.tone],
+        styles.Container.tones[props.tone ?? styles.tone],
         styles.Container.base
       ]}
     >
       <Show when={props.iconSrc}>
         <Icon
-          forwardStates
           src={props.iconSrc}
+          forwardStates
           style={[
-            styles.Icon.tones[props.tone || styles.tone], //
+            styles.Icon.tones[props.tone ?? styles.tone], //
             styles.Icon.base
           ]}
         />
       </Show>
       <Show when={formattedTitle()}>
         <Text
+          textAlign={props.textAlign}
+          color={props.textColor}
           marginRight={props.marginRight}
           style={[
-            styles.Text.tones[props.tone || styles.tone], //
+            styles.Text.tones[props.tone ?? styles.tone], //
             styles.Text.base
           ]}
         >
