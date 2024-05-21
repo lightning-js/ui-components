@@ -15,69 +15,40 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { BorderStyleObject, NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-
-export interface RadioStyles {
-  tone: Tone;
-  Container: NodeStyleSet<{ border: BorderStyleObject; colorChecked: NodeStyles['color'] }>;
-  Knob: NodeStyleSet<{ padding: number; colorChecked: NodeStyles['color'] }>;
-}
-
-export type RadioStyleProperties = {
-  backgroundColor?: NodeStyles['color'];
-  backgroundColorChecked?: NodeStyles['color'];
-  knobWidth?: NodeStyles['width'];
-  knobHeight?: NodeStyles['height'];
-  knobPadding?: number;
-  knobRadius?: NodeStyles['borderRadius'];
-  knobColor?: NodeStyles['color'];
-  knobColorChecked?: NodeStyles['color'];
-  knobSize?: NodeStyles['width'];
-  strokeRadius?: NodeStyles['borderRadius'];
-};
-
-export type RadioModes = 'checked' | 'focus' | 'disabled';
-
-type RadioConfig = ComponentStyleConfig<RadioStyleProperties, RadioModes>;
+import type { RadioStyles, RadioConfig } from './Radio.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Radio: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
-const knobSize = theme.spacer.xxl;
-const strokeWidth = theme.stroke.sm;
-
 const container: RadioConfig = {
   themeKeys: {
-    borderRadius: 'strokeRadius',
+    borderRadius: 'radius',
     color: 'backgroundColor',
     colorChecked: 'backgroundColorChecked'
   },
   base: {
     color: theme.color.fillNeutralSecondary,
-    colorChecked: theme.color.fillInverse,
-    height: knobSize + strokeWidth * 2,
-    width: knobSize + strokeWidth * 2,
-    borderRadius: knobSize / 2 + strokeWidth,
+    height: theme.spacer.xxl + theme.stroke.sm * 2,
+    width: theme.spacer.xxl + theme.stroke.sm * 2,
+    borderRadius: theme.spacer.xxl / 2 + theme.stroke.sm,
     border: {
       color: theme.color.strokeNeutralSecondary,
-      width: strokeWidth
+      width: theme.stroke.sm
     }
   },
   tones: {
     inverse: {
       border: {
         color: theme.color.strokeInverseSecondary,
-        width: strokeWidth
+        width: theme.stroke.sm
       }
     },
     brand: {
       border: {
         color: theme.color.fillBrand,
-        width: strokeWidth
+        width: theme.stroke.sm
       }
     }
   },
@@ -90,13 +61,15 @@ const knob: RadioConfig = {
     width: 'knobWidth',
     height: 'knobHeight',
     borderRadius: 'knobRadius',
-    color: 'knobColor'
+    color: 'knobColor',
+    colorChecked: 'knobColorChecked'
   },
   base: {
     color: theme.color.fillInverse,
-    width: knobSize,
-    height: knobSize,
-    borderRadius: knobSize / 2
+    colorChecked: theme.color.fillInverse,
+    width: theme.spacer.xxl,
+    height: theme.spacer.xxl,
+    borderRadius: theme.spacer.xxl / 2
   },
   tones: {
     inverse: {
