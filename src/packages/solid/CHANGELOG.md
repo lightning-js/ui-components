@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.4](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.18.3...@lightningjs/solid-ui@0.18.4) (2024-05-21)
+
+### Bug Fixes
+
+- **Solid:** updates Radio styles ([#147](https://github.com/lightning-js/ui-components/issues/147)) ([bf27a87](https://github.com/lightning-js/ui-components/commit/bf27a870b223f73351884b68164fe25efa87115c))
+
 ## [0.18.3](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.18.2...@lightningjs/solid-ui@0.18.3) (2024-05-21)
 
 ### Bug Fixes
