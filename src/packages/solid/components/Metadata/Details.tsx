@@ -85,10 +85,6 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
         {(rating: RatingProps, idx: Accessor<number>) => (
           <Rating
             {...rating}
-            style={[
-              styles.Text.tones[props.tone || styles.tone], //
-              styles.Text.base
-            ]}
             forwardStates
             marginRight={
               props.ratings?.length && idx() === props.ratings.length - 1

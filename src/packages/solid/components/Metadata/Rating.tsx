@@ -25,7 +25,7 @@ export interface RatingProps extends UIComponentProps {
   /**
    * path to the rating's icon
    */
-  src: NonNullable<IconProps['src']>;
+  iconSrc: NonNullable<IconProps['src']>;
   /**
    * Text or number to display. Numbers from 0 to 100 will display as percentages.
    */
@@ -56,10 +56,10 @@ const Rating: Component<RatingProps> = (props: RatingProps) => {
         styles.Container.base
       ]}
     >
-      <Show when={props.src}>
+      <Show when={props.iconSrc}>
         <Icon
           forwardStates
-          src={props.src}
+          src={props.iconSrc}
           style={[
             styles.Icon.tones[props.tone || styles.tone], //
             styles.Icon.base
