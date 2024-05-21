@@ -55,11 +55,11 @@ export const Basic = {
       badges: [{ title: 'TV-14' }, { title: 'HD' }, { title: 'CC' }],
       ratings: [
         {
-          src: lightning,
+          iconSrc: lightning,
           title: '76'
         },
         {
-          src: lightning,
+          iconSrc: lightning,
           title: '96'
         }
       ]
