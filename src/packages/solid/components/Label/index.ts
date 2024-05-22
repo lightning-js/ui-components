@@ -16,5 +16,5 @@
  */
 
 export { default as default } from './Label.jsx';
-export { default as artworkStyles } from './Label.styles.js';
+export { default as labelStyles } from './Label.styles.js';
 export type { LabelProps, LabelStyles } from './Label.types.js';
