@@ -17,4 +17,4 @@
 
 export { default as default, ButtonContainer } from './Button.jsx';
 export { default as buttonStyles } from './Button.styles.js';
-export type { ButtonProps, ButtonStyles } from './Button.types.js';
+export type { ButtonProps, ButtonContainerProps, ButtonStyles } from './Button.types.js';
