@@ -20,7 +20,7 @@ import { View, Text, Show, For } from '@lightningjs/solid';
 import type { ElementNode } from '@lightningjs/solid';
 import styles from './Details.styles.js';
 import type { BadgeProps } from '../Badge/Badge.types.js';
-import Badge from 'components/Badge/Badge.jsx';
+import Badge from '../Badge/Badge.jsx';
 import Rating from './Rating.jsx';
 import type { RatingProps } from './Rating.types.js';
 import type { DetailsProps } from './Details.types.js';
@@ -29,6 +29,7 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
   return (
     <View
       {...props}
+      width={props.width}
       alignItems={props.alignItems}
       gap={props.contentSpacing}
       // @ts-expect-error TODO type needs to be fixed in framework
