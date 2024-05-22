@@ -21,7 +21,8 @@ import theme from 'theme';
 import Badge from '../Badge/Badge.jsx';
 import { View } from '@lightningjs/solid';
 import Label from '../Label/Label.jsx';
-import Metadata, { type MetadataProps } from '../Metadata/Metadata.jsx';
+import Metadata from '../Metadata/Metadata.jsx';
+import type { MetadataProps } from '../Metadata/Metadata.types.jsx';
 import ProgressBar from '../ProgressBar/ProgressBar.jsx';
 import Checkbox from '../Checkbox/Checkbox.jsx';
 
