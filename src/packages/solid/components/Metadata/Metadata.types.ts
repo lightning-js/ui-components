@@ -14,70 +14,55 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import type { NodeProps, NodeStyles } from '@lightningjs/solid';
-import type { ComponentStyleConfig, NodeStyleSet, Tone } from 'types/types.js';
+import type { NodeProps, NodeStyles, TextStyles } from '@lightningjs/solid';
+import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet, Tone } from 'types/types.js';
 import type { UIComponentProps } from 'types/interfaces.js';
+import type { DetailsProps } from './Details.types.js';
 
-export interface CheckboxProps extends UIComponentProps, CheckboxStyleProperties {
+export interface MetadataProps extends UIComponentProps, MetadataStyleProperties {
   /**
-   * Indicates whether the checkbox is checked or unchecked.
-   * Setting this to `true` will check the checkbox, and setting it to `false` will uncheck it.
+   * title text
    */
-  checked?: boolean;
+  title: string;
+
+  /**
+   * description text
+   */
+  description?: string;
+
+  /**
+   * Text, Badges, and Icons to be displayed below the title and description
+   */
+  details: DetailsProps;
+
+  /**
+   * max number of lines for text
+   */
+  maxLines?: number;
+
   children?: NodeProps['children'];
 }
 
-export interface CheckboxStyleProperties {
+export interface MetadataStyleProperties {
   /**
-   * color of background when checkbox is checked
-   *
-   * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
-   */
-  backgroundColorChecked?: NodeStyles['color']; // TODO clew uses strokeColor, but we currently don't account for nested properties (checked.color)
-  /**
-   * color of background when checkbox is unchecked
-   *
-   * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
-   */
-  backgroundColor?: NodeStyles['color'];
-  /**
-   * radius of the border of checkbox
-   */
-  radius?: NodeStyles['borderRadius'];
-  /**
-   * placement of content in checkbox
+   * placement of content in metadata
    */
   justifyContent?: NodeStyles['justifyContent'];
-  // /**
-  //  * color of border around checkbox
-  //  *
-  //  * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
-  //  */
-  // strokeColor?: NodeStyles['color']; // TODO clew uses strokeColor, but we currently don't account for nested properties (border.color)
+
   /**
-   * width of border around checkbox
-   */
-  // strokeWidth?: NodeStyles['borderWidth']; // TODO clew uses strokeWidth, but we currently don't account for nested properties (border.width)
-  /**
-   * width of icon in the checkbox
+   * color of text in metadata
    *
-   * only applied to built-in icons, ignored if child component is passed
+   * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
    */
-  checkWidth?: NodeStyles['width'];
-  /**
-   * height of icon in the checkbox
-   *
-   * only applied to built-in icons, ignored if child component is passed
-   */
-  checkHeight?: NodeStyles['height'];
+  textColor?: TextStyles['color'];
+  alpha?: TextStyles['alpha'];
 }
 
-export interface CheckboxStyles {
+export interface MetadataStyles {
   tone: Tone;
-  Container: NodeStyleSet;
-  Icon: NodeStyleSet;
+  Container: NodeStyleSet<{ padding: number[] }>;
+  DescriptionText: TextStyleSet;
+  TitleText: TextStyleSet;
 }
 
-export type CheckboxModes = 'checked' | 'focus' | 'disabled';
-
-export type CheckboxConfig = ComponentStyleConfig<CheckboxStyleProperties, CheckboxModes>;
+export type MetadataConfig = ComponentStyleConfig<MetadataStyleProperties>;

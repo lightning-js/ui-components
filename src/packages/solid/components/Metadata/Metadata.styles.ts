@@ -15,26 +15,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { TextStyles, NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-
-export interface MetadataStyles {
-  tone: Tone;
-  Container: NodeStyleSet<{ padding: number[] }>;
-  DescriptionText: TextStyleSet;
-  TitleText: TextStyleSet;
-}
-
-type MetadataStyleProperties = {
-  justifyContent?: NodeStyles['justifyContent'];
-  textColor?: TextStyles['color'];
-  alpha?: TextStyles['alpha'];
-};
-
-type MetadataConfig = ComponentStyleConfig<MetadataStyleProperties>;
+import type { MetadataStyles, MetadataConfig } from './Metadata.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Metadata: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
@@ -98,7 +81,7 @@ const descriptionText: MetadataConfig = {
   base: {
     contain: 'width',
     maxLines: 2,
-    ...theme.typography.body2,
+    ...theme.typography.body3,
     color: theme.color.textNeutralSecondary
   },
   tones: {

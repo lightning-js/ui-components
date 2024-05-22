@@ -33,9 +33,10 @@ const container: DetailsConfig = {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: theme.spacer.lg,
+    gap: theme.spacer.sm,
+    flexBoundary: 'contain',
     badgeContentSpacing: theme.spacer.sm,
-    ratingContentSpacing: theme.spacer.lg
+    ratingContentSpacing: theme.spacer.sm
   },
   themeStyles
 };

@@ -16,45 +16,27 @@
  */
 import { type Component } from 'solid-js';
 import { View, Text, Show } from '@lightningjs/solid';
-import type { UIComponentProps } from '../../types/interfaces.js';
-import Details, { type DetailsProps } from './Details.jsx';
+import Details from './Details.jsx';
 import styles from './Metadata.styles.js';
-
-export interface MetadataProps extends UIComponentProps {
-  /**
-   * title text
-   */
-  title: string;
-  /**
-   * description text
-   */
-  description?: string;
-  /**
-   * Text, Badges, and Icons to be displayed below the title and description
-   */
-  details: DetailsProps;
-
-  // width: UIComponentProps['width'];
-
-  maxLines: number;
-}
+import type { MetadataProps } from './Metadata.types.js';
 
 const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
   return (
     <View
       {...props}
+      justifyContent={props.justifyContent}
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
-        styles.Container.tones[props.tone || styles.tone],
+        styles.Container.tones[props.tone ?? styles.tone],
         styles.Container.base
       ]}
       forwardStates
     >
       <Text
-        width={props.width}
+        color={props.textColor}
         style={[
-          styles.TitleText.tones[props.tone || styles.tone], //
+          styles.TitleText.tones[props.tone ?? styles.tone], //
           styles.TitleText.base
         ]}
       >
@@ -62,9 +44,9 @@ const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
       </Text>
       <Show when={props.description}>
         <Text
-          width={props.width}
+          color={props.textColor}
           style={[
-            styles.DescriptionText.tones[props.tone || styles.tone], //
+            styles.DescriptionText.tones[props.tone ?? styles.tone], //
             styles.DescriptionText.base
           ]}
         >

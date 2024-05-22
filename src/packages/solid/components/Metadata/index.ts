@@ -14,5 +14,6 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-export { default as default, type MetadataProps } from './Metadata.jsx';
+export { default as default } from './Metadata.jsx';
 export { default as metadataStyles } from './Metadata.styles.js';
+export type { MetadataProps, MetadataStyles } from './Metadata.types.js';
