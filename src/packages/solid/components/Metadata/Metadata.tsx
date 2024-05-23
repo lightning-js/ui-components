@@ -24,7 +24,6 @@ const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
   return (
     <View
       {...props}
-      justifyContent={props.justifyContent}
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //

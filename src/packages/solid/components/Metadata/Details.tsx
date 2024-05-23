@@ -29,8 +29,6 @@ const Details: Component<DetailsProps> = (props: DetailsProps) => {
   return (
     <View
       {...props}
-      width={props.width}
-      alignItems={props.alignItems}
       gap={props.contentSpacing}
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[
