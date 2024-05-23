@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.6](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.18.5...@lightningjs/solid-ui@0.18.6) (2024-05-23)
+
+### Bug Fixes
+
+- **Solid:** updates declaration files to ts ([#156](https://github.com/lightning-js/ui-components/issues/156)) ([65fcdb6](https://github.com/lightning-js/ui-components/commit/65fcdb6c155b364e6bd616fab07ff755c7911929))
+
 ## [0.18.5](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.18.4...@lightningjs/solid-ui@0.18.5) (2024-05-22)
 
 ### Bug Fixes
