@@ -25,7 +25,7 @@ const { ProgressBar: { defaultTone, ...themeStyles } = { themeStyles: {} } } = t
 const container: ProgressBarConfig = {
   themeKeys: {
     color: 'barColor',
-    borderRadius: 'borderRadius'
+    borderRadius: 'radius'
   },
   base: {
     height: theme.spacer.md,
@@ -43,7 +43,7 @@ const container: ProgressBarConfig = {
 const progress: ProgressBarConfig = {
   themeKeys: {
     color: 'progressColor',
-    borderRadius: 'borderRadius'
+    borderRadius: 'radius'
   },
   base: {
     borderRadius: theme.radius.xs,
