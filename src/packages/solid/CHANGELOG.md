@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.8](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.18.7...@lightningjs/solid-ui@0.18.8) (2024-05-23)
+
+### Bug Fixes
+
+- comment out unused checkbox props, update ProgressBar themeKeys ([#159](https://github.com/lightning-js/ui-components/issues/159)) ([931ee92](https://github.com/lightning-js/ui-components/commit/931ee925633d4cd73c7ceb787dc3ec8c8780bdeb))
+
 ## [0.18.7](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.18.6...@lightningjs/solid-ui@0.18.7) (2024-05-23)
 
 ### Bug Fixes
