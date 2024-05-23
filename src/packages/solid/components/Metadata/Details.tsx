@@ -20,7 +20,8 @@ import { View, Text, Show, For } from '@lightningjs/solid';
 import type { ElementNode } from '@lightningjs/solid';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import styles from './Details.styles.js';
-import Badge, { type BadgeProps } from '../Badge/Badge.jsx';
+import Badge from '../Badge/Badge.jsx';
+import type { BadgeProps } from '../Badge/Badge.types.jsx';
 import Rating, { type RatingProps } from './Rating.jsx';
 
 export interface DetailsProps extends UIComponentProps {

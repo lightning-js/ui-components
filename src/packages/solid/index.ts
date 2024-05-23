@@ -44,30 +44,11 @@ export {
 } from './components/Column/index.js';
 export { default as Icon, iconStyles, type IconProps, type IconStyles } from './components/Icon/index.js';
 export {
-  default as Input,
-  inputStyles,
-  type InputProps,
-  type InputStyles
-} from './components/Input/index.js';
-export { default as Key, keyStyles, type KeyProps, type KeyStyles } from './components/Key/index.js';
-export {
-  default as Keyboard,
-  keyboardStyles,
-  type KeyboardProps,
-  type KeyboardStyles
-} from './components/Keyboard/index.js';
-export {
   default as Label,
   labelStyles,
   type LabelProps,
   type LabelStyles
 } from './components/Label/index.js';
-export {
-  default as ListItem,
-  listItemStyles,
-  type ListItemProps,
-  type ListItemStyles
-} from './components/ListItem/index.js';
 export { default as Metadata, metadataStyles, type MetadataProps } from './components/Metadata/index.js';
 export {
   default as ProgressBar,
@@ -82,15 +63,12 @@ export {
   type RadioStyles
 } from './components/Radio/index.js';
 export { default as Row, rowStyles, type RowProps, type RowStyles } from './components/Row/index.js';
-export { default as Tile, tileStyles, type TileProps, type TileStyles } from './components/Tile/index.js';
 export {
-  default as Toggle,
-  toggleStyles,
-  type ToggleProps,
-  type ToggleStyles
-} from './components/Toggle/index.js';
-export { default as Wave, waveStyles, type WaveProps, type WaveStyles } from './components/Wave/index.js';
+  default as Keyboard,
+  keyboardStyles,
+  type KeyboardProps,
+  type KeyboardStyles
+} from './components/Keyboard/index.js';
+export { default as Tile, tileStyles, type TileProps, type TileStyles } from './components/Tile/index.js';
 export * from './utils/index.js';
 export * from './components/FPSCounter/index.js';
-export * from './types/types.js';
-export * from './types/interfaces.js';
