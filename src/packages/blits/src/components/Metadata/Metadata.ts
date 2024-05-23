@@ -3,7 +3,7 @@ import styles from './Metadata.styles';
 import { States, Tone } from '../../types/types';
 import { getStyledProp } from '../../utils/styleUtils';
 import Details, { DetailsProps } from './Details';
-import { UnrequiredString, isValidState, isValidTone } from '../../utils';
+import { UnrequiredString, getTextWidth, isValidState, isValidTone } from '../../utils';
 
 export type MetadataProps = {
   title: string;
@@ -100,7 +100,7 @@ const Metadata = Blits.Component('Metadata', {
       <Details
         ref="details"
         :width="$width"
-        :y="$titleProps.lineheight + $descriptionProps.lineheight * ($maxLines + 1)"
+        :y="$detailsY"
         :title="$details?.title"
         :badges="$details?.badges"
         :ratings="$details?.ratings"
@@ -133,6 +133,11 @@ const Metadata = Blits.Component('Metadata', {
     },
     descriptionColor(): string {
       return getStyledProp('color', styles.DescriptionText, this.tone, this.states) ?? '#fff';
+    },
+    detailsY(): number {
+      const descriptionWidth = getTextWidth(this.description, this.descriptionProps.font, this.descriptionProps.size);
+      const lines = Math.min(this.maxLines, Math.ceil(descriptionWidth / this.width));
+      return this.titleProps.lineheight + (this.descriptionProps.lineheight * lines);
     }
   }
 });

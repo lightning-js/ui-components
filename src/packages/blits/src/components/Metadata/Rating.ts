@@ -43,16 +43,16 @@ const Rating = Blits.Component('Rating', {
     }
   ],
   template: `
-    <Element :x="$width()/2">
-      <Element :src="$src" :w="$iconProps.width" :h="$iconProps.height" mount="{x:0.5}" :color="$iconProps.color" />
+    <Element :y="$height()/2">
+      <Element :src="$src" :w="$iconProps.width" :h="$iconProps.height" mount="{y:0.5}" :color="$iconProps.color" />
       <Text
         :content="$formattedTitle"
         :size="$titleProps.size"
         :font="$titleProps.font"
         :lineheight="$titleProps.lineheight"
         :color="$titleProps.color"
-        :y="$iconProps.height + $gap"
-        mount="{x:0.5}"
+        :x="$iconProps.width + $gap"
+        mount="{y:0.5}"
       />
     </Element>
   `,
@@ -84,10 +84,12 @@ const Rating = Blits.Component('Rating', {
   },
   methods: {
     width() {
-      return Math.max(this.iconProps.width, this.textWidth);
+      // return Math.max(this.iconProps.width, this.textWidth);
+      return this.iconProps.width + this.gap + this.textWidth;
     },
     height() {
-      return this.iconProps.height + this.gap + this.titleProps.lineheight;
+      // return this.iconProps.height + this.gap + this.titleProps.lineheight;
+      return Math.max(this.iconProps.height, this.titleProps.lineheight);
     }
   }
 });

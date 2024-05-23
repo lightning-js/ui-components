@@ -25,6 +25,7 @@ type DetailsState = {
     font: string;
     size: number;
     lineheight: number;
+    x: number;
   };
   badgeProps: {
     gap: number;
@@ -89,7 +90,21 @@ const Details = Blits.Component('Details', {
   },
   template: `
     <Element :w="$width" :h="$height">
+      <Element :x="$ratingProps.x" :h="$ratingProps.height" :y="$height/2" mount="{y: 0.5}">
+        <Component
+          is="Rating"
+          :for="(item, index) in $ratings"
+          index="$index"
+          title="$item.title"
+          src="$item.src"
+          ref="rating"
+          key="$index"
+          :x="$ratingProps.rects[$index]?.x ?? 0"
+        />
+      </Element>
+    
       <Text
+        :x="$titleProps.x"
         :show="!!$title"
         :content="$title"
         :font="$titleProps.font"
@@ -116,19 +131,6 @@ const Details = Blits.Component('Details', {
           :x="$badgeProps.rects[$index]?.x ?? 0"
         />
       </Element>
-    
-      <Element :x="$ratingProps.x" :h="$ratingProps.height" :y="$height/2" mount="{y: 0.5}">
-        <Component
-          is="Rating"
-          :for="(item, index) in $ratings"
-          index="$index"
-          title="$item.title"
-          src="$item.src"
-          ref="rating"
-          key="$index"
-          :x="$ratingProps.rects[$index]?.x ?? 0"
-        />
-      </Element>
     </Element>
   `,
   state(): DetailsState {
@@ -136,7 +138,8 @@ const Details = Blits.Component('Details', {
       titleProps: {
         font: styles.Text.base.fontFamily,
         size: styles.Text.base.fontSize,
-        lineheight: styles.Text.base.lineHeight
+        lineheight: styles.Text.base.lineHeight,
+        x: 0
       },
       badgeProps: {
         gap: styles.Container.base.badgeContentSpacing,
@@ -224,13 +227,12 @@ const Details = Blits.Component('Details', {
       );
       this.ratingProps.height = getMaxHeight(this.ratingProps.rects);
     },
-    // get x positions for badges and ratings based on their sizing
+    // get x positions for all the elements based on their sizing
     calculateFlex() {
-      this.badgeProps.x = this.title ? this.titleWidth + this.gap : 0;
-      const lastBadge: FlexRect | null =
-        this.badgeProps.rects.length > 0 && this.badgeProps.rects[this.badgeProps.rects.length - 1];
-      this.ratingProps.x =
-        this.badgeProps.x + (lastBadge && (lastBadge.x ?? 0) + (lastBadge.w ?? 0) + this.gap);
+      this.ratingProps.x = 0;
+      const lastRating: FlexRect | null = this.ratingProps.rects.length > 0 && this.ratingProps.rects[this.ratingProps.rects.length - 1];
+      this.titleProps.x = this.ratingProps.x + (lastRating && (lastRating.x ?? 0) + (lastRating.w ?? 0) + this.gap);
+      this.badgeProps.x = this.titleProps.x + (this.title ? this.titleWidth + this.gap : 0);
     }
   }
 });
