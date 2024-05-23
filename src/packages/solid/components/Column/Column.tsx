@@ -29,12 +29,10 @@ const ScrollableView: ScrollableComponent = props => <View {...props} />;
 const Column: Component<ColumnProps> = (props: ColumnProps) => {
   const onUp = handleNavigation('up');
   const onDown = handleNavigation('down');
-  let Container: ScrollableComponent;
 
   return (
     <ScrollableView
       {...props}
-      ref={Container}
       gap={props.itemSpacing}
       transition={props.itemTransition}
       onUp={chainFunctions<KeyHandler | undefined>(props.onUp, onUp)}
