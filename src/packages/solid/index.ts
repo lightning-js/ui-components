@@ -102,7 +102,6 @@ export {
   type ToggleProps,
   type ToggleStyles
 } from './components/Toggle/index.js';
-export { default as Wave, waveStyles, type WaveProps, type WaveStyles } from './components/Wave/index.js';
 export * from './utils/index.js';
 export * from './components/FPSCounter/index.js';
 export * from './types/types.js';
