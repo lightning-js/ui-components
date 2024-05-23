@@ -103,7 +103,7 @@ const container: CheckboxConfig = {
 
 const icon: CheckboxConfig = {
   themeKeys: {
-    color: 'strokeColor',
+    // color: 'strokeColor', see types 58 for TODO
     width: 'checkWidth',
     height: 'checkHeight'
   },

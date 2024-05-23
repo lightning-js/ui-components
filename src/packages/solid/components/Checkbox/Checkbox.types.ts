@@ -40,6 +40,11 @@ export interface CheckboxStyleProperties {
    * core reference: {@link https://github.com/lightning-js/renderer/blob/aefee0064a48055b3cf8dd459396ad4996b68ef5/src/main-api/INode.ts#L121 INodeWritableProps.color}
    */
   backgroundColor?: NodeStyles['color'];
+
+  /**
+   * color and width of the checkbox border
+   */
+  border?: NodeStyles['border'];
   /**
    * radius of the border of checkbox
    */
