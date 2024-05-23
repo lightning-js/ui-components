@@ -68,7 +68,20 @@ export {
   type ListItemProps,
   type ListItemStyles
 } from './components/ListItem/index.js';
-export { default as Metadata, metadataStyles, type MetadataProps } from './components/Metadata/index.js';
+export {
+  default as Metadata,
+  metadataStyles,
+  type MetadataProps,
+  type MetadataStyles,
+  Details,
+  detailsStyles,
+  type DetailsProps,
+  type DetailsStyles,
+  Rating,
+  ratingStyles,
+  type RatingProps,
+  type RatingStyles
+} from './components/Metadata/index.js';
 export {
   default as ProgressBar,
   progressBarStyles,
