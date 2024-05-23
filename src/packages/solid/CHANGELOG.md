@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.9](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.18.8...@lightningjs/solid-ui@0.18.9) (2024-05-23)
+
+### Bug Fixes
+
+- **Solid:** removes Wave and CardContent ([#160](https://github.com/lightning-js/ui-components/issues/160)) ([b1d3f07](https://github.com/lightning-js/ui-components/commit/b1d3f07f3e118cded39a3c8569da93e29fca20a1))
+
 ## [0.18.8](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.18.7...@lightningjs/solid-ui@0.18.8) (2024-05-23)
 
 ### Bug Fixes
