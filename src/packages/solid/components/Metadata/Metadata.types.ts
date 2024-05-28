@@ -33,7 +33,7 @@ export interface MetadataProps extends UIComponentProps, MetadataStyleProperties
   /**
    * Text, Badges, and Icons to be displayed below the title and description
    */
-  details: DetailsProps;
+  details?: DetailsProps;
 
   /**
    * max number of lines for text
