@@ -71,7 +71,9 @@ const Metadata: Component<MetadataProps> = (props: MetadataProps) => {
           {props.description}
         </Text>
       </Show>
-      <Details width={props.width} {...props.details} tone={props.tone ?? styles.tone} />
+      <Show when={props.details}>
+        <Details width={props.width} {...props.details} tone={props.tone ?? styles.tone} />
+      </Show>
     </View>
   );
 };
