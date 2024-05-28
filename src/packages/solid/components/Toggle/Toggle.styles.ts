@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Comcast Cable Communications Management, LLC
+ * Copyright 2024 Comcast Cable Communications Management, LLC
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,34 +15,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { BorderStyleObject, NodeStyles } from '@lightningjs/solid';
 import theme from 'theme';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-
-export interface ToggleStyles {
-  tone: Tone;
-  Container: NodeStyleSet<{ border: BorderStyleObject; colorChecked: NodeStyles['color'] }>;
-  Knob: NodeStyleSet<{ padding: number; colorChecked: NodeStyles['color'] }>;
-}
-
-type ToggleStyleProperties = {
-  backgroundColor?: NodeStyles['color'];
-  backgroundColorChecked?: NodeStyles['color'];
-  knobWidth?: NodeStyles['width'];
-  knobHeight?: NodeStyles['height'];
-  knobPadding?: number;
-  knobRadius?: NodeStyles['borderRadius'];
-  knobColor?: NodeStyles['color'];
-  knobColorChecked?: NodeStyles['color'];
-  knobSize?: NodeStyles['width'];
-  // strokeColor?: NodeStyles['borderColor'];
-  strokeRadius?: NodeStyles['borderRadius'];
-  // strokeWidth?: NodeStyles['borderWidth'];
-};
-
-type ToggleConfig = ComponentStyleConfig<ToggleStyleProperties>;
+import type { ToggleStyles, ToggleConfig } from './Toggle.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Toggle: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
@@ -64,7 +39,7 @@ const container: ToggleConfig = {
     width: (strokeWidth + knobPadding * 2 + knobSize) * 2,
     borderRadius: knobSize / 2 + knobPadding + strokeWidth,
     border: {
-      // TODO- strokeWidth and strokeColor map to border object with themeKeys
+      // TODO- strokeWidth, strokeColor, and strokeColorChecked map to border object with themeKeys
       color: theme.color.fillNeutral,
       width: strokeWidth
     }
@@ -72,24 +47,26 @@ const container: ToggleConfig = {
   modes: {
     focus: {},
     disabled: {
-      borderColor: theme.color.fillNeutralDisabled,
+      borderRadius: knobSize / 2 + knobPadding + strokeWidth,
       border: {
         color: theme.color.fillNeutralDisabled,
         width: strokeWidth
       },
-      color: theme.color.fillInverseDisabled
+      color: theme.color.fillInverseDisabled,
+      colorChecked: theme.color.fillNeutralDisabled
     }
   },
   tones: {
     inverse: {
-      borderColor: theme.color.fillInverse,
+      borderRadius: knobSize / 2 + knobPadding + strokeWidth,
       border: {
         color: theme.color.fillInverse,
         width: strokeWidth
       },
       color: theme.color.fillNeutralTertiary,
+      colorChecked: theme.color.fillInverse,
       disabled: {
-        borderColor: theme.color.fillInverseDisabled,
+        borderRadius: knobSize / 2 + knobPadding + strokeWidth,
         border: {
           color: theme.color.fillInverseDisabled,
           width: strokeWidth
@@ -99,14 +76,15 @@ const container: ToggleConfig = {
       }
     },
     brand: {
-      borderColor: theme.color.fillBrand,
+      borderRadius: knobSize / 2 + knobPadding + strokeWidth,
       border: {
         color: theme.color.fillBrand,
         width: strokeWidth
       },
       color: theme.color.fillBrandTertiary,
+      colorChecked: theme.color.fillBrand,
       disabled: {
-        borderColor: theme.color.fillNeutralDisabled,
+        borderRadius: knobSize / 2 + knobPadding + strokeWidth,
         border: {
           color: theme.color.fillNeutralDisabled,
           width: strokeWidth
