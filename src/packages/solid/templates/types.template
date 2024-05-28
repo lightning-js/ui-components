@@ -15,22 +15,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { type Component } from 'solid-js';
-import { View } from '@lightningjs/solid';
-import type { <ComponentName>Props } from './<ComponentName>.types.js';
-import styles from './<ComponentName>.styles.js';
+import type { UIComponentProps } from '../../types/interfaces.js';
 
-const <ComponentName>: Component<<ComponentName>Props> = props => {
-  return (
-    <View
-      {...props}
-      style={[
-        props.style, //
-        styles.Container.tones?.[props.tone ?? styles.tone],
-        styles.Container.base
-      ]}
-    />
-  );
-};
+interface <ComponentName>Props extends UIComponentProps {
+  // component specific props  
+}
 
-export default <ComponentName>;
+// only necessary if the component should follow the Container pattern
+interface <ComponentName>ContainerProps extends UIComponentProps {
+  // container specific props
+}

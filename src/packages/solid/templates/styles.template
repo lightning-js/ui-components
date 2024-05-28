@@ -27,24 +27,24 @@ import { makeComponentStyles } from '../../utils/index.js';
 
 // includes the tone and all returned style sets, usually one per element
 // NodeStyleSet(and TextStyleSet) is a generic that takes an object<T> and returns `NodeStyles & T`
-export interface NewComponentStyles {
+export interface <ComponentName>Styles {
   tone: Tone;
   // ex. Container: NodeStyleSet;
 }
 
 // list of all values expected in a componentConfig, and their type
 // usually these map to a NodeStyle or TextStyle type
-type NewComponentStyleProperties = Partial<{
+type <ComponentName>StyleProperties = Partial<{
   // ex. backgroundColor: NodeStyles['color'];
 }>;
 
-type NewComponentConfig = ComponentStyleConfig<NewComponentStyleProperties>;
+type <ComponentName>Config = ComponentStyleConfig<<ComponentName>StyleProperties>;
 
 // replace Component with the component name, this line imports overrides from the theme's componentConfig if they exist
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Component: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
 
-const container: NewComponentConfig = {
+const container: <ComponentName>Config = {
   themeKeys: {
     // key/value pairs mapping this element's property to the incoming componentConfig value
     // the values here should be listed in the ComponentStyleProperties type
@@ -87,7 +87,7 @@ const container: NewComponentConfig = {
 // ex. const Container = makeComponentStyles<ComponentStyle['Container']>(container);
 
 // the object returned to the component
-const styles: NewComponentStyle = {
+const styles: <ComponentName>Style = {
   tone: defaultTone || 'neutral'
   // ex. Container
 };
