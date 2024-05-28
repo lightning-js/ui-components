@@ -14,11 +14,12 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-export { default as default, type MetadataProps } from './Metadata.jsx';
-export { default as metadataStyles, type MetadataStyles } from './Metadata.styles.js';
-
-export { default as Details, type DetailsProps } from './Details.jsx';
-export { default as detailsStyles, type DetailsStyles } from './Details.styles.js';
-
-export { default as Rating, type RatingProps } from './Rating.jsx';
-export { default as ratingStyles, type RatingStyles } from './Rating.styles.js';
+export { default as default } from './Metadata.jsx';
+export { default as Details } from './Details.jsx';
+export { default as Rating } from './Rating.jsx';
+export { default as metadataStyles } from './Metadata.styles.js';
+export { default as detailsStyles } from './Details.styles.js';
+export { default as ratingStyles } from './Rating.styles.js';
+export type { MetadataProps, MetadataStyles } from './Metadata.types.js';
+export type { DetailsProps, DetailsStyles } from './Details.types.js';
+export type { RatingProps, RatingStyles } from './Rating.types.js';
