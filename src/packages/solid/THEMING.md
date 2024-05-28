@@ -14,7 +14,7 @@ _the app will not run without this configuration_
 
 in vite for example:
 
-```js
+```JS
 // vite.config.js
   resolve: {
     alias: {
@@ -25,7 +25,7 @@ in vite for example:
 
 or if you have your own local theme:
 
-```js
+```JS
   resolve: {
     alias: {
       theme: path.resolve(__dirname, 'path/to/your/theme.js'),
@@ -35,26 +35,25 @@ or if you have your own local theme:
 
 ## Component Setup
 
-Each themeable element in the Component will need the properties below. The `style` assignment provides the base component styles, the `tone` gets mapped to states via the `toneStateMapperHook` (more on that below), and the object merge beneath that ensures that any instance-level styles provided override the tone.
+Each themeable element in the Component will accept some variation of the below style array. They're merged by solid where the lowest index holds the highest priority, this ensures that the element's `base` styles are the lowest priority, overridden by tone-specific values, which are in turn overridden by inline style values.
 
-```jsx
+```JSX
 <View
-  style={styles.Container}
-  tone={props.tone || styles.tone}
-  {...{
-    ...styles.Container[props.tone || styles.tone],
-    ...props?.style?.Container
-  }}
+  style={[
+    props.style, //
+    styles.Container.tones[props.tone || styles.tone],
+    styles.Container.base
+  ]}
 />
 ```
 
 ### Theme File
 
-Contains values which can be referenced via `theme.property.path` in the style file (more on that below), and component configs which is how we create theme-level component styles.
+Themes contain values which can be referenced via `theme.property.path` in the style file (more on that below), and component configs which is how we create theme-level component styles.
 
 One config could look something like this:
 
-```js
+```JS
 {
   componentConfig: {
     ComponentName: {
@@ -74,10 +73,10 @@ One config could look something like this:
 
 ### Style Files
 
-returns an object containing each component element's styles, and the tone.
+Style files contain a style config and return an object containing each of the component's element's styles, and the tone.
 something like
 
-```js
+```JS
 {
   tone: 'neutral',
   Container: containerStyles,
@@ -85,39 +84,72 @@ something like
 }
 ```
 
-Each style file contains a config which will get passed to `makeComponentStyles` and has the following properties:
+Each style file contains a config or configs(usually one config per element) which will get passed to `makeComponentStyles` and has the following properties:
 
 - `themeKeys`
-  - informs which values we should expect a given componentConfig to contain, and the solid style props to which those keys map
+  - informs which values we should expect a given componentConfig to contain, and the solid style prop to which each key maps
 - `base`
-  - the default styles of a component
-- `toneModes`
-  - style overrides that'll get applied to a component based on it's states (which will represent tones, modes, and toneModes)
+  - the default(unfocused) styles of a component
 - `themeStyles`
-  - these come in from the theme, the setup looks the same for each component
-- `toneModeFallbackMap` (optional)
-  - defines which mode/tone each tone/mode should fall back to. a default exists, this is only necessary for component-level map overrides
+  - styles defined per component in the theme, the setup looks the same for each component
+- `modes` (optional)
+  - style overrides that get applied to a component based on it's state
+- `tones` (optional)
+  - style overrides that are handled in the style property array
+- `modeKeys` (optional)
+  - modes supported by a component, defaults to ['focus', 'disabled']
+- `toneKeys` (optional)
+  - tones supported by a component, defaults to ['neutral', 'inverse', 'brand']
+
+#### Tones
+
+Components support two main ways of configuring component variants: Tones and Modes. Tones describe built-in visual variants of a component. Each solid component supports three tones:
+
+- neutral (the default appearance, using neutral colors)
+- inverse (for providing contrast when using neutral colors against an opposite color background)
+- brand (meant to call branded focus to an element)
+
+For each component in the componentConfig definition, you can specify a different default tone for that component by defining the tone property as a string of one of the three tone values: neutral, inverse, or brand. This will cause that given component to render in that tone by default without requiring a user to explicitly specify the tone on each instance.
+
+For example:
+
+```JS
+componentConfig: {
+  ProgressBar: {
+    tone: 'brand'
+  }
+}
+```
 
 ### Tones and Modes
 
-Tones, Modes, and ToneModes are defined either in the component style file or the theme's component config.
+Tones and Modes give us a uniform way to define alternate styles for a component. They're defined either in the component style file or the component's entry in a theme's component config.
 
-- tones - overrides to a component's default styles
-  - usually an alternate color pallette
+While tones provide overrides to a component's default styles
+
+- usually an alternate color pallette
 - modes - styles that are applied during the component lifecycle, can be thought of as states (focus, disabled, etc)
-- toneModes - variations on mode styles that are applied when a component with a specific tone receives that mode
-  - ie. when a Button with tone "brand" receives the mode "focus", the styles defined in `brand-focus` would be applied
 
-#### Tones and Modes in Solid(toneStateMapperHook)
+Tones and Modes are applied to a component somewhat differently:
 
-tones are specific to solid-ui and not part of the lightningjs/solid framework, so we need to add them on. in the app's index (or wherever you're rendering your solid canvas), import the `mapToneToStateHook` method and assign it to the lightningjs/solid config object
+Tones are applied to a element as part of the style array:
 
-```js
-import { render, Canvas, Config } from '@lightningjs/solid';
-import { mapToneToStateHook } from '@lightningjs/solid-ui';
-Config.stateMapperHook = mapToneToStateHook;
-
-render(() => <Canvas />);
+```JSX
+<View style={[styles.tones[props.tone], styles.base]} />
 ```
 
-this merges the component's tone with it's current state, ensuring we assign the correct toneMode values.
+Thanks to how solid processes the style property, we can optionally include `tone` styles if they exist in the component's styles. In the above example if `styles.tones[tone]` is undefined, it's ignored by the framework and nothing gets applied. The `tone` is expected to be static and provides a way for us to have multiple unfocused styles for a given component.
+
+tones may have their own mode overrides nested within their config ie. the following:
+
+```JS
+{
+  tones: {
+    brand: {
+      focus: {}
+    }
+  }
+}
+```
+
+will be applied when the component's tone='brand' and state='focus'

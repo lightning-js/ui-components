@@ -17,16 +17,16 @@
 
 # Solid UI
 
-This library contains shared Lightning/Solid components
+A library of generic, themeable components for building applications on lightning3(https://github.com/lightning-js/renderer) with the [Solid framework](https://github.com/lightning-js/solid)
 
 ## Quick Start
 
-If you haven't already, follow the steps found [here](https://github.com/lightning-js/solid) to bootstrap your lightningjs/solid app.
+If you haven't already, follow the steps found [here](https://github.com/lightning-js/solid) to bootstrap your lightning3/solid app.
 
 1. install this package and the base theme with your package manager of choice
 
 ```sh
-npm i @lightningjs/solid-ui @lightningjs/l3-ui-theme-base # or pnpm/yarn
+pnpm add @lightningjs/solid-ui @lightningjs/l3-ui-theme-base # or npm/yarn
 ```
 
 2. add the theme package as an alias in your vite config
@@ -40,15 +40,7 @@ npm i @lightningjs/solid-ui @lightningjs/l3-ui-theme-base # or pnpm/yarn
   },
 ```
 
-3. add the stateMapperHook to your lightningjs/solid `Config`
-
-```js
-// index.jsx
-import { mapToneToStateHook } from '@lightningjs/solid-ui';
-Config.stateMapperHook = mapToneToStateHook;
-```
-
-4. and finally, use a component
+3. and finally, use a component
 
 ```jsx
 // App.jsx
@@ -57,3 +49,36 @@ import { Button } from '@lightningjs/solid-ui';
   <Button>a button!</Button>
 </App>;
 ```
+
+## Development
+
+If you don't have pnpm
+
+```sh
+npm install -g pnpm
+```
+
+Run the solid storybook dev environment:
+
+```sh
+pnpm install
+pnpm dev:solid
+```
+
+Run the solid sandbox environment:
+
+```sh
+pnpm sandbox:solid
+```
+
+## Structure of this project
+
+the larger ui-components project is a monorepo consisting of three public packages(published) and two private packages(not published).
+
+- public
+  - solid-ui
+  - blits-ui
+  - l3-ui-theme-base
+- private
+  - a solid sandbox environment
+  - a shared code directory
