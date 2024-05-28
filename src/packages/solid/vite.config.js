@@ -51,7 +51,9 @@ const config = {
     },
     minify: false,
     sourcemap: true,
-    outDir: './dist'
+    outDir: './dist',
+    target: 'esnext',
+    polyfillDynamicImport: false
   },
   resolve: {
     alias: {
@@ -68,27 +70,28 @@ const config = {
     }
   },
   test: {
-    browser: {
-      /**
-       * browser mode causes tests to fail with the following error:
-       * SyntaxError: The requested module 'ui-components/node_modules/.pnpm/chalk@3.0.0/node_modules/chalk/source/index.js?v=6d2cbdb3' does not provide an export named 'default'`
-       */
-      enabled: false,
-      headless: false,
-      provider: 'playwright',
-      name: 'chromium',
-      slowHijackESM: false
-    },
+    /**
+     * browser mode causes tests to fail with the following error:
+     * SyntaxError: The requested module 'ui-components/node_modules/.pnpm/chalk@3.0.0/node_modules/chalk/source/index.js?v=6d2cbdb3' does not provide an export named 'default'`
+     */
+    enabled: false,
+    headless: false,
+    provider: 'playwright',
+    name: 'chromium',
+    slowHijackESM: false,
     deps: {
-      // >= 0.34
+      inline: [/solid-js/, /solid-testing-library/],
       optimizer: {
         web: {
-          include: ['@lightningjs/ui-components-theme-base']
+          include: ['@lightningjs/solid', '@lightningjs/renderer']
         }
       }
     },
-    testTransformMode: { web: ['/.[jt]sx?$/'] },
-    globals: true
+    transformMode: { web: [/\.[jt]sx?$/] },
+    globals: true,
+    resolve: {
+      conditions: ['development', 'browser']
+    }
   },
   publicDir: '../../shared/public'
 };

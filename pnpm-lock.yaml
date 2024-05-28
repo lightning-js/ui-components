@@ -4844,7 +4844,7 @@ packages:
       '@babel/core': 7.24.4
       '@babel/preset-env': 7.24.0(@babel/core@7.24.4)
       '@babel/types': 7.24.0
-      '@storybook/csf': 0.1.4
+      '@storybook/csf': 0.1.7
       '@storybook/csf-tools': 7.6.17
       '@storybook/node-logger': 7.6.17
       '@storybook/types': 7.6.17
@@ -4865,7 +4865,7 @@ packages:
       '@babel/core': 7.24.4
       '@babel/preset-env': 7.24.0(@babel/core@7.24.4)
       '@babel/types': 7.24.0
-      '@storybook/csf': 0.1.4
+      '@storybook/csf': 0.1.7
       '@storybook/csf-tools': 8.0.9
       '@storybook/node-logger': 8.0.9
       '@storybook/types': 8.0.9
@@ -5201,7 +5201,7 @@ packages:
       '@babel/parser': 7.24.4
       '@babel/traverse': 7.24.1
       '@babel/types': 7.24.0
-      '@storybook/csf': 0.1.4
+      '@storybook/csf': 0.1.7
       '@storybook/types': 7.6.17
       fs-extra: 11.2.0
       recast: 0.23.5

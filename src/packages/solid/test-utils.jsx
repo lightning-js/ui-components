@@ -18,11 +18,12 @@
 
 // TODO convert to typescript
 
-import { render as solidRender, View, Canvas, activeElement } from '@lightningjs/solid';
+import { render as solidRenderer, View, activeElement } from '@lightningjs/solid';
+// import { render as webRenderer } from '@solidjs/web';
 
-const RenderOptions = {
-  rootId: document.createElement('div')
-};
+// const RenderOptions = {
+//   rootId: document.createElement('div')
+// };
 
 function dec2hex(decimal) {
   if (decimal < 0) {
@@ -45,18 +46,7 @@ function dec2hex(decimal) {
   return '#' + hexResult;
 }
 
-export function render(Component) {
-  let app;
-  let resolver;
-
-  solidRender(() => (
-    <Canvas options={RenderOptions} onFirstRender={() => resolver(api)}>
-      <View ref={app}>
-        <Component />
-      </View>
-    </Canvas>
-  ));
-
+export async function render(Component) {
   const api = {
     toJSON: depth => toJSON(app.children.firstChild, depth),
     focus: () => {
@@ -78,10 +68,15 @@ export function render(Component) {
     destroy: () => app.destroy(),
     focusPath: () => app.focusPath.map(p => p.ref)
   };
-
-  return new Promise(resolve => {
-    resolver = resolve;
-  });
+  const resolver = arg => arg;
+  let app;
+  // return await solidRenderer(() => {
+  return (
+    <View ref={app} onMount={() => resolver(api)}>
+      <Component />
+    </View>
+  );
+  // });
 }
 
 function toJSON(node, depth = 2) {

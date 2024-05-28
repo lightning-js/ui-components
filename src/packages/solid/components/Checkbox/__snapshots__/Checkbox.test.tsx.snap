@@ -1,17 +1,86 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Checkbox > renders 1`] = `
-{
-  "alpha": 1,
+ElementNode {
+  "_animationQueue": [],
+  "_animationRunning": false,
   "children": Children [
-    "",
+    ElementNode {
+      "_animationQueue": [],
+      "_animationRunning": false,
+      "_effects": {
+        "border": {
+          "color": "0xf8f7fab3",
+          "width": 2,
+        },
+        "radius": {
+          "radius": 10,
+        },
+      },
+      "_parent": [Circular],
+      "_queueDelete": false,
+      "_states": States [],
+      "_style": {
+        "alignItems": "center",
+        "border": {
+          "color": "0xf8f7fab3",
+          "width": 2,
+        },
+        "borderRadius": 10,
+        "checked": {
+          "border": {
+            "color": "0xf8f7fab3",
+            "width": 2,
+          },
+          "borderRadius": 10,
+          "color": "0xf8f7faff",
+        },
+        "color": "0x181819b3",
+        "disabled": {
+          "alpha": 0.5,
+        },
+        "display": "flex",
+        "focus": {},
+        "height": 40,
+        "justifyContent": "center",
+        "width": 40,
+      },
+      "alignItems": "center",
+      "checked": {
+        "border": {
+          "color": "0xf8f7fab3",
+          "width": 2,
+        },
+        "borderRadius": 10,
+        "color": "0xf8f7faff",
+      },
+      "children": Children [
+        {
+          "_queueDelete": false,
+          "parent": [Circular],
+          "text": "",
+          "type": 2,
+        },
+      ],
+      "disabled": {
+        "alpha": 0.5,
+      },
+      "display": "flex",
+      "focus": {},
+      "forwardStates": true,
+      "justifyContent": "center",
+      "lng": {
+        "color": "0x181819b3",
+        "height": 40,
+        "width": 40,
+      },
+      "rendered": false,
+      "type": 0,
+    },
   ],
-  "color": "#181819B3",
-  "height": 40,
-  "pivot": 0.5,
-  "pivotX": 0.5,
-  "pivotY": 0.5,
-  "scale": 1,
-  "width": 40,
+  "lng": {},
+  "onMount": [Function],
+  "rendered": false,
+  "type": 0,
 }
 `;

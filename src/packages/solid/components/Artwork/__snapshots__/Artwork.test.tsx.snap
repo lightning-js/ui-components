@@ -1,0 +1,50 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Artwork > renders 1`] = `
+ElementNode {
+  "_animationQueue": [],
+  "_animationRunning": false,
+  "children": Children [
+    ElementNode {
+      "_animationQueue": [],
+      "_animationRunning": false,
+      "_effects": {
+        "radius": {
+          "radius": 8,
+        },
+      },
+      "_parent": [Circular],
+      "_queueDelete": false,
+      "_style": {
+        "borderRadius": 8,
+        "disabled": {},
+        "fallbackSrc": undefined,
+        "fillColor": "0x181819b3",
+        "focus": {},
+        "gradientColor": "0x181819ff",
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "scale": undefined,
+      },
+      "children": Children [],
+      "disabled": {},
+      "fallbackSrc": undefined,
+      "fillColor": "0x181819b3",
+      "focus": {},
+      "gradientColor": "0x181819ff",
+      "lng": {
+        "color": "0x181819b3",
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "scale": undefined,
+      },
+      "rendered": false,
+      "type": 0,
+    },
+  ],
+  "lng": {},
+  "onMount": [Function],
+  "rendered": false,
+  "type": 0,
+}
+`;

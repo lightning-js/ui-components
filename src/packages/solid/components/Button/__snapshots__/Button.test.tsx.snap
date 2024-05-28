@@ -1,26 +1,118 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Button > renders 1`] = `
-{
-  "alpha": 1,
+ElementNode {
+  "_animationQueue": [],
+  "_animationRunning": false,
   "children": Children [
-    {
-      "alpha": 1,
-      "color": "#F8F7FAFF",
-      "fontSize": 25,
-      "pivot": 0.5,
-      "pivotX": 0.5,
-      "pivotY": 0.5,
-      "scale": 1,
-      "text": "Hello",
+    ElementNode {
+      "_animationQueue": [],
+      "_animationRunning": false,
+      "_effects": {
+        "radius": {
+          "radius": 4,
+        },
+      },
+      "_parent": [Circular],
+      "_queueDelete": false,
+      "_style": {
+        "alignItems": "center",
+        "borderRadius": 4,
+        "color": "0xffffff1a",
+        "contentColor": "0xf8f7faff",
+        "disabled": {
+          "color": "0xf8f7fa80",
+        },
+        "display": "flex",
+        "focus": {
+          "color": "0xffffffff",
+          "contentColor": "0x181819ff",
+        },
+        "height": 92,
+        "justifyContent": "center",
+        "padding": [
+          50,
+          30,
+        ],
+      },
+      "alignItems": "center",
+      "children": Children [
+        ElementNode {
+          "_animationQueue": [],
+          "_animationRunning": false,
+          "_parent": [Circular],
+          "_queueDelete": false,
+          "_style": {
+            "color": "0xf8f7faff",
+            "disabled": {
+              "color": "0xf8f7fa80",
+            },
+            "focus": {
+              "color": "0x181819ff",
+            },
+            "fontFamily": "Arial",
+            "fontSize": 25,
+            "fontWeight": 500,
+            "lineHeight": 32,
+            "textAlign": "left",
+            "textBaseline": "bottom",
+            "verticalAlign": "middle",
+          },
+          "children": Children [
+            {
+              "_queueDelete": false,
+              "parent": [Circular],
+              "text": "Hello",
+              "type": 2,
+            },
+          ],
+          "disabled": {
+            "color": "0xf8f7fa80",
+          },
+          "focus": {
+            "color": "0x181819ff",
+          },
+          "lng": {
+            "color": "0xf8f7faff",
+            "fontFamily": "Arial",
+            "fontSize": 25,
+            "fontWeight": 500,
+            "lineHeight": 32,
+            "text": "Hello",
+            "textAlign": "left",
+            "textBaseline": "bottom",
+            "verticalAlign": "middle",
+          },
+          "rendered": false,
+          "type": 1,
+        },
+      ],
+      "contentColor": "0xf8f7faff",
+      "disabled": {
+        "color": "0xf8f7fa80",
+      },
+      "display": "flex",
+      "focus": {
+        "color": "0xffffffff",
+        "contentColor": "0x181819ff",
+      },
+      "forwardStates": true,
+      "justifyContent": "center",
+      "lng": {
+        "color": "0xffffff1a",
+        "height": 92,
+      },
+      "padding": [
+        50,
+        30,
+      ],
+      "rendered": false,
+      "type": 0,
     },
   ],
-  "color": "#FFFFFF1A",
-  "height": 92,
-  "pivot": 0.5,
-  "pivotX": 0.5,
-  "pivotY": 0.5,
-  "scale": 1,
-  "width": 1920,
+  "lng": {},
+  "onMount": [Function],
+  "rendered": false,
+  "type": 0,
 }
 `;
