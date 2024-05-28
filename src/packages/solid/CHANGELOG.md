@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.12](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.18.11...@lightningjs/solid-ui@0.18.12) (2024-05-28)
+
+### Bug Fixes
+
+- **Solid:** updates Toggle styles ([#149](https://github.com/lightning-js/ui-components/issues/149)) ([29ad97e](https://github.com/lightning-js/ui-components/commit/29ad97e8dd04daf1e63c72b9ba0c1bd73632ef7c))
+
 ## [0.18.11](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.18.10...@lightningjs/solid-ui@0.18.11) (2024-05-28)
 
 ### Bug Fixes
