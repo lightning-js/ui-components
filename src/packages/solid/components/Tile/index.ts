@@ -15,5 +15,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export { default as default, type TileProps } from './Tile.jsx';
-export { default as tileStyles, type TileStyles } from './Tile.styles.js';
+export { default as default } from './Tile.jsx';
+export { default as tileStyles } from './Tile.styles.js';
+export type { TileProps, TileStyles } from './Tile.types.js';
