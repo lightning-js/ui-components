@@ -113,6 +113,7 @@ export const MetadataInset: Story = {
         linearGradient: {
           angle: 3.14,
           stops: [0, 0.5],
+          // @ts-expect-error colors can be strings but type expects numbers
           colors: [theme.color.black, 0x00000000]
         }
       }
@@ -230,6 +231,7 @@ export const TileLogoCheckBoxTop: Story = {
         linearGradient: {
           angle: 3.14,
           stops: [0, 0.5],
+          // @ts-expect-error colors can be strings but type expects numbers
           colors: [theme.color.black, 0x00000000]
         }
       }
@@ -270,6 +272,7 @@ export const TileProgressBarTop: Story = {
         linearGradient: {
           angle: 3.14,
           stops: [0, 0.5],
+          // @ts-expect-error colors can be strings but type expects numbers
           colors: [theme.color.black, 0x00000000]
         }
       }
