@@ -15,28 +15,29 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { For, type Component } from 'solid-js';
-import { type KeyboardProps } from './Keyboard.jsx';
+import { For, createMemo, type Component } from 'solid-js';
 import Column from '../Column/Column.jsx';
 import Row from '../Row/Row.jsx';
 import Key from '../Key/Key.jsx';
 import type { KeyProps } from '../Key/Key.types.js';
 import styles from './Keyboard.styles.js';
+import type { KeyboardProps } from './Keyboard.types.js';
+
+const getTone = (props: KeyProps) => props.tone ?? styles.tone;
 
 // rows created from each array passed in
 const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
   // eslint-disable-next-line solid/reactivity
   const [_, setKeySignal] = props.keySignal;
+
+  const tone = createMemo(() => getTone(props));
+
   return (
     <Column
       autofocus={props.autofocus}
       scroll={'none'}
       plinko
-      itemSpacing={
-        props.keySpacing ??
-        styles.Container.tones[props.tone ?? styles.tone]?.keySpacing ??
-        styles.Container.base.keySpacing
-      }
+      gap={props.keySpacing ?? styles.Container.tones[tone()]?.keySpacing ?? styles.Container.base.keySpacing}
       justifyContent={props.centerKeyboard ? 'center' : 'flexStart'}
       width={props.width}
     >
@@ -45,16 +46,12 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
           <Row
             width={props.width}
             justifyContent={props.centerKeys ? 'center' : 'flexStart'}
-            itemSpacing={
+            gap={
               props.keySpacing ??
-              styles.Container.tones[props.tone ?? styles.tone]?.keySpacing ??
+              styles.Container.tones[tone()]?.keySpacing ??
               styles.Container.base.keySpacing
             }
-            height={
-              props.height ??
-              styles.Container.tones[props.tone ?? styles.tone]?.height ??
-              styles.Container.base.height
-            }
+            height={props.height ?? styles.Container.tones[tone()]?.height ?? styles.Container.base.height}
             wrap={props.rowWrap}
           >
             <For each={row}>

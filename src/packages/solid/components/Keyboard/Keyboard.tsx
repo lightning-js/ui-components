@@ -15,45 +15,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { type Component, type Signal } from 'solid-js';
-import type { UIComponentProps } from '../../types/interfaces.js';
-import styles, { type KeyboardStyleProperties } from './Keyboard.styles.js';
+import { type Component } from 'solid-js';
+import styles from './Keyboard.styles.js';
 import KeyboardSimple from './KeyboardSimple.jsx';
-import type { KeyProps } from '../Key/Key.types.js';
-
-export type KeyboardFormat = Array<Array<string | KeyProps>>;
-
-export interface KeyboardProps extends UIComponentProps {
-  /**
-   * object containing arrays that represent different formats that the keyboard can be presented in. These arrays can contain strings or objects.
-   */
-  formats: KeyboardFormat;
-
-  /**
-   * center the keyboard within it's set width (must set the w property of Keyboard)
-   */
-  centerKeyboard?: boolean;
-
-  /**
-   * center the keys within it's set width (must set the w property of Keyboard)
-   */
-  centerKeys?: boolean;
-
-  /**
-   * Default format of the keyboard to be shown. Should be a key of `formats`.
-   */
-  defaultFormat?: string;
-
-  /**
-   * returns the value of the activated key
-   */
-  keySignal: Signal<string>;
-
-  /**
-   * gap between keys
-   */
-  keySpacing: KeyboardStyleProperties['keySpacing'];
-}
+import type { KeyboardProps } from './Keyboard.types.js';
 
 // rows created from each array passed in
 const Keyboard: Component<KeyboardProps> = (props: KeyboardProps) => {
