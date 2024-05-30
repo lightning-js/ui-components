@@ -63,12 +63,6 @@ export {
   type LabelStyles
 } from './components/Label/index.js';
 export {
-  default as ListItem,
-  listItemStyles,
-  type ListItemProps,
-  type ListItemStyles
-} from './components/ListItem/index.js';
-export {
   default as Metadata,
   metadataStyles,
   type MetadataProps,
