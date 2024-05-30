@@ -53,10 +53,7 @@ const meta: Meta<BadgeProps> = {
   render: args => ({
     name: 'Badge',
     fn: Badge,
-    template: `<Badge ${Object.entries(args)
-      .filter(([_k, v]) => v !== undefined)
-      .map(([k, v]) => `${k}="${v}"`)
-      .join(' ')} />`
+    args
   })
 };
 

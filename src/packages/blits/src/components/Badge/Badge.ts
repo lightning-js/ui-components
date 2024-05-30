@@ -1,7 +1,7 @@
 import Blits from '@lightningjs/blits';
 import styles from './Badge.styles';
 import { Tone } from '../../types/types';
-import { isType, isValidTone } from '../../utils';
+import { isType, isValidTone, getTextWidth, getStyledProp, UnrequiredString } from '../../utils';
 import Icon from '../Icon/Icon';
 
 const IconAlignments = ['none', 'left', 'right'] as const;
@@ -22,7 +22,6 @@ type BadgeState = {
   padding: Padding;
   font: string;
   fontSize: number;
-  fontWeight: number;
   lineHeight: number;
   gap: number;
 };
@@ -34,23 +33,19 @@ const Badge = Blits.Component('Badge', {
   props: [
     {
       key: 'title',
-      required: false,
-      cast: (v?: string): string | undefined => v
+      cast: UnrequiredString
     },
     {
       key: 'iconSrc',
-      required: false,
-      cast: (v?: string): string | undefined => v
+      cast: UnrequiredString
     },
     {
       key: 'iconColor',
-      required: false,
-      cast: (v?: string): string | undefined => v
+      cast: UnrequiredString
     },
     {
       key: 'iconAlign',
       default: 'left',
-      required: false,
       cast: (v: unknown): IconAlign | undefined => {
         if (v === undefined || isType<IconAlign>(v, IconAlignments)) return v;
         throw new Error(`Invalid icon alignment '${v}'`);
@@ -59,7 +54,6 @@ const Badge = Blits.Component('Badge', {
     {
       key: 'tone',
       default: 'neutral',
-      required: false,
       cast: (v: string): Tone => {
         if (isValidTone(v)) return v;
         throw new Error(`Invalid tone '${v}'`);
@@ -80,7 +74,7 @@ const Badge = Blits.Component('Badge', {
         :width="$icon.width"
         :height="$icon.height"
         :show="$icon.show"
-        :iconSrc="$icon.src ?? ''"
+        :iconSrc="$icon.src"
         :iconColor="$icon.color"
       />
       <Text
@@ -99,7 +93,6 @@ const Badge = Blits.Component('Badge', {
       padding: styles.Container.base.padding,
       font: styles.Text.base.fontFamily,
       fontSize: styles.Text.base.fontSize,
-      fontWeight: styles.Text.base.fontWeight,
       lineHeight: styles.Text.base.lineHeight,
       gap: styles.Container.base.gap
     };
@@ -115,14 +108,7 @@ const Badge = Blits.Component('Badge', {
       return this.padding[3] + (this.icon.show && this.iconAlign !== 'right' && this.icon.width + this.gap);
     },
     textWidth(): number {
-      // calculate width of text using dummy canvas element - hopefully blits will get flex soon so we dont need to do this
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      ctx!.font = `${this.fontSize}px ${this.font}`;
-      const text = ctx!.measureText(this.title);
-      canvas.remove();
-
-      return text.width;
+      return this.title ? getTextWidth(this.title, this.font, this.fontSize) : 0;
     },
     containerSize(): { w: number; h: number } {
       return {
@@ -140,21 +126,29 @@ const Badge = Blits.Component('Badge', {
     border(): { radius: number; color: string; width: number } {
       return {
         radius: styles.Container.base.borderRadius,
-        color: styles.Container.tones[this.tone as Tone].border.color,
-        width: styles.Container.tones[this.tone as Tone].border.width
+        color: getStyledProp('border.color', styles.Container, this.tone) ?? '#00000000',
+        width: getStyledProp('border.width', styles.Container, this.tone) ?? 0
       };
     },
     icon(): { show: boolean; color: string; src: string; width: number; height: number } {
       return {
         show: !!this.iconSrc,
-        color: this.iconColor ?? styles.Icon.tones[this.tone as Tone].color,
+        color: this.iconColor ?? getStyledProp('color', styles.Icon, this.tone),
         src: this.iconSrc,
         width: this.lineHeight,
         height: this.lineHeight
       };
     },
     textColor(): string {
-      return styles.Text.tones[this.tone as Tone].color;
+      return getStyledProp('color', styles.Text, this.tone) ?? '#000';
+    }
+  },
+  methods: {
+    width(): number {
+      return this.containerSize.w;
+    },
+    height(): number {
+      return this.containerSize.h;
     }
   }
 });

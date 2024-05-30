@@ -1,4 +1,5 @@
 import { Tone } from '../../types/types';
+import { ComponentStyle } from '../../utils';
 
 type Style = {
   Container: {
@@ -7,20 +8,22 @@ type Style = {
       color: string;
       borderRadius: number;
     };
-    tones: ToneStyle;
+    tones: {
+      [tone in Tone]?: {
+        color: string;
+      };
+    };
   };
   ProgressBar: {
     base: {
       borderRadius: number;
       color: string;
     };
-    tones: ToneStyle;
-  };
-};
-
-type ToneStyle = {
-  [tone in Tone]: {
-    color: string;
+    tones: {
+      [tone in Tone]?: {
+        color: string;
+      };
+    };
   };
 };
 
@@ -32,14 +35,8 @@ const styles: Style = {
       borderRadius: 2
     },
     tones: {
-      brand: {
-        color: '0xf8f7fa1a'
-      },
       inverse: {
         color: '0x1818191a'
-      },
-      neutral: {
-        color: '0xf8f7fa1a'
       }
     }
   },
@@ -54,12 +51,9 @@ const styles: Style = {
       },
       inverse: {
         color: '0x181819ff'
-      },
-      neutral: {
-        color: '0xf8f7faff'
       }
     }
   }
 };
 
-export default styles;
+export default styles satisfies ComponentStyle;

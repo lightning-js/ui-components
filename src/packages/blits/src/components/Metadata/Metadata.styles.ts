@@ -15,44 +15,47 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Tone } from '../../types/types.js';
 import { ComponentStyle } from '../../utils/styleUtils.js';
 
 type Style = {
   Container: {
     base: {
-      padding: [number, number, number, number];
-      gap: number;
-      borderRadius: number;
-    };
-    tones: {
-      [tone in Tone]: {
-        color: string;
-        border: {
-          color: string;
-          width: number;
-        };
+      alpha: number;
+      disabled: {
+        alpha: number;
       };
     };
   };
-  Icon: {
+  TitleText: {
     base: {
-      color: string;
-    };
-    tones: {
-      [tone in Tone]: {
-        color: string;
-      };
-    };
-  };
-  Text: {
-    base: {
+      maxLines: number;
       fontFamily: string;
       fontSize: number;
       lineHeight: number;
+      color: string;
+      disabled: {
+        color: string;
+      };
     };
     tones: {
-      [tone in Tone]: {
+      inverse: {
+        color: string;
+      };
+    };
+  };
+  DescriptionText: {
+    base: {
+      maxLines: number;
+      fontFamily: string;
+      fontSize: number;
+      lineHeight: number;
+      color: string;
+      disabled: {
+        color: string;
+      };
+    };
+    tones: {
+      inverse: {
         color: string;
       };
     };
@@ -62,65 +65,43 @@ type Style = {
 const styles: Style = {
   Container: {
     base: {
-      padding: [6, 12, 8, 12],
-      gap: 4,
-      borderRadius: 4
-    },
-    tones: {
-      brand: {
-        color: '0x93a9fdff',
-        border: {
-          color: '0x181819b3',
-          width: 2
-        }
-      },
-      inverse: {
-        color: '0xf8f7fab3',
-        border: {
-          color: '0x181819b3',
-          width: 2
-        }
-      },
-      neutral: {
-        color: '0x181819b3',
-        border: {
-          color: '0x181819ff',
-          width: 2
-        }
+      alpha: 1,
+      disabled: {
+        alpha: 0.5
       }
     }
   },
-  Icon: {
+  TitleText: {
     base: {
-      color: '0xf8f7faff'
-    },
-    tones: {
-      brand: {
-        color: '0xf8f7faff'
-      },
-      inverse: {
-        color: '0x181819ff'
-      },
-      neutral: {
-        color: '0xf8f7faff'
-      }
-    }
-  },
-  Text: {
-    base: {
+      maxLines: 1,
       fontFamily: 'Arial',
-      fontSize: 20,
-      lineHeight: 24
+      fontSize: 25,
+      lineHeight: 36,
+      color: '0xf8f7faff',
+      disabled: {
+        color: '0xf8f7fa80'
+      }
     },
     tones: {
-      brand: {
-        color: '0xf8f7faff'
-      },
       inverse: {
         color: '0x181819ff'
-      },
-      neutral: {
-        color: '0xf8f7faff'
+      }
+    }
+  },
+  DescriptionText: {
+    base: {
+      maxLines: 2,
+      fontFamily: 'Arial',
+      fontSize: 22,
+      lineHeight: 32,
+      color: '0xf8f7fab3',
+      disabled: {
+        color: '0xf8f7fa80'
+      }
+    },
+    tones: {
+      inverse: {
+        color: '0x181819b3'
       }
     }
   }

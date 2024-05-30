@@ -1,7 +1,7 @@
 import { Align, JustifyContent, States, Tone } from '../../types/types';
+import { ComponentStyle } from '../../utils';
 
 type Style = {
-  tone: Tone;
   Container: {
     base: {
       height: number;
@@ -11,44 +11,65 @@ type Style = {
       alignItems: Align;
       borderRadius: number;
       contentColor: string;
+      disabled: {
+        color: string;
+      };
+      focus: {
+        color: string;
+        contentColor: string;
+      };
     };
-    tones: ToneStyle;
+    tones: {
+      [tone in Tone]?: {
+        [state in States]?: {
+          color: string;
+          contentColor?: string;
+        };
+      };
+    };
   };
   Text: {
     base: {
       textAlign: Align;
-      color: string;
       fontFamily: string;
       fontSize: number;
       fontWeight: number;
       lineHeight: number;
+      color: string;
+      focus: {
+        color: string;
+      };
+      disabled: {
+        color: string;
+      };
     };
-    tones: ToneStyle;
+    tones: {
+      [tone in Tone]?: {
+        [state in States]?: {
+          color: string;
+        };
+      };
+    };
   };
-};
-
-type ToneStyle = {
-  [tone in Tone]: {
-    [state in States]: StateStyle;
-  };
-};
-
-type StateStyle = {
-  color: string;
-  contentColor?: string;
 };
 
 const styles: Style = {
-  tone: 'neutral',
   Container: {
     base: {
       height: 92,
       padding: [50, 30],
-      color: '0xffffff1a',
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 4,
-      contentColor: '0xf8f7faff'
+      color: '0xffffff1a',
+      contentColor: '0xf8f7faff',
+      disabled: {
+        color: '0xf8f7fa80'
+      },
+      focus: {
+        color: '0xffffffff',
+        contentColor: '0x181819ff'
+      }
     },
     tones: {
       brand: {
@@ -56,35 +77,17 @@ const styles: Style = {
           color: '0xbecffe1a'
         },
         focus: {
-          color: '0xf8f7faff',
-          contentColor: '0x181819ff'
-        },
-        disabled: {
-          color: '0xf8f7fa80'
+          color: '0xf8f7faff'
         }
       },
       inverse: {
         unfocused: {
           color: '0x48474b1a'
-        },
-        focus: {
-          color: '0xffffffff',
-          contentColor: '0x181819ff'
-        },
-        disabled: {
-          color: '0xf8f7fa80'
         }
       },
       neutral: {
         unfocused: {
           color: '0xffffff1a'
-        },
-        focus: {
-          color: '0xffffffff',
-          contentColor: '0x181819ff'
-        },
-        disabled: {
-          color: '0xf8f7fa80'
         }
       }
     }
@@ -92,11 +95,17 @@ const styles: Style = {
   Text: {
     base: {
       textAlign: 'left',
-      color: '0xf8f7faff',
       fontFamily: 'Arial',
       fontSize: 25,
       fontWeight: 500,
-      lineHeight: 32
+      lineHeight: 32,
+      color: '0xf8f7faff',
+      focus: {
+        color: '0x181819ff'
+      },
+      disabled: {
+        color: '0xf8f7fa80'
+      }
     },
     tones: {
       brand: {
@@ -105,35 +114,10 @@ const styles: Style = {
         },
         focus: {
           color: '0x93a9fdff'
-        },
-        disabled: {
-          color: '0xf8f7fa80'
-        }
-      },
-      inverse: {
-        unfocused: {
-          color: '0xf8f7faff'
-        },
-        focus: {
-          color: '0x181819ff'
-        },
-        disabled: {
-          color: '0xf8f7fa80'
-        }
-      },
-      neutral: {
-        unfocused: {
-          color: '0xf8f7faff'
-        },
-        focus: {
-          color: '0x181819ff'
-        },
-        disabled: {
-          color: '0xf8f7fa80'
         }
       }
     }
   }
 };
 
-export default styles;
+export default styles satisfies ComponentStyle;

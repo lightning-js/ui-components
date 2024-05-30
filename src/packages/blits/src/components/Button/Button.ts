@@ -1,7 +1,7 @@
 import Blits from '@lightningjs/blits';
 import styles from './Button.styles.ts';
 import type { Tone, States, JustifyContent, Align } from '../../types/types';
-import { isValidTone, isValidState, isValidJustifyContent } from '../../utils/index.ts';
+import { isValidTone, isValidState, isValidJustifyContent, getStyledProp, UnrequiredString } from '../../utils/index.ts';
 
 export type ButtonProps = {
   text: string;
@@ -25,17 +25,11 @@ const Button = Blits.Component('Button', {
   props: [
     {
       key: 'text',
-      default: '',
-      required: false,
-      cast: (v: string): string => {
-        if (typeof v === 'string') return v;
-        throw new Error(`Invalid text input '${v}' - must be of type string`);
-      }
+      cast: UnrequiredString
     },
     {
       key: 'states',
       default: 'focus',
-      required: false,
       /*
        * Wanted to use validate from docs - but not yet implemented?
        * validate(v: string) {
@@ -50,7 +44,6 @@ const Button = Blits.Component('Button', {
     {
       key: 'tone',
       default: 'neutral',
-      required: false,
       cast: (v: string): Tone => {
         if (isValidTone(v)) return v;
         throw new Error(`Invalid tone '${v}'`);
@@ -59,7 +52,6 @@ const Button = Blits.Component('Button', {
     {
       key: 'justifyContent',
       default: 'center',
-      required: false,
       cast: (v: string): JustifyContent => {
         if (isValidJustifyContent(v)) return v;
         throw new Error(`Invalid justifyContent '${v}'`);
@@ -68,13 +60,11 @@ const Button = Blits.Component('Button', {
     {
       key: 'width',
       default: 400,
-      required: false,
       cast: Number
     },
     {
       key: 'height',
       default: 100,
-      required: false,
       cast: Number
     }
   ],
@@ -106,10 +96,10 @@ const Button = Blits.Component('Button', {
   },
   computed: {
     containerColor(): string {
-      return styles.Container.tones[this.tone as Tone][this.states as States].color;
+      return getStyledProp('color', styles.Container, this.tone, this.states) ?? '#00000000';
     },
     textColor(): string {
-      return styles.Text.tones[this.tone as Tone][this.states as States].color;
+      return getStyledProp('color', styles.Text, this.tone, this.states) ?? '#fff';
     }
   }
 });

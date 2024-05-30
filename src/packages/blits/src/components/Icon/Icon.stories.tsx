@@ -53,10 +53,7 @@ const meta: Meta<IconProps> = {
   render: args => ({
     name: 'Icon',
     fn: Icon,
-    template: `<Icon ${Object.entries(args)
-      .filter(([_k, v]) => v !== undefined)
-      .map(([k, v]) => `${k}="${v}"`)
-      .join(' ')} />`
+    args
   })
 };
 

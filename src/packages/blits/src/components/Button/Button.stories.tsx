@@ -59,7 +59,7 @@ const meta: Meta<ButtonProps> = {
   render: args => ({
     name: 'Button',
     fn: Button,
-    template: `<Button :width="${args.width}" :height="${args.height}" text="Button" tone="${args.tone}" states="${args.states}" />`
+    args
   })
 };
 
@@ -69,7 +69,8 @@ export const Basic: Story = {
     width: 400,
     height: 100,
     tone: 'neutral',
-    states: 'focus'
+    states: 'focus',
+    text: 'Button'
   }
 };
 
