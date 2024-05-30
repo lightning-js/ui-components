@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.15](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.18.14...@lightningjs/solid-ui@0.18.15) (2024-05-30)
+
+### Bug Fixes
+
+- **Solid:** remove listItem ([#164](https://github.com/lightning-js/ui-components/issues/164)) ([1b433c1](https://github.com/lightning-js/ui-components/commit/1b433c10f3aeabcb7204670731b19d5668c389cd))
+
 ## [0.18.14](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.18.13...@lightningjs/solid-ui@0.18.14) (2024-05-28)
 
 ### Bug Fixes
