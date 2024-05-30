@@ -14,47 +14,9 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import type { TextStyles, NodeStyles } from '@lightningtv/solid';
 import theme from 'theme';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-
-export type KeySizes = {
-  sm: number;
-  md: number;
-  lg: number;
-  xl: number;
-  xxl: number;
-};
-
-export type KeySize = keyof KeySizes;
-
-export interface KeyStyles {
-  tone: Tone;
-  Container: NodeStyleSet<{
-    padding: number[];
-    sizes: KeySizes;
-    baseWidth: number;
-    keySpacing: number;
-    contentColor: NodeStyles['color'];
-  }>;
-  Text: TextStyleSet;
-}
-
-export type KeyStyleProperties = {
-  backgroundColor?: NodeStyles['color'];
-  borderRadius?: NodeStyles['borderRadius'];
-  keySpacing?: number;
-  contentColor?: NodeStyles['color'];
-  justifyContent?: NodeStyles['justifyContent'];
-  textAlign?: TextStyles['textAlign'];
-  textColor?: TextStyles['color'];
-  baseWidth?: NodeStyles['width'];
-  sizes?: KeySizes;
-};
-
-export type KeyConfig = ComponentStyleConfig<KeyStyleProperties>;
+import type { KeyStyles, KeyConfig } from './Key.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Key: { defaultTone, ...themeStyles } = { themeStyles: {} } } = theme?.componentConfig;
@@ -65,7 +27,7 @@ const container: KeyConfig = {
     textAlign: 'textAlign',
     borderRadius: 'borderRadius',
     color: 'backgroundColor',
-    justifyContent: 'justifyContent',
+    justifyContent: 'justify',
     baseWidth: 'baseWidth',
     sizes: 'sizes',
     contentColor: 'contentColor'
