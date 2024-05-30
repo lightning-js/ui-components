@@ -113,7 +113,12 @@ export interface TileStyleProperties {
 
 export interface TileStyles {
   tone: Tone;
-  Container: NodeStyleSet<{ padding: number[]; paddingYProgress: number }>;
+  Container: NodeStyleSet<{
+    padding: number[];
+    paddingYProgress: number;
+    paddingYBetweenContent: number;
+    contentSpacingY: number;
+  }>;
   InsetBottom: NodeStyleSet;
   StandardBottom: NodeStyleSet;
   LogoContainer: NodeStyleSet;
