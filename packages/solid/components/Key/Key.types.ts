@@ -71,7 +71,7 @@ export interface KeyStyleProperties {
   /**
    * space between each keys
    */
-  keySpacing?: number;
+  keySpacing?: NodeStyles['gap'];
 
   /**
    * color of the content of the key
