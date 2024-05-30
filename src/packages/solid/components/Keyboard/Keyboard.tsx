@@ -19,7 +19,7 @@ import { type Component, type Signal } from 'solid-js';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import styles, { type KeyboardStyleProperties } from './Keyboard.styles.js';
 import KeyboardSimple from './KeyboardSimple.jsx';
-import type { KeyProps } from '../Key/Key.jsx';
+import type { KeyProps } from '../Key/Key.types.js';
 
 export type KeyboardFormat = Array<Array<string | KeyProps>>;
 

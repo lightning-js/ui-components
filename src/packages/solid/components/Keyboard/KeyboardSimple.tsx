@@ -19,7 +19,8 @@ import { For, type Component } from 'solid-js';
 import { type KeyboardProps } from './Keyboard.jsx';
 import Column from '../Column/Column.jsx';
 import Row from '../Row/Row.jsx';
-import Key, { type KeyProps } from '../Key/Key.jsx';
+import Key from '../Key/Key.jsx';
+import type { KeyProps } from '../Key/Key.types.js';
 import styles from './Keyboard.styles.js';
 
 // rows created from each array passed in

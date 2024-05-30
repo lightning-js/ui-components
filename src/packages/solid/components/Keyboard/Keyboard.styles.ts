@@ -20,7 +20,7 @@ import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
 import type { NodeStyles } from '@lightningtv/solid';
-import type { KeySizes, KeyStyles, KeyConfig } from '../Key/Key.styles.js';
+import type { KeySizes, KeyStyles, KeyConfig } from '../Key/Key.types.js';
 
 export interface KeyboardStyles {
   tone: Tone;
@@ -67,7 +67,7 @@ const key: KeyConfig = {
     textAlign: 'textAlign',
     borderRadius: 'borderRadius',
     color: 'backgroundColor',
-    justifyContent: 'justifyContent',
+    justifyContent: 'justify',
     baseWidth: 'baseWidth',
     sizes: 'sizes',
     contentColor: 'contentColor' // what is this used for
