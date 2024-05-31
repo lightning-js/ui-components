@@ -43,7 +43,7 @@ export interface KeyProps extends UIComponentProps, KeyStyleProperties {
   /**
    * If true, pressing the key will trigger the $toggleKeyboard event. If false, the key will trigger the $onSoftKey event.
    */
-  toggle?: boolean;
+  toggle?: string;
 }
 export type KeySize = keyof KeySizes;
 

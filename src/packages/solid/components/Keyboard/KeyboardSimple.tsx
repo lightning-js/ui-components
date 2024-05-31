@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { For, createMemo, type Component } from 'solid-js';
+import { For, Show, createMemo, createSignal, type Component } from 'solid-js';
 import Column from '../Column/Column.jsx';
 import Row from '../Row/Row.jsx';
 import Key from '../Key/Key.jsx';
@@ -28,7 +28,18 @@ const getTone = (props: KeyProps) => props.tone ?? styles.tone;
 // rows created from each array passed in
 const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
   // eslint-disable-next-line solid/reactivity
-  const [_, setKeySignal] = props.keySignal;
+  const [_, setKeySignal] = props.keySignal ?? createSignal('');
+  const [activeKeyboard, setActiveKeyboard] = createSignal('default');
+
+  const setOnEnter = (key: string | KeyProps) => {
+    if (typeof key === 'string') {
+      return () => setKeySignal(key);
+    } else if (key.toggle) {
+      return () => setActiveKeyboard(key.toggle);
+    } else {
+      return () => setKeySignal(typeof key === 'string' ? key : key.title ?? '');
+    }
+  };
 
   const tone = createMemo(() => getTone(props));
 
@@ -37,34 +48,47 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
       autofocus={props.autofocus}
       scroll={'none'}
       plinko
-      gap={props.keySpacing ?? styles.Container.tones[tone()]?.keySpacing ?? styles.Container.base.keySpacing}
+      gap={
+        props.gap ??
+        props.keySpacing ??
+        styles.Container.tones[tone()]?.keySpacing ??
+        styles.Container.base.keySpacing
+      }
       justifyContent={props.centerKeyboard ? 'center' : 'flexStart'}
       width={props.width}
     >
-      <For each={props.formats}>
-        {(row: (string | KeyProps)[]) => (
-          <Row
-            width={props.width}
-            justifyContent={props.centerKeys ? 'center' : 'flexStart'}
-            gap={
-              props.keySpacing ??
-              styles.Container.tones[tone()]?.keySpacing ??
-              styles.Container.base.keySpacing
-            }
-            height={props.height ?? styles.Container.tones[tone()]?.height ?? styles.Container.base.height}
-            wrap={props.rowWrap}
-          >
-            <For each={row}>
-              {(key: string | KeyProps) => (
-                <Key
-                  {...(typeof key === 'string' ? {} : key)}
-                  // if not a toggle key
-                  onEnter={() => setKeySignal(typeof key === 'string' ? key : key.title ?? '')}
-                  title={typeof key === 'string' ? key : key.title ?? ''}
-                />
+      <For each={Object.keys(props.formats)}>
+        {keyboard => (
+          <Show when={activeKeyboard() === keyboard}>
+            <For each={props.formats[keyboard]}>
+              {(row: (string | KeyProps)[]) => (
+                <Row
+                  width={props.width}
+                  justifyContent={props.centerKeys ? 'center' : 'flexStart'}
+                  gap={
+                    props.gap ??
+                    props.keySpacing ??
+                    styles.Container.tones[tone()]?.keySpacing ??
+                    styles.Container.base.keySpacing
+                  }
+                  height={
+                    props.height ?? styles.Container.tones[tone()]?.height ?? styles.Container.base.height
+                  }
+                  wrap={props.rowWrap}
+                >
+                  <For each={row}>
+                    {(key: string | KeyProps) => (
+                      <Key
+                        {...(typeof key === 'string' ? {} : key)}
+                        onEnter={setOnEnter(key)}
+                        title={typeof key === 'string' ? key : key.title ?? ''}
+                      />
+                    )}
+                  </For>
+                </Row>
               )}
             </For>
-          </Row>
+          </Show>
         )}
       </For>
     </Column>

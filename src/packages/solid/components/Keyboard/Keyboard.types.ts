@@ -52,7 +52,7 @@ export interface KeyboardProps extends UIComponentProps, KeyboardStyleProperties
   keySpacing?: NodeStyles['gap'];
 }
 
-export type KeyboardFormat = Array<Array<string | KeyProps>>;
+export type KeyboardFormat = Record<string, Array<Array<string | Partial<KeyProps>>>>;
 
 export interface KeyboardStyleProperties {
   /**
