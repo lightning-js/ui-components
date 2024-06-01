@@ -16,8 +16,8 @@
  */
 
 import { type Component } from 'solid-js';
-import { View } from '@lightningjs/solid';
-import type { KeyHandler } from '@lightningjs/solid-primitives';
+import { View } from '@lightningtv/solid';
+import type { KeyHandler } from '@lightningtv/solid/primitives';
 import { handleNavigation, onGridFocus } from '../../utils/handleNavigation.js';
 import { withScrolling, type ScrollableElement } from '../../utils/withScrolling.js';
 import { chainFunctions } from '../../utils/chainFunctions.js';

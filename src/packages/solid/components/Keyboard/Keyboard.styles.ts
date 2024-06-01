@@ -19,7 +19,7 @@ import theme from 'theme';
 import type { Tone } from '../../types/types.js';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-import type { NodeStyles } from '@lightningjs/solid';
+import type { NodeStyles } from '@lightningtv/solid';
 import type { KeySizes, KeyStyles, KeyConfig } from '../Key/Key.styles.js';
 
 export interface KeyboardStyles {

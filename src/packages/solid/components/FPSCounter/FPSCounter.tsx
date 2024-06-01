@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { View, Text, hexColor } from '@lightningjs/solid';
+import { View, Text, hexColor } from '@lightningtv/solid';
 import { createSignal } from 'solid-js';
 
 const fpsStyle = {

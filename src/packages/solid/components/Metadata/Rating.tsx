@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { type Component, createMemo } from 'solid-js';
-import { Text, Show, View, type TextProps } from '@lightningjs/solid';
+import { Text, Show, View, type TextProps } from '@lightningtv/solid';
 import styles from './Rating.styles.js';
 import Icon from '../Icon/Icon.jsx';
 import type { RatingProps } from './Rating.types.js';

@@ -1,5 +1,5 @@
 import { type Component } from 'solid-js';
-import { Text } from '@lightningjs/solid';
+import { Text } from '@lightningtv/solid';
 import { withPadding } from '../../utils/index.js';
 import styles from './Label.styles.js';
 import type { LabelProps } from './Label.types.js';

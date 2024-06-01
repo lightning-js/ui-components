@@ -19,7 +19,7 @@ import Column from './Column.jsx';
 import type { ColumnProps } from './Column.types.js';
 import Button from '../Button/Button.jsx';
 import type { JSX } from 'solid-js/jsx-runtime';
-import { View } from '@lightningjs/solid';
+import { View } from '@lightningtv/solid';
 
 const meta = {
   title: 'Components/Column',

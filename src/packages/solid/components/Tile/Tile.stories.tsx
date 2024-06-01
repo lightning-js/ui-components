@@ -19,7 +19,7 @@ import type { Meta, StoryObj } from 'storybook-solidjs';
 import Tile from './Tile.jsx';
 import theme from 'theme';
 import Badge from '../Badge/Badge.jsx';
-import { View } from '@lightningjs/solid';
+import { View } from '@lightningtv/solid';
 import Label from '../Label/Label.jsx';
 import Metadata from '../Metadata/Metadata.jsx';
 import type { MetadataProps } from '../Metadata/Metadata.types.jsx';

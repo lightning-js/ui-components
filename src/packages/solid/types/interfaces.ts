@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { type IntrinsicNodeProps } from '@lightningjs/solid';
+import { type IntrinsicNodeProps } from '@lightningtv/solid';
 import type { Tone } from './types.js';
 
 // TODO extends NodeProps, we may want to narrow this

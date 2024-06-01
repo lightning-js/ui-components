@@ -24,8 +24,8 @@ export default defineConfig({
   optimizeDeps: {
     include: [],
     exclude: [
-      '@lightningjs/solid',
-      '@lightningjs/solid-primitives',
+      '@lightningtv/solid',
+      '@lightningtv/solid/primitives',
       '@lightningjs/renderer/core',
       '@lightningjs/renderer/workers/renderer'
     ]
@@ -34,7 +34,7 @@ export default defineConfig({
     importChunkUrl(),
     solidPlugin({
       solid: {
-        moduleName: '@lightningjs/solid',
+        moduleName: '@lightningtv/solid',
         generate: 'universal'
       }
     })
@@ -45,7 +45,7 @@ export default defineConfig({
       utils: path.resolve(__dirname, '../shared/utils/index.ts'),
       '@lightningjs/solid-ui': path.resolve(__dirname, '../packages/solid/index.ts')
     },
-    dedupe: ['solid-js', '@lightningjs/solid', '@lightningjs/renderer']
+    dedupe: ['solid-js', '@lightningtv/solid', '@lightningjs/renderer']
   },
   server: {
     hmr: false,

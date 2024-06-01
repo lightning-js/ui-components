@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { type Component } from 'solid-js';
-import { View, Text, Show } from '@lightningjs/solid';
+import { View, Text, Show } from '@lightningtv/solid';
 import Details from './Details.jsx';
 import styles from './Metadata.styles.js';
 import type { MetadataProps } from './Metadata.types.js';

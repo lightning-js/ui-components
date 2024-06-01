@@ -16,7 +16,7 @@
  */
 
 import { type Component } from 'solid-js';
-import { View } from '@lightningjs/solid';
+import { View } from '@lightningtv/solid';
 import styles from './Icon.styles.js';
 import type { IconProps } from './Icon.types.js';
 

@@ -16,7 +16,7 @@
  */
 
 import type { Component } from 'solid-js';
-import { View } from '@lightningjs/solid';
+import { View } from '@lightningtv/solid';
 import styles from './Checkbox.styles.js';
 import Icon from '../Icon/Icon.jsx';
 import type { CheckboxProps } from './Checkbox.types.js';

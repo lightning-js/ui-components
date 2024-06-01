@@ -1,8 +1,8 @@
-import type { IntrinsicNodeCommonProps, NodeStyles, SolidNode } from '@lightningjs/solid';
+import type { IntrinsicNodeCommonProps, NodeStyles, SolidNode } from '@lightningtv/solid';
 import type { ComponentStyleConfig, NodeStyleSet, Tone } from 'types/types.js';
 import type { UIComponentProps } from 'types/interfaces.js';
 import type { Component } from 'solid-js';
-import type { KeyHandler } from '@lightningjs/solid-primitives';
+import type { KeyHandler } from '@lightningtv/solid/primitives';
 import type { ScrollableElement } from 'utils/withScrolling.js';
 
 export interface ColumnProps extends UIComponentProps, ColumnStyleProperties {

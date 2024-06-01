@@ -18,7 +18,7 @@
 
 // TODO convert to typescript
 
-import { render as solidRender, View, Canvas, activeElement } from '@lightningjs/solid';
+import { render as solidRender, View, Canvas, activeElement } from '@lightningtv/solid';
 
 const RenderOptions = {
   rootId: document.createElement('div')

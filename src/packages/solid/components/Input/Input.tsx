@@ -16,7 +16,7 @@
  */
 
 import { createSignal, type Component, createEffect, on } from 'solid-js';
-import { View, Text } from '@lightningjs/solid';
+import { View, Text } from '@lightningtv/solid';
 import styles from './Input.styles.js';
 import type { InputProps } from './Input.types.js';
 

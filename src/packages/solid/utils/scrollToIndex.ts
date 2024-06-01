@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { ElementNode } from '@lightningjs/solid';
+import type { ElementNode } from '@lightningtv/solid';
 
 export function scrollToIndex(componentRef: ElementNode, selectedIndex: number) {
   if (

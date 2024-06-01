@@ -16,8 +16,8 @@
  */
 
 import type { Component, Accessor } from 'solid-js';
-import { View, Text, Show, For } from '@lightningjs/solid';
-import type { ElementNode } from '@lightningjs/solid';
+import { View, Text, Show, For } from '@lightningtv/solid';
+import type { ElementNode } from '@lightningtv/solid';
 import styles from './Details.styles.js';
 import type { BadgeProps } from '../Badge/Badge.types.js';
 import Badge from '../Badge/Badge.jsx';

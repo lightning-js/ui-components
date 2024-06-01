@@ -15,11 +15,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 /* @refresh reload */
-import { render } from '@lightningjs/solid';
+import { render } from '@lightningtv/solid';
 // @ts-expect-error we don't have declarations for this module
 import coreExtensionModuleUrl from './AppCoreExtensions.js?importChunkUrl'; // TODO import aliasing
 import { themes } from '@storybook/theming';
-import { useFocusManager } from '@lightningjs/solid-primitives';
+import { useFocusManager } from '@lightningtv/solid/primitives';
 
 const RenderOptions = {
   coreExtensionModule: coreExtensionModuleUrl,

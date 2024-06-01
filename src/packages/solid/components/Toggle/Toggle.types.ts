@@ -14,7 +14,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import type { NodeProps, NodeStyles, BorderStyleObject } from '@lightningjs/solid';
+import type { NodeProps, NodeStyles, BorderStyleObject } from '@lightningtv/solid';
 import type { ComponentStyleConfig, NodeStyleSet, Tone } from 'types/types.js';
 import type { UIComponentProps } from 'types/interfaces.js';
 

@@ -1,6 +1,6 @@
-import '@lightningjs/solid';
+import '@lightningtv/solid';
 
-declare module '@lightningjs/solid' {
+declare module '@lightningtv/solid' {
   /**
    * Augment the existing IntrinsicCommonProps interface to include our state style keys
    */

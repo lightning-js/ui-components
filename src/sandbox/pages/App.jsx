@@ -15,9 +15,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { View } from '@lightningjs/solid';
+import { View } from '@lightningtv/solid';
 import { Button, Column } from '@lightningjs/solid-ui';
-import { useFocusManager } from '@lightningjs/solid-primitives';
+import { useFocusManager } from '@lightningtv/solid/primitives';
 
 const App = () => {
   useFocusManager({
