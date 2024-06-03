@@ -55,7 +55,7 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
   return (
     <View {...props} forwardFocus={0} style={props.style}>
       <For each={Object.keys(props.formats)}>
-        {(keyboard, colIdx) => (
+        {keyboard => (
           <Show when={activeKeyboard() === keyboard}>
             <Column
               ref={element => {
@@ -78,7 +78,7 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
               width={props.width}
             >
               <For each={props.formats[keyboard]}>
-                {(row: (string | KeyProps)[]) => (
+                {(row: (string | KeyProps)[], colIdx) => (
                   <Row
                     scroll={'none'}
                     selected={selectedRowIndex()}
