@@ -28,12 +28,12 @@ const { Key: { ...keyThemeStyles } = {} } = theme?.componentConfig; // TODO defa
 const container: KeyboardConfig = {
   themeKeys: {
     gap: 'keySpacing',
-    screenW: 'screenW',
+    width: 'screenW',
     marginX: 'marginX'
   },
   base: {
     gap: theme.spacer.md,
-    screenW: theme.layout.screenW,
+    width: theme.layout.screenW,
     marginX: theme.layout.marginX,
     height: 100
   },

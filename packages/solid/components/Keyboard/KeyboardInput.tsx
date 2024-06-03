@@ -43,15 +43,15 @@ const KeyboardInput: Component<KeyboardInputProps> = (props: KeyboardInputProps)
 
   return (
     <Column autofocus={props.autofocus} selected={1} scroll={'none'}>
-      <Input position={props.position} keyEvent={keyEvent} titleSignal={props.titleSignal} />
+      <Input {...props} position={props.position} keyEvent={keyEvent} titleSignal={props.titleSignal} />
       <Keyboard
+        {...props}
         centerKeyboard={props.centerKeyboard}
         keySpacing={props.keySpacing}
         defaultFormat={props.defaultFormat}
         keySignal={keyEvent}
         formats={props.formats}
         centerKeys={props.centerKeys}
-        width={1000}
         style={props.style}
       />
     </Column>
