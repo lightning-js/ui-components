@@ -22,7 +22,7 @@ import Key from '../Key/Key.jsx';
 import type { KeyProps } from '../Key/Key.types.js';
 import styles from './Keyboard.styles.js';
 import type { KeyboardProps } from './Keyboard.types.js';
-import { ElementNode } from '@lightningjs/solid';
+import { ElementNode, View } from '@lightningjs/solid';
 
 const getTone = (props: KeyProps) => props.tone ?? styles.tone;
 
@@ -39,8 +39,8 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
       return () => setKeySignal(key);
     } else if (key.toggle) {
       return () => {
-        setSelectedRowIndex(rowIdx);
-        setSelectedColumnIndex(colIdx);
+        setSelectedRowIndex(rowIdx());
+        setSelectedColumnIndex(colIdx());
         setActiveKeyboard(key.toggle);
         keyboardRef[key.toggle]?.setFocus();
       };
@@ -53,63 +53,70 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
   const keyboardRef = new Map<string, ElementNode>();
 
   return (
-    <For each={Object.keys(props.formats)}>
-      {(keyboard, colIdx) => (
-        <Show when={activeKeyboard() === keyboard}>
-          <Column
-            autofocus={props.autofocus}
-            ref={element => {
-              keyboardRef[keyboard] = element;
-              if (activeKeyboard() === keyboard) {
-                element.setFocus();
+    <View {...props} forwardFocus={0} style={props.style}>
+      <For each={Object.keys(props.formats)}>
+        {(keyboard, colIdx) => (
+          <Show when={activeKeyboard() === keyboard}>
+            <Column
+              ref={element => {
+                keyboardRef[keyboard] = element;
+                if (activeKeyboard() === keyboard) {
+                  element.setFocus();
+                }
+                return keyboard;
+              }}
+              scroll={'none'}
+              plinko
+              selected={selectedColumnIndex()}
+              gap={
+                props.gap ??
+                props.keySpacing ??
+                styles.Container.tones[tone()]?.keySpacing ??
+                styles.Container.base.keySpacing
               }
-              return keyboard;
-            }}
-            scroll={'none'}
-            plinko
-            selctedIndex={selectedColumnIndex()}
-            gap={
-              props.gap ??
-              props.keySpacing ??
-              styles.Container.tones[tone()]?.keySpacing ??
-              styles.Container.base.keySpacing
-            }
-            justifyContent={props.centerKeyboard ? 'center' : 'flexStart'}
-            width={props.width}
-          >
-            <For each={props.formats[keyboard]}>
-              {(row: (string | KeyProps)[]) => (
-                <Row
-                  selectedIndex={selectedRowIndex()}
-                  width={props.width}
-                  justifyContent={props.centerKeys ? 'center' : 'flexStart'}
-                  gap={
-                    props.gap ??
-                    props.keySpacing ??
-                    styles.Container.tones[tone()]?.keySpacing ??
-                    styles.Container.base.keySpacing
-                  }
-                  height={
-                    props.height ?? styles.Container.tones[tone()]?.height ?? styles.Container.base.height
-                  }
-                  wrap={props.rowWrap}
-                >
-                  <For each={row}>
-                    {(key: string | KeyProps, rowIdx) => (
-                      <Key
-                        {...(typeof key === 'string' ? {} : key)}
-                        onEnter={setOnEnter(key, rowIdx, colIdx)}
-                        title={typeof key === 'string' ? key : key.title ?? ''}
-                      />
-                    )}
-                  </For>
-                </Row>
-              )}
-            </For>
-          </Column>
-        </Show>
-      )}
-    </For>
+              justifyContent={props.centerKeyboard ? 'center' : 'flexStart'}
+              width={props.width}
+            >
+              <For each={props.formats[keyboard]}>
+                {(row: (string | KeyProps)[]) => (
+                  <Row
+                    scroll={'none'}
+                    selected={selectedRowIndex()}
+                    width={
+                      props.width ??
+                      props.screenW ??
+                      styles.Container.tones[tone()]?.width ??
+                      styles.Container.base.width
+                    }
+                    justifyContent={props.centerKeys ? 'center' : 'flexStart'}
+                    gap={
+                      props.gap ??
+                      props.keySpacing ??
+                      styles.Container.tones[tone()]?.keySpacing ??
+                      styles.Container.base.keySpacing
+                    }
+                    height={
+                      props.height ?? styles.Container.tones[tone()]?.height ?? styles.Container.base.height
+                    }
+                    wrap={props.rowWrap}
+                  >
+                    <For each={row}>
+                      {(key: string | KeyProps, rowIdx) => (
+                        <Key
+                          {...(typeof key === 'string' ? {} : key)}
+                          onEnter={setOnEnter(key, rowIdx, colIdx)}
+                          title={typeof key === 'string' ? key : key.title ?? ''}
+                        />
+                      )}
+                    </For>
+                  </Row>
+                )}
+              </For>
+            </Column>
+          </Show>
+        )}
+      </For>
+    </View>
   );
 };
 
