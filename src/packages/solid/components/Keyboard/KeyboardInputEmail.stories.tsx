@@ -16,15 +16,15 @@
  */
 
 import type { Meta, StoryObj } from 'storybook-solidjs';
-import Keyboard from './Keyboard.jsx';
-import KeyboardSimple from './KeyboardSimple.jsx';
+import KeyboardInput from './KeyboardInput.jsx';
+import { createSignal } from 'solid-js';
 
-type Story = StoryObj<typeof Keyboard>;
+type Story = StoryObj<typeof KeyboardInput>;
 
-const meta: Meta<typeof Keyboard> = {
-  title: 'Components/Keyboard',
+const meta: Meta<typeof KeyboardInput> = {
+  title: 'Components/KeyboardInput',
   tags: ['autodocs'],
-  component: Keyboard,
+  component: KeyboardInput,
   argTypes: {
     states: {
       control: { type: 'radio' },
@@ -37,111 +37,17 @@ const meta: Meta<typeof Keyboard> = {
   }
 };
 
-export const Basic: Story = {
+export const Email: Story = {
   render: args => {
-    return <Keyboard {...args} />;
-  },
-  args: {
-    states: 'focus',
-    centerKeyboard: true,
-    centerKeys: true,
-    autofocus: true,
-    formats: {
-      default: [
-        [
-          '1',
-          '2',
-          '3',
-          '4',
-          '5',
-          '6',
-          '7',
-          '8',
-          '9',
-          '0',
-          {
-            title: 'Delete',
-            size: 'md'
-          }
-        ],
-        ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-        ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-        ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
-        [
-          {
-            title: 'Clear',
-            size: 'lg'
-          },
-          {
-            title: 'Space',
-            size: 'xl'
-          },
-          {
-            title: 'Done',
-            size: 'lg'
-          }
-        ]
-      ]
-    }
-  }
-};
+    // eslint-disable-next-line solid/reactivity
+    const titleSignal = createSignal('');
 
-export const KeyboardSimple1: Story = {
-  render: args => {
-    return <KeyboardSimple {...args} />;
+    return <KeyboardInput {...args} titleSignal={titleSignal} />;
   },
   args: {
     states: 'focus',
-    centerKeyboard: true,
+    autofocus: true,
     centerKeys: true,
-    autofocus: true,
-    formats: {
-      default: [
-        [
-          '1',
-          '2',
-          '3',
-          '4',
-          '5',
-          '6',
-          '7',
-          '8',
-          '9',
-          '0',
-          {
-            title: 'Delete',
-            size: 'md'
-          }
-        ],
-        ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-        ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-        ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
-        [
-          {
-            title: 'Clear',
-            size: 'lg'
-          },
-          {
-            title: 'Space',
-            size: 'xl'
-          },
-          {
-            title: 'Done',
-            size: 'lg'
-          }
-        ]
-      ]
-    }
-  }
-};
-
-export const KeyboardEmail: Story = {
-  render: args => {
-    return <KeyboardSimple {...args} />;
-  },
-  args: {
-    states: 'focus',
-    autofocus: true,
     formats: {
       uppercase: [
         [
