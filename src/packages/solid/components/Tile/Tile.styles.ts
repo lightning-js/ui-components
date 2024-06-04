@@ -15,27 +15,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { NodeStyles } from '@lightningtv/solid';
 import theme from 'theme';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
+import type { TileStyles, TileConfig } from './Tile.types.js';
 
-export interface TileStyles {
-  tone: Tone;
-  Container: NodeStyleSet<{ padding: number[]; paddingYProgress: number }>;
-  InsetBottom: NodeStyleSet;
-  StandardBottom: NodeStyleSet;
-  LogoContainer: NodeStyleSet;
-}
-
-export type TileStyleProperties = Partial<{
-  alpha: NodeStyles['alpha'];
-  radius: NodeStyles['borderRadius'];
-  paddingYProgress: number;
-}>;
-
-export type TileConfig = ComponentStyleConfig<TileStyleProperties>;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Tile: { defaultTone, ...tileThemeStyles } = { tileThemeStyles: {} } } = theme?.componentConfig;
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
@@ -46,6 +29,8 @@ const container: TileConfig = {
   themeKeys: {
     alpha: 'alpha',
     paddingYProgress: 'paddingYProgress',
+    paddingYBetweenContent: 'paddingYBetweenContent',
+    contentSpacingY: 'contentSpacingY',
     borderRadius: 'radius'
   },
   base: {
@@ -54,6 +39,7 @@ const container: TileConfig = {
     padding: [40, 10], // TODO support separate paddingX and paddingY values from theme, possibly formatter
     paddingYProgress: theme.spacer.xl,
     paddingYBetweenContent: theme.spacer.md,
+    contentSpacingY: theme.spacer.md,
     borderRadius: theme.radius.md,
     alpha: theme.alpha.primary
   },
