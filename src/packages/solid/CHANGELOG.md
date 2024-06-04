@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.16](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.18.15...@lightningjs/solid-ui@0.18.16) (2024-06-04)
+
+### Bug Fixes
+
+- **Solid:** updates Tile styles ([#163](https://github.com/lightning-js/ui-components/issues/163)) ([b707093](https://github.com/lightning-js/ui-components/commit/b7070938e0e197c7d4f0f9bb8d215bc70b7fe360))
+
 ## [0.18.15](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.18.14...@lightningjs/solid-ui@0.18.15) (2024-05-30)
 
 ### Bug Fixes
