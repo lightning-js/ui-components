@@ -53,7 +53,13 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
   const keyboardRef = new Map<string, ElementNode>();
 
   return (
-    <View {...props} forwardFocus={0} style={props.style}>
+    <View
+      {...props}
+      forwardFocus={0}
+      // @ts-expect-error TODO type needs to be fixed in framework
+      style={[props.style, styles.Container.tones[tone()], styles.Container.base]}
+      justifyContent={props.centerKeyboard ? 'center' : 'flexStart'}
+    >
       <For each={Object.keys(props.formats)}>
         {keyboard => (
           <Show when={activeKeyboard() === keyboard}>
@@ -74,20 +80,16 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
                 styles.Container.tones[tone()]?.keySpacing ??
                 styles.Container.base.keySpacing
               }
-              justifyContent={props.centerKeyboard ? 'center' : 'flexStart'}
-              width={props.width}
+              // justifyContent={props.centerKeyboard ? 'center' : 'flexStart'}
+              width={props.width ?? props.screenW}
+              height={props.height}
             >
               <For each={props.formats[keyboard]}>
                 {(row: (string | KeyProps)[], colIdx) => (
                   <Row
                     scroll={'none'}
                     selected={selectedRowIndex()}
-                    width={
-                      props.width ??
-                      props.screenW ??
-                      styles.Container.tones[tone()]?.width ??
-                      styles.Container.base.width
-                    }
+                    width={props.width ?? props.screenW}
                     justifyContent={props.centerKeys ? 'center' : 'flexStart'}
                     gap={
                       props.gap ??
