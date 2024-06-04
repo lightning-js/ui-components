@@ -15,213 +15,99 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { type Component, createSignal } from 'solid-js';
-import { Show, type NodeProps, View } from '@lightningjs/solid';
+import { type Component, createSignal, createMemo } from 'solid-js';
+import { Show, View } from '@lightningjs/solid';
 import { withPadding } from '../../utils/index.js';
-import type { UIComponentProps } from '../../types/interfaces.js';
 import Artwork from '../Artwork/Artwork.jsx';
-import type { ArtworkProps } from '../Artwork/Artwork.types.js';
 import ProgressBar from '../ProgressBar/ProgressBar.jsx';
-import type { ProgressBarProps } from 'components/ProgressBar/ProgressBar.types.js';
-import styles, { type TileStyleProperties } from './Tile.styles.js';
+import type { TileProps } from './Tile.types.js';
+import styles from './Tile.styles.js';
 withPadding;
 
-export interface TileProps extends UIComponentProps {
-  /**
-   * prop object passed to the child Artwork component
-   */
-  artwork?: ArtworkProps;
-
-  /**
-   * Controls how slotted components will be rendered. By default all slotted
-   * components will be hidden until the focus state is applied, where they will
-   * then be shown. If `persistentMetadata` is set to `true`, all slotted components
-   * will be rendered regardless of focus.
-   *
-   * "slotted components" refers to any component passed to the following properties:
-   * - topLeft
-   * - topRight
-   * - bottom
-   * - inset
-   */
-  persistentMetadata?: boolean;
-
-  /**
-   * component rendered to the upper left corner of the Tile
-   *
-   * component will be shown/hidden on focus unless persistentMetadata is true
-   *
-   * states are not forwarded to this component. if it should react to states
-   * applied to the Tile, they must also be set on this component
-   */
-  topLeft?: NodeProps['children'];
-
-  /**
-   * component rendered to the upper right corner of the Tile
-   *
-   * component will be shown/hidden on focus unless persistentMetadata is true
-   *
-   * states are not forwarded to this component. if it should react to states
-   * applied to the Tile, they must also be set on this component
-   */
-  topRight?: NodeProps['children'];
-
-  /**
-   * component rendered to center of the Tile, flex-aligned to the bottom border
-   *
-   * component will be shown/hidden on focus unless persistentMetadata is true
-   *
-   * states are not forwarded to this component. if it should react to states
-   * applied to the Tile, they must also be set on this component
-   */
-  inset?: NodeProps['children'];
-
-  /**
-   * component rendered below the Tile
-   *
-   * component will be shown/hidden on focus unless persistentMetadata is true
-   *
-   * states are not forwarded to this component. if it should react to states
-   * applied to the Tile, they must also be set on this component
-   */
-  bottom?: NodeProps['children'];
-
-  /**
-   * props passed to the child ProgressBar, rendered at the bottom of the component.
-   * ProgressBar will not appear if progressBar.progress is 0/falsy
-   */
-  progressBar?: Partial<ProgressBarProps> | undefined;
-
-  paddingYProgress?: TileStyleProperties['paddingYProgress'];
-
-  padding?: number[];
-}
+const getTone = (props: TileProps) => props.tone ?? styles.tone;
+const getPadding = (props: TileProps) =>
+  props.padding ??
+  styles.Container.tones[props.tone ?? styles.tone]?.padding ??
+  styles.Container.base.padding;
+const getWidth = (props: TileProps) =>
+  props.width ?? styles.Container.tones[props.tone ?? styles.tone]?.width ?? styles.Container.base.width;
+const getHeight = (props: TileProps) =>
+  props.height ?? styles.Container.tones[props.tone ?? styles.tone]?.height ?? styles.Container.base.height;
+const getPaddingYProgress = (props: TileProps) =>
+  props.paddingYProgress ??
+  styles.Container.tones[props.tone ?? styles.tone]?.paddingYProgress ??
+  styles.Container.base.paddingYProgress;
+const getPaddingYBetweenContent = (props: TileProps) =>
+  props.paddingYBetweenContent ??
+  styles.Container.tones[props.tone ?? styles.tone]?.paddingYBetweenContent ??
+  styles.Container.base.paddingYBetweenContent;
+const getContentSpacingY = (props: TileProps) =>
+  props.contentSpacingY ??
+  styles.Container.tones[props.tone ?? styles.tone]?.contentSpacingY ??
+  styles.Container.base.contentSpacingY;
 
 const Tile: Component<TileProps> = (props: TileProps) => {
   const [isFocused, setIsFocused] = createSignal(false);
+  const tone = createMemo(() => getTone(props));
+  const padding = createMemo(() => getPadding(props));
+  const width = createMemo(() => getWidth(props));
+  const height = createMemo(() => getHeight(props));
+  const paddingYProgress = createMemo(() => getPaddingYProgress(props));
+  const paddingYBetweenContent = createMemo(() => getPaddingYBetweenContent(props));
+  const contentSpacingY = createMemo(() => getContentSpacingY(props));
   return (
     <node
-      use:withPadding={
-        props.padding ??
-        styles.Container.tones[props.tone ?? styles.tone]?.padding ??
-        styles.Container.base.padding
-      }
+      use:withPadding={padding()}
       {...props}
+      borderRadius={props.radius}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
-        styles.Container.tones[props.tone ?? styles.tone],
+        styles.Container.tones[tone()],
         styles.Container.base
       ]}
     >
       <Artwork
         {...props.artwork}
-        width={props.width}
-        height={props.height}
+        width={width()}
+        borderRadius={props.radius}
+        height={height()}
         states={props.states}
         style={props.style}
-        tone={props.tone ?? styles.tone}
+        tone={tone()}
       />
 
       <Show when={props.persistentMetadata || isFocused()}>
-        <View
-          x={
-            props.padding?.[0] ??
-            styles.Container.tones[props.tone ?? styles.tone]?.padding?.[0] ??
-            styles.Container.base.padding[0]
-          }
-          y={
-            props.padding?.[1] ??
-            styles.Container.tones[props.tone ?? styles.tone]?.padding?.[1] ??
-            styles.Container.base.padding[1]
-          }
-        >
+        <View x={padding()[0]} y={padding()[1]}>
           {props.topLeft}
         </View>
 
-        <View
-          x={
-            (props.width ??
-              styles.Container.tones[props.tone ?? styles.tone]?.width ??
-              styles.Container.base.width) -
-            (props.padding?.[0] ??
-              styles.Container.tones[props.tone ?? styles.tone]?.padding?.[0] ??
-              styles.Container.base.padding[0])
-          }
-          y={
-            props.padding?.[1] ??
-            styles.Container.tones[props.tone ?? styles.tone]?.padding?.[1] ??
-            styles.Container.base.padding[1]
-          }
-          mountX={1}
-        >
+        <View x={width() - padding()[0]} y={padding()[1]} mountX={1}>
           {props.topRight}
         </View>
 
         <View
           style={[
-            styles.InsetBottom.tones[props.tone ?? styles.tone], //
+            styles.InsetBottom.tones[tone()], //
             styles.InsetBottom.base
           ]}
-          width={
-            (props.width ??
-              styles.Container.tones[props.tone ?? styles.tone]?.width ??
-              styles.Container.base.width) -
-            styles.Container.base.padding[0] * 2
-          }
-          x={
-            props.padding?.[0] ??
-            styles.Container.tones[props.tone ?? styles.tone]?.padding?.[0] ??
-            styles.Container.base.padding[0]
-          }
-          y={
-            (props.height ??
-              styles.Container.tones[props.tone ?? styles.tone]?.height ??
-              styles.Container.base.height) -
-            (props.padding?.[1] ??
-              styles.Container.tones[props.tone ?? styles.tone]?.padding?.[1] ??
-              styles.Container.base.padding[1]) -
-            (props.progressBar?.progress > 0
-              ? props.paddingYProgress ??
-                styles.Container.tones[props.tone ?? styles.tone]?.paddingYProgress ??
-                styles.Container.base.paddingYProgress
-              : 0)
-          }
+          width={width() - padding()[0] * 2}
+          x={padding()[0]}
+          y={height() - paddingYBetweenContent() - (props.progressBar?.progress > 0 ? paddingYProgress() : 0)}
         >
           {props.inset}
         </View>
 
         <View
           style={[
-            styles.StandardBottom.tones[props.tone ?? styles.tone], //
+            styles.StandardBottom.tones[tone()], //
             styles.StandardBottom.base
           ]}
-          x={
-            props.padding?.[0] ??
-            styles.Container.tones[props.tone ?? styles.tone]?.padding?.[0] ??
-            styles.Container.base.padding[0]
-          }
-          y={
-            Number(
-              props.height ??
-                styles.Container.tones[props.tone ?? styles.tone]?.height ??
-                styles.Container.base.height
-            ) +
-            (props.padding?.[1] ??
-              styles.Container.tones[props.tone ?? styles.tone]?.padding?.[1] ??
-              styles.Container.base.padding[1])
-          }
-          width={
-            (props.width ??
-              styles.Container.tones[props.tone ?? styles.tone]?.width ??
-              styles.Container.base.width) -
-            (props.padding?.[1] ??
-              styles.Container.tones[props.tone ?? styles.tone]?.padding?.[1] ??
-              styles.Container.base.padding[1]) *
-              2
-          }
+          x={padding()[0]}
+          y={height() + contentSpacingY()}
+          width={width() - padding()[1] * 2}
         >
           {props.bottom}
         </View>
@@ -230,30 +116,9 @@ const Tile: Component<TileProps> = (props: TileProps) => {
         {/* @ts-expect-error doesn't get rendered if progress is falsy */}
         <ProgressBar
           {...props.progressBar}
-          width={
-            (props.width ??
-              styles.Container.tones[props.tone ?? styles.tone]?.width ??
-              styles.Container.base.width) -
-            (props.padding?.[0] ??
-              styles.Container.tones[props.tone ?? styles.tone]?.padding?.[0] ??
-              styles.Container.base.padding[0]) *
-              2
-          }
-          x={
-            props.padding?.[0] ??
-            styles.Container.tones[props.tone ?? styles.tone]?.padding?.[0] ??
-            styles.Container.base.padding[0]
-          }
-          y={
-            (props.height ??
-              props.height ??
-              styles.Container.tones[props.tone ?? styles.tone]?.height ??
-              styles.Container.base.height) -
-            (props.paddingYProgress ??
-              styles.Container.tones[props.tone ?? styles.tone]?.paddingYProgress ??
-              styles.Container.base.paddingYProgress) -
-            (props?.progressBar?.height || 0)
-          }
+          width={width() - padding()[0] * 2}
+          x={padding()[0]}
+          y={height() - paddingYProgress() - Number(props?.progressBar?.height ?? 0)}
         />
       </Show>
     </node>
