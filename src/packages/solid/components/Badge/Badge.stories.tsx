@@ -17,7 +17,7 @@
 
 import Icon from '../Icon/Icon.jsx';
 import Badge, { BadgeContainer } from './Badge.jsx';
-import { Text } from '@lightningjs/solid';
+import { Text } from '@lightningtv/solid';
 import styles from './Badge.styles.js';
 const lightning = '/assets/images/ic_lightning_white_32.png';
 

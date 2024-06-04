@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { TextStyles, NodeStyles } from '@lightningjs/solid';
+import type { TextStyles, NodeStyles } from '@lightningtv/solid';
 
 // license: https://github.com/sindresorhus/ts-extras/blob/main/license
 // modified from https://github.com/sindresorhus/ts-extras/blob/main/source/object-keys.ts

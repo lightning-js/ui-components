@@ -1,6 +1,6 @@
 import Row from './Row.jsx';
 import Button from '../Button/Button.jsx';
-import { View } from '@lightningjs/solid';
+import { View } from '@lightningtv/solid';
 
 const meta = {
   title: 'Components/Row',

@@ -17,7 +17,7 @@
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import Button, { ButtonContainer } from './Button.jsx';
 import buttonStyles from './Button.styles.js';
-import { Text } from '@lightningjs/solid';
+import { Text } from '@lightningtv/solid';
 import Icon from '../Icon/Icon.jsx';
 import Checkbox from '../Checkbox/Checkbox.jsx';
 

@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { ElementNode, SolidNode } from '@lightningjs/solid';
+import type { ElementNode, SolidNode } from '@lightningtv/solid';
 
 // adds properties expected by withScrolling
 export interface ScrollableElement extends ElementNode {

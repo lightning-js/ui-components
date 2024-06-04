@@ -18,7 +18,7 @@
 import ProgressBar from './ProgressBar.js';
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import theme from 'theme';
-import { hexColor } from '@lightningjs/solid';
+import { hexColor } from '@lightningtv/solid';
 
 type Story = StoryObj<typeof ProgressBar>;
 

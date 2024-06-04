@@ -21,19 +21,10 @@ import { importChunkUrl } from '@lightningjs/vite-plugin-import-chunk-url';
 import path from 'path';
 
 const config = {
-  optimizeDeps: {
-    include: [],
-    exclude: [
-      '@lightningjs/solid',
-      '@lightningjs/solid-primitives',
-      '@lightningjs/renderer/core',
-      '@lightningjs/renderer/workers/renderer'
-    ]
-  },
   plugins: [
     solidPlugin({
       solid: {
-        moduleName: '@lightningjs/solid',
+        moduleName: '@lightningtv/solid',
         generate: 'universal'
       }
     }),
@@ -47,7 +38,7 @@ const config = {
       formats: ['es']
     },
     rollupOptions: {
-      external: ['theme', 'solid-js', '@lightningjs/solid', '@lightningjs/solid-primitives']
+      external: ['theme', 'solid-js', '@lightningtv/solid']
     },
     minify: false,
     sourcemap: true,
@@ -58,7 +49,7 @@ const config = {
       theme: path.resolve(__dirname, '../l3-ui-theme-base/theme.js'),
       utils: path.resolve(__dirname, '../../shared/utils/index.ts')
     },
-    dedupe: ['solid-js', '@lightningjs/solid']
+    dedupe: ['solid-js', '@lightningtv/solid']
   },
   server: {
     hmr: false,

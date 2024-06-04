@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { TextStyles, NodeStyles } from '@lightningjs/solid';
+import type { TextStyles, NodeStyles } from '@lightningtv/solid';
 import theme from 'theme';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet, Tone } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';

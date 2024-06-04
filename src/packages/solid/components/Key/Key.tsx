@@ -16,7 +16,7 @@
  */
 
 import { type Component } from 'solid-js';
-import { Text, type NodeProps } from '@lightningjs/solid';
+import { Text, type NodeProps } from '@lightningtv/solid';
 import type { UIComponentProps } from '../../types/interfaces.js';
 import { ButtonContainer } from '../Button/Button.jsx';
 import styles, { type KeySize } from './Key.styles.js';

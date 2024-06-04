@@ -16,7 +16,7 @@
  */
 
 import { type Component } from 'solid-js';
-import { View } from '@lightningjs/solid';
+import { View } from '@lightningtv/solid';
 import styles from './ProgressBar.styles.js';
 import type { ProgressBarProps } from './ProgressBar.types.js';
 

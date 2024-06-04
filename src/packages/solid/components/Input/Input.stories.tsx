@@ -18,7 +18,7 @@
 import Input from './Input.jsx';
 import type { Meta, StoryObj } from 'storybook-solidjs';
 import { createSignal } from 'solid-js';
-import { View, hexColor } from '@lightningjs/solid';
+import { View, hexColor } from '@lightningtv/solid';
 
 type Story = StoryObj<typeof Input>;
 

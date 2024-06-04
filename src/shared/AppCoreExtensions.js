@@ -17,30 +17,58 @@
  * limitations under the License.
  */
 
-import { CoreExtension, WebTrFontFace, SdfTrFontFace } from '@lightningjs/renderer/core';
+import { CoreExtension, SdfTrFontFace } from '@lightningjs/renderer/core';
+
+const basePath = './';
 
 export default class AppCoreExtension extends CoreExtension {
   async run(stage) {
-    stage.fontManager.addFontFace(new WebTrFontFace('NotoSans', {}, './fonts/notoSans/NotoSans-Regular.ttf'));
+    // stage.fontManager.addFontFace(
+    //   new WebTrFontFace({
+    //     fontFamily: "NotoSans",
+    //     descriptors: {},
+    //     fontUrl: basePath + "fonts/NotoSans-Regular.ttf",
+    //     metrics: {
+    //       ascender: 1069,
+    //       descender: -293,
+    //       lineGap: 0,
+    //       unitsPerEm: 1000
+    //     }
+    //   }),
+    // );
     stage.fontManager.addFontFace(
-      new SdfTrFontFace(
-        'Arial',
-        { weight: 500 },
-        'msdf',
-        stage,
-        './fonts/ubuntu/Ubuntu-Bold.msdf.png',
-        './fonts/ubuntu/Ubuntu-Bold.msdf.json'
-      )
+      new SdfTrFontFace('msdf', {
+        fontFamily: 'Arial',
+        descriptors: {
+          weight: 700
+        },
+        atlasDataUrl: basePath + 'fonts/ubuntu/Ubuntu-Bold.msdf.json',
+        atlasUrl: basePath + 'fonts/ubuntu/Ubuntu-Bold.msdf.png',
+        stage
+      })
     );
     stage.fontManager.addFontFace(
-      new SdfTrFontFace(
-        'Arial',
-        { weight: 300 },
-        'msdf',
-        stage,
-        './fonts/ubuntu/Ubuntu-Regular.msdf.png',
-        './fonts/ubuntu/Ubuntu-Regular.msdf.json'
-      )
+      new SdfTrFontFace('msdf', {
+        fontFamily: 'Arial',
+        descriptors: {
+          weight: 400
+        },
+        atlasDataUrl: basePath + 'fonts/ubuntu/Ubuntu-Regular.msdf.json',
+        atlasUrl: basePath + 'fonts/ubuntu/Ubuntu-Regular.msdf.png',
+        stage
+      })
+    );
+
+    stage.fontManager.addFontFace(
+      new SdfTrFontFace('msdf', {
+        fontFamily: 'Arial',
+        descriptors: {
+          weight: 500
+        },
+        atlasDataUrl: basePath + 'fonts/ubuntu/Ubuntu-Regular.msdf.json',
+        atlasUrl: basePath + 'fonts/ubuntu/Ubuntu-Regular.msdf.png',
+        stage
+      })
     );
   }
 }

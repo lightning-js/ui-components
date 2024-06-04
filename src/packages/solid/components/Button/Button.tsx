@@ -16,7 +16,7 @@
  */
 
 import { type Component } from 'solid-js';
-import { View, Text } from '@lightningjs/solid';
+import { View, Text } from '@lightningtv/solid';
 import styles from './Button.styles.js';
 import type { ButtonContainerProps, ButtonProps } from './Button.types.js';
 

@@ -16,7 +16,7 @@
  */
 
 import { createMemo, type Component } from 'solid-js';
-import { View } from '@lightningjs/solid';
+import { View } from '@lightningtv/solid';
 import styles from './Toggle.styles.js';
 import type { ToggleProps } from './Toggle.types.js';
 

@@ -14,7 +14,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import type { NodeProps, NodeStyles } from '@lightningjs/solid';
+import type { NodeProps, NodeStyles } from '@lightningtv/solid';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet, Tone } from 'types/types.js';
 import type { UIComponentProps } from 'types/interfaces.js';
 import type { BadgeProps } from '../Badge/Badge.types.js';

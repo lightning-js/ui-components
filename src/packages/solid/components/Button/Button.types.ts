@@ -1,4 +1,4 @@
-import type { NodeProps, NodeStyles, TextProps, TextStyles } from '@lightningjs/solid';
+import type { NodeProps, NodeStyles, TextProps, TextStyles } from '@lightningtv/solid';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet, Tone } from 'types/types.js';
 import type { UIComponentProps } from 'types/interfaces.js';
 

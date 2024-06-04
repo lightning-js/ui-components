@@ -16,7 +16,7 @@
  */
 
 import { type Component } from 'solid-js';
-import { View, ElementNode } from '@lightningjs/solid';
+import { View, ElementNode } from '@lightningtv/solid';
 import { chainFunctions } from '../../utils/chainFunctions.js';
 import { handleNavigation, onGridFocus } from '../../utils/handleNavigation.js';
 import { withScrolling, type ScrollableElement } from '../../utils/withScrolling.js';

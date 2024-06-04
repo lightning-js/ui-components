@@ -16,7 +16,7 @@
  */
 
 import { type Component, createSignal, createMemo } from 'solid-js';
-import { Show, View } from '@lightningjs/solid';
+import { Show, View } from '@lightningtv/solid';
 import { withPadding } from '../../utils/index.js';
 import Artwork from '../Artwork/Artwork.jsx';
 import ProgressBar from '../ProgressBar/ProgressBar.jsx';

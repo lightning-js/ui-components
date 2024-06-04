@@ -15,8 +15,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// import * as Solid from '@lightningjs/solid';
-import type { TextStyles, NodeStyles } from '@lightningjs/solid';
+// import * as Solid from '@lightningtv/solid';
+import type { TextStyles, NodeStyles } from '@lightningtv/solid';
 
 export type ThemeKeys<BaseStyleType, ComponentStyleList = object> = {
   // solid style name: themed style name

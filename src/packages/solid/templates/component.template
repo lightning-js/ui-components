@@ -16,7 +16,7 @@
  */
 
 import { type Component } from 'solid-js';
-import { View } from '@lightningjs/solid';
+import { View } from '@lightningtv/solid';
 import type { <ComponentName>Props } from './<ComponentName>.types.js';
 import styles from './<ComponentName>.styles.js';
 

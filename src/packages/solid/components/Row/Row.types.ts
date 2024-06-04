@@ -14,10 +14,10 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import type { ElementNode, IntrinsicNodeCommonProps, NodeStyles } from '@lightningjs/solid';
+import type { ElementNode, IntrinsicNodeCommonProps, NodeStyles } from '@lightningtv/solid';
 import type { ComponentStyleConfig, NodeStyleSet, Tone } from 'types/types.js';
 import type { UIComponentProps } from 'types/interfaces.js';
-import type { KeyHandler } from '@lightningjs/solid-primitives';
+import type { KeyHandler } from '@lightningtv/solid/primitives';
 
 export interface RowProps extends UIComponentProps, RowStyleProperties {
   /** function run on component mount */

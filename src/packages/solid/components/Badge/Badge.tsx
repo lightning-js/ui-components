@@ -15,8 +15,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { createMemo, type Component } from 'solid-js';
-import { Text } from '@lightningjs/solid';
-import { withPadding } from '@lightningjs/solid-primitives';
+import { Text } from '@lightningtv/solid';
+import { withPadding } from '@lightningtv/solid/primitives';
 import styles from './Badge.styles.js';
 import type { BadgeProps } from './Badge.types.js';
 withPadding; // Preserve the import.

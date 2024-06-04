@@ -108,16 +108,3 @@ Tones, Modes, and ToneModes are defined either in the component style file or th
 - toneModes - variations on mode styles that are applied when a component with a specific tone receives that mode
   - ie. when a Button with tone "brand" receives the mode "focus", the styles defined in `brand-focus` would be applied
 
-#### Tones and Modes in Solid(toneStateMapperHook)
-
-tones are specific to solid-ui and not part of the lightningjs/solid framework, so we need to add them on. in the app's index (or wherever you're rendering your solid canvas), import the `mapToneToStateHook` method and assign it to the lightningjs/solid config object
-
-```js
-import { render, Canvas, Config } from '@lightningjs/solid';
-import { mapToneToStateHook } from '@lightningjs/solid-ui';
-Config.stateMapperHook = mapToneToStateHook;
-
-render(() => <Canvas />);
-```
-
-this merges the component's tone with it's current state, ensuring we assign the correct toneMode values.

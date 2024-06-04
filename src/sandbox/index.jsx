@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { render, Config } from '@lightningjs/solid';
+import { render, Config } from '@lightningtv/solid';
 import App from './pages/App';
 import coreExtensionModuleUrl from '../shared/AppCoreExtensions.js?importChunkUrl';
 import coreWorkerUrl from '../shared/threadx-core-worker.js?importChunkUrl';
