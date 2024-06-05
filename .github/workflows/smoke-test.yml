@@ -16,7 +16,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8
+          version: 9
           run_install: true
 
       # update container FS permissions to allow scripts to build dist files and allow lerna to bootstrap
