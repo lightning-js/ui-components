@@ -49,7 +49,7 @@ const preview = {
       const solidRoot = document.createElement('div');
       // teardown previous render (cleans up keyhandling)
       dispose && dispose();
-      
+
       render(() => {
         useFocusManager();
         return <Story />;
