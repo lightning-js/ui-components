@@ -23,7 +23,7 @@ import { useFocusManager } from '@lightningtv/solid/primitives';
 
 Config.rendererOptions = {
   coreExtensionModule: coreExtensionModuleUrl,
-  appWidth: 1280,
+  appWidth: 980,
   appHeight: 720,
   deviceLogicalPixelRatio: 1,
   devicePhysicalPixelRatio: 1
@@ -32,6 +32,7 @@ Config.rendererOptions = {
 let dispose;
 
 const preview = {
+  tags: ['autodocs'],
   parameters: {
     backgrounds: { default: 'dark' },
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -39,7 +40,15 @@ const preview = {
       expanded: true
     },
     docs: {
-      theme: themes.dark
+      theme: themes.dark,
+      story: {
+        inline: false,
+        iframeHeight: '360px'
+      },
+      source: {
+        type: 'code',
+        language: 'tsx'
+      }
     }
   },
   decorators: [
