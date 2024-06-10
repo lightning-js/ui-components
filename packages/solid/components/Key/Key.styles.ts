@@ -83,7 +83,6 @@ const text: KeyConfig = {
     color: 'textColor'
   },
   base: {
-    textAlign: 'left',
     color: theme.color.textNeutral,
     ...theme.typography.headline2
   },

@@ -105,7 +105,6 @@ const text: ButtonConfig = {
     color: 'textColor'
   },
   base: {
-    textAlign: 'left',
     color: theme.color.textNeutral,
     ...theme.typography.button1
   },
