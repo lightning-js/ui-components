@@ -44,6 +44,7 @@ export const Basic: Story = {
   args: {
     states: 'focus',
     autofocus: true,
+    width: 980,
     formats: {
       default: [
         [
@@ -90,9 +91,9 @@ export const KeyboardSimple1: Story = {
   },
   args: {
     states: 'focus',
-    centerKeys: true,
+    centerKeys: false,
     autofocus: true,
-    width: 1500,
+    width: 980,
     formats: {
       default: [
         [
@@ -140,6 +141,7 @@ export const KeyboardEmail: Story = {
   args: {
     states: 'focus',
     autofocus: true,
+    centerKeys: false,
     formats: {
       uppercase: [
         [
