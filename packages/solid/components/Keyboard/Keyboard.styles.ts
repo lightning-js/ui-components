@@ -29,13 +29,15 @@ const container: KeyboardConfig = {
   themeKeys: {
     gap: 'keySpacing',
     width: 'screenW',
-    marginX: 'marginX'
+    marginX: 'marginX',
+    keyHeight: 'keyHeight'
   },
   base: {
     gap: theme.spacer.md,
     width: theme.layout.screenW,
     marginX: theme.layout.marginX,
-    height: 100
+    keyHeight: 100,
+    flexBoundary: 'contain'
   },
   // @ts-expect-error TODO fix style types for component configs
   themeStyles
@@ -133,7 +135,7 @@ const Text = makeComponentStyles<KeyboardStyles['Text']>(text);
 const styles: KeyboardStyles = {
   tone: defaultTone,
   Container,
-  Key, // TODO why was this wrapped in {}?
+  Key,
   Text
 };
 

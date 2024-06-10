@@ -14,7 +14,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-import type { NodeStyles } from '@lightningjs/solid';
+import type { NodeStyles } from '@lightningtv/solid';
 import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet, Tone } from 'types/types.js';
 import type { UIComponentProps } from 'types/interfaces.js';
 import type { KeyProps, KeySizes } from '../Key/Key.types.js';
@@ -45,11 +45,6 @@ export interface KeyboardProps extends UIComponentProps, KeyboardStyleProperties
    * returns the value of the activated key
    */
   keySignal: Signal<string>;
-
-  /**
-   * gap between keys
-   */
-  keySpacing?: NodeStyles['gap'];
 }
 
 export type KeyboardFormat = Record<string, Array<Array<string | Partial<KeyProps>>>>;
@@ -74,11 +69,16 @@ export interface KeyboardStyleProperties {
    * color of the text within the keyboard
    */
   textColor?: NodeStyles['color'];
+
+  /**
+   * height of keys in keyboard
+   */
+  keyHeight?: number;
 }
 
 export interface KeyboardStyles {
   tone: Tone;
-  Container: NodeStyleSet<{ keySpacing?: number; screenW?: number; marginX?: number }>;
+  Container: NodeStyleSet<{ keySpacing?: number; screenW?: number; marginX?: number; keyHeight?: number }>;
   Key: NodeStyleSet<{ baseWidth: number; sizes: KeySizes; contentColor: NodeStyles['color'] }>;
   Text: TextStyleSet;
 }

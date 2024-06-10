@@ -47,6 +47,7 @@ export const Email: Story = {
   args: {
     states: 'focus',
     autofocus: true,
+    centerKeys: false,
     formats: {
       uppercase: [
         [
