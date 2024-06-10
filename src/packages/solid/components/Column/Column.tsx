@@ -33,7 +33,7 @@ const Column: Component<ColumnProps> = (props: ColumnProps) => {
   return (
     <ScrollableView
       {...props}
-      gap={props.itemSpacing}
+      gap={props.itemSpacing ?? props.gap}
       transition={props.itemTransition}
       onUp={chainFunctions<KeyHandler | undefined>(props.onUp, onUp)}
       onDown={chainFunctions<KeyHandler | undefined>(props.onDown, onDown)}

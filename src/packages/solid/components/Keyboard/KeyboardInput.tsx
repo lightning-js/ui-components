@@ -16,11 +16,12 @@
  */
 
 import { createSignal, type Component, type Signal } from 'solid-js';
-import Keyboard, { type KeyboardProps } from './Keyboard.jsx';
+import Keyboard from './Keyboard.jsx';
 import Column from '../Column/Column.jsx';
 import Input from '../Input/Input.jsx';
 import type { Tone } from '../../types/types.js';
-import { type KeyboardStyles } from './Keyboard.styles.js';
+import type { KeyboardProps } from './Keyboard.types.js';
+import { View } from '@lightningtv/solid';
 
 export interface KeyboardInputProps extends KeyboardProps {
   /**
@@ -32,8 +33,6 @@ export interface KeyboardInputProps extends KeyboardProps {
    */
   titleSignal: Signal<string>;
 
-  style?: Partial<KeyboardStyles>;
-
   tone?: Tone;
 }
 
@@ -44,19 +43,12 @@ const KeyboardInput: Component<KeyboardInputProps> = (props: KeyboardInputProps)
   const keyEvent = createSignal('');
 
   return (
-    <Column autofocus={props.autofocus} selected={1} scroll={'none'}>
-      <Input position={props.position} keyEvent={keyEvent} titleSignal={props.titleSignal} />
-      <Keyboard
-        centerKeyboard={props.centerKeyboard}
-        keySpacing={props.keySpacing}
-        defaultFormat={props.defaultFormat}
-        keySignal={keyEvent}
-        formats={props.formats}
-        centerKeys={props.centerKeys}
-        width={1000}
-        style={props.style}
-      />
-    </Column>
+    <View {...props} forwardFocus={0}>
+      <Column selected={1} scroll={'none'}>
+        <Input {...props} keyEvent={keyEvent} />
+        <Keyboard {...props} keySignal={keyEvent} />
+      </Column>
+    </View>
   );
 };
 
