@@ -23,7 +23,7 @@ import { useFocusManager } from '@lightningtv/solid/primitives';
 
 Config.rendererOptions = {
   coreExtensionModule: coreExtensionModuleUrl,
-  appWidth: 1280,
+  appWidth: 1920,
   appHeight: 720,
   deviceLogicalPixelRatio: 2/3,
 };

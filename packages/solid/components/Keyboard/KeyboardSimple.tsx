@@ -34,6 +34,11 @@ const getKeyHeight = (props: KeyboardProps) =>
   props.keyHeight ??
   styles.Container.tones[props.tone ?? styles.tone]?.keyHeight ??
   styles.Container.base.keyHeight;
+const getTotalWidth = (props: KeyboardProps) =>
+  props.screenW ??
+  props.width ??
+  styles.Container.tones[props.tone ?? styles.tone]?.width ??
+  styles.Container.base.width;
 
 // rows created from each array passed in
 const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
@@ -42,6 +47,7 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
   const [activeKeyboard, setActiveKeyboard] = createSignal('default');
   const [selectedRowIndex, setSelectedRowIndex] = createSignal(0);
   const [selectedColumnIndex, setSelectedColumnIndex] = createSignal(0);
+  const [maxWidth, setMaxWidth] = createSignal(0);
 
   const setOnEnter = (key: string | KeyProps, rowIdx: Accessor<number>, colIdx: Accessor<number>) => {
     if (typeof key === 'string') {
@@ -60,6 +66,7 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
 
   const tone = createMemo(() => getTone(props));
   const gap = createMemo(() => getGap(props));
+  const totalWidth = createMemo(() => getTotalWidth(props));
   const keyHeight = createMemo(() => getKeyHeight(props));
   const keyboardRef = new Map<string, ElementNode>();
 
@@ -69,6 +76,8 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
       forwardFocus={0}
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[props.style, styles.Container.tones[tone()], styles.Container.base]}
+      width={totalWidth()}
+      height={undefined}
     >
       <For each={Object.keys(props.formats)}>
         {keyboard => (
@@ -81,6 +90,10 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
                 }
                 return keyboard;
               }}
+              flexBoundary={'contain'}
+              display={'flex'}
+              // width={totalWidth()}
+              justifyContent={props.centerKeyboard ? 'center' : 'flexStart'}
               forwardFocus={0}
             >
               <Column scroll={'none'} plinko selected={selectedColumnIndex()} gap={gap()}>
@@ -90,9 +103,11 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
                       scroll={'none'}
                       selected={selectedRowIndex()}
                       justifyContent={props.centerKeys ? 'center' : 'flexStart'}
-                      flexBoundary={props.flexBoundary ?? 'fixed'}
+                      flexBoundary={props.flexBoundary ?? 'contain'}
+                      display={'flex'}
                       gap={gap()}
                       height={keyHeight()}
+                      // width={maxWidth()}
                       wrap={props.rowWrap}
                     >
                       <For each={row}>

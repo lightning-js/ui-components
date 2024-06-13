@@ -35,6 +35,7 @@ const container: KeyboardConfig = {
   base: {
     gap: theme.spacer.md,
     width: theme.layout.screenW,
+    display: 'flex',
     marginX: theme.layout.marginX,
     keyHeight: 100,
     flexBoundary: 'contain'
@@ -105,7 +106,6 @@ const text: KeyboardConfig = {
     color: 'textColor'
   },
   base: {
-    textAlign: 'left',
     color: theme.color.textNeutral,
     ...theme.typography.headline2
   },
