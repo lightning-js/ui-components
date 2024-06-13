@@ -143,6 +143,7 @@ export const KeyboardEmail: Story = {
     states: 'focus',
     autofocus: true,
     centerKeys: false,
+    centerKeyboard: false,
     formats: {
       uppercase: [
         [

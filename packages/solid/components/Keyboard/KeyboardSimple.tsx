@@ -56,7 +56,6 @@ const getKeySpacing = (props: KeyProps) =>
   keyStyles.Container.tones?.[props.tone ?? keyStyles.tone]?.keySpacing ??
   keyStyles.Container.base.keySpacing;
 
-// rows created from each array passed in
 const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
   // eslint-disable-next-line solid/reactivity
   const [_, setKeySignal] = props.keySignal ?? createSignal('');
@@ -128,7 +127,6 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
                 }
                 return keyboard;
               }}
-              // alignItems={props.centerKeyboard ? 'center' : 'flexStart'}
               justifyContent={props.centerKeyboard ? 'center' : 'flexStart'}
               display={'flex'}
               forwardFocus={0}
