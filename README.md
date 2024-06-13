@@ -15,41 +15,62 @@
   SPDX-License-Identifier: Apache-2.0
 -->
 
-# Lightning UI
+# Solid UI
 
-This library contains a suite of UI components, written for [lightningjs version 3](https://github.com/lightning-js/renderer)
+This library contains a suite of [themeable](THEMING.md) UI components written for the [SolidJS Lightning](https://github.com/lightning-tv/solid) Framework. check them out in our [storybook docs](https://lightning-js.github.io/ui-components/).
 
-## Packages
+[![npm version](https://img.shields.io/npm/v/@lightningtv%2Fsolid-ui.svg?style=flat)](https://www.npmjs.com/package/@lightningtv/solid-ui)
 
-### solid-ui
+## Getting Started
 
-[![npm version](https://img.shields.io/npm/v/@lightningjs%2Fsolid-ui.svg?style=flat)](https://www.npmjs.com/package/@lightningjs/solid-ui)
+If you haven't already, follow the steps found [here](https://github.com/lightning-js/solid) to bootstrap your SolidJS Lightning app. Then:
 
-Components for the [lightningjs/solid](https://github.com/lightning-js/solid) framework
+1. install this package and the base theme with your package manager of choice
 
-Get started with the [readme](https://github.com/lightning-js/ui-components/blob/main/src/packages/solid/README.md), or check out the latest components in our [storybook docs](https://lightning-js.github.io/ui-components/).
+```sh
+pnpm add @lightningtv/solid-ui @lightningtv/l3-ui-theme-base # or pnpm/yarn
+```
 
-### coming soon:
+2. add the theme package as an alias in your vite config(see the [theming docs](THEMING.md) for more information on this)
 
-- blits-ui
+```js
+// vite.config.js
+  resolve: {
+    alias: {
+      theme: '@lightningtv/l3-ui-theme-base',
+    }
+  },
+```
+
+3. and finally, use a component
+
+```jsx
+// App.jsx
+import { Button } from '@lightningtv/solid-ui';
+<App>
+  <Button>a button!</Button>
+</App>;
+```
+
+## Reporting a Bug
 
 ## Development
 
 If you don't have pnpm
 
 ```sh
-> npm install -g pnpm
+npm install -g pnpm
 ```
 
 Run the solid storybook dev environment:
 
 ```sh
-> pnpm install
-> pnpm start
+pnpm i
+pnpm dev
 ```
 
 Run the solid sandbox environment:
 
 ```sh
-> pnpm run solid:sandbox
+pnpm sandbox
 ```
