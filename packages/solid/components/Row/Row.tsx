@@ -15,7 +15,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { onMount, type Component } from 'solid-js';
+import { type Component } from 'solid-js';
 import { View, ElementNode } from '@lightningtv/solid';
 import { chainFunctions } from '../../utils/chainFunctions.js';
 import { handleNavigation, onGridFocus } from '../../utils/handleNavigation.js';
@@ -26,12 +26,6 @@ import type { RowProps } from './Row.types.js';
 const Row: Component<RowProps> = (props: RowProps) => {
   const onLeft = handleNavigation('left');
   const onRight = handleNavigation('right');
-
-  onMount(async () => {
-    if (props.widthSignal && props.widthSignal[0]() < Row.width) {
-      props.widthSignal[1](Row.width);
-    }
-  });
 
   return (
     <View

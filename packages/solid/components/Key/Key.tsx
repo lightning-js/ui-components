@@ -22,11 +22,27 @@ import styles from './Key.styles.js';
 import type { KeyProps } from './Key.types.js';
 
 const getTone = (props: KeyProps) => props.tone ?? styles.tone;
-const getSize = (props: KeyProps) => props.size ?? 'sm';
+const getMultiplier = (props: KeyProps) =>
+  props.sizes?.[props.size ?? 'sm'] ??
+  styles.Container?.tones?.[props.tone ?? styles.tone]?.sizes?.[props.size ?? 'sm'] ??
+  styles.Container.base.sizes[props.size ?? 'sm'];
+
+const getBaseWidth = (props: KeyProps) =>
+  props.baseWidth ??
+  styles.Container?.tones?.[props.tone ?? styles.tone]?.baseWidth ??
+  styles.Container.base.baseWidth;
+
+const getKeySpacing = (props: KeyProps) =>
+  props.keySpacing ??
+  styles.Container.tones?.[props.tone ?? styles.tone]?.keySpacing ??
+  styles.Container.base.keySpacing;
 
 const Key: Component<KeyProps> = props => {
   const tone = createMemo(() => getTone(props));
-  const size = createMemo(() => getSize(props));
+  const multiplier = createMemo(() => getMultiplier(props));
+  const baseWidth = createMemo(() => getBaseWidth(props));
+  const keySpacing = createMemo(() => getKeySpacing(props));
+
   return (
     <ButtonContainer
       {...props}
@@ -37,22 +53,7 @@ const Key: Component<KeyProps> = props => {
         styles.Container.base
       ]}
       forwardStates
-      width={
-        (styles.Container?.tones?.[tone()]?.sizes?.[size()] ?? styles.Container.base.sizes[size()]) *
-          (styles.Container?.tones?.[tone()]?.baseWidth ?? styles.Container.base.baseWidth) +
-        (styles.Container.tones?.[tone()]?.keySpacing ?? styles.Container.base.keySpacing) *
-          (styles.Container.tones?.[tone()]?.sizes?.[size()] ?? styles.Container.base.sizes[size()] - 1)
-      }
-      // Keep below for more thought
-      //
-      // width={
-      //   (props?.style?.Container?.sizes[size()] ?? styles.Container.sizes[size()]) *
-      //     (props?.style?.Container?.baseWidth ?? styles.Container.baseWidth) +
-      //   (props?.style?.Container?.keySpacing ?? styles.Container.keySpacing) *
-      //     ((props?.style?.Container?.sizes[size()] ??
-      //       styles.Container.sizes[size()]) -
-      //       1)
-      // }
+      width={multiplier() * baseWidth() + keySpacing() * (multiplier() - 1)}
     >
       <Text
         style={[

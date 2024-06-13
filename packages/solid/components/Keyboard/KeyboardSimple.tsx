@@ -23,6 +23,7 @@ import type { KeyProps } from '../Key/Key.types.js';
 import styles from './Keyboard.styles.js';
 import type { KeyboardProps } from './Keyboard.types.js';
 import { ElementNode, View } from '@lightningtv/solid';
+import keyStyles from '../Key/Key.styles.js';
 
 const getTone = (props: KeyboardProps) => props.tone ?? styles.tone;
 const getGap = (props: KeyboardProps) =>
@@ -40,6 +41,21 @@ const getTotalWidth = (props: KeyboardProps) =>
   styles.Container.tones[props.tone ?? styles.tone]?.width ??
   styles.Container.base.width;
 
+const getMultiplier = (props: KeyProps) =>
+  props.sizes?.[props.size ?? 'sm'] ??
+  keyStyles.Container?.tones?.[props.tone ?? keyStyles.tone]?.sizes?.[props.size ?? 'sm'] ??
+  keyStyles.Container.base.sizes[props.size ?? 'sm'];
+
+const getBaseWidth = (props: KeyProps) =>
+  props.baseWidth ??
+  keyStyles.Container?.tones?.[props.tone ?? keyStyles.tone]?.baseWidth ??
+  keyStyles.Container.base.baseWidth;
+
+const getKeySpacing = (props: KeyProps) =>
+  props.keySpacing ??
+  keyStyles.Container.tones?.[props.tone ?? keyStyles.tone]?.keySpacing ??
+  keyStyles.Container.base.keySpacing;
+
 // rows created from each array passed in
 const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
   // eslint-disable-next-line solid/reactivity
@@ -47,7 +63,13 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
   const [activeKeyboard, setActiveKeyboard] = createSignal('default');
   const [selectedRowIndex, setSelectedRowIndex] = createSignal(0);
   const [selectedColumnIndex, setSelectedColumnIndex] = createSignal(0);
-  const [maxWidth, setMaxWidth] = createSignal(0);
+  const [rowWidth, setRowWidth] = createSignal(0);
+
+  const tone = createMemo(() => getTone(props));
+  const gap = createMemo(() => getGap(props));
+  const totalWidth = createMemo(() => getTotalWidth(props));
+  const keyHeight = createMemo(() => getKeyHeight(props));
+  const keyboardRef = new Map<string, [ElementNode, number]>();
 
   const setOnEnter = (key: string | KeyProps, rowIdx: Accessor<number>, colIdx: Accessor<number>) => {
     if (typeof key === 'string') {
@@ -57,18 +79,33 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
         setSelectedRowIndex(rowIdx());
         setSelectedColumnIndex(colIdx());
         setActiveKeyboard(key.toggle);
-        keyboardRef[key.toggle]?.setFocus();
+        keyboardRef[key.toggle]?.element?.setFocus();
+        setRowWidth(keyboardRef[key.toggle]?.width ?? 0);
       };
     } else {
       return () => setKeySignal(typeof key === 'string' ? key : key.title ?? '');
     }
   };
 
-  const tone = createMemo(() => getTone(props));
-  const gap = createMemo(() => getGap(props));
-  const totalWidth = createMemo(() => getTotalWidth(props));
-  const keyHeight = createMemo(() => getKeyHeight(props));
-  const keyboardRef = new Map<string, ElementNode>();
+  const addKeyboardWidth = (keyboard: string) => {
+    // largest row size
+    let maxRow = 0;
+    for (const row of props.formats[keyboard]) {
+      // width of individual row
+      let rowWidth = 0;
+      for (const key of row) {
+        let width = getBaseWidth(props);
+        if (typeof key === 'object') {
+          width = getMultiplier(key) * getBaseWidth(props) + getKeySpacing(props) * (getMultiplier(key) - 1);
+        }
+        rowWidth += width + getKeySpacing(props);
+      }
+      if (maxRow < rowWidth) {
+        maxRow = rowWidth;
+      }
+    }
+    return maxRow;
+  };
 
   return (
     <View
@@ -84,30 +121,35 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
           <Show when={activeKeyboard() === keyboard}>
             <View
               ref={element => {
-                keyboardRef[keyboard] = element;
+                keyboardRef[keyboard] = { element: element, width: addKeyboardWidth(keyboard) };
                 if (activeKeyboard() === keyboard) {
                   element.setFocus();
+                  setRowWidth(keyboardRef[keyboard]?.width ?? 0);
                 }
                 return keyboard;
               }}
-              flexBoundary={'contain'}
-              display={'flex'}
-              // width={totalWidth()}
+              // alignItems={props.centerKeyboard ? 'center' : 'flexStart'}
               justifyContent={props.centerKeyboard ? 'center' : 'flexStart'}
+              display={'flex'}
               forwardFocus={0}
             >
-              <Column scroll={'none'} plinko selected={selectedColumnIndex()} gap={gap()}>
+              <Column
+                scroll={'none'}
+                plinko
+                selected={selectedColumnIndex()}
+                alignItems={props.centerKeys || props.centerKeyboard ? 'center' : 'flexStart'}
+                width={rowWidth()}
+                gap={gap()}
+              >
                 <For each={props.formats[keyboard]}>
                   {(row: (string | KeyProps)[], colIdx) => (
                     <Row
                       scroll={'none'}
                       selected={selectedRowIndex()}
-                      justifyContent={props.centerKeys ? 'center' : 'flexStart'}
                       flexBoundary={props.flexBoundary ?? 'contain'}
                       display={'flex'}
                       gap={gap()}
                       height={keyHeight()}
-                      // width={maxWidth()}
                       wrap={props.rowWrap}
                     >
                       <For each={row}>
