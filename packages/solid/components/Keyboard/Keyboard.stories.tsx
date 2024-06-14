@@ -46,6 +46,7 @@ export const Basic: Story = {
     autofocus: true,
     centerKeyboard: false,
     centerKeys: false,
+    width: 1280,
     formats: {
       default: [
         [
@@ -95,6 +96,7 @@ export const KeyboardSimple1: Story = {
     centerKeys: false,
     centerKeyboard: false,
     autofocus: true,
+    width: 1280,
     formats: {
       default: [
         [
@@ -144,6 +146,7 @@ export const KeyboardEmail: Story = {
     autofocus: true,
     centerKeys: false,
     centerKeyboard: false,
+    width: 1280,
     formats: {
       uppercase: [
         [

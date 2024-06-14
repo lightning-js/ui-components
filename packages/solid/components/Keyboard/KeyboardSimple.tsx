@@ -25,16 +25,20 @@ import type { KeyboardProps } from './Keyboard.types.js';
 import { ElementNode, View } from '@lightningtv/solid';
 import keyStyles from '../Key/Key.styles.js';
 
-const getTone = (props: KeyboardProps) => props.tone ?? styles.tone;
+const getTone = (props: KeyboardProps) => 
+  props.tone ?? styles.tone;
+
 const getGap = (props: KeyboardProps) =>
   props.gap ??
   props.keySpacing ??
   styles.Container.tones[props.tone ?? styles.tone]?.keySpacing ??
   styles.Container.base.keySpacing;
+
 const getKeyHeight = (props: KeyboardProps) =>
   props.keyHeight ??
   styles.Container.tones[props.tone ?? styles.tone]?.keyHeight ??
   styles.Container.base.keyHeight;
+
 const getTotalWidth = (props: KeyboardProps) =>
   props.screenW ??
   props.width ??
@@ -68,7 +72,7 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
   const gap = createMemo(() => getGap(props));
   const totalWidth = createMemo(() => getTotalWidth(props));
   const keyHeight = createMemo(() => getKeyHeight(props));
-  const keyboardRef = new Map<string, [ElementNode, number]>();
+  const keyboardRefList = new Map<string, [ElementNode, number]>();
 
   const setOnEnter = (key: string | KeyProps, rowIdx: Accessor<number>, colIdx: Accessor<number>) => {
     if (typeof key === 'string') {
@@ -78,8 +82,8 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
         setSelectedRowIndex(rowIdx());
         setSelectedColumnIndex(colIdx());
         setActiveKeyboard(key.toggle);
-        keyboardRef[key.toggle]?.element?.setFocus();
-        setRowWidth(keyboardRef[key.toggle]?.width ?? 0);
+        keyboardRefList[key.toggle]?.element?.setFocus();
+        setRowWidth(keyboardRefList[key.toggle]?.width ?? 0);
       };
     } else {
       return () => setKeySignal(typeof key === 'string' ? key : key.title ?? '');
@@ -120,10 +124,10 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
           <Show when={activeKeyboard() === keyboard}>
             <View
               ref={element => {
-                keyboardRef[keyboard] = { element: element, width: addKeyboardWidth(keyboard) };
+                keyboardRefList[keyboard] = { element: element, width: addKeyboardWidth(keyboard) };
                 if (activeKeyboard() === keyboard) {
                   element.setFocus();
-                  setRowWidth(keyboardRef[keyboard]?.width ?? 0);
+                  setRowWidth(keyboardRefList[keyboard]?.width ?? 0);
                 }
                 return keyboard;
               }}

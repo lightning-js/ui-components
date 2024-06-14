@@ -49,6 +49,7 @@ export const Basic: Story = {
     autofocus: true,
     centerKeys: false,
     centerKeyboard: false,
+    width: 1280,
     formats: {
       default: [
         [

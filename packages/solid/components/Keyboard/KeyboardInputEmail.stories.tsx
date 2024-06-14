@@ -49,6 +49,7 @@ export const Email: Story = {
     autofocus: true,
     centerKeys: false,
     centerKeyboard: false,
+    width: 1280,
     formats: {
       uppercase: [
         [
