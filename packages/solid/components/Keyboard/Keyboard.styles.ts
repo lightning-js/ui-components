@@ -16,29 +16,9 @@
  */
 
 import theme from 'theme';
-import type { Tone } from '../../types/types.js';
-import type { ComponentStyleConfig, NodeStyleSet, TextStyleSet } from '../../types/types.js';
 import { makeComponentStyles } from '../../utils/index.js';
-import type { NodeStyles } from '@lightningtv/solid';
-import type { KeySizes, KeyStyles, KeyConfig } from '../Key/Key.styles.js';
-
-export interface KeyboardStyles {
-  tone: Tone;
-  Container: NodeStyleSet<{ keySpacing?: number; screenW?: number; marginX?: number }>;
-  Key: NodeStyleSet<{ baseWidth: number; sizes: KeySizes; contentColor: NodeStyles['color'] }>;
-  Text: TextStyleSet;
-}
-
-export type KeyboardStyleProperties = {
-  keySpacing?: number;
-  screenW?: number;
-  marginX?: number;
-  textColor?: NodeStyles['color'];
-};
-
-export type KeyboardConfig = ComponentStyleConfig<KeyboardStyleProperties>;
-
-// export type KeyConfig = ComponentStyleConfig<KeyStyleProperties>;
+import type { KeyStyles, KeyConfig } from '../Key/Key.types.js';
+import type { KeyboardStyles, KeyboardConfig } from './Keyboard.types.js';
 
 /* @ts-expect-error next-line themes are supplied by client applications so this setup is necessary */
 const { Keyboard: { defaultTone, ...themeStyles } = {} } = theme?.componentConfig;
@@ -47,15 +27,18 @@ const { Key: { ...keyThemeStyles } = {} } = theme?.componentConfig; // TODO defa
 
 const container: KeyboardConfig = {
   themeKeys: {
-    keySpacing: 'keySpacing',
-    screenW: 'screenW',
-    marginX: 'marginX'
+    gap: 'keySpacing',
+    width: 'screenW',
+    marginX: 'marginX',
+    keyHeight: 'keyHeight'
   },
   base: {
-    keySpacing: theme.spacer.md,
-    screenW: theme.layout.screenW,
+    gap: theme.spacer.md,
+    width: theme.layout.screenW,
+    display: 'flex',
     marginX: theme.layout.marginX,
-    height: 100
+    keyHeight: 100,
+    flexBoundary: 'contain'
   },
   // @ts-expect-error TODO fix style types for component configs
   themeStyles
@@ -63,17 +46,17 @@ const container: KeyboardConfig = {
 
 const key: KeyConfig = {
   themeKeys: {
-    keySpacing: 'keySpacing',
+    gap: 'keySpacing',
     textAlign: 'textAlign',
     borderRadius: 'borderRadius',
     color: 'backgroundColor',
-    justifyContent: 'justifyContent',
+    justifyContent: 'justify',
     baseWidth: 'baseWidth',
     sizes: 'sizes',
     contentColor: 'contentColor' // what is this used for
   },
   base: {
-    keySpacing: theme.spacer.md,
+    gap: theme.spacer.md,
     height: theme.spacer.md * 9,
     sizes: {
       sm: 1,
@@ -123,7 +106,6 @@ const text: KeyboardConfig = {
     color: 'textColor'
   },
   base: {
-    textAlign: 'left',
     color: theme.color.textNeutral,
     ...theme.typography.headline2
   },
@@ -153,7 +135,7 @@ const Text = makeComponentStyles<KeyboardStyles['Text']>(text);
 const styles: KeyboardStyles = {
   tone: defaultTone,
   Container,
-  Key, // TODO why was this wrapped in {}?
+  Key,
   Text
 };
 

@@ -47,50 +47,46 @@ export const Basic: Story = {
   args: {
     states: 'focus',
     autofocus: true,
-    centerKeys: true,
-    formats: [
-      [
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        '0',
-        {
-          title: 'Delete',
-          size: 'md',
-          keyId: 'delete',
-          announce: 'delete, button'
-        }
-      ],
-      ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-      ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-      ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
-      [
-        {
-          title: 'Clear',
-          size: 'lg',
-          keyId: 'clear',
-          announce: 'clear, button'
-        },
-        {
-          title: 'Space',
-          size: 'xl',
-          keyId: 'space',
-          announce: 'space, button'
-        },
-        {
-          title: 'Done',
-          size: 'lg',
-          keyId: 'done',
-          announce: 'done, button'
-        }
+    centerKeys: false,
+    centerKeyboard: false,
+    width: 1280,
+    formats: {
+      default: [
+        [
+          '1',
+          '2',
+          '3',
+          '4',
+          '5',
+          '6',
+          '7',
+          '8',
+          '9',
+          '0',
+          {
+            title: 'Delete',
+            size: 'md'
+          }
+        ],
+        ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+        ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+        ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
+        [
+          {
+            title: 'Clear',
+            size: 'lg'
+          },
+          {
+            title: 'Space',
+            size: 'xl'
+          },
+          {
+            title: 'Done',
+            size: 'lg'
+          }
+        ]
       ]
-    ]
+    }
   }
 };
 

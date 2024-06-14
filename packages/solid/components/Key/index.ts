@@ -15,5 +15,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export { default as default, type KeyProps } from './Key.jsx';
-export { default as keyStyles, type KeyStyles } from './Key.styles.js';
+export { default as default } from './Key.jsx';
+export { default as keyStyles } from './Key.styles.js';
+export type { KeyProps, KeySizes, KeyStyles } from './Key.types.js';

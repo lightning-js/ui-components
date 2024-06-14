@@ -15,75 +15,49 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { type Component } from 'solid-js';
-import { Text, type NodeProps } from '@lightningtv/solid';
-import type { UIComponentProps } from '../../types/interfaces.js';
+import { createMemo, type Component } from 'solid-js';
+import { Text } from '@lightningtv/solid';
 import { ButtonContainer } from '../Button/Button.jsx';
-import styles, { type KeySize } from './Key.styles.js';
+import styles from './Key.styles.js';
+import type { KeyProps } from './Key.types.js';
 
-export interface KeyProps extends UIComponentProps {
-  /**
-   * text content of the key
-   */
-  title?: string;
+const getTone = (props: KeyProps) => props.tone ?? styles.tone;
+const getMultiplier = (props: KeyProps) =>
+  props.sizes?.[props.size ?? 'sm'] ??
+  styles.Container?.tones?.[props.tone ?? styles.tone]?.sizes?.[props.size ?? 'sm'] ??
+  styles.Container.base.sizes[props.size ?? 'sm'];
 
-  /**
-   * url for icon
-   */
-  icon?: NodeProps['src']; // TODO this isn't used
-  /**
-   * width of the Key
-   */
-  size?: KeySize;
-  /**
-   * path to image or inline SVG XML
-   */
-  src?: NodeProps['src'];
-  /**
-   * The horizontal spacing between each key in a Keyboard. This value is factored into the width of the key so that it aligns with with the borders of other keys in a Keyboard.
-   */
-  keySpacing?: number;
-  /**
-   * If true, pressing the key will trigger the $toggleKeyboard event. If false, the key will trigger the $onSoftKey event.
-   */
-  toggle?: boolean;
-}
+const getBaseWidth = (props: KeyProps) =>
+  props.baseWidth ??
+  styles.Container?.tones?.[props.tone ?? styles.tone]?.baseWidth ??
+  styles.Container.base.baseWidth;
+
+const getKeySpacing = (props: KeyProps) =>
+  props.keySpacing ??
+  styles.Container.tones?.[props.tone ?? styles.tone]?.keySpacing ??
+  styles.Container.base.keySpacing;
 
 const Key: Component<KeyProps> = props => {
+  const tone = createMemo(() => getTone(props));
+  const multiplier = createMemo(() => getMultiplier(props));
+  const baseWidth = createMemo(() => getBaseWidth(props));
+  const keySpacing = createMemo(() => getKeySpacing(props));
+
   return (
     <ButtonContainer
       {...props}
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[
         props.style, //
-        styles.Container.tones?.[props.tone ?? styles.tone],
+        styles.Container.tones?.[tone()],
         styles.Container.base
       ]}
       forwardStates
-      width={
-        (styles.Container?.tones?.[props.tone ?? styles.tone]?.sizes?.[props.size || 'sm'] ??
-          styles.Container.base.sizes[props.size || 'sm']) *
-          (styles.Container?.tones?.[props.tone ?? styles.tone]?.baseWidth ??
-            styles.Container.base.baseWidth) +
-        (styles.Container.tones?.[props.tone ?? styles.tone]?.keySpacing ??
-          styles.Container.base.keySpacing) *
-          (styles.Container.tones?.[props.tone ?? styles.tone]?.sizes?.[props.size || 'sm'] ??
-            styles.Container.base.sizes[props.size || 'sm'] - 1)
-      }
-      // Keep below for more thought
-      //
-      // width={
-      //   (props?.style?.Container?.sizes[props.size || 'sm'] ?? styles.Container.sizes[props.size || 'sm']) *
-      //     (props?.style?.Container?.baseWidth ?? styles.Container.baseWidth) +
-      //   (props?.style?.Container?.keySpacing ?? styles.Container.keySpacing) *
-      //     ((props?.style?.Container?.sizes[props.size || 'sm'] ??
-      //       styles.Container.sizes[props.size || 'sm']) -
-      //       1)
-      // }
+      width={multiplier() * baseWidth() + keySpacing() * (multiplier() - 1)}
     >
       <Text
         style={[
-          styles.Text.tones[props.tone ?? styles.tone], //
+          styles.Text.tones[tone()], //
           styles.Text.base
         ]}
       >
