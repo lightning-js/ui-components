@@ -117,6 +117,7 @@ const KeyboardSimple: Component<KeyboardProps> = (props: KeyboardProps) => {
       // @ts-expect-error TODO type needs to be fixed in framework
       style={[props.style, styles.Container.tones[tone()], styles.Container.base]}
       width={totalWidth()}
+      // height is defined by the height of the keys, the number of rows, as well as the gap between them
       height={undefined}
     >
       <For each={Object.keys(props.formats)}>
