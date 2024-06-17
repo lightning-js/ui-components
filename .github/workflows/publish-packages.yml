@@ -50,7 +50,7 @@ jobs:
           chmod -R 777 .git/
 
       - name: Publish artifacts
-        run: pnpm run version-publish
+        run: pnpm version-publish
 
   publish_solid_ui_sb:
     needs: publish_packages # run if publish_pacakges succeeds
