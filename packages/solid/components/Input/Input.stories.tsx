@@ -46,6 +46,14 @@ const meta: Meta<typeof Input> = {
       table: {
         defaultValue: { summary: 'neutral' }
       }
+    },
+    mask: {
+      description: 'character to use as a mask when password is true',
+      control: 'text'
+    },
+    password: {
+      description: 'hen true the content will be masked to the user',
+      control: 'boolean'
     }
   }
 };

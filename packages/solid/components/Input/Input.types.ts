@@ -18,6 +18,16 @@ export interface InputProps extends UIComponentProps, InputStyleProperties {
    * signal passed in to represent the actual title within the input
    */
   titleSignal: Signal<string>;
+
+  /**
+   * when true the content will be masked to the user
+   */
+  password?: boolean;
+
+  /**
+   * character to use as a mask when password is true
+   */
+  mask?: string;
 }
 
 export interface InputStyleProperties {

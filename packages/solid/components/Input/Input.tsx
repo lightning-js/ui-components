@@ -15,16 +15,20 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { createSignal, type Component, createEffect, on } from 'solid-js';
+import { createSignal, type Component, createEffect, on, createMemo } from 'solid-js';
 import { View, Text } from '@lightningtv/solid';
 import styles from './Input.styles.js';
 import type { InputProps } from './Input.types.js';
+
+const getformatTitleText = (props, title) =>
+  props.password ? (props.mask ?? '').repeat(title.length ?? 0) : title;
 
 const Input: Component<InputProps> = props => {
   /* eslint-disable solid/reactivity */
   const [title, setTitle] = props.titleSignal;
   const [position, setPosition] = createSignal(props.position ?? title().length);
   const [keyEvent, setKeyEvent] = props.keyEvent;
+  const formatTitleText = createMemo(() => getformatTitleText(props, title()));
 
   const formatInputText = (key: string) => {
     if (key === undefined || key === '') {
@@ -117,7 +121,7 @@ const Input: Component<InputProps> = props => {
           styles.Text.base
         ]}
       >
-        {title()}
+        {formatTitleText()}
       </Text>
     </View>
   );
