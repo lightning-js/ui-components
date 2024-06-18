@@ -47,7 +47,7 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           # Upload entire repository
-          path: './src/packages/solid/storybook-static'
+          path: './packages/solid/storybook-static'
 
       - name: Deploy to GitHub Pages
         id: deployment
