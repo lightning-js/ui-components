@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.19.0 (2024-06-20)
+
+### Bug Fixes
+
+- **Input:** separates mask and password into tewo different properties ([d41e5d9](https://github.com/lightning-js/ui-components/commit/d41e5d96dba2f78d615b53210db8f64ff117e27e))
+- **Keyboard:** adds comment explaining height being undefinied ([2fab91e](https://github.com/lightning-js/ui-components/commit/2fab91e64de5837d819d1c759eb64fb14cd60d0b))
+- **Keyboard:** allows for toggling keyboard ([bbc74be](https://github.com/lightning-js/ui-components/commit/bbc74bee9a3cbfd2d39935d0b3f074b92bed8c8d))
+- **Keyboard:** cleans up ([a3a1691](https://github.com/lightning-js/ui-components/commit/a3a1691dd3eca898e6aabd011b3c05ca6fd7d5a0))
+- **Keyboard:** creates centerKeyboard functionality ([8efc6f7](https://github.com/lightning-js/ui-components/commit/8efc6f766c2f6136532d57f94c8d3b907081cce0))
+- **KeyboardInput:** exports keyboardInput ([7db788a](https://github.com/lightning-js/ui-components/commit/7db788aa7e5e53f78149a26957830fec2c28a231))
+- **Keyboard:** maintains indexing when switching keyboards ([cc36ddb](https://github.com/lightning-js/ui-components/commit/cc36ddb4cd41cf47ee3f26767ad91cda23b7c03b))
+- **Keyboard:** renames keyboardRefList and screenWidth ([dfcf2e6](https://github.com/lightning-js/ui-components/commit/dfcf2e6ecc2d8d5151e9ce738dc75ed51d4bf086))
+- **Keyboard:** sets focus to new keyboard on toggle ([a159047](https://github.com/lightning-js/ui-components/commit/a159047e57e20ab1b4feb3bbf3f5bc3b7e6aa72d))
+- **KeyboardSimple:** updates props ([27ed8d4](https://github.com/lightning-js/ui-components/commit/27ed8d418a798ea2047a79c4467e8d0a5b29c3a6))
+- **Keyboard:** updates imports ([db97977](https://github.com/lightning-js/ui-components/commit/db97977ad73dc75ebe58b0a8b1626e9e5cf70bae))
+- **Keyboard:** updates index exports ([f8179bb](https://github.com/lightning-js/ui-components/commit/f8179bb0a69db8815e6029a8c2308d0e6d22957c))
+- **Keyboard:** updates keyboard styles ([6b2bae6](https://github.com/lightning-js/ui-components/commit/6b2bae689992567a78c961f22f1f7b85a8f409d0))
+- **Keyboard:** wip gets width of row to parent ([6db5be1](https://github.com/lightning-js/ui-components/commit/6db5be10eef6ef2e2c1d09e3b97a07434b741043))
+- **Key:** remvoes textAlign left ([23bfbcf](https://github.com/lightning-js/ui-components/commit/23bfbcf4a0e0ad41e6c51e853c5f1d2f1f57485f))
+- **Key:** updates key styles ([81cd266](https://github.com/lightning-js/ui-components/commit/81cd266a6ca2c257cdd0cdc9b492c57faf3366dc))
+- move assets into storybook root ([1f797bc](https://github.com/lightning-js/ui-components/commit/1f797bccb1372ff82a8e63cf24a3e034ba33bfec))
+- **preview:** removes devicephysicalpixelratio ([f403649](https://github.com/lightning-js/ui-components/commit/f40364948450cc12765d4ff95e3787b4ae76da6e))
+- **Solid:** updats keyboard imports and memoizes properties ([27ad7dc](https://github.com/lightning-js/ui-components/commit/27ad7dc61b8878021f601daf8acd2d924645ef90))
+- update exports ([ce826d6](https://github.com/lightning-js/ui-components/commit/ce826d6756fed9a54a9a29dc44edcbc4ca989187))
+- update new names of packages ([5ea0dfa](https://github.com/lightning-js/ui-components/commit/5ea0dfa567aaa8ab1077ddb4922f204d613bca24))
+
+### Features
+
+- add compile time theme support ([8e8c4f6](https://github.com/lightning-js/ui-components/commit/8e8c4f677f13efa26094fe9e0a4a72d461548b82))
+- add progress bar, global width arg ([853de20](https://github.com/lightning-js/ui-components/commit/853de202cfab1b15acb8d4fcf4d58f92941b5503))
+- add typescript, sandbox app ([#3](https://github.com/lightning-js/ui-components/issues/3)) ([05a0b92](https://github.com/lightning-js/ui-components/commit/05a0b9227879d546d1265c48959deae492ee2026))
+- **Input:** masking string in input if password ([627187a](https://github.com/lightning-js/ui-components/commit/627187acd03c9e7ab7aa6f553bca74f8e5dd8343))
+- restructure project ([#1](https://github.com/lightning-js/ui-components/issues/1)) ([2c54bba](https://github.com/lightning-js/ui-components/commit/2c54bba1f23f6eb13fb870d7a1e968e4420b400c))
+- update package names ([63601f8](https://github.com/lightning-js/ui-components/commit/63601f8d6455661dd1a82ca1700d30cab0afa1fc))
+
 ## [0.18.18](https://github.com/lightning-js/ui-components/compare/@lightningjs/solid-ui@0.18.17...@lightningjs/solid-ui@0.18.18) (2024-06-10)
 
 ### Bug Fixes
