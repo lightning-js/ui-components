@@ -96,7 +96,7 @@ export {
   type ToggleProps,
   type ToggleStyles
 } from './components/Toggle/index.js';
+export { FPSCounter, setupFPS, resetCounter } from './components/FPSCounter/index.js';
 export * from './utils/index.js';
-export * from './components/FPSCounter/index.js';
 export * from './types/types.js';
 export * from './types/interfaces.js';
