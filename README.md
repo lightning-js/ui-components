@@ -15,7 +15,11 @@
   SPDX-License-Identifier: Apache-2.0
 -->
 
-# Solid UI
+**NOTE: Solid UI has moved to a [new home](https://github.com/rdkcentral/solid-ui)!**
+
+---
+
+# [Archived] Solid UI
 
 This library contains a suite of [themeable](THEMING.md) UI components written for the [SolidJS Lightning](https://github.com/lightning-tv/solid) Framework. check them out in our [storybook docs](https://lightning-js.github.io/ui-components/).
 
